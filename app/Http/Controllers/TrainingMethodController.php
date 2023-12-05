@@ -25,9 +25,13 @@ class TrainingMethodController extends Controller
     public function index(Request $request)
     {
         $traingMethods = $this->traingMethod->customPaginate($request, $request->pagination);
-        $data['paginate'] = $this->customPaginate($traingMethods->currentPage(), $traingMethods->lastPage());
-        $data['data'] = TrainingMethodResource::collection($traingMethods);
-        return ResponseHelper::success($data);
+        if ($request->is('api/*')) {
+            $data['paginate'] = $this->customPaginate($traingMethods->currentPage(), $traingMethods->lastPage());
+            $data['data'] = TrainingMethodResource::collection($traingMethods);
+            return ResponseHelper::success($data);
+        } else {
+            return view('pages.training-method');
+        }
     }
 
     /**
@@ -44,7 +48,11 @@ class TrainingMethodController extends Controller
     public function store(TrainingMethodRequest $request)
     {
         $this->traingMethod->store($request->validated());
-        return ResponseHelper::success(null, trans('alert.add_success'));
+        if ($request->is('api/*')) {
+            return ResponseHelper::success(null, trans('alert.add_success'));
+        } else {
+            return redirect()->back()->with('success', trans('alert.add_success'));
+        }
     }
 
     /**
@@ -69,15 +77,23 @@ class TrainingMethodController extends Controller
     public function update(TrainingMethodRequest $request, TrainingMethod $traingMethod)
     {
         $this->traingMethod->update($traingMethod->id, $request->validated());
-        return ResponseHelper::success(null, trans('alert.update_success'));
+        if ($request->is('api/*')) {
+            return ResponseHelper::success(null, trans('alert.update_success'));
+        } else {
+            return redirect()->back()->with('success', trans('alert.update_success'));
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(TrainingMethod $traingMethod)
+    public function destroy(TrainingMethod $traingMethod, Request $request)
     {
         $this->traingMethod->delete($traingMethod->id);
-        return ResponseHelper::success(null, trans('alert.delete_success'));
+        if ($request->is('api/*')) {
+            return ResponseHelper::success(null, trans('alert.delete_success'));
+        } else {
+            return redirect()->back()->with('success', trans('alert.delete_success'));
+        }
     }
 }

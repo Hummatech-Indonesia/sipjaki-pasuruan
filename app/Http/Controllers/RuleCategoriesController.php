@@ -25,10 +25,14 @@ class RuleCategoriesController extends Controller
      */
     public function index(Request $request)
     {
-        $ruleCategories = $this->ruleCategory->customPaginate($request, $request->pagination);
-        $data['paginate'] = $this->customPaginate($ruleCategories->currentPage(), $ruleCategories->lastPage());
-        $data['data'] = RuleCategoriesResource::collection($ruleCategories);
-        return ResponseHelper::success($data);
+        $ruleCategories = $this->ruleCategory->customPaginate($request, 10);
+        if ($request->is('api/*')) {
+            $data['paginate'] = $this->customPaginate($ruleCategories->currentPage(), $ruleCategories->lastPage());
+            $data['data'] = RuleCategoriesResource::collection($ruleCategories);
+            return ResponseHelper::success($data);
+        } else {
+            return view('pages.rule-category', ['ruleCategories' => $ruleCategories]);
+        }
     }
 
     /**
@@ -48,7 +52,13 @@ class RuleCategoriesController extends Controller
     public function store(RuleCategoriesRequest $request)
     {
         $this->ruleCategory->store($request->validated());
-        return ResponseHelper::success(null, trans('alert.add_success'));
+        if ($request->is('api/*')) {
+
+            return ResponseHelper::success(null, trans('alert.add_success'));
+        } else {
+
+            return redirect()->back()->with('success', trans('alert.add_success'));
+        }
     }
 
     /**
@@ -73,15 +83,23 @@ class RuleCategoriesController extends Controller
     public function update(RuleCategoriesRequest $request, RuleCategory $ruleCategory)
     {
         $this->ruleCategory->update($ruleCategory->id, $request->validated());
-        return ResponseHelper::success(null, trans('alert.update_success'));
+        if ($request->is('api/*')) {
+            return ResponseHelper::success(null, trans('alert.update_success'));
+        } else {
+            return redirect()->back()->with('success', trans('alert.update_success'));
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(RuleCategory $ruleCategory)
+    public function destroy(RuleCategory $ruleCategory, $request)
     {
         $this->ruleCategory->delete($ruleCategory->id);
-        return ResponseHelper::success(null, trans('alert.delete_success'));
+        if ($request->is('api/*')) {
+            return ResponseHelper::success(null, trans('alert.delete_success'));
+        } else {
+            return redirect()->back()->with('success', trans('alert.delete_success'));
+        }
     }
 }

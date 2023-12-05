@@ -24,10 +24,14 @@ class ClassificationController extends Controller
      */
     public function index(Request $request)
     {
-        $classifications = $this->classification->customPaginate($request, $request->pagination);
-        $data['paginate'] = $this->customPaginate($classifications->currentPage(), $classifications->lastPage());
-        $data['data'] = ClassificationResource::collection($classifications);
-        return ResponseHelper::success($data);
+        $classifications = $this->classification->customPaginate($request, 10);
+        if ($request->is('api/*')) {
+            $data['paginate'] = $this->customPaginate($classifications->currentPage(), $classifications->lastPage());
+            $data['data'] = ClassificationResource::collection($classifications);
+            return ResponseHelper::success($data);
+        } else {
+            return view('pages.classification', ['classifications' => $classifications]);
+        }
     }
 
     /**
@@ -43,8 +47,13 @@ class ClassificationController extends Controller
      */
     public function store(ClassificationRequest $request)
     {
+
         $this->classification->store($request->validated());
-        return ResponseHelper::success(null, trans('alert.add_success'));
+        if ($request->is('api/*')) {
+            return ResponseHelper::success(null, trans('alert.add_success'));
+        } else {
+            return redirect()->back()->with('success', trans('alert.add_success'));
+        }
     }
 
     /**
@@ -72,7 +81,11 @@ class ClassificationController extends Controller
     public function update(ClassificationRequest $request, Classification $classification)
     {
         $this->classification->update($classification->id, $request->validated());
-        return ResponseHelper::success(null, trans('alert.update_success'));
+        if ($request->is('api/*')) {
+            return ResponseHelper::success(null, trans('alert.update_success'));
+        } else {
+            return redirect()->back()->with('success', trans('alert.update_success'));
+        }
     }
 
     /**
@@ -80,9 +93,13 @@ class ClassificationController extends Controller
      * @param  mixed $classification
      * @return void
      */
-    public function destroy(Classification $classification)
+    public function destroy(Classification $classification, Request $request)
     {
         $this->classification->delete($classification->id);
-        return ResponseHelper::success(null, trans('alert.delete_success'));
+        if ($request->is('api/*')) {
+            return ResponseHelper::success(null, trans('alert.delete_success'));
+        } else {
+            return redirect()->back()->with('success', trans('alert.delete_success'));
+        }
     }
 }
