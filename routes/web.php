@@ -19,6 +19,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('training-methods', function () {
+    return view('methods.index');
+});
 
 Auth::routes();
 
