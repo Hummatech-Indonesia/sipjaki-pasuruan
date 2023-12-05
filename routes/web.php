@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClassificationController;
+use App\Http\Controllers\NewsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -25,4 +26,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::resources([
     'classifications' => ClassificationController::class,
+    'news' => NewsController::class,
 ]);
