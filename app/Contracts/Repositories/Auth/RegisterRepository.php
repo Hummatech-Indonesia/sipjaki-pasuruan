@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Contracts\Repositories;
+namespace App\Contracts\Repositories\Auth;
 
-use App\Contracts\Interfaces\RegisterInterface;
+use App\Contracts\Interfaces\Auth\RegisterInterface;
+use App\Contracts\Repositories\BaseRepository;
 use App\Models\User;
 
 class RegisterRepository extends BaseRepository implements RegisterInterface

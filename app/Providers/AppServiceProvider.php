@@ -4,8 +4,8 @@ namespace App\Providers;
 
 use App\Contracts\Interfaces\Auth\RegisterInterface;
 use App\Contracts\Interfaces\ClassificationInterface;
+use App\Contracts\Repositories\Auth\RegisterRepository;
 use App\Contracts\Repositories\ClassificationRepository;
-use App\Contracts\Repositories\RegisterRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
