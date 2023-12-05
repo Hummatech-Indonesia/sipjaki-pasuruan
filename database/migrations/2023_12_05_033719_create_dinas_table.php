@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('dinas', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->foreignUuid('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('name')->unique();
-            $table->foreignUuid('id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }
