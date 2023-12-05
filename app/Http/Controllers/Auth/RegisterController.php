@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Contracts\Interfaces\Auth\RegisterInterface;
+use App\Helpers\ResponseHelper;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\RegisterRequest;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Services\Auth\RegisterService;
+use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -31,43 +37,44 @@ class RegisterController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
+    private RegisterService $service;
+    private RegisterInterface $register;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(RegisterService $service, RegisterInterface $register)
     {
+        $this->service = $service;
+        $this->register = $register;
         $this->middleware('guest');
     }
 
     /**
-     * Get a validator for an incoming registration request.
+     * Show the application registration form.
      *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
+     * @return View
      */
-    protected function validator(array $data)
+    public function showRegistrationForm(): View
     {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+        $title = trans('title.register');
+        return view('auth.register', compact('title'));
     }
 
+
     /**
-     * Create a new user instance after a valid registration.
+     * Handle school registration form
      *
-     * @param  array  $data
-     * @return \App\Models\User
+     * @param RegisterRequest $request
+     *
+     * @return RedirectResponse
      */
-    protected function create(array $data)
+
+    public function register(RegisterRequest $request): JsonResponse
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        $this->service->handleRegistration($request, $this->register);
+
+        return ResponseHelper::success();
     }
 }
