@@ -2,39 +2,39 @@
 
 namespace App\Http\Controllers;
 
-use App\Contracts\Interfaces\NewsInterface;
+use App\Contracts\Interfaces\RuleInterface;
 use App\Helpers\ResponseHelper;
-use App\Http\Requests\NewsRequest;
-use App\Http\Resources\NewsResource;
-use App\Models\News;
-use App\Services\NewsService;
+use App\Http\Requests\RuleRequest;
+use App\Http\Resources\RuleResource;
+use App\Models\Rules;
+use App\Services\RuleService;
 use App\Traits\PaginationTrait;
-use GuzzleHttp\RedirectMiddleware;
 use Illuminate\Http\Request;
 
-class NewsController extends Controller
+class RuleController extends Controller
 {
     use PaginationTrait;
-    private NewsInterface $news;
-    private NewsService $service;
+    private RuleInterface $rule;
+    private RuleService $service;
 
-    public function __construct(NewsInterface $news, NewsService $service)
+    public function __construct(RuleInterface $rule, RuleService $service)
     {
-        $this->news = $news;
+        $this->rule = $rule;
         $this->service = $service;
     }
+
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
-        $news = $this->news->customPaginate($request, 10);
+        $rules = $this->rule->customPaginate($request, 10);
         if ($request->is('api/*')) {
-            $data['paginate'] = $this->customPaginate($news->currentPage(), $news->lastPage());
-            $data['data'] = NewsResource::collection($news);
+            $data['paginate'] = $this->customPaginate($rules->currentPage(), $rules->lastPage());
+            $data['data'] = RuleResource::collection($rules);
             return ResponseHelper::success($data);
         } else {
-            return view('pages.news', ['news' => $news]);
+            return view('rules.news', ['rules' => $rules]);
         }
     }
 
@@ -49,14 +49,12 @@ class NewsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(NewsRequest $request)
+    public function store(RuleRequest $request)
     {
-        $this->news->store($this->service->store($request));
+        $this->rule->store($this->service->store($request));
         if ($request->is('api/*')) {
-
             return ResponseHelper::success(null, trans('alert.add_success'));
         } else {
-
             return redirect()->back()->with('success', trans('alert.add_success'));
         }
     }
@@ -76,38 +74,34 @@ class NewsController extends Controller
     {
         //
     }
+
     /**
      * update
      *
      * @param  mixed $request
-     * @param  mixed $news
+     * @param  mixed $rule
      * @return void
      */
-    public function update(NewsRequest $request, News $news)
+    public function update(RuleRequest $request, Rules $rule)
     {
-        $this->news->update($news->id, $this->service->update($request, $news));
+        $this->rule->update($rule->id, $this->service->update($request, $rule));
         if ($request->is('api/*')) {
-
             return ResponseHelper::success(null, trans('alert.update_success'));
         } else {
-
             return redirect()->back()->with('success', trans('alert.update_success'));
         }
     }
 
     /**
      * Remove the specified resource from storage.
-     * @param  mixed $news
-     * @return void
      */
-    public function destroy(News $news, Request $request)
+    public function destroy(Rules $rule, Request $request)
     {
-        $this->news->delete($news->id);
+        $this->rule->delete($rule->id);
+        $this->service->remove($rule->file);
         if ($request->is('api/*')) {
-
             return ResponseHelper::success(null, trans('alert.delete_success'));
         } else {
-
             return redirect()->back()->with('success', trans('alert.delete_success'));
         }
     }

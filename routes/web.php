@@ -5,6 +5,7 @@ use App\Http\Controllers\FiscalYearController;
 use App\Http\Controllers\FundSourceController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\RuleCategoriesController;
+use App\Http\Controllers\RuleController;
 use App\Http\Controllers\sourceFundController;
 use App\Http\Controllers\SubClassificationController;
 use App\Http\Controllers\TrainingMethodController;
@@ -65,5 +66,6 @@ Route::resources([
     'fund-sources' => FundSourceController::class,
     'sub-classifications' => SubClassificationController::class,
     'training-methods' => TrainingMethodController::class,
-    'users' => UserController::class
+    'users' => UserController::class,
+    'rules' => RuleController::class,
 ]);

@@ -10,6 +10,7 @@ use App\Models\News;
 use App\Models\Qualification;
 use App\Models\QualificationLevel;
 use App\Models\RuleCategory;
+use App\Models\Rules;
 use App\Models\SubClassification;
 use App\Models\TrainingMethod;
 use App\Models\User;
@@ -20,6 +21,7 @@ use App\Observers\FundSourceObserver;
 use App\Observers\NewsObserver;
 use App\Observers\QualificationObserver;
 use App\Observers\RuleCategoriesObserver;
+use App\Observers\RuleObserver;
 use App\Observers\SubClassificationOberserve;
 use App\Observers\SubClassificationObserver;
 use App\Observers\TrainingMethodObserver;
@@ -57,7 +59,7 @@ class EventServiceProvider extends ServiceProvider
         QualificationLevel::observe(QualificationLevel::class);
         SubClassification::observe(SubClassificationObserver::class);
         TrainingMethod::observe(TrainingMethodObserver::class);
-        Dinas::observe(DinasObserver::class);
+        Rules::observe(RuleObserver::class);
     }
 
     /**

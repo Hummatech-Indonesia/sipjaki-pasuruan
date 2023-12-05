@@ -11,6 +11,7 @@ use App\Contracts\Interfaces\NewsInterface;
 use App\Contracts\Interfaces\QualificationInterface;
 use App\Contracts\Interfaces\QualificationLevelInterface;
 use App\Contracts\Interfaces\RuleCategoriesInterface;
+use App\Contracts\Interfaces\RuleInterface;
 use App\Contracts\Interfaces\SubClassificationInterface;
 use App\Contracts\Interfaces\TrainingMethodInterface;
 use App\Contracts\Interfaces\UserInterface;
@@ -22,6 +23,7 @@ use App\Contracts\Repositories\NewsRepository;
 use App\Contracts\Repositories\QualificationLevelRepository;
 use App\Contracts\Repositories\QualificationRepository;
 use App\Contracts\Repositories\RuleCategoriesRepository;
+use App\Contracts\Repositories\RuleRepository;
 use App\Contracts\Repositories\SubClassificationRepository;
 use App\Contracts\Repositories\TrainingMethodRepository;
 use App\Contracts\Repositories\UserRepository;
@@ -41,7 +43,7 @@ class AppServiceProvider extends ServiceProvider
         QualificationLevelInterface::class => QualificationLevelRepository::class,
         TrainingMethodInterface::class => TrainingMethodRepository::class,
         UserInterface::class => UserRepository::class,
-        DinasInterface::class => UserRepository::class
+        RuleInterface::class => RuleRepository::class
     ];
 
     /**
