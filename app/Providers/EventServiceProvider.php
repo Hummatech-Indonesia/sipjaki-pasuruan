@@ -9,12 +9,17 @@ use App\Models\News;
 use App\Models\Qualification;
 use App\Models\QualificationLevel;
 use App\Models\RuleCategory;
+use App\Models\SubClassification;
+use App\Models\TrainingMethod;
 use App\Observers\ClassificationObserver;
 use App\Observers\FiscalYearObserver;
 use App\Observers\FundSourceObserver;
 use App\Observers\NewsObserver;
 use App\Observers\QualificationObserver;
 use App\Observers\RuleCategoriesObserver;
+use App\Observers\SubClassificationOberserve;
+use App\Observers\SubClassificationObserver;
+use App\Observers\TrainingMethodObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -45,6 +50,8 @@ class EventServiceProvider extends ServiceProvider
         FiscalYear::observe(FiscalYearObserver::class);
         Qualification::observe(QualificationObserver::class);
         QualificationLevel::observe(QualificationLevel::class);
+        SubClassification::observe(SubClassificationObserver::class);
+        TrainingMethod::observe(TrainingMethodObserver::class);
     }
 
     /**

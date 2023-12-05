@@ -28,10 +28,14 @@ class NewsController extends Controller
      */
     public function index(Request $request)
     {
-        $news = $this->news->customPaginate($request, $request->pagination);
-        $data['paginate'] = $this->customPaginate($news->currentPage(), $news->lastPage());
-        $data['data'] = NewsResource::collection($news);
-        return ResponseHelper::success($data);
+        $news = $this->news->customPaginate($request, 10);
+        if ($request->is('api/*')) {
+            $data['paginate'] = $this->customPaginate($news->currentPage(), $news->lastPage());
+            $data['data'] = NewsResource::collection($news);
+            return ResponseHelper::success($data);
+        } else {
+            return view('pages.news', ['news' => $news]);
+        }
     }
 
     /**
@@ -48,7 +52,13 @@ class NewsController extends Controller
     public function store(NewsRequest $request)
     {
         $this->news->store($this->service->store($request));
-        return ResponseHelper::success(null, trans('alert.add_success'));
+        if ($request->is('api/*')) {
+
+            return ResponseHelper::success(null, trans('alert.add_success'));
+        } else {
+
+            return redirect()->back()->with('success', trans('alert.add_success'));
+        }
     }
 
     /**
@@ -76,7 +86,13 @@ class NewsController extends Controller
     public function update(NewsRequest $request, News $news)
     {
         $this->news->update($news->id, $request->validated());
-        return ResponseHelper::success(null, trans('alert.update_success'));
+        if ($request->is('api/*')) {
+
+            return ResponseHelper::success(null, trans('alert.update_success'));
+        } else {
+
+            return redirect()->back()->with('success', trans('alert.update_success'));
+        }
     }
 
     /**
@@ -84,9 +100,15 @@ class NewsController extends Controller
      * @param  mixed $news
      * @return void
      */
-    public function destroy(News $news)
+    public function destroy(News $news, Request $request)
     {
         $this->news->delete($news->id);
-        return ResponseHelper::success(null, trans('alert.delete_success'));
+        if ($request->is('api/*')) {
+
+            return ResponseHelper::success(null, trans('alert.delete_success'));
+        } else {
+
+            return redirect()->back()->with('success', trans('alert.delete_success'));
+        }
     }
 }

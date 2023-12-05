@@ -5,11 +5,15 @@ namespace App\Http\Controllers;
 use App\Contracts\Interfaces\SubClassificationInterface;
 use App\Helpers\ResponseHelper;
 use App\Http\Requests\SubClassificationRequest;
+use App\Http\Resources\SubClassificationResource;
 use App\Models\SubClassification;
+use App\Traits\PaginationTrait;
 use Illuminate\Http\Request;
 
 class SubClassificationController extends Controller
 {
+
+    use PaginationTrait;
 
     private SubClassificationInterface $subClassification;
 
@@ -22,8 +26,14 @@ class SubClassificationController extends Controller
      */
     public function index(Request $request)
     {
-        $data = $this->subClassification->search($request);
-        return ResponseHelper::success($data);
+        if ($request->is('api/*')) {
+            $subClassifications = $this->subClassification->customPaginate($request, 10);
+            $data['paginate'] = $this->customPaginate($subClassifications->currentPage(), $subClassifications->lastPage());
+            $data['data'] = SubClassificationResource::collection($subClassifications);
+            return ResponseHelper::success($data);
+        } else {
+            return view('pages.sub-classification');
+        }
     }
 
     /**
@@ -40,7 +50,11 @@ class SubClassificationController extends Controller
     public function store(SubClassificationRequest $request)
     {
         $this->subClassification->store($request->validated());
-        return ResponseHelper::success(null, trans('alert.add_success'));
+        if ($request->is('api/*')) {
+            return ResponseHelper::success(null, trans('alert.add_success'));
+        } else {
+            return redirect()->back()->with('success', trans('alert.add_success'));
+        }
     }
 
     /**
@@ -65,15 +79,23 @@ class SubClassificationController extends Controller
     public function update(SubClassificationRequest $request, SubClassification $subClassification)
     {
         $this->subClassification->update($subClassification->id, $request->validated());
-        return ResponseHelper::success(null, trans('alert.update_success'));
+        if ($request->is('api/*')) {
+            return ResponseHelper::success(null, trans('alert.update_success'));
+        } else {
+            return redirect()->back()->with('success', trans('alert.update_success'));
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(SubClassification $subClassification)
+    public function destroy(SubClassification $subClassification, Request $request)
     {
         $this->subClassification->delete($subClassification->id);
-        return ResponseHelper::success(null, trans('alert.delete_success'));
+        if ($request->is('api/*')) {
+            return ResponseHelper::success(null, trans('alert.delete_success'));
+        } else {
+            return redirect()->back()->with('success', trans('alert.delete_success'));
+        }
     }
 }

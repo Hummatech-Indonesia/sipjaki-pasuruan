@@ -2,16 +2,16 @@
 
 namespace App\Contracts\Repositories;
 
-use App\Contracts\Interfaces\RuleCategoriesInterface;
-use App\Models\RuleCategory;
+use App\Contracts\Interfaces\TrainingMethodInterface;
+use App\Models\TrainingMethod;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-class RuleCategoriesRepository extends BaseRepository implements RuleCategoriesInterface
+class TrainingMethodRepository extends BaseRepository implements TrainingMethodInterface
 {
-    public function __construct(RuleCategory $ruleCategory)
+    public function __construct(TrainingMethod $trainingMethod)
     {
-        $this->model = $ruleCategory;
+        $this->model = $trainingMethod;
     }
 
     /**
@@ -60,6 +60,7 @@ class RuleCategoriesRepository extends BaseRepository implements RuleCategoriesI
     {
         return $this->show($id)->delete($id);
     }
+
 
     /**
      * customPaginate

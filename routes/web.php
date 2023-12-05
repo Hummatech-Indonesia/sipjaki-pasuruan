@@ -5,6 +5,7 @@ use App\Http\Controllers\FundSourceController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\RuleCategoriesController;
 use App\Http\Controllers\SubClassificationController;
+use App\Http\Controllers\TrainingMethodController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -52,9 +53,10 @@ Route::get('/sumber-dana',function(){
 })->name('source-fund');
 
 Route::resources([
-    'classifications' => ClassificationController::class,
     'news' => NewsController::class,
     'rule-categories' => RuleCategoriesController::class,
     'fund-sources' => FundSourceController::class,
-    'sub-classifications' => SubClassificationController::class
+    'classifications' => ClassificationController::class,
+    'sub-classifications' => SubClassificationController::class,
+    'training-methods' => TrainingMethodController::class
 ]);

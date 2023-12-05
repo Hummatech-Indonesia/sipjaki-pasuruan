@@ -11,6 +11,7 @@ use App\Contracts\Interfaces\QualificationInterface;
 use App\Contracts\Interfaces\QualificationLevelInterface;
 use App\Contracts\Interfaces\RuleCategoriesInterface;
 use App\Contracts\Interfaces\SubClassificationInterface;
+use App\Contracts\Interfaces\TrainingMethodInterface;
 use App\Contracts\Repositories\Auth\RegisterRepository;
 use App\Contracts\Repositories\ClassificationRepository;
 use App\Contracts\Repositories\FiscalYearRepository;
@@ -20,6 +21,7 @@ use App\Contracts\Repositories\QualificationLevelRepository;
 use App\Contracts\Repositories\QualificationRepository;
 use App\Contracts\Repositories\RuleCategoriesRepository;
 use App\Contracts\Repositories\SubClassificationRepository;
+use App\Contracts\Repositories\TrainingMethodRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -33,7 +35,8 @@ class AppServiceProvider extends ServiceProvider
         SubClassificationInterface::class => SubClassificationRepository::class,
         FiscalYearInterface::class => FiscalYearRepository::class,
         QualificationInterface::class => QualificationRepository::class,
-        QualificationLevelInterface::class => QualificationLevelRepository::class
+        QualificationLevelInterface::class => QualificationLevelRepository::class,
+        TrainingMethodInterface::class => TrainingMethodRepository::class
     ];
 
     /**

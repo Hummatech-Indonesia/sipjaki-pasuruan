@@ -2,35 +2,35 @@
 
 namespace App\Http\Controllers;
 
-use App\Contracts\Interfaces\ClassificationInterface;
+use App\Contracts\Interfaces\TrainingMethodInterface;
 use App\Helpers\ResponseHelper;
-use App\Http\Requests\ClassificationRequest;
-use App\Http\Resources\ClassificationResource;
-use App\Models\Classification;
+use App\Http\Requests\TrainingMethodRequest;
+use App\Http\Resources\TrainingMethodResource;
+use App\Models\TrainingMethod;
 use App\Traits\PaginationTrait;
 use Illuminate\Http\Request;
 
-class ClassificationController extends Controller
+class TrainingMethodController extends Controller
 {
     use PaginationTrait;
-    private ClassificationInterface $classification;
 
-    public function __construct(ClassificationInterface $classification)
+    private TrainingMethodInterface $traingMethod;
+    public function __construct(TrainingMethodInterface $traingMethod)
     {
-        $this->classification = $classification;
+        $this->traingMethod = $traingMethod;
     }
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
-        $classifications = $this->classification->customPaginate($request, 10);
+        $traingMethods = $this->traingMethod->customPaginate($request, $request->pagination);
         if ($request->is('api/*')) {
-            $data['paginate'] = $this->customPaginate($classifications->currentPage(), $classifications->lastPage());
-            $data['data'] = ClassificationResource::collection($classifications);
+            $data['paginate'] = $this->customPaginate($traingMethods->currentPage(), $traingMethods->lastPage());
+            $data['data'] = TrainingMethodResource::collection($traingMethods);
             return ResponseHelper::success($data);
         } else {
-            return view('pages.classification', ['classifications' => $classifications]);
+            return view('pages.training-method');
         }
     }
 
@@ -45,10 +45,9 @@ class ClassificationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ClassificationRequest $request)
+    public function store(TrainingMethodRequest $request)
     {
-
-        $this->classification->store($request->validated());
+        $this->traingMethod->store($request->validated());
         if ($request->is('api/*')) {
             return ResponseHelper::success(null, trans('alert.add_success'));
         } else {
@@ -74,13 +73,10 @@ class ClassificationController extends Controller
 
     /**
      * Update the specified resource in storage.
-     * @param  mixed $request
-     * @param  mixed $classification
-     * @return void
      */
-    public function update(ClassificationRequest $request, Classification $classification)
+    public function update(TrainingMethodRequest $request, TrainingMethod $traingMethod)
     {
-        $this->classification->update($classification->id, $request->validated());
+        $this->traingMethod->update($traingMethod->id, $request->validated());
         if ($request->is('api/*')) {
             return ResponseHelper::success(null, trans('alert.update_success'));
         } else {
@@ -90,12 +86,10 @@ class ClassificationController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     * @param  mixed $classification
-     * @return void
      */
-    public function destroy(Classification $classification, Request $request)
+    public function destroy(TrainingMethod $traingMethod, Request $request)
     {
-        $this->classification->delete($classification->id);
+        $this->traingMethod->delete($traingMethod->id);
         if ($request->is('api/*')) {
             return ResponseHelper::success(null, trans('alert.delete_success'));
         } else {
