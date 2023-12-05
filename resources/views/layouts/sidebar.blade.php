@@ -13,9 +13,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('fiscal-year') }}" class="waves-effect">
-                        <i class="bx bx-bar-chart-alt"></i>
-                        <span key="t-file-manager">Kategori Peraturan</span>
+                    <a href="{{ route('training-methods.index') }}" class="waves-effect">
+                        <i class="fas fa-clipboard"></i>
+                        <span key="t-file-manager">Metode Pelatihan</span>
                     </a>
                 </li>
                 <li>
@@ -29,6 +29,9 @@
                     <a href="{{ route('source-fund') }}" class="waves-effect">
                         <i class="bx bx-bx bx-money"></i>
                         <span key="t-file-manager">Sumber Dana</span>
+                    <a href="{{ route('classifications.index') }}" class="waves-effect">
+                        <i class="fas fa-clipboard"></i>
+                        <span key="t-file-manager">Klasifikasi</span>
                     </a>
                 </li>
 
