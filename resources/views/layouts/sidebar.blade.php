@@ -14,7 +14,12 @@
                         <span key="t-file-manager">Kategori Peraturan</span>
                     </a>
                 </li>
-
+                <li>
+                    <a href="{{ route('fiscal-year') }}" class="waves-effect">
+                        <i class="bx bx-bar-chart-alt"></i>
+                        <span key="t-file-manager">Kategori Peraturan</span>
+                    </a>
+                </li>
             </ul>
         </div>
         <!-- Sidebar -->

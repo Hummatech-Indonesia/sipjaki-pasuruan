@@ -29,9 +29,11 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/kategori-peraturan',function(){
-    return view('rule-category');
+    return view('pages.rule-category');
 })->name('rule-category');
-
+Route::get('tahun-anggaran',function(){
+    return view('pages.fiscal-year');
+})->name('fiscal-year');
 Route::resources([
     'classifications' => ClassificationController::class,
     'news' => NewsController::class,
