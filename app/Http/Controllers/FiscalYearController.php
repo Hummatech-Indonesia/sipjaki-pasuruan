@@ -8,6 +8,9 @@ use App\Helpers\ResponseHelper;
 use Illuminate\Http\JsonResponse;
 use App\Http\Resources\FiscalYearResource;
 use App\Contracts\Interfaces\FiscalYearInterface;
+use App\Http\Requests\FiscalYearRequest;
+use App\Models\FiscalYear;
+use Illuminate\Http\RedirectResponse;
 
 class FiscalYearController extends Controller
 {
@@ -29,60 +32,73 @@ class FiscalYearController extends Controller
 
             $data['paginate'] = $this->customPaginate($fiscalYears->currentPage(), $fiscalYears->lastPage());
             $data['data'] = FiscalYearResource::collection($fiscalYears);
-            return ResponseHelper::success($data);
+            return ResponseHelper::success($data,trans('alert.get_success'));
 
         }else{
 
             return view('page',compact('fiscalYears'));
-            
-        }
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        }
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(FiscalYearRequest $request): RedirectResponse | JsonResponse
     {
-        //
+        $this->fiscalYear->store($request->validated());
+
+        if( $request->is('api/*')){
+
+            return ResponseHelper::success(null,trans('alert.add_success'));
+
+        }else{
+
+            return redirect()->back()->with('success',trans('alert.add_success'));
+
+        }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(FiscalYear $fiscalYear) : JsonResponse
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
+        return ResponseHelper::success(FiscalYearResource::make($fiscalYear),trans('alert.get_success'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(FiscalYearRequest $request,FiscalYear $fiscalYear) : RedirectResponse | JsonResponse
     {
-        //
+        $this->fiscalYear->update($fiscalYear->id,$request->all());
+
+        if( $request->is('api/*')){
+
+            return ResponseHelper::success(null,trans('alert.update_success'));
+
+        }else{
+
+           return redirect()->back()->with('success',trans('alert.update_success'));
+
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(FiscalYear $fiscalYear, Request $request)
     {
-        //
+        $this->fiscalYear->delete($fiscalYear->id);
+
+        if( $request->is('api/*')){
+
+
+        }else{
+
+            return redirect()->back()->with('success',trans('alert.delete_success'));
+
+        }
     }
 }
