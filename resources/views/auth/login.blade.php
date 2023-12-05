@@ -96,19 +96,17 @@
                         <div class="w-100">
 
                             <div class="d-flex flex-column h-100">
-                                <div class="mb-4 mb-md-5">
-                                    <a href="index.html" class="d-block card-logo">
-                                        <img src="{{ asset('assets/images/logo-dark.png') }}" alt=""
-                                            height="18" class="card-logo-dark">
-                                        <img src="{{ asset('assets/images/logo-light.png') }}" alt=""
-                                            height="18" class="card-logo-light">
+                                <div class="mb-4 d-flex justify-content-center mb-md-5">
+                                    <a href="javascript:void(0)" class="d-block card-logo">
+                                        <img src="{{ asset('logo.png') }}" alt=""
+                                            height="40" class="card-logo-dark">
                                     </a>
                                 </div>
                                 <div class="my-auto">
 
                                     <div>
-                                        <h5 class="text-primary">Welcome Back !</h5>
-                                        <p class="text-muted">Sign in to continue to Skote.</p>
+                                        <h5 class="text-primary">SELAMAT  DATANG KEMBALI</h5>
+                                        <p class="text-muted">Login untuk melanjutkan</p>
                                     </div>
 
                                     <div class="mt-4">
