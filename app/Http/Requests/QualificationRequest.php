@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class FiscalYearRequest extends FormRequest
+class QualificationRequest extends FormRequest
 {
 
     /**
@@ -15,7 +15,7 @@ class FiscalYearRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max:4'
+            'name' => 'required|max:255'
         ];
     }
 
@@ -28,7 +28,7 @@ class FiscalYearRequest extends FormRequest
     {
         return [
             'name.required' => 'Nama wajib diisi',
-            'name.max' => 'Nama maksimal 4 karakter'
+            'name.max' => 'Nama maksimal 255 karakter'
         ];
     }
 }

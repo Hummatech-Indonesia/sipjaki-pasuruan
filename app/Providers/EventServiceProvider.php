@@ -6,11 +6,13 @@ use App\Models\Classification;
 use App\Models\FiscalYear;
 use App\Models\FundSource;
 use App\Models\News;
+use App\Models\Qualification;
 use App\Models\RuleCategory;
 use App\Observers\ClassificationObserver;
 use App\Observers\FiscalYearObserver;
 use App\Observers\FundSourceObserver;
 use App\Observers\NewsObserver;
+use App\Observers\QualificationObserver;
 use App\Observers\RuleCategoriesObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -40,6 +42,7 @@ class EventServiceProvider extends ServiceProvider
         Classification::observe(ClassificationObserver::class);
         FundSource::observe(FundSourceObserver::class);
         FiscalYear::observe(FiscalYearObserver::class);
+        Qualification::observe(QualificationObserver::class);
     }
 
     /**
