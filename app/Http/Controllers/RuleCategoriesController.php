@@ -93,7 +93,7 @@ class RuleCategoriesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(RuleCategory $ruleCategory, $request)
+    public function destroy(RuleCategory $ruleCategory,Request $request)
     {
         $this->ruleCategory->delete($ruleCategory->id);
         if ($request->is('api/*')) {

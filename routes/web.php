@@ -1,11 +1,13 @@
 <?php
 
 use App\Http\Controllers\ClassificationController;
+use App\Http\Controllers\FiscalYearController;
 use App\Http\Controllers\FundSourceController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\RuleCategoriesController;
 use App\Http\Controllers\SubClassificationController;
 use App\Http\Controllers\TrainingMethodController;
+use App\Models\RuleCategory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -40,9 +42,9 @@ Route::get('/kategori-peraturan', function () {
 })->name('rule-category');
 
 
-Route::get('tahun-anggaran', function () {
-    return view('pages.fiscal-year');
-})->name('fiscal-year');
+// Route::get('tahun-anggaran', function () {
+//     return view('pages.fiscal-year');
+// })->name('fiscal-year');
 
 Route::get('KKNI',function(){
     return view('pages.qualification');
@@ -53,6 +55,9 @@ Route::get('/sumber-dana',function(){
 })->name('source-fund');
 
 Route::resources([
+    'rule-categories' => RuleCategoriesController::class,
+    'fiscal-years'=> FiscalYearController::class,
+    'classifications' => ClassificationController::class,
     'news' => NewsController::class,
     'rule-categories' => RuleCategoriesController::class,
     'fund-sources' => FundSourceController::class,

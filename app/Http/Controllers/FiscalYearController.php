@@ -37,7 +37,7 @@ class FiscalYearController extends Controller
 
         }else{
 
-            return view('page',compact('fiscalYears'));
+            return view('pages.fiscal-year',compact('fiscalYears'));
 
         }
     }
