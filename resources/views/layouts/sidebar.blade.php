@@ -2,9 +2,7 @@
 
     <div data-simplebar class="h-100">
 
-        <!--- Sidemenu -->
         <div id="sidebar-menu">
-            <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
                 <li class="menu-title" key="t-menu">Menu</li>
 
@@ -26,8 +24,15 @@
                         <span key="t-file-manager">KKNI</span>
                     </a>
                 </li>
+
+                <li>
+                    <a href="{{ route('source-fund') }}" class="waves-effect">
+                        <i class="bx bx-bx bx-money"></i>
+                        <span key="t-file-manager">Sumber Dana</span>
+                    </a>
+                </li>
+
             </ul>
         </div>
-        <!-- Sidebar -->
     </div>
 </div>

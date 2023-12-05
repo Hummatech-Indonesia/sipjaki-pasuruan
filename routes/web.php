@@ -47,6 +47,9 @@ Route::get('KKNI',function(){
     return view('pages.qualification');
 })->name('qualification');
 
+Route::get('/sumber-dana',function(){
+    return view('pages.source-fund');
+})->name('source-fund');
 
 Route::resources([
     'classifications' => ClassificationController::class,

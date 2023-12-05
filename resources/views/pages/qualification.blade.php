@@ -48,35 +48,22 @@
             </div>
         </div>
         <div class="table-responsive">
-            <table class="table">
+            <table class="table" border="1" style="border-color: #1B3061">
                 <thead>
                     <tr>
                         <th style="background-color: #1B3061;color:#ffffff">No</th>
                         <th style="background-color: #1B3061;color:#ffffff">Nama Kerangka Nasional Indonesia</th>
-                        <th style="background-color: #1B3061;color:#ffffff">Aksi</th>
+                        <th style="background-color: #1B3061;color:#ffffff; text-align: center">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>1</td>
-                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut orci orci, placerat nec quam quis,
+                        <td style="border-right: 1px solid #1B3061">1</td>
+                        <td style="border-right: 1px solid #1B3061">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut orci orci, placerat nec quam quis,
                         </td>
-                        <td>
-                            <div class="d-flex justify-content-header gap-2">
-                                <div class="">
-                                    <button type="button" class="btn btn-warning waves-effect waves-light"
-                                        data-bs-toggle="modal" data-bs-target="#modal-update">
-                                        <i class="bx bx-edit font-size-17 btn-sm align-middle me-2"></i> Edit
-                                    </button>
-                                </div>
-                                <div class="">
-                                    <button type="button" data-bs-toggle="modal" data-bs-target="#modal-delete"
-                                        class="btn btn-danger waves-effect waves-light">
-                                        <i class="bx bx-trash-alt font-size-17 btn-sm align-middle me-2"></i>
-                                        Hapus
-                                    </button>
-                                </div>
-                            </div>
+                        <td class="d-flex flex-row gap-3 justify-content-center" style="border-bottom: 1px solid #fff">
+                            <button type="button" class="btn waves-effect waves-light d-flex flex-row gap-1 justify-content-evenly" style="width: 90px; background-color: #FFC928; color: white" data-bs-toggle="modal" data-bs-target="#modal-update"><i class="bx bx-bx bxs-edit fs-4"></i> <span>Edit</span></button>
+                            <button type="button" class="btn waves-effect waves-light d-flex flex-row gap-1 justify-content-between" style="width: 90px; background-color: #E05C39; color: white" data-bs-toggle="modal" data-bs-target="#modal-delete"><i class="bx bx-bx bxs-trash fs-4"></i> Hapus</button>
                         </td>
                     </tr>
                 </tbody>

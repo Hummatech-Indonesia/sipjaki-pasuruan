@@ -3,7 +3,7 @@
     <x-delete-modal-component />
     <h2>Tahun Anggaran</h2>
     <div class="card p-3">
-        <div class="d-flex justify-content-between mb-3">
+        <div class="d-flex justify-content-between align-items-center mb-3">
             <div>
                 <h5>
                     Berikut daftar anggaran setiap tahun
@@ -11,7 +11,7 @@
             </div>
             <div>
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-create"
-                    style="background-color: #1B3061"><i class="fas fa-plus" style="margin-right:10px"></i>Tambah</button>
+                    style="background-color: #1B3061; border-radius: 10px"><i class="fas fa-plus" style="margin-right:10px"></i>Tambah</button>
             </div>
         </div>
         <div class="modal fade" id="modal-create" tabindex="-1" id="modal-create" aria-labelledby="exampleModalLabel1">
@@ -32,7 +32,6 @@
                                         name="school_year" id="nametext" aria-describedby="name"
                                         placeholder="Masukan Anggaran" />
                                 </div>
-
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger text-white font-medium waves-effect"
@@ -48,35 +47,21 @@
             </div>
         </div>
         <div class="table-responsive">
-            <table class="table">
+            <table class="table" border="1" style="border-color: #1B3061">
                 <thead>
                     <tr>
                         <th style="background-color: #1B3061;color:#ffffff">No</th>
                         <th style="background-color: #1B3061;color:#ffffff">Nama Tahun Anggaran</th>
-                        <th style="background-color: #1B3061;color:#ffffff">Aksi</th>
+                        <th style="background-color: #1B3061;color:#ffffff;text-align: center">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>1</td>
-                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut orci orci, placerat nec quam quis,
-                        </td>
-                        <td>
-                            <div class="d-flex justify-content-header gap-2">
-                                <div class="">
-                                    <button type="button" class="btn btn-warning waves-effect waves-light"
-                                        data-bs-toggle="modal" data-bs-target="#modal-update">
-                                        <i class="bx bx-edit font-size-17 btn-sm align-middle me-2"></i> Edit
-                                    </button>
-                                </div>
-                                <div class="">
-                                    <button type="button" data-bs-toggle="modal" data-bs-target="#modal-delete"
-                                        class="btn btn-danger waves-effect waves-light">
-                                        <i class="bx bx-trash-alt font-size-17 btn-sm align-middle me-2"></i>
-                                        Hapus
-                                    </button>
-                                </div>
-                            </div>
+                        <th scope="row" class="fs-5" style="border-right: 1px solid #1B3061">1</th>
+                        <td class="fs-5" style="border-right: 1px solid #1B3061">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ab, modi.</td>
+                        <td class="d-flex flex-row gap-3 justify-content-center" style="border-bottom: 1px solid #fff">
+                            <button type="button" class="btn waves-effect waves-light d-flex flex-row gap-1 justify-content-evenly" style="width: 90px; background-color: #FFC928; color: white" data-bs-toggle="modal" data-bs-target="#modal-update"><i class="bx bx-bx bxs-edit fs-4"></i> <span>Edit</span></button>
+                            <button type="button" class="btn waves-effect waves-light d-flex flex-row gap-1 justify-content-between" style="width: 90px; background-color: #E05C39; color: white" data-bs-toggle="modal" data-bs-target="#modal-delete"><i class="bx bx-bx bxs-trash fs-4"></i> Hapus</button>
                         </td>
                     </tr>
                 </tbody>
@@ -101,7 +86,6 @@
                                         name="school_year" id="nametext" aria-describedby="name"
                                         placeholder="Masukan Anggaran" />
                                 </div>
-
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger text-white font-medium waves-effect"
