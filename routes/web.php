@@ -5,11 +5,10 @@ use App\Http\Controllers\FiscalYearController;
 use App\Http\Controllers\FundSourceController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\RuleCategoriesController;
-use App\Http\Controllers\sourceFund;
 use App\Http\Controllers\sourceFundController;
 use App\Http\Controllers\SubClassificationController;
 use App\Http\Controllers\TrainingMethodController;
-use App\Models\RuleCategory;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -45,7 +44,7 @@ Route::get('/kategori-peraturan', function () {
 //     return view('pages.fiscal-year');
 // })->name('fiscal-year');
 
-Route::get('KKNI',function(){
+Route::get('KKNI', function () {
     return view('pages.qualification');
 })->name('qualification');
 
@@ -53,13 +52,18 @@ Route::get('KKNI',function(){
 //     return view('pages.source-fund');
 // })->name('source-fund');
 
+Route::get('/sumber-dana', function () {
+    return view('pages.source-fund');
+})->name('source-fund');
+
 Route::resources([
     'source-fund' => sourceFundController::class,
     'rule-categories' => RuleCategoriesController::class,
-    'fiscal-years'=> FiscalYearController::class,
+    'fiscal-years' => FiscalYearController::class,
     'classifications' => ClassificationController::class,
     'news' => NewsController::class,
     'fund-sources' => FundSourceController::class,
     'sub-classifications' => SubClassificationController::class,
-    'training-methods' => TrainingMethodController::class
+    'training-methods' => TrainingMethodController::class,
+    'users' => UserController::class
 ]);

@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Classification;
+use App\Models\Dinas;
 use App\Models\FiscalYear;
 use App\Models\FundSource;
 use App\Models\News;
@@ -11,7 +12,9 @@ use App\Models\QualificationLevel;
 use App\Models\RuleCategory;
 use App\Models\SubClassification;
 use App\Models\TrainingMethod;
+use App\Models\User;
 use App\Observers\ClassificationObserver;
+use App\Observers\DinasObserver;
 use App\Observers\FiscalYearObserver;
 use App\Observers\FundSourceObserver;
 use App\Observers\NewsObserver;
@@ -20,6 +23,7 @@ use App\Observers\RuleCategoriesObserver;
 use App\Observers\SubClassificationOberserve;
 use App\Observers\SubClassificationObserver;
 use App\Observers\TrainingMethodObserver;
+use App\Observers\UserObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -44,6 +48,7 @@ class EventServiceProvider extends ServiceProvider
     public function boot(): void
     {
         News::observe(NewsObserver::class);
+        User::observe(UserObserver::class);
         RuleCategory::observe(RuleCategoriesObserver::class);
         Classification::observe(ClassificationObserver::class);
         FundSource::observe(FundSourceObserver::class);
@@ -52,6 +57,7 @@ class EventServiceProvider extends ServiceProvider
         QualificationLevel::observe(QualificationLevel::class);
         SubClassification::observe(SubClassificationObserver::class);
         TrainingMethod::observe(TrainingMethodObserver::class);
+        Dinas::observe(DinasObserver::class);
     }
 
     /**
