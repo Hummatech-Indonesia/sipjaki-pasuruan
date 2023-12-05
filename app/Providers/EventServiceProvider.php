@@ -3,10 +3,12 @@
 namespace App\Providers;
 
 use App\Models\Classification;
+use App\Models\FiscalYear;
 use App\Models\FundSource;
 use App\Models\News;
 use App\Models\RuleCategory;
 use App\Observers\ClassificationObserver;
+use App\Observers\FiscalYearObserver;
 use App\Observers\FundSourceObserver;
 use App\Observers\NewsObserver;
 use App\Observers\RuleCategoriesObserver;
@@ -37,6 +39,7 @@ class EventServiceProvider extends ServiceProvider
         RuleCategory::observe(RuleCategoriesObserver::class);
         Classification::observe(ClassificationObserver::class);
         FundSource::observe(FundSourceObserver::class);
+        FiscalYear::observe(FiscalYearObserver::class);
     }
 
     /**
