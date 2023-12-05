@@ -24,13 +24,13 @@ class TrainingMethodController extends Controller
      */
     public function index(Request $request)
     {
-        $traingMethods = $this->traingMethod->customPaginate($request, $request->pagination);
+        $traingMethods = $this->traingMethod->customPaginate($request, 10);
         if ($request->is('api/*')) {
             $data['paginate'] = $this->customPaginate($traingMethods->currentPage(), $traingMethods->lastPage());
             $data['data'] = TrainingMethodResource::collection($traingMethods);
             return ResponseHelper::success($data);
         } else {
-            return view('pages.training-method');
+            return view('methods.index' , compact('traingMethods'));
         }
     }
 
@@ -74,9 +74,9 @@ class TrainingMethodController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(TrainingMethodRequest $request, TrainingMethod $traingMethod)
+    public function update(TrainingMethodRequest $request, TrainingMethod $training_method)
     {
-        $this->traingMethod->update($traingMethod->id, $request->validated());
+        $this->traingMethod->update($training_method->id, $request->validated());
         if ($request->is('api/*')) {
             return ResponseHelper::success(null, trans('alert.update_success'));
         } else {
@@ -87,9 +87,9 @@ class TrainingMethodController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(TrainingMethod $traingMethod, Request $request)
+    public function destroy(TrainingMethod $training_method, Request $request)
     {
-        $this->traingMethod->delete($traingMethod->id);
+        $this->traingMethod->delete($training_method->id);
         if ($request->is('api/*')) {
             return ResponseHelper::success(null, trans('alert.delete_success'));
         } else {

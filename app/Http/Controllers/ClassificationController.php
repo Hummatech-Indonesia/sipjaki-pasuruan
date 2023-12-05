@@ -30,7 +30,7 @@ class ClassificationController extends Controller
             $data['data'] = ClassificationResource::collection($classifications);
             return ResponseHelper::success($data);
         } else {
-            return view('pages.classification', ['classifications' => $classifications]);
+            return view('klasifikasi', ['classifications' => $classifications]);
         }
     }
 
