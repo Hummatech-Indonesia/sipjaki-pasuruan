@@ -8,7 +8,6 @@ use App\Http\Requests\ClassificationRequest;
 use App\Http\Resources\ClassificationResource;
 use App\Models\Classification;
 use App\Traits\PaginationTrait;
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class ClassificationController extends Controller
@@ -45,7 +44,7 @@ class ClassificationController extends Controller
     public function store(ClassificationRequest $request)
     {
         $this->classification->store($request->validated());
-        return redirect()->back();
+        return ResponseHelper::success(null, trans('alert.add_success'));
     }
 
     /**
@@ -73,7 +72,7 @@ class ClassificationController extends Controller
     public function update(ClassificationRequest $request, Classification $classification)
     {
         $this->classification->update($classification->id, $request->validated());
-        return redirect()->back();
+        return ResponseHelper::success(null, trans('alert.update_success'));
     }
 
     /**
@@ -84,6 +83,6 @@ class ClassificationController extends Controller
     public function destroy(Classification $classification)
     {
         $this->classification->delete($classification->id);
-        return redirect()->back();
+        return ResponseHelper::success(null, trans('alert.delete_success'));
     }
 }

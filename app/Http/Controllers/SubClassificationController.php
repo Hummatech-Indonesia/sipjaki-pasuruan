@@ -5,11 +5,15 @@ namespace App\Http\Controllers;
 use App\Contracts\Interfaces\SubClassificationInterface;
 use App\Helpers\ResponseHelper;
 use App\Http\Requests\SubClassificationRequest;
+use App\Http\Resources\SubClassificationResource;
 use App\Models\SubClassification;
+use App\Traits\PaginationTrait;
 use Illuminate\Http\Request;
 
 class SubClassificationController extends Controller
 {
+
+    use PaginationTrait;
 
     private SubClassificationInterface $subClassification;
 
@@ -22,7 +26,9 @@ class SubClassificationController extends Controller
      */
     public function index(Request $request)
     {
-        $data = $this->subClassification->search($request);
+        $subClassifications = $this->subClassification->customPaginate($request, 10);
+        $data['paginate'] = $this->customPaginate($subClassifications->currentPage(), $subClassifications->lastPage());
+        $data['data'] = SubClassificationResource::collection($subClassifications);
         return ResponseHelper::success($data);
     }
 

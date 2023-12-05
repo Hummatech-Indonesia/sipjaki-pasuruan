@@ -6,6 +6,7 @@ use App\Contracts\Interfaces\SubClassificationInterface;
 use App\Models\News;
 use App\Models\SubClassification;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class SubClassificationRepository extends BaseRepository implements SubClassificationInterface
 {
@@ -62,14 +63,16 @@ class SubClassificationRepository extends BaseRepository implements SubClassific
     }
 
     /**
-     * search
+     * customPaginate
      *
      * @param  mixed $request
-     * @return mixed
+     * @param  mixed $pagination
+     * @return LengthAwarePaginator
      */
-    public function search(Request $request): mixed
+    public function customPaginate(Request $request, int $pagination = 10): LengthAwarePaginator
     {
         return $this->model->query()
-            ->get();
+            ->with('classification')
+            ->fastPaginate($pagination);
     }
 }
