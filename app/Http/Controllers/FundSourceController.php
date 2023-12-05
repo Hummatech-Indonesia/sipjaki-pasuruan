@@ -2,30 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Contracts\Interfaces\NewsInterface;
+use App\Contracts\Interfaces\FundSourceInterface;
 use App\Helpers\ResponseHelper;
-use App\Http\Requests\NewsRequest;
-use App\Models\News;
-use App\Services\NewsService;
-use GuzzleHttp\RedirectMiddleware;
+use App\Http\Requests\FundSourceRequest;
+use App\Models\FundSource;
 use Illuminate\Http\Request;
 
-class NewsController extends Controller
+class FundSourceController extends Controller
 {
-    private NewsInterface $news;
-    private NewsService $service;
+    private FundSourceInterface $fundSource;
 
-    public function __construct(NewsInterface $news, NewsService $service)
+    public function __construct(FundSourceInterface $fundSource)
     {
-        $this->news = $news;
-        $this->service = $service;
+        $this->fundSource = $fundSource;
     }
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
-        $data = $this->news->search($request);
+        $data = $this->fundSource->search($request);
         return ResponseHelper::success($data);
     }
 
@@ -40,9 +36,9 @@ class NewsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(NewsRequest $request)
+    public function store(FundSourceRequest $request)
     {
-        $this->news->store($this->service->store($request));
+        $this->fundSource->store($request->validated());
         return ResponseHelper::success(null, trans('alert.add_success'));
     }
 
@@ -61,27 +57,22 @@ class NewsController extends Controller
     {
         //
     }
+
     /**
-     * update
-     *
-     * @param  mixed $request
-     * @param  mixed $news
-     * @return void
+     * Update the specified resource in storage.
      */
-    public function update(NewsRequest $request, News $news)
+    public function update(FundSourceRequest $request, FundSource $fundSource)
     {
-        $this->news->update($news->id, $request->validated());
+        $this->fundSource->update($fundSource->id, $request->validated());
         return ResponseHelper::success(null, trans('alert.update_success'));
     }
 
     /**
      * Remove the specified resource from storage.
-     * @param  mixed $news
-     * @return void
      */
-    public function destroy(News $news)
+    public function destroy(FundSource $fundSource)
     {
-        $this->news->delete($news->id);
+        $this->fundSource->delete($fundSource->id);
         return ResponseHelper::success(null, trans('alert.delete_success'));
     }
 }

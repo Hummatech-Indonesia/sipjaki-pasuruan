@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\ClassificationController;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\RuleCategoriesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -13,7 +16,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-Route::get('/',function () {
+
+Route::get('/', function () {
     return view('index');
 });
 

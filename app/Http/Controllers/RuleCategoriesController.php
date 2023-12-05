@@ -2,30 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Contracts\Interfaces\NewsInterface;
+use App\Contracts\Interfaces\RuleCategoriesInterface;
 use App\Helpers\ResponseHelper;
-use App\Http\Requests\NewsRequest;
-use App\Models\News;
-use App\Services\NewsService;
-use GuzzleHttp\RedirectMiddleware;
+use App\Http\Requests\RuleCategoriesRequest;
+use App\Models\RuleCategory;
 use Illuminate\Http\Request;
 
-class NewsController extends Controller
+class RuleCategoriesController extends Controller
 {
-    private NewsInterface $news;
-    private NewsService $service;
-
-    public function __construct(NewsInterface $news, NewsService $service)
+    private RuleCategoriesInterface $ruleCategory;
+    public function __construct(RuleCategoriesInterface $ruleCategory)
     {
-        $this->news = $news;
-        $this->service = $service;
+        $this->ruleCategory = $ruleCategory;
     }
+
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
-        $data = $this->news->search($request);
+        $data = $this->ruleCategory->search($request);
         return ResponseHelper::success($data);
     }
 
@@ -38,11 +34,14 @@ class NewsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * store
+     *
+     * @param  mixed $request
+     * @return void
      */
-    public function store(NewsRequest $request)
+    public function store(RuleCategoriesRequest $request)
     {
-        $this->news->store($this->service->store($request));
+        $this->ruleCategory->store($request->validated());
         return ResponseHelper::success(null, trans('alert.add_success'));
     }
 
@@ -61,27 +60,22 @@ class NewsController extends Controller
     {
         //
     }
+
     /**
-     * update
-     *
-     * @param  mixed $request
-     * @param  mixed $news
-     * @return void
+     * Update the specified resource in storage.
      */
-    public function update(NewsRequest $request, News $news)
+    public function update(RuleCategoriesRequest $request, RuleCategory $ruleCategory)
     {
-        $this->news->update($news->id, $request->validated());
+        $this->ruleCategory->update($ruleCategory->id, $request->validated());
         return ResponseHelper::success(null, trans('alert.update_success'));
     }
 
     /**
      * Remove the specified resource from storage.
-     * @param  mixed $news
-     * @return void
      */
-    public function destroy(News $news)
+    public function destroy(RuleCategory $ruleCategory)
     {
-        $this->news->delete($news->id);
+        $this->ruleCategory->delete($ruleCategory->id);
         return ResponseHelper::success(null, trans('alert.delete_success'));
     }
 }
