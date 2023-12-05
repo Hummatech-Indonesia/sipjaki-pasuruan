@@ -1,12 +1,12 @@
 @extends('layouts.app')
 @section('content')
     <x-delete-modal-component />
-    <h2>Tahun Anggaran</h2>
+    <h2>Kerangka Kualifikasi Nasional Indonesia</h2>
     <div class="card p-3">
         <div class="d-flex justify-content-between mb-3">
             <div>
                 <h5>
-                    Berikut daftar anggaran setiap tahun
+                    Berikut daftar Kerangka Nasional Indonesia
                 </h5>
             </div>
             <div>
@@ -20,17 +20,17 @@
                     <form id="form-create">
                         <div class="modal-header d-flex align-items-center">
                             <h4 class="modal-title" id="exampleModalLabel1">
-                                Tambah Tahun Anggaran
+                                Tambah Kualifikasi Nasional Indonesia
                             </h4>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <form id="form-create" method="POST">
                                 <div class="mb-3">
-                                    <label id="name" for="recipient-name" class="control-label mb-2">Masukan Anggaran</label>
+                                    <label id="name" for="recipient-name" class="control-label mb-2">Masukan KKNI</label>
                                     <input type="text" class="form-control" id="create-school_year" class="form-control"
                                         name="school_year" id="nametext" aria-describedby="name"
-                                        placeholder="Masukan Anggaran" />
+                                        placeholder="Masukkan Kualifikasi Nasional Indonesia" />
                                 </div>
 
                         </div>
@@ -52,7 +52,7 @@
                 <thead>
                     <tr>
                         <th style="background-color: #1B3061;color:#ffffff">No</th>
-                        <th style="background-color: #1B3061;color:#ffffff">Nama Tahun Anggaran</th>
+                        <th style="background-color: #1B3061;color:#ffffff">Nama Kerangka Nasional Indonesia</th>
                         <th style="background-color: #1B3061;color:#ffffff">Aksi</th>
                     </tr>
                 </thead>
@@ -89,17 +89,17 @@
                     <form id="form-create">
                         <div class="modal-header d-flex align-items-center">
                             <h4 class="modal-title" id="exampleModalLabel1">
-                                Edit Masukan Anggaran
+                                Edit Kualifikasi Nasional Indonesia
                             </h4>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <form id="form-create" method="POST">
                                 <div class="mb-3">
-                                    <label id="name" for="recipient-name" class="control-label mb-2">Masukan Anggaran</label>
+                                    <label id="name" for="recipient-name" class="control-label mb-2">Masukan KKNI</label>
                                     <input type="text" class="form-control" id="create-school_year" class="form-control"
                                         name="school_year" id="nametext" aria-describedby="name"
-                                        placeholder="Masukan Anggaran" />
+                                        placeholder="Masukkan Kualifikasi Nasional Indonesia" />
                                 </div>
 
                         </div>

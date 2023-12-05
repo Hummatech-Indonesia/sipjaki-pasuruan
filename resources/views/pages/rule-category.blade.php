@@ -20,17 +20,17 @@
                     <form id="form-create">
                         <div class="modal-header d-flex align-items-center">
                             <h4 class="modal-title" id="exampleModalLabel1">
-                                Tambah Metode Pelatihan
+                                Tambah Kategori peraturan
                             </h4>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <form id="form-create" method="POST">
                                 <div class="mb-3">
-                                    <label id="name" for="recipient-name" class="control-label mb-2">Nama</label>
+                                    <label id="name" for="recipient-name" class="control-label mb-2">Nama Kategori Peraturan</label>
                                     <input type="text" class="form-control" id="create-school_year" class="form-control"
                                         name="school_year" id="nametext" aria-describedby="name"
-                                        placeholder="Masukkan Nama kategori pelatihan" />
+                                        placeholder="Masukkan Peraturan" />
                                 </div>
 
                         </div>
@@ -52,7 +52,7 @@
                 <thead>
                     <tr>
                         <th style="background-color: #1B3061;color:#ffffff">No</th>
-                        <th style="background-color: #1B3061;color:#ffffff">Nama Peraturan</th>
+                        <th style="background-color: #1B3061;color:#ffffff">Nama Kategori Peraturan</th>
                         <th style="background-color: #1B3061;color:#ffffff">Aksi</th>
                     </tr>
                 </thead>
@@ -88,17 +88,17 @@
                     <form id="form-create">
                         <div class="modal-header d-flex align-items-center">
                             <h4 class="modal-title" id="exampleModalLabel1">
-                                Edit Metode Pelatihan
+                                Edit Kategori peraturan
                             </h4>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <form id="form-create" method="POST">
                                 <div class="mb-3">
-                                    <label id="name" for="recipient-name" class="control-label mb-2">Nama</label>
+                                    <label id="name" for="recipient-name" class="control-label mb-2">Nama Kategori Peraturan</label>
                                     <input type="text" class="form-control" id="create-school_year" class="form-control"
                                         name="school_year" id="nametext" aria-describedby="name"
-                                        placeholder="Masukkan Nama kategori pelatihan" />
+                                        placeholder="Masukkan Nama Peraturan" />
                                 </div>
 
                         </div>

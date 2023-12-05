@@ -35,13 +35,17 @@ Route::get('/kategori-peraturan', function () {
 
 
 Route::get('/kategori-peraturan', function () {
-    return view('rule-category');
+    return view('pages.rule-category');
 })->name('rule-category');
 
 
 Route::get('tahun-anggaran', function () {
     return view('pages.fiscal-year');
 })->name('fiscal-year');
+
+Route::get('KKNI',function(){
+    return view('pages.qualification');
+})->name('qualification');
 
 
 Route::resources([

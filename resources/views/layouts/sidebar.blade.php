@@ -20,6 +20,12 @@
                         <span key="t-file-manager">Kategori Peraturan</span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{ route('qualification') }}" class="waves-effect">
+                        <i class="bx bx-sitemap"></i>
+                        <span key="t-file-manager">KKNI</span>
+                    </a>
+                </li>
             </ul>
         </div>
         <!-- Sidebar -->
