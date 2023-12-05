@@ -94,6 +94,7 @@ class FiscalYearController extends Controller
 
         if( $request->is('api/*')){
 
+            return ResponseHelper::success(null,trans('alert.delete_success'));
 
         }else{
 
