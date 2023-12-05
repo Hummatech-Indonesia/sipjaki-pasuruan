@@ -9,6 +9,7 @@ use App\Contracts\Interfaces\FundSourceInterface;
 use App\Contracts\Interfaces\NewsInterface;
 use App\Contracts\Interfaces\RuleCategoriesInterface;
 use App\Contracts\Interfaces\SubClassificationInterface;
+use App\Contracts\Interfaces\TrainingMethodInterface;
 use App\Contracts\Repositories\Auth\RegisterRepository;
 use App\Contracts\Repositories\ClassificationRepository;
 use App\Contracts\Repositories\FiscalYearRepository;
@@ -16,6 +17,7 @@ use App\Contracts\Repositories\FundSourceRepository;
 use App\Contracts\Repositories\NewsRepository;
 use App\Contracts\Repositories\RuleCategoriesRepository;
 use App\Contracts\Repositories\SubClassificationRepository;
+use App\Contracts\Repositories\TrainingMethodRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -27,7 +29,8 @@ class AppServiceProvider extends ServiceProvider
         RuleCategoriesInterface::class => RuleCategoriesRepository::class,
         FundSourceInterface::class => FundSourceRepository::class,
         SubClassificationInterface::class => SubClassificationRepository::class,
-        FiscalYearInterface::class => FiscalYearRepository::class
+        FiscalYearInterface::class => FiscalYearRepository::class,
+        TrainingMethodInterface::class => TrainingMethodRepository::class
     ];
 
     /**
