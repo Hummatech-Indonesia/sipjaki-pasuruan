@@ -47,7 +47,6 @@ class ClassificationController extends Controller
      */
     public function store(ClassificationRequest $request)
     {
-
         $this->classification->store($request->validated());
         if ($request->is('api/*')) {
             return ResponseHelper::success(null, trans('alert.add_success'));
