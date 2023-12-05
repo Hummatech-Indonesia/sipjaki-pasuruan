@@ -7,6 +7,8 @@ use App\Contracts\Interfaces\ClassificationInterface;
 use App\Contracts\Interfaces\FiscalYearInterface;
 use App\Contracts\Interfaces\FundSourceInterface;
 use App\Contracts\Interfaces\NewsInterface;
+use App\Contracts\Interfaces\QualificationInterface;
+use App\Contracts\Interfaces\QualificationLevelInterface;
 use App\Contracts\Interfaces\RuleCategoriesInterface;
 use App\Contracts\Interfaces\SubClassificationInterface;
 use App\Contracts\Interfaces\TrainingMethodInterface;
@@ -15,6 +17,8 @@ use App\Contracts\Repositories\ClassificationRepository;
 use App\Contracts\Repositories\FiscalYearRepository;
 use App\Contracts\Repositories\FundSourceRepository;
 use App\Contracts\Repositories\NewsRepository;
+use App\Contracts\Repositories\QualificationLevelRepository;
+use App\Contracts\Repositories\QualificationRepository;
 use App\Contracts\Repositories\RuleCategoriesRepository;
 use App\Contracts\Repositories\SubClassificationRepository;
 use App\Contracts\Repositories\TrainingMethodRepository;
@@ -30,6 +34,8 @@ class AppServiceProvider extends ServiceProvider
         FundSourceInterface::class => FundSourceRepository::class,
         SubClassificationInterface::class => SubClassificationRepository::class,
         FiscalYearInterface::class => FiscalYearRepository::class,
+        QualificationInterface::class => QualificationRepository::class,
+        QualificationLevelInterface::class => QualificationLevelRepository::class,
         TrainingMethodInterface::class => TrainingMethodRepository::class
     ];
 

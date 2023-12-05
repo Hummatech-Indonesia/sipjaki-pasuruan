@@ -4,22 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\View\View;
 use Illuminate\Http\Request;
+use App\Models\Qualification;
 use App\Helpers\ResponseHelper;
 use Illuminate\Http\JsonResponse;
-use App\Http\Resources\FiscalYearResource;
-use App\Contracts\Interfaces\FiscalYearInterface;
-use App\Http\Requests\FiscalYearRequest;
-use App\Models\FiscalYear;
 use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\QualificationRequest;
+use App\Http\Resources\QualificationResource;
+use App\Contracts\Interfaces\QualificationInterface;
 
-class FiscalYearController extends Controller
+class QualificationController extends Controller
 {
+    private QualificationInterface $qualification;
 
-    private FiscalYearInterface $fiscalYear;
-
-    public function __construct(FiscalYearInterface $fiscalYear)
+    public function __construct(QualificationInterface $qualification)
     {
-        $this->fiscalYear = $fiscalYear;
+        $this->qualification = $qualification;
     }
     /**
      * Display a listing of the resource.
@@ -27,17 +26,17 @@ class FiscalYearController extends Controller
     public function index(Request $request) : View | JsonResponse
     {
 
-        $fiscalYears = $this->fiscalYear->customPaginate($request, 15);
+        $qualifications = $this->qualification->customPaginate($request, 15);
         
         if( $request->is('api/*')){
 
-            $data['paginate'] = $this->customPaginate($fiscalYears->currentPage(), $fiscalYears->lastPage());
-            $data['data'] = FiscalYearResource::collection($fiscalYears);
+            $data['paginate'] = $this->customPaginate($qualifications->currentPage(), $qualifications->lastPage());
+            $data['data'] = QualificationResource::collection($qualifications);
             return ResponseHelper::success($data,trans('alert.get_success'));
 
         }else{
 
-            return view('pages.fiscal-year',compact('fiscalYears'));
+            return view('page',compact('qualifications'));
 
         }
     }
@@ -45,9 +44,9 @@ class FiscalYearController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(FiscalYearRequest $request): RedirectResponse | JsonResponse
+    public function store(QualificationRequest $request): RedirectResponse | JsonResponse
     {
-        $this->fiscalYear->store($request->validated());
+        $this->qualification->store($request->validated());
 
         if( $request->is('api/*')){
 
@@ -63,17 +62,17 @@ class FiscalYearController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(FiscalYear $fiscalYear) : JsonResponse
+    public function show(Qualification $qualification) : JsonResponse
     {
-        return ResponseHelper::success(FiscalYearResource::make($fiscalYear),trans('alert.get_success'));
+        return ResponseHelper::success(QualificationResource::make($qualification),trans('alert.get_success'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(FiscalYearRequest $request,FiscalYear $fiscalYear) : RedirectResponse | JsonResponse
+    public function update(QualificationRequest $request,Qualification $qualification) : RedirectResponse | JsonResponse
     {
-        $this->fiscalYear->update($fiscalYear->id,$request->all());
+        $this->qualification->update($qualification->id,$request->all());
 
         if( $request->is('api/*')){
 
@@ -89,9 +88,9 @@ class FiscalYearController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(FiscalYear $fiscalYear, Request $request)
+    public function destroy(qualification $qualification, Request $request)
     {
-        $this->fiscalYear->delete($fiscalYear->id);
+        $this->qualification->delete($qualification->id);
 
         if( $request->is('api/*')){
 
