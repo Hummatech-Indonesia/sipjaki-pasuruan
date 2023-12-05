@@ -51,6 +51,7 @@
     <script src="{{ asset('assets/libs/node-waves/waves.min.js') }}"></script>
     <script src="{{ asset('assets/libs/apexcharts/apexcharts.min.js') }}"></script>
     <script src="{{ asset('assets/js/pages/dashboard.init.js') }}"></script>
+    
     <script src="{{ asset('assets/js/app.js') }}"></script>
     <script>
         // const authToken = localStorage.getItem('token')

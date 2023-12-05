@@ -10,13 +10,14 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements HasOneDinas
 {
     use HasApiTokens, HasFactory, Notifiable;
+    use HasRoles;
 
     public $incrementing = false;
-    public $keyType = 'char';
     protected $table = 'users';
     protected $primaryKey = 'id';
 
