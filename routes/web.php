@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClassificationController;
+use App\Http\Controllers\NewsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -18,11 +19,18 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('training-methods', function () {
+    return view('methods.index');
+});
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/kategori-peraturan',function(){
+    return view('rule-category');
+})->name('rule-category');
 
 Route::resources([
     'classifications' => ClassificationController::class,
+    'news' => NewsController::class,
 ]);
