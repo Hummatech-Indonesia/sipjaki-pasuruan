@@ -33,63 +33,17 @@
 
                 <div class="col-xl-9">
                     <div class="auth-full-bg pt-lg-5 p-4">
-                        <div class="w-100">
-                            <div class="bg-overlay"></div>
-                            <div class="d-flex h-100 flex-column">
-
-                                <div class="p-4 mt-auto">
-                                    <div class="row justify-content-center">
-                                        <div class="col-lg-7">
-                                            <div class="text-center">
-
-                                                <h4 class="mb-3"><i
-                                                        class="bx bxs-quote-alt-left text-primary h1 align-middle me-3"></i><span
-                                                        class="text-primary">5k</span>+ Satisfied clients</h4>
-
-                                                <div dir="ltr">
-                                                    <div class="owl-carousel owl-theme auth-review-carousel"
-                                                        id="auth-review-carousel">
-                                                        <div class="item">
-                                                            <div class="py-3">
-                                                                <p class="font-size-16 mb-4">" Fantastic theme with a
-                                                                    ton of options. If you just want the HTML to
-                                                                    integrate with your project, then this is the
-                                                                    package. You can find the files in the 'dist'
-                                                                    folder...no need to install git and all the other
-                                                                    stuff the documentation talks about. "</p>
-
-                                                                <div>
-                                                                    <h4 class="font-size-16 text-primary">Abs1981</h4>
-                                                                    <p class="font-size-14 mb-0">- Skote User</p>
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-
-                                                        <div class="item">
-                                                            <div class="py-3">
-                                                                <p class="font-size-16 mb-4">" If Every Vendor on Envato
-                                                                    are as supportive as Themesbrand, Development with
-                                                                    be a nice experience. You guys are Wonderful. Keep
-                                                                    us the good work. "</p>
-
-                                                                <div>
-                                                                    <h4 class="font-size-16 text-primary">nezerious</h4>
-                                                                    <p class="font-size-14 mb-0">- Skote User</p>
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                        <div class="w-100 h-100 d-flex align-items-center justify-content-center">
+                            <div class="p-4">
+                                <div class="row justify-content-center">
+                                        <img src="{{ asset('assets/images/icon-kontruksi.png') }}" alt=""
+                                            srcset="">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
 
                 <div class="col-xl-3">
                     <div class="auth-full-page-content p-md-5 p-4">
@@ -98,15 +52,15 @@
                             <div class="d-flex flex-column h-100">
                                 <div class="mb-4 d-flex justify-content-center mb-md-5">
                                     <a href="javascript:void(0)" class="d-block card-logo">
-                                        <img src="{{ asset('logo.png') }}" alt=""
-                                            height="40" class="card-logo-dark">
+                                        <img src="{{ asset('logo.png') }}" alt="" height="40"
+                                            class="card-logo-dark">
                                     </a>
                                 </div>
                                 <div class="my-auto">
 
                                     <div>
-                                        <h5 class="text-primary">SELAMAT  DATANG KEMBALI</h5>
-                                        <p class="text-muted">Login untuk melanjutkan</p>
+                                        <h5 style="color: #1B3061; font-weight: bold">SELAMAT DATANG KEMBALI</h5>
+                                        <p style="color: #1B3061">Login untuk melanjutkan</p>
                                     </div>
 
                                     <div class="mt-4">
@@ -114,12 +68,12 @@
                                             @csrf
                                             <div class="mb-3">
                                                 <label for="email"
-                                                    class="form-label">{{ __('Email Address') }}</label>
+                                                    class="form-label" style="font-weight: bold">{{ __('Email Address') }}</label>
                                                 <input id="email" type="email"
                                                     class="form-control @error('email') is-invalid @enderror"
                                                     name="email" placeholder="Masukan Email"
                                                     value="{{ old('email') }}" required autocomplete="email"
-                                                    autofocus>
+                                                    autofocus style="border-radius: 8px">
                                                 @error('email')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -129,18 +83,17 @@
 
                                             <div class="mb-3">
                                                 <div class="float-end">
-                                                    <a href="auth-recoverpw-2.html" class="text-muted">Forgot
+                                                    <a href="auth-recoverpw-2.html" style="color: #457DFF">Forgot
                                                         password?</a>
                                                 </div>
-                                                <label class="form-label">Password</label>
+                                                <label class="form-label" style="font-weight: bold">Password</label>
                                                 <div class="input-group auth-pass-inputgroup">
                                                     <input type="password"
                                                         class="form-control  @error('password') is-invalid @enderror"
                                                         name="password" required autocomplete="current-password"
                                                         placeholder="Masukakn Password" aria-label="Password"
-                                                        aria-describedby="password-addon">
-                                                    <button class="btn btn-light " type="button"
-                                                        id="password-addon"><i
+                                                        aria-describedby="password-addon" style="border-radius: 8px 0 0 8px;">
+                                                    <button class="btn btn-light " type="button" id="password-addon"><i
                                                             class="mdi mdi-eye-outline"></i></button>
                                                     @error('password')
                                                         <span class="invalid-feedback" role="alert">
@@ -150,13 +103,13 @@
                                                 </div>
                                             </div>
                                             <div class="mt-3 d-grid">
-                                                <button class="btn btn-primary waves-effect waves-light"
+                                                <button style="background-color: #1B3061" class="btn text-white waves-effect waves-light"
                                                     type="submit">Log In</button>
                                             </div>
 
                                         </form>
                                         <div class="mt-5 text-center">
-                                            <p>Tidak Punya akun?</a> </p>
+                                            <p>Belum punya akun? <span style="color: #457DFF">Login</span></a> </p>
                                         </div>
                                     </div>
                                 </div>
@@ -165,8 +118,7 @@
                                     <p class="mb-0">©
                                         <script>
                                             document.write(new Date().getFullYear())
-                                        </script> Skote. Crafted with <i
-                                            class="mdi mdi-heart text-danger"></i> by Themesbrand
+                                        </script> Powered By Hummatech 
                                     </p>
                                 </div>
                             </div>
@@ -199,4 +151,5 @@
     <script src="{{ asset('assets/js/app.js') }}"></script>
 
 </body>
+
 </html>
