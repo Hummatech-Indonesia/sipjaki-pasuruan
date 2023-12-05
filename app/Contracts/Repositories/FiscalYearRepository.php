@@ -2,12 +2,12 @@
 
 namespace App\Contracts\Repositories;
 
+use App\Contracts\Interfaces\FiscalYearInterface;
 use App\Models\FiscalYear;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
-use App\Contracts\Interfaces\FundSourceInterface;
 
-class FiscalYearRepository extends BaseRepository implements FundSourceInterface
+class FiscalYearRepository extends BaseRepository implements FiscalYearInterface
 {
     public function __construct(FiscalYear $fiscalYear)
     {
