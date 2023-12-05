@@ -7,6 +7,7 @@ use App\Models\FiscalYear;
 use App\Models\FundSource;
 use App\Models\News;
 use App\Models\Qualification;
+use App\Models\QualificationLevel;
 use App\Models\RuleCategory;
 use App\Observers\ClassificationObserver;
 use App\Observers\FiscalYearObserver;
@@ -43,6 +44,7 @@ class EventServiceProvider extends ServiceProvider
         FundSource::observe(FundSourceObserver::class);
         FiscalYear::observe(FiscalYearObserver::class);
         Qualification::observe(QualificationObserver::class);
+        QualificationLevel::observe(QualificationLevel::class);
     }
 
     /**
