@@ -4,8 +4,14 @@ namespace App\Providers;
 
 use App\Contracts\Interfaces\Auth\RegisterInterface;
 use App\Contracts\Interfaces\ClassificationInterface;
+use App\Contracts\Interfaces\FundSourceInterface;
+use App\Contracts\Interfaces\NewsInterface;
+use App\Contracts\Interfaces\RuleCategoriesInterface;
 use App\Contracts\Repositories\Auth\RegisterRepository;
 use App\Contracts\Repositories\ClassificationRepository;
+use App\Contracts\Repositories\FundSourceRepository;
+use App\Contracts\Repositories\NewsRepository;
+use App\Contracts\Repositories\RuleCategoriesRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,6 +19,9 @@ class AppServiceProvider extends ServiceProvider
     private array $register = [
         RegisterInterface::class => RegisterRepository::class,
         ClassificationInterface::class => ClassificationRepository::class,
+        NewsInterface::class => NewsRepository::class,
+        RuleCategoriesInterface::class => RuleCategoriesRepository::class,
+        FundSourceInterface::class => FundSourceRepository::class,
     ];
 
     /**

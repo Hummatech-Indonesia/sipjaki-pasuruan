@@ -16,7 +16,7 @@ class NewsRequest extends FormRequest
     {
         return [
             'title' => 'required|max:150',
-            'thumbnail' => 'required',
+            'thumbnail' => 'required|mimes:png,jpg,jpeg',
             'content' => 'required',
         ];
     }
@@ -27,6 +27,7 @@ class NewsRequest extends FormRequest
             'title.required' => 'Judul wajib diisi',
             'title.max' => 'Judul maksimal 150 karakter',
             'thumbnail.required' => 'Thumbnail wajib diisi',
+            'thumbnail.mimes' => 'Thumbnail wajib berformat PNG, JPG, atau JPEG',
             'content.required' => 'Konten wajib diisi'
         ];
     }

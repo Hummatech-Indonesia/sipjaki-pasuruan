@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\ClassificationController;
+use App\Http\Controllers\FundSourceController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\RuleCategoriesController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -33,4 +35,6 @@ Route::get('/kategori-peraturan',function(){
 Route::resources([
     'classifications' => ClassificationController::class,
     'news' => NewsController::class,
+    'rule-categories' => RuleCategoriesController::class,
+    'fund-sources' => FundSourceController::class,
 ]);
