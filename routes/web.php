@@ -26,6 +26,9 @@ Route::get('training-methods', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/kategori-peraturan',function(){
+    return view('rule-category');
+})->name('rule-category');
 
 Route::resources([
     'classifications' => ClassificationController::class,
