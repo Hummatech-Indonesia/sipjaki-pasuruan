@@ -5,6 +5,7 @@ namespace App\Contracts\Repositories;
 use App\Contracts\Interfaces\ClassificationInterface;
 use App\Models\Classification;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class ClassificationRepository extends BaseRepository implements ClassificationInterface
 {
@@ -61,14 +62,15 @@ class ClassificationRepository extends BaseRepository implements ClassificationI
     }
 
     /**
-     * search
+     * customPaginate
      *
      * @param  mixed $request
-     * @return mixed
+     * @param  mixed $pagination
+     * @return LengthAwarePaginator
      */
-    public function search(Request $request): mixed
+    public function customPaginate(Request $request, int $pagination = 10): LengthAwarePaginator
     {
         return $this->model->query()
-            ->get();
+            ->fastPaginate($pagination);
     }
 }

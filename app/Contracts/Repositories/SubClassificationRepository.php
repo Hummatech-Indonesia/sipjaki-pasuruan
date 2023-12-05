@@ -2,16 +2,16 @@
 
 namespace App\Contracts\Repositories;
 
-use App\Contracts\Interfaces\NewsInterface;
+use App\Contracts\Interfaces\SubClassificationInterface;
 use App\Models\News;
+use App\Models\SubClassification;
 use Illuminate\Http\Request;
-use Illuminate\Pagination\LengthAwarePaginator;
 
-class NewsRepository extends BaseRepository implements NewsInterface
+class SubClassificationRepository extends BaseRepository implements SubClassificationInterface
 {
-    public function __construct(News $news)
+    public function __construct(SubClassification $subClassification)
     {
-        $this->model = $news;
+        $this->model = $subClassification;
     }
 
     /**
@@ -61,17 +61,15 @@ class NewsRepository extends BaseRepository implements NewsInterface
         return $this->show($id)->delete($id);
     }
 
-
     /**
-     * customPaginate
+     * search
      *
      * @param  mixed $request
-     * @param  mixed $pagination
-     * @return LengthAwarePaginator
+     * @return mixed
      */
-    public function customPaginate(Request $request, int $pagination = 10): LengthAwarePaginator
+    public function search(Request $request): mixed
     {
         return $this->model->query()
-            ->fastPaginate($pagination);
+            ->get();
     }
 }

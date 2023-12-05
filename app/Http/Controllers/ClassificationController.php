@@ -3,15 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Interfaces\ClassificationInterface;
+use App\Helpers\ResponseHelper;
 use App\Http\Requests\ClassificationRequest;
+use App\Http\Resources\ClassificationResource;
 use App\Models\Classification;
+use App\Traits\PaginationTrait;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class ClassificationController extends Controller
 {
+    use PaginationTrait;
     private ClassificationInterface $classification;
+
     public function __construct(ClassificationInterface $classification)
     {
         $this->classification = $classification;
@@ -19,10 +23,12 @@ class ClassificationController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request): View
+    public function index(Request $request)
     {
-        $data = $this->classification->search($request);
-        return view('classification.index', ['data' => $data]);
+        $classifications = $this->classification->customPaginate($request, $request->pagination);
+        $data['paginate'] = $this->customPaginate($classifications->currentPage(), $classifications->lastPage());
+        $data['data'] = ClassificationResource::collection($classifications);
+        return ResponseHelper::success($data);
     }
 
     /**

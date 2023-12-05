@@ -5,13 +5,16 @@ namespace App\Http\Controllers;
 use App\Contracts\Interfaces\NewsInterface;
 use App\Helpers\ResponseHelper;
 use App\Http\Requests\NewsRequest;
+use App\Http\Resources\NewsResource;
 use App\Models\News;
 use App\Services\NewsService;
+use App\Traits\PaginationTrait;
 use GuzzleHttp\RedirectMiddleware;
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
+    use PaginationTrait;
     private NewsInterface $news;
     private NewsService $service;
 
@@ -25,7 +28,9 @@ class NewsController extends Controller
      */
     public function index(Request $request)
     {
-        $data = $this->news->search($request);
+        $news = $this->news->customPaginate($request, $request->pagination);
+        $data['paginate'] = $this->customPaginate($news->currentPage(), $news->lastPage());
+        $data['data'] = NewsResource::collection($news);
         return ResponseHelper::success($data);
     }
 

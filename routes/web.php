@@ -4,6 +4,7 @@ use App\Http\Controllers\ClassificationController;
 use App\Http\Controllers\FundSourceController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\RuleCategoriesController;
+use App\Http\Controllers\SubClassificationController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -28,15 +29,25 @@ Route::get('training-methods', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/kategori-peraturan',function(){
+Route::get('/kategori-peraturan', function () {
     return view('pages.rule-category');
+});
+
+
+Route::get('/kategori-peraturan', function () {
+    return view('rule-category');
 })->name('rule-category');
-Route::get('tahun-anggaran',function(){
+
+
+Route::get('tahun-anggaran', function () {
     return view('pages.fiscal-year');
 })->name('fiscal-year');
+
+
 Route::resources([
     'classifications' => ClassificationController::class,
     'news' => NewsController::class,
     'rule-categories' => RuleCategoriesController::class,
     'fund-sources' => FundSourceController::class,
+    'sub-classifications' => SubClassificationController::class
 ]);
