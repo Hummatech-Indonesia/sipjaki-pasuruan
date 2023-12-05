@@ -26,7 +26,7 @@ class FiscalYearController extends Controller
      */
     public function index(Request $request) : View | JsonResponse
     {
-        $fiscalYears = $this->fiscalYear->customPaginate($request, $request->pagination);
+        $fiscalYears = $this->fiscalYear->customPaginate($request, 10);
         
         if( $request->is('api/*')){
 
@@ -36,7 +36,7 @@ class FiscalYearController extends Controller
 
         }else{
 
-            return view('page',compact('fiscalYears'));
+            return view('pages.fiscal-year',compact('fiscalYears'));
 
         }
     }

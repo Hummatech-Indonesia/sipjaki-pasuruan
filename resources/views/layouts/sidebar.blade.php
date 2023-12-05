@@ -7,15 +7,15 @@
                 <li class="menu-title" key="t-menu">Menu</li>
 
                 <li>
-                    <a href="{{ route('rule-category') }}" class="waves-effect">
+                    <a href="{{ route('rule-categories.index') }}" class="waves-effect">
                         <i class="fas fa-clipboard"></i>
                         <span key="t-file-manager">Kategori Peraturan</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('fiscal-year') }}" class="waves-effect">
+                    <a href="{{ route('fiscal-years.index') }}" class="waves-effect">
                         <i class="bx bx-bar-chart-alt"></i>
-                        <span key="t-file-manager">Kategori Peraturan</span>
+                        <span key="t-file-manager">Tahun Anggaran</span>
                     </a>
                 </li>
                 <li>

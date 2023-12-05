@@ -1,7 +1,9 @@
 <div class="modal fade" id="modal-delete" tabindex="-1" id="modal-delete" aria-labelledby="exampleModalLabel1">
     <div class="modal-dialog modal-sm" role="document">
-        <div class="modal-content">
-            <form id="form-create">
+        <form id="form-delete" method="POST">
+            @method('DELETE')
+            @csrf
+            <div class="modal-content">
                 <div class="modal-header d-flex align-items-center">
                     <h4 class="modal-title" id="exampleModalLabel1">
                         Hapus data
@@ -9,8 +11,8 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="form-create" method="POST">
-                        <h5>Apakah anda yakin ingin menghapus data?</h5>
+
+                    <h5>Apakah anda yakin ingin menghapus data?</h5>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger text-white font-medium waves-effect"
@@ -21,7 +23,6 @@
                         Hapus
                     </button>
                 </div>
-            </form>
-        </div>
+        </form>
     </div>
 </div>
