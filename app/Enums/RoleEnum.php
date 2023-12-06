@@ -7,5 +7,5 @@ enum RoleEnum: string
     case SUPERADMIN = 'superadmin';
     case ADMIN = 'admin';
     case DINAS = 'dinas';
-    case USER = 'user';
+    case SERVICE_PRODIVER = 'service provider';
 }

@@ -30,7 +30,7 @@ class FundSourceController extends Controller
             $data['data'] = FundSourceResource::collection($fundSources);
             return ResponseHelper::success($data);
         } else {
-            return view('pages.source-fund');
+            return view('pages.source-fund', ['fundSources' => $fundSources]);
         }
     }
 

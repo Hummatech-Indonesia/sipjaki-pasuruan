@@ -19,42 +19,34 @@
                             </span>
                         </div>
                         <div class="table-responsive">
-                            <table class="table mb-0" border="1" style="border-color: #1B3061">
+                            <table class="table table-borderless mb-0" border="1" style="border-color: #1B3061;">
                                 <thead class="table-light">
-                                    <tr class="">
-                                        <th class="fw-medium"
-                                            style="background-color: #1B3062; color: white; border-right: 1px solid #1B3061">
-                                            No</th>
-                                        <th class="fw-medium"
-                                            style="background-color: #1B3061; color: white; border-right: 1px solid #1B3061">
-                                            Nama Sumber Dana</th>
-                                        <th class="fw-medium"
-                                            style="background-color: #1B3061; color: white; text-align: center">Aksi</th>
+                                    <tr>
+                                        <th class="fw-medium" style="background-color: #1B3062; color: white; border-right: 1px solid #1B3061;">No</th>
+                                        <th class="fw-medium" style="background-color: #1B3061; color: white; border-right: 1px solid #1B3061;">Nama Sumber Dana</th>
+                                        <th class="fw-medium" style="background-color: #1B3061; color: white; text-align: center">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($fundSources as $index => $fundSource)
                                         <tr>
-                                            <th scope="row" class="fs-5" style="border-right: 1px solid #1B3061">1</th>
-                                            <td class="fs-5" style="border-right: 1px solid #1B3061">
-                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, corporis.</td>
-                                            <td class="d-flex flex-row gap-3 justify-content-center"
-                                                style="border-bottom: 1px solid #fff">
-                                                <button type="button" id="btn-edit" data-bs-toggle="modal" data-bs-target="#modal-update"
-                                                    class="btn waves-effect waves-light d-flex flex-row gap-1 justify-content-evenly btn-edit"
-                                                    style="width: 90px; background-color: #FFC928; color: white"><i
-                                                        class="bx bx-bx bxs-edit fs-4"></i> <span>Edit</span></button>
+                                            <th scope="row" class="fs-5">{{ $index + 1 }}</th>
+                                            <td class="fs-5">{{ $fundSource->name }}</td>
+                                            <td class="d-flex flex-row gap-3 justify-content-center">
+                                                <button type="button" class="btn waves-effect waves-light d-flex btn-edit flex-row gap-1 justify-content-evenly"
+                                                    style="width: 90px; background-color: #FFC928; color: white"
+                                                    id="btn-edit-{{ $fundSource->id }}" data-id="{{ $fundSource->id }}"
+                                                    data-name="{{ $fundSource->name }}"><i class="bx bx-bx bxs-edit fs-4"></i>
+                                                    <span>Edit</span></button>
                                                 <button type="button"
-                                                    class="btn waves-effect waves-light d-flex flex-row gap-1 justify-content-between"
-                                                    style="width: 90px; background-color: #E05C39; color: white"
-                                                    data-bs-toggle="modal" data-bs-target="#modal-delete"><i
-                                                        class="bx bx-bx bxs-trash fs-4"></i> Hapus</button>
+                                                    class="btn waves-effect waves-light btn-delete d-flex flex-row gap-1 justify-content-between"
+                                                    style="width: 90px; background-color: #E05C39; color: white" data-id="{{ $fundSource->id }}"><i class="bx bx-bx bxs-trash fs-4"></i> Hapus</button>
                                             </td>
                                         </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
-
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -64,7 +56,7 @@
     <div class="modal fade" id="modal-create" tabindex="-1" id="modal-create" aria-labelledby="exampleModalLabel1">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <form id="form-create" method="POST" method="{{ route('source-fund.store') }}">
+                <form id="form-create" method="POST" method="{{ route('fund-sources.store') }}">
                     @csrf
                     <div class="modal-header d-flex align-items-center">
                         <h4 class="modal-title" id="exampleModalLabel1">
@@ -98,33 +90,32 @@
     <div class="modal fade" id="modal-update" tabindex="-1" aria-labelledby="exampleModalLabel1">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                    <div class="modal-header d-flex align-items-center">
-                        <h4 class="modal-title" id="exampleModalLabel1">
-                            Edit Sumber Dana
-                        </h4>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="form-update" method="POST">
-                            @method('PUT')
-                            @csrf
-                            <div class="mb-3">
-                                <label id="name" for="recipient-name" class="control-label mb-2">Sumber Dana</label>
-                                <input type="text" class="form-control"  class="form-control"
-                                    name="name" id="nametext" aria-describedby="name"
-                                    placeholder="Masukkan Nama Sumber Dana" />
-                            </div>
+                <div class="modal-header d-flex align-items-center">
+                    <h4 class="modal-title" id="exampleModalLabel1">
+                        Edit Sumber Dana
+                    </h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="form-update" method="POST">
+                        @method('PUT')
+                        @csrf
+                        <div class="mb-3">
+                            <label id="name" for="recipient-name" class="control-label mb-2">Sumber Dana</label>
+                            <input type="text" class="form-control" class="form-control" name="name"
+                                id="nametext" aria-describedby="name" placeholder="Masukkan Nama Sumber Dana" />
+                        </div>
 
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-danger text-white font-medium waves-effect"
-                            data-bs-dismiss="modal">
-                            Close
-                        </button>
-                        <button type="submit" style="background-color: #1B3061" class="btn text-white btn-create">
-                            Tambah
-                        </button>
-                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger text-white font-medium waves-effect"
+                        data-bs-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="submit" style="background-color: #1B3061" class="btn text-white btn-create">
+                        Tambah
+                    </button>
+                </div>
                 </form>
             </div>
         </div>
@@ -136,8 +127,7 @@
     <script>
         $('.btn-edit').click(function() {
             const formData = getDataAttributes($(this).attr('id'))
-            console.log(formData);
-            var actionUrl = `source-fund/${formData['id']}`;
+            var actionUrl = `fund-sources/${formData['id']}`;
             $('#form-update').attr('action', actionUrl);
             setFormValues('form-update', formData)
             $('#form-update').data('id', formData['id'])
@@ -146,7 +136,7 @@
         })
         $('.btn-delete').click(function() {
             id = $(this).data('id')
-            var actionUrl = `training-methods/${id}`;
+            var actionUrl = `fund-sources/${id}`;
             $('#form-delete').attr('action', actionUrl);
             $('#modal-delete').modal('show')
         })

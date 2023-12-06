@@ -34,5 +34,8 @@ return [
     'modify_rating' => 'Berhasil modifikasi rating',
     'send_license_success' => 'Berhasil mengirim lisensi',
     'user_add_rating' => 'Berhasil menambahkan ulasan',
-    'user_update_rating' => 'Berhasil mengubah ulasan'
+    'user_update_rating' => 'Berhasil mengubah ulasan',
+    'password_or_email_false' => 'Email atau password tidak sesuai',
+    'login_success' => 'Berhasil login',
+    'account_unverified' => 'Akun belum terverifikasi'
 ];

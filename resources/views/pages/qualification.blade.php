@@ -53,16 +53,16 @@
             </div>
         @endif
         <div class="table-responsive">
-            @forelse ($qualifications as $index => $qualification)
-                <table class="table" border="1">
-                    <thead>
-                        <tr>
-                            <th style="background-color: #1B3061;color:#ffffff">No</th>
-                            <th style="background-color: #1B3061;color:#ffffff">Nama Kerangka Nasional Indonesia</th>
-                            <th style="background-color: #1B3061;color:#ffffff; text-align: center">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+            <table class="table table-borderless" border="1" style="border-color: #1B3061">
+                <thead>
+                    <tr>
+                        <th style="background-color: #1B3061;color:#ffffff">No</th>
+                        <th style="background-color: #1B3061;color:#ffffff">Nama Kerangka Nasional Indonesia</th>
+                        <th style="background-color: #1B3061;color:#ffffff; text-align: center">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse ($qualifications as $index => $qualification)
                         <tr>
                             <td>{{ $index + 1 }}</td>
                             <td>{{ $qualification->name }}
