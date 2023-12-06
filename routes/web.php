@@ -45,7 +45,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     // })->name('sub-classifications');
     Route::get('KKNI', function () {
         return view('pages.qualification');
-    })->name('qualification');;
+    })->name('qualification');
+    Route::get('sub-qualification', function () {
+        return view('pages.sub-qualification');
+    })->name('sub-qualification');
 
     Route::get('/sumber-dana', function () {
         return view('pages.source-fund');
