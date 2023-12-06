@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Classification;
+use App\Models\ContractCategory;
 use App\Models\Dinas;
 use App\Models\FiscalYear;
 use App\Models\FundSource;
@@ -15,6 +16,7 @@ use App\Models\SubClassification;
 use App\Models\TrainingMethod;
 use App\Models\User;
 use App\Observers\ClassificationObserver;
+use App\Observers\ContractCategoryObserver;
 use App\Observers\DinasObserver;
 use App\Observers\FiscalYearObserver;
 use App\Observers\FundSourceObserver;
@@ -60,6 +62,7 @@ class EventServiceProvider extends ServiceProvider
         SubClassification::observe(SubClassificationObserver::class);
         TrainingMethod::observe(TrainingMethodObserver::class);
         Rules::observe(RuleObserver::class);
+        ContractCategory::observe(ContractCategoryObserver::class);
     }
 
     /**
