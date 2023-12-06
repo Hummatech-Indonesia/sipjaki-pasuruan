@@ -26,7 +26,7 @@
         <div class="modal fade" id="modal-create" tabindex="-1" id="modal-create" aria-labelledby="exampleModalLabel1">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <form action="{{ route('contract-categories.store') }}" method="POST">
+                    <form action="{{ route('category-contracts.store') }}" method="POST">
                         @csrf
                         <div class="modal-header d-flex align-items-center">
                             <h4 class="modal-title" id="exampleModalLabel1">
