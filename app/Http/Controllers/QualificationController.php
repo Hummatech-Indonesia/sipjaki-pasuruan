@@ -36,7 +36,7 @@ class QualificationController extends Controller
 
         }else{
 
-            return view('page',compact('qualifications'));
+            return view('pages.qualification',compact('qualifications'));
 
         }
     }
