@@ -1,14 +1,11 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Auth;
 
-use App\Rules\RoleRule;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class UserRequest extends FormRequest
+class LoginRequest extends FormRequest
 {
-
 
     /**
      * Get the validation rules that apply to the request.
@@ -18,9 +15,8 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max:255',
-            'email' => ['required', 'email', 'max:255', Rule::unique('users', 'email')->ignore($this->user)],
-            'dinas' => 'nullable'
+            'email' => 'required|email',
+            'password' => 'required'
         ];
     }
 }
