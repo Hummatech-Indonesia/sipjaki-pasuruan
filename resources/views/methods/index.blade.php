@@ -74,7 +74,7 @@
                                 <td>
                                     <div class="d-flex justify-content-center gap-2">
                                         <div class="">
-                                            <button type="button" class="btn btn-warning waves-effect waves-light btn-edit"
+                                            <button type="button" class="btn btn-warning waves-effect waves-light btn-edit d-flex flex-row gap-3 justify-content-center"
                                                 id="btn-edit-{{ $data->id }}" data-id="{{ $data->id }}"
                                                 data-name="{{ $data->name }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -101,7 +101,7 @@
                                         </div>
                                         <div class="">
                                             <button type="button"
-                                                class="btn btn-danger waves-effect waves-light btn-delete"
+                                                class="btn btn-danger waves-effect waves-light btn-delete d-flex flex-row gap-3 justify-content-center"
                                                 data-id="{{ $data->id }}" id="btn-delete-{{ $data->id }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                     viewBox="0 0 20 20" fill="none">
