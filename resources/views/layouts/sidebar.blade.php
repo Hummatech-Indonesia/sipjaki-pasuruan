@@ -48,7 +48,7 @@
                 </li>
 
                 <li>
-                    <a href="{{ route('category-contracts.index') }}" class="waves-effect">
+                    <a href="{{ route('contract-categories.index') }}" class="waves-effect">
                         <i class="bx bx-bx bx-task"></i>
                         <span key="t-file-manager">Kategori Kontrak</span>
                     </a>
