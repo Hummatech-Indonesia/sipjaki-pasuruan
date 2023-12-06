@@ -55,12 +55,12 @@
                 </div>
             </div>
             <div class="table-responsive">
-                <table class="table mb-0">
+                <table class="table mb-0 table-borderless" border="1" style="border-color: #1B3061">
                     <thead>
                         <tr>
                             <th class="text-white" style="background-color: #1B3061">No</th>
                             <th class="text-white" style="background-color: #1B3061">Nama Klasifikasi</th>
-                            <th class="text-white" style="background-color: #1B3061">Aksi</th>
+                            <th class="text-white" style="background-color: #1B3061; text-align: center">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -72,7 +72,7 @@
                                 <th scope="row">{{ $no++ }}</th>
                                 <td>{{ $data->name }}</td>
                                 <td>
-                                    <div class="d-flex justify-content-header gap-2">
+                                    <div class="d-flex justify-content-center gap-2">
                                         <div class="">
                                             <button type="button" class="btn  waves-effect waves-light text-white"
                                                 style="background-color: #1B3061">
