@@ -3,7 +3,7 @@
 namespace App\Contracts\Repositories;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\ContractCategory;
+use App\Models\ContractCategory;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Contracts\Interfaces\ContractCategoryInterface;
 
