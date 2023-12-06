@@ -22,9 +22,14 @@
                             <table class="table table-borderless mb-0" border="1" style="border-color: #1B3061;">
                                 <thead class="table-light">
                                     <tr>
-                                        <th class="fw-medium" style="background-color: #1B3062; color: white; border-right: 1px solid #1B3061;">No</th>
-                                        <th class="fw-medium" style="background-color: #1B3061; color: white; border-right: 1px solid #1B3061;">Nama Sumber Dana</th>
-                                        <th class="fw-medium" style="background-color: #1B3061; color: white; text-align: center">Aksi</th>
+                                        <th class="fw-medium"
+                                            style="background-color: #1B3062; color: white; border-right: 1px solid #1B3061;">
+                                            No</th>
+                                        <th class="fw-medium"
+                                            style="background-color: #1B3061; color: white; border-right: 1px solid #1B3061;">
+                                            Nama Sumber Dana</th>
+                                        <th class="fw-medium"
+                                            style="background-color: #1B3061; color: white; text-align: center">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -33,14 +38,18 @@
                                             <th scope="row" class="fs-5">{{ $index + 1 }}</th>
                                             <td class="fs-5">{{ $fundSource->name }}</td>
                                             <td class="d-flex flex-row gap-3 justify-content-center">
-                                                <button type="button" class="btn waves-effect waves-light d-flex btn-edit flex-row gap-1 justify-content-evenly"
+                                                <button type="button"
+                                                    class="btn waves-effect waves-light d-flex btn-edit flex-row gap-1 justify-content-evenly"
                                                     style="width: 90px; background-color: #FFC928; color: white"
                                                     id="btn-edit-{{ $fundSource->id }}" data-id="{{ $fundSource->id }}"
-                                                    data-name="{{ $fundSource->name }}"><i class="bx bx-bx bxs-edit fs-4"></i>
+                                                    data-name="{{ $fundSource->name }}"><i
+                                                        class="bx bx-bx bxs-edit fs-4"></i>
                                                     <span>Edit</span></button>
                                                 <button type="button"
                                                     class="btn waves-effect waves-light btn-delete d-flex flex-row gap-1 justify-content-between"
-                                                    style="width: 90px; background-color: #E05C39; color: white" data-id="{{ $fundSource->id }}"><i class="bx bx-bx bxs-trash fs-4"></i> Hapus</button>
+                                                    style="width: 90px; background-color: #E05C39; color: white"
+                                                    data-id="{{ $fundSource->id }}"><i class="bx bx-bx bxs-trash fs-4"></i>
+                                                    Hapus</button>
                                             </td>
                                         </tr>
                                     @endforeach
