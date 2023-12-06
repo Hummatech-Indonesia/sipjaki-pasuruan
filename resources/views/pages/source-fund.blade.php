@@ -1,5 +1,4 @@
 @extends('layouts.app')
-{{-- @include('pages.source-fund') --}}
 @section('content')
     <div class="row justify-content-center">
         <div>
@@ -34,15 +33,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($souceFounds as $data)
                                         <tr>
                                             <th scope="row" class="fs-5" style="border-right: 1px solid #1B3061">1</th>
                                             <td class="fs-5" style="border-right: 1px solid #1B3061">
-                                                {{ $data->name }}</td>
+                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, corporis.</td>
                                             <td class="d-flex flex-row gap-3 justify-content-center"
                                                 style="border-bottom: 1px solid #fff">
-                                                <button type="button" id="btn-edit-{{ $data->id }}" data-id="{{ $data->id }}"
-                                                    data-name="{{ $data->name }}"
+                                                <button type="button" id="btn-edit" data-bs-toggle="modal" data-bs-target="#modal-update"
                                                     class="btn waves-effect waves-light d-flex flex-row gap-1 justify-content-evenly btn-edit"
                                                     style="width: 90px; background-color: #FFC928; color: white"><i
                                                         class="bx bx-bx bxs-edit fs-4"></i> <span>Edit</span></button>
@@ -53,9 +50,6 @@
                                                         class="bx bx-bx bxs-trash fs-4"></i> Hapus</button>
                                             </td>
                                         </tr>
-                                    @empty
-                                        data kosong
-                                    @endforelse
                                 </tbody>
                             </table>
 
@@ -74,7 +68,7 @@
                     @csrf
                     <div class="modal-header d-flex align-items-center">
                         <h4 class="modal-title" id="exampleModalLabel1">
-                            Tambah Metode Pelatihan
+                            Tambah Sumber Dana
                         </h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
@@ -84,7 +78,7 @@
                                 <label id="name" for="recipient-name" class="control-label mb-2">Nama</label>
                                 <input type="text" class="form-control" id="create-school_year" class="form-control"
                                     name="name" id="nametext" aria-describedby="name"
-                                    placeholder="Masukkan Nama kategori pelatihan" />
+                                    placeholder="Masukkan Nama Sumber Dana" />
                             </div>
                     </div>
                     <div class="modal-footer">
@@ -106,7 +100,7 @@
             <div class="modal-content">
                     <div class="modal-header d-flex align-items-center">
                         <h4 class="modal-title" id="exampleModalLabel1">
-                            Edit Jenjang KKNI Kualifikasi
+                            Edit Sumber Dana
                         </h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
@@ -115,11 +109,10 @@
                             @method('PUT')
                             @csrf
                             <div class="mb-3">
-                                <label id="name" for="recipient-name" class="control-label mb-2">Jenjang KKNI
-                                    Kualifikasi</label>
+                                <label id="name" for="recipient-name" class="control-label mb-2">Sumber Dana</label>
                                 <input type="text" class="form-control"  class="form-control"
                                     name="name" id="nametext" aria-describedby="name"
-                                    placeholder="Masukkan Nama kategori pelatihan" />
+                                    placeholder="Masukkan Nama Sumber Dana" />
                             </div>
 
                     </div>
@@ -136,6 +129,7 @@
             </div>
         </div>
     </div>
+    <x-delete-modal-component />
 @endsection
 
 @section('script')
