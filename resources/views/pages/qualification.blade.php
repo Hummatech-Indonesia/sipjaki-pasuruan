@@ -53,10 +53,10 @@
             </div>
         @endif
         <div class="table-responsive">
-            <table class="table table-borderless" border="1" style="border-color: #1B3061">
+            <table class="table table-borderless" border="1">
                 <thead>
                     <tr>
-                        <th style="background-color: #1B3061;color:#ffffff">No</th>
+                        <th style="background-color: #1B3061;color:#ffffff" >No</th>
                         <th style="background-color: #1B3061;color:#ffffff">Nama Kerangka Nasional Indonesia</th>
                         <th style="background-color: #1B3061;color:#ffffff; text-align: center">Aksi</th>
                     </tr>
@@ -82,12 +82,16 @@
                             </td>
                         </tr>
                     @empty
-                        <div class="d-flex justify-content-center" style="min-height:16rem">
-                            <div class="my-auto ">
-                                <img src="{{ asset('no-data.png') }}" width="300" height="300" />
-                                <h4 class="text-center mt-4">KKNI Kosong!!</h4>
+                    <tr>
+                        <td colspan="3" class="text-center">
+                            <div class="d-flex justify-content-center" style="min-height:16rem">
+                                <div class="my-auto">
+                                    <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                    <h4 class="text-center mt-4">KKNI Kosong!!</h4>
+                                </div>
                             </div>
-                        </div>
+                        </td>
+                    </tr>
             @endforelse
             </tbody>
             </table>
