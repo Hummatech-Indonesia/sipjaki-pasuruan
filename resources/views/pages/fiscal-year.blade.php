@@ -57,7 +57,7 @@
         @endif
 
         <div class="table-responsive">
-            <table class="table table-borderless" border="1" style="border-color: #1B3061">
+            <table class="table table-borderless" border="1">
                 <thead>
                     <tr>
                         <th style="background-color: #1B3061;color:#ffffff">No</th>
@@ -66,10 +66,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($fiscalYears as $index => $fiscalYear)
+                    @forelse ($fiscalYears as $index => $fiscalYear)
                         <tr>
-                            <th scope="row" class="fs-5" >{{ $index + 1 }}
-                            </th>
+                            <td scope="row" class="fs-5">{{ $index + 1 }}</td>
                             <td class="fs-5">{{ $fiscalYear->name }}</td>
                             <td class="d-flex flex-row gap-3 justify-content-center">
                                 <button type="button"
@@ -85,7 +84,18 @@
                                         class="bx bx-bx bxs-trash fs-4"></i> Hapus</button>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="3" class="text-center">
+                                <div class="d-flex justify-content-center" style="min-height:16rem">
+                                    <div class="my-auto">
+                                        <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                        <h4 class="text-center mt-4">Tahun aggaran Kosong!!</h4>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
