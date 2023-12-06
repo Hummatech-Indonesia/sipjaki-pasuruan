@@ -1,14 +1,14 @@
 @extends('layouts.app')
 @section('content')
-@if(session('success'))
-<script>
-    Swal.fire({
-        icon: 'success',
-        title: 'Success',
-        text: '{{ session('success') }}',
-    });
-</script>
-@endif
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: '{{ session('success') }}',
+            });
+        </script>
+    @endif
     <h2>Kategori Kontrak</h2>
     <div class="card p-3">
         <div class="d-flex justify-content-between align-items-center mb-3">
@@ -89,8 +89,8 @@
                                 <button type="button"
                                     class="btn waves-effect waves-light d-flex flex-row gap-1 justify-content-between btn-delete"
                                     style="width: 90px; background-color: #E05C39; color: white"
-                                    data-id="{{ $contractCategory->id }}" data-bs-toggle="modal" data-bs-target="#modal-delete"><i
-                                        class="bx bx-bx bxs-trash fs-4"></i> Hapus</button>
+                                    data-id="{{ $contractCategory->id }}" data-bs-toggle="modal"
+                                    data-bs-target="#modal-delete"><i class="bx bx-bx bxs-trash fs-4"></i> Hapus</button>
                             </td>
                         </tr>
                     @empty
