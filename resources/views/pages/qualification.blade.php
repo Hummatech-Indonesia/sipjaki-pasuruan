@@ -53,10 +53,10 @@
             </div>
         @endif
         <div class="table-responsive">
-            <table class="table table-borderless" border="1" style="border-color: #1B3061">
+            <table class="table table-borderless" border="1">
                 <thead>
                     <tr>
-                        <th style="background-color: #1B3061;color:#ffffff">No</th>
+                        <th style="background-color: #1B3061;color:#ffffff" >No</th>
                         <th style="background-color: #1B3061;color:#ffffff">Nama Kerangka Nasional Indonesia</th>
                         <th style="background-color: #1B3061;color:#ffffff; text-align: center">Aksi</th>
                     </tr>

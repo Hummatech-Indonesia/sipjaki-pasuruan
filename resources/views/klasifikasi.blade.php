@@ -1,9 +1,11 @@
 @extends('layouts.app')
 @section('content')
     <div class="">
-        <p class="fs-5 text-dark" style="font-weight: 600">
-            Klasifikasi
-        </p>
+        <div>
+            <h2 class="">
+                Klasifikasi
+            </h2>
+        </div>
     </div>
     {{-- modal --}}
     <div class="modal fade" id="samedata-modal" tabindex="-1" id="modeal-create" aria-labelledby="exampleModalLabel1">
@@ -55,7 +57,7 @@
                 </div>
             </div>
             <div class="table-responsive">
-                <table class="table mb-0 table-borderless" border="1" style="border-color: #1B3061">
+                <table class="table mb-0 table-borderless" border="1">
                     <thead>
                         <tr>
                             <th class="text-white" style="background-color: #1B3061">No</th>
@@ -64,12 +66,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php
-                        $no = 1;
-                        ?>
-                        @forelse ($classifications as $data)
+                        @forelse ($classifications as $index => $data)
                             <tr>
-                                <th scope="row">{{ $no++ }}</th>
+                                <th scope="row" class="fs-5">{{ $index + 1 }}</th>
                                 <td>{{ $data->name }}</td>
                                 <td>
                                     <div class="d-flex justify-content-center gap-2">
@@ -125,9 +124,18 @@
                                     </div>
                                 </td>
                             </tr>
-                        @empty
-                            data kosong
-                        @endforelse
+                            @empty
+                            <tr>
+                                <td colspan="3" class="text-center">
+                                    <div class="d-flex justify-content-center" style="min-height:16rem">
+                                        <div class="my-auto">
+                                            <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                            <h4 class="text-center mt-4">Tahun aggaran Kosong!!</h4>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforelse
                     </tbody>
                 </table>
             </div>
