@@ -42,7 +42,7 @@ class SubClassificationController extends Controller
             $data['data'] = SubClassificationResource::collection($subClassifications);
             return ResponseHelper::success($data);
         } else {
-            return view('pages.classification.detail' ,compact('classification'));
+            return view('pages.classification.detail' ,compact('classification','subClassifications'));
         }
     }
 
@@ -54,7 +54,7 @@ class SubClassificationController extends Controller
      * @param  mixed $classification
      * @return JsonResponse
      */
-    public function store(SubClassificationRequest $request, Classification $classification): JsonResponse | View
+    public function store(SubClassificationRequest $request, Classification $classification)
     {
         $data = $request->validated();
         $data['classification_id'] = $classification->id;

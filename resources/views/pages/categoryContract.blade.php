@@ -1,5 +1,14 @@
 @extends('layouts.app')
 @section('content')
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: '{{ session('success') }}',
+            });
+        </script>
+    @endif
     <h2>Kategori Kontrak</h2>
     <div class="card p-3">
         <div class="d-flex justify-content-between align-items-center mb-3">
@@ -17,7 +26,7 @@
         <div class="modal fade" id="modal-create" tabindex="-1" id="modal-create" aria-labelledby="exampleModalLabel1">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <form action="{{ route('category-contracts.store') }}" method="POST">
+                    <form action="{{ route('contract-categories.store') }}" method="POST">
                         @csrf
                         <div class="modal-header d-flex align-items-center">
                             <h4 class="modal-title" id="exampleModalLabel1">
@@ -80,8 +89,8 @@
                                 <button type="button"
                                     class="btn waves-effect waves-light d-flex flex-row gap-1 justify-content-between btn-delete"
                                     style="width: 90px; background-color: #E05C39; color: white"
-                                    data-id="{{ $contractCategory->id }}" data-bs-toggle="modal" data-bs-target="#modal-delete"><i
-                                        class="bx bx-bx bxs-trash fs-4"></i> Hapus</button>
+                                    data-id="{{ $contractCategory->id }}" data-bs-toggle="modal"
+                                    data-bs-target="#modal-delete"><i class="bx bx-bx bxs-trash fs-4"></i> Hapus</button>
                             </td>
                         </tr>
                     @empty
@@ -140,17 +149,16 @@
     <script>
         $('.btn-edit').click(function() {
             const formData = getDataAttributes($(this).attr('id'))
-            var actionUrl = `category-contracts/${formData['id']}`;
+            var actionUrl = `contract-categories/${formData['id']}`;
             $('#form-update').attr('action', actionUrl);
-            console.log(formData['id']);
             setFormValues('form-update', formData)
             $('#form-update').data('id', formData['id'])
-            $('#form-update').attr('action', );
+            $('#form-update').attr('action', actionUrl);
             $('#modal-update').modal('show')
         })
         $('.btn-delete').click(function() {
             id = $(this).data('id')
-            var actionUrl = `category-contracts/${id}`;
+            var actionUrl = `contract-categories/${id}`;
             $('#form-delete').attr('action', actionUrl);
             $('#modal-delete').modal('show')
         })

@@ -68,9 +68,9 @@ class ContractCategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(ContractCategoryRequest $request,ContractCategory $contractCategory) : RedirectResponse | JsonResponse
+    public function update(ContractCategoryRequest $request,ContractCategory $category_contract) : RedirectResponse | JsonResponse
     {
-        $this->contractCategory->update($contractCategory->id,$request->all());
+        $this->contractCategory->update($category_contract->id,$request->all());
 
         if( $request->is('api/*')){
 
@@ -85,9 +85,9 @@ class ContractCategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ContractCategory $contractCategory, Request $request)
+    public function destroy(ContractCategory $category_contract, Request $request)
     {
-        $this->contractCategory->delete($contractCategory->id);
+        $this->contractCategory->delete($category_contract->id);
 
         if( $request->is('api/*')){
 
