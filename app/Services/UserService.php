@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Contracts\Interfaces\UserInterface;
+use App\Enums\RoleEnum;
 use App\Http\Requests\UserRequest;
 use App\Traits\UploadTrait;
 
@@ -28,6 +29,6 @@ class UserService
             'email' => $data['email'],
             'dinas' => isset($data['dinas']) ? $data['dinas'] : null
         ]);
-        $user->assignRole($data['role']);
+        $user->assignRole(RoleEnum::DINAS);
     }
 }

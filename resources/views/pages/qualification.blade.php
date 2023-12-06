@@ -53,10 +53,10 @@
             </div>
         @endif
         <div class="table-responsive">
-            <table class="table" border="1">
+            <table class="table table-borderless" border="1">
                 <thead>
                     <tr>
-                        <th style="background-color: #1B3061;color:#ffffff">No</th>
+                        <th style="background-color: #1B3061;color:#ffffff" >No</th>
                         <th style="background-color: #1B3061;color:#ffffff">Nama Kerangka Nasional Indonesia</th>
                         <th style="background-color: #1B3061;color:#ffffff; text-align: center">Aksi</th>
                     </tr>
@@ -81,10 +81,19 @@
                                     data-bs-target="#modal-delete"><i class="bx bx-bx bxs-trash fs-4"></i> Hapus</button>
                             </td>
                         </tr>
-                        @empty
-                        nodata
-                    @endforelse
-                </tbody>
+                    @empty
+                    <tr>
+                        <td colspan="3" class="text-center">
+                            <div class="d-flex justify-content-center" style="min-height:16rem">
+                                <div class="my-auto">
+                                    <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                    <h4 class="text-center mt-4">KKNI Kosong!!</h4>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+            @endforelse
+            </tbody>
             </table>
         </div>
 

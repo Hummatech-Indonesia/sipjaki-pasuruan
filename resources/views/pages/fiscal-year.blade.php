@@ -30,7 +30,7 @@
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Masukan
                                         Anggaran</label>
-                                    <input type="text" class="form-control" id="create-name" class="form-control"
+                                    <input type="number" class="form-control" id="create-name" class="form-control"
                                         name="name" id="nametext" aria-describedby="name"
                                         placeholder="Masukan Anggaran" />
                                 </div>
@@ -66,12 +66,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($fiscalYears as $index => $fiscalYear)
+                    @forelse ($fiscalYears as $index => $fiscalYear)
                         <tr>
-                            <th scope="row" class="fs-5" >{{ $index + 1 }}
-                            </th>
-                            <td class="fs-5" >{{ $fiscalYear->name }}</td>
-                            <td class="d-flex flex-row gap-3 justify-content-center" style="border-bottom: 1px solid #fff">
+                            <td scope="row" class="fs-5">{{ $index + 1 }}</td>
+                            <td class="fs-5">{{ $fiscalYear->name }}</td>
+                            <td class="d-flex flex-row gap-3 justify-content-center">
                                 <button type="button"
                                     class="btn waves-effect waves-light d-flex btn-edit flex-row gap-1 justify-content-evenly"
                                     style="width: 90px; background-color: #FFC928; color: white"
@@ -85,7 +84,18 @@
                                         class="bx bx-bx bxs-trash fs-4"></i> Hapus</button>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="3" class="text-center">
+                                <div class="d-flex justify-content-center" style="min-height:16rem">
+                                    <div class="my-auto">
+                                        <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                        <h4 class="text-center mt-4">Tahun aggaran Kosong!!</h4>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
@@ -106,7 +116,7 @@
                             <div class="mb-3">
                                 <label id="name" for="recipient-name" class="control-label mb-2">Masukan
                                     Anggaran</label>
-                                <input type="text" class="form-control" id="update-name" class="form-control"
+                                <input type="number" class="form-control" id="update-name" class="form-control"
                                     name="name" aria-describedby="name" placeholder="Masukan Anggaran" />
                             </div>
                     </div>
