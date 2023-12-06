@@ -9,6 +9,7 @@ use App\Providers\RouteServiceProvider;
 use App\Services\Auth\LoginService;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
@@ -56,10 +57,12 @@ class LoginController extends Controller
      * @return \Illuminate\Http\JsonResponse Returns a JSON response.
      */
 
-    public function logout()
+    public function logout(Request $request)
     {
-        auth()->user()->currentAccessToken()->delete();
-        return ResponseHelper::success(Auth::user()->token, 'success logout');
+        if ($request->is('api/*')) {
+            auth()->user()->currentAccessToken()->delete();
+            return ResponseHelper::success(Auth::user()->token, 'success logout');
+        }
     }
 
     /**
