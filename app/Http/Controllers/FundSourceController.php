@@ -24,7 +24,7 @@ class FundSourceController extends Controller
      */
     public function index(Request $request)
     {
-        $fundSources = $this->fundSource->customPaginate($request, $request->pagination);
+        $fundSources = $this->fundSource->customPaginate($request, 10);
         if ($request->is('api/*')) {
             $data['paginate'] = $this->customPaginate($fundSources->currentPage(), $fundSources->lastPage());
             $data['data'] = FundSourceResource::collection($fundSources);
