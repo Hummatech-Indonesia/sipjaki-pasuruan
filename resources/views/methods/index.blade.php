@@ -58,7 +58,7 @@
                 </div>
             </div>
             <div class="table-responsive">
-                <table class="table table-borderless mb-0" border="1" style="border-color: #1B3061">
+                <table class="table table-borderless mb-0" border="1">
                     <thead>
                         <tr>
                             <th class="text-white" style="background-color: #1B3061">No</th>
@@ -115,7 +115,16 @@
                                 </td>
                             </tr>
                         @empty
-                            data kosong
+                        <tr>
+                            <td colspan="3" class="text-center">
+                                <div class="d-flex justify-content-center" style="min-height:16rem">
+                                    <div class="my-auto">
+                                        <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                        <h4 class="text-center mt-4">Tahun aggaran Kosong!!</h4>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
                         @endforelse
                     </tbody>
                 </table>
