@@ -2,16 +2,16 @@
 
 namespace App\Contracts\Repositories;
 
-use App\Contracts\Interfaces\QualificationInterface;
-use App\Models\Qualification;
+use App\Contracts\Interfaces\RuleInterface;
+use App\Models\Rules;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-class QualificationRepository extends BaseRepository implements QualificationInterface
+class RuleRepository extends BaseRepository implements RuleInterface
 {
-    public function __construct(Qualification $qualification)
+    public function __construct(Rules $rules)
     {
-        $this->model = $qualification;
+        $this->model = $rules;
     }
 
     /**
@@ -61,19 +61,8 @@ class QualificationRepository extends BaseRepository implements QualificationInt
         return $this->show($id)->delete($id);
     }
 
-    /**
-     * search
-     *
-     * @param  mixed $request
-     * @return mixed
-     */
-    public function search(Request $request): mixed
-    {
-        return $this->model->query()
-            ->get();
-    }
 
-        /**
+    /**
      * customPaginate
      *
      * @param  mixed $request
@@ -83,6 +72,7 @@ class QualificationRepository extends BaseRepository implements QualificationInt
     public function customPaginate(Request $request, int $pagination = 10): LengthAwarePaginator
     {
         return $this->model->query()
+            ->with('fiscalYear')
             ->fastPaginate($pagination);
     }
 }

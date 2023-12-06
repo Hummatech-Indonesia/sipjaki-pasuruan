@@ -58,12 +58,12 @@
                 </div>
             </div>
             <div class="table-responsive">
-                <table class="table mb-0">
+                <table class="table table-borderless mb-0" border="1" style="border-color: #1B3061">
                     <thead>
                         <tr>
                             <th class="text-white" style="background-color: #1B3061">No</th>
                             <th class="text-white" style="background-color: #1B3061">Nama Metode Pelatihan</th>
-                            <th class="text-white" style="background-color: #1B3061">Aksi</th>
+                            <th class="text-white" style="background-color: #1B3061; text-align: center">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -72,7 +72,7 @@
                                 <th scope="row">1</th>
                                 <td>{{ $data->name }}</td>
                                 <td>
-                                    <div class="d-flex justify-content-header gap-2">
+                                    <div class="d-flex justify-content-center gap-2">
                                         <div class="">
                                             <button type="button" class="btn btn-warning waves-effect waves-light btn-edit"
                                                 id="btn-edit-{{ $data->id }}" data-id="{{ $data->id }}"

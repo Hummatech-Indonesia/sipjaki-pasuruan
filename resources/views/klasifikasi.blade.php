@@ -166,6 +166,47 @@
                 </form>
             </div>
         </div>
+        <div class="table-responsive">
+            <table class="table mb-0">
+                <thead >
+                    <tr>
+                        <th class="text-white" style="background-color: #1B3061">No</th>
+                        <th class="text-white" style="background-color: #1B3061">Nama Klasifikasi</th>
+                        <th class="text-white" style="background-color: #1B3061">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse ($classifications as $data)                        
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>{{ $data->name }}</td>
+                        <td>
+                            <div class="d-flex justify-content-header gap-2">
+                                <div class="">
+                                    <button type="button" class="btn  waves-effect waves-light text-white" style="background-color: #1B3061">
+                                        <i class="bx bx-block font-size-13 btn-sm align-middle me-2"></i> Danger
+                                    </button>
+                                </div>
+                                <div class="">
+                                    <button type="button" class="btn btn-warning waves-effect waves-light">
+                                        <i class="bx bx-error font-size-13 btn-sm align-middle me-2"></i> Warning
+                                    </button>
+                                </div>
+                                <div class="">
+                                    <button type="button" class="btn btn-danger waves-effect waves-light">
+                                        <i class="bx bx-block font-size-13 btn-sm align-middle me-2"></i> Danger
+                                    </button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    @empty
+                        data kosong
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+
     </div>
     <x-delete-modal-component />
 @endsection

@@ -85,7 +85,7 @@ class NewsController extends Controller
      */
     public function update(NewsRequest $request, News $news)
     {
-        $this->news->update($news->id, $request->validated());
+        $this->news->update($news->id, $this->service->update($request, $news));
         if ($request->is('api/*')) {
 
             return ResponseHelper::success(null, trans('alert.update_success'));

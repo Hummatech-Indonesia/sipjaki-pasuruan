@@ -30,7 +30,7 @@
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Masukan
                                         Anggaran</label>
-                                    <input type="text" class="form-control" id="create-name" class="form-control"
+                                    <input type="number" class="form-control" id="create-name" class="form-control"
                                         name="name" id="nametext" aria-describedby="name"
                                         placeholder="Masukan Anggaran" />
                                 </div>
@@ -48,11 +48,16 @@
                 </div>
             </div>
         </div>
-        @error('name')
-            <div class="bg-light-warning text-white">{{ $message }}</div>
-        @enderror
+
+        @if ($errors->has('name'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ $errors->first('name') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
         <div class="table-responsive">
-            <table class="table" border="1" style="border-color: #1B3061">
+            <table class="table table-borderless" border="1" style="border-color: #1B3061">
                 <thead>
                     <tr>
                         <th style="background-color: #1B3061;color:#ffffff">No</th>
@@ -63,10 +68,10 @@
                 <tbody>
                     @foreach ($fiscalYears as $index => $fiscalYear)
                         <tr>
-                            <th scope="row" class="fs-5" style="border-right: 1px solid #1B3061">{{ $index + 1 }}
+                            <th scope="row" class="fs-5" >{{ $index + 1 }}
                             </th>
-                            <td class="fs-5" style="border-right: 1px solid #1B3061">{{ $fiscalYear->name }}</td>
-                            <td class="d-flex flex-row gap-3 justify-content-center" style="border-bottom: 1px solid #fff">
+                            <td class="fs-5">{{ $fiscalYear->name }}</td>
+                            <td class="d-flex flex-row gap-3 justify-content-center">
                                 <button type="button"
                                     class="btn waves-effect waves-light d-flex btn-edit flex-row gap-1 justify-content-evenly"
                                     style="width: 90px; background-color: #FFC928; color: white"
@@ -75,8 +80,9 @@
                                     <span>Edit</span></button>
                                 <button type="button"
                                     class="btn waves-effect waves-light d-flex flex-row gap-1 justify-content-between btn-delete"
-                                    style="width: 90px; background-color: #E05C39; color: white" data-id="{{ $fiscalYear->id }}" data-bs-toggle="modal"
-                                    data-bs-target="#modal-delete"><i class="bx bx-bx bxs-trash fs-4"></i> Hapus</button>
+                                    style="width: 90px; background-color: #E05C39; color: white"
+                                    data-id="{{ $fiscalYear->id }}" data-bs-toggle="modal" data-bs-target="#modal-delete"><i
+                                        class="bx bx-bx bxs-trash fs-4"></i> Hapus</button>
                             </td>
                         </tr>
                     @endforeach
@@ -100,7 +106,7 @@
                             <div class="mb-3">
                                 <label id="name" for="recipient-name" class="control-label mb-2">Masukan
                                     Anggaran</label>
-                                <input type="text" class="form-control" id="update-name" class="form-control"
+                                <input type="number" class="form-control" id="update-name" class="form-control"
                                     name="name" aria-describedby="name" placeholder="Masukan Anggaran" />
                             </div>
                     </div>
@@ -119,7 +125,6 @@
         </div>
     </div>
     <x-delete-modal-component />
-
 @endsection
 @section('script')
     <script>
@@ -133,7 +138,7 @@
             $('#form-update').attr('action', );
             $('#modal-update').modal('show')
         })
-        $('.btn-delete').click(function(){
+        $('.btn-delete').click(function() {
             id = $(this).data('id')
             var actionUrl = `fiscal-years/${id}`;
             $('#form-delete').attr('action', actionUrl);

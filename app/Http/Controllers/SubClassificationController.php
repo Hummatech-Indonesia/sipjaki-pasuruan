@@ -76,9 +76,9 @@ class SubClassificationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(SubClassificationRequest $request, SubClassification $subClassification)
+    public function update(SubClassificationRequest $request, SubClassification $sub_classification)
     {
-        $this->subClassification->update($subClassification->id, $request->validated());
+        $this->subClassification->update($sub_classification->id, $request->validated());
         if ($request->is('api/*')) {
             return ResponseHelper::success(null, trans('alert.update_success'));
         } else {
@@ -89,9 +89,9 @@ class SubClassificationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(SubClassification $subClassification, Request $request)
+    public function destroy(SubClassification $sub_classification, Request $request)
     {
-        $this->subClassification->delete($subClassification->id);
+        $this->subClassification->delete($sub_classification->id);
         if ($request->is('api/*')) {
             return ResponseHelper::success(null, trans('alert.delete_success'));
         } else {

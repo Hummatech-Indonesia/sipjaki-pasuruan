@@ -2,22 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Contracts\Interfaces\RuleCategoriesInterface;
+use App\Contracts\Interfaces\RuleInterface;
 use App\Helpers\ResponseHelper;
-use App\Http\Requests\RuleCategoriesRequest;
-use App\Http\Resources\RuleCategoriesResource;
-use App\Models\RuleCategory;
+use App\Http\Requests\RuleRequest;
+use App\Http\Resources\RuleResource;
+use App\Models\Rules;
+use App\Services\RuleService;
 use App\Traits\PaginationTrait;
 use Illuminate\Http\Request;
 
-class RuleCategoriesController extends Controller
+class RuleController extends Controller
 {
     use PaginationTrait;
+    private RuleInterface $rule;
+    private RuleService $service;
 
-    private RuleCategoriesInterface $ruleCategory;
-    public function __construct(RuleCategoriesInterface $ruleCategory)
+    public function __construct(RuleInterface $rule, RuleService $service)
     {
-        $this->ruleCategory = $ruleCategory;
+        $this->rule = $rule;
+        $this->service = $service;
     }
 
     /**
@@ -25,13 +28,13 @@ class RuleCategoriesController extends Controller
      */
     public function index(Request $request)
     {
-        $ruleCategories = $this->ruleCategory->customPaginate($request, 10);
+        $rules = $this->rule->customPaginate($request, 10);
         if ($request->is('api/*')) {
-            $data['paginate'] = $this->customPaginate($ruleCategories->currentPage(), $ruleCategories->lastPage());
-            $data['data'] = RuleCategoriesResource::collection($ruleCategories);
+            $data['paginate'] = $this->customPaginate($rules->currentPage(), $rules->lastPage());
+            $data['data'] = RuleResource::collection($rules);
             return ResponseHelper::success($data);
         } else {
-            return view('pages.rule-category', ['ruleCategories' => $ruleCategories]);
+            return view('rules.news', ['rules' => $rules]);
         }
     }
 
@@ -44,19 +47,14 @@ class RuleCategoriesController extends Controller
     }
 
     /**
-     * store
-     *
-     * @param  mixed $request
-     * @return void
+     * Store a newly created resource in storage.
      */
-    public function store(RuleCategoriesRequest $request)
+    public function store(RuleRequest $request)
     {
-        $this->ruleCategory->store($request->validated());
+        $this->rule->store($this->service->store($request));
         if ($request->is('api/*')) {
-
             return ResponseHelper::success(null, trans('alert.add_success'));
         } else {
-
             return redirect()->back()->with('success', trans('alert.add_success'));
         }
     }
@@ -78,11 +76,15 @@ class RuleCategoriesController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * update
+     *
+     * @param  mixed $request
+     * @param  mixed $rule
+     * @return void
      */
-    public function update(RuleCategoriesRequest $request, RuleCategory $rule_category)
+    public function update(RuleRequest $request, Rules $rule)
     {
-        $this->ruleCategory->update($rule_category->id, $request->validated());
+        $this->rule->update($rule->id, $this->service->update($request, $rule));
         if ($request->is('api/*')) {
             return ResponseHelper::success(null, trans('alert.update_success'));
         } else {
@@ -93,9 +95,10 @@ class RuleCategoriesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(RuleCategory $rule_category,Request $request)
+    public function destroy(Rules $rule, Request $request)
     {
-        $this->ruleCategory->delete($rule_category->id);
+        $this->rule->delete($rule->id);
+        $this->service->remove($rule->file);
         if ($request->is('api/*')) {
             return ResponseHelper::success(null, trans('alert.delete_success'));
         } else {
