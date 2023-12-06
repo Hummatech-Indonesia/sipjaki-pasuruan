@@ -33,11 +33,14 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::middleware('role:superadmin')->group(function () {
+// Route::middleware('role:superadmin')->group(function () {
     Route::get('/kategori-peraturan', function () {
         return view('pages.rule-category');
     });
 
+    // Route::get('sub-classifications', function () {
+    //     return view('pages.classification.detail');
+    // })->name('sub-classifications');
     Route::get('KKNI', function () {
         return view('pages.qualification');
     })->name('qualification');;
@@ -54,12 +57,14 @@ Route::middleware('role:superadmin')->group(function () {
         'fiscal-years' => FiscalYearController::class,
         'classifications' => ClassificationController::class,
         'news' => NewsController::class,
+        'training-methods' => TrainingMethodController::class,
         'users' => UserController::class,
         'rules' => RuleController::class,
     ]);
-
+    
     Route::get('sub-classifications/{classification}', [SubClassificationController::class, 'showSubClassification']);
     Route::post('sub-classifications/{classification}', [SubClassificationController::class, 'store']);
     Route::put('sub-classifications/{sub_classification}', [SubClassificationController::class, 'update']);
     Route::delete('sub-classifications/{sub_classification}', [SubClassificationController::class, 'destroy']);
-});;
+    
+// });

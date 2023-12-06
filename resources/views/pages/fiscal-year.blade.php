@@ -1,5 +1,14 @@
 @extends('layouts.app')
 @section('content')
+@if(session('success'))
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Success',
+        text: '{{ session('success') }}',
+    });
+</script>
+@endif
     <h2>Tahun Anggaran</h2>
     <div class="card p-3">
         <div class="d-flex justify-content-between align-items-center mb-3">

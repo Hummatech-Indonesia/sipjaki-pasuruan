@@ -42,7 +42,7 @@ class SubClassificationController extends Controller
             $data['data'] = SubClassificationResource::collection($subClassifications);
             return ResponseHelper::success($data);
         } else {
-            return view('pages.classification.detail');
+            return view('pages.classification.detail' ,compact('classification'));
         }
     }
 
