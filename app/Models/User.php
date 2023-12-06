@@ -5,14 +5,13 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use Laravel\Sanctum\HasApiTokens;
-use App\Base\Interfaces\HasOneDinas;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable implements HasOneDinas
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
     use HasRoles;
@@ -53,13 +52,4 @@ class User extends Authenticatable implements HasOneDinas
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-    /**
-     * Get the dinas associated with the User
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function dinas(): HasOne
-    {
-        return $this->hasOne(Dinas::class);
-    }
 }

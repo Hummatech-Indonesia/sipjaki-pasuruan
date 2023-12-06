@@ -5,8 +5,8 @@ namespace App\Services\Auth;
 use App\Contracts\Interfaces\Auth\RegisterInterface;
 use App\Enums\RoleEnum;
 use App\Http\Requests\Auth\RegisterRequest;
-use App\Mail\RegistrationMail;
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Auth\Notifications\VerifyEmail;
 
 class RegisterService
 {
@@ -30,9 +30,9 @@ class RegisterService
             'phone_number' => $data['phone_number'],
         ]);
 
-        Mail::to($data['email'])->send(new RegistrationMail(['email' => $request->email, 'user' => $request->name]));
+        event(new Registered($user));
+        $user->notify(new VerifyEmail);
 
         $user->assignRole(RoleEnum::SERVICE_PRODIVER);
-        auth()->attempt(['email' => $user['email'], 'password' => $password]);
     }
 }
