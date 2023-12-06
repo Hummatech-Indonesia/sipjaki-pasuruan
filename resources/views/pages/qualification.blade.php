@@ -81,10 +81,15 @@
                                     data-bs-target="#modal-delete"><i class="bx bx-bx bxs-trash fs-4"></i> Hapus</button>
                             </td>
                         </tr>
-                        @empty
-                        nodata
-                    @endforelse
-                </tbody>
+                    @empty
+                        <div class="d-flex justify-content-center" style="min-height:16rem">
+                            <div class="my-auto ">
+                                <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                <h4 class="text-center mt-4">KKNI Kosong!!</h4>
+                            </div>
+                        </div>
+            @endforelse
+            </tbody>
             </table>
         </div>
 
