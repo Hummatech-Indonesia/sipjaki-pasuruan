@@ -53,7 +53,7 @@
             </div>
         @endif
         <div class="table-responsive">
-            <table class="table" border="1">
+            <table class="table table-borderless" border="1" style="border-color: #1B3061">
                 <thead>
                     <tr>
                         <th style="background-color: #1B3061;color:#ffffff">No</th>

@@ -30,7 +30,7 @@
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Masukan
                                         Anggaran</label>
-                                    <input type="text" class="form-control" id="create-name" class="form-control"
+                                    <input type="number" class="form-control" id="create-name" class="form-control"
                                         name="name" id="nametext" aria-describedby="name"
                                         placeholder="Masukan Anggaran" />
                                 </div>
@@ -57,7 +57,7 @@
         @endif
 
         <div class="table-responsive">
-            <table class="table table-borderless" border="1">
+            <table class="table table-borderless" border="1" style="border-color: #1B3061">
                 <thead>
                     <tr>
                         <th style="background-color: #1B3061;color:#ffffff">No</th>
@@ -70,8 +70,8 @@
                         <tr>
                             <th scope="row" class="fs-5" >{{ $index + 1 }}
                             </th>
-                            <td class="fs-5" >{{ $fiscalYear->name }}</td>
-                            <td class="d-flex flex-row gap-3 justify-content-center" style="border-bottom: 1px solid #fff">
+                            <td class="fs-5">{{ $fiscalYear->name }}</td>
+                            <td class="d-flex flex-row gap-3 justify-content-center">
                                 <button type="button"
                                     class="btn waves-effect waves-light d-flex btn-edit flex-row gap-1 justify-content-evenly"
                                     style="width: 90px; background-color: #FFC928; color: white"
@@ -106,7 +106,7 @@
                             <div class="mb-3">
                                 <label id="name" for="recipient-name" class="control-label mb-2">Masukan
                                     Anggaran</label>
-                                <input type="text" class="form-control" id="update-name" class="form-control"
+                                <input type="number" class="form-control" id="update-name" class="form-control"
                                     name="name" aria-describedby="name" placeholder="Masukan Anggaran" />
                             </div>
                     </div>

@@ -54,7 +54,6 @@ Route::resources([
     'fiscal-years' => FiscalYearController::class,
     'classifications' => ClassificationController::class,
     'news' => NewsController::class,
-    'fund-sources' => FundSourceController::class,
     'sub-classifications' => SubClassificationController::class,
     'training-methods' => TrainingMethodController::class,
     'users' => UserController::class,

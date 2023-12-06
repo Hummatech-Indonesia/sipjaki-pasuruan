@@ -32,7 +32,7 @@
                 </li>
 
                 <li>
-                    <a href="{{ route('source-fund.index') }}" class="waves-effect">
+                    <a href="{{ route('fund-sources.index') }}" class="waves-effect">
                         <i class="bx bx-bx bx-money"></i>
                         <span key="t-file-manager">Sumber Dana</span>
                         <a href="{{ route('classifications.index') }}" class="waves-effect">

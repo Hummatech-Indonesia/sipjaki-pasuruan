@@ -54,7 +54,7 @@
             </div>
         @endif
         <div class="table-responsive">
-            <table class="table" border="1">
+            <table class="table table-borderless" border="1" style="border-color: #1B3061">
                 <thead>
                     <tr>
                         <th style="background-color: #1B3061;color:#ffffff">No</th>
@@ -67,7 +67,7 @@
                         <tr>
                             <td class="fs-5">{{ $index + 1 }}</td>
                             <td class="fs-5">{{ $ruleCategory->name }}</td>
-                            <td class="d-flex flex-row gap-3 justify-content-center" style="border-bottom: 1px solid #fff">
+                            <td class="d-flex flex-row gap-3 justify-content-center">
                                 <button type="button"
                                     class="btn waves-effect waves-light d-flex btn-edit flex-row gap-1 justify-content-evenly"
                                     style="width: 90px; background-color: #FFC928; color: white"
