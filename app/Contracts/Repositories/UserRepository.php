@@ -72,6 +72,7 @@ class UserRepository extends BaseRepository implements UserInterface
     public function customPaginate(Request $request, int $pagination = 10): LengthAwarePaginator
     {
         return $this->model->query()
+            ->where('dinas', '!=', null)
             ->fastPaginate($pagination);
     }
 }
