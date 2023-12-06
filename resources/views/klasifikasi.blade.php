@@ -67,7 +67,7 @@
                     @forelse ($classifications as $data)                        
                     <tr>
                         <th scope="row">1</th>
-                        <td>${{ $data->name }}</td>
+                        <td>{{ $data->name }}</td>
                         <td>
                             <div class="d-flex justify-content-header gap-2">
                                 <div class="">

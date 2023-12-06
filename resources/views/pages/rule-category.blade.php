@@ -47,8 +47,14 @@
                 </div>
             </div>
         </div>
+        @if ($errors->has('name'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ $errors->first('name') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
         <div class="table-responsive">
-            <table class="table" border="1" style="border-color: #1B3061">
+            <table class="table" border="1">
                 <thead>
                     <tr>
                         <th style="background-color: #1B3061;color:#ffffff">No</th>
@@ -59,8 +65,8 @@
                 <tbody>
                     @foreach ($ruleCategories as $index => $ruleCategory)
                         <tr>
-                            <td class="fs-5" style="border-right: 1px solid #1B3061">{{ $index + 1 }}</td>
-                            <td class="fs-5" style="border-right: 1px solid #1B3061">{{ $ruleCategory->name }}</td>
+                            <td class="fs-5">{{ $index + 1 }}</td>
+                            <td class="fs-5">{{ $ruleCategory->name }}</td>
                             <td class="d-flex flex-row gap-3 justify-content-center" style="border-bottom: 1px solid #fff">
                                 <button type="button"
                                     class="btn waves-effect waves-light d-flex btn-edit flex-row gap-1 justify-content-evenly"
@@ -70,7 +76,8 @@
                                     <span>Edit</span></button>
                                 <button type="button"
                                     class="btn waves-effect waves-light btn-delete d-flex flex-row gap-1 justify-content-between"
-                                    style="width: 90px; background-color: #E05C39; color: white" data-id="{{ $ruleCategory->id }}"><i class="bx bx-bx bxs-trash fs-4"></i> Hapus</button>
+                                    style="width: 90px; background-color: #E05C39; color: white"
+                                    data-id="{{ $ruleCategory->id }}"><i class="bx bx-bx bxs-trash fs-4"></i> Hapus</button>
                             </td>
                         </tr>
                     @endforeach
@@ -81,34 +88,33 @@
         <div class="modal fade" id="modal-update" tabindex="-1" aria-labelledby="exampleModalLabel1">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                        <div class="modal-header d-flex align-items-center">
-                            <h4 class="modal-title" id="exampleModalLabel1">
-                                Edit Kategori peraturan
-                            </h4>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form id="form-update" method="POST">
-                                @method('PUT')
-                                @csrf
-                                <div class="mb-3">
-                                    <label id="name" for="recipient-name" class="control-label mb-2">Nama Kategori
-                                        Peraturan</label>
-                                    <input type="text" class="form-control" id="update-name" class="form-control"
-                                        name="name" aria-describedby="name"
-                                        placeholder="Masukkan Nama Peraturan" />
-                                </div>
+                    <div class="modal-header d-flex align-items-center">
+                        <h4 class="modal-title" id="exampleModalLabel1">
+                            Edit Kategori peraturan
+                        </h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="form-update" method="POST">
+                            @method('PUT')
+                            @csrf
+                            <div class="mb-3">
+                                <label id="name" for="recipient-name" class="control-label mb-2">Nama Kategori
+                                    Peraturan</label>
+                                <input type="text" class="form-control" id="update-name" class="form-control"
+                                    name="name" aria-describedby="name" placeholder="Masukkan Nama Peraturan" />
+                            </div>
 
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger text-white font-medium waves-effect"
-                                data-bs-dismiss="modal">
-                                Close
-                            </button>
-                            <button type="submit" style="background-color: #1B3061" class="btn text-white btn-create">
-                                Tambah
-                            </button>
-                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger text-white font-medium waves-effect"
+                            data-bs-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="submit" style="background-color: #1B3061" class="btn text-white btn-create">
+                            Tambah
+                        </button>
+                    </div>
                     </form>
                 </div>
             </div>
@@ -128,7 +134,7 @@
             $('#form-update').attr('action', );
             $('#modal-update').modal('show')
         })
-        $('.btn-delete').click(function(){
+        $('.btn-delete').click(function() {
             id = $(this).data('id')
             var actionUrl = `rule-categories/${id}`;
             $('#form-delete').attr('action', actionUrl);
