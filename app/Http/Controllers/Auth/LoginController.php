@@ -31,7 +31,6 @@ class LoginController extends Controller
 
     public function __construct(LoginService $loginService)
     {
-        $this->middleware('guest')->except('logout');
         $this->loginService = $loginService;
     }
 
@@ -59,10 +58,10 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
-        if ($request->is('api/*')) {
-            auth()->user()->currentAccessToken()->delete();
-            return ResponseHelper::success(Auth::user()->token, 'success logout');
-        }
+        // if ($request->is('api/*')) {
+        // auth()->user()->currentAccessToken()->delete();
+        // return ResponseHelper::success(Auth::user()->token, 'success logout');
+        // }
     }
 
     /**

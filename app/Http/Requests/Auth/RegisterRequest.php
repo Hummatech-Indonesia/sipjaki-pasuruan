@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Auth;
 
 use App\Http\Requests\ApiRequest;
+use Illuminate\Validation\Rule;
 
 class RegisterRequest extends ApiRequest
 {
@@ -15,7 +16,10 @@ class RegisterRequest extends ApiRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|max:255',
+            'email' => ['required', 'email', 'max:255', Rule::unique('users', 'email')->ignore($this->user)],
+            'password' => 'required',
+            'phone_number' => 'required'
         ];
     }
 }
