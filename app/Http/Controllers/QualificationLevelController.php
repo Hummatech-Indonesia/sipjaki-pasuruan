@@ -37,7 +37,7 @@ class QualificationLevelController extends Controller
 
         }else{
 
-            return view('page',compact('qualifications'));
+            return view('pages.sub-qualification',compact('qualifications'));
 
         }
     }

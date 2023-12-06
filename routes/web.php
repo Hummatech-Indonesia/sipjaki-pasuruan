@@ -73,22 +73,6 @@ Route::post('sub-classifications/{classification}', [SubClassificationController
 Route::put('sub-classifications/{sub_classification}', [SubClassificationController::class, 'update']);
 Route::delete('sub-classifications/{sub_classification}', [SubClassificationController::class, 'destroy']);
 
-Route::get('KKNI', function () {
-    return view('pages.qualification');
-})->name('qualification');
-Route::get('sub-qualification', function () {
-    return view('pages.sub-qualification');
-})->name('sub-qualification');
-
-Route::get('sumber-dana', function () {
-    return view('pages.source-fund');
-})->name('source-fund');
-
-Route::get('category-contract', function () {
-    return view('pages.categoryContract');
-})->name('category-contract');
-
-
 Route::get('agencies',[UserController::class,'index'])->name('agencies.index');
 Route::post('agencies',[UserController::class,'store'])->name('agencies.store');
 Route::put('agencies/{user}',[UserController::class,'update'])->name('agencies.update');
@@ -110,6 +94,9 @@ Route::resources([
     'users' => UserController::class,
     'rules' => RuleController::class,
 ]);
+
+Route::post('sub-qualificationsLevel', [QualificationLevelController::class, 'store'])->name('sub-qualificationsLevel.post');
+
 Route::get('sub-classifications/{classification}', [SubClassificationController::class, 'showSubClassification']);
 Route::post('sub-classifications/{classification}', [SubClassificationController::class, 'store']);
 Route::put('sub-classifications/{sub_classification}', [SubClassificationController::class, 'update']);

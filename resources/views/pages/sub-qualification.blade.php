@@ -11,7 +11,7 @@
     <div class="modal fade" id="samedata-modal" tabindex="-1" id="modeal-create" aria-labelledby="exampleModalLabel1">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <form id="{{ route('classifications.store') }}" method="post">
+                <form id="{{ route('sub-qualificationsLevel.post') }}" method="post">
                     @csrf
                     @method('POST')
                     <div class="modal-header d-flex align-items-center text-white " style="background-color: #1B3061">
@@ -22,11 +22,11 @@
                     </div>
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label id="name" for="recipient-name" class="control-label mb-2">Masukan Level Kualifikasi</label>
+                            <label id="name" for="recipient-name" class="control-label mb-2">Masukan Level
+                                Kualifikasi</label>
                             <input type="text" class="form-control" id="create-school_year" class="form-control"
                                 name="name" id="nametext" aria-describedby="name" placeholder="" />
                         </div>
-
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger text-white font-medium waves-effect"
@@ -41,7 +41,7 @@
             </div>
         </div>
     </div>
-    {{-- end modal --}}
+
     <div class="card">
         <div class="card-body">
             <div class="d-flex justify-content-between mb-3">
@@ -69,26 +69,42 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Arsitekstur
-                            </td>
-                            <td class="d-flex flex-row gap-3 justify-content-center" style="border-bottom: 1px solid #fff">
-                                <button type="button"
-                                    class="btn waves-effect waves-light d-flex btn-edit flex-row gap-1 justify-content-evenly"
-                                    style="width: 90px; background-color: #FFC928; color: white">
-                                    <span>Edit</span></button>
-                                <button type="button"
-                                    class="btn waves-effect waves-light d-flex flex-row gap-1 justify-content-between btn-delete"
-                                    style="width: 90px; background-color: #E05C39; color: white"data-bs-toggle="modal"
-                                    data-bs-target="#modal-delete"><i class="bx bx-bx bxs-trash fs-4"></i> Hapus</button>
-                            </td>
-                        </tr>
+                        @forelse ($qualifications as $item => $qualification)
+                            <tr>
+                                <td>{{ $item + 1 }}</td>
+                                <td>{{ $qualification->name }}
+                                </td>
+                                <td class="d-flex flex-row gap-3 justify-content-center"
+                                    style="border-bottom: 1px solid #fff">
+                                    <button type="button"
+                                        class="btn waves-effect waves-light d-flex btn-edit flex-row gap-1 justify-content-evenly"
+                                        style="width: 90px; background-color: #FFC928; color: white">
+                                        <span>Edit</span></button>
+                                    <button type="button"
+                                        class="btn waves-effect waves-light d-flex flex-row gap-1 justify-content-between btn-delete"
+                                        style="width: 90px; background-color: #E05C39; color: white"data-bs-toggle="modal"
+                                        data-bs-target="#modal-delete"><i class="bx bx-bx bxs-trash fs-4"></i>
+                                        Hapus</button>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="3" class="text-center">
+                                    <div class="d-flex justify-content-center" style="min-height:16rem">
+                                        <div class="my-auto">
+                                            <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                            <h4 class="text-center mt-4">KKNI Kosong!!</h4>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+
     <div class="modal fade" id="modal-update" tabindex="-1" aria-labelledby="exampleModalLabel1">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -125,4 +141,25 @@
 
     </div>
     <x-delete-modal-component />
+@endsection
+
+@section('script')
+    <script>
+        $('.btn-edit').click(function() {
+            const formData = getDataAttributes($(this).attr('id'))
+            var actionUrl = `sub-qualificationsLevel/${formData['id']}`;
+            $('#form-update').attr('action', actionUrl);
+
+            setFormValues('form-update', formData)
+            $('#form-update').data('id', formData['id'])
+            $('#form-update').attr('action', );
+            $('#modal-update').modal('show')
+        })
+        $('.btn-delete').click(function() {
+            id = $(this).data('id')
+            var actionUrl = `sub-qualificationsLevel/${id}`;
+            $('#form-delete').attr('action', actionUrl);
+            $('#modal-delete').modal('show')
+        })
+    </script>
 @endsection
