@@ -53,16 +53,16 @@
             </div>
         @endif
         <div class="table-responsive">
-            <table class="table" border="1">
-                <thead>
-                    <tr>
-                        <th style="background-color: #1B3061;color:#ffffff">No</th>
-                        <th style="background-color: #1B3061;color:#ffffff">Nama Kerangka Nasional Indonesia</th>
-                        <th style="background-color: #1B3061;color:#ffffff; text-align: center">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($qualifications as $index => $qualification)
+            @forelse ($qualifications as $index => $qualification)
+                <table class="table" border="1">
+                    <thead>
+                        <tr>
+                            <th style="background-color: #1B3061;color:#ffffff">No</th>
+                            <th style="background-color: #1B3061;color:#ffffff">Nama Kerangka Nasional Indonesia</th>
+                            <th style="background-color: #1B3061;color:#ffffff; text-align: center">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
                         <tr>
                             <td>{{ $index + 1 }}</td>
                             <td>{{ $qualification->name }}
@@ -81,10 +81,15 @@
                                     data-bs-target="#modal-delete"><i class="bx bx-bx bxs-trash fs-4"></i> Hapus</button>
                             </td>
                         </tr>
-                        @empty
-                        nodata
-                    @endforelse
-                </tbody>
+                    @empty
+                        <div class="d-flex justify-content-center" style="min-height:16rem">
+                            <div class="my-auto ">
+                                <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                <h4 class="text-center mt-4">KKNI Kosong!!</h4>
+                            </div>
+                        </div>
+            @endforelse
+            </tbody>
             </table>
         </div>
 
