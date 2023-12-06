@@ -22,8 +22,10 @@ class UserRepository extends BaseRepository implements UserInterface
      */
     public function store(array $data): mixed
     {
-        return $this->model->query()
+        $user =  $this->model->query()
             ->create($data);
+        $user->dinas()->create($data);
+        return $user;
     }
 
     /**
@@ -72,7 +74,7 @@ class UserRepository extends BaseRepository implements UserInterface
     public function customPaginate(Request $request, int $pagination = 10): LengthAwarePaginator
     {
         return $this->model->query()
-            ->where('dinas', '!=', null)
+            ->whereHas('dinas')
             ->fastPaginate($pagination);
     }
 }
