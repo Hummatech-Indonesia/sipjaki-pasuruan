@@ -40,8 +40,7 @@ Route::middleware('role:superadmin')->group(function () {
 
     Route::get('KKNI', function () {
         return view('pages.qualification');
-    })->name('qualification');
-    ;
+    })->name('qualification');;
 
     Route::get('/sumber-dana', function () {
         return view('pages.source-fund');
@@ -60,8 +59,7 @@ Route::middleware('role:superadmin')->group(function () {
         'users' => UserController::class,
         'rules' => RuleController::class,
     ]);
-});
-;
+});;
 
 Route::get('KKNI', function () {
     return view('pages.qualification');
@@ -87,3 +85,8 @@ Route::resources([
     'users' => UserController::class,
     'rules' => RuleController::class,
 ]);
+
+Route::get('sub-classifications/{classification}', [SubClassificationController::class, 'showSubClassification']);
+Route::post('sub-classifications/{classification}', [SubClassificationController::class, 'store']);
+Route::put('sub-classifications/{sub_classification}', [SubClassificationController::class, 'update']);
+Route::delete('sub-classifications/{sub_classification}', [SubClassificationController::class, 'destroy']);

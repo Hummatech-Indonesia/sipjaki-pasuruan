@@ -6,8 +6,11 @@ use App\Contracts\Interfaces\SubClassificationInterface;
 use App\Helpers\ResponseHelper;
 use App\Http\Requests\SubClassificationRequest;
 use App\Http\Resources\SubClassificationResource;
+use App\Models\Classification;
 use App\Models\SubClassification;
 use App\Traits\PaginationTrait;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class SubClassificationController extends Controller
@@ -21,13 +24,20 @@ class SubClassificationController extends Controller
     {
         $this->subClassification = $subClassification;
     }
+
+
     /**
-     * Display a listing of the resource.
+     * showSubClassification
+     *
+     * @param  mixed $request
+     * @param  mixed $classification
+     * @return void
      */
-    public function index(Request $request)
+    public function showSubClassification(Request $request, Classification $classification)
     {
+        $request->merge(['classification_id' => $classification->id]);
+        $subClassifications = $this->subClassification->customPaginate($request, 10);
         if ($request->is('api/*')) {
-            $subClassifications = $this->subClassification->customPaginate($request, 10);
             $data['paginate'] = $this->customPaginate($subClassifications->currentPage(), $subClassifications->lastPage());
             $data['data'] = SubClassificationResource::collection($subClassifications);
             return ResponseHelper::success($data);
@@ -36,41 +46,24 @@ class SubClassificationController extends Controller
         }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
-     * Store a newly created resource in storage.
+     * store
+     *
+     * @param  mixed $request
+     * @param  mixed $classification
+     * @return JsonResponse
      */
-    public function store(SubClassificationRequest $request)
+    public function store(SubClassificationRequest $request, Classification $classification): JsonResponse | View
     {
-        $this->subClassification->store($request->validated());
+        $data = $request->validated();
+        $data['classification_id'] = $classification->id;
+        $this->subClassification->store($data);
         if ($request->is('api/*')) {
             return ResponseHelper::success(null, trans('alert.add_success'));
         } else {
             return redirect()->back()->with('success', trans('alert.add_success'));
         }
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
     }
 
     /**

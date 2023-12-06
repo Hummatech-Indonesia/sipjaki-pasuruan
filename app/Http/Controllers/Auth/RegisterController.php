@@ -49,7 +49,6 @@ class RegisterController extends Controller
     {
         $this->service = $service;
         $this->register = $register;
-        $this->middleware('guest');
     }
 
     /**
@@ -75,7 +74,7 @@ class RegisterController extends Controller
     public function register(RegisterRequest $request): JsonResponse
     {
         $this->service->handleRegistration($request, $this->register);
-
-        return ResponseHelper::success();
+        // dd('test');
+        return ResponseHelper::success(null, trans('auth.register_success'));
     }
 }
