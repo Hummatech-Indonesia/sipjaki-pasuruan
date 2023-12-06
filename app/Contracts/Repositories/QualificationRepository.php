@@ -2,12 +2,12 @@
 
 namespace App\Contracts\Repositories;
 
-use App\Contracts\Interfaces\FiscalYearInterface;
+use App\Contracts\Interfaces\QualificationInterface;
 use App\Models\Qualification;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-class QualificationRepository extends BaseRepository implements FiscalYearInterface
+class QualificationRepository extends BaseRepository implements QualificationInterface
 {
     public function __construct(Qualification $qualification)
     {
