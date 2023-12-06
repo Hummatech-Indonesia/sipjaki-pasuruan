@@ -40,6 +40,9 @@ Route::get('/kategori-peraturan', function () {
 Route::get('KKNI', function () {
     return view('pages.qualification');
 })->name('qualification');
+Route::get('sub-qualification', function () {
+    return view('pages.sub-qualification');
+})->name('sub-qualification');
 
 Route::get('/sumber-dana', function () {
     return view('pages.source-fund');
