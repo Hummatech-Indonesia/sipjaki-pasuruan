@@ -63,6 +63,7 @@ class EventServiceProvider extends ServiceProvider
         TrainingMethod::observe(TrainingMethodObserver::class);
         Rules::observe(RuleObserver::class);
         ContractCategory::observe(ContractCategoryObserver::class);
+        Dinas::observe(DinasObserver::class);
     }
 
     /**
