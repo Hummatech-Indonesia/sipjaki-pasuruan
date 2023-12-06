@@ -9,11 +9,19 @@
     });
 </script>
 @endif
-    <div class="">
+    <div class="d-flex justify-content-between mb-3">
         <div>
             <h2 class="">
                 Detail Klasifikasi
             </h2>
+        </div>
+        <div class="">
+            <a href="{{ route('classifications.index') }}" class="btn btn-warning">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 16" fill="none">
+                    <path d="M0.292893 7.29289C-0.0976314 7.68342 -0.0976315 8.31658 0.292892 8.7071L6.65685 15.0711C7.04738 15.4616 7.68054 15.4616 8.07107 15.0711C8.46159 14.6805 8.46159 14.0474 8.07107 13.6569L2.41421 8L8.07107 2.34314C8.46159 1.95262 8.46159 1.31946 8.07107 0.928931C7.68054 0.538406 7.04738 0.538406 6.65686 0.928931L0.292893 7.29289ZM24 7L1 7L1 9L24 9L24 7Z" fill="white"/>
+                  </svg>
+                  Kembali
+            </a>
         </div>
     </div>
     {{-- modal --}}
@@ -25,14 +33,14 @@
                     <input type="hidden" name="classification_id" value="{{ $classification->id }}">
                     <div class="modal-header d-flex align-items-center text-white " style="background-color: #1B3061">
                         <h4 class="modal-title" id="exampleModalLabel1">
-                            Tambah Klasifikasi
+                            Tambah Sub Klasifikasi
                         </h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="mb-3">
                             <label id="name" for="recipient-name" class="control-label mb-2">Masukan
-                                Klasifikasi</label>
+                                Sub Klasifikasi</label>
                             <input type="text" class="form-control" id="create-school_year" class="form-control"
                                 name="name" id="nametext" aria-describedby="name" placeholder="" />
                         </div>
@@ -56,7 +64,7 @@
         <div class="card-body">
             <div class="d-flex justify-content-between mb-3">
                 <div class="">
-                    <h4 class="card-title mt-2">Arsiktektur</h4>
+                    <h4 class=" mt-2" style="font-weight:600">Arsiktektur</h4>
                 </div>
                 <div class="">
                     <button class="btn me-2 btn-md btn-create text-white" data-bs-toggle="modal"
@@ -76,15 +84,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($classification as $data)
+                        @forelse ($subClassifications as $index => $subClassification)
                             <tr>
-                                <th scope="row" class="fs-5">1</th>
-                                <td>{{ $data }}</td>
+                                <th scope="row" class="fs-5">{{ $index + 1 }}</th>
+                                <td>{{ $subClassification->name }}</td>
                                 <td>
                                     <div class="d-flex justify-content-center gap-2">
                                         <div class="">
-                                            <button type="button" class="btn btn-warning waves-effect waves-light btn-edit" id="btn-edit-" data-id=""
-                                                data-name="">
+                                            <button type="button" class="btn btn-warning waves-effect waves-light btn-edit" id="btn-edit-{{ $subClassification->id }}" data-id="{{ $subClassification->id }}"
+                                                data-name="{{ $subClassification->name }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                     viewBox="0 0 24 24" fill="none">
                                                     <g clip-path="url(#clip0_26_1791)">
@@ -108,7 +116,7 @@
                                             </button>
                                         </div>
                                         <div class="">
-                                            <button type="button" class="btn btn-danger waves-effect waves-light btn-delete" >
+                                            <button type="button" class="btn btn-danger waves-effect waves-light btn-delete" data-id="{{ $subClassification->id }}" id="btn-delete-{{ $subClassification->id }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                     viewBox="0 0 20 20" fill="none">
                                                     <path fill-rule="evenodd" clip-rule="evenodd"
@@ -135,9 +143,6 @@
                     </tbody>
                 </table>
             </div>
-            <p class="mt-3 fs-8" style="font-weight: 800">
-                Total Jumlah 130 Sub Klasifikasi
-            </p>
         </div>
     </div>
     <div class="modal fade" id="modal-update" tabindex="-1" aria-labelledby="exampleModalLabel1">
@@ -181,7 +186,7 @@
     $('.btn-edit').click(function() {
         const formData = getDataAttributes($(this).attr('id'))
         console.log();
-        var actionUrl = `classifications/${formData['id']}`;
+        var actionUrl = `/sub-classifications/${formData['id']}`;
         $('#form-update').attr('action', actionUrl);
         setFormValues('form-update', formData)
         $('#form-update').data('id', formData['id'])
@@ -190,7 +195,7 @@
     })
     $('.btn-delete').click(function() {
         id = $(this).data('id')
-        var actionUrl = `classifications/${id}`;
+        var actionUrl = `/sub-classifications/${id}`;
         $('#form-delete').attr('action', actionUrl);
         $('#modal-delete').modal('show')
     })
