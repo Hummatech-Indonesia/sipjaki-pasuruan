@@ -36,7 +36,7 @@ class ContractCategoryController extends Controller
 
         }else{
 
-            return view('pages.fiscal-year',compact('contractCategorys'));
+            return view('pages.categoryContract',compact('contractCategorys'));
 
         }
     }
@@ -53,9 +53,7 @@ class ContractCategoryController extends Controller
             return ResponseHelper::success(null,trans('alert.add_success'));
 
         }else{
-
             return redirect()->back()->with('success',trans('alert.add_success'));
-
         }
     }
 
@@ -79,7 +77,6 @@ class ContractCategoryController extends Controller
             return ResponseHelper::success(null,trans('alert.update_success'));
 
         }else{
-
            return redirect()->back()->with('success',trans('alert.update_success'));
 
         }
