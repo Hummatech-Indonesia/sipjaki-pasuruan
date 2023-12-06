@@ -1,5 +1,14 @@
 @extends('layouts.app')
 @section('content')
+@if (session('success'))
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Success',
+        text: '{{ session('success') }}',
+    });
+</script>
+@endif
     <div class="">
         <h2 class="text-dark">
             Metode Pelatihan
@@ -57,6 +66,12 @@
                     </button>
                 </div>
             </div>
+            @if ($errors->has('name'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ $errors->first('name') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
             <div class="table-responsive">
                 <table class="table table-borderless mb-0" border="1">
                     <thead>
