@@ -30,7 +30,6 @@ class User extends Authenticatable implements MustVerifyEmail, HasOneDinas
     protected $fillable = [
         'name',
         'email',
-        'dinas',
         'password',
         'email_verified_at'
     ];

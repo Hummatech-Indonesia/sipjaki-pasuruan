@@ -37,7 +37,7 @@ class UserController extends Controller
             $data['data'] = UserResource::collection($users);
             return ResponseHelper::success($data);
         } else {
-            return view('pages.user');
+            return view('pages.agency', ['users' => $users]);
         }
     }
 
@@ -55,11 +55,11 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         $this->service->store($request, $this->user);
-        // if ($request->is('api/*')) {
+        if ($request->is('api/*')) {
         return ResponseHelper::success(null, trans('alert.add_success'));
-        // } else {
-        //     return redirect()->back()->with('success', trans('alert.add_success'));
-        // }
+        } else {
+            return redirect()->back()->with('success', trans('alert.add_success'));
+        }
     }
 
     /**

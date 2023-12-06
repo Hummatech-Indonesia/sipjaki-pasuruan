@@ -87,8 +87,15 @@ Route::get('category-contract', function () {
     return view('pages.categoryContract');
 })->name('category-contract');
 
+
+Route::get('agencies',[UserController::class,'index'])->name('agencies.index');
+Route::post('agencies',[UserController::class,'store'])->name('agencies.store');
+Route::put('agencies/{user}',[UserController::class,'update'])->name('agencies.update');
+Route::delete('agencies/{user}',[UserController::class,'destroy'])->name('agencies.update');
+
+
 Route::resources([
-    'category-contracts' => ContractCategoryController::class,
+    'category-contracts'=>ContractCategoryController::class,
     'fund-sources' => FundSourceController::class,
     'qualifications' => QualificationController::class,
     'source-fund' => sourceFundController::class,
@@ -101,7 +108,6 @@ Route::resources([
     'users' => UserController::class,
     'rules' => RuleController::class,
 ]);
-
 Route::get('sub-classifications/{classification}', [SubClassificationController::class, 'showSubClassification']);
 Route::post('sub-classifications/{classification}', [SubClassificationController::class, 'store']);
 Route::put('sub-classifications/{sub_classification}', [SubClassificationController::class, 'update']);

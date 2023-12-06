@@ -20,10 +20,10 @@
                     </a>
                 </li>
                 <li>
-                        <a href="{{ route('classifications.index') }}" class="waves-effect">
-                            <i class="fas fa-clipboard"></i>
-                            <span key="t-file-manager">Klasifikasi</span>
-                        </a>
+                    <a href="{{ route('classifications.index') }}" class="waves-effect">
+                        <i class="fas fa-clipboard"></i>
+                        <span key="t-file-manager">Klasifikasi</span>
+                    </a>
                 </li>
 
                 <li>
@@ -53,7 +53,12 @@
                         <span key="t-file-manager">Kategori Kontrak</span>
                     </a>
                 </li>
-
+                <li>
+                    <a href="{{ route('agencies.index') }}" class="waves-effect">
+                        <i class="bx bx-user-plus"></i>
+                        <span key="t-file-manager">Dinas</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

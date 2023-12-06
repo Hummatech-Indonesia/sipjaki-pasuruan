@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Dinas extends Model
 {
     use HasFactory;
-    protected $table = 'fiscal_years';
+    protected $table = 'dinas';
     protected $primaryKey = 'id';
     protected $fillable = ['id', 'user_id'];
     protected $guarded = [];
