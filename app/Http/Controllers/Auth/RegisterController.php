@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Services\Auth\RegisterService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Foundation\Auth\VerifiesEmails;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Hash;
@@ -18,6 +19,7 @@ use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
+    use RegistersUsers, VerifiesEmails;
     /*
     |--------------------------------------------------------------------------
     | Register Controller
@@ -49,6 +51,7 @@ class RegisterController extends Controller
     {
         $this->service = $service;
         $this->register = $register;
+        
     }
 
     /**
@@ -74,7 +77,6 @@ class RegisterController extends Controller
     public function register(RegisterRequest $request): JsonResponse
     {
         $this->service->handleRegistration($request, $this->register);
-        // dd('test');
         return ResponseHelper::success(null, trans('auth.register_success'));
     }
 }
