@@ -54,39 +54,12 @@ Route::middleware('role:superadmin')->group(function () {
         'fiscal-years' => FiscalYearController::class,
         'classifications' => ClassificationController::class,
         'news' => NewsController::class,
-        'sub-classifications' => SubClassificationController::class,
-        'training-methods' => TrainingMethodController::class,
         'users' => UserController::class,
         'rules' => RuleController::class,
     ]);
+
+    Route::get('sub-classifications/{classification}', [SubClassificationController::class, 'showSubClassification']);
+    Route::post('sub-classifications/{classification}', [SubClassificationController::class, 'store']);
+    Route::put('sub-classifications/{sub_classification}', [SubClassificationController::class, 'update']);
+    Route::delete('sub-classifications/{sub_classification}', [SubClassificationController::class, 'destroy']);
 });;
-
-Route::get('KKNI', function () {
-    return view('pages.qualification');
-})->name('qualification');
-Route::get('sub-qualification', function () {
-    return view('pages.sub-qualification');
-})->name('sub-qualification');
-
-Route::get('/sumber-dana', function () {
-    return view('pages.source-fund');
-})->name('source-fund');
-
-Route::resources([
-    'fund-sources' => FundSourceController::class,
-    'qualifications' => QualificationController::class,
-    'source-fund' => sourceFundController::class,
-    'rule-categories' => RuleCategoriesController::class,
-    'fiscal-years' => FiscalYearController::class,
-    'classifications' => ClassificationController::class,
-    'news' => NewsController::class,
-    'sub-classifications' => SubClassificationController::class,
-    'training-methods' => TrainingMethodController::class,
-    'users' => UserController::class,
-    'rules' => RuleController::class,
-]);
-
-Route::get('sub-classifications/{classification}', [SubClassificationController::class, 'showSubClassification']);
-Route::post('sub-classifications/{classification}', [SubClassificationController::class, 'store']);
-Route::put('sub-classifications/{sub_classification}', [SubClassificationController::class, 'update']);
-Route::delete('sub-classifications/{sub_classification}', [SubClassificationController::class, 'destroy']);
