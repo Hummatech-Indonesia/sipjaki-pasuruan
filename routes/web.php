@@ -58,7 +58,7 @@ Route::get('/sumber-dana', function () {
 })->name('source-fund');
 
 Route::resources([
-    'source-fund' => sourceFundController::class,
+    'fund-sources' => FundSourceController::class,
     'rule-categories' => RuleCategoriesController::class,
     'fiscal-years' => FiscalYearController::class,
     'classifications' => ClassificationController::class,

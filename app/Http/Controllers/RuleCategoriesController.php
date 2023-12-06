@@ -80,9 +80,9 @@ class RuleCategoriesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(RuleCategoriesRequest $request, RuleCategory $ruleCategory)
+    public function update(RuleCategoriesRequest $request, RuleCategory $rule_category)
     {
-        $this->ruleCategory->update($ruleCategory->id, $request->validated());
+        $this->ruleCategory->update($rule_category->id, $request->validated());
         if ($request->is('api/*')) {
             return ResponseHelper::success(null, trans('alert.update_success'));
         } else {
@@ -93,9 +93,9 @@ class RuleCategoriesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(RuleCategory $ruleCategory,Request $request)
+    public function destroy(RuleCategory $rule_category,Request $request)
     {
-        $this->ruleCategory->delete($ruleCategory->id);
+        $this->ruleCategory->delete($rule_category->id);
         if ($request->is('api/*')) {
             return ResponseHelper::success(null, trans('alert.delete_success'));
         } else {
