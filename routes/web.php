@@ -88,7 +88,7 @@ Route::get('category-contract', function () {
 })->name('category-contract');
 
 Route::resources([
-    'category-contracts' => ContractCategoryController::class,
+    'contract-categories' => ContractCategoryController::class,
     'fund-sources' => FundSourceController::class,
     'qualifications' => QualificationController::class,
     'source-fund' => sourceFundController::class,

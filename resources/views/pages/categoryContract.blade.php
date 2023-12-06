@@ -26,7 +26,7 @@
         <div class="modal fade" id="modal-create" tabindex="-1" id="modal-create" aria-labelledby="exampleModalLabel1">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <form action="{{ route('category-contracts.store') }}" method="POST">
+                    <form action="{{ route('contract-categories.store') }}" method="POST">
                         @csrf
                         <div class="modal-header d-flex align-items-center">
                             <h4 class="modal-title" id="exampleModalLabel1">
@@ -149,17 +149,16 @@
     <script>
         $('.btn-edit').click(function() {
             const formData = getDataAttributes($(this).attr('id'))
-            var actionUrl = `category-contracts/${formData['id']}`;
+            var actionUrl = `contract-categories/${formData['id']}`;
             $('#form-update').attr('action', actionUrl);
-            console.log(formData['id']);
             setFormValues('form-update', formData)
             $('#form-update').data('id', formData['id'])
-            $('#form-update').attr('action', );
+            $('#form-update').attr('action', actionUrl);
             $('#modal-update').modal('show')
         })
         $('.btn-delete').click(function() {
             id = $(this).data('id')
-            var actionUrl = `category-contracts/${id}`;
+            var actionUrl = `contract-categories/${id}`;
             $('#form-delete').attr('action', actionUrl);
             $('#modal-delete').modal('show')
         })
