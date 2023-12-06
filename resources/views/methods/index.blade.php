@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('content')
     <div class="">
-        <p class="fs-5 text-dark" style="font-weight: 600">
+        <h2 class="text-dark">
             Metode Pelatihan
-        </p>
+        </h2>
     </div>
     {{-- modal --}}
     <div class="modal fade" id="samedata-modal" tabindex="-1" id="modeal-create" aria-labelledby="exampleModalLabel1">
