@@ -29,12 +29,7 @@ class CreateHelperCommand extends Command
         }
 
         $namespace = $this->getDefaultNamespace();
-        $content = 
-        "<?php\n\n
-        namespace {$namespace};\n\n
-        class {$helperName}\n{\n
-                // Add your helper functions here\n
-        }\n";
+        $content = "<?php\n\nnamespace {$namespace};\n\nclass {$helperName}\n{\n    // Add your helper functions here\n}\n";
 
         File::put($filePath, $content);
 
