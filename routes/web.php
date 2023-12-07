@@ -92,6 +92,9 @@ Auth::routes(['verify' => true]);
         'users' => UserController::class,
         'rules' => RuleController::class,
     ]);
+    Route::get('work-packages',function(){
+        return view('pages.dinas.work-package');
+    })->name('work-package.index');
     Route::get('sub-classifications/{classification}', [SubClassificationController::class, 'showSubClassification']);
     Route::post('sub-classifications/{classification}', [SubClassificationController::class, 'store']);
     Route::put('sub-classifications/{sub_classification}', [SubClassificationController::class, 'update']);
