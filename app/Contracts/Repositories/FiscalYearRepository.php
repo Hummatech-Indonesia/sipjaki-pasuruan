@@ -70,6 +70,9 @@ class FiscalYearRepository extends BaseRepository implements FiscalYearInterface
     public function search(Request $request): mixed
     {
         return $this->model->query()
+            ->when($request->name,function($query) use ($request){
+                $query->where('name','LIKE','%'.$request->name.'%');
+            })
             ->get();
     }
 
@@ -83,6 +86,9 @@ class FiscalYearRepository extends BaseRepository implements FiscalYearInterface
     public function customPaginate(Request $request, int $pagination = 10): LengthAwarePaginator
     {
         return $this->model->query()
+            ->when($request->name,function($query) use ($request){
+                $query->where('name','LIKE','%'.$request->name.'%');
+            })
             ->fastPaginate($pagination);
     }
 }

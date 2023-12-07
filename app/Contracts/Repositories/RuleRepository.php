@@ -73,6 +73,9 @@ class RuleRepository extends BaseRepository implements RuleInterface
     {
         return $this->model->query()
             ->with('fiscalYear')
+            ->when($request->name,function($query) use ($request){
+                $query->where('name','LIKE','%'.$request->name.'%');
+            })
             ->fastPaginate($pagination);
     }
 }

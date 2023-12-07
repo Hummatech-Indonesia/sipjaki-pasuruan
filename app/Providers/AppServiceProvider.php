@@ -10,6 +10,7 @@ use App\Contracts\Interfaces\ForgotPasswordInterface;
 use App\Contracts\Interfaces\FundSourceInterface;
 use App\Contracts\Interfaces\ImageInterface;
 use App\Contracts\Interfaces\NewsInterface;
+use App\Contracts\Interfaces\ProjectInterface;
 use App\Contracts\Interfaces\QualificationInterface;
 use App\Contracts\Interfaces\QualificationLevelInterface;
 use App\Contracts\Interfaces\RuleCategoriesInterface;
@@ -54,7 +55,8 @@ class AppServiceProvider extends ServiceProvider
         ContractCategoryInterface::class => ContractCategoryRepository::class,
         TrainingInterface::class => TrainingRepository::class,
         ImageInterface::class => ImageRepository::class,
-        ForgotPasswordInterface::class => ForgotPasswordRepository::class
+        ForgotPasswordInterface::class => ForgotPasswordRepository::class,
+        ProjectInterface::class => ProjectRepository::class
     ];
 
     /**

@@ -74,6 +74,9 @@ class SubClassificationRepository extends BaseRepository implements SubClassific
         return $this->model->query()
             ->with('classification')
             ->where('classification_id', $request->classification_id)
+            ->when($request->name,function($query) use ($request){
+                $query->where('name','LIKE','%'.$request->name.'%');
+            })
             ->fastPaginate($pagination);
     }
 }
