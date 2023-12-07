@@ -12,6 +12,12 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @yield('style')
+    <style>
+        .btn-sipjaki{
+            background-color: #1B3061;
+            color: white
+        }
+    </style>
 </head>
 
 <body>

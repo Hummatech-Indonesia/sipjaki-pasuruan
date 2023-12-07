@@ -198,6 +198,171 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div>
+    <div class="modal fade" id="modal-update" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #1B3061">
+                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Tambah Pelatihan</h5>
+                </div>
+                <form action="">
+                    <div class="card-body">
+                        <div id="basic-update">
+                            <!-- Seller Details -->
+                            <h3>Data 1</h3>
+                            <section>
+                                <form>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="basicpill-firstname-input">Tahun Anggaran</label>
+                                                <select name="" class="form-select" id="">
+                                                    <option value="">Pilih anggaran</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="basicpill-lastname-input">Sumber Dana</label>
+                                                <select name="" class="form-select" id="">
+                                                    <option value="">Pilih sumber dana</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="basicpill-phoneno-input">Nama</label>
+                                                <input type="text" class="form-control" id="basicpill-phoneno-input"
+                                                    placeholder="Enter Your Name.">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="basicpill-email-input">Kualifikasi</label>
+                                                <select name="" class="form-select" id="">
+                                                    <option value="">Pilih Kualifikasi</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                </form>
+                            </section>
+
+                            <!-- Company Document -->
+                            <h3>Data 2</h3>
+                            <section>
+                                <form>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="basicpill-pancard-input">Sub Klasifikasi</label>
+                                                <select name="" class="form-select" id="">
+                                                    <option value="">Pilih Kualifikasi</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="basicpill-vatno-input">Waktu Pelaksanaan</label>
+                                                <input type="date" class="form-control" id="basicpill-vatno-input"
+                                                    placeholder="Enter Your VAT/TIN No.">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="basicpill-cstno-input">Selesai Pelaksanaan</label>
+                                                <input type="date" class="form-control" id="basicpill-cstno-input"
+                                                    placeholder="Enter Your CST No.">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="basicpill-servicetax-input">Jam Pelajaran</label>
+                                                <input type="date" class="form-control"
+                                                    id="basicpill-servicetax-input"
+                                                    placeholder="Enter Your Service Tax No.">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </section>
+
+                            <!-- Bank Details -->
+                            <h3>Data 3</h3>
+                            <section>
+                                <div>
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    <label for="basicpill-phoneno-input">Jenjang KKNI</label>
+                                                    <select name="" class="form-select" id="">
+                                                        <option value="">Pilih Jenjang KKNI</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    <label for="basicpill-email-input">Klasifikasi</label>
+                                                    <select name="" class="form-select" id="">
+                                                        <option value="">Pilih Klasifikasi</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    <label for="basicpill-phoneno-input">Lokasi</label>
+                                                    <textarea name="" id="" class="form-control"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    <label for="basicpill-email-input">Keterangan</label>
+                                                    <textarea name="" id="" class="form-control"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </section>
+                            <!-- Confirm Details -->
+                            <h3>Data 4</h3>
+                            <section>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label for="basicpill-companyuin-input">Metode Pelatihan</label>
+                                            <select name="" class="form-select" id="">
+                                                <option value="">Pilih Metode Pelatihan</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label for="basicpill-declaration-input">Jam Pelajaran</label>
+                                            <input type="text" class="form-control"
+                                                id="basicpill-Declaration-input" placeholder="Declaration Details">
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
     <div class="row">
         <div class="col-12 col-lg-4 col-xl-4 col-xxl-4 mt-3">
             <div class="card">
@@ -341,7 +506,7 @@
 
                         <div class="d-flex justify-content-header gap-3">
                             <div class="">
-                                <button class="btn btn-warning">
+                                <button class="btn btn-warning"  data-bs-toggle="modal" data-bs-target="#modal-update" >
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                         viewBox="0 0 24 24" fill="none">
                                         <g clip-path="url(#clip0_116_5266)">
