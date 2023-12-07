@@ -100,24 +100,10 @@
                         <div class="menu-wrapper" data-top="992">
                             <ul class="site-main-menu">
                                 <li class="menu-item-has-children">
-                                    <a href="index.html">Beranda</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="index.html">Home One</a></li>
-                                        <li><a href="index-two.html">Home Two</a></li>
-                                        <li><a href="index-three.html">Home Three</a></li>
-                                        <li><a href="index-four.html">Home Four</a></li>
-                                        <li><a href="index-five.html">Home Five</a></li>
-                                        <li><a href="index-six.html">Home Six</a></li>
-                                        <li><a href="index-seven.html">Home Seven</a></li>
-                                        <li><a href="index-eight.html">Home Eight</a></li>
-                                        <li><a href="index-nine.html">Home Nine</a></li>
-                                        <li><a href="index-ten.html">Home Ten</a></li>
-                                        <li><a href="index-eleven.html">Home Eleven</a></li>
-                                        <li><a href="index-twelve.html">Home Twelve</a></li>
-                                    </ul>
+                                    <a href="/">Beranda</a>
                                 </li>
                                 <li><a href="about.html">Profil DKSK</a></li>
-                                <li class="menu-item-has-children"> 
+                                <li class="menu-item-has-children">
                                     <a href="blog.html">Layanan</a>
                                     <ul class="sub-menu">
                                         <li><a href="/faq">Bantuan</a></li>
@@ -148,7 +134,13 @@
                                 </li>
 
                                 <li><a href="contact.html">Peraturan</a></li>
-                                <li><a href="contact.html">Data Jakon</a></li>
+                                <li class="menu-item-has-children">
+                                    <a href="portfolio.html">Data Jakon</a>
+                                            <ul class="sub-menu">
+                                                <li><a href="portfolio-one.html">OPD</a></li>
+                                                <li><a href="/data-paket-pekerjaan">Paket Pekerjaan</a></li>
+                                            </ul>
+                                </li>
                                 <li><a href="contact.html">Pelatihan</a></li>
                                 <li><a href="contact.html">Pengawasan</a></li>
                             </ul>

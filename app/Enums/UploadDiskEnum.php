@@ -10,4 +10,5 @@ enum UploadDiskEnum: string
     case JOBANDFUNCTION = 'job_and_function';
     case STRATEGICPLAN = 'strategic_plan';
     case FAQ = 'faq';
+    case TRAININGMEMBER = 'trainingmember';
 }

@@ -1,8 +1,13 @@
 <?php
 
-namespace App\Contract\Interfaces;
+namespace App\Contracts\Interfaces;
 
-interface TrainingMemberInterface
+use App\Contracts\Interfaces\Eloquent\CustomPaginationInterface;
+use App\Contracts\Interfaces\Eloquent\DeleteInterface;
+use App\Contracts\Interfaces\Eloquent\ShowInterface;
+use App\Contracts\Interfaces\Eloquent\StoreInterface;
+use App\Contracts\Interfaces\Eloquent\UpdateInterface;
+
+interface TrainingMemberInterface extends StoreInterface, CustomPaginationInterface, DeleteInterface, UpdateInterface, ShowInterface
 {
-    // Define your interface methods here
 }
