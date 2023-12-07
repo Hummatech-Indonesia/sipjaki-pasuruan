@@ -4,7 +4,7 @@ namespace App\Base\Interfaces;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-interface HasQualification
+interface HasTrainings
 {
     /**
      * Get all of the trainings for the HasTrainings

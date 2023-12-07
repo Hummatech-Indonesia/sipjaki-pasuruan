@@ -48,15 +48,10 @@ class QualificationLevelController extends Controller
     public function store(QualificationLevelRequest $request): RedirectResponse | JsonResponse
     {
         $this->qualificationLevel->store($request->validated());
-
         if( $request->is('api/*')){
-
             return ResponseHelper::success(null,trans('alert.add_success'));
-
         }else{
-
             return redirect()->back()->with('success',trans('alert.add_success'));
-
         }
     }
 
@@ -73,7 +68,7 @@ class QualificationLevelController extends Controller
      */
     public function update(QualificationLevelRequest $request,QualificationLevel $qualificationLevel) : RedirectResponse | JsonResponse
     {
-        $this->qualificationLevel->update($qualificationLevel->id,$request->all());
+        $this->qualificationLevel->update($qualificationLevel->id, $request->all());
 
         if( $request->is('api/*')){
 
