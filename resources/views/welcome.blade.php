@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-<!-- Mirrored from saaspik.pixelsigns.art/saaspik/blog-grid.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Dec 2023 01:34:03 GMT -->
-
 <head>
     <!-- Meta Data -->
     <meta charset="UTF-8">
@@ -38,8 +35,16 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&amp;family=Satisfy&amp;display=swap"
         rel="stylesheet">
+    <style>
+        .video-container {
+            aspect-ratio: 16/9;
+        }
 
-
+        .video-container iframe {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
 
 </head>
 
@@ -236,11 +241,16 @@
                 </div>
             </div>
             <div class="d-flex d-row">
-                <svg style="margin-right: 5px;" class="me-2" width="35" height="35" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="22.5" cy="22.5" r="22.5" fill="white"/>
-                    <path d="M11.7047 16.9428L22.5001 22.3405L33.2957 16.9428C33.2143 15.5248 32.0386 14.4 30.6002 14.4H14.4002C12.9618 14.4 11.7861 15.5248 11.7047 16.9428Z" fill="#1B3061"/>
-                    <path d="M33.3002 19.9592L22.5001 25.3592L11.7002 19.9593V27.9C11.7002 29.3912 12.909 30.6 14.4002 30.6H30.6002C32.0914 30.6 33.3002 29.3912 33.3002 27.9V19.9592Z" fill="#1B3061"/>
-                    </svg>
+                <svg style="margin-right: 5px;" class="me-2" width="35" height="35" viewBox="0 0 45 45"
+                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="22.5" cy="22.5" r="22.5" fill="white" />
+                    <path
+                        d="M11.7047 16.9428L22.5001 22.3405L33.2957 16.9428C33.2143 15.5248 32.0386 14.4 30.6002 14.4H14.4002C12.9618 14.4 11.7861 15.5248 11.7047 16.9428Z"
+                        fill="#1B3061" />
+                    <path
+                        d="M33.3002 19.9592L22.5001 25.3592L11.7002 19.9593V27.9C11.7002 29.3912 12.909 30.6 14.4002 30.6H30.6002C32.0914 30.6 33.3002 29.3912 33.3002 27.9V19.9592Z"
+                        fill="#1B3061" />
+                </svg>
 
                 <div class="mt-1">
                     <a style="color: var(--White-Original, #FFF);
@@ -248,28 +258,38 @@
                     font-size: 14px;
                     font-style: normal;
                     font-weight: 600;
-                    line-height: normal; margin-right:20px;" href="kelembagaan.djbk@pu.go.id">kelembagaan.djbk@pu.go.id</a>
+                    line-height: normal; margin-right:20px;"
+                        href="kelembagaan.djbk@pu.go.id">kelembagaan.djbk@pu.go.id</a>
                 </div>
-                <svg style="margin-right: 5px;" width="35" height="35" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="22.5" cy="22.5" r="22.5" fill="white"/>
+                <svg style="margin-right: 5px;" width="35" height="35" viewBox="0 0 45 45" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="22.5" cy="22.5" r="22.5" fill="white" />
                     <g clip-path="url(#clip0_90_3317)">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M13.9014 11.9683C14.1475 11.7226 14.443 11.532 14.7683 11.4091C15.0935 11.2863 15.4412 11.234 15.7883 11.2556C16.1353 11.2773 16.4738 11.3725 16.7813 11.5349C17.0887 11.6972 17.3582 11.9231 17.5718 12.1975L20.096 15.4403C20.5586 16.0352 20.7218 16.81 20.5389 17.5413L19.7697 20.6209C19.73 20.7804 19.7321 20.9475 19.776 21.106C19.8198 21.2644 19.9039 21.4088 20.02 21.5252L23.4752 24.9803C23.5917 25.0967 23.7363 25.1809 23.895 25.2248C24.0537 25.2686 24.2211 25.2707 24.3808 25.2306L27.4591 24.4614C27.82 24.3712 28.1966 24.3642 28.5606 24.4409C28.9246 24.5177 29.2663 24.6761 29.56 24.9044L32.8028 27.4272C33.9686 28.3342 34.0755 30.0569 33.0321 31.0989L31.578 32.553C30.5374 33.5936 28.9821 34.0506 27.5322 33.5402C23.8214 32.2345 20.4521 30.1101 17.6744 27.3245C14.889 24.5472 12.7646 21.1785 11.4588 17.4681C10.9497 16.0197 11.4068 14.463 12.4474 13.4223L13.9014 11.9683Z" fill="#1B3061"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M13.9014 11.9683C14.1475 11.7226 14.443 11.532 14.7683 11.4091C15.0935 11.2863 15.4412 11.234 15.7883 11.2556C16.1353 11.2773 16.4738 11.3725 16.7813 11.5349C17.0887 11.6972 17.3582 11.9231 17.5718 12.1975L20.096 15.4403C20.5586 16.0352 20.7218 16.81 20.5389 17.5413L19.7697 20.6209C19.73 20.7804 19.7321 20.9475 19.776 21.106C19.8198 21.2644 19.9039 21.4088 20.02 21.5252L23.4752 24.9803C23.5917 25.0967 23.7363 25.1809 23.895 25.2248C24.0537 25.2686 24.2211 25.2707 24.3808 25.2306L27.4591 24.4614C27.82 24.3712 28.1966 24.3642 28.5606 24.4409C28.9246 24.5177 29.2663 24.6761 29.56 24.9044L32.8028 27.4272C33.9686 28.3342 34.0755 30.0569 33.0321 31.0989L31.578 32.553C30.5374 33.5936 28.9821 34.0506 27.5322 33.5402C23.8214 32.2345 20.4521 30.1101 17.6744 27.3245C14.889 24.5472 12.7646 21.1785 11.4588 17.4681C10.9497 16.0197 11.4068 14.463 12.4474 13.4223L13.9014 11.9683Z"
+                            fill="#1B3061" />
                     </g>
                     <defs>
-                    <clipPath id="clip0_90_3317">
-                    <rect width="22.5" height="22.5" fill="white" transform="translate(11.25 11.25)"/>
-                    </clipPath>
+                        <clipPath id="clip0_90_3317">
+                            <rect width="22.5" height="22.5" fill="white" transform="translate(11.25 11.25)" />
+                        </clipPath>
                     </defs>
-                    </svg>
-                    <div style="color: var(--White-Original, #FFF);
+                </svg>
+                <div
+                    style="color: var(--White-Original, #FFF);
                     font-family: Poppins;
                     font-size: 14px;
                     font-style: normal;
                     font-weight: 600;
                     line-height: normal;margin-right:45px;margin-top:10px;">
-                        +62-21 739 5063
-                    </div>
+                    +62-21 739 5063
+                </div>
             </div>
+        </div>
+
+        <div class="d-flex w-full d-row align-items-center justify-content-center">
+            <iframe src="{{ asset('assets/y2mate.com - 78 Tahun PUPR Sigap Membangun Negeri_1080p.mp4') }}"
+                width="1200" height="800" frameborder="0"></iframe>
         </div>
         <!-- /.page-banner -->
 
@@ -278,226 +298,107 @@
         <!--========================-->
         <div class="blog-post-archive">
             <div class="container">
+                <div class="d-flex justify-content-center mb-4">
+                    <div
+                        style="width: 40%;height: auto;flex-shrink: 0;border-radius: 16px;background: var(--Kuning, #FFC928);">
+                        <p class="my-auto"
+                            style="color: var(--Biru-Primary, #1B3061);text-align: center;font-family: Poppins;font-size: 32px;font-style: normal;font-weight: 600;line-height: normal;">
+                            Berita Terbaru</p>
+                    </div>
+                </div>
+
                 <div class="row">
                     <div class="col-lg-4 col-md-6">
                         <article class="post-post-grid">
                             <div class="feature-image">
                                 <a href="blog-signle.html">
-                                    <img src="media/blog/13.jpg" alt="">
+                                    <img src="{{ asset('logo-2.png') }}" alt="">
                                 </a>
                             </div>
                             <div class="blog-content">
                                 <ul class="post-meta">
-                                    <li><a href="#">Oct 16, 2019</a></li>
+                                    <li><a href="#">12 Januari 2023</a></li>
                                 </ul>
 
-                                <h3 class="entry-title"><a href="#">An Uncomplicated Guide to Improve Rate By
-                                        3X.</a></h3>
-
-                                <div class="author">
-                                    <img src="media/blog/auth2.jpg" alt="author">
-                                    <a href="#" class="author-link">Hans Down</a>
+                                <h3 class="entry-title"><a href="#">Pemerintah Korupsi Dana
+                                        Perbaikan AC</a></h3>
+                                <div class="row">
+                                    <a href="javascript:void(0)" class="col-12">
+                                        <button
+                                            class="btn btn-outline-primary d-flex align-items-center justify-content-between"
+                                            style="width:100%">
+                                            <span>Lihat selengkapnya</span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                viewBox="0 0 24 24">
+                                                <path fill="currentColor"
+                                                    d="m12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" />
+                                            </svg>
+                                        </button>
+                                    </a>
                                 </div>
 
                             </div><!-- /.post-content -->
                         </article><!-- /.post -->
                     </div>
-                    <!-- /.col-lg-4 -->
-
-
                     <div class="col-lg-4 col-md-6">
                         <article class="post-post-grid">
                             <div class="feature-image">
                                 <a href="blog-signle.html">
-                                    <img src="media/blog/14.jpg" alt="">
+                                    <img src="{{ asset('logo-2.png') }}" alt="">
                                 </a>
                             </div>
                             <div class="blog-content">
                                 <ul class="post-meta">
-                                    <li><a href="#">Oct 16, 2019</a></li>
+                                    <li><a href="#">12 Januari 2023</a></li>
                                 </ul>
-                                <h3 class="entry-title"><a href="#">The most powerfull chating saas that make
-                                        you.</a></h3>
 
-
-                                <div class="author">
-                                    <img src="media/blog/auth2.jpg" alt="author">
-                                    <a href="#" class="author-link">Hans Down</a>
+                                <h3 class="entry-title"><a href="#">Pemerintah Korupsi Dana
+                                        Perbaikan AC</a></h3>
+                                <div class="row">
+                                    <a href="javascript:void(0)" class="col-12">
+                                        <button
+                                            class="btn btn-outline-primary d-flex align-items-center justify-content-between"
+                                            style="width:100%">
+                                            <span>Lihat selengkapnya</span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                viewBox="0 0 24 24">
+                                                <path fill="currentColor"
+                                                    d="m12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" />
+                                            </svg>
+                                        </button>
+                                    </a>
                                 </div>
 
                             </div><!-- /.post-content -->
                         </article><!-- /.post -->
                     </div>
-                    <!-- /.col-lg-4 -->
-
                     <div class="col-lg-4 col-md-6">
                         <article class="post-post-grid">
                             <div class="feature-image">
                                 <a href="blog-signle.html">
-                                    <img src="media/blog/15.jpg" alt="">
+                                    <img src="{{ asset('logo-2.png') }}" alt="">
                                 </a>
                             </div>
                             <div class="blog-content">
                                 <ul class="post-meta">
-                                    <li><a href="#">Oct 16, 2019</a></li>
+                                    <li><a href="#">12 Januari 2023</a></li>
                                 </ul>
 
-                                <h3 class="entry-title"><a href="#">10 days quick challange for boost your
-                                        online visitors.</a></h3>
-
-                                <div class="author">
-                                    <img src="media/blog/auth2.jpg" alt="author">
-                                    <a href="#" class="author-link">Hans Down</a>
-                                </div>
-
-                            </div><!-- /.post-content -->
-                        </article><!-- /.post -->
-                    </div>
-                    <!-- /.col-lg-4 -->
-
-                    <div class="col-lg-4 col-md-6">
-                        <article class="post-post-grid">
-                            <div class="feature-image">
-                                <a href="blog-signle.html">
-                                    <img src="media/blog/16.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="blog-content">
-                                <ul class="post-meta">
-                                    <li><a href="#">Oct 16, 2019</a></li>
-                                </ul>
-
-                                <h3 class="entry-title"><a href="#">Why DIY tools were rejected by the
-                                        market.</a></h3>
-
-                                <div class="author">
-                                    <img src="media/blog/auth2.jpg" alt="author">
-                                    <a href="#" class="author-link">Hans Down</a>
-                                </div>
-
-                            </div><!-- /.post-content -->
-                        </article><!-- /.post -->
-                    </div>
-                    <!-- /.col-lg-4 -->
-
-                    <div class="col-lg-4 col-md-6">
-                        <article class="post-post-grid">
-                            <div class="feature-image">
-                                <a href="blog-signle.html">
-                                    <img src="media/blog/17.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="blog-content">
-                                <ul class="post-meta">
-                                    <li><a href="#">Oct 16, 2019</a></li>
-                                </ul>
-
-                                <h3 class="entry-title"><a href="#">The Belgian Exodus of World War One</a></h3>
-
-                                <div class="author">
-                                    <img src="media/blog/auth2.jpg" alt="author">
-                                    <a href="#" class="author-link">Hans Down</a>
-                                </div>
-
-                            </div><!-- /.post-content -->
-                        </article><!-- /.post -->
-                    </div>
-                    <!-- /.col-lg-4 -->
-
-                    <div class="col-lg-4 col-md-6">
-                        <article class="post-post-grid">
-                            <div class="feature-image">
-                                <a href="blog-signle.html">
-                                    <img src="media/blog/18.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="blog-content">
-                                <ul class="post-meta">
-                                    <li><a href="#">Oct 16, 2019</a></li>
-                                </ul>
-
-                                <h3 class="entry-title"><a href="#">Young Guns Reflections: Paul Felton</a></h3>
-
-                                <div class="author">
-                                    <img src="media/blog/auth2.jpg" alt="author">
-                                    <a href="#" class="author-link">Hans Down</a>
-                                </div>
-
-                            </div><!-- /.post-content -->
-                        </article><!-- /.post -->
-                    </div>
-                    <!-- /.col-lg-4 -->
-
-
-                    <div class="col-lg-4 col-md-6">
-                        <article class="post-post-grid">
-                            <div class="feature-image">
-                                <a href="blog-signle.html">
-                                    <img src="media/blog/19.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="blog-content">
-                                <ul class="post-meta">
-                                    <li><a href="#">Oct 16, 2019</a></li>
-                                </ul>
-
-                                <h3 class="entry-title"><a href="#">Nicholas Misani: More on the Floor</a></h3>
-
-                                <div class="author">
-                                    <img src="media/blog/auth2.jpg" alt="author">
-                                    <a href="#" class="author-link">Hans Down</a>
-                                </div>
-
-                            </div><!-- /.post-content -->
-                        </article><!-- /.post -->
-                    </div>
-                    <!-- /.col-lg-4 -->
-
-
-                    <div class="col-lg-4 col-md-6">
-                        <article class="post-post-grid">
-                            <div class="feature-image">
-                                <a href="blog-signle.html">
-                                    <img src="media/blog/20.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="blog-content">
-                                <ul class="post-meta">
-                                    <li><a href="#">Oct 16, 2019</a></li>
-                                </ul>
-
-                                <h3 class="entry-title"><a href="#">A brand for a company is like a reputation
-                                        person.</a></h3>
-
-                                <div class="author">
-                                    <img src="media/blog/auth2.jpg" alt="author">
-                                    <a href="#" class="author-link">Hans Down</a>
-                                </div>
-
-                            </div><!-- /.post-content -->
-                        </article><!-- /.post -->
-                    </div>
-                    <!-- /.col-lg-4 -->
-
-
-                    <div class="col-lg-4 col-md-6">
-                        <article class="post-post-grid">
-                            <div class="feature-image">
-                                <a href="blog-signle.html">
-                                    <img src="media/blog/21.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="blog-content">
-                                <ul class="post-meta">
-                                    <li><a href="#">Oct 16, 2019</a></li>
-                                </ul>
-
-                                <h3 class="entry-title"><a href="#">The most powerfull chating saas that make
-                                        you.</a></h3>
-
-                                <div class="author">
-                                    <img src="media/blog/auth2.jpg" alt="author">
-                                    <a href="#" class="author-link">Hans Down</a>
+                                <h3 class="entry-title"><a href="#">Pemerintah Korupsi Dana
+                                        Perbaikan AC</a></h3>
+                                <div class="row">
+                                    <a href="javascript:void(0)" class="col-12">
+                                        <button
+                                            class="btn btn-outline-primary d-flex align-items-center justify-content-between"
+                                            style="width:100%">
+                                            <span>Lihat selengkapnya</span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                viewBox="0 0 24 24">
+                                                <path fill="currentColor"
+                                                    d="m12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" />
+                                            </svg>
+                                        </button>
+                                    </a>
                                 </div>
 
                             </div><!-- /.post-content -->
@@ -505,7 +406,6 @@
                     </div>
                     <!-- /.col-lg-4 -->
                 </div>
-                <!-- /.row -->
 
                 <ul class="post-navigation">
                     <li class="active">1</li>
