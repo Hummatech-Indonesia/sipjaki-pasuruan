@@ -6,9 +6,9 @@
     <title>Sipjaki Kabupaten Pasuruan</title>
     <link rel="shortcut icon" type="{{ asset('image/png') }}" href="{{ asset('assets/sipjaki.png') }}" />
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
-<link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
-<link href="{{ asset('assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
-<script src="{{ asset('js/plugin.js') }}"></script>
+    <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
+    <script src="{{ asset('js/plugin.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @yield('style')
 </head>
@@ -36,7 +36,7 @@
     <script src="{{ asset('assets/libs/node-waves/waves.min.js') }}"></script>
     <script src="{{ asset('assets/libs/apexcharts/apexcharts.min.js') }}"></script>
     <script src="{{ asset('assets/js/pages/dashboard.init.js') }}"></script>
-    
+
     <script src="{{ asset('assets/js/app.js') }}"></script>
     <script>
         // const authToken = localStorage.getItem('token')

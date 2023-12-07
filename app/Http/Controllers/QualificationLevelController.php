@@ -12,6 +12,7 @@ use App\Http\Resources\QualificationResource;
 use App\Http\Requests\QualificationLevelRequest;
 use App\Http\Resources\QualificationLevelResource;
 use App\Contracts\Interfaces\QualificationLevelInterface;
+use App\Models\Qualification;
 
 class QualificationLevelController extends Controller
 {
@@ -45,9 +46,12 @@ class QualificationLevelController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(QualificationLevelRequest $request): RedirectResponse | JsonResponse
+    public function store(QualificationLevelRequest $request,Qualification $qualication): RedirectResponse | JsonResponse
     {
-        $this->qualificationLevel->store($request->validated());
+        $data = $request->validated();
+        $data['qualification_id'] = $qualication->id;
+        $this->qualificationLevel->store($data);
+
         if( $request->is('api/*')){
             return ResponseHelper::success(null,trans('alert.add_success'));
         }else{

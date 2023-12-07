@@ -15,6 +15,7 @@ use App\Models\RuleCategory;
 use App\Models\Rules;
 use App\Models\SubClassification;
 use App\Models\Training;
+use App\Models\TrainingMember;
 use App\Models\TrainingMethod;
 use App\Models\User;
 use App\Observers\ClassificationObserver;
@@ -30,13 +31,13 @@ use App\Observers\RuleCategoriesObserver;
 use App\Observers\RuleObserver;
 use App\Observers\SubClassificationOberserve;
 use App\Observers\SubClassificationObserver;
+use App\Observers\TrainingMemberObserver;
 use App\Observers\TrainingMethodObserver;
 use App\Observers\TrainingObserver;
 use App\Observers\UserObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -71,6 +72,7 @@ class EventServiceProvider extends ServiceProvider
         Dinas::observe(DinasObserver::class);
         Training::observe(TrainingObserver::class);
         Image::observe(ImageObserver::class);
+        TrainingMember::observe(TrainingMemberObserver::class);
     }
 
     /**

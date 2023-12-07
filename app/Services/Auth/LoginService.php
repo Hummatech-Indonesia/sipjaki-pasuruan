@@ -33,7 +33,7 @@ class LoginService
                 if (!auth()->user()->email_verified_at) {
                     return redirect()->back()->withErrors(trans('alert.account_unverified'));
                 }
-                return to_route('/home');
+                return to_route('home');
             }
         }
 

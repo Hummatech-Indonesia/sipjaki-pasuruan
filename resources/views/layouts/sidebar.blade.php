@@ -48,15 +48,22 @@
                 </li>
 
                 <li>
-                    <a href="{{ route('category-contracts.index') }}" class="waves-effect">
+                    <a href="{{ route('contract-categories.index') }}" class="waves-effect">
                         <i class="bx bx-bx bx-task"></i>
                         <span key="t-file-manager">Kategori Kontrak</span>
                     </a>
                 </li>
+
                 <li>
                     <a href="{{ route('agencies.index') }}" class="waves-effect">
                         <i class="bx bx-user-plus"></i>
                         <span key="t-file-manager">Dinas</span>
+                    </a>
+
+                <li>
+                    <a href="/profile-OPD" class="waves-effect">
+                        <i class="bx bx-user-plus"></i>
+                        <span key="t-file-manager">Profile OPD</span>
                     </a>
                 </li>
             </ul>
