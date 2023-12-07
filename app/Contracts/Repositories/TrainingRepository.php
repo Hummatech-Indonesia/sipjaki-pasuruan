@@ -2,16 +2,16 @@
 
 namespace App\Contracts\Repositories;
 
-use App\Contracts\Interfaces\QualificationLevelInterface;
-use App\Models\QualificationLevel;
+use App\Contracts\Interfaces\TrainingInterface;
+use App\Models\Training;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-class QualificationLevelRepository extends BaseRepository implements QualificationLevelInterface
+class TrainingRepository extends BaseRepository implements TrainingInterface
 {
-    public function __construct(QualificationLevel $qualificationLevel)
+    public function __construct(Training $training)
     {
-        $this->model = $qualificationLevel;
+        $this->model = $training;
     }
 
     /**
@@ -35,7 +35,7 @@ class QualificationLevelRepository extends BaseRepository implements Qualificati
     public function show(mixed $id): mixed
     {
         return $this->model->query()
-            ->findOrFail($id)->with('qualificationLevels')->get();
+            ->findOrFail($id);
     }
 
     /**
@@ -61,19 +61,8 @@ class QualificationLevelRepository extends BaseRepository implements Qualificati
         return $this->show($id)->delete($id);
     }
 
-    /**
-     * search
-     *
-     * @param  mixed $request
-     * @return mixed
-     */
-    public function search(Request $request): mixed
-    {
-        return $this->model->query()
-            ->get();
-    }
 
-        /**
+    /**
      * customPaginate
      *
      * @param  mixed $request
@@ -83,6 +72,7 @@ class QualificationLevelRepository extends BaseRepository implements Qualificati
     public function customPaginate(Request $request, int $pagination = 10): LengthAwarePaginator
     {
         return $this->model->query()
+            ->with('fiscalYear')
             ->fastPaginate($pagination);
     }
 }

@@ -62,9 +62,20 @@ class QualificationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Qualification $qualification) : JsonResponse
+    public function show(Request $request,Qualification $qualification) : JsonResponse
     {
-        return ResponseHelper::success(QualificationResource::make($qualification),trans('alert.get_success'));
+
+        $qualifications = $this->qualification->show($qualification->id);
+        if( $request->is('api/*')){
+
+            return ResponseHelper::success(null,trans('alert.update_success'));
+
+        }else{
+
+            $qualificationLevels = $qualification->qualificationLevels;
+           return view('',compact('qualificationLevels'));
+
+        }
     }
 
     /**

@@ -14,6 +14,7 @@ use App\Contracts\Interfaces\QualificationLevelInterface;
 use App\Contracts\Interfaces\RuleCategoriesInterface;
 use App\Contracts\Interfaces\RuleInterface;
 use App\Contracts\Interfaces\SubClassificationInterface;
+use App\Contracts\Interfaces\TrainingInterface;
 use App\Contracts\Interfaces\TrainingMethodInterface;
 use App\Contracts\Interfaces\UserInterface;
 use App\Contracts\Repositories\Auth\RegisterRepository;
@@ -28,6 +29,7 @@ use App\Contracts\Repositories\RuleCategoriesRepository;
 use App\Contracts\Repositories\RuleRepository;
 use App\Contracts\Repositories\SubClassificationRepository;
 use App\Contracts\Repositories\TrainingMethodRepository;
+use App\Contracts\Repositories\TrainingRepository;
 use App\Contracts\Repositories\UserRepository;
 use Illuminate\Support\ServiceProvider;
 
@@ -46,7 +48,8 @@ class AppServiceProvider extends ServiceProvider
         TrainingMethodInterface::class => TrainingMethodRepository::class,
         UserInterface::class => UserRepository::class,
         RuleInterface::class => RuleRepository::class,
-        ContractCategoryInterface::class => ContractCategoryRepository::class
+        ContractCategoryInterface::class => ContractCategoryRepository::class,
+        TrainingInterface::class => TrainingRepository::class
     ];
 
     /**
