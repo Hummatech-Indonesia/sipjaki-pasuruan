@@ -68,7 +68,7 @@ class ContractCategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(ContractCategoryRequest $request,ContractCategory $category_contract) : RedirectResponse | JsonResponse
+    public function update(ContractCategoryRequest $request, ContractCategory $category_contract) : RedirectResponse | JsonResponse
     {
         $this->contractCategory->update($category_contract->id,$request->all());
 
@@ -77,7 +77,7 @@ class ContractCategoryController extends Controller
             return ResponseHelper::success(null,trans('alert.update_success'));
 
         }else{
-           return redirect()->back()->with('success',trans('alert.update_success'));
+            return redirect()->back()->with('success',trans('alert.update_success'));
 
         }
     }
