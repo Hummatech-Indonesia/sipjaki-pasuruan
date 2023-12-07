@@ -33,28 +33,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
+Route::middleware(['auth'])->group(function () {
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Route::middleware('role:superadmin')->group(function () {
-Route::get('/kategori-peraturan', function () {
-    return view('pages.rule-category');
-});
 
-// Route::get('sub-classifications', function () {
-//     return view('pages.classification.detail');
-// })->name('sub-classifications');
-Route::get('KKNI', function () {
-    return view('pages.qualification');
-})->name('qualification');
 Route::get('sub-qualification', function () {
     return view('pages.sub-qualification');
 })->name('sub-qualification');
 
-Route::get('/sumber-dana', function () {
-    return view('pages.source-fund');
-})->name('source-fund');
 
 Route::resources([
     'fund-sources' => FundSourceController::class,
@@ -113,3 +102,4 @@ Route::put('verify-token/{user}', [VerificationController::class, 'verifyToken']
 Route::get('/verify-account', function () {
     return view('auth.verify-account');
 })->name('verify.account');
+});

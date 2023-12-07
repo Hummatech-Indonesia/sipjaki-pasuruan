@@ -25,6 +25,9 @@
             <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect" id="vertical-menu-btn">
                 <i class="fa fa-fw fa-bars"></i>
             </button>
+            <div class="mt-4">
+                <span class="badge bg-primary fs-5">{{ Auth::user()->roles->pluck('name')[0] }}</span>
+            </div>
 
             <div class="dropdown dropdown-mega d-none d-lg-block ms-2">
                 <div class="dropdown-menu dropdown-megamenu">
@@ -32,9 +35,7 @@
                         <div class="col-sm-8">
 
                         </div>
-
                     </div>
-
                 </div>
             </div>
         </div>
@@ -51,7 +52,7 @@
                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img class="rounded-circle header-profile-user" src="{{ asset('assets/images/users/avatar-1.jpg') }}"
                         alt="Header Avatar">
-                    <span class="d-none d-xl-inline-block ms-1" key="t-henry">Henry</span>
+                    <span class="d-none d-xl-inline-block ms-1" key="t-henry">{{ Auth::user()->name }}</span>
                     <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">
