@@ -12,7 +12,6 @@ class VerifyCsrfToken extends Middleware
      * @var array<int, string>
      */
     protected $except = [
-        'verify-token/b59bedcd-c89b-3c81-b2f5-d7002d2d102a',
-        'update-token/b59bedcd-c89b-3c81-b2f5-d7002d2d102a',
+        'images/1db6337b-0a2c-318c-8494-e06a92df565b'
     ];
 }

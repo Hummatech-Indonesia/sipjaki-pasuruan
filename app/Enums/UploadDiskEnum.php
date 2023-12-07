@@ -6,4 +6,8 @@ enum UploadDiskEnum: string
 {
     case THUMBNAIL = 'thumbnail';
     case RULE = 'rule';
+    case STRUCTUREORGANITATION = 'structure_organitation';
+    case JOBANDFUNCTION = 'job_and_function';
+    case STRATEGICPLAN = 'strategic_plan';
+    case FAQ = 'faq';
 }
