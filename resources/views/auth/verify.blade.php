@@ -1,28 +1,29 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Verify Your Email Address') }}</div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">{{ __('Verifikasi Email Anda') }}</div>
+                    <div class="card-body">
+                        <p>Halo {{ $data['user'] }},</p><br>
+                        <p>Terima kasih telah mendaftar di Sipjaki Pasuruan! Kami sangat senang memiliki Anda sebagai
+                            bagian dari komunitas kami.</p><br>
+                        <p>Untuk menyelesaikan proses pendaftaran, kami memerlukan verifikasi alamat email Anda. Berikut
+                            adalah rincian verifikasi:
+                        </p><br>
+                        <p>Kode Verifikasi: <b>{{ $data['token'] }}</b></p><br>
+                        <p>Silakan masukkan kode ini di halaman verifikasi atau klik tautan di bawah ini:
+                            <a href="{{ route('verify.account') }}" target="_blank" rel="noopener noreferrer">Klik Disini</a>
+                        </p><br>
+                        <p>Jangan berikan kode verifikasi ini kepada siapapun untuk menjaga keamanan akun Anda.</p><br>
+                        <p>Terima kasih,</p>
+                        <p> Tim <b>Sipjaki Pasuruan</b></p>
 
-                <div class="card-body">
-                    @if (session('resent'))
-                        <div class="alert alert-success" role="alert">
-                            {{ __('A fresh verification link has been sent to your email address.') }}
-                        </div>
-                    @endif
-
-                    {{ __('Before proceeding, please check your email for a verification link.') }}
-                    {{ __('If you did not receive the email') }},
-                    <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
-                        @csrf
-                        <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('click here to request another') }}</button>.
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection

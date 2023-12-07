@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\ClassificationController;
 use App\Http\Controllers\ContractCategory;
 use App\Http\Controllers\ContractCategoryController;
@@ -32,7 +33,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes(['verify' => true]);
+Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -73,14 +74,14 @@ Route::post('sub-classifications/{classification}', [SubClassificationController
 Route::put('sub-classifications/{sub_classification}', [SubClassificationController::class, 'update']);
 Route::delete('sub-classifications/{sub_classification}', [SubClassificationController::class, 'destroy']);
 
-Route::get('agencies',[UserController::class,'index'])->name('agencies.index');
-Route::post('agencies',[UserController::class,'store'])->name('agencies.store');
-Route::put('agencies/{user}',[UserController::class,'update'])->name('agencies.update');
-Route::delete('agencies/{user}',[UserController::class,'destroy'])->name('agencies.update');
+Route::get('agencies', [UserController::class, 'index'])->name('agencies.index');
+Route::post('agencies', [UserController::class, 'store'])->name('agencies.store');
+Route::put('agencies/{user}', [UserController::class, 'update'])->name('agencies.update');
+Route::delete('agencies/{user}', [UserController::class, 'destroy'])->name('agencies.update');
 
 
 Route::resources([
-    'category-contracts'=>ContractCategoryController::class,
+    'category-contracts' => ContractCategoryController::class,
     'fund-sources' => FundSourceController::class,
     'qualifications' => QualificationController::class,
     'sub-qualificationsLevel' => QualificationLevelController::class,
@@ -101,3 +102,14 @@ Route::get('sub-classifications/{classification}', [SubClassificationController:
 Route::post('sub-classifications/{classification}', [SubClassificationController::class, 'store']);
 Route::put('sub-classifications/{sub_classification}', [SubClassificationController::class, 'update']);
 Route::delete('sub-classifications/{sub_classification}', [SubClassificationController::class, 'destroy']);
+
+Route::get('test', function () {
+    return view('auth.verify');
+});
+Route::get('/redirect-verify-account', [VerificationController::class, 'verifyAccount'])->name('redirect.verify.account');
+Route::put('update-token/{user}', [VerificationController::class, 'updateToken']);
+Route::put('verify-token/{user}', [VerificationController::class, 'verifyToken']);
+
+Route::get('/verify-account', function () {
+    return view('auth.verify-account');
+})->name('verify.account');

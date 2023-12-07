@@ -19,8 +19,10 @@ class User extends Authenticatable implements MustVerifyEmail, HasOneDinas
     use HasRoles;
 
     public $incrementing = false;
+    public $keyType = 'char';
     protected $table = 'users';
     protected $primaryKey = 'id';
+
 
     /**
      * The attributes that are mass assignable.
@@ -31,10 +33,12 @@ class User extends Authenticatable implements MustVerifyEmail, HasOneDinas
         'name',
         'email',
         'password',
-        'email_verified_at'
+        'email_verified_at',
+        'token',
+        'expired_token'
     ];
 
-    /**
+    /** 
      * The attributes that should be hidden for serialization.
      *
      * @var array<int, string>

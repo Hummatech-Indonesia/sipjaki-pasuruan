@@ -13,6 +13,6 @@ return [
     |
     */
 
-    'register_success' => 'Registrasi berhasil! Silahkan cek email anda untuk verifikasi akun',
+    'register_success' => 'Registrasi berhasil! Silahkan cek email anda untuk verifikasi akun, token akan kadaluarsa 40 menit kemudian',
 
 ];

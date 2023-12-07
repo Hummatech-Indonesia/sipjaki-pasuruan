@@ -16,7 +16,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('model_has_roles', function (Blueprint $table) {
-            $table->string('model_id')->change();
+            $table->uuid('model_id')->change();
         });
     }
 };

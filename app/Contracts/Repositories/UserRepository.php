@@ -60,7 +60,7 @@ class UserRepository extends BaseRepository implements UserInterface
      */
     public function delete(mixed $id): mixed
     {
-        return $this->show($id)->delete($id);
+        return $this->show($id)->delete();
     }
 
 

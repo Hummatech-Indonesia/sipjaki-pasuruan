@@ -12,6 +12,7 @@ class VerifyCsrfToken extends Middleware
      * @var array<int, string>
      */
     protected $except = [
-        'register'
+        'verify-token/b59bedcd-c89b-3c81-b2f5-d7002d2d102a',
+        'update-token/b59bedcd-c89b-3c81-b2f5-d7002d2d102a',
     ];
 }

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SubClassificationRequest extends FormRequest
+class VerifyTokenRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -14,9 +14,10 @@ class SubClassificationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max:255'
+            'token' => 'required|exists:users,token'
         ];
     }
+
 
     /**
      * messages
@@ -26,8 +27,8 @@ class SubClassificationRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'Nama wajib diisi',
-            'name.max' => 'Nama maksimal 255 karakter'
+            'token.required' => 'Token wajib diisi',
+            'token.exists' => 'Token yang anda inputkan tiidak valid'
         ];
     }
 }

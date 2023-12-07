@@ -37,5 +37,10 @@ return [
     'user_update_rating' => 'Berhasil mengubah ulasan',
     'password_or_email_false' => 'Email atau password tidak sesuai',
     'login_success' => 'Berhasil login',
-    'account_unverified' => 'Akun belum terverifikasi'
+    'account_unverified' => 'Akun belum terverifikasi',
+    'update_token' => 'Berhasil mengupdate token',
+    'verify_success' => 'Berhasil melakukan verifikasi',
+    'verify_error' => 'Gagal melakukan verifikasi',
+    'token_invalid' => 'Token yang anda masukkan tidak valid',
+    'token_expired' => 'Token yang anda masukkan sudah kadaluarsa, silahkan minta token lagi',
 ];
