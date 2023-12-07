@@ -436,13 +436,5 @@
                 dropdownParent: $("#modal-create")
             });
         });
-        $(document).ready(function() {
-            $("#basic-update").steps({
-                headerTag: "h3",
-                bodyTag: "section",
-                transitionEffect: "slideLeft",
-                autoFocus: true
-            });
-        });
     </script>
 @endsection
