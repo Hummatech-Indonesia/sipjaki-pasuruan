@@ -219,6 +219,7 @@
               <tr>
                 <td
                   style="
+                  background-color: #dfe8fe;
                     text-align: center;
                     vertical-align: top;
                     direction: ltr;
@@ -232,7 +233,7 @@
                   <div
                     style="
                       cursor: auto;
-                      color: white;
+                      color: #1B3061;
                       font-family: Whitney, Helvetica Neue, Helvetica, Arial,
                         Lucida Grande, sans-serif;
                       font-size: 36px;

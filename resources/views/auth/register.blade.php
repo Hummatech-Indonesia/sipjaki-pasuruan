@@ -26,7 +26,15 @@
 </head>
 
 <body class="auth-body-bg">
-
+    @if(session('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: '{{ session('success') }}',
+        });
+    </script>
+    @endif
     <div>
         <div class="container-fluid p-0">
             <div class="row g-0">

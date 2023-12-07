@@ -73,7 +73,7 @@ class RegisterController extends Controller
      * @return RedirectResponse
      */
 
-    public function register(RegisterRequest $request): JsonResponse
+    public function register(RegisterRequest $request)
     {
         $this->service->handleRegistration($request, $this->register);
         if ($request->is('api/*')) {
