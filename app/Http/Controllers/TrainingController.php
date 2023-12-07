@@ -6,8 +6,11 @@ use Illuminate\View\View;
 use Illuminate\Http\Request;
 use App\Helpers\ResponseHelper;
 use Illuminate\Http\JsonResponse;
-use App\Contracts\Interfaces\TrainingInterface;
+use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\TrainingRequest;
 use App\Http\Resources\TrainingResource;
+use App\Contracts\Interfaces\TrainingInterface;
+use App\Models\Training;
 
 class TrainingController extends Controller
 {
@@ -25,17 +28,17 @@ class TrainingController extends Controller
     public function index(Request $request) : View | JsonResponse
     {
 
-        $contractCategorys = $this->training->customPaginate($request, 15);
+        $trainings = $this->training->customPaginate($request, 15);
         
         if( $request->is('api/*')){
 
-            $data['paginate'] = $this->customPaginate($contractCategorys->currentPage(), $contractCategorys->lastPage());
-            $data['data'] = TrainingResource::collection($contractCategorys);
+            $data['paginate'] = $this->customPaginate($trainings->currentPage(), $trainings->lastPage());
+            $data['data'] = TrainingResource::collection($trainings);
             return ResponseHelper::success($data,trans('alert.get_success'));
 
         }else{
 
-            return view('pages.categoryContract',compact('contractCategorys'));
+            return view('pages.categoryContract',compact('trainings'));
 
         }
     }
@@ -45,7 +48,7 @@ class TrainingController extends Controller
      */
     public function store(TrainingRequest $request): RedirectResponse | JsonResponse
     {
-        $this->contractCategory->store($request->validated());
+        $this->training->store($request->validated());
 
         if( $request->is('api/*')){
 
@@ -59,17 +62,17 @@ class TrainingController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ContractCategory $contractCategory) : JsonResponse
+    public function show(Training $training) : JsonResponse
     {
-        return ResponseHelper::success(contractCategoryResource::make($contractCategory),trans('alert.get_success'));
+        return ResponseHelper::success(TrainingResource::make($training),trans('alert.get_success'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(ContractCategoryRequest $request,ContractCategory $category_contract) : RedirectResponse | JsonResponse
+    public function update(TrainingRequest $request,Training $training) : RedirectResponse | JsonResponse
     {
-        $this->contractCategory->update($category_contract->id,$request->all());
+        $this->training->update($training->id,$request->all());
 
         if( $request->is('api/*')){
 
@@ -84,9 +87,9 @@ class TrainingController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ContractCategory $category_contract, Request $request)
+    public function destroy(Training $training, Request $request)
     {
-        $this->contractCategory->delete($category_contract->id);
+        $this->training->delete($training->id);
 
         if( $request->is('api/*')){
 
