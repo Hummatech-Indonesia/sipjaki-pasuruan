@@ -2,29 +2,43 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Contracts\Interfaces\ForgotPasswordInterface;
+use App\Contracts\Interfaces\UserInterface;
+use App\Helpers\ResponseHelper;
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Foundation\Auth\ResetsPasswords;
+use App\Http\Requests\ResetPasswordRequest;
+use App\Models\User;
 
 class ResetPasswordController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Password Reset Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller is responsible for handling password reset requests
-    | and uses a simple trait to include this behavior. You're free to
-    | explore this trait and override any methods you wish to tweak.
-    |
-    */
+    private UserInterface $user;
+    private ForgotPasswordInterface $forgotPassword;
 
-    use ResetsPasswords;
+    public function __construct(UserInterface $user, ForgotPasswordInterface $forgotPassword)
+    {
+        $this->user = $user;
+        $this->forgotPassword = $forgotPassword;
+    }
 
     /**
-     * Where to redirect users after resetting their password.
+     * reset
      *
-     * @var string
+     * @param  mixed $user
+     * @return void
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    public function reset(User $user, ResetPasswordRequest $request)
+    {
+        $token = $this->forgotPassword->getWhere(['email' => $user->email]);
+        $data = $request->validated();
+        if ($token->token == $data['token'] && $token->expired_token >= now()->format('Y-m-d H:i:s')) {
+            $this->user->update($user->id, $data);
+            return ResponseHelper::success(null, trans('auth.register_success'));
+        } elseif ($token->token == $data['token'] && $token->expired_token <= now()->format('Y-m-d H:i:s')) {
+            return ResponseHelper::error(null, trans('alert.token_expired'));
+        } elseif ($token->token != $data['token']) {
+            return ResponseHelper::error(null, trans('alert.token_invalid'));
+        } else {
+            return ResponseHelper::error(null, trans('auth.reset_password_failed'));
+        }
+    }
 }

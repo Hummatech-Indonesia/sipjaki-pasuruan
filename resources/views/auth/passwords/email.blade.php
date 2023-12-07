@@ -70,7 +70,7 @@
                                 <p class="mb-0">©
                                     <script>
                                         document.write(new Date().getFullYear())
-                                    </script> Powered By Hummatech 
+                                    </script> Powered By Hummatech
                                 </p>
                             </div>
                         </div>

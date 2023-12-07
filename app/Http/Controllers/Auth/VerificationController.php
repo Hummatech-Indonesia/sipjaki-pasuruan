@@ -12,6 +12,7 @@ use App\Providers\RouteServiceProvider;
 use App\Services\UserService;
 use Illuminate\Support\Str;
 use Illuminate\Foundation\Auth\VerifiesEmails;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
 class VerificationController extends Controller
@@ -61,7 +62,7 @@ class VerificationController extends Controller
      * @param  mixed $user
      * @return void
      */
-    public function updateToken(User $user)
+    public function updateToken(User $user, Request $request)
     {
         $token = strtoupper(Str::random(5));
         $this->user->update($user->id, [
@@ -70,7 +71,11 @@ class VerificationController extends Controller
         ]);
         Mail::to($user->email)->send(new RegistrationMail(['email' => $user->email, 'user' => $user->name, 'token' => $token, 'id' => $user->id]));
 
-        return ResponseHelper::success(null, trans('alert.update_token'));
+        if ($request->is('api/*')) {
+            return ResponseHelper::success(null, trans('alert.update_token'));
+        } else {
+            return redirect()->back()->with('success', trans('alert.update_token'));
+        }
     }
 
     /**
@@ -82,14 +87,30 @@ class VerificationController extends Controller
     public function verifyToken(User $user, VerifyTokenRequest $request)
     {
         if ($request->token != $user->token) {
-            return ResponseHelper::error(null, trans('alert.token_invalid'));
+            if ($request->is('api/*')) {
+                return ResponseHelper::error(null, trans('alert.token_invalid'));
+            } else {
+                return redirect()->back()->withErrors(trans('alert.token_invalid'));
+            }
         } elseif ($request->token == $user->token && $user->expired_token >= now()->format('Y-m-d H:i:s')) {
             $this->user->update($user->id, ['email_verified_at' => now()]);
-            return ResponseHelper::success(null, trans('alert.verify_success'));
+            if ($request->is('api/*')) {
+                return ResponseHelper::success(null, trans('alert.verify_success'));
+            } else {
+                return redirect()->back()->with('success', trans('alert.verify_success'));
+            }
         } elseif ($request->token == $user->token && $user->expired_token <= now()->format('Y-m-d H:i:s')) {
-            return ResponseHelper::error(null, trans('alert.token_expired'));
+            if ($request->is('api/*')) {
+                return ResponseHelper::error(null, trans('alert.token_expired'));
+            } else {
+                return redirect()->back()->withErrors(trans('alert.token_expired'));
+            }
         } else {
-            return ResponseHelper::error(null, trans('alert.verify_error'));
+            if ($request->is('api/*')) {
+                return ResponseHelper::error(null, trans('alert.verify_error'));
+            } else {
+                return redirect()->back()->withErrors(trans('alert.verify_error'));
+            }
         }
     }
 }
