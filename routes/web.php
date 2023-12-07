@@ -124,6 +124,10 @@ Auth::routes(['verify' => true]);
         return view('auth.verify');
     });
 
+    Route::get('accident', function () {
+        return view('pages.dinas.accident');
+    })->name('accident');
+
     Route::get('/redirect-verify-account', [VerificationController::class, 'verifyAccount'])->name('redirect.verify.account');
     Route::put('update-token/{user}', [VerificationController::class, 'updateToken']);
     Route::put('verify-token/{user}', [VerificationController::class, 'verifyToken']);
