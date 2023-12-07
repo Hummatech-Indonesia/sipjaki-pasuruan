@@ -17,6 +17,7 @@ use App\Contracts\Interfaces\RuleCategoriesInterface;
 use App\Contracts\Interfaces\RuleInterface;
 use App\Contracts\Interfaces\SubClassificationInterface;
 use App\Contracts\Interfaces\TrainingInterface;
+use App\Contracts\Interfaces\TrainingMemberInterface;
 use App\Contracts\Interfaces\TrainingMethodInterface;
 use App\Contracts\Interfaces\UserInterface;
 use App\Contracts\Repositories\Auth\RegisterRepository;
@@ -32,6 +33,7 @@ use App\Contracts\Repositories\QualificationRepository;
 use App\Contracts\Repositories\RuleCategoriesRepository;
 use App\Contracts\Repositories\RuleRepository;
 use App\Contracts\Repositories\SubClassificationRepository;
+use App\Contracts\Repositories\TrainingMemberRepository;
 use App\Contracts\Repositories\TrainingMethodRepository;
 use App\Contracts\Repositories\TrainingRepository;
 use App\Contracts\Repositories\UserRepository;
@@ -56,7 +58,8 @@ class AppServiceProvider extends ServiceProvider
         TrainingInterface::class => TrainingRepository::class,
         ImageInterface::class => ImageRepository::class,
         ForgotPasswordInterface::class => ForgotPasswordRepository::class,
-        ProjectInterface::class => ProjectRepository::class
+        ProjectInterface::class => ProjectRepository::class,
+        TrainingMemberInterface::class => TrainingMemberRepository::class
     ];
 
     /**

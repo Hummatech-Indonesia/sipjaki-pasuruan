@@ -15,6 +15,7 @@ use App\Http\Controllers\QualificationLevelController;
 use App\Http\Controllers\RuleCategoriesController;
 use App\Http\Controllers\RuleController;
 use App\Http\Controllers\SubClassificationController;
+use App\Http\Controllers\TrainingMemberController;
 use App\Http\Controllers\TrainingMethodController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -96,6 +97,9 @@ Auth::routes(['verify' => true]);
         'users' => UserController::class,
         'rules' => RuleController::class,
     ]);
+    Route::get('work-packages',function(){
+        return view('pages.dinas.work-package');
+    })->name('work-package.index');
     Route::get('sub-classifications/{classification}', [SubClassificationController::class, 'showSubClassification']);
     Route::post('sub-classifications/{classification}', [SubClassificationController::class, 'store']);
     Route::put('sub-classifications/{sub_classification}', [SubClassificationController::class, 'update']);
@@ -136,3 +140,10 @@ Route::get('profile-OPD', function () {
 Route::post('send-email-reset-passsword', [ResetPasswordController::class, 'sendEmail']);
 Route::post('send-email-reset-passsword', [ForgotPasswordController::class, 'sendEmail']);
 Route::put('reset-passsword/{user}', [ResetPasswordController::class, 'reset']);
+
+
+//Training Member
+Route::get('training-members/{training}', [TrainingMemberController::class, 'index']);
+Route::post('training-members/{training}', [TrainingMemberController::class, 'store']);
+Route::put('training-members/{training_member}', [TrainingMemberController::class, 'update']);
+Route::delete('training-members/{training_member}', [TrainingMemberController::class, 'destroy']);

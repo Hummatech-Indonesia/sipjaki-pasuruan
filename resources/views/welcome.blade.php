@@ -1,230 +1,130 @@
 @extends('layouts.app-landing-page')
 @section('content')
-    <div class="row">
-        <div class="col-lg-4 col-md-6">
-            <article class="post-post-grid">
-                <div class="feature-image">
-                    <a href="blog-signle.html">
-                        <img src="media/blog/13.jpg" alt="">
-                    </a>
+<div class="container d-flex justify-content-center" style="margin-top:12px">
+    <iframe src="{{ asset('assets/PUPR.mp4') }}" width="1200" height="700" frameborder="2"></iframe>
+</div>
+    <div class="blog-post-archive">
+        <div class="container">
+            <div class="d-flex justify-content-center mb-4">
+                <div style="width:20%;height:auto;flex-shrink:0;border-radius: 16px;background: var(--Kuning, #FFC928);">
+                    <p class="my-auto"
+                        style="color: var(--Biru-Primary, #1B3061);
+            text-align: center;
+            font-family: Poppins;
+            font-size: 25px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;">
+                        Berita Terbaru</p>
                 </div>
-                <div class="blog-content">
-                    <ul class="post-meta">
-                        <li><a href="#">Oct 16, 2019</a></li>
-                    </ul>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <article class="post-post-grid">
+                        <div class="feature-image">
+                            <a href="blog-signle.html">
+                                <img src="{{ asset('assets/sipjaki.png') }}" alt="">
+                            </a>
+                        </div>
+                        <div class="blog-content">
+                            <ul class="post-meta">
+                                <li><a href="#">12 Januari 2023</a></li>
+                            </ul>
 
-                    <h3 class="entry-title"><a href="#">An Uncomplicated Guide to Improve Rate By
-                            3X.</a></h3>
+                            <h3 class="entry-title"><a href="#">Pemerintah Korupsi Dana
+                                    Perbaikan AC</a></h3>
+                            <div class="row">
+                                <a href="javascript:void(0)" class="col-12">
+                                    <button
+                                        class="btn btn-outline-primary d-flex align-items-center justify-content-between"
+                                        style="width:100%">
+                                        <span>Lihat selengkapnya</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            viewBox="0 0 24 24">
+                                            <path fill="currentColor"
+                                                d="m12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" />
+                                        </svg>
+                                    </button>
+                                </a>
+                            </div>
 
-                    <div class="author">
-                        <img src="media/blog/auth2.jpg" alt="author">
-                        <a href="#" class="author-link">Hans Down</a>
-                    </div>
-
-                </div><!-- /.post-content -->
-            </article><!-- /.post -->
-        </div>
-        <!-- /.col-lg-4 -->
-
-
-        <div class="col-lg-4 col-md-6">
-            <article class="post-post-grid">
-                <div class="feature-image">
-                    <a href="blog-signle.html">
-                        <img src="media/blog/14.jpg" alt="">
-                    </a>
+                        </div><!-- /.post-content -->
+                    </article><!-- /.post -->
                 </div>
-                <div class="blog-content">
-                    <ul class="post-meta">
-                        <li><a href="#">Oct 16, 2019</a></li>
-                    </ul>
-                    <h3 class="entry-title"><a href="#">The most powerfull chating saas that make
-                            you.</a></h3>
+                <div class="col-lg-4 col-md-6">
+                    <article class="post-post-grid">
+                        <div class="feature-image">
+                            <a href="blog-signle.html">
+                                <img src="{{ asset('assets/sipjaki.png') }}" alt="">
+                            </a>
+                        </div>
+                        <div class="blog-content">
+                            <ul class="post-meta">
+                                <li><a href="#">12 Januari 2023</a></li>
+                            </ul>
 
+                            <h3 class="entry-title"><a href="#">Pemerintah Korupsi Dana
+                                    Perbaikan AC</a></h3>
+                            <div class="row">
+                                <a href="javascript:void(0)" class="col-12">
+                                    <button
+                                        class="btn btn-outline-primary d-flex align-items-center justify-content-between"
+                                        style="width:100%">
+                                        <span>Lihat selengkapnya</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            viewBox="0 0 24 24">
+                                            <path fill="currentColor"
+                                                d="m12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" />
+                                        </svg>
+                                    </button>
+                                </a>
+                            </div>
 
-                    <div class="author">
-                        <img src="media/blog/auth2.jpg" alt="author">
-                        <a href="#" class="author-link">Hans Down</a>
-                    </div>
-
-                </div><!-- /.post-content -->
-            </article><!-- /.post -->
-        </div>
-        <!-- /.col-lg-4 -->
-
-        <div class="col-lg-4 col-md-6">
-            <article class="post-post-grid">
-                <div class="feature-image">
-                    <a href="blog-signle.html">
-                        <img src="media/blog/15.jpg" alt="">
-                    </a>
+                        </div><!-- /.post-content -->
+                    </article><!-- /.post -->
                 </div>
-                <div class="blog-content">
-                    <ul class="post-meta">
-                        <li><a href="#">Oct 16, 2019</a></li>
-                    </ul>
+                <div class="col-lg-4 col-md-6">
+                    <article class="post-post-grid">
+                        <div class="feature-image">
+                            <a href="blog-signle.html">
+                                <img src="{{ asset('assets/sipjaki.png') }}" alt="">
+                            </a>
+                        </div>
+                        <div class="blog-content">
+                            <ul class="post-meta">
+                                <li><a href="#">12 Januari 2023</a></li>
+                            </ul>
 
-                    <h3 class="entry-title"><a href="#">10 days quick challange for boost your
-                            online visitors.</a></h3>
+                            <h3 class="entry-title"><a href="#">Pemerintah Korupsi Dana
+                                    Perbaikan AC</a></h3>
+                            <div class="row">
+                                <a href="javascript:void(0)" class="col-12">
+                                    <button
+                                        class="btn btn-outline-primary d-flex align-items-center justify-content-between"
+                                        style="width:100%">
+                                        <span>Lihat selengkapnya</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            viewBox="0 0 24 24">
+                                            <path fill="currentColor"
+                                                d="m12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" />
+                                        </svg>
+                                    </button>
+                                </a>
+                            </div>
 
-                    <div class="author">
-                        <img src="media/blog/auth2.jpg" alt="author">
-                        <a href="#" class="author-link">Hans Down</a>
-                    </div>
-
-                </div><!-- /.post-content -->
-            </article><!-- /.post -->
-        </div>
-        <!-- /.col-lg-4 -->
-
-        <div class="col-lg-4 col-md-6">
-            <article class="post-post-grid">
-                <div class="feature-image">
-                    <a href="blog-signle.html">
-                        <img src="media/blog/16.jpg" alt="">
-                    </a>
+                        </div><!-- /.post-content -->
+                    </article><!-- /.post -->
                 </div>
-                <div class="blog-content">
-                    <ul class="post-meta">
-                        <li><a href="#">Oct 16, 2019</a></li>
-                    </ul>
+                <!-- /.col-lg-4 -->
+                <!-- /.col-lg-4 -->
+            </div>
+            <!-- /.row -->
 
-                    <h3 class="entry-title"><a href="#">Why DIY tools were rejected by the
-                            market.</a></h3>
-
-                    <div class="author">
-                        <img src="media/blog/auth2.jpg" alt="author">
-                        <a href="#" class="author-link">Hans Down</a>
-                    </div>
-
-                </div><!-- /.post-content -->
-            </article><!-- /.post -->
-        </div>
-        <!-- /.col-lg-4 -->
-
-        <div class="col-lg-4 col-md-6">
-            <article class="post-post-grid">
-                <div class="feature-image">
-                    <a href="blog-signle.html">
-                        <img src="media/blog/17.jpg" alt="">
-                    </a>
-                </div>
-                <div class="blog-content">
-                    <ul class="post-meta">
-                        <li><a href="#">Oct 16, 2019</a></li>
-                    </ul>
-
-                    <h3 class="entry-title"><a href="#">The Belgian Exodus of World War One</a></h3>
-
-                    <div class="author">
-                        <img src="media/blog/auth2.jpg" alt="author">
-                        <a href="#" class="author-link">Hans Down</a>
-                    </div>
-
-                </div><!-- /.post-content -->
-            </article><!-- /.post -->
-        </div>
-        <!-- /.col-lg-4 -->
-
-        <div class="col-lg-4 col-md-6">
-            <article class="post-post-grid">
-                <div class="feature-image">
-                    <a href="blog-signle.html">
-                        <img src="media/blog/18.jpg" alt="">
-                    </a>
-                </div>
-                <div class="blog-content">
-                    <ul class="post-meta">
-                        <li><a href="#">Oct 16, 2019</a></li>
-                    </ul>
-
-                    <h3 class="entry-title"><a href="#">Young Guns Reflections: Paul Felton</a></h3>
-
-                    <div class="author">
-                        <img src="media/blog/auth2.jpg" alt="author">
-                        <a href="#" class="author-link">Hans Down</a>
-                    </div>
-
-                </div><!-- /.post-content -->
-            </article><!-- /.post -->
-        </div>
-        <!-- /.col-lg-4 -->
-
-
-        <div class="col-lg-4 col-md-6">
-            <article class="post-post-grid">
-                <div class="feature-image">
-                    <a href="blog-signle.html">
-                        <img src="media/blog/19.jpg" alt="">
-                    </a>
-                </div>
-                <div class="blog-content">
-                    <ul class="post-meta">
-                        <li><a href="#">Oct 16, 2019</a></li>
-                    </ul>
-
-                    <h3 class="entry-title"><a href="#">Nicholas Misani: More on the Floor</a></h3>
-
-                    <div class="author">
-                        <img src="media/blog/auth2.jpg" alt="author">
-                        <a href="#" class="author-link">Hans Down</a>
-                    </div>
-
-                </div><!-- /.post-content -->
-            </article><!-- /.post -->
-        </div>
-        <!-- /.col-lg-4 -->
-
-
-        <div class="col-lg-4 col-md-6">
-            <article class="post-post-grid">
-                <div class="feature-image">
-                    <a href="blog-signle.html">
-                        <img src="media/blog/20.jpg" alt="">
-                    </a>
-                </div>
-                <div class="blog-content">
-                    <ul class="post-meta">
-                        <li><a href="#">Oct 16, 2019</a></li>
-                    </ul>
-
-                    <h3 class="entry-title"><a href="#">A brand for a company is like a reputation
-                            person.</a></h3>
-
-                    <div class="author">
-                        <img src="media/blog/auth2.jpg" alt="author">
-                        <a href="#" class="author-link">Hans Down</a>
-                    </div>
-
-                </div><!-- /.post-content -->
-            </article><!-- /.post -->
-        </div>
-        <!-- /.col-lg-4 -->
-
-
-        <div class="col-lg-4 col-md-6">
-            <article class="post-post-grid">
-                <div class="feature-image">
-                    <a href="blog-signle.html">
-                        <img src="media/blog/21.jpg" alt="">
-                    </a>
-                </div>
-                <div class="blog-content">
-                    <ul class="post-meta">
-                        <li><a href="#">Oct 16, 2019</a></li>
-                    </ul>
-
-                    <h3 class="entry-title"><a href="#">The most powerfull chating saas that make
-                            you.</a></h3>
-
-                    <div class="author">
-                        <img src="media/blog/auth2.jpg" alt="author">
-                        <a href="#" class="author-link">Hans Down</a>
-                    </div>
-
-                </div><!-- /.post-content -->
-            </article><!-- /.post -->
-        </div>
-        <!-- /.col-lg-4 -->
-    </div>
+            <ul class="post-navigation">
+                <li class="active">1</li>
+                <li><a href="#">2</a></li>
+                <li class="next"><a href="#"><i class="ei ei-arrow_carrot-right"></i></a></li>
+            </ul>
+        </div><!-- /.container -->
+    </div><!-- /.blog-post-archive -->
 @endsection
