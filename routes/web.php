@@ -35,6 +35,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('struktur-organisasi-DKSDK', function () {
+    return view('struktur-organisasi');
+});
+
 Auth::routes(['verify' => true]);
 Route::middleware(['auth'])->group(function () {
 
@@ -104,8 +108,6 @@ Route::get('images', [ImagesController::class, 'index']);
 Route::post('images', [ImagesController::class, 'store']);
 Route::put('images/{image}', [ImagesController::class, 'update']);
 Route::delete('images/{image}', [ImagesController::class, 'destroy']);
-
-
 
 Route::get('profile-OPD', function () {
     return view('pages.profile-opd');
