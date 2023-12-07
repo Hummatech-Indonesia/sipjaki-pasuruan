@@ -4,7 +4,6 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\ClassificationController;
-use App\Http\Controllers\ContractCategory;
 use App\Http\Controllers\ContractCategoryController;
 use App\Http\Controllers\FiscalYearController;
 use App\Http\Controllers\FundSourceController;
@@ -49,13 +48,17 @@ Auth::routes(['verify' => true]);
         return view('faq');
     });
 
+    Route::get('/data-paket-pekerjaan',function(){
+        return view('dpp');
+    });
+
+
     Route::middleware('role:superadmin')->group(function () {
         Route::resources([
             'contract-categories' => ContractCategoryController::class,
             'fund-sources' => FundSourceController::class,
             'qualifications' => QualificationController::class,
             'source-fund' => FundSourceController::class,
-            'sub-qualificationsLevel' => QualificationLevelController::class,
             'rule-categories' => RuleCategoriesController::class,
             'fiscal-years' => FiscalYearController::class,
             'classifications' => ClassificationController::class,
@@ -64,6 +67,12 @@ Auth::routes(['verify' => true]);
             'users' => UserController::class,
             'rules' => RuleController::class,
         ]);
+
+        Route::name('qualifications.level.')->group(function(){
+            Route::post('sub-qualifications/{qualification}',[QualificationLevelController::class,'store'])->name('store');
+            Route::put('sub-qualifications/{qualification_level}',[QualificationLevelController::class,'update'])->name('update');
+            Route::delete('sub-qualifications/{qualification_level}',[QualificationLevelController::class,'store'])->name('destroy');
+        });
     });
 
     Route::middleware('role:admin',)->group(function () {
@@ -114,6 +123,10 @@ Auth::routes(['verify' => true]);
     Route::get('test', function () {
         return view('auth.verify');
     });
+
+    Route::get('accident', function () {
+        return view('pages.dinas.accident');
+    })->name('accident');
 
     Route::get('/redirect-verify-account', [VerificationController::class, 'verifyAccount'])->name('redirect.verify.account');
     Route::put('update-token/{user}', [VerificationController::class, 'updateToken']);
