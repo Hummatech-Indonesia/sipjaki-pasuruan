@@ -2647,7 +2647,7 @@ select {
 }
 
 .site-header .header-inner .site-nav .nav-right .nav-btn:hover {
-    background: #fa7070;
+    background: #1B3061;
     color: #fff;
 }
 
@@ -3324,14 +3324,14 @@ select {
 
 .pix-header-fixed .header-inner .site-nav .nav-right .nav-btn {
     background: transparent;
-    color: #fa7070;
+    color: #1B3061;
     -webkit-box-shadow: none;
     box-shadow: none;
-    border-color: #fa7070;
+    border-color: #1B3061;
 }
 
 .pix-header-fixed .header-inner .site-nav .nav-right .nav-btn:hover {
-    background: #fa7070;
+    background: #1B3061;
     color: #fff;
 }
 
