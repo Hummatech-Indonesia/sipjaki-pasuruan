@@ -40,10 +40,10 @@
                     </a>
                 </li>
 
-                <li>
-                    <a href="{{ route('qualifications.index') }}" class="waves-effect">
+                <li class="{{request()->routeIs('qualifications.*') ? 'mm-active' : ''}}">
+                    <a href="{{ route('qualifications.index') }}" class="waves-effect {{request()->routeIs('qualifications.*') ? 'active' : ''}}">
                         <i class="bx bx-sitemap"></i>
-                        <span key="t-file-manager">KKNI</span>
+                        <span key="t-file-manager">Kualifikasi</span>
                     </a>
                 </li>
 

@@ -3,7 +3,7 @@
     <div class="">
         <div>
             <h2 class="">
-                Detail KKNI Kualfikasi
+                Detail Jenjang Kualifikasi
             </h2>
         </div>
     </div>
@@ -11,19 +11,19 @@
     <div class="modal fade" id="samedata-modal" tabindex="-1" id="modeal-create" aria-labelledby="exampleModalLabel1">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <form action="{{ route('sub-qualificationsLevel.store') }}" method="post">
+                <form action="{{ route('qualifications.level.store',['qualification' => $qualification->id]) }}" method="post">
                     @csrf
                     @method('POST')
                     <input type="hidden" name="qualification_id" value="{{ $qualification->id }}">
                     <div class="modal-header d-flex align-items-center text-white " style="background-color: #1B3061">
                         <h4 class="modal-title" id="exampleModalLabel1">
-                            Tambah Level Kualifikasi
+                            Tambah Jenjang Kualifikasi
                         </h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label id="name" for="recipient-name" class="control-label mb-2">Masukan Level
+                            <label id="name" for="recipient-name" class="control-label mb-2">Masukan Jenjang
                                 Kualifikasi</label>
                             <input type="text" class="form-control" id="create-school_year" class="form-control"
                                 name="name" id="nametext" aria-describedby="name" placeholder="" />
@@ -48,15 +48,18 @@
             <div class="d-flex justify-content-between mb-3">
                 <div class="">
                     <h5>
-                        Berikut daftar Jenjang KKNI Kualifikasi</h5>
+                        Berikut daftar Jenjang Kualifikasi - {{$qualification->name}}</h5>
                 </div>
                 <div class="">
+                    <a href="{{route('qualifications.index')}}" class="btn me-2 btn-md btn-create text-white cursor-pointer" style="background-color: #1B3061">
+                        Kembali
+                    </a>
                     <button class="btn me-2 btn-md btn-create text-white" data-bs-toggle="modal"
                         data-bs-target="#samedata-modal" style="background-color: #1B3061">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                             <path fill="currentColor" d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z" />
                         </svg>
-                        Tambah Level Kualifikasi
+                        Tambah Jenjang Kualifikasi
                     </button>
                 </div>
             </div>
@@ -70,18 +73,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($qualificationLevels as $item => $qualification)
+                        @forelse ($qualification->qualificationLevels as $qualificationLevel)
                             <tr>
-                                <td>{{ $item + 1 }}</td>
-                                <td>{{ $qualification->name }}
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $qualificationLevel->name }}
                                 </td>
                                <td>
                                     <div class="d-flex justify-content-center gap-2">
                                         <div class="">
                                             <button type="button" class="btn btn-warning waves-effect waves-light btn-edit"
-                                                id="btn-edit-{{ $qualification->id }}"
-                                                data-id="{{ $qualification->id }}"
-                                                data-name="{{ $qualification->name }}">
+                                                id="btn-edit-{{ $qualificationLevel->id }}"
+                                                data-id="{{ $qualificationLevel->id }}"
+                                                data-name="{{ $qualificationLevel->name }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                     viewBox="0 0 24 24" fill="none">
                                                     <g clip-path="url(#clip0_26_1791)">
@@ -181,7 +184,7 @@
     <script>
         $('.btn-edit').click(function() {
             const formData = getDataAttributes($(this).attr('id'))
-            var actionUrl = `/sub-qualificationsLevel/${formData['id']}`;
+            var actionUrl = `/sub-qualifications/${formData['id']}`;
             $('#form-update').attr('action', actionUrl);
             setFormValues('form-update', formData)
             $('#form-update').data('id', formData['id'])
@@ -191,7 +194,7 @@
         $('.btn-delete').click(function() {
             id = $(this).data('id')
             console.log(id);
-            var actionUrl = `/sub-qualificationsLevel/${id}`;
+            var actionUrl = `/sub-qualifications/${id}`;
             $('#form-delete').attr('action', actionUrl);
             $('#modal-delete').modal('show')
         })

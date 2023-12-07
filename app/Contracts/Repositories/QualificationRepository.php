@@ -89,6 +89,7 @@ class QualificationRepository extends BaseRepository implements QualificationInt
             ->when($request->name,function($query) use ($request){
                 $query->where('name','LIKE','%'.$request->name.'%');
             })
+            ->withCount('qualificationLevels')
             ->fastPaginate($pagination);
     }
 }
