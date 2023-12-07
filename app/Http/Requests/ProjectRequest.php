@@ -11,7 +11,7 @@ class ProjectRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,14 @@ class ProjectRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'service_provider_id' => 'required|exists:service_providers,id',
+            'fund_source_id' => 'required|exists:fund_sources,id',
+            'contract_category_id' => 'required|exists:contract_categories,id',
+            'physical_progress_start' => 'required|date',
+            'finance_progress_start' => 'required|date',
+            'year' => 'min:4|max:4',
+            'start_at' => 'required|before:end_at|date',
+            'end_at' => 'required|date'
         ];
     }
 }

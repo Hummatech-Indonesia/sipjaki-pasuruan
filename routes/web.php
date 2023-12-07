@@ -44,6 +44,10 @@ Auth::routes(['verify' => true]);
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+    Route::get('/faq',function(){
+        return view('faq');
+    });
+
     Route::middleware('role:superadmin')->group(function () {
         Route::resources([
             'contract-categories' => ContractCategoryController::class,
@@ -104,7 +108,7 @@ Auth::routes(['verify' => true]);
     Route::get('agencies', [UserController::class, 'index'])->name('agencies.index');
     Route::post('agencies', [UserController::class, 'store'])->name('agencies.store');
     Route::put('agencies/{user}', [UserController::class, 'update'])->name('agencies.update');
-    Route::delete('agencies/{user}', [UserController::class, 'destroy'])->name('agencies.update');
+    Route::delete('agencies/{user}', [UserController::class, 'destroy'])->name('agencies.destroy');
 
     Route::get('test', function () {
         return view('auth.verify');
