@@ -86,8 +86,6 @@ Route::middleware(['auth'])->group(function () {
         'rules' => RuleController::class,
     ]);
 
-    Route::post('sub-qualificationsLevel', [QualificationLevelController::class, 'store'])->name('sub-qualificationsLevel.post');
-
     Route::get('sub-classifications/{classification}', [SubClassificationController::class, 'showSubClassification']);
     Route::post('sub-classifications/{classification}', [SubClassificationController::class, 'store']);
     Route::put('sub-classifications/{sub_classification}', [SubClassificationController::class, 'update']);
