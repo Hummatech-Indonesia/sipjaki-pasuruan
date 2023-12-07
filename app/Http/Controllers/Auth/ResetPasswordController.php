@@ -32,7 +32,7 @@ class ResetPasswordController extends Controller
         $data = $request->validated();
         if ($token->token == $data['token'] && $token->expired_token >= now()->format('Y-m-d H:i:s')) {
             $this->user->update($user->id, $data);
-            return ResponseHelper::success(null, trans('auth.register_success'));
+            return ResponseHelper::success(null, trans('auth.reset_password_success'));
         } elseif ($token->token == $data['token'] && $token->expired_token <= now()->format('Y-m-d H:i:s')) {
             return ResponseHelper::error(null, trans('alert.token_expired'));
         } elseif ($token->token != $data['token']) {
