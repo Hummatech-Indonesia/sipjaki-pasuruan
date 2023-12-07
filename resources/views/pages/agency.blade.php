@@ -95,6 +95,14 @@
                 </div>
             </div>
         @empty
+            <div class="text-center">
+                <div class="d-flex justify-content-center" style="min-height:16rem">
+                    <div class="my-auto">
+                        <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                        <h4 class="text-center mt-4">Dinas Kosong!!</h4>
+                    </div>
+                </div>
+            <div>
         @endforelse
     </div>
     <div class="modal fade" id="modal-update" tabindex="-1" id="modal-create" aria-labelledby="exampleModalLabel1">

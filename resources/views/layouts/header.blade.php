@@ -26,7 +26,7 @@
                 <i class="fa fa-fw fa-bars"></i>
             </button>
             <div class="mt-4">
-                {{-- <span class="badge bg-primary fs-5">{{ Auth::user()->roles->pluck('name')[0] }}</span> --}}
+                <span class="badge bg-primary fs-5">{{ Auth::user()->roles->pluck('name')[0] }}</span>
             </div>
 
             <div class="dropdown dropdown-mega d-none d-lg-block ms-2">
@@ -52,7 +52,7 @@
                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img class="rounded-circle header-profile-user" src="{{ asset('assets/images/users/avatar-1.jpg') }}"
                         alt="Header Avatar">
-                    {{-- <span class="d-none d-xl-inline-block ms-1" key="t-henry">{{ Auth::user()->name }}</span> --}}
+                    <span class="d-none d-xl-inline-block ms-1" key="t-henry">{{ Auth::user()->name }}</span>
                     <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">

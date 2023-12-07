@@ -423,6 +423,7 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div>
+    <x-delete-modal-component />
 @endsection
 @section('script')
     <script src="{{ asset('assets/libs/jquery-steps/build/jquery.steps.min.js') }}"></script>

@@ -87,11 +87,13 @@
                         <span key="t-file-manager">Profile OPD</span>
                     </a>
                 </li>
+                @if ( Auth::user()->roles->pluck('name')[0]  == 'dinas')
+                    
                 <li>
                     <a href="{{ route('training') }}" class="waves-effect">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 36 36" fill="currentColor">
                             <path d="M27 13.5V18M27 18V22.5M27 18H31.5M27 18H22.5M19.5 10.5C19.5 13.8137 16.8137 16.5 13.5 16.5C10.1863 16.5 7.5 13.8137 7.5 10.5C7.5 7.18629 10.1863 4.5 13.5 4.5C16.8137 4.5 19.5 7.18629 19.5 10.5ZM4.5 30C4.5 25.0294 8.52944 21 13.5 21C18.4706 21 22.5 25.0294 22.5 30V31.5H4.5V30Z" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                          </svg>
+                        </svg>
                         <span key="t-file-manager">Pelatihan</span>
                     </a>
                 </li>
@@ -101,6 +103,13 @@
                         <span key="t-file-manager" class="px-2">Kecelakaan</span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{ route('work-package.index') }}" class="waves-effect">
+                        <i class="bx bxs-package"></i>
+                        <span key="t-file-manager">Paket Pekerjaan</span>
+                    </a>
+                </li>
+                @endif
             </ul>
         </div>
     </div>
