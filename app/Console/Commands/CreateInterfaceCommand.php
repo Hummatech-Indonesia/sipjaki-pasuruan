@@ -29,7 +29,12 @@ class CreateInterfaceCommand extends Command
         }
 
         $namespace = $this->getDefaultNamespace();
-        $content = "<?php\n\nnamespace {$namespace};\n\ninterface {$className}\n{\n    // Define your interface methods here\n}\n";
+        $content = 
+        "<?php\n\n
+        namespace {$namespace};\n\n
+        interface {$className}\n{\n\
+                // Define your interface methods here\n
+        }\n";
 
         File::put($filePath, $content);
 

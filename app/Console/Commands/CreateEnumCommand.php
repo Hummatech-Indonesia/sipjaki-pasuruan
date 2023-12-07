@@ -29,7 +29,12 @@ class CreateEnumCommand extends Command
         }
 
         $namespace = $this->getDefaultNamespace();
-        $content = "<?php\n\nnamespace {$namespace};\n\nenum {$enumName}\n{\n    // Define your enum values here\n}\n";
+        $content = 
+        "<?php\n\n
+        namespace {$namespace};\n\n
+        enum {$enumName}\n{\n
+                // Define your enum values here\n
+        }\n";
 
         File::put($filePath, $content);
 

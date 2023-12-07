@@ -29,7 +29,12 @@ class CreateTraitCommand extends Command
         }
 
         $namespace = $this->getDefaultNamespace();
-        $content = "<?php\n\nnamespace {$namespace};\n\ntrait {$traitName}\n{\n    // Add your trait methods here\n}\n";
+        $content = 
+        "<?php\n\n
+        namespace {$namespace};\n\n
+        trait {$traitName}\n{\n
+                // Add your trait methods here\n
+        }\n";
 
         File::put($filePath, $content);
 
