@@ -49,6 +49,11 @@ Auth::routes(['verify' => true]);
         return view('faq');
     });
 
+    Route::get('/data-paket-pekerjaan',function(){
+        return view('dpp');
+    });
+
+
     Route::middleware('role:superadmin')->group(function () {
         Route::resources([
             'contract-categories' => ContractCategoryController::class,
