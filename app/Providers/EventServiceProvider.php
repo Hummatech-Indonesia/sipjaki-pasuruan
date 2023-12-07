@@ -7,6 +7,7 @@ use App\Models\ContractCategory;
 use App\Models\Dinas;
 use App\Models\FiscalYear;
 use App\Models\FundSource;
+use App\Models\Image;
 use App\Models\News;
 use App\Models\Qualification;
 use App\Models\QualificationLevel;
@@ -21,6 +22,7 @@ use App\Observers\ContractCategoryObserver;
 use App\Observers\DinasObserver;
 use App\Observers\FiscalYearObserver;
 use App\Observers\FundSourceObserver;
+use App\Observers\ImageObserver;
 use App\Observers\NewsObserver;
 use App\Observers\QualificationLevelObserver;
 use App\Observers\QualificationObserver;
@@ -68,6 +70,7 @@ class EventServiceProvider extends ServiceProvider
         ContractCategory::observe(ContractCategoryObserver::class);
         Dinas::observe(DinasObserver::class);
         Training::observe(TrainingObserver::class);
+        Image::observe(ImageObserver::class);
     }
 
     /**

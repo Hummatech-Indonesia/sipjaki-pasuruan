@@ -5,9 +5,9 @@ namespace App\Providers;
 use App\Contracts\Interfaces\Auth\RegisterInterface;
 use App\Contracts\Interfaces\ClassificationInterface;
 use App\Contracts\Interfaces\ContractCategoryInterface;
-use App\Contracts\Interfaces\DinasInterface;
 use App\Contracts\Interfaces\FiscalYearInterface;
 use App\Contracts\Interfaces\FundSourceInterface;
+use App\Contracts\Interfaces\ImageInterface;
 use App\Contracts\Interfaces\NewsInterface;
 use App\Contracts\Interfaces\QualificationInterface;
 use App\Contracts\Interfaces\QualificationLevelInterface;
@@ -22,6 +22,7 @@ use App\Contracts\Repositories\ClassificationRepository;
 use App\Contracts\Repositories\ContractCategoryRepository;
 use App\Contracts\Repositories\FiscalYearRepository;
 use App\Contracts\Repositories\FundSourceRepository;
+use App\Contracts\Repositories\ImageRepository;
 use App\Contracts\Repositories\NewsRepository;
 use App\Contracts\Repositories\QualificationLevelRepository;
 use App\Contracts\Repositories\QualificationRepository;
@@ -49,7 +50,8 @@ class AppServiceProvider extends ServiceProvider
         UserInterface::class => UserRepository::class,
         RuleInterface::class => RuleRepository::class,
         ContractCategoryInterface::class => ContractCategoryRepository::class,
-        TrainingInterface::class => TrainingRepository::class
+        TrainingInterface::class => TrainingRepository::class,
+        ImageInterface::class => ImageRepository::class
     ];
 
     /**
