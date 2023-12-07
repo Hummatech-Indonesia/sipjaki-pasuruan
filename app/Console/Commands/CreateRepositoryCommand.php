@@ -29,7 +29,7 @@ class CreateRepositoryCommand extends Command
         }
 
         $namespace = $this->getDefaultNamespace();
-        $content = "<?php\n\nnamespace {$namespace};\n\ninterface {$repositoryName}\n{\n    // Define your repository methods here\n}\n";
+        $content = "<?php\n\nnamespace {$namespace};\n\nclass {$repositoryName}\n{\n    // Define your repository methods here\n}\n";
 
         File::put($filePath, $content);
 

@@ -83,7 +83,7 @@
 
                                             <div class="mb-3">
                                                 <div class="float-end">
-                                                    <a href="auth-recoverpw-2.html" style="color: #457DFF">Forgot
+                                                    <a href="{{ route('password.request') }}" style="color: #457DFF">Forgot
                                                         password?</a>
                                                 </div>
                                                 <label class="form-label" style="font-weight: bold">Password</label>
