@@ -39,7 +39,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-    Route::middleware('role:superadmin',function(){
+    Route::middleware('role:superadmin')->group(function(){
         Route::resources([
             'contract-categories' => ContractCategoryController::class,
             'fund-sources' => FundSourceController::class,
@@ -56,19 +56,19 @@ Route::middleware(['auth'])->group(function () {
         ]);
     });
 
-    Route::middleware('role:admin',function(){
+    Route::middleware('role:admin',)->group(function(){
         Route::resources([
             'news' => NewsController::class,
         ]);
     });
 
-    Route::middleware('role:dinas',function(){
-        
-    });
+    // Route::middleware('role:dinas',function(){
 
-    Route::middleware('role:service provider',function(){
+    // });
 
-    });
+    // Route::middleware('role:service provider',function(){
+
+    // });
 
     Route::get('sub-qualification', function () {
         return view('pages.sub-qualification');
