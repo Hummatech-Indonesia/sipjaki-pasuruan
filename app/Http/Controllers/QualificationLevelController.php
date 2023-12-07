@@ -46,10 +46,10 @@ class QualificationLevelController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(QualificationLevelRequest $request,Qualification $qualication): RedirectResponse | JsonResponse
+    public function store(QualificationLevelRequest $request,Qualification $qualification): RedirectResponse | JsonResponse
     {
         $data = $request->validated();
-        $data['qualification_id'] = $qualication->id;
+        $data['qualification_id'] = $qualification->id;
         $this->qualificationLevel->store($data);
 
         if( $request->is('api/*')){

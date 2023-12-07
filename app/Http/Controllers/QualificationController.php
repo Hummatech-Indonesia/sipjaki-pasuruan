@@ -65,12 +65,11 @@ class QualificationController extends Controller
     public function show(Request $request,Qualification $qualification) : View | JsonResponse
     {
 
-        $qualifications = $this->qualification->show($qualification->id);
+        $qualification = $this->qualification->show($qualification->id);
         if( $request->is('api/*')){
             return ResponseHelper::success(null,trans('alert.update_success'));
         }else{
-            $qualificationLevels = $qualification->qualificationLevels;
-            return view('pages.sub-qualification', compact('qualificationLevels', 'qualification'));
+            return view('pages.sub-qualification', compact('qualification'));
         }
     }
 

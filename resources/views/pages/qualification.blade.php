@@ -56,7 +56,8 @@
                 <thead>
                     <tr>
                         <th style="background-color: #1B3061;color:#ffffff" >No</th>
-                        <th style="background-color: #1B3061;color:#ffffff">Nama Kerangka Nasional Indonesia</th>
+                        <th style="background-color: #1B3061;color:#ffffff">Nama Kualifikasi</th>
+                        <th style="background-color: #1B3061;color:#ffffff">Jumlah Jenjang</th>
                         <th style="background-color: #1B3061;color:#ffffff; text-align: center">Aksi</th>
                     </tr>
                 </thead>
@@ -66,6 +67,7 @@
                             <td>{{ $index + 1 }}</td>
                             <td>{{ $qualification->name }}
                             </td>
+                            <td>{{ $qualification->qualification_levels_count }}</td>
                             <td class="d-flex flex-row gap-3 justify-content-center" style="border-bottom: 1px solid #fff">
                                 <a href="{{ route('qualifications.show', $qualification->id) }}" type="button" class="btn  waves-effect waves-light text-white"
                                     style="background-color: #1B3061">
@@ -77,7 +79,7 @@
                                             d="M12 16C10.8954 16 10 15.1046 10 14C10 12.8954 10.8954 12 12 12C13.1046 12 14 12.8954 14 14C14 15.1046 13.1046 16 12 16Z"
                                             stroke="white" stroke-width="1.5" stroke-linecap="round"
                                             stroke-linejoin="round" />
-                                    </svg> Detail
+                                    </svg> Jenjang
                                 </a>
                                 <button type="button"
                                     class="btn waves-effect waves-light d-flex btn-edit flex-row gap-1 justify-content-evenly"
