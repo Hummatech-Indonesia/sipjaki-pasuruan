@@ -50,6 +50,7 @@ Route::middleware(['auth'])->group(function () {
         'fund-sources' => FundSourceController::class,
         'qualifications' => QualificationController::class,
         'source-fund' => FundSourceController::class,
+        'sub-qualificationsLevel' => QualificationLevelController::class,
         'rule-categories' => RuleCategoriesController::class,
         'fiscal-years' => FiscalYearController::class,
         'classifications' => ClassificationController::class,
@@ -89,3 +90,6 @@ Route::delete('images/{image}', [ImagesController::class, 'destroy']);
 
 //Reset Password
 Route::post('send-email-reset-passsword', [ResetPasswordController::class, 'sendEmail']);
+Route::get('profile-OPD', function () {
+    return view('pages.profile-opd');
+});
