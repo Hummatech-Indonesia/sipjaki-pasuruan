@@ -18,7 +18,8 @@ class RegisterRequest extends ApiRequest
         return [
             'name' => 'required|max:255',
             'email' => ['required', 'email', 'max:255', Rule::unique('users', 'email')->ignore($this->user)],
-            'password' => 'required',
+            'password' => 'required|same:password_confirmation',
+            'password_confirmation' => 'required',
             'phone_number' => 'required'
         ];
     }
