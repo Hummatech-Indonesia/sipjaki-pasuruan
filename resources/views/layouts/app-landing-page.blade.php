@@ -117,12 +117,10 @@
                                     </ul>
                                 </li>
                                 <li><a href="about.html">Profil DKSK</a></li>
-                                <li class="menu-item-has-children">
+                                <li class="menu-item-has-children"> 
                                     <a href="blog.html">Layanan</a>
                                     <ul class="sub-menu">
-                                        <li><a href="blog.html">Blog Standard</a></li>
-                                        <li><a href="blog-grid.html">Blog Grid</a></li>
-                                        <li><a href="blog-single.html">Blog Single</a></li>
+                                        <li><a href="/faq">Bantuan</a></li>
                                     </ul>
                                 </li>
                                 <li class="menu-item-has-children">
