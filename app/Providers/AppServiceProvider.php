@@ -6,6 +6,7 @@ use App\Contracts\Interfaces\Auth\RegisterInterface;
 use App\Contracts\Interfaces\ClassificationInterface;
 use App\Contracts\Interfaces\ContractCategoryInterface;
 use App\Contracts\Interfaces\FiscalYearInterface;
+use App\Contracts\Interfaces\ForgotPasswordInterface;
 use App\Contracts\Interfaces\FundSourceInterface;
 use App\Contracts\Interfaces\ImageInterface;
 use App\Contracts\Interfaces\NewsInterface;
@@ -21,6 +22,7 @@ use App\Contracts\Repositories\Auth\RegisterRepository;
 use App\Contracts\Repositories\ClassificationRepository;
 use App\Contracts\Repositories\ContractCategoryRepository;
 use App\Contracts\Repositories\FiscalYearRepository;
+use App\Contracts\Repositories\ForgotPasswordRepository;
 use App\Contracts\Repositories\FundSourceRepository;
 use App\Contracts\Repositories\ImageRepository;
 use App\Contracts\Repositories\NewsRepository;
@@ -51,7 +53,8 @@ class AppServiceProvider extends ServiceProvider
         RuleInterface::class => RuleRepository::class,
         ContractCategoryInterface::class => ContractCategoryRepository::class,
         TrainingInterface::class => TrainingRepository::class,
-        ImageInterface::class => ImageRepository::class
+        ImageInterface::class => ImageRepository::class,
+        ForgotPasswordInterface::class => ForgotPasswordRepository::class
     ];
 
     /**

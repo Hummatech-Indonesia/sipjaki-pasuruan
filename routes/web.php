@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\ClassificationController;
@@ -39,7 +40,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-    Route::middleware('role:superadmin')->group(function(){
+    Route::middleware('role:superadmin')->group(function () {
         Route::resources([
             'contract-categories' => ContractCategoryController::class,
             'fund-sources' => FundSourceController::class,
@@ -56,7 +57,7 @@ Route::middleware(['auth'])->group(function () {
         ]);
     });
 
-    Route::middleware('role:admin',)->group(function(){
+    Route::middleware('role:admin',)->group(function () {
         Route::resources([
             'news' => NewsController::class,
         ]);
@@ -97,7 +98,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/verify-account', function () {
         return view('auth.verify-account');
     })->name('verify.account');
-
 });
 
 Route::get('images', [ImagesController::class, 'index']);
@@ -106,8 +106,12 @@ Route::put('images/{image}', [ImagesController::class, 'update']);
 Route::delete('images/{image}', [ImagesController::class, 'destroy']);
 
 
-//Reset Password
-Route::post('send-email-reset-passsword', [ResetPasswordController::class, 'sendEmail']);
+
 Route::get('profile-OPD', function () {
     return view('pages.profile-opd');
 });
+
+//Reset Password
+Route::post('send-email-reset-passsword', [ResetPasswordController::class, 'sendEmail']);
+Route::post('send-email-reset-passsword', [ForgotPasswordController::class, 'sendEmail']);
+Route::put('reset-passsword/{user}', [ResetPasswordController::class, 'reset']);

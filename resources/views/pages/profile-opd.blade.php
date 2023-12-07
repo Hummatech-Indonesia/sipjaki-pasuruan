@@ -201,17 +201,9 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="mb-3">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="gridCheck">
-                                <label class="form-check-label" for="gridCheck">
-                                    Check me out
-                                </label>
-                            </div>
-                        </div>
-                        <div>
-                            <button type="submit" class="btn btn-primary w-md">Submit</button>
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn bg-white w-md mx-1 rounded-3" style="border: 1px solid #1B3061">Kembali</button>
+                            <button type="submit" class="btn w-md mx-1 text-white rounded-3" style="background-color: #1B3061">Save</button>
                         </div>
                     </form>
                 </div>

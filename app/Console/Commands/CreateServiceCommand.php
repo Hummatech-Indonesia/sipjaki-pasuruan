@@ -29,7 +29,11 @@ class CreateServiceCommand extends Command
         }
 
         $namespace = $this->getDefaultNamespace();
-        $content = "<?php\n\nnamespace {$namespace};\n\nclass {$serviceName}\n{\n    // Implement your service logic here\n}\n";
+        $content = 
+        "<?php\n\nnamespace {$namespace};\n\n
+        class {$serviceName}\n{\n
+                // Implement your service logic here\n
+        }\n";
 
         File::put($filePath, $content);
 
