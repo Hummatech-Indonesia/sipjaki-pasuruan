@@ -43,6 +43,6 @@ class CreateInterfaceCommand extends Command
 
     protected function getDefaultNamespace()
     {
-        return 'App\Contract\Interface';
+        return 'App\Contract\Interfaces';
     }
 }
