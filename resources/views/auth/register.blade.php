@@ -55,14 +55,12 @@
                                     </a>
                                 </div>
                                 <div class="my-auto">
-
                                     <div>
                                         <h5 style="color: #1B3061; font-weight: bold">Daftar Sekarang</h5>
                                         <p style="color: #1B3061">Daftar untuk membuat akun baru</p>
                                     </div>
-
                                     <div class="mt-4">
-                                        <form method="POST" action="{{ route('login') }}">
+                                        <form method="POST" action="{{ route('register') }}">
                                             @csrf
                                             <div class="mb-3">
                                                 <label for="email"
@@ -70,9 +68,23 @@
                                                 <input id="email" type="email"
                                                     class="form-control @error('email') is-invalid @enderror"
                                                     name="email" placeholder="Masukan Email"
-                                                    value="{{ old('email') }}" required autocomplete="email"
+                                                    value="{{ old('email') }}"  autocomplete="email"
                                                     autofocus style="border-radius: 8px">
                                                 @error('email')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="phone"
+                                                    class="form-label" style="font-weight: bold">{{ __('No telephone') }}</label>
+                                                <input id="phone" type="number"
+                                                    class="form-control @error('phone') is-invalid @enderror"
+                                                    name="phone_number" placeholder="Masukan phone"
+                                                    value="{{ old('phone') }}"  autocomplete="phone"
+                                                    autofocus style="border-radius: 8px">
+                                                @error('phone')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
@@ -84,8 +96,8 @@
                                                     class="form-label" style="font-weight: bold">{{ __('username') }}</label>
                                                 <input id="username" type="text"
                                                     class="form-control @error('username') is-invalid @enderror"
-                                                    name="username" placeholder="Masukan Username"
-                                                    value="{{ old('username') }}" required autocomplete="email"
+                                                    name="name" placeholder="Masukan Username"
+                                                    value="{{ old('username') }}"  autocomplete="email"
                                                     autofocus style="border-radius: 8px">
                                                 @error('email')
                                                     <span class="invalid-feedback" role="alert">
@@ -99,13 +111,31 @@
                                                 <div class="input-group auth-pass-inputgroup">
                                                     <input type="password"
                                                         class="form-control  @error('password') is-invalid @enderror"
-                                                        name="password" required autocomplete="current-password"
+                                                        name="password"  autocomplete="current-password"
                                                         placeholder="Masukan Password" aria-label="Password"
                                                         aria-describedby="password-addon" style="border-radius: 8px 0 0 8px;">
                                                     <button class="btn btn-light " type="button"
                                                         id="password-addon"><i
                                                             class="mdi mdi-eye-outline"></i></button>
                                                     @error('password')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label" style="font-weight: bold">Konfimasi Password</label>
+                                                <div class="input-group auth-pass-inputgroup">
+                                                    <input type="password"
+                                                        class="form-control  @error('password_confirmation') is-invalid @enderror"
+                                                        name="password_confirmation"  autocomplete="current-password_confirmation"
+                                                        placeholder="Masukan password_confirmation" aria-label="password_confirmation"
+                                                        aria-describedby="password_confirmation-addon" style="border-radius: 8px 0 0 8px;">
+                                                    <button class="btn btn-light " type="button"
+                                                        id="password_confirmation-addon"><i
+                                                            class="mdi mdi-eye-outline"></i></button>
+                                                    @error('password_confirmation')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
                                                         </span>

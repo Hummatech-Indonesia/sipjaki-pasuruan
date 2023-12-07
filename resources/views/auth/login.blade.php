@@ -109,7 +109,7 @@
 
                                         </form>
                                         <div class="mt-5 text-center">
-                                            <p>Belum punya akun? <span style="color: #457DFF">Login</span></a> </p>
+                                            <p>Belum punya akun? <span style="color: #457DFF"><a href="{{ route('register') }}">Register</a></span></a> </p>
                                         </div>
                                     </div>
                                 </div>

@@ -40,7 +40,7 @@ Route::get('struktur-organisasi-DKSDK', function () {
 });
 
 Auth::routes(['verify' => true]);
-Route::middleware(['auth'])->group(function () {
+// Route::middleware(['auth'])->group(function () {
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -80,6 +80,18 @@ Route::middleware(['auth'])->group(function () {
     })->name('sub-qualification');
 
 
+    Route::resources([
+        'fund-sources' => FundSourceController::class,
+        'qualifications' => QualificationController::class,
+        'source-fund' => FundSourceController::class,
+        'rule-categories' => RuleCategoriesController::class,
+        'fiscal-years' => FiscalYearController::class,
+        'classifications' => ClassificationController::class,
+        'news' => NewsController::class,
+        'training-methods' => TrainingMethodController::class,
+        'users' => UserController::class,
+        'rules' => RuleController::class,
+    ]);
     Route::get('sub-classifications/{classification}', [SubClassificationController::class, 'showSubClassification']);
     Route::post('sub-classifications/{classification}', [SubClassificationController::class, 'store']);
     Route::put('sub-classifications/{sub_classification}', [SubClassificationController::class, 'update']);
@@ -99,10 +111,13 @@ Route::middleware(['auth'])->group(function () {
     Route::put('update-token/{user}', [VerificationController::class, 'updateToken']);
     Route::put('verify-token/{user}', [VerificationController::class, 'verifyToken']);
 
-    Route::get('/verify-account', function () {
+    Route::get('/verify-account/{user}', function () {
         return view('auth.verify-account');
-    })->name('verify.account');
-});
+    })->name('verify.account/');
+    Route::get('training', function () {
+        return view('pages.dinas.training');
+    })->name('training');
+// });
 
 Route::get('images', [ImagesController::class, 'index']);
 Route::post('images', [ImagesController::class, 'store']);
