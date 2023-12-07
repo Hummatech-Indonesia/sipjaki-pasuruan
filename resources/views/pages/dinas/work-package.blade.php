@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('style')
+    <link href="{{ asset('assets/libs/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
+@endsection
 @section('content')
     <p class="fs-4 text-dark" style="font-weight: 600">
         Pelatihan
@@ -20,7 +23,8 @@
             </div>
         </div>
         <div class="">
-            <button data-bs-toggle="modal" data-bs-target=".bs-example-modal-xl" class="btn text-white" style="background-color:#1B3061">
+            <button data-bs-toggle="modal" data-bs-target="#modal-create" class="btn text-white"
+                style="background-color:#1B3061">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
                     <path fill-rule="evenodd" clip-rule="evenodd"
                         d="M12 4C12.5523 4 13 4.35817 13 4.8V19.2C13 19.6418 12.5523 20 12 20C11.4477 20 11 19.6418 11 19.2V4.8C11 4.35817 11.4477 4 12 4Z"
@@ -32,31 +36,35 @@
             </button>
         </div>
     </div>
-    <div class="modal fade bs-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+    <div class="modal fade bs-example-modal-xl" id="modal-create" tabindex="-1" role="dialog"
+        aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #1B3061">
                     <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Tambah Pelatihan</h5>
+                    <button type="button" class="btn-close" style="background-color: white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
                 </div>
                 <div class="card-body">
-                    <h4 class="card-title mb-4">Basic Wizard</h4>
 
                     <div id="basic-example">
                         <!-- Seller Details -->
-                        <h3>Seller Details</h3>
+                        <h3>informasi Umum</h3>
                         <section>
                             <form>
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="basicpill-firstname-input">First name</label>
-                                            <input type="text" class="form-control" id="basicpill-firstname-input" placeholder="Enter Your First Name">
+                                            <label for="basicpill-year">Tahun</label>
+                                            <input type="number" class="form-control" name="year" id="basicpill-year"
+                                                placeholder="Masukan Tahun">
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="basicpill-lastname-input">Last name</label>
-                                            <input type="text" class="form-control" id="basicpill-lastname-input" placeholder="Enter Your Last Name">
+                                            <label for="basicpill-name">Nama Pekerjaan</label>
+                                            <input type="text" class="form-control" name="name" id="basicpill-name"
+                                                placeholder="masukan nama pekerjaan">
                                         </div>
                                     </div>
                                 </div>
@@ -64,22 +72,28 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="basicpill-phoneno-input">Phone</label>
-                                            <input type="text" class="form-control" id="basicpill-phoneno-input" placeholder="Enter Your Phone No.">
+                                            <label for="basicpill-source_found">Sumber Dana</label>
+                                            <select name="source_fund" class="form-control select2" style="width:100%"
+                                                id="basicpill-source_found">
+                                                <option value="option a">option a</option>
+                                                <option value="option a">option a</option>
+                                                <option value="option a">option a</option>
+                                                <option value="option a">option a</option>
+                                                <option value="option a">option a</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="basicpill-email-input">Email</label>
-                                            <input type="email" class="form-control" id="basicpill-email-input" placeholder="Enter Your Email ID">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="mb-3">
-                                            <label for="basicpill-address-input">Address</label>
-                                            <textarea id="basicpill-address-input" class="form-control" rows="2" placeholder="Enter Your Address"></textarea>
+                                            <label for="basicpill-email-input">Penyedia Jasa</label>
+                                            <select name="source_fund" class="form-control select2" style="width:100%"
+                                                id="basicpill-penyedia-jasa">
+                                                <option value="option a">option a</option>
+                                                <option value="option a">option a</option>
+                                                <option value="option a">option a</option>
+                                                <option value="option a">option a</option>
+                                                <option value="option a">option a</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -87,51 +101,64 @@
                         </section>
 
                         <!-- Company Document -->
-                        <h3>Company Document</h3>
+                        <h3>Kontrak</h3>
                         <section>
                             <form>
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="basicpill-pancard-input">PAN Card</label>
-                                            <input type="text" class="form-control" id="basicpill-pancard-input" placeholder="Enter Your PAN No.">
+                                            <label for="basicpill-nilai_kontrak">Nilai Kontrak</label>
+                                            <input type="number" class="form-control" name="nilai kontrak" id="basicpill-nilai_kontrak"
+                                                placeholder="Masukan nilai kontrak">
                                         </div>
                                     </div>
 
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="basicpill-vatno-input">VAT/TIN No.</label>
-                                            <input type="text" class="form-control" id="basicpill-vatno-input"  placeholder="Enter Your VAT/TIN No.">
+                                            <label for="basicpill-vatno-input">Jenis kontrak</label>
+                                            <select name="source_fund" class="form-control select2" style="width:100%" id="basicpill-jenis-kontrak">
+                                                <option value="option a">option a</option>
+                                                <option value="option a">option a</option>
+                                                <option value="option a">option a</option>
+                                                <option value="option a">option a</option>
+                                                <option value="option a">option a</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="basicpill-cstno-input">CST No.</label>
-                                            <input type="text" class="form-control" id="basicpill-cstno-input" placeholder="Enter Your CST No.">
+                                            <label for="basicpill-cstno-input">karakteristik Kontrak</label>
+                                            <select name="karakteristik" class="form-select" id="">
+                                                <option value="tahun tunggal">tahun tunggal</option>
+                                                <option value="tahun jamak">tahun jamak</option>
+                                            </select>
                                         </div>
                                     </div>
 
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="basicpill-servicetax-input">Service Tax No.</label>
-                                            <input type="text" class="form-control" id="basicpill-servicetax-input" placeholder="Enter Your Service Tax No.">
+                                            <label for="basicpill-servicetax-input">Progress Fisik(%)</label>
+                                            <input type="number" class="form-control" id="basicpill-servicetax-input"
+                                                placeholder="Masukan progress">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="basicpill-companyuin-input">Company UIN</label>
-                                            <input type="text" class="form-control" id="basicpill-companyuin-input" placeholder="Enter Your Company UIN">
+                                            <label for="basicpill-companyuin-input">Progress Fisik Pada</label>
+                                            <input type="date" class="form-control" id="basicpill-companyuin-input"
+                                                placeholder="Enter Your Company UIN">
                                         </div>
                                     </div>
 
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="basicpill-declaration-input">Declaration</label>
-                                            <input type="text" class="form-control" id="basicpill-Declaration-input" placeholder="Declaration Details">
+                                            <label for="basicpill-declaration-input">Progress Keuangan(%)</label>
+                                            <input type="number" class="form-control" id="basicpill-Declaration-input"
+                                                placeholder="Masukan progress keuangan">
                                         </div>
                                     </div>
                                 </div>
@@ -139,27 +166,26 @@
                         </section>
 
                         <!-- Bank Details -->
-                        <h3>Bank Details</h3>
+                        <h3>Detail</h3>
                         <section>
                             <div>
                                 <form>
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="mb-3">
-                                                <label for="basicpill-namecard-input">Name on Card</label>
-                                                <input type="text" class="form-control" id="basicpill-namecard-input" placeholder="Enter Your Name on Card">
+                                                <label for="basicpill-namecard-input">Progress Keuagan Pada</label>
+                                                <input type="date" class="form-control" id="basicpill-namecard-input"
+                                                    placeholder="">
                                             </div>
                                         </div>
 
                                         <div class="col-lg-6">
                                             <div class="mb-3">
-                                                <label>Credit Card Type</label>
+                                                <label>Status</label>
                                                 <select class="form-select">
-                                                      <option selected>Select Card Type</option>
-                                                      <option value="AE">American Express</option>
-                                                      <option value="VI">Visa</option>
-                                                      <option value="MC">MasterCard</option>
-                                                      <option value="DI">Discover</option>
+                                                    <option selected disabled>Pilih status</option>
+                                                    <option value="aktif">Aktif</option>
+                                                    <option value="nonaktif">Nonaktif</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -167,53 +193,29 @@
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="mb-3">
-                                                <label for="basicpill-cardno-input">Credit Card Number</label>
-                                                <input type="text" class="form-control" id="basicpill-cardno-input"  placeholder="Credit Card Number">
+                                                <label for="basicpill-cardno-input">Mulai</label>
+                                                <input type="date" class="form-control" id="basicpill-cardno-input"
+                                                    placeholder="Credit Card Number">
                                             </div>
                                         </div>
 
                                         <div class="col-lg-6">
                                             <div class="mb-3">
-                                                <label for="basicpill-card-verification-input">Card Verification Number</label>
-                                                <input type="text" class="form-control" id="basicpill-card-verification-input" placeholder="Credit Verification Number">
+                                                <label for="basicpill-card-verification-input">Selesai</label>
+                                                <input type="date" class="form-control"
+                                                    id="basicpill-card-verification-input"
+                                                    placeholder="Credit Verification Number">
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="mb-3">
-                                                <label for="basicpill-expiration-input">Expiration Date</label>
-                                                <input type="text" class="form-control" id="basicpill-expiration-input" placeholder="Card Expiration Date">
-                                            </div>
-                                        </div>
-
                                     </div>
                                 </form>
-                              </div>
-                        </section>
-
-                        <!-- Confirm Details -->
-                        <h3>Confirm Detail</h3>
-                        <section>
-                            <div class="row justify-content-center">
-                                <div class="col-lg-6">
-                                    <div class="text-center">
-                                        <div class="mb-4">
-                                            <i class="mdi mdi-check-circle-outline text-success display-4"></i>
-                                        </div>
-                                        <div>
-                                            <h5>Confirm Detail</h5>
-                                            <p class="text-muted">If several languages coalesce, the grammar of the resulting</p>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </section>
                     </div>
-
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">Batal</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                        aria-label="Close">Batal</button>
                     <button type="submit" class="btn text-white" style="background-color: #1B3061">Tambah</button>
                 </div>
             </div><!-- /.modal-content -->
@@ -229,13 +231,13 @@
                     <h4>PJL Kel. Purwosari Kec. Purwosari</h4>
                 </div>
                 <div class="row">
-                    <div class="col-4" >
+                    <div class="col-4">
                         <button style="min-width: 90px" class="btn btn-danger">Hapus</button>
                     </div>
-                    <div class="col-4" >
+                    <div class="col-4">
                         <button style="min-width: 90px" class="btn btn-warning">Edit</button>
                     </div>
-                    <div class="col-4" >
+                    <div class="col-4">
                         <button style="min-width: 90px;background-color: #1B3061" class="btn text-white">Detail</button>
                     </div>
                 </div>
@@ -244,5 +246,21 @@
     </div>
 @endsection
 @section('script')
-<script src="{{ asset('assets/js/pages/form-wizard.init.js') }}"></script>
+    <script src="{{ asset('assets/libs/jquery-steps/build/jquery.steps.min.js') }}"></script>
+
+    <!-- form wizard init -->
+    <script src="{{ asset('assets/js/pages/form-wizard.init.js') }}"></script>
+    <script src="{{ asset('assets/libs/select2/js/select2.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $(".select2").select2({
+                dropdownParent: $("#modal-create")
+            });
+        });
+        // $(document).ready(function() {
+        //     $("#update-lesson_id").select2({
+        //         dropdownParent: $("#modal-edit")
+        //     });
+        // });
+    </script>
 @endsection
