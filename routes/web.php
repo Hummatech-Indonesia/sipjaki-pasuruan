@@ -142,9 +142,9 @@ Auth::routes(['verify' => true]);
     Route::get('accident', function () {
         return view('pages.dinas.accident');
     })->name('accident');
-    Route::get('reset-password', function () {
+    Route::get('reset-password/{id}', function () {
         return view('auth.passwords.reset');
-    })->name('reset-password');
+    })->name('reset-passsword/');
     Route::get('send-email', function () {
         return view('auth.send-email');
     })->name('send-email');
@@ -172,7 +172,7 @@ Route::get('profile-OPD', function () {
 
 //Reset Password
 Route::post('send-email-reset-passsword', [ForgotPasswordController::class, 'sendEmail'])->name('send-email-reset-passsword');
-Route::put('reset-passsword/{user}', [ResetPasswordController::class, 'reset'])->name('reset-passsword/');
+Route::put('reset-passsword/{user}', [ResetPasswordController::class, 'reset'])->name('reset-passsword-user/');
 
 
 //Training Member
