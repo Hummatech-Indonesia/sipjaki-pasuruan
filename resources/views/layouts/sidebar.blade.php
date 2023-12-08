@@ -5,7 +5,8 @@
         <div id="sidebar-menu">
             <ul class="metismenu list-unstyled" id="side-menu">
                 <li class="menu-title" key="t-menu">Menu</li>
-
+                @if (Auth::user()->roles->pluck('name')[0]  == 'superadmin')
+                    
                 <li>
                     <a href="{{ route('rule-categories.index') }}" class="waves-effect">
                         <i class="fas fa-clipboard"></i>
@@ -27,16 +28,16 @@
                         <span key="t-file-manager" class="px-2">Klasifikasi</span>
                     </a>
                 </li>
-
+                
                 <li>
                     <a href="{{ route('training-methods.index') }}" class="waves-effect">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 44 44" fill="currentColor">
                             <g clip-path="url(#clip0_26_6710)">
-                              <path d="M9.16675 5.5V38.5" stroke="#525252" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                              <path d="M34.8333 38.5V5.5" stroke="#525252" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                              <path d="M9.16675 12.8335H34.8334" stroke="#525252" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                              <path d="M9.16675 27.5H34.8334" stroke="#525252" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                              <path d="M14.6667 23.8335V31.1668" stroke="#525252" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M9.16675 5.5V38.5" stroke="#525252" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M34.8333 38.5V5.5" stroke="#525252" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M9.16675 12.8335H34.8334" stroke="#525252" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M9.16675 27.5H34.8334" stroke="#525252" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M14.6667 23.8335V31.1668" stroke="#525252" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                               <path d="M20.1667 23.8335V31.1668" stroke="#525252" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                               <path d="M29.3333 23.8335V31.1668" stroke="#525252" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                               <path d="M25.6667 9.1665V16.4998" stroke="#525252" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
@@ -50,16 +51,16 @@
                               </clipPath>
                             </defs>
                           </svg>
-                        <span class="px-2" key="t-file-manager">Metode Pelatihan</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="{{ route('fiscal-years.index') }}" class="waves-effect">
-                        <i class="bx bx-bar-chart-alt"></i>
-                        <span key="t-file-manager">Tahun Anggaran</span>
-                    </a>
-                </li>
+                          <span class="px-2" key="t-file-manager">Metode Pelatihan</span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="{{ route('fiscal-years.index') }}" class="waves-effect">
+                            <i class="bx bx-bar-chart-alt"></i>
+                            <span key="t-file-manager">Tahun Anggaran</span>
+                        </a>
+                    </li>
 
                 <li class="{{request()->routeIs('qualifications.*') ? 'mm-active' : ''}}">
                     <a href="{{ route('qualifications.index') }}" class="waves-effect {{request()->routeIs('qualifications.*') ? 'active' : ''}}">
@@ -67,28 +68,30 @@
                         <span key="t-file-manager">Kualifikasi</span>
                     </a>
                 </li>
-
+                
                 <li>
                     <a href="{{ route('contract-categories.index') }}" class="waves-effect">
                         <i class="bx bx-bx bx-task"></i>
                         <span key="t-file-manager">Kategori Kontrak</span>
                     </a>
                 </li>
-
+                
                 <li>
                     <a href="{{ route('agencies.index') }}" class="waves-effect">
                         <i class="bx bx-user-plus"></i>
                         <span key="t-file-manager">Dinas</span>
                     </a>
-
+                </li>
+                    
                 <li>
                     <a href="/profile-OPD" class="waves-effect">
                         <i class="bx bx-user-plus"></i>
                         <span key="t-file-manager">Profile OPD</span>
                     </a>
                 </li>
+                @endif
                 @if ( Auth::user()->roles->pluck('name')[0]  == 'dinas')
-                    
+                
                 <li>
                     <a href="{{ route('training') }}" class="waves-effect">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 36 36" fill="currentColor">

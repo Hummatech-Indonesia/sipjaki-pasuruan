@@ -228,19 +228,164 @@
                     <h4>PJL Kel. Purwosari Kec. Purwosari</h4>
                 </div>
                 <div class="row">
-                    <div class="col-4">
-                        <button style="min-width: 90px" class="btn btn-danger">Hapus</button>
+                    <div class="d-flex justify-content-center mb-2 col-12 col-lg-4">
+                        <button style="min-width: 90px;width:100%" class="btn btn-danger">Hapus</button>
                     </div>
-                    <div class="col-4">
-                        <button style="min-width: 90px" class="btn btn-warning" data-bs-toggle="modal"
+                    <div class="d-flex justify-content-center mb-2 col-12 col-lg-4">
+                        <button style="min-width: 90px;width:100%" class="btn btn-warning" data-bs-toggle="modal"
                             data-bs-target="#modal-update">Edit</button>
                     </div>
-                    <div class="col-4">
-                        <button style="min-width: 90px;background-color: #1B3061" class="btn text-white">Detail</button>
+                    <div class="d-flex justify-content-center mb-2 col-12 col-lg-4">
+                        <button style="min-width: 90px;width:100%;background-color: #1B3061"
+                            class="btn text-white" data-bs-toggle="modal"
+                            data-bs-target="#modal-detail">Detail</button>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="modal fade bs-example-modal-md" id="modal-detail" tabindex="-1" role="dialog"
+        aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #1B3061">
+                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Tambah Pelatihan</h5>
+                    <button type="button" class="btn-close" style="background-color: white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="badge bg-info">
+                                <p class="mb-0 px-3 py-1 fs-6">
+                                    2022
+                                </p>
+                            </div>
+                            <p class="mt-3 fs-5 text-dark mb-2" style="font-weight: 700">
+                                PJL Kel. Purwosari Kec. Purwosari
+                            </p>
+                            <div class="">
+                                <div class="row mb-1">
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark">Nilai Kontrak :</p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark" style="font-weight:600;">APBD KAB/KOTA</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark">Progres Fisik :</p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark" style="font-weight:600;">Teknisi</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark">Progres Keuangan :</p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark" style="font-weight:600;">Jenjang 4</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark">Status :</p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark" style="font-weight:600;">SIPIL</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark">Mulai :</p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark" style="font-weight:600;">APBD KAB/KOTA</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark">Selesai :</p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark" style="font-weight:600;">Teknisi</p>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-1">
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark">Fisik Bulan :</p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark" style="font-weight:600;">Kabpaten pasuruan</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark">Keuangan Bulan :</p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark" style="font-weight:600;">20</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark">Sumber Dana :</p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark" style="font-weight:600;">23</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark">Pengguna Jasa :</p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark" style="font-weight:600;">33</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark">Penyedia NIB :</p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark" style="font-weight:600;">Lorem Ipsum Dolor Sit
+                                            Amet Lorem Ipsm Dolor
+                                            Sit Amet</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark">Penyedia Nama :</p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark" style="font-weight:600;">KAB.PASURUAN</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark">jenis Kontrak :</p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark" style="font-weight:600;">JAWA TIMUR</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark">Karakteristik Kontrak :</p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark" style="font-weight:600;">JAWA TIMUR</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
     </div>
     <div class="modal fade bs-example-modal-xl" id="modal-update" tabindex="-1" role="dialog"
         aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
@@ -261,16 +406,16 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="basicpill-year">Tahun</label>
-                                            <input type="number" class="form-control" name="year"
-                                                id="basicpill-year" placeholder="Masukan Tahun">
+                                            <label for="update-year">Tahun</label>
+                                            <input type="number" class="form-control" name="year" id="update-year"
+                                                placeholder="Masukan Tahun">
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="basicpill-name">Nama Pekerjaan</label>
-                                            <input type="text" class="form-control" name="name"
-                                                id="basicpill-name" placeholder="masukan nama pekerjaan">
+                                            <label for="update-name">Nama Pekerjaan</label>
+                                            <input type="text" class="form-control" name="name" id="update-name"
+                                                placeholder="masukan nama pekerjaan">
                                         </div>
                                     </div>
                                 </div>
@@ -278,9 +423,9 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="basicpill-source_found">Sumber Dana</label>
+                                            <label for="update-source_found">Sumber Dana</label>
                                             <select name="source_fund" class="form-control select2" style="width:100%"
-                                                id="basicpill-source_found">
+                                                id="update-source_found">
                                                 <option value="option a">option a</option>
                                                 <option value="option a">option a</option>
                                                 <option value="option a">option a</option>
@@ -291,9 +436,9 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="basicpill-email-input">Penyedia Jasa</label>
+                                            <label for="update-email-input">Penyedia Jasa</label>
                                             <select name="source_fund" class="form-control select2" style="width:100%"
-                                                id="basicpill-penyedia-jasa">
+                                                id="update-penyedia-jasa">
                                                 <option value="option a">option a</option>
                                                 <option value="option a">option a</option>
                                                 <option value="option a">option a</option>
@@ -313,17 +458,17 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="basicpill-nilai_kontrak">Nilai Kontrak</label>
+                                            <label for="update-nilai_kontrak">Nilai Kontrak</label>
                                             <input type="number" class="form-control" name="nilai kontrak"
-                                                id="basicpill-nilai_kontrak" placeholder="Masukan nilai kontrak">
+                                                id="update-nilai_kontrak" placeholder="Masukan nilai kontrak">
                                         </div>
                                     </div>
 
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="basicpill-vatno-input">Jenis kontrak</label>
+                                            <label for="update-vatno-input">Jenis kontrak</label>
                                             <select name="source_fund" class="form-control select2" style="width:100%"
-                                                id="basicpill-jenis-kontrak">
+                                                id="update-jenis-kontrak">
                                                 <option value="option a">option a</option>
                                                 <option value="option a">option a</option>
                                                 <option value="option a">option a</option>
@@ -336,7 +481,7 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="basicpill-cstno-input">karakteristik Kontrak</label>
+                                            <label for="update-cstno-input">karakteristik Kontrak</label>
                                             <select name="karakteristik" class="form-select" id="">
                                                 <option value="tahun tunggal">tahun tunggal</option>
                                                 <option value="tahun jamak">tahun jamak</option>
@@ -346,8 +491,8 @@
 
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="basicpill-servicetax-input">Progress Fisik(%)</label>
-                                            <input type="number" class="form-control" id="basicpill-servicetax-input"
+                                            <label for="update-servicetax-input">Progress Fisik(%)</label>
+                                            <input type="number" class="form-control" id="update-servicetax-input"
                                                 placeholder="Masukan progress">
                                         </div>
                                     </div>
@@ -355,16 +500,16 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="basicpill-companyuin-input">Progress Fisik Pada</label>
-                                            <input type="date" class="form-control" id="basicpill-companyuin-input"
+                                            <label for="update-companyuin-input">Progress Fisik Pada</label>
+                                            <input type="date" class="form-control" id="update-companyuin-input"
                                                 placeholder="Enter Your Company UIN">
                                         </div>
                                     </div>
 
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="basicpill-declaration-input">Progress Keuangan(%)</label>
-                                            <input type="number" class="form-control" id="basicpill-Declaration-input"
+                                            <label for="update-declaration-input">Progress Keuangan(%)</label>
+                                            <input type="number" class="form-control" id="update-Declaration-input"
                                                 placeholder="Masukan progress keuangan">
                                         </div>
                                     </div>
@@ -380,8 +525,8 @@
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="mb-3">
-                                                <label for="basicpill-namecard-input">Progress Keuagan Pada</label>
-                                                <input type="date" class="form-control" id="basicpill-namecard-input"
+                                                <label for="update-namecard-input">Progress Keuagan Pada</label>
+                                                <input type="date" class="form-control" id="update-namecard-input"
                                                     placeholder="">
                                             </div>
                                         </div>
@@ -400,17 +545,17 @@
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="mb-3">
-                                                <label for="basicpill-cardno-input">Mulai</label>
-                                                <input type="date" class="form-control" id="basicpill-cardno-input"
+                                                <label for="update-cardno-input">Mulai</label>
+                                                <input type="date" class="form-control" id="update-cardno-input"
                                                     placeholder="Credit Card Number">
                                             </div>
                                         </div>
 
                                         <div class="col-lg-6">
                                             <div class="mb-3">
-                                                <label for="basicpill-card-verification-input">Selesai</label>
+                                                <label for="update-card-verification-input">Selesai</label>
                                                 <input type="date" class="form-control"
-                                                    id="basicpill-card-verification-input"
+                                                    id="update-card-verification-input"
                                                     placeholder="Credit Verification Number">
                                             </div>
                                         </div>
@@ -434,7 +579,7 @@
     <script>
         $(document).ready(function() {
             $(".select2").select2({
-                dropdownParent: $("#modal-create")
+                dropdownParent: $("#modal-create, #modal-update")
             });
         });
     </script>
