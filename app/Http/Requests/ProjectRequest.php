@@ -34,7 +34,8 @@ class ProjectRequest extends FormRequest
             'finance_progress' => 'required',
             'year' => 'min:4|max:4',
             'start_at' => 'required|before:end_at|date',
-            'end_at' => 'required|date'
+            'end_at' => 'required|date',
+            'status' => 'required'
         ];
     }
 }

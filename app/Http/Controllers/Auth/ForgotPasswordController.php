@@ -22,12 +22,6 @@ class ForgotPasswordController extends Controller
         $this->user = $user;
     }
 
-    /**
-     * sendEmail
-     *
-     * @param  mixed $request
-     * @return void
-     */
     public function sendEmail(ForgotPasswordRequest $request)
     {
         $data = $request->validated();
@@ -37,7 +31,10 @@ class ForgotPasswordController extends Controller
         $user = $this->user->getWhere(['email' => $forgotPassword['email']]);
         Mail::to($data['email'])->send(new ForgotPasswordMail(['email' => $data['email'], 'token' => $data['token'], 'id' => $user->id]));
 
-
-        return ResponseHelper::success(null, trans('auth.send_email_forgot_password'));
+        if ($request->is('api/*')) {
+            return ResponseHelper::success(null, trans('auth.send_email_forgot_password'));
+        } else {
+            return redirect()->back()->with('success', trans('auth.send_email_forgot_password'));
+        }
     }
 }

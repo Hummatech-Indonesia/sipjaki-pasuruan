@@ -26,6 +26,11 @@ class ResetPasswordController extends Controller
      * @param  mixed $user
      * @return void
      */
+    public function index($id)
+    {
+        $Id = $id ;
+        return view('auth.passwords.reset' ,compact('Id'));
+    }
     public function reset(User $user, ResetPasswordRequest $request)
     {
         $token = $this->forgotPassword->getWhere(['email' => $user->email]);
