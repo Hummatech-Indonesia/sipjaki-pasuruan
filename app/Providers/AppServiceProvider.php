@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Contracts\Interfaces\AccidentInterface;
 use Illuminate\Support\ServiceProvider;
 use App\Contracts\Interfaces\NewsInterface;
 use App\Contracts\Interfaces\RuleInterface;
@@ -37,6 +38,7 @@ use App\Contracts\Repositories\TrainingMemberRepository;
 use App\Contracts\Repositories\TrainingMethodRepository;
 use App\Contracts\Interfaces\QualificationLevelInterface;
 use App\Contracts\Interfaces\ServiceProviderInterface;
+use App\Contracts\Repositories\AccidentRepository;
 use App\Contracts\Repositories\ContractCategoryRepository;
 use App\Contracts\Repositories\SubClassificationRepository;
 use App\Contracts\Repositories\QualificationLevelRepository;
@@ -63,7 +65,8 @@ class AppServiceProvider extends ServiceProvider
         ForgotPasswordInterface::class => ForgotPasswordRepository::class,
         ProjectInterface::class => ProjectRepository::class,
         TrainingMemberInterface::class => TrainingMemberRepository::class,
-        ServiceProviderInterface::class => ServiceProviderRepository::class
+        ServiceProviderInterface::class => ServiceProviderRepository::class,
+        AccidentInterface::class => AccidentRepository::class,
     ];
 
     /**
