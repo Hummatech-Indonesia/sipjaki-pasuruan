@@ -15,6 +15,7 @@ use App\Models\Qualification;
 use App\Models\QualificationLevel;
 use App\Models\RuleCategory;
 use App\Models\Rules;
+use App\Models\ServiceProvider as ModelsServiceProvider;
 use App\Models\SubClassification;
 use App\Models\Training;
 use App\Models\TrainingMember;
@@ -33,6 +34,7 @@ use App\Observers\QualificationLevelObserver;
 use App\Observers\QualificationObserver;
 use App\Observers\RuleCategoriesObserver;
 use App\Observers\RuleObserver;
+use App\Observers\ServiceProviderObserver;
 use App\Observers\SubClassificationOberserve;
 use App\Observers\SubClassificationObserver;
 use App\Observers\TrainingMemberObserver;
@@ -79,6 +81,7 @@ class EventServiceProvider extends ServiceProvider
         TrainingMember::observe(TrainingMemberObserver::class);
         Project::observe(ProjectObserver::class);
         Field::observe(FieldObserver::class);
+        ModelsServiceProvider::observe(ServiceProviderObserver::class);
     }
 
     /**
