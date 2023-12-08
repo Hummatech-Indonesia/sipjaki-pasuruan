@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Contracts\Interfaces\ProjectInterface;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-class RuleRepository extends BaseRepository implements ProjectInterface
+class ProjectRepository extends BaseRepository implements ProjectInterface
 {
     public function __construct(Project $project)
     {
