@@ -39,6 +39,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/peraturan', function () {
+    return view('peraturan');
+});
+
+Route::get('/berita-terbaru', function () {
+    return view('berita-terbaru');
+});
+
 Route::get('struktur-organisasi-DKSDK', function () {
     return view('struktur-organisasi');
 });

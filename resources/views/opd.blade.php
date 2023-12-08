@@ -8,16 +8,21 @@
     <div class="tabs-wrapper">
         <div class="section-title text-center">
             <h2 style="border-radius: 16px;
-        background: var(--Kuning, #FFC928);" class="title p-2">OPD</h2>
+        background: var(--Kuning, #FFC928);" class="title p-1">OPD</h2>
         </div>
     </div>
     <div class="d-flex row">
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title mb-4">Column Chart</h4>
+                    <h5 class="card-title">Total Kecelakaan</h5>
+                    <h2>234 Korban</h2>
+                    <h5>Tahun 2023</h5>
+
+                    <div id="bar_chart" data-colors='["--bs-success"]' class="apex-charts" dir="ltr"></div>
                 </div>
             </div>
+
         </div>
     </div>
     <div class="d-flex row">

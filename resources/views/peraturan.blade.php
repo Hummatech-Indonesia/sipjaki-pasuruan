@@ -8,26 +8,14 @@
     <div class="tabs-wrapper">
         <div class="section-title text-center">
             <h2 style="border-radius: 16px;
-        background: var(--Kuning, #FFC928);" class="title">Data Kecelakaan Nasional</h2>
+        background: var(--Kuning, #FFC928);" class="title">Data Peraturan</h2>
         </div>
     </div>
     <div class="d-flex row">
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Total Kecelakaan</h5>
-                    <h2>234 Korban</h2>
-                    <h5>Tahun 2023</h5>
-                    <div id="bar_chart" data-colors='["#1B3061"]' class="apex-charts" dir="ltr"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="d-flex row">
-        <div class="col-xl-12">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title mb-4">Data Kecelakaan</h4>
+                    <h4 class="card-title mb-4">Peraturan</h4>
 
                     <div id="column_chart_datalabel" data-colors='["#FFC928"]' class="apex-charts" dir="ltr"></div>
                 </div>
