@@ -16,6 +16,7 @@ class QualificationLevelResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'qualification_id' => $this->qualification_id,
             'qualification' => QualificationResource::make($this->qualification),
             'name' => $this->name
         ];

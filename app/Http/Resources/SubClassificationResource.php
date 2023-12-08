@@ -16,6 +16,7 @@ class SubClassificationResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'classification_id' => $this->classification_id,
             'classification' => $this->classification->name,
             'name' => $this->name
         ];
