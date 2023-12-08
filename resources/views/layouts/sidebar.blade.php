@@ -114,7 +114,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('work-package.index') }}" class="waves-effect">
+                    <a href="{{ route('projects.index') }}" class="waves-effect">
                         <i class="bx bxs-package"></i>
                         <span key="t-file-manager">Paket Pekerjaan</span>
                     </a>
