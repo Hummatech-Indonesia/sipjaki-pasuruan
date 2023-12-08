@@ -22,11 +22,12 @@
     <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
     <!-- App js -->
     <script src="assets/js/plugin.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
 
 <body>
-    
+   
     <div class="account-pages my-5 pt-sm-5">
         <div class="container">
             <div class="d-flex justify-content-center mb-5">
@@ -34,12 +35,6 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-md-8 col-lg-6 col-xl-5">
-                    @if ($errors->has('email'))
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                {{ $errors->first('email') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @endif
                     <div class="card overflow-hidden">
                         <div class="bg-primary-subtle">
                             <div class="row">
@@ -69,9 +64,15 @@
                                 </a>
                             </div>
                             <div class="p-2">
+                                @if (session('success'))
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    {{ session('success') }}
+                                </div>
+                            @else
                                 <div class="alert alert-info text-center mb-4" role="alert">
                                     Masukkan Email Anda dan instruksi akan dikirimkan kepada Anda!
                                 </div>
+                            @endif
                                 <form class="form-horizontal" action="{{ route('send-email-reset-passsword') }}" method="POST">
                                     @csrf
                                     @method('POST')
@@ -82,7 +83,7 @@
                                     </div>
                                     <div class="mt-4 d-flex justify-content-end">
                                         <button type="submit" class="btn text-white" style="background-color: #1B3061">
-                                            Ubah Password
+                                            Kirim Email
                                         </button>
                                     </div>
                                 </form>

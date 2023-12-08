@@ -66,9 +66,9 @@
                             </button>
                         </div>
                         <div class="">
-                            <button class="btn text-white" style="background-color: #1B3061">
+                            <a href="{{ route('detail-accident.index') }}" class="btn text-white" style="background-color: #1B3061">
                                 Detail
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -99,9 +99,9 @@
                             </button>
                         </div>
                         <div class="">
-                            <button class="btn text-white" style="background-color: #1B3061">
+                            <a href="{{ route('detail-accident.index') }}" class="btn text-white" style="background-color: #1B3061">
                                 Detail
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -132,9 +132,9 @@
                             </button>
                         </div>
                         <div class="">
-                            <button class="btn text-white" style="background-color: #1B3061">
+                            <a href="{{ route('detail-accident.index') }}" class="btn text-white" style="background-color: #1B3061">
                                 Detail
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -165,9 +165,9 @@
                             </button>
                         </div>
                         <div class="">
-                            <button class="btn text-white" style="background-color: #1B3061">
+                            <a href="{{ route('detail-accident.index') }}" class="btn text-white" style="background-color: #1B3061">
                                 Detail
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -198,9 +198,9 @@
                             </button>
                         </div>
                         <div class="">
-                            <button class="btn text-white" style="background-color: #1B3061">
+                            <a href="{{ route('detail-accident.index') }}" class="btn text-white" style="background-color: #1B3061">
                                 Detail
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -231,9 +231,9 @@
                             </button>
                         </div>
                         <div class="">
-                            <button class="btn text-white" style="background-color: #1B3061">
+                            <a href="{{ route('detail-accident.index') }}" class="btn text-white" style="background-color: #1B3061">
                                 Detail
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
