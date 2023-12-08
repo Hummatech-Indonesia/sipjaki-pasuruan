@@ -40,7 +40,7 @@ use App\Contracts\Interfaces\ServiceProviderInterface;
 use App\Contracts\Repositories\ContractCategoryRepository;
 use App\Contracts\Repositories\SubClassificationRepository;
 use App\Contracts\Repositories\QualificationLevelRepository;
-use App\Contracts\Repositories\ServiceProviderRepositoryRepository;
+use App\Contracts\Repositories\ServiceProviderRepository;
 
 class AppServiceProvider extends ServiceProvider
 {

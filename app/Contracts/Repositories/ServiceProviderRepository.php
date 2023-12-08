@@ -7,7 +7,7 @@ use App\Models\ServiceProvider;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Contracts\Interfaces\ServiceProviderInterface;
 
-class ServiceProviderRepositoryRepository extends BaseRepository implements ServiceProviderInterface
+class ServiceProviderRepository extends BaseRepository implements ServiceProviderInterface
 {
 
 
@@ -15,7 +15,7 @@ class ServiceProviderRepositoryRepository extends BaseRepository implements Serv
     {
         $this->model = $serviceProvider;
     }
-    
+       
     /**
      * get
      *

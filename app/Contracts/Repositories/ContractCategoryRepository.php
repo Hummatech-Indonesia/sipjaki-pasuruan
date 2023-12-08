@@ -14,6 +14,17 @@ class ContractCategoryRepository extends BaseRepository implements ContractCateg
         $this->model = $contractCategory;
     }
 
+     /**
+     * get
+     *
+     * @return mixed
+     */
+    public function get() : mixed
+    {
+        return $this->model->query()
+            ->get();
+    }
+
     /**
      * store
      *

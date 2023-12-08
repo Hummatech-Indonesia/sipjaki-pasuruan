@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Interfaces\ContractCategoryInterface;
+use App\Contracts\Interfaces\FundSourceInterface;
 use App\Models\Project;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
@@ -11,15 +13,23 @@ use App\Http\Requests\ProjectRequest;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Resources\ProjectResource;
 use App\Contracts\Interfaces\ProjectInterface;
+use App\Contracts\Interfaces\ServiceProviderInterface;
 
 class ProjectController extends Controller
 {
 
     private ProjectInterface $project;
+    private ServiceProviderInterface $serviceProvider;
+    private FundSourceInterface $fundSource;
+    private ContractCategoryInterface $contractCategory;
 
-    public function __construct(ProjectInterface $project)
+    public function __construct(ProjectInterface $project,ServiceProviderInterface $serviceProvider,FundSourceInterface $fundSource,ContractCategoryInterface $contractCategory)
     {
         $this->project = $project;
+        $this->serviceProvider = $serviceProvider;
+        $this->fundSource = $fundSource;
+        $this->contractCategory = $contractCategory;
+
     }
     /**
      * Display a listing of the resource.
@@ -28,7 +38,6 @@ class ProjectController extends Controller
     {
 
         $projects = $this->project->customPaginate($request, 15);
-
         
         if( $request->is('api/*')){
 
@@ -37,7 +46,10 @@ class ProjectController extends Controller
             return ResponseHelper::success($data,trans('alert.get_success'));
 
         }else{
-
+            
+            $serviceProviders = $this->serviceProvider->get();
+            $fundSources = $this->fundSource->get();
+            $contractCategories = $this->contractCategory->get();
             return view('pages.fiscal-year',compact('fiscalYears'));
 
         }

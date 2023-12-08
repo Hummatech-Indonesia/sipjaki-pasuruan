@@ -13,6 +13,17 @@ class FundSourceRepository extends BaseRepository implements FundSourceInterface
     {
         $this->model = $fundSource;
     }
+    
+     /**
+     * get
+     *
+     * @return mixed
+     */
+    public function get() : mixed
+    {
+        return $this->model->query()
+            ->get();
+    }
 
     /**
      * store
