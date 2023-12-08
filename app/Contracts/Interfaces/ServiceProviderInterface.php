@@ -9,6 +9,6 @@ use App\Contracts\Interfaces\Eloquent\ShowInterface;
 use App\Contracts\Interfaces\Eloquent\StoreInterface;
 use App\Contracts\Interfaces\Eloquent\UpdateInterface;
 
-interface ContractCategoryInterface extends GetInterface,StoreInterface, CustomPaginationInterface, DeleteInterface, UpdateInterface, ShowInterface
+interface ServiceProviderInterface extends GetInterface,StoreInterface, CustomPaginationInterface, DeleteInterface, UpdateInterface, ShowInterface
 {
 }

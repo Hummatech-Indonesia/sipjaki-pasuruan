@@ -36,9 +36,11 @@ use App\Contracts\Repositories\RuleCategoriesRepository;
 use App\Contracts\Repositories\TrainingMemberRepository;
 use App\Contracts\Repositories\TrainingMethodRepository;
 use App\Contracts\Interfaces\QualificationLevelInterface;
+use App\Contracts\Interfaces\ServiceProviderInterface;
 use App\Contracts\Repositories\ContractCategoryRepository;
 use App\Contracts\Repositories\SubClassificationRepository;
 use App\Contracts\Repositories\QualificationLevelRepository;
+use App\Contracts\Repositories\ServiceProviderRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -60,7 +62,8 @@ class AppServiceProvider extends ServiceProvider
         ImageInterface::class => ImageRepository::class,
         ForgotPasswordInterface::class => ForgotPasswordRepository::class,
         ProjectInterface::class => ProjectRepository::class,
-        TrainingMemberInterface::class => TrainingMemberRepository::class
+        TrainingMemberInterface::class => TrainingMemberRepository::class,
+        ServiceProviderInterface::class => ServiceProviderRepository::class
     ];
 
     /**

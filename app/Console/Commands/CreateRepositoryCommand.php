@@ -38,7 +38,7 @@ class CreateRepositoryCommand extends Command
 
     protected function getRepositoryName($name)
     {
-        return ucfirst($name) . 'Repository';
+        return ucfirst($name);
     }
 
     protected function getDefaultNamespace()

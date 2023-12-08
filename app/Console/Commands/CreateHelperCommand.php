@@ -38,7 +38,7 @@ class CreateHelperCommand extends Command
 
     protected function getHelperName($name)
     {
-        return ucfirst($name) . 'Helper';
+        return ucfirst($name);
     }
 
     protected function getDefaultNamespace()

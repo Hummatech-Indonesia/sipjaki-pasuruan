@@ -38,7 +38,7 @@ class CreateServiceCommand extends Command
 
     protected function getServiceName($name)
     {
-        return ucfirst($name) . 'Service';
+        return ucfirst($name);
     }
 
     protected function getDefaultNamespace()

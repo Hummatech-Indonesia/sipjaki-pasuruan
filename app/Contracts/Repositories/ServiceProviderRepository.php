@@ -3,18 +3,20 @@
 namespace App\Contracts\Repositories;
 
 use Illuminate\Http\Request;
-use App\Models\ContractCategory;
+use App\Models\ServiceProvider;
 use Illuminate\Pagination\LengthAwarePaginator;
-use App\Contracts\Interfaces\ContractCategoryInterface;
+use App\Contracts\Interfaces\ServiceProviderInterface;
 
-class ContractCategoryRepository extends BaseRepository implements ContractCategoryInterface
+class ServiceProviderRepository extends BaseRepository implements ServiceProviderInterface
 {
-    public function __construct(ContractCategory $contractCategory)
-    {
-        $this->model = $contractCategory;
-    }
 
-     /**
+
+    public function __construct(ServiceProvider $serviceProvider)
+    {
+        $this->model = $serviceProvider;
+    }
+       
+    /**
      * get
      *
      * @return mixed
@@ -72,19 +74,8 @@ class ContractCategoryRepository extends BaseRepository implements ContractCateg
         return $this->show($id)->delete($id);
     }
 
-    /**
-     * search
-     *
-     * @param  mixed $request
-     * @return mixed
-     */
-    public function search(Request $request): mixed
-    {
-        return $this->model->query()
-            ->get();
-    }
 
-        /**
+    /**
      * customPaginate
      *
      * @param  mixed $request
@@ -94,6 +85,7 @@ class ContractCategoryRepository extends BaseRepository implements ContractCateg
     public function customPaginate(Request $request, int $pagination = 10): LengthAwarePaginator
     {
         return $this->model->query()
+            ->with('fiscalYear')
             ->when($request->name,function($query) use ($request){
                 $query->where('name','LIKE','%'.$request->name.'%');
             })
