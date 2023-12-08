@@ -39,11 +39,11 @@ class FieldController extends Controller
     public function store(FieldRequest $request)
     {
         $this->field->store($request->validated());
-        if ($request->is('api/*')) {
-            return ResponseHelper::success(null, trans('alert.add_success'));
-        } else {
-            return redirect()->back()->with('succcess', trans('alert.add_success'));
-        }
+        // if ($request->is('api/*')) {
+        return ResponseHelper::success(null, trans('alert.add_success'));
+        // } else {
+        //     return redirect()->back()->with('succcess', trans('alert.add_success'));
+        // }
     }
 
     /**

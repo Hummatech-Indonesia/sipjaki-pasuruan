@@ -22,6 +22,12 @@ class ForgotPasswordController extends Controller
         $this->user = $user;
     }
 
+    /**
+     * sendEmail
+     *
+     * @param  mixed $request
+     * @return void
+     */
     public function sendEmail(ForgotPasswordRequest $request)
     {
         $data = $request->validated();

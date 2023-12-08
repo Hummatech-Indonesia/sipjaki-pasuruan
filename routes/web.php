@@ -100,33 +100,23 @@ Route::resources([
 ]);
 // });
 
-    // Route::middleware('role:dinas',function(){
-    //     // Accident
-    // });
+// Route::middleware('role:dinas',function(){
+//     // Accident
+// });
 
-    Route::middleware(['role:dinas'])->group(function () {
-        Route::resource('accident', AccidentController::class)->except('create', 'edit', 'show');
-        Route::resources([
-            'projects' => ProjectController::class
-        ]);
-    });
-
-    // Route::middleware('role:service provider',function(){
-    // });
-
+Route::middleware(['role:dinas'])->group(function () {
+    Route::resource('accident', AccidentController::class)->except('create', 'edit', 'show');
     Route::get('sub-qualification', function () {
         return view('pages.sub-qualification');
     })->name('sub-qualification');
 
-
     Route::resources([
         'projects' => ProjectController::class,
-        'field' => FieldController::class
+        'fields' => FieldController::class
     ]);
+});
 
-    // Route::middleware('role:service provider',function(){
 
-    // });
 
 Route::get('sub-qualification', function () {
     return view('pages.sub-qualification');
@@ -145,26 +135,26 @@ Route::get('test', function () {
     return view('auth.verify');
 });
 
-    Route::get('accident', function () {
-        return view('pages.dinas.accident');
-    })->name('accident');
-    Route::get('reset-password/{id}', function () {
-        return view('auth.passwords.reset');
-    })->name('reset-passsword/');
-    Route::get('send-email', function () {
-        return view('auth.send-email');
-    })->name('send-email');
+Route::get('accident', function () {
+    return view('pages.dinas.accident');
+})->name('accident');
+Route::get('reset-password/{id}', function () {
+    return view('auth.passwords.reset');
+})->name('reset-passsword/');
+Route::get('send-email', function () {
+    return view('auth.send-email');
+})->name('send-email');
 
-    Route::get('/redirect-verify-account', [VerificationController::class, 'verifyAccount'])->name('redirect.verify.account');
-    Route::put('update-token/{user}', [VerificationController::class, 'updateToken']);
-    Route::put('verify-token/{user}', [VerificationController::class, 'verifyToken']);
+Route::get('/redirect-verify-account', [VerificationController::class, 'verifyAccount'])->name('redirect.verify.account');
+Route::put('update-token/{user}', [VerificationController::class, 'updateToken']);
+Route::put('verify-token/{user}', [VerificationController::class, 'verifyToken']);
 
-    Route::get('/verify-account/{user}', function () {
-        return view('auth.verify-account');
-    })->name('verify.account/');
-    Route::get('training', function () {
-        return view('pages.dinas.training');
-    })->name('training');
+Route::get('/verify-account/{user}', function () {
+    return view('auth.verify-account');
+})->name('verify.account/');
+Route::get('training', function () {
+    return view('pages.dinas.training');
+})->name('training');
 // });
 
 Route::get('images', [ImagesController::class, 'index']);

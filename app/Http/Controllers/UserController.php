@@ -20,10 +20,12 @@ class UserController extends Controller
 
     private UserInterface $user;
     private UserService $service;
-    public function __construct(UserInterface $user, UserService $service)
+    private DinasInterface $dinas;
+    public function __construct(UserInterface $user, UserService $service, DinasInterface $dinas)
     {
         $this->user = $user;
         $this->service = $service;
+        $this->dinas = $dinas;
     }
 
     /**
@@ -56,34 +58,18 @@ class UserController extends Controller
     {
         $this->service->store($request, $this->user);
         if ($request->is('api/*')) {
-        return ResponseHelper::success(null, trans('alert.add_success'));
+            return ResponseHelper::success(null, trans('alert.add_success'));
         } else {
             return redirect()->back()->with('success', trans('alert.add_success'));
         }
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
     /**
      * Update the specified resource in storage.
      */
     public function update(UserRequest $request, User $user)
     {
         $this->user->update($user->id, $request->validated());
+        $this->dinas->update($user->dinas->id, $request->validated());
         if ($request->is('api/*')) {
             return ResponseHelper::success(null, trans('alert.update_success'));
         } else {
