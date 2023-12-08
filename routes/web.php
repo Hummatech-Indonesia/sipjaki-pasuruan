@@ -42,6 +42,14 @@ Route::get('/', function () {
 Route::get('struktur-organisasi-DKSDK', function () {
     return view('struktur-organisasi');
 });
+
+Route::get('rencana-strategis-DKSDK', function () {
+    return view('rencana-strategis');
+});
+
+Route::get('tugas-fungsi-DKSDK', function () {
+    return view('tugas-fungsi');
+});
 Auth::routes(['verify' => true]);
 // Route::middleware(['auth'])->group(function () {
 
@@ -71,6 +79,20 @@ Route::get('/opd', function () {
     return view('opd');
 });
 
+// Route::middleware('role:superadmin')->group(function () {
+Route::resources([
+    'contract-categories' => ContractCategoryController::class,
+    'fund-sources' => FundSourceController::class,
+    'qualifications' => QualificationController::class,
+    'source-fund' => FundSourceController::class,
+    'rule-categories' => RuleCategoriesController::class,
+    'fiscal-years' => FiscalYearController::class,
+    'classifications' => ClassificationController::class,
+    'news' => NewsController::class,
+    'training-methods' => TrainingMethodController::class,
+    'users' => UserController::class,
+    'rules' => RuleController::class,
+]);
 
 // Route::middleware('role:superadmin')->group(function () {
 Route::resources([
@@ -116,6 +138,8 @@ Route::middleware(['role:dinas'])->group(function () {
     ]);
 });
 
+// Route::middleware('role:service provider',function(){
+// });
 
 
 Route::get('sub-qualification', function () {
@@ -169,7 +193,6 @@ Route::get('profile-OPD', function () {
 //Reset Password
 Route::post('send-email-reset-passsword', [ForgotPasswordController::class, 'sendEmail'])->name('send-email-reset-passsword');
 Route::put('reset-passsword-user/{user}', [ResetPasswordController::class, 'reset'])->name('reset-passsword-user/');
-
 
 //Training Member
 Route::get('training-members/{training}', [TrainingMemberController::class, 'index']);

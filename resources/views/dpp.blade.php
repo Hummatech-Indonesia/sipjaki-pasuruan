@@ -1,5 +1,10 @@
 @extends('layouts.app-landing-page')
 @section('content')
+<link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
 <div class="tabs-wrapper">
     <div class="section-title text-center">
         <h2 style="border-radius: 16px;
@@ -11,17 +16,17 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex d-row align-items-center">
-                        <div class="position-relative col-lg-4">
-                            <input type="search" class="form-control search-chat me-2" id="search-name" placeholder="Search">
+                        <div class="position-relative col-lg-3">
+                            <input type="search" class="form-control  py-2 ps-5" id="search-name" placeholder="Search">
                             <i class="bx bx-search-alt-2
-                            position-absolute top-50 translate-middle-y fs-6 text-dark"></i>
+                            position-absolute top-50 translate-middle-y fs-6 text-dark ms-3"></i>
                         </div>
-                        <select id="formrow-inputState" style="margin-right: 10px;" class="form-select col-lg-3">
+                        <select id="formrow-inputState" class="form-select col-lg-2 me-2">
                             <option disabled="" selected="">Choose...</option>
                             <option>A++</option>
                             <option>B++</option>
                         </select>
-                        <select id="formrow-inputState" class="form-select col-lg-3">
+                        <select id="formrow-inputState" class="form-select col-lg-2">
                             <option disabled="" selected="">Choose...</option>
                             <option>A++</option>
                             <option>B++</option>
