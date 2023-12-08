@@ -113,4 +113,9 @@ class VerificationController extends Controller
             }
         }
     }
+    public function verifyacount($id)
+    {
+        $Id = $id ;
+        return view('auth.verify-account' ,compact('Id'));
+    }
 }
