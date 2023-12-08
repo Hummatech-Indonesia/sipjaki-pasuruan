@@ -1,5 +1,14 @@
 @extends('layouts.app')
 @section('content')
+@if(session('success'))
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Success',
+        text: '{{ session('success') }}',
+    });
+</script>
+@endif
     <p class="fs-4 text-dark" style="font-weight: 600">
         Pelatihan
     </p>
@@ -73,9 +82,9 @@
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="basicpill-lastname-input">Nama</label>
-                                            <input name="name" type="text" class="form-control" id="basicpill-phoneno-input"
-                                                placeholder="Enter Your Name.">
-                                                @error('name')
+                                            <input name="name" type="text" class="form-control"
+                                                id="basicpill-phoneno-input" placeholder="Enter Your Name.">
+                                            @error('name')
                                                 <p class="text-danger">
                                                     {{ $message }}
                                                 </p>
@@ -97,7 +106,6 @@
                                             <label for="basicpill-email-input">Jenjang KKNI</label>
                                             <select name="qualification_level_id" class="form-select "
                                                 id="list-qualification-level">
-                                                <option value="">Pilih Kualifikasi</option>
                                             </select>
                                             @error('qulification_level_id')
                                                 <p class="text-danger">
@@ -117,7 +125,8 @@
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-email-input">Sub Klasifikasi</label>
-                                            <select name="sub_classifications_id" class="form-select" id="list-sub-classifications">
+                                            <select name="sub_classifications_id" class="form-select"
+                                                id="list-sub-classifications">
                                             </select>
                                             @error('sub_classification_id')
                                                 <p class="text-danger">
@@ -136,9 +145,9 @@
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-phoneno-input">Waktu Pelaksanaan</label>
-                                            <input name="start_at" type="date" class="form-control" id="basicpill-phoneno-input"
-                                                placeholder="Enter Your Name.">
-                                                @error('start_at')
+                                            <input name="start_at" type="date" class="form-control"
+                                                id="basicpill-phoneno-input" placeholder="Enter Your Name.">
+                                            @error('start_at')
                                                 <p class="text-danger">
                                                     {{ $message }}
                                                 </p>
@@ -148,9 +157,9 @@
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-email-input">Selesai Pelaksanaan</label>
-                                            <input name="end_time" type="date" class="form-control" id="basicpill-phoneno-input"
-                                                placeholder="Enter Your Name.">
-                                                @error('end_time')
+                                            <input name="end_time" type="date" class="form-control"
+                                                id="basicpill-phoneno-input" placeholder="Enter Your Name.">
+                                            @error('end_time')
                                                 <p class="text-danger">
                                                     {{ $message }}
                                                 </p>
@@ -160,9 +169,9 @@
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-email-input">Jam Pelajaran</label>
-                                            <input type="text" name="lesson_hour" class="form-control" id="basicpill-phoneno-input"
-                                                placeholder="Enter Your Name.">
-                                                @error('lesson_hour')
+                                            <input type="text" name="lesson_hour" class="form-control"
+                                                id="basicpill-phoneno-input" placeholder="Enter Your Name.">
+                                            @error('lesson_hour')
                                                 <p class="text-danger">
                                                     {{ $message }}
                                                 </p>
@@ -172,7 +181,8 @@
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-email-input">Metode Pelatihan</label>
-                                            <select name="training_method_id" class="form-select" id="list-training-method">
+                                            <select name="training_method_id" class="form-select"
+                                                id="list-training-method">
                                             </select>
                                         </div>
                                     </div>
@@ -182,19 +192,19 @@
                                         <label for="basicpill-lastname-input">Lokasi</label>
                                         <textarea name="location" id="" class="form-control"></textarea>
                                         @error('location')
-                                                <p class="text-danger">
-                                                    {{ $message }}
-                                                </p>
-                                            @enderror
+                                            <p class="text-danger">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                     </div>
                                     <div class="col-6">
                                         <label for="basicpill-lastname-input">Keterangan</label>
                                         <textarea name="description" id="" class="form-control"></textarea>
                                         @error('description')
-                                                <p class="text-danger">
-                                                    {{ $message }}
-                                                </p>
-                                            @enderror
+                                            <p class="text-danger">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                     </div>
                                 </div>
                             </section>
@@ -211,161 +221,169 @@
                 <div class="modal-header" style="background-color: #1B3061">
                     <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Tambah Pelatihan</h5>
                 </div>
-                <form action="">
-                    <div class="card-body">
+                <div class="card-body">
+                    <form action="{{ route('training.store') }}" id="form-create" method="post">
+                        @csrf
+                        @method('PUT')
                         <div id="basic-update">
                             <!-- Seller Details -->
                             <h3>Data 1</h3>
                             <section>
-                                <form>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="mb-3">
-                                                <label for="basicpill-firstname-input">Tahun Anggaran</label>
-                                                <select name="" class="form-select" id="">
-                                                    <option value="">Pilih anggaran</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="mb-3">
-                                                <label for="basicpill-lastname-input">Sumber Dana</label>
-                                                <select name="" class="form-select" id="">
-                                                    <option value="">Pilih sumber dana</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="mb-3">
-                                                <label for="basicpill-phoneno-input">Nama</label>
-                                                <input type="text" class="form-control" id="basicpill-phoneno-input"
-                                                    placeholder="Enter Your Name.">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="mb-3">
-                                                <label for="basicpill-email-input">Kualifikasi</label>
-                                                <select name="" class="form-select" id="">
-                                                    <option value="">Pilih Kualifikasi</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                </form>
-                            </section>
-
-                            <!-- Company Document -->
-                            <h3>Data 2</h3>
-                            <section>
-                                <form>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="mb-3">
-                                                <label for="basicpill-pancard-input">Sub Klasifikasi</label>
-                                                <select name="" class="form-select" id="">
-                                                    <option value="">Pilih Kualifikasi</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-6">
-                                            <div class="mb-3">
-                                                <label for="basicpill-vatno-input">Waktu Pelaksanaan</label>
-                                                <input type="date" class="form-control" id="basicpill-vatno-input"
-                                                    placeholder="Enter Your VAT/TIN No.">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="mb-3">
-                                                <label for="basicpill-cstno-input">Selesai Pelaksanaan</label>
-                                                <input type="date" class="form-control" id="basicpill-cstno-input"
-                                                    placeholder="Enter Your CST No.">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-6">
-                                            <div class="mb-3">
-                                                <label for="basicpill-servicetax-input">Jam Pelajaran</label>
-                                                <input type="date" class="form-control"
-                                                    id="basicpill-servicetax-input"
-                                                    placeholder="Enter Your Service Tax No.">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </section>
-
-                            <!-- Bank Details -->
-                            <h3>Data 3</h3>
-                            <section>
-                                <div>
-                                    <form>
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <div class="mb-3">
-                                                    <label for="basicpill-phoneno-input">Jenjang KKNI</label>
-                                                    <select name="" class="form-select" id="">
-                                                        <option value="">Pilih Jenjang KKNI</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="mb-3">
-                                                    <label for="basicpill-email-input">Klasifikasi</label>
-                                                    <select name="" class="form-select" id="">
-                                                        <option value="">Pilih Klasifikasi</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <div class="mb-3">
-                                                    <label for="basicpill-phoneno-input">Lokasi</label>
-                                                    <textarea name="" id="" class="form-control"></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="mb-3">
-                                                    <label for="basicpill-email-input">Keterangan</label>
-                                                    <textarea name="" id="" class="form-control"></textarea>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </section>
-                            <!-- Confirm Details -->
-                            <h3>Data 4</h3>
-                            <section>
                                 <div class="row">
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-3">
                                         <div class="mb-3">
-                                            <label for="basicpill-companyuin-input">Metode Pelatihan</label>
-                                            <select name="dinas_id" class="form-select" id="">
-                                                <option value="2">Pilih Metode Pelatihan</option>
+                                            <label for="basicpill-firstname-input">Tahun Anggaran</label>
+                                            <select name="fiscal_year_id" class="form-select "
+                                                id="update-list-fiscal-year">
+                                                <option value="">Pilih Tahun Anggaran</option>
+                                            </select>
+                                            @error('fiscal_year_id')
+                                                <p class="text-danger">
+                                                    {{ $message }}
+                                                </p>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="mb-3">
+                                            <label for="basicpill-lastname-input">Sumber Dana</label>
+                                            <select name="" class="form-select" id="update-list-fund-source">
+                                                <option value="">Pilih Kualifikasi</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="basicpill-declaration-input">Jam Pelajaran</label>
-                                            <input type="text" class="form-control" id="basicpill-Declaration-input"
-                                                placeholder="Declaration Details">
+                                            <label for="basicpill-lastname-input">Nama</label>
+                                            <input name="name" type="text" class="form-control"
+                                                id="basicpill-phoneno-input" placeholder="Enter Your Name.">
+                                            @error('name')
+                                                <p class="text-danger">
+                                                    {{ $message }}
+                                                </p>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <div class="mb-3">
+                                            <label for="basicpill-phoneno-input">Kualifikasi</label>
+                                            <select name="" class="form-select " id="update-list-qualifications">
+                                                <option value="">Pilih Kualifikasi</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="mb-3">
+                                            <label for="basicpill-email-input">Jenjang KKNI</label>
+                                            <select name="qualification_level_id" class="form-select "
+                                                id="update-list-qualification-level">
+                                            </select>
+                                            @error('qulification_level_id')
+                                                <p class="text-danger">
+                                                    {{ $message }}
+                                                </p>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="mb-3">
+                                            <label for="basicpill-email-input">Klasifikasi</label>
+                                            <select name="" class="form-select" id="update-list-classifications">
+                                                <option value="">Pilih Kualifikasi</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="mb-3">
+                                            <label for="basicpill-email-input">Sub Klasifikasi</label>
+                                            <select name="sub_classifications_id" class="form-select"
+                                                id="update-list-sub-classifications">
+                                            </select>
+                                            @error('sub_classification_id')
+                                                <p class="text-danger">
+                                                    {{ $message }}
+                                                </p>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
                             </section>
+
+                            <!-- Company Document -->
+                            <h3>Data 2</h3>
+                            <section>
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <div class="mb-3">
+                                            <label for="basicpill-phoneno-input">Waktu Pelaksanaan</label>
+                                            <input name="start_at" type="date" class="form-control"
+                                                id="basicpill-phoneno-input" placeholder="Enter Your Name.">
+                                            @error('start_at')
+                                                <p class="text-danger">
+                                                    {{ $message }}
+                                                </p>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="mb-3">
+                                            <label for="basicpill-email-input">Selesai Pelaksanaan</label>
+                                            <input name="end_time" type="date" class="form-control"
+                                                id="basicpill-phoneno-input" placeholder="Enter Your Name.">
+                                            @error('end_time')
+                                                <p class="text-danger">
+                                                    {{ $message }}
+                                                </p>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="mb-3">
+                                            <label for="basicpill-email-input">Jam Pelajaran</label>
+                                            <input type="text" name="lesson_hour" class="form-control"
+                                                id="basicpill-phoneno-input" placeholder="Enter Your Name.">
+                                            @error('lesson_hour')
+                                                <p class="text-danger">
+                                                    {{ $message }}
+                                                </p>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="mb-3">
+                                            <label for="basicpill-email-input">Metode Pelatihan</label>
+                                            <select name="training_method_id" class="form-select"
+                                                id="update-list-training-method">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label for="basicpill-lastname-input">Lokasi</label>
+                                        <textarea name="location" id="" class="form-control"></textarea>
+                                        @error('location')
+                                            <p class="text-danger">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="basicpill-lastname-input">Keterangan</label>
+                                        <textarea name="description" id="" class="form-control"></textarea>
+                                        @error('description')
+                                            <p class="text-danger">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </section>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div>
@@ -376,25 +394,31 @@
                     <div class="card-body">
                         <div class="badge bg-light text-info">
                             <p class="mb-0 px-3 py-1 fs-6">
-                                2022
+                                {{ $training->fiscalYear->name }}
                             </p>
                         </div>
                         <div class="">
                             <p class="mb-0 mt-3 fs-4" style="font-weight: 600">
-                                Bimtek SMKK
+                                {{ $training->name }}
                             </p>
                             <p>
-                                Dinas Bina marga dan bina Konstruksi
+                                {{ $training->description }}
                             </p>
                         </div>
                         <div class="d-flex justify-content-header gap-3 mt-4">
                             <div class="">
-                                <button class="btn btn-danger">
+                                <button class="btn btn-danger btn-delete"  data-id="{{ $training->id }}">
                                     Hapus
                                 </button>
                             </div>
                             <div class="">
-                                <button data-bs-toggle="modal" data-bs-target="#modal-update" class="btn btn-warning">
+                                <button class="btn btn-warning btn-edit" id="btn-edit-{{ $training->id }}"
+                                    data-id="{{ $training->id }}" data-name="{{ $training->name }}"
+                                    data-lesson_hour="{{ $training->lesson_hour }}"
+                                    data-start_at="{{ \Carbon\Carbon::parse($training->start_at)->format('Y-m-d') }}"
+                                    data-end_at="{{ \Carbon\Carbon::parse($training->end_at)->format('Y-m-d') }}"
+                                    data-location="{{ $training->location }}"
+                                    data-description="{{ $training->description }}">
                                     Edit
                                 </button>
                             </div>
@@ -408,12 +432,42 @@
                 </div>
             </div>
         @empty
-            data kosong
+        <tr>
+            <td colspan="3" class="text-center">
+                <div class="d-flex justify-content-center" style="min-height:16rem">
+                    <div class="my-auto">
+                        <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                        <h4 class="text-center mt-4">Pelatihan Masih Kosong!!</h4>
+                    </div>
+                </div>
+            </td>
+        </tr>
         @endforelse
     </div>
+    <x-delete-modal-component />
+
 @endsection
 @section('script')
     <script>
+        $('.btn-delete').click(function() {
+            id = $(this).data('id')
+            var actionUrl = `training.destroy/${id}`;
+            $('#form-delete').attr('action', actionUrl);
+            $('#modal-delete').modal('show')
+        })
+
+        $('.btn-edit').click(function() {
+            const formData = getDataAttributes($(this).attr('id'))
+            var actionUrl = `training.update/${formData['id']}`;
+            $('#form-update').attr('action', actionUrl);
+            setFormValues('form-update', formData)
+            $('#form-update').data('id', formData['id'])
+            $('#form-update').attr('action', );
+            $('#modal-update').modal('show')
+        })
+
+        get();
+
         function get() {
             $.ajax({
                 url: "{{ route('list-classifications') }}",
@@ -422,87 +476,24 @@
                 success: function(response) {
                     $.each(response.data, function(index, item) {
                         var option = `<option value="${item.id}">${item.name}</option>`
+                        $('#update-list-classifications').append(option);
                         $('#list-classifications').append(option);
                     });
-
-                    // Tambahkan event listener untuk perubahan pemilihan klasifikasi
                     $('#list-classifications').change(function() {
                         var selectedClassificationId = $(this).val();
-                        $('#list-sub-classifications')
-                    .empty(); // Kosongkan subklasifikasi sebelum mengambil yang baru
-
                         if (selectedClassificationId !== '') {
                             subclassifications(
-                            selectedClassificationId); // Panggil fungsi subclassifications dengan ID klasifikasi yang dipilih
+                                selectedClassificationId
+                                );
                         }
                     });
-                }
-            });
-        }
-        training_method_id()
-        function training_method_id() {
-            $.ajax({
-                url: "{{ route('list-training-method') }}",
-                type: 'GET',
-                dataType: "JSON",
-                success: function(response) {
-                    $.each(response.data, function(index, item) {
-                        var option = `<option value="${item.id}">${item.name}</option>`
-                        $('#list-training-method').append(option);
-                    });
-                }
-            });
-        }
-        qualifications()
-        function qualifications() {
-            $.ajax({
-                url: "{{ route('list-qualifications') }}",
-                type: 'GET',
-                dataType: "JSON",
-                success: function(response) {
-                    $.each(response.data, function(index, item) {
-                        var option = `<option value="${item.id}">${item.name}</option>`
-                        $('#list-qualifications').append(option);
-                    });
-
-                    // Tambahkan event listener untuk perubahan pemilihan klasifikasi
-                    $('#list-qualifications').change(function() {
+                    $('#update-list-classifications').change(function() {
                         var selectedClassificationId = $(this).val();
-                        $('#list-qualification-level')
-                    .empty(); // Kosongkan subklasifikasi sebelum mengambil yang baru
-
                         if (selectedClassificationId !== '') {
-                            listqualificationlevel(
-                            selectedClassificationId); // Panggil fungsi subclassifications dengan ID klasifikasi yang dipilih
+                            subclassifications(
+                                selectedClassificationId
+                                );
                         }
-                    });
-                }
-            });
-        }
-        listfiscalyear()
-        function listfiscalyear() {
-            $.ajax({
-                url: "{{ route('list-fiscal-year') }}",
-                type: 'GET',
-                dataType: "JSON",
-                success: function(response) {
-                    $.each(response.data, function(index, item) {
-                        var option = `<option value="0271dab3-18e6-3fa3-b589-385eb42c529f">${item.name}</option>`
-                        $('#list-fiscal-year').append(option);
-                    });
-                }
-            });
-        }
-        listfundsource()
-        function listfundsource() {
-            $.ajax({
-                url: "{{ route('list-fund-source') }}",
-                type: 'GET',
-                dataType: "JSON",
-                success: function(response) {
-                    $.each(response.data, function(index, item) {
-                        var option = `<option value="${item.id}">${item.name}</option>`
-                        $('#list-fund-source').append(option);
                     });
                 }
             });
@@ -517,10 +508,67 @@
                     $.each(response.data, function(index, item) {
                         var option = `<option value="${item.id}">${item.name}</option>`
                         $('#list-sub-classifications').append(option);
+                        $('#update-list-sub-classifications').append(option);
                     });
                 }
             });
         }
+
+        training_method_id()
+        function training_method_id() {
+            $.ajax({
+                url: "{{ route('list-training-method') }}",
+                type: 'GET',
+                dataType: "JSON",
+                success: function(response) {
+                    $.each(response.data, function(index, item) {
+                        var option = `<option value="${item.id}">${item.name}</option>`
+                        $('#list-training-method').append(option);
+                        $('#update-list-training-method').append(option);
+                    });
+                }
+            });
+        }
+
+        qualifications()
+        function qualifications() {
+            $.ajax({
+                url: "{{ route('list-qualifications') }}",
+                type: 'GET',
+                dataType: "JSON",
+                success: function(response) {
+                    $.each(response.data, function(index, item) {
+                        var option = `<option value="${item.id}">${item.name}</option>`
+                        $('#list-qualifications').append(option);
+                        $('#update-list-qualifications').append(option);
+                    });
+                    $('#list-qualifications').change(function() {
+                        var selectedClassificationId = $(this).val();
+                        $('#list-qualification-level')
+                        $('#update-list-qualification-level')
+                            .empty(); 
+
+                        if (selectedClassificationId !== '') {
+                            listqualificationlevel(
+                                selectedClassificationId
+                            ); 
+                        }
+                    });
+                    $('#update-list-qualifications').change(function() {
+                        var selectedClassificationId = $(this).val();
+                        $('#list-qualification-level')
+                        $('#update-list-qualification-level')
+                            .empty();
+                        if (selectedClassificationId !== '') {
+                            listqualificationlevel(
+                                selectedClassificationId
+                            ); 
+                        }
+                    });
+                }
+            });
+        }
+
         function listqualificationlevel(classificationId) {
             $.ajax({
                 url: "list-qualification-level/" + classificationId,
@@ -530,12 +578,43 @@
                     $.each(response.data, function(index, item) {
                         var option = `<option value="${item.id}">${item.name}</option>`
                         $('#list-qualification-level').append(option);
+                        $('#update-list-qualification-level').append(option);
+                    });
+                }
+            });
+        }
+        listfiscalyear()
+
+        function listfiscalyear() {
+            $.ajax({
+                url: "{{ route('list-fiscal-year') }}",
+                type: 'GET',
+                dataType: "JSON",
+                success: function(response) {
+                    $.each(response.data, function(index, item) {
+                        var option =
+                            `<option value="0271dab3-18e6-3fa3-b589-385eb42c529f">${item.name}</option>`
+                        $('#list-fiscal-year').append(option);
+                        $('#update-list-fiscal-year').append(option);
                     });
                 }
             });
         }
 
-        // Panggil fungsi get untuk mengisi klasifikasi pertama kali
-        get();
+        listfundsource()
+        function listfundsource() {
+            $.ajax({
+                url: "{{ route('list-fund-source') }}",
+                type: 'GET',
+                dataType: "JSON",
+                success: function(response) {
+                    $.each(response.data, function(index, item) {
+                        var option = `<option value="${item.id}">${item.name}</option>`
+                        $('#list-fund-source').append(option);
+                        $('#update-list-fund-source').append(option);
+                    });
+                }
+            });
+        }
     </script>
 @endsection

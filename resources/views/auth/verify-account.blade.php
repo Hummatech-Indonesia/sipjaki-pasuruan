@@ -54,15 +54,13 @@
                             <div class="p-2">
                                 @if (session('success'))
                                     <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                        {{ session('success') }}
+                                        {{ session('success') }} Silahkan <a href="{{ route('login') }}">Login</a> 
                                     </div>
                                 @else
                                     <div class="alert alert-info text-center mb-4" role="alert">
-                                        Verifikasi akun anda!
-                                    </div>
+                                        Verifikasi akun anda! </div>
                                 @endif
-                                <form class="form-horizontal" action="{{ route('verify-token/' ,$Id) }}"
-                                    method="POST">
+                                <form class="form-horizontal" action="{{ route('verify-token/', $Id) }}" method="POST">
                                     @csrf
                                     @method('PUT')
                                     <div class="mb-3">
@@ -79,7 +77,7 @@
                                             <input type="text" class="text-center form-control" id="email-part5"
                                                 maxlength="1" oninput="updateTokenValue()">
                                         </div>
-                                        <input type="hidden" name="token" id="token" >
+                                        <input type="hidden" name="token" id="token">
                                     </div>
                                     <div class="mt-4 d-flex justify-content-end">
                                         <button type="submit" class="btn text-white" style="background-color: #1B3061">
@@ -107,6 +105,7 @@
             var token = emailPart1 + emailPart2 + emailPart3 + emailPart4 + emailPart5;
             document.getElementById('token').value = token;
         }
+
         function combineInputValues(event) {
             event.preventDefault();
             // Lakukan proses pengiriman form atau manipulasi data sesuai kebutuhan Anda

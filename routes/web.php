@@ -149,10 +149,6 @@ Route::resources([
 
 Route::middleware(['role:dinas'])->group(function () {
     Route::resource('accident', AccidentController::class)->except('create', 'edit', 'show');
-    Route::get('sub-qualification', function () {
-        return view('pages.sub-qualification');
-    })->name('sub-qualification');
-
     Route::resources([
         'projects' => ProjectController::class,
         'fields' => FieldController::class
@@ -161,19 +157,6 @@ Route::middleware(['role:dinas'])->group(function () {
 
 // Route::middleware('role:service provider',function(){
 // });
-
-
-Route::get('sub-qualification', function () {
-    return view('pages.sub-qualification');
-})->name('sub-qualification');
-
-
-
-Route::get('sub-classifications/{classification}', [SubClassificationController::class, 'showSubClassification']);
-
-Route::post('sub-classifications/{classification}', [SubClassificationController::class, 'store']);
-Route::put('sub-classifications/{sub_classification}', [SubClassificationController::class, 'update']);
-Route::delete('sub-classifications/{sub_classification}', [SubClassificationController::class, 'delete']);
 
 Route::get('agencies', [UserController::class, 'index'])->name('agencies.index');
 Route::post('agencies', [UserController::class, 'store'])->name('agencies.store');
@@ -184,26 +167,6 @@ Route::get('test', function () {
     return view('auth.verify');
 });
 
-Route::get('accident', function () {
-    return view('pages.dinas.accident');
-})->name('accident');
-Route::get('detail-accident.index', function () {
-    return view('pages.dinas.detail-accident.index');
-})->name('detail-accident.index');
-Route::get('reset-password/{id}', function () {
-    return view('auth.passwords.reset');
-})->name('reset-passsword/');
-Route::get('send-email', function () {
-    return view('auth.send-email');
-})->name('send-email');
-
-Route::get('/redirect-verify-account', [VerificationController::class, 'verifyAccount'])->name('redirect.verify.account');
-Route::put('update-token/{user}', [VerificationController::class, 'updateToken']);
-Route::put('verify-token/{user}', [VerificationController::class, 'verifyToken']);
-
-    Route::get('verify-account/{user}', function () {
-        return view('auth.verify-account');
-    })->name('verify.account/');
 // });
 
 Route::get('images', [ImagesController::class, 'index']);
@@ -215,9 +178,6 @@ Route::get('profile-OPD', function () {
     return view('pages.profile-opd');
 });
 
-//Reset Password
-Route::post('send-email-reset-passsword', [ForgotPasswordController::class, 'sendEmail'])->name('send-email-reset-passsword');
-Route::put('reset-passsword-user/{user}', [ResetPasswordController::class, 'reset'])->name('reset-passsword-user/');
 
 //Training Member
 Route::get('training-members/{training}', [TrainingMemberController::class, 'index']);
@@ -228,9 +188,7 @@ Route::post('import-training-members', [TrainingMemberController::class, 'import
 Route::resource('worker', WorkerController::class)->only('index', 'update', 'destroy');
 Route::post('worker/{service_provider}', [WorkerController::class, 'store']);
 
-// Training
-Route::get('training' , [TrainingController::class , 'index'])->name('training');
-Route::post('training', [TrainingController::class , 'store'])->name('training.store');
+
 
 require __DIR__.'/aldy.php';
 require __DIR__.'/arif.php';
