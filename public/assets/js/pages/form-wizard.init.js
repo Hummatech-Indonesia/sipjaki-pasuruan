@@ -1,7 +1,7 @@
 $(function () {
     $("#basic-example").steps({
         headerTag: "h3", bodyTag: "section", transitionEffect: "slide", onFinished: function () {
-            $("#form-create").submit();
+            $('#form-create').submit()
         }
     }),
         $("#basic-update").steps({
