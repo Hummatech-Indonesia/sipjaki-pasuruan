@@ -4,7 +4,7 @@
 @endsection
 @section('content')
     <p class="fs-4 text-dark" style="font-weight: 600">
-        Pelatihan
+        Detail Paket Pekerjaan
     </p>
     <div class="d-flex justify-content-between">
         <div class="d-flex justify-content-header gap-3">
@@ -75,11 +75,9 @@
                                             <label for="basicpill-source_found">Sumber Dana</label>
                                             <select name="source_fund" class="form-control select2" style="width:100%"
                                                 id="basicpill-source_found">
-                                                <option value="option a">option a</option>
-                                                <option value="option a">option a</option>
-                                                <option value="option a">option a</option>
-                                                <option value="option a">option a</option>
-                                                <option value="option a">option a</option>
+                                                @foreach ($fundSources as $fundSource)
+                                                <option value="{{ $fundSource->id }}">{{ $fundSource->name }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -244,6 +242,7 @@
             </div>
         </div>
     </div>
+
     <div class="modal fade bs-example-modal-md" id="modal-detail" tabindex="-1" role="dialog"
         aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-md">
@@ -313,7 +312,6 @@
                                         <p class="mb-2 text-dark" style="font-weight:600;">Teknisi</p>
                                     </div>
                                 </div>
-
                                 <div class="row mb-1">
                                     <div class="col-md-5">
                                         <p class="mb-2 text-dark">Fisik Bulan :</p>
@@ -387,6 +385,7 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div>
+
     <div class="modal fade bs-example-modal-xl" id="modal-update" tabindex="-1" role="dialog"
         aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">

@@ -9,6 +9,7 @@ use App\Http\Controllers\FiscalYearController;
 use App\Http\Controllers\FundSourceController;
 use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\QualificationController;
 use App\Http\Controllers\QualificationLevelController;
 use App\Http\Controllers\RuleCategoriesController;
@@ -81,9 +82,11 @@ Auth::routes(['verify' => true]);
         ]);
     });
 
-    // Route::middleware('role:dinas',function(){
-
-    // });
+    Route::middleware(['role:dinas'])->group(function () {
+        Route::resources([
+            'projects' => ProjectController::class
+        ]);
+    });
 
     // Route::middleware('role:service provider',function(){
 
@@ -106,9 +109,6 @@ Auth::routes(['verify' => true]);
         'users' => UserController::class,
         'rules' => RuleController::class,
     ]);
-    Route::get('work-packages',function(){
-        return view('pages.dinas.work-package');
-    })->name('work-package.index');
     Route::get('sub-classifications/{classification}', [SubClassificationController::class, 'showSubClassification']);
     Route::post('sub-classifications/{classification}', [SubClassificationController::class, 'store']);
     Route::put('sub-classifications/{sub_classification}', [SubClassificationController::class, 'update']);
