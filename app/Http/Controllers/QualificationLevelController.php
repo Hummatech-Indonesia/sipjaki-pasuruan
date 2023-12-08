@@ -110,7 +110,7 @@ class QualificationLevelController extends Controller
      * @param  mixed $qualification
      * @return JsonResponse
      */
-    public function listQualificationLevel(Request $request, QualificationLevel $qualification): JsonResponse
+    public function listQualificationLevel(Request $request, Qualification $qualification): JsonResponse
     {
         $request->merge(['qualification_id' => $qualification->id]);
         return ResponseHelper::success(QualificationLevelResource::collection($this->qualificationLevel->search($request)));
