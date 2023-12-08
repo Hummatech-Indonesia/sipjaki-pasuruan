@@ -17,6 +17,7 @@ use App\Http\Controllers\QualificationLevelController;
 use App\Http\Controllers\RuleCategoriesController;
 use App\Http\Controllers\RuleController;
 use App\Http\Controllers\SubClassificationController;
+use App\Http\Controllers\TrainingController;
 use App\Http\Controllers\TrainingMemberController;
 use App\Http\Controllers\TrainingMethodController;
 use App\Http\Controllers\UserController;
@@ -122,6 +123,24 @@ Route::resources([
 ]);
 // });
 
+    Route::middleware(['role:dinas'])->group(function () {
+        Route::resource('accident', AccidentController::class)->except('create', 'edit', 'show');
+        Route::resources([
+            'projects' => ProjectController::class
+        ]);
+
+        Route::get('list-fiscal-year', [FiscalYearController::class, 'listFiscalYear'])->name('list-fiscal-year');
+        Route::get('list-fund-source', [FundSourceController::class, 'listFundSource'])->name('list-fund-source');
+
+        Route::get('list-qualifications', [QualificationController::class, 'listQualifications'])->name('list-qualifications');
+        Route::get('list-qualification-level/{qualification}', [QualificationLevelController::class, 'listQualificationLevel'])->name('list-qualification-level/');
+
+        Route::get('list-classifications', [ClassificationController::class, 'listClassifications'])->name('list-classifications');
+        Route::get('list-sub-classifications/{classification}', [SubClassificationController::class, 'listSubClassificcation'])->name('list-sub-classifications/');
+    });
+
+    // Route::middleware('role:service provider',function(){
+    // });
 // Route::middleware('role:dinas',function(){
 //     // Accident
 // });
@@ -166,6 +185,9 @@ Route::get('test', function () {
 Route::get('accident', function () {
     return view('pages.dinas.accident');
 })->name('accident');
+Route::get('detail-accident.index', function () {
+    return view('pages.dinas.detail-accident.index');
+})->name('detail-accident.index');
 Route::get('reset-password/{id}', function () {
     return view('auth.passwords.reset');
 })->name('reset-passsword/');
@@ -177,12 +199,9 @@ Route::get('/redirect-verify-account', [VerificationController::class, 'verifyAc
 Route::put('update-token/{user}', [VerificationController::class, 'updateToken']);
 Route::put('verify-token/{user}', [VerificationController::class, 'verifyToken']);
 
-Route::get('/verify-account/{user}', function () {
-    return view('auth.verify-account');
-})->name('verify.account/');
-Route::get('training', function () {
-    return view('pages.dinas.training');
-})->name('training');
+    Route::get('verify-account/{user}', function () {
+        return view('auth.verify-account');
+    })->name('verify.account/');
 // });
 
 Route::get('images', [ImagesController::class, 'index']);
@@ -208,8 +227,6 @@ Route::resource('worker', WorkerController::class)->only('index', 'update', 'des
 Route::post('worker/{service_provider}', [WorkerController::class, 'store']);
 
 
-require __DIR__.'/aldy.php';
-require __DIR__.'/arif.php';
-require __DIR__.'/daffa.php';
-require __DIR__.'/ibnu.php';
-require __DIR__.'/kader.php';
+// Training
+Route::get('training' , [TrainingController::class , 'index'])->name('training');
+Route::post('training', [TrainingController::class , 'store'])->name('training.store');

@@ -31,14 +31,13 @@ class TrainingController extends Controller
         $trainings = $this->training->customPaginate($request, 15);
         
         if( $request->is('api/*')){
-
             $data['paginate'] = $this->customPaginate($trainings->currentPage(), $trainings->lastPage());
             $data['data'] = TrainingResource::collection($trainings);
             return ResponseHelper::success($data,trans('alert.get_success'));
 
         }else{
 
-            return view('pages.categoryContract',compact('trainings'));
+            return view('pages.dinas.training',compact('trainings'));
 
         }
     }
@@ -48,6 +47,7 @@ class TrainingController extends Controller
      */
     public function store(TrainingRequest $request): RedirectResponse | JsonResponse
     {
+        dd($request->all());
         $this->training->store($request->validated());
 
         if( $request->is('api/*')){
