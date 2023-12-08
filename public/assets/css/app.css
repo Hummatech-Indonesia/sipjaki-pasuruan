@@ -2717,7 +2717,7 @@ select {
 }
 
 .site-header .site-main-menu li {
-    margin: 0 23px;
+    margin: 0 12px;
     position: relative;
     padding: 36px 0;
     -webkit-transition: all 0.3s ease-in-out;
@@ -2837,7 +2837,7 @@ select {
 
 .site-header .site-main-menu li .sub-menu li a:hover,
 .site-header .site-main-menu li .sub-menu li a.current_page {
-    color: #fa7070;
+    color: #FFC928;
 }
 
 .site-header .site-main-menu li .sub-menu li:last-child a {
@@ -2860,7 +2860,7 @@ select {
 
 .site-header .nav-dark .site-main-menu li a:hover,
 .site-header .nav-dark .site-main-menu li a.current_page {
-    color: #fa7070;
+    color: #FFC928;
 }
 
 .site-header .nav-dark .site-main-menu li.menu-item-has-children:after {
@@ -13837,10 +13837,6 @@ Logo List
     font-weight: 500;
 }
 
-.page-banner .bradcurmed li a:hover {
-    color: #fa7070;
-}
-
 .page-banner .circle {
     position: absolute;
     top: -51%;
@@ -14078,10 +14074,6 @@ Logo List
 .page-banner .bradcurmed li a {
     color: #2b2350;
     font-weight: 500;
-}
-
-.page-banner .bradcurmed li a:hover {
-    color: #fa7070;
 }
 
 .page-banner .circle {

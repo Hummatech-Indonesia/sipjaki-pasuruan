@@ -45,12 +45,24 @@ Auth::routes(['verify' => true]);
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+    Route::get('/tenaga-ahli',function(){
+        return view('tenaga-ahli');
+    });
+
+    Route::get('/tenaga-terampil',function(){
+        return view('tenaga-terampil');
+    });
+
     Route::get('/faq',function(){
         return view('faq');
     });
 
     Route::get('/data-paket-pekerjaan',function(){
         return view('dpp');
+    });
+
+    Route::get('/opd',function(){
+        return view('opd');
     });
 
 
@@ -160,3 +172,4 @@ Route::get('training-members/{training}', [TrainingMemberController::class, 'ind
 Route::post('training-members/{training}', [TrainingMemberController::class, 'store']);
 Route::put('training-members/{training_member}', [TrainingMemberController::class, 'update']);
 Route::delete('training-members/{training_member}', [TrainingMemberController::class, 'destroy']);
+Route::post('import-training-members', [TrainingMemberController::class, 'import']);
