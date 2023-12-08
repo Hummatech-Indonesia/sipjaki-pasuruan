@@ -88,6 +88,6 @@ class UserRepository extends BaseRepository implements UserInterface
     {
         return $this->model->query()
             ->where('email', $data['email'])
-            ->get();
+            ->first();
     }
 }
