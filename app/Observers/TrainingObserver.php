@@ -10,10 +10,9 @@ class TrainingObserver
     /**
      * Handle the Training "creating" event.
      */
-    public function creatinf(Training $training): void
+    public function creating(Training $training): void
     {
         $training->id = Uuid::uuid();
-        $training->dinas_id = auth()->user()->dinas->id;
     }
 
 }
