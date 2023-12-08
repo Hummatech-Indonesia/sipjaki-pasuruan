@@ -1,5 +1,20 @@
 @extends('layouts.app-landing-page')
 @section('content')
+<style>
+    .search-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.search-icon {
+    margin-left: 10px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+</style>
 <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
     <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
@@ -15,18 +30,17 @@
     <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="d-flex d-row align-items-center">
-                        <div class="position-relative col-lg-3">
-                            <input type="search" class="form-control  py-2 ps-5" id="search-name" placeholder="Search">
-                            <i class="bx bx-search-alt-2
-                            position-absolute top-50 translate-middle-y fs-6 text-dark ms-3"></i>
+                    <div class="d-flex d-row align-items-center mb-3">
+                        <div class="position-relative col-lg-3 search-container">
+                            <input type="search" class="py-2 ps-5" id="search-name" placeholder="Search">
+                            <i class="bx bx-search-alt search-icon"></i>
                         </div>
-                        <select id="formrow-inputState" class="form-select col-lg-2 me-2">
+                        <select class="form-select col-lg-2 me-2">
                             <option disabled="" selected="">Choose...</option>
                             <option>A++</option>
                             <option>B++</option>
                         </select>
-                        <select id="formrow-inputState" class="form-select col-lg-2">
+                        <select class="form-select col-lg-2">
                             <option disabled="" selected="">Choose...</option>
                             <option>A++</option>
                             <option>B++</option>
