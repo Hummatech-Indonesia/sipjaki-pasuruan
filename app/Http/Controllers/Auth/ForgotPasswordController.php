@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Contracts\Interfaces\ForgotPasswordInterface;
+use App\Contracts\Interfaces\UserInterface;
 use App\Contracts\Repositories\ForgotPasswordRepository;
 use App\Helpers\ResponseHelper;
 use App\Http\Controllers\Controller;
@@ -14,9 +15,11 @@ use Illuminate\Support\Str;
 class ForgotPasswordController extends Controller
 {
     private ForgotPasswordInterface $forgotPassword;
-    public function __construct(ForgotPasswordRepository $forgotPassword)
+    private UserInterface $user;
+    public function __construct(ForgotPasswordInterface $forgotPassword, UserInterface $user)
     {
         $this->forgotPassword = $forgotPassword;
+        $this->user = $user;
     }
 
     /**
@@ -30,8 +33,9 @@ class ForgotPasswordController extends Controller
         $data = $request->validated();
         $data['token'] = strtoupper(Str::random(5));
         $data['expired_token'] = now()->addMinutes(40);
-        $this->forgotPassword->store($data);
-        Mail::to($data['email'])->send(new ForgotPasswordMail(['email' => $data['email'], 'token' => $data['token']]));
+        $forgotPassword = $this->forgotPassword->store($data);
+        $user = $this->user->getWhere(['email' => $forgotPassword['email']]);
+        Mail::to($data['email'])->send(new ForgotPasswordMail(['email' => $data['email'], 'token' => $data['token'], 'id' => $user->id]));
 
 
         return ResponseHelper::success(null, trans('auth.send_email_forgot_password'));

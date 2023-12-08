@@ -77,4 +77,17 @@ class UserRepository extends BaseRepository implements UserInterface
             ->whereHas('dinas')
             ->fastPaginate($pagination);
     }
+
+    /**
+     * getWhere
+     *
+     * @param  mixed $data
+     * @return mixed
+     */
+    public function getWhere(array $data): mixed
+    {
+        return $this->model->query()
+            ->where('email', $data['email'])
+            ->get();
+    }
 }
