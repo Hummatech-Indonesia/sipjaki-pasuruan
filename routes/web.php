@@ -53,6 +53,10 @@ Auth::routes(['verify' => true]);
         return view('tenaga-terampil');
     });
 
+    Route::get('/kecelakaan',function(){
+        return view('kecelakaan');
+    });
+
     Route::get('/faq',function(){
         return view('faq');
     });
