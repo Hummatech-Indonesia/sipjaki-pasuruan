@@ -2,6 +2,7 @@
 
 use App\Enums\CharacteristicProject;
 use App\Enums\CharacteristicProjectEnum;
+use App\Enums\StatusEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -10,6 +11,7 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     * 
      */
     public function up(): void
     {
@@ -29,6 +31,7 @@ return new class extends Migration
             $table->integer('year');
             $table->dateTime('start_at');
             $table->dateTime('end_at');
+            $table->enum('status',[StatusEnum::ACTIVE->value,StatusEnum::NONACTIVE->value]);
             $table->timestamps();
         });
     }
