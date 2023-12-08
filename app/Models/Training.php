@@ -6,11 +6,12 @@ use App\Base\Interfaces\HasDinas;
 use App\Base\Interfaces\HasFiscalYear;
 use App\Base\Interfaces\HasQualificationLevel;
 use App\Base\Interfaces\HasSubClassification;
+use App\Base\Interfaces\HasTrainingMethod;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Training extends Model implements HasDinas,HasFiscalYear,HasSubClassification,HasQualificationLevel
+class Training extends Model implements HasTrainingMethod,HasFiscalYear,HasSubClassification,HasQualificationLevel
 {
     use HasFactory;
 
@@ -18,9 +19,9 @@ class Training extends Model implements HasDinas,HasFiscalYear,HasSubClassificat
     protected $primaryKey = 'id';
     protected $fillable = [
         'id',
-        'dinas_id',
+        'training_method_id',
         'fiscal_year_id',
-        'sub_classificaltion_id',
+        'sub_classifications',
         'qualification_level_id',
         'name',
         'start_at',
@@ -39,9 +40,9 @@ class Training extends Model implements HasDinas,HasFiscalYear,HasSubClassificat
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function dinas(): BelongsTo
+    public function TrainingMethod(): BelongsTo
     {
-        return $this->belongsTo(Dinas::class);
+        return $this->belongsTo(TrainingMethod::class);
     }
 
     /**

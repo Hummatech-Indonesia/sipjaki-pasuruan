@@ -95,7 +95,7 @@
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-email-input">Jenjang KKNI</label>
-                                            <select name="qulification_level_id" class="form-select "
+                                            <select name="qualification_level_id" class="form-select "
                                                 id="list-qualification-level">
                                                 <option value="">Pilih Kualifikasi</option>
                                             </select>
@@ -117,7 +117,7 @@
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-email-input">Sub Klasifikasi</label>
-                                            <select name="sub_classification_id" class="form-select" id="list-sub-classifications">
+                                            <select name="sub_classifications" class="form-select" id="list-sub-classifications">
                                             </select>
                                             @error('sub_classification_id')
                                                 <p class="text-danger">
@@ -172,8 +172,7 @@
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-email-input">Metode Pelatihan</label>
-                                            <select name="" class="form-select" id="">
-                                                <option value="1">ww</option>
+                                            <select name="training_method_id" class="form-select" id="list-training-method">
                                             </select>
                                         </div>
                                     </div>
@@ -440,6 +439,20 @@
                 }
             });
         }
+        training_method_id()
+        function training_method_id() {
+            $.ajax({
+                url: "{{ route('list-training-method') }}",
+                type: 'GET',
+                dataType: "JSON",
+                success: function(response) {
+                    $.each(response.data, function(index, item) {
+                        var option = `<option value="${item.id}">${item.name}</option>`
+                        $('#list-training-method').append(option);
+                    });
+                }
+            });
+        }
         qualifications()
         function qualifications() {
             $.ajax({
@@ -474,7 +487,7 @@
                 dataType: "JSON",
                 success: function(response) {
                     $.each(response.data, function(index, item) {
-                        var option = `<option value="${item.id}">${item.name}</option>`
+                        var option = `<option value="16561d90-162e-344d-b90c-70006c5b1aa7">${item.name}</option>`
                         $('#list-fiscal-year').append(option);
                     });
                 }

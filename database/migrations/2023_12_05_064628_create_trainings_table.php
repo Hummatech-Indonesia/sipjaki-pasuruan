@@ -6,14 +6,14 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
+    /** 
      * Run the migrations.
      */
     public function up(): void
     {
         Schema::create('trainings', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('dinas_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignUuid('training_method_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignUuid('fiscal_year_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignUuid('sub_classifications')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignUuid('qualification_level_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();

@@ -138,7 +138,7 @@ Route::resources([
         Route::get('list-classifications', [ClassificationController::class, 'listClassifications'])->name('list-classifications');
         Route::get('list-sub-classifications/{classification}', [SubClassificationController::class, 'listSubClassificcation'])->name('list-sub-classifications/');
 
-        Route::get('list-training-method', [TrainingMethodController::class, 'listTrainingMethod']);
+        Route::get('list-training-method', [TrainingMethodController::class, 'listTrainingMethod'])->name('list-training-method');
     });
 
     // Route::middleware('role:service provider',function(){

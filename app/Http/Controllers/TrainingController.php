@@ -47,7 +47,7 @@ class TrainingController extends Controller
      */
     public function store(TrainingRequest $request): RedirectResponse | JsonResponse
     {
-        dd($request->all());
+        // dd($request->all());
         $this->training->store($request->validated());
 
         if( $request->is('api/*')){
