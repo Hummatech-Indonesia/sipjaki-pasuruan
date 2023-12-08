@@ -9,6 +9,8 @@
     <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
     <script src="{{ asset('js/plugin.js') }}"></script>
+    <link href="{{ asset('assets/libs/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
+
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @yield('style')
@@ -45,6 +47,11 @@
     <script src="{{ asset('assets/js/pages/dashboard.init.js') }}"></script>
 
     <script src="{{ asset('assets/js/app.js') }}"></script>
+    <script src="{{ asset('assets/libs/jquery-steps/build/jquery.steps.min.js') }}"></script>
+
+    <!-- form wizard init -->
+    <script src="{{ asset('assets/js/pages/form-wizard.init.js') }}"></script>
+    <script src="{{ asset('assets/libs/select2/js/select2.min.js') }}"></script>
     <script>
         // const authToken = localStorage.getItem('token')
         // $.ajaxSetup({
