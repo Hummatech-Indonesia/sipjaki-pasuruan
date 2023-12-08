@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class ServiceProvider extends Model implements HasUser
 {
     use HasFactory;
-
     protected $table = 'service_providers';
     protected $primaryKey = 'id';
     protected $fillable = ['id', 'user_id'];

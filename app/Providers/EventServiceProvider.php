@@ -21,6 +21,7 @@ use App\Models\Training;
 use App\Models\TrainingMember;
 use App\Models\TrainingMethod;
 use App\Models\User;
+use App\Models\Worker;
 use App\Observers\ClassificationObserver;
 use App\Observers\ContractCategoryObserver;
 use App\Observers\DinasObserver;
@@ -41,6 +42,7 @@ use App\Observers\TrainingMemberObserver;
 use App\Observers\TrainingMethodObserver;
 use App\Observers\TrainingObserver;
 use App\Observers\UserObserver;
+use App\Observers\WorkerObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -82,6 +84,8 @@ class EventServiceProvider extends ServiceProvider
         Project::observe(ProjectObserver::class);
         Field::observe(FieldObserver::class);
         ModelsServiceProvider::observe(ServiceProviderObserver::class);
+        Worker::observe(WorkerObserver::class);
+        ModelsServiceProvider::observe(ModelsServiceProvider::class);
     }
 
     /**

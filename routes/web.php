@@ -20,6 +20,7 @@ use App\Http\Controllers\SubClassificationController;
 use App\Http\Controllers\TrainingMemberController;
 use App\Http\Controllers\TrainingMethodController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WorkerController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -99,14 +100,29 @@ Route::resources([
 ]);
 // });
 
-Route::middleware(['role:dinas'])->group(function () {
+    // Route::middleware('role:dinas',function(){
+    //     // Accident
+    // });
+
+    Route::middleware(['role:dinas'])->group(function () {
         Route::resource('accident', AccidentController::class)->except('create', 'edit', 'show');
+        Route::resources([
+            'projects' => ProjectController::class
+        ]);
+    });
+
+    // Route::middleware('role:service provider',function(){
+    // });
+
+    Route::get('sub-qualification', function () {
+        return view('pages.sub-qualification');
+    })->name('sub-qualification');
+
 
     Route::resources([
         'projects' => ProjectController::class,
         'field' => FieldController::class
     ]);
-});
 
     // Route::middleware('role:service provider',function(){
 
@@ -171,3 +187,5 @@ Route::post('training-members/{training}', [TrainingMemberController::class, 'st
 Route::put('training-members/{training_member}', [TrainingMemberController::class, 'update']);
 Route::delete('training-members/{training_member}', [TrainingMemberController::class, 'destroy']);
 Route::post('import-training-members', [TrainingMemberController::class, 'import']);
+Route::resource('worker', WorkerController::class)->only('index', 'update', 'destroy');
+Route::post('worker/{service_provider}', [WorkerController::class, 'store']);

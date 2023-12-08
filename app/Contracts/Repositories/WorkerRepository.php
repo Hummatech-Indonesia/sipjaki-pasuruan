@@ -2,16 +2,14 @@
 
 namespace App\Contracts\Repositories;
 
-use App\Contracts\Interfaces\AccidentInterface;
-use App\Contracts\Repositories\BaseRepository;
-use App\Models\Accident;
+use App\Contracts\Interfaces\WorkerInterface;
+use App\Models\Worker;
 
-
-class AccidentRepository extends BaseRepository implements AccidentInterface
+class WorkerRepository extends BaseRepository implements WorkerInterface
 {
-    public function __construct(Accident $accident)
+    public function __construct(Worker $worker)
     {
-        $this->model = $accident;
+        $this->model = $worker;
     }
 
     /**
@@ -58,7 +56,8 @@ class AccidentRepository extends BaseRepository implements AccidentInterface
      */
     public function update(mixed $id, array $data): mixed
     {
-        return $this->show($id)->update($data);
+        return $this->show($id)
+            ->update($data);
     }
 
     /**
@@ -69,8 +68,7 @@ class AccidentRepository extends BaseRepository implements AccidentInterface
      */
     public function delete(mixed $id): mixed
     {
-        return $this->show($id)->delete();
+        return $this->show($id)
+            ->delete();
     }
-
-
 }

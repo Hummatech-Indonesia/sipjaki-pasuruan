@@ -39,12 +39,14 @@ use App\Contracts\Repositories\TrainingMemberRepository;
 use App\Contracts\Repositories\TrainingMethodRepository;
 use App\Contracts\Interfaces\QualificationLevelInterface;
 use App\Contracts\Interfaces\ServiceProviderInterface;
+use App\Contracts\Interfaces\WorkerInterface;
 use App\Contracts\Repositories\AccidentRepository;
 use App\Contracts\Repositories\ContractCategoryRepository;
 use App\Contracts\Repositories\FieldRepository;
 use App\Contracts\Repositories\SubClassificationRepository;
 use App\Contracts\Repositories\QualificationLevelRepository;
 use App\Contracts\Repositories\ServiceProviderRepository;
+use App\Contracts\Repositories\WorkerRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -70,6 +72,7 @@ class AppServiceProvider extends ServiceProvider
         ServiceProviderInterface::class => ServiceProviderRepository::class,
         AccidentInterface::class => AccidentRepository::class,
         FieldInterface::class => FieldRepository::class,
+        WorkerInterface::class => WorkerRepository::class,
     ];
 
     /**
