@@ -67,7 +67,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasOneDinas, HasO
      */
     public function dinas(): HasOne
     {
-        return $this->hasOne(Dinas::class);
+        return $this->hasOne(Dinas::class, 'user_id');
     }
 
     /**

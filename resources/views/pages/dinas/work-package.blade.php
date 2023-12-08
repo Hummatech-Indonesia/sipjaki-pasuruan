@@ -1,7 +1,5 @@
 @extends('layouts.app')
-@section('style')
-    <link href="{{ asset('assets/libs/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
-@endsection
+
 @section('content')
     <p class="fs-4 text-dark" style="font-weight: 600">
         Detail Paket Pekerjaan
@@ -46,12 +44,12 @@
                         aria-label="Close"></button>
                 </div>
                 <div class="card-body">
-
-                    <div id="basic-example">
-                        <!-- Seller Details -->
-                        <h3>informasi Umum</h3>
-                        <section>
-                            <form>
+                    <form action="{{ route('projects.store') }}" method="POST" id="form-create">
+                        @csrf
+                        <div id="basic-example">
+                            <!-- Seller Details -->
+                            <h3>informasi Umum</h3>
+                            <section>
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
@@ -72,11 +70,12 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="basicpill-source_found">Sumber Dana</label>
-                                            <select name="source_fund" class="form-control select2" style="width:100%"
-                                                id="basicpill-source_found">
+                                            <label for="basicpill-fund_source_id">Sumber Dana</label>
+                                            <select name="fund_source_id" class="form-control select2-create"
+                                                style="width:100%" id="basicpill-fund_source_id">
                                                 @foreach ($fundSources as $fundSource)
-                                                <option value="{{ $fundSource->id }}">{{ $fundSource->name }}</option>
+                                                    <option value="{{ $fundSource->id }}">{{ $fundSource->name }}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -84,43 +83,40 @@
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="basicpill-email-input">Penyedia Jasa</label>
-                                            <select name="source_fund" class="form-control select2" style="width:100%"
-                                                id="basicpill-penyedia-jasa">
-                                                <option value="option a">option a</option>
-                                                <option value="option a">option a</option>
-                                                <option value="option a">option a</option>
-                                                <option value="option a">option a</option>
-                                                <option value="option a">option a</option>
+                                            <select class="form-control select2-create" style="width:100%"
+                                                name="service_provider_id" id="basicpill-penyedia-jasa">
+                                                @foreach ($serviceProviders as $serviceProvider)
+                                                    <option value="{{ $serviceProvider->id }}">
+                                                        {{ $serviceProvider->user->name }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
-                        </section>
+                            </section>
 
-                        <!-- Company Document -->
-                        <h3>Kontrak</h3>
-                        <section>
-                            <form>
+                            <!-- Company Document -->
+                            <h3>Kontrak</h3>
+                            <section>
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="basicpill-nilai_kontrak">Nilai Kontrak</label>
-                                            <input type="number" class="form-control" name="nilai kontrak"
+                                            <input type="number" class="form-control" name="project_value"
                                                 id="basicpill-nilai_kontrak" placeholder="Masukan nilai kontrak">
                                         </div>
                                     </div>
 
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="basicpill-vatno-input">Jenis kontrak</label>
-                                            <select name="source_fund" class="form-control select2" style="width:100%"
-                                                id="basicpill-jenis-kontrak">
-                                                <option value="option a">option a</option>
-                                                <option value="option a">option a</option>
-                                                <option value="option a">option a</option>
-                                                <option value="option a">option a</option>
-                                                <option value="option a">option a</option>
+                                            <label for="basicpill-contract_category_id">Jenis kontrak</label>
+                                            <select name="contract_category_id" name=""
+                                                class="form-control select2-create" style="width:100%"
+                                                id="basicpill-contract_category_id">
+                                                @foreach ($contractCategories as $contractCategory)
+                                                    <option value="{{ $contractCategory->id }}">
+                                                        {{ $contractCategory->name }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -129,9 +125,9 @@
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="basicpill-cstno-input">karakteristik Kontrak</label>
-                                            <select name="karakteristik" class="form-select" id="">
-                                                <option value="tahun tunggal">tahun tunggal</option>
-                                                <option value="tahun jamak">tahun jamak</option>
+                                            <select name="characteristic_project" class="form-select" id="">
+                                                <option value="single">tahun tunggal</option>
+                                                <option value="multiple">tahun jamak</option>
                                             </select>
                                         </div>
                                     </div>
@@ -139,52 +135,52 @@
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="basicpill-servicetax-input">Progress Fisik(%)</label>
-                                            <input type="number" class="form-control" id="basicpill-servicetax-input"
-                                                placeholder="Masukan progress">
+                                            <input type="number" name="physical_progress" class="form-control"
+                                                id="basicpill-servicetax-input" placeholder="Masukan progress">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="basicpill-companyuin-input">Progress Fisik Pada</label>
-                                            <input type="date" class="form-control" id="basicpill-companyuin-input"
-                                                placeholder="Enter Your Company UIN">
+                                            <label for="basicpill-physical_progress_start">Progress Fisik Pada</label>
+                                            <input type="date" name="physical_progress_start" class="form-control"
+                                                id="basicpill-physical_progress_start"
+                                                placeholder="Masukan Progress Fisik">
                                         </div>
                                     </div>
 
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="basicpill-declaration-input">Progress Keuangan(%)</label>
-                                            <input type="number" class="form-control" id="basicpill-Declaration-input"
-                                                placeholder="Masukan progress keuangan">
+                                            <input type="number" name="finance_progress" class="form-control"
+                                                id="basicpill-Declaration-input" placeholder="Masukan progress keuangan">
                                         </div>
                                     </div>
                                 </div>
-                            </form>
-                        </section>
+                            </section>
 
-                        <!-- Bank Details -->
-                        <h3>Detail</h3>
-                        <section>
-                            <div>
-                                <form>
+                            <!-- Bank Details -->
+                            <h3>Detail</h3>
+                            <section>
+                                <div>
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="mb-3">
-                                                <label for="basicpill-namecard-input">Progress Keuagan Pada</label>
-                                                <input type="date" class="form-control" id="basicpill-namecard-input"
-                                                    placeholder="">
+                                                <label for="basicpill-physical_progress_start">Progress Keuangan
+                                                    Pada</label>
+                                                <input type="date" class="form-control" name="finance_progress_start"
+                                                    id="basicpill-physical_progress_start" placeholder="">
                                             </div>
                                         </div>
 
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <label>Status</label>
-                                                <select class="form-select">
+                                                <select name="status" class="form-select">
                                                     <option selected disabled>Pilih status</option>
-                                                    <option value="aktif">Aktif</option>
-                                                    <option value="nonaktif">Nonaktif</option>
+                                                    <option value="active">Aktif</option>
+                                                    <option value="nonactive">Nonaktif</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -192,55 +188,91 @@
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="mb-3">
-                                                <label for="basicpill-cardno-input">Mulai</label>
-                                                <input type="date" class="form-control" id="basicpill-cardno-input"
-                                                    placeholder="Credit Card Number">
+                                                <label for="basicpill-start_at">Mulai</label>
+                                                <input type="date" name="start_at" class="form-control"
+                                                    id="basicpill-start_at" placeholder="Credit Card Number">
                                             </div>
                                         </div>
 
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <label for="basicpill-card-verification-input">Selesai</label>
-                                                <input type="date" class="form-control"
-                                                    id="basicpill-card-verification-input"
-                                                    placeholder="Credit Verification Number">
+                                                <input type="date" name="end_at" class="form-control"
+                                                    id="basicpill-end_at" placeholder="Credit Verification Number">
                                             </div>
                                         </div>
                                     </div>
-                                </form>
-                            </div>
-                        </section>
-                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </form>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div>
 
     <div class="row mt-4">
-        <div class="col-12 col-xl-4 col-md-6">
-            <div class="card p-4">
-                <div class="mb-3">
-                    <span class="badge fs-6 bg-info text-white">2002</span>
-                </div>
-                <div class="mb-3">
-                    <h4>PJL Kel. Purwosari Kec. Purwosari</h4>
-                </div>
-                <div class="row">
-                    <div class="d-flex justify-content-center mb-2 col-12 col-lg-4">
-                        <button style="min-width: 90px;width:100%" class="btn btn-danger">Hapus</button>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        @forelse ($projects as $project)
+            <div class="col-12 col-xl-4 col-md-6">
+                <div class="card p-4">
+                    <div class="mb-3">
+                        <span class="badge fs-6 bg-info text-white">{{ $project->year }}</span>
                     </div>
-                    <div class="d-flex justify-content-center mb-2 col-12 col-lg-4">
-                        <button style="min-width: 90px;width:100%" class="btn btn-warning" data-bs-toggle="modal"
-                            data-bs-target="#modal-update">Edit</button>
+                    <div class="mb-3">
+                        <h4>{{ $project->name }}</h4>
                     </div>
-                    <div class="d-flex justify-content-center mb-2 col-12 col-lg-4">
-                        <button style="min-width: 90px;width:100%;background-color: #1B3061"
-                            class="btn text-white" data-bs-toggle="modal"
-                            data-bs-target="#modal-detail">Detail</button>
+                    <div class="row">
+                        <div class="d-flex justify-content-center mb-2 col-12 col-lg-4">
+                            <button data-id="{{ $project->id }}" style="min-width: 90px;width:100%" class="btn btn-danger btn-delete">Hapus</button>
+                        </div>
+                        <div class="d-flex justify-content-center mb-2 col-12 col-lg-4">
+                            <button style="min-width: 90px;width:100%" class="btn btn-edit btn-warning"
+                                id="btn-edit-{{ $project->id }}" data-id="{{ $project->id }}"
+                                data-name="{{ $project->name }}" data-year="{{ $project->year }}"
+                                data-status="{{ $project->status }}"
+                                data-start_at="{{ \Carbon\Carbon::parse($project->start_at)->format('Y-m-d') }}"
+                                data-end_at="{{ \Carbon\Carbon::parse($project->end_at)->format('Y-m-d') }}"
+                                data-finance_progress="{{ $project->finance_progress }}"
+                                data-finance_progress_start="{{ \Carbon\Carbon::parse($project->finance_progress_start)->format('Y-m-d') }}"
+                                data-physical_progress="{{ $project->physical_progress }}"
+                                data-physical_progress_start="{{ \Carbon\Carbon::parse($project->physical_progress_start)->format('Y-m-d') }}"
+                                data-project_value="{{ $project->project_value }}"
+                                data-fund_source_id="{{ $project->fund_source_id }}"
+                                data-service_provider_id="{{ $project->service_provider_id }}"
+                                data-contract_category_id="{{ $project->contract_category_id }}"
+                                data-characteristic_project="{{ $project->characteristic_project }}">Edit</button>
+                        </div>
+                        <div class="d-flex justify-content-center mb-2 col-12 col-lg-4">
+                            <button style="min-width: 90px;width:100%;background-color: #1B3061" class="btn text-white"
+                                id="btn-edit-{{ $project->id }}" data-id="{{ $project->id }}"
+                                data-name="{{ $project->name }}" data-year="{{ $project->year }}"
+                                data-status="{{ $project->status }}"
+                                data-start_at="{{ \Carbon\Carbon::parse($project->start_at)->format('Y-m-d') }}"
+                                data-end_at="{{ \Carbon\Carbon::parse($project->end_at)->format('Y-m-d') }}"
+                                data-finance_progress="{{ $project->finance_progress }}"
+                                data-finance_progress_start="{{ \Carbon\Carbon::parse($project->finance_progress_start)->format('Y-m-d') }}"
+                                data-physical_progress="{{ $project->physical_progress }}"
+                                data-physical_progress_start="{{ \Carbon\Carbon::parse($project->physical_progress_start)->format('Y-m-d') }}"
+                                data-project_value="{{ $project->project_value }}"
+                                data-fund_source_id="{{ $project->fund_source_id }}"
+                                data-service_provider_id="{{ $project->service_provider_id }}"
+                                data-contract_category_id="{{ $project->contract_category_id }}"
+                                data-characteristic_project="{{ $project->characteristic_project }}">Detail</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        @empty
+        @endforelse
     </div>
 
     <div class="modal fade bs-example-modal-md" id="modal-detail" tabindex="-1" role="dialog"
@@ -396,12 +428,13 @@
                         aria-label="Close"></button>
                 </div>
                 <div class="card-body">
-
-                    <div id="basic-update">
-                        <!-- Seller Details -->
-                        <h3>informasi Umum</h3>
-                        <section>
-                            <form>
+                    <form method="POST" id="form-update">
+                        @csrf
+                        @method('PUT')
+                        <div id="basic-update">
+                            <!-- Seller Details -->
+                            <h3>informasi Umum</h3>
+                            <section>
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
@@ -422,57 +455,53 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="update-source_found">Sumber Dana</label>
-                                            <select name="source_fund" class="form-control select2" style="width:100%"
-                                                id="update-source_found">
-                                                <option value="option a">option a</option>
-                                                <option value="option a">option a</option>
-                                                <option value="option a">option a</option>
-                                                <option value="option a">option a</option>
-                                                <option value="option a">option a</option>
+                                            <label for="update-fund_source_id">Sumber Dana</label>
+                                            <select name="fund_source_id" class="form-control select2-update"
+                                                style="width:100%" id="update-fund_source_id">
+                                                @foreach ($fundSources as $fundSource)
+                                                    <option value="{{ $fundSource->id }}">{{ $fundSource->name }}
+                                                    </option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="update-email-input">Penyedia Jasa</label>
-                                            <select name="source_fund" class="form-control select2" style="width:100%"
-                                                id="update-penyedia-jasa">
-                                                <option value="option a">option a</option>
-                                                <option value="option a">option a</option>
-                                                <option value="option a">option a</option>
-                                                <option value="option a">option a</option>
-                                                <option value="option a">option a</option>
+                                            <select class="form-control select2-update" style="width:100%"
+                                                name="service_provider_id" id="update-penyedia-jasa">
+                                                @foreach ($serviceProviders as $serviceProvider)
+                                                    <option value="{{ $serviceProvider->id }}">
+                                                        {{ $serviceProvider->user->name }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
-                        </section>
+                            </section>
 
-                        <!-- Company Document -->
-                        <h3>Kontrak</h3>
-                        <section>
-                            <form>
+                            <!-- Company Document -->
+                            <h3>Kontrak</h3>
+                            <section>
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="update-nilai_kontrak">Nilai Kontrak</label>
-                                            <input type="number" class="form-control" name="nilai kontrak"
+                                            <input type="number" class="form-control" name="project_value"
                                                 id="update-nilai_kontrak" placeholder="Masukan nilai kontrak">
                                         </div>
                                     </div>
 
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="update-vatno-input">Jenis kontrak</label>
-                                            <select name="source_fund" class="form-control select2" style="width:100%"
-                                                id="update-jenis-kontrak">
-                                                <option value="option a">option a</option>
-                                                <option value="option a">option a</option>
-                                                <option value="option a">option a</option>
-                                                <option value="option a">option a</option>
-                                                <option value="option a">option a</option>
+                                            <label for="update-contract_category_id">Jenis kontrak</label>
+                                            <select name="contract_category_id" name=""
+                                                class="form-control select2-update" style="width:100%"
+                                                id="update-contract_category_id">
+                                                @foreach ($contractCategories as $contractCategory)
+                                                    <option value="{{ $contractCategory->id }}">
+                                                        {{ $contractCategory->name }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -481,9 +510,9 @@
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="update-cstno-input">karakteristik Kontrak</label>
-                                            <select name="karakteristik" class="form-select" id="">
-                                                <option value="tahun tunggal">tahun tunggal</option>
-                                                <option value="tahun jamak">tahun jamak</option>
+                                            <select name="characteristic_project" class="form-select" id="">
+                                                <option value="single">tahun tunggal</option>
+                                                <option value="multiple">tahun jamak</option>
                                             </select>
                                         </div>
                                     </div>
@@ -491,52 +520,51 @@
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="update-servicetax-input">Progress Fisik(%)</label>
-                                            <input type="number" class="form-control" id="update-servicetax-input"
-                                                placeholder="Masukan progress">
+                                            <input type="number" name="physical_progress" class="form-control"
+                                                id="update-servicetax-input" placeholder="Masukan progress">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="update-companyuin-input">Progress Fisik Pada</label>
-                                            <input type="date" class="form-control" id="update-companyuin-input"
-                                                placeholder="Enter Your Company UIN">
+                                            <label for="update-physical_progress_start">Progress Fisik Pada</label>
+                                            <input type="date" name="physical_progress_start" class="form-control"
+                                                id="update-physical_progress_start" placeholder="Masukan Progress Fisik">
                                         </div>
                                     </div>
 
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="update-declaration-input">Progress Keuangan(%)</label>
-                                            <input type="number" class="form-control" id="update-Declaration-input"
-                                                placeholder="Masukan progress keuangan">
+                                            <input type="number" name="finance_progress" class="form-control"
+                                                id="update-Declaration-input" placeholder="Masukan progress keuangan">
                                         </div>
                                     </div>
                                 </div>
-                            </form>
-                        </section>
+                            </section>
 
-                        <!-- Bank Details -->
-                        <h3>Detail</h3>
-                        <section>
-                            <div>
-                                <form>
+                            <!-- Bank Details -->
+                            <h3>Detail</h3>
+                            <section>
+                                <div>
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="mb-3">
-                                                <label for="update-namecard-input">Progress Keuagan Pada</label>
-                                                <input type="date" class="form-control" id="update-namecard-input"
-                                                    placeholder="">
+                                                <label for="update-physical_progress_start">Progress Keuangan
+                                                    Pada</label>
+                                                <input type="date" class="form-control" name="finance_progress_start"
+                                                    id="update-physical_progress_start" placeholder="">
                                             </div>
                                         </div>
 
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <label>Status</label>
-                                                <select class="form-select">
+                                                <select name="status" class="form-select">
                                                     <option selected disabled>Pilih status</option>
-                                                    <option value="aktif">Aktif</option>
-                                                    <option value="nonaktif">Nonaktif</option>
+                                                    <option value="active">Aktif</option>
+                                                    <option value="nonactive">Nonaktif</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -544,25 +572,24 @@
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="mb-3">
-                                                <label for="update-cardno-input">Mulai</label>
-                                                <input type="date" class="form-control" id="update-cardno-input"
-                                                    placeholder="Credit Card Number">
+                                                <label for="update-start_at">Mulai</label>
+                                                <input type="date" name="start_at" class="form-control"
+                                                    id="update-start_at" placeholder="Credit Card Number">
                                             </div>
                                         </div>
 
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <label for="update-card-verification-input">Selesai</label>
-                                                <input type="date" class="form-control"
-                                                    id="update-card-verification-input"
-                                                    placeholder="Credit Verification Number">
+                                                <input type="date" name="end_at" class="form-control"
+                                                    id="update-end_at" placeholder="Credit Verification Number">
                                             </div>
                                         </div>
                                     </div>
-                                </form>
-                            </div>
-                        </section>
-                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </form>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -570,16 +597,34 @@
     <x-delete-modal-component />
 @endsection
 @section('script')
-    <script src="{{ asset('assets/libs/jquery-steps/build/jquery.steps.min.js') }}"></script>
-
-    <!-- form wizard init -->
-    <script src="{{ asset('assets/js/pages/form-wizard.init.js') }}"></script>
-    <script src="{{ asset('assets/libs/select2/js/select2.min.js') }}"></script>
     <script>
+        $('a[href="#finish"]').click(function() {
+            console.log(true);
+            $(this).closest('form').submit()
+        })
         $(document).ready(function() {
-            $(".select2").select2({
-                dropdownParent: $("#modal-create, #modal-update")
+            $(".select2-create").select2({
+                dropdownParent: $("#modal-create")
+            });
+            $(".select2-update").select2({
+                dropdownParent: $("#modal-update")
             });
         });
+        $('.btn-edit').click(function() {
+            const formData = getDataAttributes($(this).attr('id'))
+            var actionUrl = `projects/${formData['id']}`;
+            $('#form-update').attr('action', actionUrl);
+
+            setFormValues('form-update', formData)
+            $('#form-update').data('id', formData['id'])
+            $('#form-update').attr('action', );
+            $('#modal-update').modal('show')
+        })
+        $('.btn-delete').click(function() {
+            id = $(this).data('id')
+            var actionUrl = `projects/${id}`;
+            $('#form-delete').attr('action', actionUrl);
+            $('#modal-delete').modal('show')
+        })
     </script>
 @endsection
