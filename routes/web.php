@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccidentController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\VerificationController;
@@ -97,6 +98,11 @@ Auth::routes(['verify' => true]);
         ]);
     // });
 
+    Route::middleware('role:dinas',function(){
+        // Accident
+        Route::resource('accident', AccidentController::class)->except('create', 'edit', 'show');
+    });
+
     Route::middleware(['role:dinas'])->group(function () {
         Route::resources([
             'projects' => ProjectController::class
@@ -104,7 +110,6 @@ Auth::routes(['verify' => true]);
     });
 
     // Route::middleware('role:service provider',function(){
-
     // });
 
     Route::get('sub-qualification', function () {
