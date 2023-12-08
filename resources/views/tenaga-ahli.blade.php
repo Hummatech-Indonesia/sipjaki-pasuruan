@@ -12,7 +12,7 @@
                 <div class="card-body">
                     <div class="d-flex d-row justify-content-between align-items-center">
                         <div class="position-relative col-lg-4">
-                            <input type="search" class="form-control search-chat me-2" id="search-name" placeholder="Search">
+                            <input type="search" class="form-control" id="search-name" placeholder="Search">
                             <i class="bx bx-search-alt-2
                             position-absolute top-50 translate-middle-y fs-6 text-dark"></i>
                         </div>
@@ -31,17 +31,51 @@
                                         No</th>
                                     <th class="fw-medium"
                                         style="background-color: #1B3061; color: white; border-right: 1px solid #1B3061;">
-                                        Nama Dinas</th>
+                                        Nama Pelatihan</th>
                                     <th class="fw-medium"
-                                        style="background-color: #1B3061; color: white; text-align: center">Jumlah</th>
+                                        style="background-color: #1B3061; color: white; border-right: 1px solid #1B3061;">
+                                        Penangggung Jawab</th>
+                                    <th class="fw-medium"
+                                        style="background-color: #1B3061; color: white; border-right: 1px solid #1B3061;">
+                                        Jenis Keahlian</th>
+                                    <th class="fw-medium"
+                                        style="background-color: #1B3061; color: white; border-right: 1px solid #1B3061;">
+                                        Tingkat Keahlian</th>
+                                    <th class="fw-medium"
+                                        style="background-color: #1B3061; color: white; border-right: 1px solid #1B3061;">
+                                        Waktu Pelaksanaan</th>
+                                    <th class="fw-medium"
+                                        style="background-color: #1B3061; color: white; border-right: 1px solid #1B3061;">
+                                        Peserta Laki-laki</th>
+                                    <th class="fw-medium"
+                                        style="background-color: #1B3061; color: white; border-right: 1px solid #1B3061;">
+                                        Peserta Perempuan</th>
+                                    <th class="fw-medium"
+                                        style="background-color: #1B3061; color: white; border-right: 1px solid #1B3061;">
+                                        Lokasi</th>
+                                    <th class="fw-medium"
+                                        style="background-color: #1B3061; color: white; border-right: 1px solid #1B3061;">
+                                        Keterangan</th>
                                 </tr>
                             </thead>
                             <tbody>
                                     <tr>
                                         <th scope="row" class="fs-5">1</th>
-                                        <td class="fs-5">Muhammad surya rafliansyah</td>
-                                        <td class="fs-5 text-center">2844</td>
-
+                                        <td>Pembekalan dan uji sertifikasi ahli muda perencana
+                                            irigasi</td>
+                                        <td>Kepala Dinas
+                                            PUPRKIM
+                                            Provinsi Bali</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>2023-10-16
+                                            00:00:00</td>
+                                        <td>18</td>
+                                        <td>4</td>
+                                        <td>BKPSDM
+                                            Provinsi
+                                            Bali</td>
+                                        <td>Kolaborasi dengan IKATAN AHLI PERENCANAA INDONESIA (IAP)</td>
                                     </tr>
                             </tbody>
                         </table>

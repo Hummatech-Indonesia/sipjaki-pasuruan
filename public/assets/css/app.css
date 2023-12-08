@@ -2717,7 +2717,7 @@ select {
 }
 
 .site-header .site-main-menu li {
-    margin: 0 12px;
+    margin: 0 7px;
     position: relative;
     padding: 36px 0;
     -webkit-transition: all 0.3s ease-in-out;
