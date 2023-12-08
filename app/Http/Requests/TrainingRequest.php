@@ -24,7 +24,7 @@ class TrainingRequest extends FormRequest
         return [
             'fiscal_year_id' => 'required|exists:fiscal_years,id',
             'training_method_id' => 'required|exists:training_methods,id',
-            'sub_classifications' => 'required|exists:sub_classifications,id',
+            'sub_classifications_id' => 'required|exists:sub_classifications,id',
             'qualification_level_id' => 'required|exists:qualification_levels,id',
             'name' => 'required|max:255',
             'start_at' => 'required|before:end_time|date',

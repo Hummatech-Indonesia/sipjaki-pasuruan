@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->foreignUuid('training_method_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignUuid('fiscal_year_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignUuid('sub_classifications')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignUuid('sub_classifications_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignUuid('qualification_level_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('name');
             $table->dateTime('start_at');

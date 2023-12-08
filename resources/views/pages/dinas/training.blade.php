@@ -117,7 +117,7 @@
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-email-input">Sub Klasifikasi</label>
-                                            <select name="sub_classifications" class="form-select" id="list-sub-classifications">
+                                            <select name="sub_classifications_id" class="form-select" id="list-sub-classifications">
                                             </select>
                                             @error('sub_classification_id')
                                                 <p class="text-danger">
@@ -487,7 +487,7 @@
                 dataType: "JSON",
                 success: function(response) {
                     $.each(response.data, function(index, item) {
-                        var option = `<option value="16561d90-162e-344d-b90c-70006c5b1aa7">${item.name}</option>`
+                        var option = `<option value="0271dab3-18e6-3fa3-b589-385eb42c529f">${item.name}</option>`
                         $('#list-fiscal-year').append(option);
                     });
                 }
