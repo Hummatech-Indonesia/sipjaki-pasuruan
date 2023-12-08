@@ -20,13 +20,13 @@ Route::get('detail-accident.index', function () {return view('pages.dinas.detail
 // Training
 Route::get('training' , [TrainingController::class , 'index'])->name('training');
 Route::post('training', [TrainingController::class , 'store'])->name('training.store');
-Route::put('training/{training}', [TrainingController::class , 'update'])->name('training.update/');
-Route::delete('training.destroy/{training}', [TrainingControllerController::class , 'destroy'])->name('training.destroy/');
+Route::put('training.update/{training}', [TrainingController::class , 'update'])->name('training.update/');
+Route::delete('training.destroy/{training}', [TrainingController::class , 'destroy'])->name('training.destroy/');
 
 // verify token 
 Route::get('/redirect-verify-account', [VerificationController::class, 'verifyAccount'])->name('redirect.verify.account');
 Route::put('update-token/{user}', [VerificationController::class, 'updateToken']);
-Route::put('verify-token/{user}', [VerificationControllerationController::class, 'verifyToken'])->name('verify-token/');
+Route::put('verify-token/{user}', [VerificationController::class, 'verifyToken'])->name('verify-token/');
 Route::get('verify-account/{user}', [VerificationController::class, 'verifyacount']);
 
 // sub classification 

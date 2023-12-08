@@ -48,6 +48,8 @@
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #1B3061">
                     <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Tambah Pelatihan</h5>
+                    <button type="button" class="btn-close" style="background-color: white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('training.store') }}" id="form-create" method="post">
@@ -220,9 +222,11 @@
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #1B3061">
                     <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Tambah Pelatihan</h5>
+                    <button type="button" class="btn-close" style="background-color: white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('training.store') }}" id="form-create" method="post">
+                    <form id="form-update" method="post">
                         @csrf
                         @method('PUT')
                         <div id="basic-update">
@@ -331,7 +335,7 @@
                                         <div class="mb-3">
                                             <label for="basicpill-email-input">Selesai Pelaksanaan</label>
                                             <input name="end_time" type="date" class="form-control"
-                                                id="basicpill-phoneno-input" placeholder="Enter Your Name.">
+                                                id="update-end_time" placeholder="Enter Your Name.">
                                             @error('end_time')
                                                 <p class="text-danger">
                                                     {{ $message }}
@@ -416,8 +420,11 @@
                                     data-id="{{ $training->id }}" data-name="{{ $training->name }}"
                                     data-lesson_hour="{{ $training->lesson_hour }}"
                                     data-start_at="{{ \Carbon\Carbon::parse($training->start_at)->format('Y-m-d') }}"
-                                    data-end_at="{{ \Carbon\Carbon::parse($training->end_at)->format('Y-m-d') }}"
+                                    data-end_time="{{ \Carbon\Carbon::parse($training->end_time)->format('Y-m-d') }}"
+                                    data-sub_classifications_id="{{ $training->sub_classifications_id }}"
+                                    data-training_method_id="{{ $training->training_method_id }}"
                                     data-location="{{ $training->location }}"
+                                    data-qualification_level_id="{{ $training->qualification_level_id }}"
                                     data-description="{{ $training->description }}">
                                     Edit
                                 </button>
@@ -458,6 +465,7 @@
 
         $('.btn-edit').click(function() {
             const formData = getDataAttributes($(this).attr('id'))
+            console.log(formData);
             var actionUrl = `training.update/${formData['id']}`;
             $('#form-update').attr('action', actionUrl);
             setFormValues('form-update', formData)

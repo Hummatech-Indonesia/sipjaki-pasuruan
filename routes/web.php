@@ -1,9 +1,6 @@
 <?php
 
 use App\Http\Controllers\AccidentController;
-use App\Http\Controllers\Auth\ForgotPasswordController;
-use App\Http\Controllers\Auth\ResetPasswordController;
-use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\ClassificationController;
 use App\Http\Controllers\ContractCategoryController;
 use App\Http\Controllers\FieldController;
@@ -17,7 +14,6 @@ use App\Http\Controllers\QualificationLevelController;
 use App\Http\Controllers\RuleCategoriesController;
 use App\Http\Controllers\RuleController;
 use App\Http\Controllers\SubClassificationController;
-use App\Http\Controllers\TrainingController;
 use App\Http\Controllers\TrainingMemberController;
 use App\Http\Controllers\TrainingMethodController;
 use App\Http\Controllers\UserController;

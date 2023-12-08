@@ -72,6 +72,7 @@ class TrainingController extends Controller
      */
     public function update(TrainingRequest $request,Training $training) : RedirectResponse | JsonResponse
     {
+        // dd($request->all());
         $this->training->update($training->id,$request->all());
 
         if( $request->is('api/*')){
