@@ -8,7 +8,7 @@
 <div class="tabs-wrapper">
     <div class="section-title text-center">
         <h2 style="border-radius: 16px;
-        background: var(--Kuning, #FFC928);" class="title p-2">Data Paket Pekerjaan</h2>
+        background: var(--Kuning, #FFC928);" class="title p-1">Data Paket Pekerjaan</h2>
     </div>
 </div>
 <div class="row justify-content-center">

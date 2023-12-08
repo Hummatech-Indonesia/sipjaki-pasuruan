@@ -116,11 +116,8 @@
                                         <li><a href="/faq">Bantuan</a></li>
                                     </ul>
                                 </li>
-                                <li class="menu-item-has-children">
-                                    <a href="#">Berita Terbaru</a>
-                                </li>
-
-                                <li><a href="contact.html">Peraturan</a></li>
+                                <li><a href="/berita-terbaru">Berita Terbaru</a></li>
+                                <li><a href="/peraturan">Peraturan</a></li>
                                 <li class="menu-item-has-children">
                                     <a class="d-flex d-row" href="#">Data Jakon</a>
                                             <ul class="sub-menu">

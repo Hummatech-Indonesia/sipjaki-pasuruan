@@ -122,24 +122,6 @@ Route::resources([
 ]);
 // });
 
-    Route::middleware(['role:dinas'])->group(function () {
-        Route::resource('accident', AccidentController::class)->except('create', 'edit', 'show');
-        Route::resources([
-            'projects' => ProjectController::class
-        ]);
-
-        Route::get('list-fiscal-year', [FiscalYearController::class, 'listFiscalYear']);
-        Route::get('list-fund-source', [FundSourceController::class, 'listFundSource']);
-
-        Route::get('list-qualifications', [QualificationController::class, 'listQualifications']);
-        Route::get('list-qualification-level/{qualification}', [QualificationLevelController::class, 'listQualificationLevel']);
-
-        Route::get('list-classifications', [ClassificationController::class, 'listClassifications']);
-        Route::get('list-sub-classifications/{classification}', [SubClassificationController::class, 'listSubClassificcation']);
-    });
-
-    // Route::middleware('role:service provider',function(){
-    // });
 // Route::middleware('role:dinas',function(){
 //     // Accident
 // });
@@ -167,6 +149,10 @@ Route::get('sub-qualification', function () {
 
 
 Route::get('sub-classifications/{classification}', [SubClassificationController::class, 'showSubClassification']);
+
+Route::post('sub-classifications/{classification}', [SubClassificationController::class, 'store']);
+Route::put('sub-classifications/{sub_classification}', [SubClassificationController::class, 'update']);
+Route::delete('sub-classifications/{sub_classification}', [SubClassificationController::class, 'delete']);
 
 Route::get('agencies', [UserController::class, 'index'])->name('agencies.index');
 Route::post('agencies', [UserController::class, 'store'])->name('agencies.store');
@@ -220,3 +206,10 @@ Route::delete('training-members/{training_member}', [TrainingMemberController::c
 Route::post('import-training-members', [TrainingMemberController::class, 'import']);
 Route::resource('worker', WorkerController::class)->only('index', 'update', 'destroy');
 Route::post('worker/{service_provider}', [WorkerController::class, 'store']);
+
+
+require __DIR__.'/aldy.php';
+require __DIR__.'/arif.php';
+require __DIR__.'/daffa.php';
+require __DIR__.'/ibnu.php';
+require __DIR__.'/kader.php';
