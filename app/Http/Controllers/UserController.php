@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Interfaces\DinasInterface;
+use App\Contracts\Interfaces\FieldInterface;
 use App\Contracts\Interfaces\UserInterface;
 use App\Helpers\ResponseHelper;
 use App\Http\Requests\UserRequest;
@@ -21,15 +22,19 @@ class UserController extends Controller
     private UserInterface $user;
     private UserService $service;
     private DinasInterface $dinas;
-    public function __construct(UserInterface $user, UserService $service, DinasInterface $dinas)
+    private FieldInterface $field;
+    public function __construct(UserInterface $user, UserService $service, DinasInterface $dinas, FieldInterface $field)
     {
         $this->user = $user;
         $this->service = $service;
         $this->dinas = $dinas;
+        $this->field = $field;
     }
 
     /**
      * Display a listing of the resource.
+     * @param  mixed $request
+     * @return JsonResponse
      */
     public function index(Request $request): JsonResponse | View
     {
@@ -39,20 +44,15 @@ class UserController extends Controller
             $data['data'] = UserResource::collection($users);
             return ResponseHelper::success($data);
         } else {
-            return view('pages.agency', ['users' => $users]);
+            $fields = $this->field->get();
+            return view('pages.agency', ['users' => $users, 'fields' => $fields]);
         }
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
+     * @param  mixed $request
+     * @return void
      */
     public function store(UserRequest $request)
     {
@@ -65,6 +65,9 @@ class UserController extends Controller
     }
     /**
      * Update the specified resource in storage.
+     * @param  mixed $request
+     * @param  mixed $user
+     * @return void
      */
     public function update(UserRequest $request, User $user)
     {
@@ -79,6 +82,8 @@ class UserController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     * @param  mixed $user
+     * @return void
      */
     public function destroy(User $user)
     {
