@@ -172,3 +172,4 @@ Route::get('training-members/{training}', [TrainingMemberController::class, 'ind
 Route::post('training-members/{training}', [TrainingMemberController::class, 'store']);
 Route::put('training-members/{training_member}', [TrainingMemberController::class, 'update']);
 Route::delete('training-members/{training_member}', [TrainingMemberController::class, 'destroy']);
+Route::post('import-training-members', [TrainingMemberController::class, 'import']);

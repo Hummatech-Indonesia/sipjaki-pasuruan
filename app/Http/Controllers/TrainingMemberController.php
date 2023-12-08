@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Contracts\Interfaces\TrainingMemberInterface;
 use App\Helpers\ResponseHelper;
+use App\Http\Requests\ImportRequest;
 use App\Http\Requests\TrainingMemberRequest;
 use App\Http\Resources\TrainingMemberResource;
+use App\Imports\TrainingMemberImport;
 use App\Models\Training;
 use App\Models\TrainingMember;
 use App\Services\TrainingMemberService;
 use App\Traits\PaginationTrait;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TrainingMemberController extends Controller
 {
@@ -93,5 +96,19 @@ class TrainingMemberController extends Controller
         } else {
             return redirect()->back()->with('success', trans('alert.delete_success'));
         }
+    }
+
+    /**
+     * import
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    public function import(ImportRequest $request)
+    {
+        $data = $request->validated();
+        Excel::import(new TrainingMemberImport, $data['import']);
+
+        return ResponseHelper::success(null, trans('alert.add_success'));
     }
 }
