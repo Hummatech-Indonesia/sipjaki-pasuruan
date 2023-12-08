@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use App\Base\Interfaces\HasOneDinas;
+use App\Base\Interfaces\HasOneServiceProvider;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Notifications\Notifiable;
@@ -13,7 +14,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable implements MustVerifyEmail, HasOneDinas
+class User extends Authenticatable implements MustVerifyEmail, HasOneDinas, HasOneServiceProvider
 {
     use HasApiTokens, HasFactory, Notifiable;
     use HasRoles;
@@ -38,7 +39,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasOneDinas
         'expired_token'
     ];
 
-    /** 
+    /**
      * The attributes that should be hidden for serialization.
      *
      * @var array<int, string>
@@ -67,5 +68,15 @@ class User extends Authenticatable implements MustVerifyEmail, HasOneDinas
     public function dinas(): HasOne
     {
         return $this->hasOne(Dinas::class);
+    }
+
+    /**
+     * serviceProvider
+     *
+     * @return HasOne
+     */
+    public function serviceProvider(): HasOne
+    {
+        return $this->hasOne(ServiceProvider::class);
     }
 }

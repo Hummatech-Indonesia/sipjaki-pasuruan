@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\ClassificationController;
 use App\Http\Controllers\ContractCategoryController;
+use App\Http\Controllers\FieldController;
 use App\Http\Controllers\FiscalYearController;
 use App\Http\Controllers\FundSourceController;
 use App\Http\Controllers\ImagesController;
@@ -43,116 +44,108 @@ Route::get('struktur-organisasi-DKSDK', function () {
 Auth::routes(['verify' => true]);
 // Route::middleware(['auth'])->group(function () {
 
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-    Route::get('/tenaga-ahli',function(){
-        return view('tenaga-ahli');
-    });
+Route::get('/tenaga-ahli', function () {
+    return view('tenaga-ahli');
+});
 
-    Route::get('/tenaga-terampil',function(){
-        return view('tenaga-terampil');
-    });
+Route::get('/tenaga-terampil', function () {
+    return view('tenaga-terampil');
+});
 
-    Route::get('/kecelakaan',function(){
-        return view('kecelakaan');
-    });
+Route::get('/kecelakaan', function () {
+    return view('kecelakaan');
+});
 
-    Route::get('/faq',function(){
-        return view('faq');
-    });
+Route::get('/faq', function () {
+    return view('faq');
+});
 
-    Route::get('/data-paket-pekerjaan',function(){
-        return view('dpp');
-    });
+Route::get('/data-paket-pekerjaan', function () {
+    return view('dpp');
+});
 
-    Route::get('/opd',function(){
-        return view('opd');
-    });
+Route::get('/opd', function () {
+    return view('opd');
+});
 
 
-    // Route::middleware('role:superadmin')->group(function () {
-        Route::resources([
-            'contract-categories' => ContractCategoryController::class,
-            'fund-sources' => FundSourceController::class,
-            'qualifications' => QualificationController::class,
-            'source-fund' => FundSourceController::class,
-            'rule-categories' => RuleCategoriesController::class,
-            'fiscal-years' => FiscalYearController::class,
-            'classifications' => ClassificationController::class,
-            'news' => NewsController::class,
-            'training-methods' => TrainingMethodController::class,
-            'users' => UserController::class,
-            'rules' => RuleController::class,
-        ]);
+// Route::middleware('role:superadmin')->group(function () {
+Route::resources([
+    'contract-categories' => ContractCategoryController::class,
+    'fund-sources' => FundSourceController::class,
+    'qualifications' => QualificationController::class,
+    'source-fund' => FundSourceController::class,
+    'rule-categories' => RuleCategoriesController::class,
+    'fiscal-years' => FiscalYearController::class,
+    'classifications' => ClassificationController::class,
+    'news' => NewsController::class,
+    'training-methods' => TrainingMethodController::class,
+    'users' => UserController::class,
+    'rules' => RuleController::class,
+]);
 
-        Route::name('qualifications.level.')->group(function(){
-            Route::post('sub-qualifications/{qualification}',[QualificationLevelController::class,'store'])->name('store');
-            Route::put('sub-qualifications/{qualification_level}',[QualificationLevelController::class,'update'])->name('update');
-            Route::delete('sub-qualifications/{qualification_level}',[QualificationLevelController::class,'store'])->name('destroy');
-        });
-    // });
+Route::name('qualifications.level.')->group(function () {
+    Route::post('sub-qualifications/{qualification}', [QualificationLevelController::class, 'store'])->name('store');
+    Route::put('sub-qualifications/{qualification_level}', [QualificationLevelController::class, 'update'])->name('update');
+    Route::delete('sub-qualifications/{qualification_level}', [QualificationLevelController::class, 'store'])->name('destroy');
+});
+// });
 
-    // Route::middleware('role:admin',)->group(function () {
-        Route::resources([
-            'news' => NewsController::class,
-        ]);
-    // });
+// Route::middleware('role:admin',)->group(function () {
+Route::resources([
+    'news' => NewsController::class,
+]);
+// });
 
-    Route::middleware(['role:dinas'])->group(function () {
+Route::middleware(['role:dinas'])->group(function () {
         Route::resource('accident', AccidentController::class)->except('create', 'edit', 'show');
 
-        Route::resources([
-            'projects' => ProjectController::class
-        ]);
-    });
+    Route::resources([
+        'projects' => ProjectController::class,
+        'field' => FieldController::class
+    ]);
+});
 
     // Route::middleware('role:service provider',function(){
+
     // });
 
-    Route::get('sub-qualification', function () {
-        return view('pages.sub-qualification');
-    })->name('sub-qualification');
+Route::get('sub-qualification', function () {
+    return view('pages.sub-qualification');
+})->name('sub-qualification');
 
 
-    Route::resources([
-        'fund-sources' => FundSourceController::class,
-        'qualifications' => QualificationController::class,
-        'source-fund' => FundSourceController::class,
-        'rule-categories' => RuleCategoriesController::class,
-        'fiscal-years' => FiscalYearController::class,
-        'classifications' => ClassificationController::class,
-        'news' => NewsController::class,
-        'training-methods' => TrainingMethodController::class,
-        'users' => UserController::class,
-        'rules' => RuleController::class,
-    ]);
-    Route::get('sub-classifications/{classification}', [SubClassificationController::class, 'showSubClassification']);
-    Route::post('sub-classifications/{classification}', [SubClassificationController::class, 'store']);
-    Route::put('sub-classifications/{sub_classification}', [SubClassificationController::class, 'update']);
-    Route::delete('sub-classifications/{sub_classification}', [SubClassificationController::class, 'destroy']);
 
+Route::get('sub-classifications/{classification}', [SubClassificationController::class, 'showSubClassification']);
 
-    Route::get('agencies', [UserController::class, 'index'])->name('agencies.index');
-    Route::post('agencies', [UserController::class, 'store'])->name('agencies.store');
-    Route::put('agencies/{user}', [UserController::class, 'update'])->name('agencies.update');
-    Route::delete('agencies/{user}', [UserController::class, 'destroy'])->name('agencies.destroy');
+Route::get('agencies', [UserController::class, 'index'])->name('agencies.index');
+Route::post('agencies', [UserController::class, 'store'])->name('agencies.store');
+Route::put('agencies/{user}', [UserController::class, 'update'])->name('agencies.update');
+Route::delete('agencies/{user}', [UserController::class, 'destroy'])->name('agencies.destroy');
 
-    Route::get('test', function () {
-        return view('auth.verify');
-    });
+Route::get('test', function () {
+    return view('auth.verify');
+});
 
     Route::get('accident', function () {
         return view('pages.dinas.accident');
     })->name('accident');
-    Route::get('reset-password/{id}' , [ResetPasswordController::class , 'index'])->name('reset-password/');
+    Route::get('reset-password/{id}', function () {
+        return view('auth.passwords.reset');
+    })->name('reset-passsword/');
     Route::get('send-email', function () {
         return view('auth.send-email');
     })->name('send-email');
 
     Route::get('/redirect-verify-account', [VerificationController::class, 'verifyAccount'])->name('redirect.verify.account');
     Route::put('update-token/{user}', [VerificationController::class, 'updateToken']);
-    Route::put('verify-token/{user}', [VerificationController::class, 'verifyToken'])->name('verify-token/');
-    Route::get('verify-account/{user}' ,[VerificationController::class, 'verifyacount'])->name('verify-account/');
+    Route::put('verify-token/{user}', [VerificationController::class, 'verifyToken']);
+
+    Route::get('/verify-account/{user}', function () {
+        return view('auth.verify-account');
+    })->name('verify.account/');
     Route::get('training', function () {
         return view('pages.dinas.training');
     })->name('training');

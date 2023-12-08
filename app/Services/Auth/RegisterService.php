@@ -34,6 +34,7 @@ class RegisterService
             'expired_token' => now()->addMinutes('40')
         ]);
 
+        $user->serviceProvider()->create($data);
         Mail::to($data['email'])->send(new RegistrationMail(['email' => $request->email, 'user' => $request->name, 'token' => $token, 'id' => $user->id]));
 
         $user->assignRole(RoleEnum::SERVICE_PRODIVER);

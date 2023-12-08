@@ -12,6 +12,8 @@ class VerifyCsrfToken extends Middleware
      * @var array<int, string>
      */
     protected $except = [
-        'import-training-members'
+        'import-training-members',
+        'reset-passsword/a10d6118-cdbc-3d9c-9805-f432f2636380',
+        'send-email-reset-passsword'
     ];
 }

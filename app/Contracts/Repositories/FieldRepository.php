@@ -2,16 +2,16 @@
 
 namespace App\Contracts\Repositories;
 
-use App\Contracts\Interfaces\UserInterface;
-use App\Models\User;
+use App\Contracts\Interfaces\FieldInterface;
+use App\Models\Field;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-class UserRepository extends BaseRepository implements UserInterface
+class FieldRepository extends BaseRepository implements FieldInterface
 {
-    public function __construct(User $user)
+    public function __construct(Field $field)
     {
-        $this->model = $user;
+        $this->model = $field;
     }
 
     /**
@@ -58,7 +58,7 @@ class UserRepository extends BaseRepository implements UserInterface
      */
     public function delete(mixed $id): mixed
     {
-        return $this->show($id)->delete();
+        return $this->show($id)->delete($id);
     }
 
 
@@ -72,20 +72,9 @@ class UserRepository extends BaseRepository implements UserInterface
     public function customPaginate(Request $request, int $pagination = 10): LengthAwarePaginator
     {
         return $this->model->query()
-            ->whereHas('dinas')
+            ->when($request->name, function ($query) use ($request) {
+                $query->where('name', 'LIKE', '%' . $request->name . '%');
+            })
             ->fastPaginate($pagination);
-    }
-
-    /**
-     * getWhere
-     *
-     * @param  mixed $data
-     * @return mixed
-     */
-    public function getWhere(array $data): mixed
-    {
-        return $this->model->query()
-            ->where('email', $data['email'])
-            ->first();
     }
 }

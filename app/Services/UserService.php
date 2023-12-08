@@ -29,6 +29,7 @@ class UserService
             'email' => $data['email'],
             'dinas' => isset($data['dinas']) ? $data['dinas'] : null
         ]);
+        $user->dinas()->create($data);
         $user->assignRole(RoleEnum::DINAS);
     }
 }

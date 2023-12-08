@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Classification;
 use App\Models\ContractCategory;
 use App\Models\Dinas;
+use App\Models\Field;
 use App\Models\FiscalYear;
 use App\Models\FundSource;
 use App\Models\Image;
@@ -22,6 +23,7 @@ use App\Models\User;
 use App\Observers\ClassificationObserver;
 use App\Observers\ContractCategoryObserver;
 use App\Observers\DinasObserver;
+use App\Observers\FieldObserver;
 use App\Observers\FiscalYearObserver;
 use App\Observers\FundSourceObserver;
 use App\Observers\ImageObserver;
@@ -76,6 +78,7 @@ class EventServiceProvider extends ServiceProvider
         Image::observe(ImageObserver::class);
         TrainingMember::observe(TrainingMemberObserver::class);
         Project::observe(ProjectObserver::class);
+        Field::observe(FieldObserver::class);
     }
 
     /**
