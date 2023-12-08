@@ -103,19 +103,15 @@
                                     <a href="/">Beranda</a>
                                 </li>
                                 <li class="menu-item-has-children">
-                                    <a class="d-flex d-row" href="">Profil DKSDK <svg style="margin-top:10px;margin-left:5px;" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 16 10" fill="none">
-                                        <path d="M15 1L8 8L1 1" stroke="black" stroke-width="2" stroke-linecap="round"/>
-                                        </svg></a>
+                                    <a class="d-flex d-row" href="#">Profil DKSDK</a>
                                     <ul class="sub-menu">
                                         <li><a href="/struktur-organisasi-DKSDK">Struktur Organisasi DKSDK</a></li>
-                                        <li><a href="">Rencana Strategis DKSDK</a></li>
-                                        <li><a href="">Tugas Dan Fungsi DKSDK</a></li>
+                                        <li><a href="/rencana-strategis-DKSDK">Rencana Strategis DKSDK</a></li>
+                                        <li><a href="/tugas-fungsi-DKSDK">Tugas Dan Fungsi DKSDK</a></li>
                                     </ul>
                                 </li>
                                 <li class="menu-item-has-children">
-                                    <a class="d-flex d-row" href="">Layanan <svg style="margin-top:10px;margin-left:5px;" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 16 10" fill="none">
-                                        <path d="M15 1L8 8L1 1" stroke="black" stroke-width="2" stroke-linecap="round"/>
-                                        </svg></a>
+                                    <a class="d-flex d-row" href="#">Layanan</a>
                                     <ul class="sub-menu">
                                         <li><a href="/faq">Bantuan</a></li>
                                     </ul>
@@ -126,27 +122,21 @@
 
                                 <li><a href="contact.html">Peraturan</a></li>
                                 <li class="menu-item-has-children">
-                                    <a class="d-flex d-row" href="">Data Jakon <svg style="margin-top:10px;margin-left:5px;" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 16 10" fill="none">
-                                        <path d="M15 1L8 8L1 1" stroke="black" stroke-width="2" stroke-linecap="round"/>
-                                        </svg></a>
+                                    <a class="d-flex d-row" href="#">Data Jakon</a>
                                             <ul class="sub-menu">
                                                 <li><a href="/opd">OPD</a></li>
                                                 <li><a href="/data-paket-pekerjaan">Paket Pekerjaan</a></li>
                                             </ul>
                                 </li>
                                 <li class="menu-item-has-children">
-                                    <a class="d-flex d-row" href="">Pelatihan <svg style="margin-top:10px;margin-left:5px;" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 16 10" fill="none">
-                                        <path d="M15 1L8 8L1 1" stroke="black" stroke-width="2" stroke-linecap="round"/>
-                                        </svg></a>
+                                    <a class="d-flex d-row" href="#">Pelatihan</a>
                                             <ul class="sub-menu">
                                                 <li><a href="/tenaga-ahli">Tenaga Ahli</a></li>
                                                 <li><a href="/tenaga-terampil">Tenaga Terampil</a></li>
                                             </ul>
                                 </li>
                                 <li class="menu-item-has-children">
-                                    <a class="d-flex d-row" href="">Pengawasan <svg style="margin-top:10px;margin-left:5px;" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 16 10" fill="none">
-                                        <path d="M15 1L8 8L1 1" stroke="black" stroke-width="2" stroke-linecap="round"/>
-                                        </svg></a>
+                                    <a class="d-flex d-row" href="#">Pengawasan</a>
                                             <ul class="sub-menu">
                                                 <li><a href="/kecelakaan">Kecelakaan</a></li>
                                             </ul>
