@@ -50,7 +50,7 @@ class ProjectController extends Controller
             $serviceProviders = $this->serviceProvider->get();
             $fundSources = $this->fundSource->get();
             $contractCategories = $this->contractCategory->get();
-            return view('pages.fiscal-year',compact('fiscalYears'));
+            return view('pages.dinas.work-package',compact('projects','serviceProviders','fundSources','contractCategories'));
 
         }
     }

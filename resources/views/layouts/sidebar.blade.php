@@ -6,7 +6,6 @@
             <ul class="metismenu list-unstyled" id="side-menu">
                 <li class="menu-title" key="t-menu">Menu</li>
                 @if (Auth::user()->roles->pluck('name')[0]  == 'superadmin')
-                    
                 <li>
                     <a href="{{ route('rule-categories.index') }}" class="waves-effect">
                         <i class="fas fa-clipboard"></i>
@@ -107,7 +106,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('work-package.index') }}" class="waves-effect">
+                    <a href="{{ route('projects.index') }}" class="waves-effect">
                         <i class="bx bxs-package"></i>
                         <span key="t-file-manager">Paket Pekerjaan</span>
                     </a>
