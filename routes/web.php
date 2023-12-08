@@ -39,7 +39,6 @@ Route::get('/', function () {
 Route::get('struktur-organisasi-DKSDK', function () {
     return view('struktur-organisasi');
 });
-
 Auth::routes(['verify' => true]);
 // Route::middleware(['auth'])->group(function () {
 
@@ -70,7 +69,7 @@ Auth::routes(['verify' => true]);
     });
 
 
-    Route::middleware('role:superadmin')->group(function () {
+    // Route::middleware('role:superadmin')->group(function () {
         Route::resources([
             'contract-categories' => ContractCategoryController::class,
             'fund-sources' => FundSourceController::class,
@@ -90,13 +89,13 @@ Auth::routes(['verify' => true]);
             Route::put('sub-qualifications/{qualification_level}',[QualificationLevelController::class,'update'])->name('update');
             Route::delete('sub-qualifications/{qualification_level}',[QualificationLevelController::class,'store'])->name('destroy');
         });
-    });
+    // });
 
-    Route::middleware('role:admin',)->group(function () {
+    // Route::middleware('role:admin',)->group(function () {
         Route::resources([
             'news' => NewsController::class,
         ]);
-    });
+    // });
 
     Route::middleware(['role:dinas'])->group(function () {
         Route::resources([
@@ -143,6 +142,12 @@ Auth::routes(['verify' => true]);
     Route::get('accident', function () {
         return view('pages.dinas.accident');
     })->name('accident');
+    Route::get('reset-password', function () {
+        return view('auth.passwords.reset');
+    })->name('reset-password');
+    Route::get('send-email', function () {
+        return view('auth.send-email');
+    })->name('send-email');
 
     Route::get('/redirect-verify-account', [VerificationController::class, 'verifyAccount'])->name('redirect.verify.account');
     Route::put('update-token/{user}', [VerificationController::class, 'updateToken']);
@@ -166,9 +171,8 @@ Route::get('profile-OPD', function () {
 });
 
 //Reset Password
-Route::post('send-email-reset-passsword', [ResetPasswordController::class, 'sendEmail']);
-Route::post('send-email-reset-passsword', [ForgotPasswordController::class, 'sendEmail']);
-Route::put('reset-passsword/{user}', [ResetPasswordController::class, 'reset']);
+Route::post('send-email-reset-passsword', [ForgotPasswordController::class, 'sendEmail'])->name('send-email-reset-passsword');
+Route::put('reset-passsword/{user}', [ResetPasswordController::class, 'reset'])->name('reset-passsword/');
 
 
 //Training Member
