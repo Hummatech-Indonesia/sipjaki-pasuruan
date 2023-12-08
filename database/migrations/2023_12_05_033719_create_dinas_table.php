@@ -15,7 +15,6 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->foreignUuid('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignUuid('field_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->string('email')->unique();
             $table->string('dinas');
             $table->char('type', 4);
             $table->string('sections');
@@ -28,7 +27,7 @@ return new class extends Migration
             $table->string('number_sk_tpjk');
             $table->string('admin_sipjaki');
             $table->string('number_sk_sipjaki');
-            $table->string('activity');
+            $table->string('activity')->nullable();
             $table->integer('last_year_budget');
             $table->integer('budget_this_year');
             $table->timestamps();

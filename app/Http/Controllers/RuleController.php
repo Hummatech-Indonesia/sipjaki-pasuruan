@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Interfaces\RuleInterface;
+use App\Contracts\Interfaces\ServiceProviderInterface;
 use App\Helpers\ResponseHelper;
 use App\Http\Requests\RuleRequest;
 use App\Http\Resources\RuleResource;
@@ -16,11 +17,13 @@ class RuleController extends Controller
     use PaginationTrait;
     private RuleInterface $rule;
     private RuleService $service;
+    private ServiceProviderInterface $serviceProvider;
 
-    public function __construct(RuleInterface $rule, RuleService $service)
+    public function __construct(RuleInterface $rule, RuleService $service, ServiceProviderInterface $serviceProvider)
     {
         $this->rule = $rule;
         $this->service = $service;
+        $this->serviceProvider = $serviceProvider;
     }
 
     /**
@@ -34,7 +37,8 @@ class RuleController extends Controller
             $data['data'] = RuleResource::collection($rules);
             return ResponseHelper::success($data);
         } else {
-            return view('rules.news', ['rules' => $rules]);
+            $serviceProviders = $this->serviceProvider->get();
+            return view('rules.news', ['rules' => $rules, 'serviveProviders' => $serviceProviders]);
         }
     }
 

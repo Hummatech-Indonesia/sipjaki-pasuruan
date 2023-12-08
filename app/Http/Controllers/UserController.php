@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Interfaces\DinasInterface;
+use App\Contracts\Interfaces\FieldInterface;
 use App\Contracts\Interfaces\UserInterface;
 use App\Helpers\ResponseHelper;
 use App\Http\Requests\UserRequest;
@@ -20,14 +21,20 @@ class UserController extends Controller
 
     private UserInterface $user;
     private UserService $service;
-    public function __construct(UserInterface $user, UserService $service)
+    private DinasInterface $dinas;
+    private FieldInterface $field;
+    public function __construct(UserInterface $user, UserService $service, DinasInterface $dinas, FieldInterface $field)
     {
         $this->user = $user;
         $this->service = $service;
+        $this->dinas = $dinas;
+        $this->field = $field;
     }
 
     /**
      * Display a listing of the resource.
+     * @param  mixed $request
+     * @return JsonResponse
      */
     public function index(Request $request): JsonResponse | View
     {
@@ -37,53 +44,35 @@ class UserController extends Controller
             $data['data'] = UserResource::collection($users);
             return ResponseHelper::success($data);
         } else {
-            return view('pages.agency', ['users' => $users]);
+            $fields = $this->field->get();
+            return view('pages.agency', ['users' => $users, 'fields' => $fields]);
         }
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
+     * @param  mixed $request
+     * @return void
      */
     public function store(UserRequest $request)
     {
         $this->service->store($request, $this->user);
         if ($request->is('api/*')) {
-        return ResponseHelper::success(null, trans('alert.add_success'));
+            return ResponseHelper::success(null, trans('alert.add_success'));
         } else {
             return redirect()->back()->with('success', trans('alert.add_success'));
         }
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
     /**
      * Update the specified resource in storage.
+     * @param  mixed $request
+     * @param  mixed $user
+     * @return void
      */
     public function update(UserRequest $request, User $user)
     {
         $this->user->update($user->id, $request->validated());
+        $this->dinas->update($user->dinas->id, $request->validated());
         if ($request->is('api/*')) {
             return ResponseHelper::success(null, trans('alert.update_success'));
         } else {
@@ -93,6 +82,8 @@ class UserController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     * @param  mixed $user
+     * @return void
      */
     public function destroy(User $user)
     {

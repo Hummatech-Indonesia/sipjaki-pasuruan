@@ -21,14 +21,9 @@ class UserService
     {
         $data = $request->validated();
         $password = bcrypt('password');
-
-        $user = $user->store([
-            'name' => $data['name'],
-            'password' => $password,
-            'email_verified_at' => now(),
-            'email' => $data['email'],
-            'dinas' => isset($data['dinas']) ? $data['dinas'] : null
-        ]);
+        $data['email_verified_at'] = now();
+        $data['password'] = $password;
+        $user = $user->store($data);
         $user->dinas()->create($data);
         $user->assignRole(RoleEnum::DINAS);
     }
