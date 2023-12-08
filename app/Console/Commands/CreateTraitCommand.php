@@ -43,7 +43,7 @@ class CreateTraitCommand extends Command
 
     protected function getTraitName($name)
     {
-        return ucfirst($name) . 'Trait';
+        return ucfirst($name);
     }
 
     protected function getDefaultNamespace()

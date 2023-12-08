@@ -27,12 +27,13 @@ class ProjectController extends Controller
     public function index(Request $request) : View | JsonResponse
     {
 
-        $fiscalYears = $this->project->customPaginate($request, 15);
+        $projects = $this->project->customPaginate($request, 15);
+
         
         if( $request->is('api/*')){
 
-            $data['paginate'] = $this->customPaginate($fiscalYears->currentPage(), $fiscalYears->lastPage());
-            $data['data'] = ProjectResource::collection($fiscalYears);
+            $data['paginate'] = $this->customPaginate($projects->currentPage(), $projects->lastPage());
+            $data['data'] = ProjectResource::collection($projects);
             return ResponseHelper::success($data,trans('alert.get_success'));
 
         }else{
