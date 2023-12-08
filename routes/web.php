@@ -137,6 +137,8 @@ Route::resources([
 
         Route::get('list-classifications', [ClassificationController::class, 'listClassifications'])->name('list-classifications');
         Route::get('list-sub-classifications/{classification}', [SubClassificationController::class, 'listSubClassificcation'])->name('list-sub-classifications/');
+
+        Route::get('list-training-method', [TrainingMethodController::class, 'listTrainingMethod']);
     });
 
     // Route::middleware('role:service provider',function(){
@@ -226,7 +228,13 @@ Route::post('import-training-members', [TrainingMemberController::class, 'import
 Route::resource('worker', WorkerController::class)->only('index', 'update', 'destroy');
 Route::post('worker/{service_provider}', [WorkerController::class, 'store']);
 
-
 // Training
 Route::get('training' , [TrainingController::class , 'index'])->name('training');
 Route::post('training', [TrainingController::class , 'store'])->name('training.store');
+
+require __DIR__.'/aldy.php';
+require __DIR__.'/arif.php';
+require __DIR__.'/daffa.php';
+require __DIR__.'/ibnu.php';
+require __DIR__.'/kader.php';
+require __DIR__.'/femas.php';

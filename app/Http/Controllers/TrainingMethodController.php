@@ -8,7 +8,9 @@ use App\Http\Requests\TrainingMethodRequest;
 use App\Http\Resources\TrainingMethodResource;
 use App\Models\TrainingMethod;
 use App\Traits\PaginationTrait;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class TrainingMethodController extends Controller
 {
@@ -86,5 +88,15 @@ class TrainingMethodController extends Controller
         } else {
             return redirect()->back()->with('success', trans('alert.delete_success'));
         }
+    }
+
+    /**
+     * listTrainingMethod
+     *
+     * @return JsonResponse
+     */
+    public function listTrainingMethod(): JsonResponse
+    {
+        return ResponseHelper::success(TrainingMethodResource::collection($this->traingMethod->get()));
     }
 }

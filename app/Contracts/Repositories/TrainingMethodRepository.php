@@ -15,6 +15,17 @@ class TrainingMethodRepository extends BaseRepository implements TrainingMethodI
     }
 
     /**
+     * get
+     *
+     * @return mixed
+     */
+    public function get(): mixed
+    {
+        return $this->model->query()
+            ->get();
+    }
+
+    /**
      * store
      *
      * @param  mixed $data
