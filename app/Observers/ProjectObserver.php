@@ -13,6 +13,7 @@ class ProjectObserver
     public function creating(Project $project): void
     {
         $project->id = Uuid::uuid();
+        $project->dinas_id = auth()->user()->dinas->id;
     }
 
 }
