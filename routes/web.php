@@ -98,10 +98,10 @@ Auth::routes(['verify' => true]);
         ]);
     // });
 
-    // Route::middleware('role:dinas',function(){
+    Route::middleware('role:dinas',function(){
         // Accident
         Route::resource('accident', AccidentController::class)->except('create', 'edit', 'show');
-    // });
+    });
 
     Route::middleware(['role:dinas'])->group(function () {
         Route::resources([
