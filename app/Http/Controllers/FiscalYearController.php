@@ -28,7 +28,7 @@ class FiscalYearController extends Controller
     {
 
         $fiscalYears = $this->fiscalYear->customPaginate($request, 15);
-        
+
         if( $request->is('api/*')){
 
             $data['paginate'] = $this->customPaginate($fiscalYears->currentPage(), $fiscalYears->lastPage());
@@ -102,5 +102,15 @@ class FiscalYearController extends Controller
             return redirect()->back()->with('success',trans('alert.delete_success'));
 
         }
+    }
+
+    /**
+     * listFiscalYear
+     *
+     * @return JsonResponse
+     */
+    public function listFiscalYear(): JsonResponse
+    {
+        return ResponseHelper::success(FiscalYearResource::collection($this->fiscalYear->get()));
     }
 }

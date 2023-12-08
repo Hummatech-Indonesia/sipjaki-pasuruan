@@ -79,4 +79,17 @@ class SubClassificationRepository extends BaseRepository implements SubClassific
             })
             ->fastPaginate($pagination);
     }
+
+    /**
+     * search
+     *
+     * @param  mixed $request
+     * @return mixed
+     */
+    public function search(Request $request): mixed
+    {
+        return $this->model->query()
+            ->where('classification_id', $request->classification_id)
+            ->get();
+    }
 }

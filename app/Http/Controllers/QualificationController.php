@@ -27,7 +27,7 @@ class QualificationController extends Controller
     {
 
         $qualifications = $this->qualification->customPaginate($request, 15);
-        
+
         if( $request->is('api/*')){
 
             $data['paginate'] = $this->customPaginate($qualifications->currentPage(), $qualifications->lastPage());
@@ -107,5 +107,15 @@ class QualificationController extends Controller
             return redirect()->back()->with('success',trans('alert.delete_success'));
 
         }
+    }
+
+    /**
+     * listQualifications
+     *
+     * @return JsonResponse
+     */
+    public function listQualifications(): JsonResponse
+    {
+        return ResponseHelper::success($this->qualification->get());
     }
 }

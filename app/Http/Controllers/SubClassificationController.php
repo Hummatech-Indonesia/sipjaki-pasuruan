@@ -46,6 +46,20 @@ class SubClassificationController extends Controller
         }
     }
 
+    /**
+     * listSubClassificcation
+     *
+     * @param  mixed $request
+     * @param  mixed $classification
+     * @return JsonResponse
+     */
+    public function listSubClassificcation(Request $request, Classification $classification): JsonResponse
+    {
+        $request->merge(['classification_id' => $classification->id]);
+        $data = $this->subClassification->search($request);
+        return ResponseHelper::success(SubClassificationResource::collection($data));
+    }
+
 
     /**
      * store

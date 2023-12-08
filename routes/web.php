@@ -109,6 +109,15 @@ Route::resources([
         Route::resources([
             'projects' => ProjectController::class
         ]);
+
+        Route::get('list-fiscal-year', [FiscalYearController::class, 'listFiscalYear']);
+        Route::get('list-fund-source', [FundSourceController::class, 'listFundSource']);
+
+        Route::get('list-qualifications', [QualificationController::class, 'listQualifications']);
+        Route::get('list-qualification-level/{qualification}', [QualificationLevelController::class, 'listQualificationLevel']);
+
+        Route::get('list-classifications', [ClassificationController::class, 'listClassifications']);
+        Route::get('list-sub-classifications/{classification}', [SubClassificationController::class, 'listSubClassificcation']);
     });
 
     // Route::middleware('role:service provider',function(){

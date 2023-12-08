@@ -15,6 +15,17 @@ class QualificationRepository extends BaseRepository implements QualificationInt
     }
 
     /**
+     * get
+     *
+     * @return mixed
+     */
+    public function get(): mixed
+    {
+        return $this->model->query()
+            ->get();
+    }
+
+    /**
      * store
      *
      * @param  mixed $data

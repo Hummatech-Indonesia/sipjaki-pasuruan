@@ -8,7 +8,9 @@ use App\Http\Requests\FundSourceRequest;
 use App\Http\Resources\FundSourceResource;
 use App\Models\FundSource;
 use App\Traits\PaginationTrait;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class FundSourceController extends Controller
 {
@@ -97,5 +99,15 @@ class FundSourceController extends Controller
         } else {
             return redirect()->back()->with('success', trans('alert.delete_success'));
         }
+    }
+
+    /**
+     * listFundSource
+     *
+     * @return JsonResponse
+     */
+    public function listFundSource(): JsonResponse
+    {
+        return ResponseHelper::success(FundSourceResource::collection($this->fundSource->get()));
     }
 }

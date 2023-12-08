@@ -29,7 +29,7 @@ class QualificationLevelController extends Controller
     {
 
         $qualifications = $this->qualificationLevel->customPaginate($request, 15);
-        
+
         if( $request->is('api/*')){
 
             $data['paginate'] = $this->customPaginate($qualifications->currentPage(), $qualifications->lastPage());
@@ -101,5 +101,18 @@ class QualificationLevelController extends Controller
             return redirect()->back()->with('success',trans('alert.delete_success'));
 
         }
+    }
+
+    /**
+     * listQualificationLevel
+     *
+     * @param  mixed $request
+     * @param  mixed $qualification
+     * @return JsonResponse
+     */
+    public function listQualificationLevel(Request $request, QualificationLevel $qualification): JsonResponse
+    {
+        $request->merge(['qualification_id' => $qualification->id]);
+        return ResponseHelper::success(QualificationLevelResource::collection($this->qualificationLevel->search($request)));
     }
 }

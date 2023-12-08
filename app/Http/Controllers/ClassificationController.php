@@ -8,6 +8,7 @@ use App\Http\Requests\ClassificationRequest;
 use App\Http\Resources\ClassificationResource;
 use App\Models\Classification;
 use App\Traits\PaginationTrait;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class ClassificationController extends Controller
@@ -100,5 +101,15 @@ class ClassificationController extends Controller
         } else {
             return redirect()->back()->with('success', trans('alert.delete_success'));
         }
+    }
+
+    /**
+     * listClassifications
+     *
+     * @return JsonResponse
+     */
+    public function listClassifications(): JsonResponse
+    {
+        return ResponseHelper::success(ClassificationResource::collection($this->classification->get()));
     }
 }

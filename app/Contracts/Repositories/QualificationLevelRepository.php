@@ -70,6 +70,7 @@ class QualificationLevelRepository extends BaseRepository implements Qualificati
     public function search(Request $request): mixed
     {
         return $this->model->query()
+            ->where('qualification_id', $request->qualification_id)
             ->get();
     }
 

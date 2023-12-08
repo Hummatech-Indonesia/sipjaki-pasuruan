@@ -14,6 +14,18 @@ class ClassificationRepository extends BaseRepository implements ClassificationI
         $this->model = $classification;
     }
 
+
+    /**
+     * get
+     *
+     * @return mixed
+     */
+    public function get(): mixed
+    {
+        return $this->model->query()
+            ->get();
+    }
+
     /**
      * store
      *
