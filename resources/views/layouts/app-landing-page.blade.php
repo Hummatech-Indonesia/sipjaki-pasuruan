@@ -135,18 +135,24 @@
 
                                 <li><a href="contact.html">Peraturan</a></li>
                                 <li class="menu-item-has-children">
-                                    <a href="portfolio.html">Data Jakon</a>
+                                    <a href="">Data Jakon</a>
                                             <ul class="sub-menu">
-                                                <li><a href="portfolio-one.html">OPD</a></li>
+                                                <li><a href="/opd">OPD</a></li>
                                                 <li><a href="/data-paket-pekerjaan">Paket Pekerjaan</a></li>
                                             </ul>
                                 </li>
-                                <li><a href="contact.html">Pelatihan</a></li>
+                                <li class="menu-item-has-children">
+                                    <a href="">Pelatihan</a>
+                                            <ul class="sub-menu">
+                                                <li><a href="/tenaga-ahli">Tenaga Ahli</a></li>
+                                                <li><a href="/tenaga-terampil">Tenaga Terampil</a></li>
+                                            </ul>
+                                </li>
                                 <li><a href="contact.html">Pengawasan</a></li>
                             </ul>
 
                             <div class="nav-right">
-                                <a href="signup.html" class="nav-btn">Masuk</a>
+                                <a href="{{ route('login') }}" class="nav-btn">Masuk</a>
                             </div>
                         </div>
                         <!-- /.menu-wrapper -->
