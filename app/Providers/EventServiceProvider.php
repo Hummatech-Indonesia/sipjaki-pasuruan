@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Accident;
 use App\Models\Classification;
 use App\Models\ContractCategory;
 use App\Models\Dinas;
@@ -22,6 +23,7 @@ use App\Models\TrainingMember;
 use App\Models\TrainingMethod;
 use App\Models\User;
 use App\Models\Worker;
+use App\Observers\AccidentObserver;
 use App\Observers\ClassificationObserver;
 use App\Observers\ContractCategoryObserver;
 use App\Observers\DinasObserver;
@@ -86,6 +88,7 @@ class EventServiceProvider extends ServiceProvider
         ModelsServiceProvider::observe(ServiceProviderObserver::class);
         Worker::observe(WorkerObserver::class);
         ModelsServiceProvider::observe(ModelsServiceProvider::class);
+        Accident::observe(AccidentObserver::class);
     }
 
     /**
