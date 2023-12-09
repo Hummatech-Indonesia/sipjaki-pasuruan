@@ -38,7 +38,7 @@ class ProjectController extends Controller
     {
 
         $projects = $this->project->customPaginate($request, 15);
-        
+
         if( $request->is('api/*')){
 
             $data['paginate'] = $this->customPaginate($projects->currentPage(), $projects->lastPage());
@@ -46,7 +46,7 @@ class ProjectController extends Controller
             return ResponseHelper::success($data,trans('alert.get_success'));
 
         }else{
-            
+
             $serviceProviders = $this->serviceProvider->get();
             $fundSources = $this->fundSource->get();
             $contractCategories = $this->contractCategory->get();
@@ -115,5 +115,15 @@ class ProjectController extends Controller
             return redirect()->back()->with('success',trans('alert.delete_success'));
 
         }
+    }
+
+    /**
+     * listProjects
+     *
+     * @return JsonResponse
+     */
+    public function listProjects(): JsonResponse
+    {
+        return ResponseHelper::success(ProjectResource::collection($this->project->get()));
     }
 }
