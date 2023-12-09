@@ -2864,6 +2864,10 @@ select {
     color: #FFC928;
 }
 
+.site-header .nav-dark .site-main-menu li a.active{
+    color: #FFC928;
+}
+
 .site-header .nav-dark .site-main-menu li.menu-item-has-children:after {
     color: #2b2350;
 }

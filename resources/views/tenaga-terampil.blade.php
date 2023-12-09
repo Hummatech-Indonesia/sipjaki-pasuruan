@@ -1,5 +1,25 @@
 @extends('layouts.app-landing-page')
 @section('content')
+<style>
+    .search-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.search-icon {
+    margin-left: 10px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+</style>
+<link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
 <div class="tabs-wrapper">
     <div class="section-title text-center">
         <h2 style="border-radius: 16px;
@@ -10,9 +30,10 @@
     <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="d-flex d-row justify-content-between align-items-center">
-                        <div class="position-relative col-lg-4">
-                            <input type="search" class="form-control" id="search-name" placeholder="Search">
+                    <div class="d-flex d-row justify-content-between align-items-center mb-3">
+                        <div class="position-relative col-lg-3 search-container">
+                            <input type="search" class="py-2 ps-5" id="search-name" placeholder="Search">
+                            <i class="bx bx-search-alt search-icon"></i>
                         </div>
                         <select id="formrow-inputState" style="margin-right: 10px;" class="form-select col-lg-3">
                             <option disabled="" selected="">Menampilkan Data</option>

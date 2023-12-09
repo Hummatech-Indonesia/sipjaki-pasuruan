@@ -100,7 +100,7 @@
                         <div class="menu-wrapper" data-top="992">
                             <ul class="site-main-menu">
                                 <li class="menu-item-has-children">
-                                    <a href="/">Beranda</a>
+                                    <a class="active" href="/">Beranda</a>
                                 </li>
                                 <li class="menu-item-has-children">
                                     <a class="d-flex d-row" href="#">Profil DKSDK</a>
@@ -301,14 +301,13 @@
                                         fill="#1B3061" />
                                 </svg>
 
-                                <div>
+                                <div class="mt-2 me-3" >
                                     <a style="color: var(--White-Original, #1B3061);
                                     font-family: Poppins;
                                     font-size: 14px;
                                     font-style: normal;
                                     font-weight: 600;
-                                    line-height: normal; margin-right:20px;"
-                                        href="kelembagaan.djbk@pu.go.id">kelembagaan.djbk@pu.go.id</a>
+                                    line-height: normal;" href="kelembagaan.djbk@pu.go.id">kelembagaan.djbk@pu.go.id</a>
                                 </div>
                                 <svg style="margin-right: 5px;" width="35" height="35" viewBox="0 0 45 45"
                                     fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -325,13 +324,13 @@
                                         </clipPath>
                                     </defs>
                                 </svg>
-                                <div
+                                <div class="mt-2 ms-2"
                                     style="color: var(--White-Original, #1B3061);
                                     font-family: Poppins;
                                     font-size: 14px;
                                     font-style: normal;
                                     font-weight: 600;
-                                    line-height: normal;margin-right:45px;margin-top:10px;">
+                                    line-height: normal;">
                                     +62-21 739 5063
                                 </div>
                             </div>
