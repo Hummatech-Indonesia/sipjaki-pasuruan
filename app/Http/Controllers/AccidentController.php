@@ -60,11 +60,14 @@ class AccidentController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * show
+     *
+     * @param  mixed $accident
+     * @return JsonResponse
      */
-    public function show(string $id)
+    public function show(Accident $accident): JsonResponse
     {
-        //
+        return ResponseHelper::success(AccidentResource::make($accident));
     }
 
     /**
