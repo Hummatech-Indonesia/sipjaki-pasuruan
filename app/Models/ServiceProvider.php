@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use App\Base\Interfaces\HasUser;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Base\Interfaces\HasProjects;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class ServiceProvider extends Model implements HasUser
+class ServiceProvider extends Model implements HasUser , HasProjects
 {
     use HasFactory;
     protected $table = 'service_providers';
@@ -25,5 +27,15 @@ class ServiceProvider extends Model implements HasUser
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get all of the projects for the ServiceProvider
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function projects(): HasMany
+    {
+        return $this->hasMany(Project::class);
     }
 }
