@@ -15,9 +15,14 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @yield('style')
     <style>
-        .btn-sipjaki{
+        .btn-sipjaki {
             background-color: #1B3061;
             color: white
+        }
+
+        thead .table-sipjaki {
+            background-color: #1B3061;
+            color: #ffffff
         }
     </style>
 </head>

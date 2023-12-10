@@ -232,7 +232,8 @@
                     </div>
                     <div class="row">
                         <div class="d-flex justify-content-center mb-2 col-12 col-lg-4">
-                            <button data-id="{{ $project->id }}" style="min-width: 90px;width:100%" class="btn btn-danger btn-delete">Hapus</button>
+                            <button data-id="{{ $project->id }}" style="min-width: 90px;width:100%"
+                                class="btn btn-danger btn-delete">Hapus</button>
                         </div>
                         <div class="d-flex justify-content-center mb-2 col-12 col-lg-4">
                             <button style="min-width: 90px;width:100%" class="btn btn-edit btn-warning"
@@ -252,8 +253,8 @@
                                 data-characteristic_project="{{ $project->characteristic_project }}">Edit</button>
                         </div>
                         <div class="d-flex justify-content-center mb-2 col-12 col-lg-4">
-                            <button style="min-width: 90px;width:100%;background-color: #1B3061" class="btn text-white"
-                                id="btn-edit-{{ $project->id }}" data-id="{{ $project->id }}"
+                            <button style="min-width: 90px;width:100%;background-color: #1B3061" class="btn text-white btn-detail"
+                                id="btn-detail-{{ $project->id }}" data-id="{{ $project->id }}"
                                 data-name="{{ $project->name }}" data-year="{{ $project->year }}"
                                 data-status="{{ $project->status }}"
                                 data-start_at="{{ \Carbon\Carbon::parse($project->start_at)->format('Y-m-d') }}"
@@ -263,25 +264,25 @@
                                 data-physical_progress="{{ $project->physical_progress }}"
                                 data-physical_progress_start="{{ \Carbon\Carbon::parse($project->physical_progress_start)->format('Y-m-d') }}"
                                 data-project_value="{{ $project->project_value }}"
-                                data-fund_source_id="{{ $project->fund_source_id }}"
-                                data-service_provider_id="{{ $project->service_provider_id }}"
-                                data-contract_category_id="{{ $project->contract_category_id }}"
+                                data-fund_source="{{ $project->fundSource->name }}"
+                                data-service_provider_id="{{ $project->serviceProvider->id }}"
+                                data-contract_category_name="{{ $project->contractCategory->name }}"
                                 data-characteristic_project="{{ $project->characteristic_project }}">Detail</button>
                         </div>
                     </div>
                 </div>
             </div>
         @empty
-        <tr>
-            <td colspan="3" class="text-center">
-                <div class="d-flex justify-content-center" style="min-height:16rem">
-                    <div class="my-auto">
-                        <img src="{{ asset('no-data.png') }}" width="300" height="300" />
-                        <h4 class="text-center mt-4">Project Masih Kosong!!</h4>
+            <tr>
+                <td colspan="3" class="text-center">
+                    <div class="d-flex justify-content-center" style="min-height:16rem">
+                        <div class="my-auto">
+                            <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                            <h4 class="text-center mt-4">Project Masih Kosong!!</h4>
+                        </div>
                     </div>
-                </div>
-            </td>
-        </tr>
+                </td>
+            </tr>
         @endforelse
     </div>
 
@@ -299,11 +300,11 @@
                         <div class="card-body">
                             <div class="badge bg-info">
                                 <p class="mb-0 px-3 py-1 fs-6">
-                                    2022
+                                    <span id="detail-year"></span>
                                 </p>
                             </div>
                             <p class="mt-3 fs-5 text-dark mb-2" style="font-weight: 700">
-                                PJL Kel. Purwosari Kec. Purwosari
+                                <span id="detail-name"></span>
                             </p>
                             <div class="">
                                 <div class="row mb-1">
@@ -311,7 +312,7 @@
                                         <p class="mb-2 text-dark">Nilai Kontrak :</p>
                                     </div>
                                     <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;">APBD KAB/KOTA</p>
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-project_value"></span></p>
                                     </div>
                                 </div>
                                 <div class="row mb-1">
@@ -319,7 +320,7 @@
                                         <p class="mb-2 text-dark">Progres Fisik :</p>
                                     </div>
                                     <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;">Teknisi</p>
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-physical_progress"></span> %</p>
                                     </div>
                                 </div>
                                 <div class="row mb-1">
@@ -327,7 +328,7 @@
                                         <p class="mb-2 text-dark">Progres Keuangan :</p>
                                     </div>
                                     <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;">Jenjang 4</p>
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-finance_progress"></span> %</p>
                                     </div>
                                 </div>
                                 <div class="row mb-1">
@@ -335,7 +336,7 @@
                                         <p class="mb-2 text-dark">Status :</p>
                                     </div>
                                     <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;">SIPIL</p>
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-status"></span></p>
                                     </div>
                                 </div>
                                 <div class="row mb-1">
@@ -343,7 +344,7 @@
                                         <p class="mb-2 text-dark">Mulai :</p>
                                     </div>
                                     <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;">APBD KAB/KOTA</p>
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-start_at"></span></p>
                                     </div>
                                 </div>
                                 <div class="row mb-1">
@@ -351,7 +352,7 @@
                                         <p class="mb-2 text-dark">Selesai :</p>
                                     </div>
                                     <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;">Teknisi</p>
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-end_at"></span></p>
                                     </div>
                                 </div>
                                 <div class="row mb-1">
@@ -359,7 +360,7 @@
                                         <p class="mb-2 text-dark">Fisik Bulan :</p>
                                     </div>
                                     <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;">Kabpaten pasuruan</p>
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-physical_progress_start"></span></p>
                                     </div>
                                 </div>
                                 <div class="row mb-1">
@@ -367,7 +368,7 @@
                                         <p class="mb-2 text-dark">Keuangan Bulan :</p>
                                     </div>
                                     <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;">20</p>
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-finance_progress_start"></span></p>
                                     </div>
                                 </div>
                                 <div class="row mb-1">
@@ -375,33 +376,7 @@
                                         <p class="mb-2 text-dark">Sumber Dana :</p>
                                     </div>
                                     <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;">23</p>
-                                    </div>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark">Pengguna Jasa :</p>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;">33</p>
-                                    </div>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark">Penyedia NIB :</p>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;">Lorem Ipsum Dolor Sit
-                                            Amet Lorem Ipsm Dolor
-                                            Sit Amet</p>
-                                    </div>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark">Penyedia Nama :</p>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;">KAB.PASURUAN</p>
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-fund_source"></span></p>
                                     </div>
                                 </div>
                                 <div class="row mb-1">
@@ -417,7 +392,7 @@
                                         <p class="mb-2 text-dark">Karakteristik Kontrak :</p>
                                     </div>
                                     <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;">JAWA TIMUR</p>
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-characteristic_project"></span></p>
                                     </div>
                                 </div>
                             </div>
@@ -620,6 +595,12 @@
                 dropdownParent: $("#modal-update")
             });
         });
+        $('.btn-detail').click(function() {
+            const data = getDataAttributes($(this).attr('id'))
+            handleDetail(data)
+            console.log(data);
+            $('#modal-detail').modal('show')
+        })
         $('.btn-edit').click(function() {
             const formData = getDataAttributes($(this).attr('id'))
             var actionUrl = `projects/${formData['id']}`;

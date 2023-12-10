@@ -93,6 +93,12 @@
                         <span key="t-file-manager">Profile OPD</span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{ route('history-login.index') }}" class="waves-effect">
+                        <i class="bx bx-history"></i>
+                        <span key="t-file-manager">History Login</span>
+                    </a>
+                </li>
                 @endif
                 @if ( Auth::user()->roles->pluck('name')[0]  == 'dinas')
                 
