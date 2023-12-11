@@ -35,11 +35,6 @@
                             <input type="search" class="py-2 ps-5" id="search-name" placeholder="Search">
                             <i class="bx bx-search-alt search-icon"></i>
                         </div>
-                        <select id="formrow-inputState" style="margin-right: 10px;" class="form-select col-lg-3">
-                            <option disabled="" selected="">Menampilkan Data</option>
-                            <option>A++</option>
-                            <option>B++</option>
-                        </select>
                     </div>
                     <div class="table-responsive">
                         <table class="table table-borderless mb-0" border="1">
@@ -65,10 +60,7 @@
                                         Waktu Pelaksanaan</th>
                                     <th class="fw-medium"
                                         style="background-color: #1B3061; color: white; border-right: 1px solid #1B3061;">
-                                        Peserta Laki-laki</th>
-                                    <th class="fw-medium"
-                                        style="background-color: #1B3061; color: white; border-right: 1px solid #1B3061;">
-                                        Peserta Perempuan</th>
+                                        Peserta</th>
                                     <th class="fw-medium"
                                         style="background-color: #1B3061; color: white; border-right: 1px solid #1B3061;">
                                         Lokasi</th>
@@ -78,24 +70,32 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @forelse ($trainings as $training)
+                                <tr>
+                                    <th scope="row" class="fs-5">{{$loop->iteration}}</th>
+                                    <td>{{$training->name}}</td>
+                                    <td>{{$training->organizer}}</td>
+                                    <td>jenis</td>
+                                    <td>tingkat</td>
+                                    <td>{{$training->start_atisoFormat('Do MMMM YYYY HH:mm', 'ID')}}</td>
+                                    <td>{{$training->trainingMembers_count}}</td>
+                                    <td>BKPSDM
+                                        Provinsi
+                                        Bali</td>
+                                    <td>Kolaborasi dengan IKATAN AHLI PERENCANAA INDONESIA (IAP)</td>
+                                </tr>
+                                @empty
                                     <tr>
-                                        <th scope="row" class="fs-5">1</th>
-                                        <td>Pembekalan dan uji sertifikasi ahli muda perencana
-                                            irigasi</td>
-                                        <td>Kepala Dinas
-                                            PUPRKIM
-                                            Provinsi Bali</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>2023-10-16
-                                            00:00:00</td>
-                                        <td>18</td>
-                                        <td>4</td>
-                                        <td>BKPSDM
-                                            Provinsi
-                                            Bali</td>
-                                        <td>Kolaborasi dengan IKATAN AHLI PERENCANAA INDONESIA (IAP)</td>
+                                        <td colspan="10" class="text-center">
+                                            <div class="d-flex justify-content-center" style="min-height:16rem">
+                                                <div class="my-auto">
+                                                    <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                                    <h4 class="text-center mt-4">Pelatihan Kosong!!</h4>
+                                                </div>
+                                            </div>
+                                        </td>
                                     </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>

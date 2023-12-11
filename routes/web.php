@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\RuleController;
 use App\Http\Controllers\UserController;
@@ -61,11 +62,7 @@ Route::get('tugas-fungsi-DKSDK', function () {
 Auth::routes(['verify' => true]);
 // Route::middleware(['auth'])->group(function () {
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::get('/pelatihan', function () {
-    return view('pelatihan');
-})->name('pelatihan');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/kecelakaan', function () {
     return view('kecelakaan');
@@ -76,6 +73,7 @@ Route::get('/bantuan', function () {
 })->name('bantuan');
 
 Route::get('data-paket-pekerjaan', [LandingController::class, 'project'])->name('paket-pekerjaan');
+Route::get('/pelatihan',[LandingController::class,'training'])->name('pelatihan');
 
 Route::get('/opd', function () {
     return view('opd');
