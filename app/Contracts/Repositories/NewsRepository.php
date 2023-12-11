@@ -17,14 +17,15 @@ class NewsRepository extends BaseRepository implements NewsInterface
     /**
      * displayLatestNews
      *
-     * @return mixed
+     * @param  mixed $request
+     * @param  mixed $pagination
+     * @return LengthAwarePaginator
      */
-    public function displayLatestNews(): mixed
+    public function displayLatestNews(Request $request, int $pagination = 3): LengthAwarePaginator
     {
         return $this->model->query()
             ->latest()
-            ->take(3)
-            ->get();
+            ->fastPaginate($pagination);
     }
 
     /**
