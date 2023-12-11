@@ -30,9 +30,16 @@
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com/">
+    <link rel="stylesheet" href="path/to/your/style.css">
+
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&amp;family=Satisfy&amp;display=swap"
         rel="stylesheet">
+    <style>
+        path {
+            stroke: rgb(68, 116, 226);
+        }
+    </style>
 
 </head>
 
@@ -54,16 +61,13 @@
                 <div class="blob"></div>
                 <div class="blob"></div>
             </div>
-            <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-                <defs>
-                    <filter id="goo">
-                        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-                        <feColorMatrix in="blur" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7"
-                            result="goo" />
-                        <feBlend in="SourceGraphic" in2="goo" />
-                    </filter>
-                </defs>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900">
+                <path fill-rule="evenodd" stroke="rgb(250, 112, 112)" stroke-width="100px" stroke-linecap="butt"
+                    stroke-linejoin="miter" opacity="0.051" fill="none"
+                    d="M 450 50 C 670.914 50 850 229.086 850 450 C 850 670.914 670.914 850 450 850 C 229.086 850 50 670.914 50 450 C 50 229.086 229.086 50 450 50 Z">
+                </path>
             </svg>
+
 
         </div>
     </div>
@@ -250,7 +254,8 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6">
                             <div>
-                                <img style="width: 90%;" src="{{ asset('logo-kab-pasuruan-2.png') }}" alt="" srcset="">
+                                <img style="width: 90%;" src="{{ asset('logo-kab-pasuruan-2.png') }}" alt=""
+                                    srcset="">
                             </div>
                             <!-- /.widget footer-widget -->
                         </div>
@@ -309,14 +314,14 @@
                                     </div>
                                 </div>
                                 <ul class="mt-4"
-                                        style="color: var(--Biru-Primary, #1B3061);
+                                    style="color: var(--Biru-Primary, #1B3061);
                                 font-family: Poppins;
                                 font-size: 16px;
                                 font-style: normal;
                                 font-weight: 500;"
-                                        class="footer-social-link">
-                                        Copyright C2021. All Rights Reserved by SipjakiTeam
-                                    </ul>
+                                    class="footer-social-link">
+                                    Copyright C2021. All Rights Reserved by SipjakiTeam
+                                </ul>
                             </div>
                             <!-- /.widget footer-widget -->
                         </div>
