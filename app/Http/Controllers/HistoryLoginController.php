@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 class HistoryLoginController extends Controller
 {
     private HistoryLoginInterface $historyLogin;
+
     public function __construct(HistoryLoginInterface $historyLoginInterface)
     {
         $this->historyLogin = $historyLoginInterface;
@@ -25,11 +26,12 @@ class HistoryLoginController extends Controller
      */
     public function index(Request $request): JsonResponse|View
     {
-        $histories = $this->historyLogin->get();
+        $histories = $this->historyLogin->customPaginate($request, 15);
         if ($request->is('api/*')) {
             return ResponseHelper::success(HistoryLoginResource::collection($histories));
         } else {
-            return view('pages.history-login',compact('histories'));
+            $name = $request->name;
+            return view('pages.history-login',compact('histories','name'));
         }
     }
 }
