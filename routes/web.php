@@ -37,6 +37,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('berita-terbaru', function () {
+    return view('berita-terbaru');
+});
+
+Route::get('peraturan', function (){
+    return view('peraturan');
+});
+
 Route::get('struktur-organisasi-DKSDK', function () {
     return view('struktur-organisasi');
 });
@@ -65,19 +73,19 @@ Route::get('/kecelakaan', function () {
     return view('kecelakaan');
 });
 
-Route::get('/faq', function () {
+Route::get('/bantuan', function () {
     return view('faq');
 });
 
-Route::get('data-paket-pekerjaan',[LandingController::class,'project']);
+Route::get('data-paket-pekerjaan', [LandingController::class, 'project']);
 
 Route::get('/opd', function () {
     return view('opd');
 });
 
 
-Route::middleware('auth')->group(function(){
-    Route::middleware('role:superadmin')->group(function(){
+Route::middleware('auth')->group(function () {
+    Route::middleware('role:superadmin')->group(function () {
         Route::resources([
             'contract-categories' => ContractCategoryController::class,
             'fund-sources' => FundSourceController::class,
@@ -88,7 +96,7 @@ Route::middleware('auth')->group(function(){
             'classifications' => ClassificationController::class,
             'news' => NewsController::class,
             'training-methods' => TrainingMethodController::class,
-            
+
             'rules' => RuleController::class,
         ]);
 
@@ -99,7 +107,7 @@ Route::middleware('auth')->group(function(){
         });
     });
 
-    Route::middleware('role:admin')->group(function(){
+    Route::middleware('role:admin')->group(function () {
         Route::resources([
             'news' => NewsController::class,
         ]);
@@ -118,10 +126,9 @@ Route::middleware('auth')->group(function(){
         Route::put('training-members/{training_member}', [TrainingMemberController::class, 'update']);
         Route::delete('training-members/{training_member}', [TrainingMemberController::class, 'destroy']);
         Route::post('import-training-members', [TrainingMemberController::class, 'import']);
-
     });
 
-    Route::middleware('role:dinas')->group(function(){
+    Route::middleware('role:dinas')->group(function () {
         Route::resource('accident', AccidentController::class)->except('create', 'edit', 'show');
         Route::resources([
             'projects' => ProjectController::class
@@ -137,10 +144,20 @@ Route::middleware('auth')->group(function(){
         Route::get('list-sub-classifications/{classification}', [SubClassificationController::class, 'listSubClassificcation'])->name('list-sub-classifications/');
 
         Route::get('list-training-method', [TrainingMethodController::class, 'listTrainingMethod'])->name('list-training-method');
-        Route::get('list-projects', [ProjectController::class, 'listProjects']);
+        Route::get('list-projects', [ProjectController::class, 'listProjects'])->name('list-projects');
     });
+});
 
-    Route::middleware('role:service provider')->group(function(){
+Route::middleware(['role:dinas'])->group(function () {
+    Route::resource('accident', AccidentController::class)->except('create', 'show');
+    Route::put('accident.update/{accident}', [AccidentController::class, 'update'])->name('accident.update/');
+    Route::get('accident.show/{accident}', [AccidentController::class, 'show'])->name('accident.show/');
+    Route::delete('accident.destroy/{accident}', [AccidentController::class, 'destroy'])->name('accident.destroy/');
+    Route::resources([
+        'projects' => ProjectController::class,
+        'fields' => FieldController::class
+    ]);
+    Route::middleware('role:service provider')->group(function () {
         Route::resource('worker', WorkerController::class)->only('index', 'update', 'destroy');
         Route::post('worker/{service_provider}', [WorkerController::class, 'store']);
     });
@@ -150,9 +167,16 @@ Route::get('profile-OPD', function () {
     return view('pages.profile-opd');
 });
 
-require __DIR__.'/aldy.php';
-require __DIR__.'/arif.php';
-require __DIR__.'/daffa.php';
-require __DIR__.'/ibnu.php';
-require __DIR__.'/kader.php';
-require __DIR__.'/femas.php';
+// Training member
+Route::post('import-training-members', [TrainingMemberController::class, 'import']);
+Route::resource('worker', WorkerController::class)->only('index', 'update', 'destroy');
+Route::post('worker/{service_provider}', [WorkerController::class, 'store']);
+
+
+
+require __DIR__ . '/aldy.php';
+require __DIR__ . '/arif.php';
+require __DIR__ . '/daffa.php';
+require __DIR__ . '/ibnu.php';
+require __DIR__ . '/kader.php';
+require __DIR__ . '/femas.php';

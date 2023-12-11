@@ -100,43 +100,46 @@
                         <div class="menu-wrapper" data-top="992">
                             <ul class="site-main-menu">
                                 <li class="menu-item-has-children">
-                                    <a class="active" href="/">Beranda</a>
+                                    <a class="{{ Request::is('/') ? 'active' : '' }}"
+                                        href="/">Beranda</a>
                                 </li>
                                 <li class="menu-item-has-children">
-                                    <a class="d-flex d-row" href="#">Profil DKSDK</a>
+                                    <a class="d-flex d-row {{ Request::is('struktur-organisasi-DKSDK', 'rencana-strategis-DKSDK', 'tugas-fungsi-DKSDK') ? 'active' : '' }}"
+                                        href="#">Profil DKSDK</a>
                                     <ul class="sub-menu">
                                         <li><a href="/struktur-organisasi-DKSDK">Struktur Organisasi DKSDK</a></li>
                                         <li><a href="/rencana-strategis-DKSDK">Rencana Strategis DKSDK</a></li>
                                         <li><a href="/tugas-fungsi-DKSDK">Tugas Dan Fungsi DKSDK</a></li>
                                     </ul>
                                 </li>
+
                                 <li class="menu-item-has-children">
-                                    <a class="d-flex d-row" href="#">Layanan</a>
+                                    <a class="d-flex d-row {{ Request::is('bantuan') ? 'active' : '' }}" href="#">Layanan</a>
                                     <ul class="sub-menu">
-                                        <li><a href="/faq">Bantuan</a></li>
+                                        <li><a href="/bantuan">Bantuan</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="/berita-terbaru">Berita Terbaru</a></li>
-                                <li><a href="/peraturan">Peraturan</a></li>
+                                <li><a class="{{ Request::is('berita-terbaru') ? 'active' : '' }}" href="/berita-terbaru">Berita Terbaru</a></li>
+                                <li><a class="{{ Request::is('peraturan') ? 'active' : '' }}" href="/peraturan">Peraturan</a></li>
                                 <li class="menu-item-has-children">
-                                    <a class="d-flex d-row" href="#">Data Jakon</a>
-                                            <ul class="sub-menu">
-                                                <li><a href="/opd">OPD</a></li>
-                                                <li><a href="/data-paket-pekerjaan">Paket Pekerjaan</a></li>
-                                            </ul>
+                                    <a class="d-flex d-row {{ Request::is('opd','data-paket-pekerjaan') ? 'active' : '' }}" href="#">Data Jakon</a>
+                                    <ul class="sub-menu">
+                                        <li><a href="/opd">OPD</a></li>
+                                        <li><a href="/data-paket-pekerjaan">Paket Pekerjaan</a></li>
+                                    </ul>
                                 </li>
                                 <li class="menu-item-has-children">
-                                    <a class="d-flex d-row" href="#">Pelatihan</a>
-                                            <ul class="sub-menu">
-                                                <li><a href="/tenaga-ahli">Tenaga Ahli</a></li>
-                                                <li><a href="/tenaga-terampil">Tenaga Terampil</a></li>
-                                            </ul>
+                                    <a class="d-flex d-row {{ Request::is('tenaga-ahli','tenaga-terampil') ? 'active' : '' }}" href="#">Pelatihan</a>
+                                    <ul class="sub-menu">
+                                        <li><a href="/tenaga-ahli">Tenaga Ahli</a></li>
+                                        <li><a href="/tenaga-terampil">Tenaga Terampil</a></li>
+                                    </ul>
                                 </li>
                                 <li class="menu-item-has-children">
-                                    <a class="d-flex d-row" href="#">Pengawasan</a>
-                                            <ul class="sub-menu">
-                                                <li><a href="/kecelakaan">Kecelakaan</a></li>
-                                            </ul>
+                                    <a class="d-flex d-row {{ Request::is('kecelakaan') ? 'active' : '' }}" href="#">Pengawasan</a>
+                                    <ul class="sub-menu">
+                                        <li><a href="/kecelakaan">Kecelakaan</a></li>
+                                    </ul>
                                 </li>
                             </ul>
 
@@ -301,13 +304,14 @@
                                         fill="#1B3061" />
                                 </svg>
 
-                                <div class="mt-2 me-3" >
+                                <div class="mt-2 me-3">
                                     <a style="color: var(--White-Original, #1B3061);
                                     font-family: Poppins;
                                     font-size: 14px;
                                     font-style: normal;
                                     font-weight: 600;
-                                    line-height: normal;" href="kelembagaan.djbk@pu.go.id">kelembagaan.djbk@pu.go.id</a>
+                                    line-height: normal;"
+                                        href="kelembagaan.djbk@pu.go.id">kelembagaan.djbk@pu.go.id</a>
                                 </div>
                                 <svg style="margin-right: 5px;" width="35" height="35" viewBox="0 0 45 45"
                                     fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -446,7 +450,18 @@ text-decoration-thickness: 2px;
 
     <script src="assets/js/header.js"></script>
     <script src="assets/js/app-min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var currentPath = window.location.pathname;
 
+            $('.menu-item-has-children a').each(function() {
+                var href = $(this).attr('href');
+                if (currentPath === href) {
+                    $(this).addClass('active');
+                }
+            });
+        });
+    </script>
 </body>
 
 
