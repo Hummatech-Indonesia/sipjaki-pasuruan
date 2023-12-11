@@ -15,6 +15,33 @@ class NewsRepository extends BaseRepository implements NewsInterface
     }
 
     /**
+     * displayLatestNews
+     *
+     * @param  mixed $request
+     * @param  mixed $pagination
+     * @return LengthAwarePaginator
+     */
+    public function displayLatestNews(Request $request, int $pagination = 3): LengthAwarePaginator
+    {
+        return $this->model->query()
+            ->latest()
+            ->fastPaginate($pagination);
+    }
+
+    /**
+     * randomNews
+     *
+     * @return mixed
+     */
+    public function randomNews(): mixed
+    {
+        return $this->model->query()
+            ->inRandomOrder()
+            ->take(5)
+            ->get();
+    }
+
+    /**
      * store
      *
      * @param  mixed $data
