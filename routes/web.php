@@ -40,10 +40,6 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::get('berita-terbaru', function () {
-    return view('berita-terbaru');
-})->name('berita-terbaru');
-
 Route::get('peraturan', function (){
     return view('peraturan');
 })->name('peraturan');
