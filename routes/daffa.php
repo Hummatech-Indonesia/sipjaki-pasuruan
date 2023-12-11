@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LandingController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -13,6 +14,7 @@ Route::middleware(['role:admin'])->group(function () {
     Route::resources([
         'news' => NewsController::class
     ]);
+    Route::get('/',[LandingController::class,'news'])->name('landing-page');
 
 });
 
