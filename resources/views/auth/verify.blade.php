@@ -326,7 +326,7 @@
                                       padding: 15px 19px;
                                     "
                                                                     align="center" valign="middle" bgcolor="#7289DA">
-                                                                    <a href="{{ route('send.email', $data['id']) }}"
+                                                                    <a href="{{ route('verify-account/', $data['id']) }}"
                                                                         target="_blank" rel="noopener noreferrer"
                                                                         style="
                                         text-decoration: none;

@@ -39,7 +39,7 @@ Route::delete('training-members/{training_member}', [TrainingMemberController::c
 Route::get('/redirect-verify-account', [VerificationController::class, 'verifyAccount'])->name('redirect.verify.account');
 Route::put('update-token/{user}', [VerificationController::class, 'updateToken']);
 Route::put('verify-token/{user}', [VerificationController::class, 'verifyToken'])->name('verify-token/');
-Route::get('verify-account/{user}', [VerificationController::class, 'verifyacount']);
+Route::get('verify-account/{user}', [VerificationController::class, 'verifyacount'])->name('verify-account/');
 
 // sub classification 
 Route::get('sub-classifications/{classification}', [SubClassificationController::class, 'showSubClassification']);

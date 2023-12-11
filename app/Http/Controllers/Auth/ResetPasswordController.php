@@ -44,13 +44,29 @@ class ResetPasswordController extends Controller
         $data = $request->validated();
         if ($token->token == $data['token'] && $token->expired_token >= now()->format('Y-m-d H:i:s')) {
             $this->user->update($user->id, $data);
-            return ResponseHelper::success(null, trans('auth.reset_password_success'));
+            if ($request->is('api/*')) {
+                return ResponseHelper::success(null, trans('auth.reset_password_success'));
+            }else{
+                return redirect()->back()->with('success', trans('auth.reset_password_success'));
+            }
         } elseif ($token->token == $data['token'] && $token->expired_token <= now()->format('Y-m-d H:i:s')) {
-            return ResponseHelper::error(null, trans('alert.token_expired'));
+            if ($request->is('api/*')) {
+                return ResponseHelper::error(null, trans('alert.token_expired'));
+            }else{
+                return redirect()->back()->withErrors(trans('alert.token_expired'));
+            }
         } elseif ($token->token != $data['token']) {
-            return ResponseHelper::error(null, trans('alert.token_invalid'));
+            if ($request->is('api/*')) {
+                return ResponseHelper::error(null, trans('alert.token_invalid'));
+            }else{
+                return redirect()->back()->withErrors(trans('alert.token_invalid'));
+            }
         } else {
-            return ResponseHelper::error(null, trans('auth.reset_password_failed'));
+            if ($request->is('api/*')) {
+                return ResponseHelper::error(null, trans('auth.reset_password_failed'));
+            }else{
+                return redirect()->back()->withErrors(trans('auth.reset_password_failed'));
+            }
         }
     }
 }
