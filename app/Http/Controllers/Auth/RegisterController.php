@@ -76,10 +76,10 @@ class RegisterController extends Controller
     public function register(RegisterRequest $request)
     {
         $this->service->handleRegistration($request, $this->register);
-        if ($request->is('api/*')) {
-            return ResponseHelper::success(null, trans('auth.register_success'));
-        } else {
-            return redirect()->back()->with('success', trans('auth.register_success'));
-        }
+        // if ($request->is('api/*')) {
+        return ResponseHelper::success(null, trans('auth.register_success'));
+        // } else {
+        // return redirect()->back()->with('success', trans('auth.register_success'));
+        // }
     }
 }

@@ -91,21 +91,6 @@ Route::resources([
     'rules' => RuleController::class,
 ]);
 
-// Route::middleware('role:superadmin')->group(function () {
-Route::resources([
-    'contract-categories' => ContractCategoryController::class,
-    'fund-sources' => FundSourceController::class,
-    'qualifications' => QualificationController::class,
-    'source-fund' => FundSourceController::class,
-    'rule-categories' => RuleCategoriesController::class,
-    'fiscal-years' => FiscalYearController::class,
-    'classifications' => ClassificationController::class,
-    'news' => NewsController::class,
-    'training-methods' => TrainingMethodController::class,
-    'users' => UserController::class,
-    'rules' => RuleController::class,
-]);
-
 Route::name('qualifications.level.')->group(function () {
     Route::post('sub-qualifications/{qualification}', [QualificationLevelController::class, 'store'])->name('store');
     Route::put('sub-qualifications/{qualification_level}', [QualificationLevelController::class, 'update'])->name('update');
