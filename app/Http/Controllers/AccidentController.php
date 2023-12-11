@@ -27,11 +27,11 @@ class AccidentController extends Controller
     public function index(Request $request): JsonResponse|View
     {
         $accidents = $this->accident->get();
-        // if ($request->is('api/*')) {
+        if ($request->is('api/*')) {
             return ResponseHelper::success(AccidentResource::collection($accidents, trans('alert.fetch_success')));
-        // } else {
-        //     return view('', ['accidents' => $accidents]);
-        // }
+        } else {
+            return view('pages.dinas.accident', ['accidents' => $accidents]);
+        }
     }
 
 
@@ -49,7 +49,7 @@ class AccidentController extends Controller
      * @param  mixed $request
      * @return JsonResponse
      */
-    public function store(AccidentRequest $request): JsonResponse
+    public function store(AccidentRequest $request)
     {
         $this->accident->store($request->validated());
         if ($request->is('api/*')) {
@@ -85,7 +85,7 @@ class AccidentController extends Controller
      * @param  mixed $accident
      * @return JsonResponse
      */
-    public function update(AccidentRequest $request, Accident $accident): JsonResponse
+    public function update(AccidentRequest $request, Accident $accident)
     {
         $this->accident->update($accident->id, $request->validated());
         if ($request->is('api/*')) {
@@ -101,7 +101,7 @@ class AccidentController extends Controller
      * @param  mixed $accident
      * @return JsonResponse
      */
-    public function destroy(Request $request, Accident $accident): JsonResponse
+    public function destroy(Request $request, Accident $accident)
     {
         $this->accident->delete($accident->id);
         if ($request->is('api/*')) {
