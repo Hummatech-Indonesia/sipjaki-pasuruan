@@ -13,12 +13,13 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\AccidentController;
 use App\Http\Controllers\FiscalYearController;
 use App\Http\Controllers\FundSourceController;
+use App\Http\Controllers\HistoryLoginController;
 use App\Http\Controllers\QualificationController;
 use App\Http\Controllers\ClassificationController;
 use App\Http\Controllers\RuleCategoriesController;
 use App\Http\Controllers\TrainingMemberController;
 use App\Http\Controllers\TrainingMethodController;
-use App\Http\Controllers\HistoryLoginController;
+use App\Http\Controllers\QualificationLevelController;
 
 
 /*
@@ -99,7 +100,7 @@ Route::middleware('auth')->group(function () {
             'rules' => RuleController::class,
         ]);
 
-        Route::get('history-login', [HistoryLoginController::class, 'index']);
+        Route::get('history-login', [HistoryLoginController::class, 'index'])->name('histort-login.index');
         Route::name('qualifications.level.')->group(function () {
             Route::post('sub-qualifications/{qualification}', [QualificationLevelController::class, 'store'])->name('store');
             Route::put('sub-qualifications/{qualification_level}', [QualificationLevelController::class, 'update'])->name('update');
