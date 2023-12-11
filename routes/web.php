@@ -37,53 +37,49 @@ use App\Http\Controllers\QualificationLevelController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Route::get('berita-terbaru', function () {
     return view('berita-terbaru');
-});
+})->name('berita-terbaru');
 
 Route::get('peraturan', function (){
     return view('peraturan');
-});
+})->name('peraturan');
 
 Route::get('struktur-organisasi-DKSDK', function () {
     return view('struktur-organisasi');
-});
+})->name('struktur-organisasi');
 
 Route::get('rencana-strategis-DKSDK', function () {
     return view('rencana-strategis');
-});
+})->name('rencana-strategis');
 
 Route::get('tugas-fungsi-DKSDK', function () {
     return view('tugas-fungsi');
-});
+})->name('tugas-fungsi');
 Auth::routes(['verify' => true]);
 // Route::middleware(['auth'])->group(function () {
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/tenaga-ahli', function () {
-    return view('tenaga-ahli');
-});
-
-Route::get('/tenaga-terampil', function () {
-    return view('tenaga-terampil');
-});
+Route::get('/pelatihan', function () {
+    return view('pelatihan');
+})->name('pelatihan');
 
 Route::get('/kecelakaan', function () {
     return view('kecelakaan');
-});
+})->name('kecelakaan');
 
 Route::get('/bantuan', function () {
     return view('faq');
-});
+})->name('bantuan');
 
-Route::get('data-paket-pekerjaan', [LandingController::class, 'project']);
+Route::get('data-paket-pekerjaan', [LandingController::class, 'project'])->name('paket-pekerjaan');
 
 Route::get('/opd', function () {
     return view('opd');
-});
+})->name('opd');
 
 
 Route::middleware('auth')->group(function () {
