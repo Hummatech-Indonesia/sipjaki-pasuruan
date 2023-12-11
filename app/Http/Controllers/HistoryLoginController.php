@@ -25,11 +25,11 @@ class HistoryLoginController extends Controller
      */
     public function index(Request $request): JsonResponse|View
     {
-        $data = $this->historyLogin->get();
+        $histories = $this->historyLogin->get();
         if ($request->is('api/*')) {
-            return ResponseHelper::success(HistoryLoginResource::collection($data));
+            return ResponseHelper::success(HistoryLoginResource::collection($histories));
         } else {
-            return view('', ['dataHistory' => $data]);
+            return view('pages.history-login',compact('histories'));
         }
     }
 }
