@@ -58,7 +58,7 @@
                                     <th scope="row" class="fs-5">{{$loop->iteration}}</th>
                                     <td class="fs-5">{{$item->user->name}}</td>
                                     <td class="fs-5 text-center">{{$item->projects_count}}</td>
-                                    <td>
+                                    <td class="text-center">
                                         <a href="{{ route('detail-paket') }}" class="text-white btn" style="background-color: #1B3061">Detail</a>
                                     </td>
                                 </tr>
