@@ -265,7 +265,7 @@
                                 data-physical_progress_start="{{ \Carbon\Carbon::parse($project->physical_progress_start)->format('Y-m-d') }}"
                                 data-project_value="{{ $project->project_value }}"
                                 data-fund_source="{{ $project->fundSource->name }}"
-                                data-service_provider_id="{{ $project->serviceProvider->id }}"
+                                data-service_provider_name="{{ $project->serviceProvider->name }}"
                                 data-contract_category_name="{{ $project->contractCategory->name }}"
                                 data-characteristic_project="{{ $project->characteristic_project }}">Detail</button>
                         </div>
@@ -345,6 +345,15 @@
                                 </div>
                                 <div class="row mb-1">
                                     <div class="col-md-5">
+                                        <p class="mb-2 text-dark">Penyedia jasa :</p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
+                                                id="detail-service_provider_name"></span></p>
+                                    </div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-md-5">
                                         <p class="mb-2 text-dark">Mulai :</p>
                                     </div>
                                     <div class="col-md-5">
@@ -393,7 +402,7 @@
                                         <p class="mb-2 text-dark">jenis Kontrak :</p>
                                     </div>
                                     <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;">JAWA TIMUR</p>
+                                        <p class="mb-2 text-dark" style="font-weight:600;"> <span id="detail-contract_category_name"></span></p>
                                     </div>
                                 </div>
                                 <div class="row mb-1">
@@ -402,7 +411,7 @@
                                     </div>
                                     <div class="col-md-5">
                                         <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                id="detail-characteristic_project"></span></p>
+                                                id="detail-characteristic_project_name"></span></p>
                                     </div>
                                 </div>
                             </div>
@@ -608,7 +617,11 @@
         $('.btn-detail').click(function() {
             const data = getDataAttributes($(this).attr('id'))
             handleDetail(data)
-            console.log(data);
+            if(data['characteristic_project'] == "single"){
+                $('#detail-characteristic_project_name').html('Tahun Tunggal')
+            }else{
+                $('#detail-characteristic_project_name').html('Tahun Jamak')
+            }
             $('#modal-detail').modal('show')
         })
         $('.btn-edit').click(function() {
