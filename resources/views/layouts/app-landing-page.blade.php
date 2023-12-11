@@ -99,46 +99,42 @@
 
                         <div class="menu-wrapper" data-top="992">
                             <ul class="site-main-menu">
-                                <li class="menu-item-has-children">
-                                    <a class="{{ Request::is('/') ? 'active' : '' }}"
-                                        href="/">Beranda</a>
+                                <li>
+                                    <a class="{{ request()->routeIs('welcome') ? 'active' : '' }}"
+                                        href="{{ route('welcome') }}">Beranda</a>
                                 </li>
                                 <li class="menu-item-has-children">
-                                    <a class="d-flex d-row {{ Request::is('struktur-organisasi-DKSDK', 'rencana-strategis-DKSDK', 'tugas-fungsi-DKSDK') ? 'active' : '' }}"
+                                    <a class="d-flex d-row {{ request()->routeIs('struktur-organisasi') || request()->routeIs('rencana-strategis') || request()->routeIs('tugas-fungsi') ? 'active' : '' }}"
                                         href="#">Profil DKSDK</a>
                                     <ul class="sub-menu">
-                                        <li><a href="/struktur-organisasi-DKSDK">Struktur Organisasi DKSDK</a></li>
-                                        <li><a href="/rencana-strategis-DKSDK">Rencana Strategis DKSDK</a></li>
-                                        <li><a href="/tugas-fungsi-DKSDK">Tugas Dan Fungsi DKSDK</a></li>
+                                        <li><a class="{{ request()->routeIs('struktur-organisasi') ? 'active' : '' }}" href="{{ route('struktur-organisasi') }}">Struktur Organisasi DKSDK</a></li>
+                                        <li><a class="{{ request()->routeIs('rencana-strategis') ? 'active' : '' }}" href="{{ route('rencana-strategis') }}">Rencana Strategis DKSDK</a></li>
+                                        <li><a class="{{ request()->routeIs('tugas-fungsi') ? 'active' : '' }}" href="{{ route('tugas-fungsi') }}">Tugas Dan Fungsi DKSDK</a></li>
                                     </ul>
                                 </li>
 
                                 <li class="menu-item-has-children">
-                                    <a class="d-flex d-row {{ Request::is('bantuan') ? 'active' : '' }}" href="#">Layanan</a>
+                                    <a class="d-flex d-row {{ request()->routeIs('bantuan') ? 'active' : '' }}" href="#">Layanan</a>
                                     <ul class="sub-menu">
-                                        <li><a href="/bantuan">Bantuan</a></li>
+                                        <li><a class="{{ request()->routeIs('bantuan') ? 'active' : '' }}" href="{{ route('bantuan') }}">Bantuan</a></li>
                                     </ul>
                                 </li>
-                                <li><a class="{{ Request::is('berita-terbaru') ? 'active' : '' }}" href="/berita-terbaru">Berita Terbaru</a></li>
-                                <li><a class="{{ Request::is('peraturan') ? 'active' : '' }}" href="/peraturan">Peraturan</a></li>
+                                <li><a class="{{ request()->routeIs('berita-terbaru') ? 'active' : '' }}" href="{{ route('berita-terbaru') }}">Berita Terbaru</a></li>
+                                <li><a class="{{ request()->routeIs('pertauran') ? 'active' : '' }}" href="{{ route('peraturan') }}">Peraturan</a></li>
                                 <li class="menu-item-has-children">
-                                    <a class="d-flex d-row {{ Request::is('opd','data-paket-pekerjaan') ? 'active' : '' }}" href="#">Data Jakon</a>
+                                    <a class="d-flex d-row {{ request()->routeIs('opd') || request()->routeIs('paket-pekerjaan') ? 'active' : '' }}" href="#">Data Jakon</a>
                                     <ul class="sub-menu">
-                                        <li><a href="/opd">OPD</a></li>
-                                        <li><a href="/data-paket-pekerjaan">Paket Pekerjaan</a></li>
+                                        <li><a class="{{ request()->routeIs('opd') ? 'active' : '' }}" href="{{ route('opd') }}">OPD</a></li>
+                                        <li><a class="{{ request()->routeIs('paket-pekerjaan') ? 'active' : '' }}" href="{{ route('paket-pekerjaan') }}">Paket Pekerjaan</a></li>
                                     </ul>
                                 </li>
-                                <li class="menu-item-has-children">
-                                    <a class="d-flex d-row {{ Request::is('tenaga-ahli','tenaga-terampil') ? 'active' : '' }}" href="#">Pelatihan</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="/tenaga-ahli">Tenaga Ahli</a></li>
-                                        <li><a href="/tenaga-terampil">Tenaga Terampil</a></li>
-                                    </ul>
+                                <li>
+                                    <a class="d-flex d-row {{ request()->routeIs('pelatihan') ? 'active' : '' }}" href="{{ route('pelatihan') }}">Pelatihan</a>
                                 </li>
                                 <li class="menu-item-has-children">
-                                    <a class="d-flex d-row {{ Request::is('kecelakaan') ? 'active' : '' }}" href="#">Pengawasan</a>
+                                    <a class="d-flex d-row {{ request()->routeIs('kecelakaan') ? 'active' : '' }}" href="#">Pengawasan</a>
                                     <ul class="sub-menu">
-                                        <li><a href="/kecelakaan">Kecelakaan</a></li>
+                                        <li><a class="{{ request()->routeIs('kecelakaan') ? 'active' : '' }}" href="{{ route('kecelakaan') }}">Kecelakaan</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -450,18 +446,6 @@ text-decoration-thickness: 2px;
 
     <script src="assets/js/header.js"></script>
     <script src="assets/js/app-min.js"></script>
-    <script>
-        $(document).ready(function() {
-            var currentPath = window.location.pathname;
-
-            $('.menu-item-has-children a').each(function() {
-                var href = $(this).attr('href');
-                if (currentPath === href) {
-                    $(this).addClass('active');
-                }
-            });
-        });
-    </script>
 </body>
 
 
