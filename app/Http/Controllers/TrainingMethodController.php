@@ -32,7 +32,8 @@ class TrainingMethodController extends Controller
             $data['data'] = TrainingMethodResource::collection($traingMethods);
             return ResponseHelper::success($data);
         } else {
-            return view('methods.index' , compact('traingMethods'));
+            $name = $request->name;
+            return view('methods.index' , compact('traingMethods','name'));
         }
     }
     /**

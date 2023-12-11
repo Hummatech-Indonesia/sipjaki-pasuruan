@@ -10,7 +10,7 @@ use App\Models\RuleCategory;
 use App\Traits\PaginationTrait;
 use Illuminate\Http\Request;
 
-class RuleCategoriesController extends Controller
+class RuleCategoryController extends Controller
 {
     use PaginationTrait;
 
@@ -31,7 +31,8 @@ class RuleCategoriesController extends Controller
             $data['data'] = RuleCategoriesResource::collection($ruleCategories);
             return ResponseHelper::success($data);
         } else {
-            return view('pages.rule-category', ['ruleCategories' => $ruleCategories]);
+            $name = $request->name;
+            return view('pages.rule-category', compact('ruleCategories','name'));
         }
     }
 

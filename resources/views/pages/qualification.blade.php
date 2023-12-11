@@ -8,16 +8,16 @@
             </h5>
         </div>
         <div class="d-flex justify-content-between mb-3">
-            <div class=" col-lg-3">
+            <form action="" class=" col-lg-3">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search">
+                    <input name="name" value="{{$name}}" type="text" class="form-control" placeholder="Search">
                     <div class="input-group-append">
-                        <button class="btn text-white" style="background-color: #1B3061; border-radius: 0 5px 5px 0;" type="button">
+                        <button class="btn text-white" style="background-color: #1B3061; border-radius: 0 5px 5px 0;" type="submit">
                             <i class="fa fa-search"></i>
                         </button>
                     </div>
                 </div>
-            </div>
+            </form>
             <div>
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-create"
                     style="background-color: #1B3061"><i class="fas fa-plus" style="margin-right:10px"></i>Tambah</button>

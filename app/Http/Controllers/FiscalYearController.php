@@ -37,7 +37,8 @@ class FiscalYearController extends Controller
 
         }else{
 
-            return view('pages.fiscal-year',compact('fiscalYears'));
+            $name = $request->name;
+            return view('pages.fiscal-year',compact('fiscalYears','name'));
 
         }
     }
