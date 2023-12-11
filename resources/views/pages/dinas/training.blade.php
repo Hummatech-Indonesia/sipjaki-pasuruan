@@ -57,7 +57,7 @@
                         @method('POST')
                         <div id="basic-example">
                             <!-- Seller Details -->
-                            <h3>Data 1</h3>
+                            <h3>Step 1</h3>
                             <section>
                                 <div class="row">
                                     <div class="col-lg-6">
@@ -136,7 +136,7 @@
                             </section>
 
                             <!-- Company Document -->
-                            <h3>Data 2</h3>
+                            <h3>Step 2</h3>
                             <section>
                                 <div class="row">
                                     <div class="col-lg-3">

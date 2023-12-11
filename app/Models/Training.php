@@ -24,6 +24,7 @@ class Training extends Model implements HasTrainingMethod,HasFiscalYear,HasSubCl
         'sub_classifications_id',
         'qualification_level_id',
         'name',
+        'organizer',
         'start_at',
         'end_time',
         'lesson_hour',
