@@ -2,29 +2,15 @@
 
 namespace App\Contracts\Repositories;
 
+use App\Contracts\Interfaces\ServiceProviderProjectInterface;
+use App\Models\ServiceProviderProject;
 use Illuminate\Http\Request;
-use App\Models\ServiceProvider;
-use Illuminate\Pagination\LengthAwarePaginator;
-use App\Contracts\Interfaces\ServiceProviderInterface;
 
-class ServiceProviderRepository extends BaseRepository implements ServiceProviderInterface
+class ServiceProviderProjectRepository extends BaseRepository implements ServiceProviderProjectInterface
 {
-
-
-    public function __construct(ServiceProvider $serviceProvider)
+    public function __construct(ServiceProviderProject $serviceProviderProject)
     {
-        $this->model = $serviceProvider;
-    }
-
-    /**
-     * get
-     *
-     * @return mixed
-     */
-    public function get() : mixed
-    {
-        return $this->model->query()
-            ->get();
+        $this->model = $serviceProviderProject;
     }
 
     /**
@@ -73,22 +59,17 @@ class ServiceProviderRepository extends BaseRepository implements ServiceProvide
     {
         return $this->show($id)->delete($id);
     }
-
-
     /**
-     * customPaginate
+     * search
      *
      * @param  mixed $request
-     * @param  mixed $pagination
-     * @return LengthAwarePaginator
+     * @return mixed
      */
-    public function customPaginate(Request $request, int $pagination = 10): LengthAwarePaginator
+    public function search(Request $request): mixed
     {
         return $this->model->query()
-            ->with('fiscalYear')
-            ->when($request->name,function($query) use ($request){
-                $query->where('name','LIKE','%'.$request->name.'%');
-            })
-            ->fastPaginate($pagination);
+            ->where('project_id', $request->project_id)
+            ->where('service_provider_id', auth()->user()->serviceProvider->id)
+            ->get();
     }
 }

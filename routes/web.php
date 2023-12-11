@@ -40,7 +40,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::get('peraturan', function (){
+Route::get('peraturan', function () {
     return view('peraturan');
 })->name('peraturan');
 
@@ -69,7 +69,7 @@ Route::get('/bantuan', function () {
 })->name('bantuan');
 
 Route::get('data-paket-pekerjaan', [LandingController::class, 'project'])->name('paket-pekerjaan');
-Route::get('/pelatihan',[LandingController::class,'training'])->name('pelatihan');
+Route::get('/pelatihan', [LandingController::class, 'training'])->name('pelatihan');
 
 Route::get('/opd', function () {
     return view('opd');
@@ -99,7 +99,7 @@ Route::middleware('auth')->group(function () {
             Route::delete('sub-qualifications/{qualification_level}', [QualificationLevelController::class, 'store'])->name('destroy');
         });
 
-        Route::name('sub-classfication.')->group(function(){
+        Route::name('sub-classfication.')->group(function () {
             Route::get('sub-classifications/{classification}', [SubClassificationController::class, 'showSubClassification'])->name('index');
             Route::post('sub-classifications/{classification}', [SubClassificationController::class, 'store'])->name('store');
             Route::put('sub-classifications/{sub_classification}', [SubClassificationController::class, 'update'])->name('update');
@@ -155,13 +155,11 @@ Route::get('profile-OPD', function () {
     return view('pages.profile-opd');
 });
 
-// Training member
-Route::post('import-training-members', [TrainingMemberController::class, 'import']);
 Route::resource('worker', WorkerController::class)->only('index', 'update', 'destroy');
 Route::post('worker/{service_provider}', [WorkerController::class, 'store']);
-require __DIR__.'/aldy.php';
-require __DIR__.'/arif.php';
-require __DIR__.'/daffa.php';
-require __DIR__.'/ibnu.php';
-require __DIR__.'/kader.php';
-require __DIR__.'/femas.php';
+require __DIR__ . '/aldy.php';
+require __DIR__ . '/arif.php';
+require __DIR__ . '/daffa.php';
+require __DIR__ . '/ibnu.php';
+require __DIR__ . '/kader.php';
+require __DIR__ . '/femas.php';
