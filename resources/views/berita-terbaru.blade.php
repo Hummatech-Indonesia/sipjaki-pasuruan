@@ -22,7 +22,7 @@
                     <h3 class="entry-title"><a href="#">Pemerintah Korupsi Dana
                             Perbaikan AC</a></h3>
                     <div class="row">
-                        <a href="javascript:void(0)" class="col-12">
+                        <a href="{{ route('detail-berita') }}" class="col-12">
                             <button class="btn btn-outline-primary d-flex align-items-center justify-content-between"
                                 style="width:100%">
                                 <span>Lihat selengkapnya</span>
