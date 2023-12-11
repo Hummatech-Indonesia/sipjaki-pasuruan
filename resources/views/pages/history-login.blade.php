@@ -43,7 +43,7 @@
                                 <p>{{$history->user->name}}</p>
                             </td>
                             <td>
-                                <p>{{$history->created_at}}</p>
+                                <p>{{$history->created_at->format('d F Y H:i')}}</p>
                             </td>
                             <td>
                                 <p>{{$history->ip_address}}</p>
