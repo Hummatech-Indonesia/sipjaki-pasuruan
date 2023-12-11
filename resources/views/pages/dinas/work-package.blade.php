@@ -253,10 +253,10 @@
                                 data-characteristic_project="{{ $project->characteristic_project }}">Edit</button>
                         </div>
                         <div class="d-flex justify-content-center mb-2 col-12 col-lg-4">
-                            <button style="min-width: 90px;width:100%;background-color: #1B3061" class="btn text-white btn-detail"
-                                id="btn-detail-{{ $project->id }}" data-id="{{ $project->id }}"
-                                data-name="{{ $project->name }}" data-year="{{ $project->year }}"
-                                data-status="{{ $project->status }}"
+                            <button style="min-width: 90px;width:100%;background-color: #1B3061"
+                                class="btn text-white btn-detail" id="btn-detail-{{ $project->id }}"
+                                data-id="{{ $project->id }}" data-name="{{ $project->name }}"
+                                data-year="{{ $project->year }}" data-status="{{ $project->status }}"
                                 data-start_at="{{ \Carbon\Carbon::parse($project->start_at)->format('Y-m-d') }}"
                                 data-end_at="{{ \Carbon\Carbon::parse($project->end_at)->format('Y-m-d') }}"
                                 data-finance_progress="{{ $project->finance_progress }}"
@@ -312,7 +312,8 @@
                                         <p class="mb-2 text-dark">Nilai Kontrak :</p>
                                     </div>
                                     <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-project_value"></span></p>
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
+                                                id="detail-project_value"></span></p>
                                     </div>
                                 </div>
                                 <div class="row mb-1">
@@ -320,7 +321,8 @@
                                         <p class="mb-2 text-dark">Progres Fisik :</p>
                                     </div>
                                     <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-physical_progress"></span> %</p>
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
+                                                id="detail-physical_progress"></span> %</p>
                                     </div>
                                 </div>
                                 <div class="row mb-1">
@@ -328,7 +330,8 @@
                                         <p class="mb-2 text-dark">Progres Keuangan :</p>
                                     </div>
                                     <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-finance_progress"></span> %</p>
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
+                                                id="detail-finance_progress"></span> %</p>
                                     </div>
                                 </div>
                                 <div class="row mb-1">
@@ -336,7 +339,8 @@
                                         <p class="mb-2 text-dark">Status :</p>
                                     </div>
                                     <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-status"></span></p>
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
+                                                id="detail-status"></span></p>
                                     </div>
                                 </div>
                                 <div class="row mb-1">
@@ -344,7 +348,8 @@
                                         <p class="mb-2 text-dark">Mulai :</p>
                                     </div>
                                     <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-start_at"></span></p>
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
+                                                id="detail-start_at"></span></p>
                                     </div>
                                 </div>
                                 <div class="row mb-1">
@@ -352,7 +357,8 @@
                                         <p class="mb-2 text-dark">Selesai :</p>
                                     </div>
                                     <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-end_at"></span></p>
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
+                                                id="detail-end_at"></span></p>
                                     </div>
                                 </div>
                                 <div class="row mb-1">
@@ -360,7 +366,8 @@
                                         <p class="mb-2 text-dark">Fisik Bulan :</p>
                                     </div>
                                     <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-physical_progress_start"></span></p>
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
+                                                id="detail-physical_progress_start"></span></p>
                                     </div>
                                 </div>
                                 <div class="row mb-1">
@@ -368,7 +375,8 @@
                                         <p class="mb-2 text-dark">Keuangan Bulan :</p>
                                     </div>
                                     <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-finance_progress_start"></span></p>
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
+                                                id="detail-finance_progress_start"></span></p>
                                     </div>
                                 </div>
                                 <div class="row mb-1">
@@ -376,7 +384,8 @@
                                         <p class="mb-2 text-dark">Sumber Dana :</p>
                                     </div>
                                     <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-fund_source"></span></p>
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
+                                                id="detail-fund_source"></span></p>
                                     </div>
                                 </div>
                                 <div class="row mb-1">
@@ -392,7 +401,8 @@
                                         <p class="mb-2 text-dark">Karakteristik Kontrak :</p>
                                     </div>
                                     <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-characteristic_project"></span></p>
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
+                                                id="detail-characteristic_project"></span></p>
                                     </div>
                                 </div>
                             </div>
