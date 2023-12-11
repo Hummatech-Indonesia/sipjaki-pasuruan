@@ -26,11 +26,11 @@ jobs:
         # ftp username
         username: sipjaki
         # ftp password
-        password: sipjaki123@
+        password: pasuruankab123@
         # Server port to connect to (read your web hosts docs)
         port: 21
         # protocol to deploy with - ftp, ftps, or ftps-legacy
-        protocol: ftps
+        protocol: ftp
         # An array of glob patterns, these files will not be included in the publish/delete process
         exclude: |
           **/.git*
