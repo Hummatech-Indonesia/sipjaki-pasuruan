@@ -79,13 +79,6 @@
                         <span key="t-file-manager">Kategori Kontrak</span>
                     </a>
                 </li>
-                
-                <li>
-                    <a href="{{ route('agencies.index') }}" class="waves-effect">
-                        <i class="bx bx-user-plus"></i>
-                        <span key="t-file-manager">Dinas</span>
-                    </a>
-                </li>
                     
                 <li>
                     <a href="/profile-OPD" class="waves-effect">
@@ -100,7 +93,21 @@
                     </a>
                 </li>
                 @endif
+                @if (Auth::user()->roles->pluck('name')[0] == 'admin')
+                <li>
+                    <a href="{{ route('news.index') }}" class="waves-effect">
+                        <i class="bx bx-news"></i>
+                        <span key="t-file-manager">Berita</span>
+                    </a>
+                </li>
+                @endif
                 @if ( Auth::user()->roles->pluck('name')[0]  == 'dinas')
+                <li>
+                    <a href="{{ route('agencies.index') }}" class="waves-effect">
+                        <i class="bx bx-user-plus"></i>
+                        <span key="t-file-manager">Dinas</span>
+                    </a>
+                </li>
                 
                 <li>
                     <a href="{{ route('training') }}" class="waves-effect">
