@@ -14,22 +14,21 @@ return new class extends Migration
         Schema::create('dinas', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignUuid('field_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->string('dinas');
-            $table->char('type', 4);
-            $table->string('sections');
-            $table->text('address');
-            $table->string('phone_number');
-            $table->char('echelon', 4);
-            $table->string('local_regulation');
-            $table->string('number_local_regulation');
-            $table->string('sk_tpjk');
-            $table->string('number_sk_tpjk');
-            $table->string('admin_sipjaki');
-            $table->string('number_sk_sipjaki');
+            $table->foreignUuid('field_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->char('type', 4)->nullable();
+            $table->string('sections')->nullable();
+            $table->text('address')->nullable();
+            $table->string('phone_number')->nullable();
+            $table->char('echelon', 4)->nullable();
+            $table->string('local_regulation')->nullable();
+            $table->string('number_local_regulation')->nullable();
+            $table->string('sk_tpjk')->nullable();
+            $table->string('number_sk_tpjk')->nullable();
+            $table->string('admin_sipjaki')->nullable();
+            $table->string('number_sk_sipjaki')->nullable();
             $table->string('activity')->nullable();
-            $table->integer('last_year_budget');
-            $table->integer('budget_this_year');
+            $table->integer('last_year_budget')->nullable();
+            $table->integer('budget_this_year')->nullable();
             $table->timestamps();
         });
     }

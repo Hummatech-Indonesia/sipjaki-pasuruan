@@ -87,7 +87,6 @@ class EventServiceProvider extends ServiceProvider
         Field::observe(FieldObserver::class);
         ModelsServiceProvider::observe(ServiceProviderObserver::class);
         Worker::observe(WorkerObserver::class);
-        ModelsServiceProvider::observe(ModelsServiceProvider::class);
         Accident::observe(AccidentObserver::class);
     }
 

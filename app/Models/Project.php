@@ -2,14 +2,16 @@
 
 namespace App\Models;
 
+use App\Models\ServiceProvider;
 use App\Base\Interfaces\HasDinas;
 use App\Base\Interfaces\HasFundSource;
-use App\Base\Interfaces\HasServiceProvider;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Base\Interfaces\HasServiceProvider;
+use App\Base\Interfaces\HasContractCategory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Project extends Model implements HasDinas, HasServiceProvider, HasFundSource
+class Project extends Model implements HasDinas, HasServiceProvider, HasFundSource,HasContractCategory
 {
     use HasFactory;
     protected $table = 'projects';
@@ -47,5 +49,15 @@ class Project extends Model implements HasDinas, HasServiceProvider, HasFundSour
     public function fundSource(): BelongsTo
     {
         return $this->belongsTo(FundSource::class);
+    }
+
+    /**
+     * Get the contractCategory that owns the Project
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function contractCategory(): BelongsTo
+    {
+        return $this->belongsTo(ContractCategory::class);
     }
 }

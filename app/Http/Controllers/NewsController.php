@@ -34,7 +34,7 @@ class NewsController extends Controller
             $data['data'] = NewsResource::collection($news);
             return ResponseHelper::success($data);
         } else {
-            return view('pages.news', ['news' => $news]);
+            return view('pages.admin.news', ['news' => $news]);
         }
     }
 
