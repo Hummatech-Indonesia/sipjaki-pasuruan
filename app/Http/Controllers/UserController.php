@@ -6,6 +6,8 @@ use App\Contracts\Interfaces\DinasInterface;
 use App\Contracts\Interfaces\FieldInterface;
 use App\Contracts\Interfaces\UserInterface;
 use App\Helpers\ResponseHelper;
+use App\Helpers\UserHelper;
+use App\Http\Requests\UpdateProfileRequest;
 use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
@@ -89,5 +91,21 @@ class UserController extends Controller
     {
         $this->user->delete($user->id);
         return ResponseHelper::success(null, trans('alert.delete_success'));
+    }
+
+    /**
+     * updateProfile
+     *
+     * @return void
+     */
+    public function updateProfile(UpdateProfileRequest $request)
+    {
+        $this->user->update(UserHelper::getUserId(), $this->service->updateProfile($request));
+
+        if ($request->is('api/*')) {
+            return ResponseHelper::success(null, trans('alert.profile_updated'));
+        } else {
+            return redirect()->back(null, trans('alert.profile_updated'));
+        }
     }
 }

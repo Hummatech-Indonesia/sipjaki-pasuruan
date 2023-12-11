@@ -32,6 +32,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasOneDinas, HasO
      */
     protected $fillable = [
         'name',
+        'profile',
         'email',
         'password',
         'email_verified_at',
