@@ -35,16 +35,6 @@
                             <input type="search" class="py-2 ps-5" id="search-name" placeholder="Search">
                             <i class="bx bx-search-alt search-icon"></i>
                         </div>
-                        <select class="form-select col-lg-2 me-2">
-                            <option disabled="" selected="">Choose...</option>
-                            <option>A++</option>
-                            <option>B++</option>
-                        </select>
-                        <select class="form-select col-lg-2">
-                            <option disabled="" selected="">Choose...</option>
-                            <option>A++</option>
-                            <option>B++</option>
-                        </select>
                     </div>
                     <div class="table-responsive">
                         <table class="table table-borderless mb-0" border="1">
@@ -61,12 +51,13 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($dinas as $item)
                                     <tr>
-                                        <th scope="row" class="fs-5">1</th>
-                                        <td class="fs-5">Muhammad surya rafliansyah</td>
-                                        <td class="fs-5 text-center">2844</td>
-
+                                        <th scope="row" class="fs-5">{{$loop->iteration}}</th>
+                                        <td class="fs-5">{{$item->user->name}}</td>
+                                        <td class="fs-5 text-center">{{$item->projects_count}}</td>
                                     </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
