@@ -1,19 +1,16 @@
 @extends('layouts.app')
 @section('content')
-    <h4 class="mb-3 font-size-18">Paket Pekerjaan</h4>
-    <div class="d-flex justify-content-between">
-        <div class="d-flex position-relative mb-3 col-lg-3 ">
-            <input type="search" class="form-control search-chat py-2 ps-5" id="search-name" placeholder="Search">
-            <i class="bx bx-search-alt-2 position-absolute top-50 translate-middle-y fs-6 text-dark ms-3"></i>
-            <div class="d-flex btn btn-success btn-md ms-2">
+    <h4 class="mb-3 font-size-18">Detail Daftar Progres</h4>
+    <div class="d-flex justify-content-between mb-3">
+        <div class="d-flex position-relative">
+            <div class="btn btn-success btn-md">
                 <i class="bx bxs-download mt-1 me-1"></i>Export
             </div>
         </div>
 
         <div>
-            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-create"
-                style="background-color: #1B3061; border-radius: 10px">
-                <i class="fas fa-plus" style="margin-right:10px"></i>Tambah Paket Pekerjaan
+            <button class="btn btn-warning btn-md">
+                <i class="fas fa-arrow-left" style="margin-right:10px"></i>Kembali
             </button>
         </div>
     </div>
@@ -32,7 +29,7 @@
                                 <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                             <div class="d-flex justify-content-end">
-                                <a href="{{ route('detail-work-package') }}" class="btn btn-primary btn-md rounded-4  " style="background-color: #1B3061;">
+                                <a href="" class="btn btn-primary btn-md rounded-4  " style="background-color: #1B3061;">
                                     Detail
                                 </a>
                             </div>
@@ -58,7 +55,7 @@
                                 <a href="" class="btn btn-success btn-md me-2 rounded-4">
                                     Upload Progres
                                 </a>
-                                <a href="{{ route('detail-work-package') }}" class="btn btn-primary btn-md rounded-4" style="background-color: #1B3061;">
+                                <a href="" class="btn btn-primary btn-md rounded-4" style="background-color: #1B3061;">
                                     Detail
                                 </a>
                             </div>

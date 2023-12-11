@@ -14,6 +14,10 @@ Route::get('work-package', function(){
     return view('pages.service-provider.work-package');
 })->name('work-package');
 
+Route::get('detail-work-package', function(){
+    return view('pages.service-provider.detail-work-package');
+})->name('detail-work-package');
+
 Route::get('workforce', function(){
     return view('pages.service-provider.workforce');
 })->name('workforce');
