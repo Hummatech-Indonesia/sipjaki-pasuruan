@@ -1,20 +1,21 @@
 <?php
 
-use App\Http\Controllers\AccidentController;
-use App\Http\Controllers\ClassificationController;
-use App\Http\Controllers\ContractCategoryController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\RuleController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\FieldController;
+use App\Http\Controllers\ImagesController;
+use App\Http\Controllers\WorkerController;
+use App\Http\Controllers\LandingController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\AccidentController;
 use App\Http\Controllers\FiscalYearController;
 use App\Http\Controllers\FundSourceController;
-use App\Http\Controllers\ImagesController;
-use App\Http\Controllers\LandingController;
-use App\Http\Controllers\NewsController;
-use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\QualificationController;
-use App\Http\Controllers\QualificationLevelController;
+use App\Http\Controllers\ClassificationController;
 use App\Http\Controllers\RuleCategoriesController;
-use App\Http\Controllers\RuleController;
-use App\Http\Controllers\SubClassificationController;
 use App\Http\Controllers\TrainingMemberController;
 use App\Http\Controllers\TrainingMethodController;
 use App\Http\Controllers\HistoryLoginController;
@@ -31,56 +32,56 @@ use App\Http\Controllers\HistoryLoginController;
 |
  */
 
-// LANDING PAGE
-
 Route::get('/', function () {
     return view('welcome');
-})->name('welcome');
+});
 
 Route::get('berita-terbaru', function () {
     return view('berita-terbaru');
-})->name('berita-terbaru');
+});
 
-Route::get('peraturan', function () {
+Route::get('peraturan', function (){
     return view('peraturan');
-})->name('peraturan');
+});
 
 Route::get('struktur-organisasi-DKSDK', function () {
     return view('struktur-organisasi');
-})->name('struktur-organisasi');
+});
 
 Route::get('rencana-strategis-DKSDK', function () {
     return view('rencana-strategis');
-})->name('rencana-strategis');
+});
 
 Route::get('tugas-fungsi-DKSDK', function () {
     return view('tugas-fungsi');
-})->name('tugas-fungsi');
-
-Route::get('/pelatihan', function () {
-    return view('pelatihan');
-})->name('pelatihan');
-
-Route::get('/kecelakaan', function () {
-    return view('kecelakaan');
-})->name('kecelakaan');
-
-Route::get('/bantuan', function () {
-    return view('faq');
-})->name('bantuan');
-
-Route::get('data-paket-pekerjaan', [LandingController::class, 'project'])->name('paket-pekerjaan');
-
-Route::get('/opd', function () {
-    return view('opd');
-})->name('opd');
-
-// END LANDING PAGE
-
+});
 Auth::routes(['verify' => true]);
 // Route::middleware(['auth'])->group(function () {
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/tenaga-ahli', function () {
+    return view('tenaga-ahli');
+});
+
+Route::get('/tenaga-terampil', function () {
+    return view('tenaga-terampil');
+});
+
+Route::get('/kecelakaan', function () {
+    return view('kecelakaan');
+});
+
+Route::get('/bantuan', function () {
+    return view('faq');
+});
+
+Route::get('data-paket-pekerjaan', [LandingController::class, 'project']);
+
+Route::get('/opd', function () {
+    return view('opd');
+});
+
 
 Route::middleware('auth')->group(function () {
     Route::middleware('role:superadmin')->group(function () {
@@ -130,7 +131,7 @@ Route::middleware('auth')->group(function () {
     Route::middleware('role:dinas')->group(function () {
         Route::resource('accident', AccidentController::class)->except('create', 'edit', 'show');
         Route::resources([
-            'projects' => ProjectController::class,
+            'projects' => ProjectController::class
         ]);
 
         Route::get('list-fiscal-year', [FiscalYearController::class, 'listFiscalYear'])->name('list-fiscal-year');
@@ -154,7 +155,7 @@ Route::middleware(['role:dinas'])->group(function () {
     Route::delete('accident.destroy/{accident}', [AccidentController::class, 'destroy'])->name('accident.destroy/');
     Route::resources([
         'projects' => ProjectController::class,
-        'fields' => FieldController::class,
+        'fields' => FieldController::class
     ]);
     Route::middleware('role:service provider')->group(function () {
         Route::resource('worker', WorkerController::class)->only('index', 'update', 'destroy');
@@ -170,6 +171,8 @@ Route::get('profile-OPD', function () {
 Route::post('import-training-members', [TrainingMemberController::class, 'import']);
 Route::resource('worker', WorkerController::class)->only('index', 'update', 'destroy');
 Route::post('worker/{service_provider}', [WorkerController::class, 'store']);
+
+
 
 require __DIR__ . '/aldy.php';
 require __DIR__ . '/arif.php';

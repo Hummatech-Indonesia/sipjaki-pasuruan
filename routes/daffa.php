@@ -4,12 +4,6 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('history-login',function () {
-    return view('pages.history-login');
-})->name('history-login.index');
-Route::get('history-login',function () {
-    return view('pages.history-login');
-})->name('history-login.index');
 
 Route::middleware(['role:admin'])->group(function () {
     Route::get('agencies', [UserController::class, 'index'])->name('agencies.index');

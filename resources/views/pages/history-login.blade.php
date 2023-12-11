@@ -27,65 +27,40 @@
                 <table class="table">
                     <thead>
                         <tr>
+                            <th class="table-sipjaki">No</th>
                             <th class="table-sipjaki">Nama</th>
-                            <th class="table-sipjaki">Tanggal</th>
-                            <th class="table-sipjaki">Jam</th>
+                            <th class="table-sipjaki">Waktu</th>
                             <th class="table-sipjaki">Alamat Ip</th>
-                            <th class="table-sipjaki">Status</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @forelse ($histories as $history)
                         <tr>
                             <td>
-                                <p>CAHYO Fajar Rahmanto</p>
+                                <p>{{$loop->iteration}}</p>
                             </td>
                             <td>
-                                <p>22-12-2023</p>
+                                <p>{{$history->user->name}}</p>
                             </td>
                             <td>
-                                <p>13:00 WIB</p>
+                                <p>{{$history->created_at}}</p>
                             </td>
                             <td>
-                                <p>192.55448487823.22</p>
-                            </td>
-                            <td>
-                                <span class="badge bg-danger">Logout</span>
+                                <p>{{$history->ip_address}}</p>
                             </td>
                         </tr>
-                        <tr>
-                            <td>
-                                <p>CAHYO Fajar Rahmanto</p>
-                            </td>
-                            <td>
-                                <p>22-12-2023</p>
-                            </td>
-                            <td>
-                                <p>13:00 WIB</p>
-                            </td>
-                            <td>
-                                <p>192.55448487823.22</p>
-                            </td>
-                            <td>
-                                <span class="badge bg-primary">Login</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <p>CAHYO Fajar Rahmanto</p>
-                            </td>
-                            <td>
-                                <p>22-12-2023</p>
-                            </td>
-                            <td>
-                                <p>13:00 WIB</p>
-                            </td>
-                            <td>
-                                <p>192.55448487823.22</p>
-                            </td>
-                            <td>
-                                <span class="badge bg-primary">Login</span>
-                            </td>
-                        </tr>
+                        @empty
+                            <tr>
+                                <td colspan="4" class="text-center">
+                                    <div class="d-flex justify-content-center" style="min-height:16rem">
+                                        <div class="my-auto">
+                                            <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                            <h4 class="text-center mt-4">History Login Kosong!!</h4>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
