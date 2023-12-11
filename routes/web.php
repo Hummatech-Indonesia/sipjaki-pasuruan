@@ -135,7 +135,7 @@ Route::resources([
         Route::get('list-sub-classifications/{classification}', [SubClassificationController::class, 'listSubClassificcation'])->name('list-sub-classifications/');
 
         Route::get('list-training-method', [TrainingMethodController::class, 'listTrainingMethod'])->name('list-training-method');
-        Route::get('list-projects', [ProjectController::class, 'listProjects']);
+        Route::get('list-projects', [ProjectController::class, 'listProjects'])->name('list-projects');
     });
 
     // Route::middleware('role:service provider',function(){
@@ -145,7 +145,10 @@ Route::resources([
 // });
 
 Route::middleware(['role:dinas'])->group(function () {
-    Route::resource('accident', AccidentController::class)->except('create', 'edit');
+    Route::resource('accident', AccidentController::class)->except('create', 'show');
+    Route::put('accident.update/{accident}' ,[AccidentController::class,'update'])->name('accident.update/');
+    Route::get('accident.show/{accident}' ,[AccidentController::class,'show'])->name('accident.show/');
+    Route::delete('accident.destroy/{accident}' ,[AccidentController::class,'destroy'])->name('accident.destroy/');
     Route::resources([
         'projects' => ProjectController::class,
         'fields' => FieldController::class
@@ -175,12 +178,7 @@ Route::get('profile-OPD', function () {
     return view('pages.profile-opd');
 });
 
-
-//Training Member
-Route::get('training-members/{training}', [TrainingMemberController::class, 'index']);
-Route::post('training-members/{training}', [TrainingMemberController::class, 'store']);
-Route::put('training-members/{training_member}', [TrainingMemberController::class, 'update']);
-Route::delete('training-members/{training_member}', [TrainingMemberController::class, 'destroy']);
+// Training member 
 Route::post('import-training-members', [TrainingMemberController::class, 'import']);
 Route::resource('worker', WorkerController::class)->only('index', 'update', 'destroy');
 Route::post('worker/{service_provider}', [WorkerController::class, 'store']);

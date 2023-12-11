@@ -1,14 +1,14 @@
 @extends('layouts.app')
 @section('content')
-@if(session('success'))
-<script>
-    Swal.fire({
-        icon: 'success',
-        title: 'Success',
-        text: '{{ session('success') }}',
-    });
-</script>
-@endif
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: '{{ session('success') }}',
+            });
+        </script>
+    @endif
     <p class="fs-4 text-dark" style="font-weight: 600">
         Pelatihan
     </p>
@@ -29,7 +29,7 @@
             </div>
         </div>
         <div class="">
-            <button data-bs-toggle="modal" data-bs-target=".bs-example-modal-xl" class="btn text-white"
+            <button data-bs-toggle="modal" data-bs-target="#modal-create" class="btn text-white"
                 style="background-color:#1B3061">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
                     <path fill-rule="evenodd" clip-rule="evenodd"
@@ -42,7 +42,7 @@
             </button>
         </div>
     </div>
-    <div class="modal fade bs-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
+    <div class="modal fade " id="modal-create" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -60,25 +60,18 @@
                             <h3>Data 1</h3>
                             <section>
                                 <div class="row">
-                                    <div class="col-lg-3">
+                                    <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="basicpill-firstname-input">Tahun Anggaran</label>
-                                            <select name="fiscal_year_id" class="form-select " id="list-fiscal-year">
-                                                <option value="">Pilih Tahun Anggaran</option>
+                                            <select name="fiscal_year_id" class="form-select select2-create"
+                                                style="width:100%" id="list-fiscal-year">
+                                                <option value="">pilih Tahun anggaran</option>
                                             </select>
                                             @error('fiscal_year_id')
                                                 <p class="text-danger">
                                                     {{ $message }}
                                                 </p>
                                             @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3">
-                                        <div class="mb-3">
-                                            <label for="basicpill-lastname-input">Sumber Dana</label>
-                                            <select name="" class="form-select" id="list-fund-source">
-                                                <option value="">Pilih Kualifikasi</option>
-                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
@@ -98,7 +91,8 @@
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-phoneno-input">Kualifikasi</label>
-                                            <select name="" class="form-select " id="list-qualifications">
+                                            <select name="" class="form-select select2-create" style="width:100%"
+                                                id="list-qualifications">
                                                 <option value="">Pilih Kualifikasi</option>
                                             </select>
                                         </div>
@@ -106,8 +100,8 @@
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-email-input">Jenjang KKNI</label>
-                                            <select name="qualification_level_id" class="form-select "
-                                                id="list-qualification-level">
+                                            <select name="qualification_level_id" class="form-select select2-create"
+                                                style="width:100%" id="list-qualification-level">
                                             </select>
                                             @error('qulification_level_id')
                                                 <p class="text-danger">
@@ -119,16 +113,17 @@
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-email-input">Klasifikasi</label>
-                                            <select name="" class="form-select" id="list-classifications">
-                                                <option value="">Pilih Kualifikasi</option>
+                                            <select name="" class="form-select select2-create" style="width:100%"
+                                                id="list-classifications">
+                                                <option value="">Pilih klasifikasi</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-email-input">Sub Klasifikasi</label>
-                                            <select name="sub_classifications_id" class="form-select"
-                                                id="list-sub-classifications">
+                                            <select name="sub_classifications_id" class="form-select select2-create"
+                                                style="width:100%" id="list-sub-classifications">
                                             </select>
                                             @error('sub_classification_id')
                                                 <p class="text-danger">
@@ -183,8 +178,8 @@
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-email-input">Metode Pelatihan</label>
-                                            <select name="training_method_id" class="form-select"
-                                                id="list-training-method">
+                                            <select name="training_method_id" class="form-select select2-create"
+                                                style="width:100%" id="list-training-method">
                                             </select>
                                         </div>
                                     </div>
@@ -218,7 +213,7 @@
     </div>
     <div class="modal fade" id="modal-update" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog modal-xl">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #1B3061">
                     <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Tambah Pelatihan</h5>
@@ -234,11 +229,11 @@
                             <h3>Data 1</h3>
                             <section>
                                 <div class="row">
-                                    <div class="col-lg-3">
+                                    <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="basicpill-firstname-input">Tahun Anggaran</label>
-                                            <select name="fiscal_year_id" class="form-select "
-                                                id="update-list-fiscal-year">
+                                            <select name="fiscal_year_id" class="form-select select2-update"
+                                                style="width:100%" id="update-list-fiscal-year">
                                                 <option value="">Pilih Tahun Anggaran</option>
                                             </select>
                                             @error('fiscal_year_id')
@@ -246,14 +241,6 @@
                                                     {{ $message }}
                                                 </p>
                                             @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3">
-                                        <div class="mb-3">
-                                            <label for="basicpill-lastname-input">Sumber Dana</label>
-                                            <select name="" class="form-select" id="update-list-fund-source">
-                                                <option value="">Pilih Kualifikasi</option>
-                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
@@ -273,7 +260,8 @@
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-phoneno-input">Kualifikasi</label>
-                                            <select name="" class="form-select " id="update-list-qualifications">
+                                            <select name="" class="form-select select2-update" style="width:100%"
+                                                id="update-list-qualifications">
                                                 <option value="">Pilih Kualifikasi</option>
                                             </select>
                                         </div>
@@ -281,8 +269,8 @@
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-email-input">Jenjang KKNI</label>
-                                            <select name="qualification_level_id" class="form-select "
-                                                id="update-list-qualification-level">
+                                            <select name="qualification_level_id" class="form-select select2-update"
+                                                style="width:100%" id="update-list-qualification-level">
                                             </select>
                                             @error('qulification_level_id')
                                                 <p class="text-danger">
@@ -294,7 +282,8 @@
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-email-input">Klasifikasi</label>
-                                            <select name="" class="form-select" id="update-list-classifications">
+                                            <select name="" class="form-select select2-update" style="width:100%"
+                                                id="update-list-classifications">
                                                 <option value="">Pilih Kualifikasi</option>
                                             </select>
                                         </div>
@@ -302,8 +291,8 @@
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-email-input">Sub Klasifikasi</label>
-                                            <select name="sub_classifications_id" class="form-select"
-                                                id="update-list-sub-classifications">
+                                            <select name="sub_classifications_id" class="form-select select2-update"
+                                                style="width:100%" id="update-list-sub-classifications">
                                             </select>
                                             @error('sub_classification_id')
                                                 <p class="text-danger">
@@ -358,8 +347,9 @@
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-email-input">Metode Pelatihan</label>
-                                            <select name="training_method_id" class="form-select"
-                                                id="update-list-training-method">
+                                            <select name="training_method_id" class="form-select select2-update"
+                                                style="width:100%" id="update-list-training-method">
+                                                <option value="">Pilih Metode Pelatihan</option>
                                             </select>
                                         </div>
                                     </div>
@@ -411,7 +401,7 @@
                         </div>
                         <div class="d-flex justify-content-header gap-3 mt-4">
                             <div class="">
-                                <button class="btn btn-danger btn-delete"  data-id="{{ $training->id }}">
+                                <button class="btn btn-danger btn-delete" data-id="{{ $training->id }}">
                                     Hapus
                                 </button>
                             </div>
@@ -430,29 +420,29 @@
                                 </button>
                             </div>
                             <div class="">
-                                <button class="btn text-white" style="background-color: #1B3061">
+                                <a href="training-members/{{ $training->id }}" class="btn text-white"
+                                    style="background-color: #1B3061">
                                     Detail
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         @empty
-        <tr>
-            <td colspan="3" class="text-center">
-                <div class="d-flex justify-content-center" style="min-height:16rem">
-                    <div class="my-auto">
-                        <img src="{{ asset('no-data.png') }}" width="300" height="300" />
-                        <h4 class="text-center mt-4">Pelatihan Masih Kosong!!</h4>
+            <tr>
+                <td colspan="3" class="text-center">
+                    <div class="d-flex justify-content-center" style="min-height:16rem">
+                        <div class="my-auto">
+                            <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                            <h4 class="text-center mt-4">Pelatihan Masih Kosong!!</h4>
+                        </div>
                     </div>
-                </div>
-            </td>
-        </tr>
+                </td>
+            </tr>
         @endforelse
     </div>
     <x-delete-modal-component />
-
 @endsection
 @section('script')
     <script>
@@ -462,7 +452,14 @@
             $('#form-delete').attr('action', actionUrl);
             $('#modal-delete').modal('show')
         })
-
+        $(document).ready(function() {
+            $(".select2-create").select2({
+                dropdownParent: $("#modal-create")
+            });
+            $(".select2-update").select2({
+                dropdownParent: $("#modal-update")
+            });
+        });
         $('.btn-edit').click(function() {
             const formData = getDataAttributes($(this).attr('id'))
             console.log(formData);
@@ -492,7 +489,7 @@
                         if (selectedClassificationId !== '') {
                             subclassifications(
                                 selectedClassificationId
-                                );
+                            );
                         }
                     });
                     $('#update-list-classifications').change(function() {
@@ -500,7 +497,7 @@
                         if (selectedClassificationId !== '') {
                             subclassifications(
                                 selectedClassificationId
-                                );
+                            );
                         }
                     });
                 }
@@ -521,8 +518,8 @@
                 }
             });
         }
-
         training_method_id()
+
         function training_method_id() {
             $.ajax({
                 url: "{{ route('list-training-method') }}",
@@ -534,11 +531,18 @@
                         $('#list-training-method').append(option);
                         $('#update-list-training-method').append(option);
                     });
+                    
+                    // Mendapatkan nilai fiscal_year_id dari data training
+                    var fiscalYearId = "{{ $training->training_method_id }}";
+
+                    // Mengatur nilai fiscal_year_id pada elemen select2
+                    $('#update-list-training-method').val(fiscalYearId).trigger('change');
                 }
             });
         }
 
         qualifications()
+
         function qualifications() {
             $.ajax({
                 url: "{{ route('list-qualifications') }}",
@@ -554,12 +558,12 @@
                         var selectedClassificationId = $(this).val();
                         $('#list-qualification-level')
                         $('#update-list-qualification-level')
-                            .empty(); 
+                            .empty();
 
                         if (selectedClassificationId !== '') {
                             listqualificationlevel(
                                 selectedClassificationId
-                            ); 
+                            );
                         }
                     });
                     $('#update-list-qualifications').change(function() {
@@ -570,7 +574,7 @@
                         if (selectedClassificationId !== '') {
                             listqualificationlevel(
                                 selectedClassificationId
-                            ); 
+                            );
                         }
                     });
                 }
@@ -591,8 +595,8 @@
                 }
             });
         }
-        listfiscalyear()
 
+        listfiscalyear();
         function listfiscalyear() {
             $.ajax({
                 url: "{{ route('list-fiscal-year') }}",
@@ -600,27 +604,15 @@
                 dataType: "JSON",
                 success: function(response) {
                     $.each(response.data, function(index, item) {
-                        var option =
-                            `<option value="0271dab3-18e6-3fa3-b589-385eb42c529f">${item.name}</option>`
-                        $('#list-fiscal-year').append(option);
+                        var option = `<option value="${item.id}">${item.name}</option>`;
                         $('#update-list-fiscal-year').append(option);
                     });
-                }
-            });
-        }
 
-        listfundsource()
-        function listfundsource() {
-            $.ajax({
-                url: "{{ route('list-fund-source') }}",
-                type: 'GET',
-                dataType: "JSON",
-                success: function(response) {
-                    $.each(response.data, function(index, item) {
-                        var option = `<option value="${item.id}">${item.name}</option>`
-                        $('#list-fund-source').append(option);
-                        $('#update-list-fund-source').append(option);
-                    });
+                    // Mendapatkan nilai fiscal_year_id dari data training
+                    var fiscalYearId = "{{ $training->fiscal_year_id }}";
+
+                    // Mengatur nilai fiscal_year_id pada elemen select2
+                    $('#update-list-fiscal-year').val(fiscalYearId).trigger('change');
                 }
             });
         }
