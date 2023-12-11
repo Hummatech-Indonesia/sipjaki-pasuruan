@@ -42,10 +42,6 @@ Route::put('verify-token/{user}', [VerificationController::class, 'verifyToken']
 Route::get('verify-account/{user}', [VerificationController::class, 'verifyacount'])->name('verify-account/');
 
 // sub classification 
-Route::get('sub-classifications/{classification}', [SubClassificationController::class, 'showSubClassification']);
-Route::post('sub-classifications/{classification}', [SubClassificationController::class, 'store']);
-Route::put('sub-classifications/{sub_classification}', [SubClassificationController::class, 'update']);
-Route::delete('sub-classifications/{sub_classification}', [SubClassificationController::class, 'delete']);
 Route::get('sub-qualification', function () { return view('pages.sub-qualification'); })->name('sub-qualification');
 
 // verifikasi account 

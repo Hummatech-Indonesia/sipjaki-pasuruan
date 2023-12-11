@@ -45,6 +45,11 @@ class LandingController extends Controller
         return view('welcome', ['news' => $news]);
     }
 
+    public function latestNews(Request $request) : view {
+        $news = $this->news->customPaginate($request, 10);
+        return view('berita-terbaru', ['news' => $news]);
+    }
+
     /**
      * training
      *

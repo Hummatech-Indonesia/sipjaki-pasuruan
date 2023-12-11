@@ -19,8 +19,8 @@
                         <span key="t-file-manager">Sumber Dana</span>
                     </a>
                 </li>
-                <li>
-                    <a href="{{ route('classifications.index') }}" class="waves-effect">
+                <li class="{{ request()->routeIs('classifications.*') || request()->routeIs('sub-classfication.*') ? 'mm-active' : '' }}">
+                    <a href="{{ route('classifications.index') }}" class="waves-effect {{ request()->routeIs('classifications.*') || request()->routeIs('sub-classfication.*') ? 'active' : '' }}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 42 42"
                             fill="currentColor">
                             <path
@@ -80,7 +80,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="waves-effect">
+                    <a href="{{route('history-login.index')}}" class="waves-effect">
                         <i class="bx bx-history"></i>
                         <span key="t-file-manager">History Login</span>
                     </a>

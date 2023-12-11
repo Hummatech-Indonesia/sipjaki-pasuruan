@@ -17,7 +17,7 @@ use App\Http\Controllers\FundSourceController;
 use App\Http\Controllers\HistoryLoginController;
 use App\Http\Controllers\QualificationController;
 use App\Http\Controllers\ClassificationController;
-use App\Http\Controllers\RuleCategoriesController;
+use App\Http\Controllers\RuleCategoryController;
 use App\Http\Controllers\TrainingMemberController;
 use App\Http\Controllers\TrainingMethodController;
 use App\Http\Controllers\ContractCategoryController;
@@ -39,10 +39,6 @@ use App\Http\Controllers\QualificationLevelController;
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
-
-Route::get('berita-terbaru', function () {
-    return view('berita-terbaru');
-})->name('berita-terbaru');
 
 Route::get('peraturan', function (){
     return view('peraturan');
@@ -87,7 +83,7 @@ Route::middleware('auth')->group(function () {
             'fund-sources' => FundSourceController::class,
             'qualifications' => QualificationController::class,
             'source-fund' => FundSourceController::class,
-            'rule-categories' => RuleCategoriesController::class,
+            'rule-categories' => RuleCategoryController::class,
             'fiscal-years' => FiscalYearController::class,
             'classifications' => ClassificationController::class,
             'news' => NewsController::class,
@@ -101,6 +97,13 @@ Route::middleware('auth')->group(function () {
             Route::post('sub-qualifications/{qualification}', [QualificationLevelController::class, 'store'])->name('store');
             Route::put('sub-qualifications/{qualification_level}', [QualificationLevelController::class, 'update'])->name('update');
             Route::delete('sub-qualifications/{qualification_level}', [QualificationLevelController::class, 'store'])->name('destroy');
+        });
+
+        Route::name('sub-classfication.')->group(function(){
+            Route::get('sub-classifications/{classification}', [SubClassificationController::class, 'showSubClassification'])->name('index');
+            Route::post('sub-classifications/{classification}', [SubClassificationController::class, 'store'])->name('store');
+            Route::put('sub-classifications/{sub_classification}', [SubClassificationController::class, 'update'])->name('update');
+            Route::delete('sub-classifications/{sub_classification}', [SubClassificationController::class, 'delete'])->name('destroy');
         });
     });
 

@@ -113,12 +113,12 @@
                                     <ul class="sub-menu">
                                         <li><a class="{{ request()->routeIs('struktur-organisasi') ? 'active' : '' }}"
                                                 href="{{ route('struktur-organisasi') }}">Struktur Organisasi
-                                                DKSDK</a></li>
+                                            </a></li>
                                         <li><a class="{{ request()->routeIs('rencana-strategis') ? 'active' : '' }}"
-                                                href="{{ route('rencana-strategis') }}">Rencana Strategis DKSDK</a>
+                                                href="{{ route('rencana-strategis') }}">Rencana Strategis</a>
                                         </li>
                                         <li><a class="{{ request()->routeIs('tugas-fungsi') ? 'active' : '' }}"
-                                                href="{{ route('tugas-fungsi') }}">Tugas Dan Fungsi DKSDK</a></li>
+                                                href="{{ route('tugas-fungsi') }}">Tugas Dan Fungsi</a></li>
                                     </ul>
                                 </li>
 
@@ -130,7 +130,7 @@
                                                 href="{{ route('bantuan') }}">Bantuan</a></li>
                                     </ul>
                                 </li>
-                                <li><a class="{{ request()->routeIs('berita-terbaru') ? 'active' : '' }}"
+                                <li><a class="{{ request()->routeIs('berita-terbaru') || request()->routeIs('detail-berita') ? 'active' : '' }}"
                                         href="{{ route('berita-terbaru') }}">Berita Terbaru</a></li>
                                 <li><a class="{{ request()->routeIs('pertauran') ? 'active' : '' }}"
                                         href="{{ route('peraturan') }}">Peraturan</a></li>

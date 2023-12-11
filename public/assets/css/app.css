@@ -1032,7 +1032,7 @@ section {
     -webkit-transform: scale(1.07);
     -ms-transform: scale(1.07);
     transform: scale(1.07);
-    background: #fa7070;
+    background: #1B3061;
     -webkit-box-shadow: 0px 10px 20px 8px rgba(0, 0, 0, 0.15);
     box-shadow: 0px 10px 20px 8px rgba(0, 0, 0, 0.15);
 }
@@ -18417,7 +18417,7 @@ Download Two
 
 .blog-content .post-meta li i {
     margin-right: 5px;
-    color: #fa7070;
+    color: #797687;
 }
 
 .blog-content .post-meta li a {
@@ -18443,7 +18443,7 @@ Download Two
 }
 
 .blog-content .entry-title a:hover {
-    color: #fa7070;
+    color: #FFC928;
 }
 
 .blog-content .read-more-ntn {
@@ -19694,7 +19694,7 @@ Download Two
 .gp-posts-widget-wrapper .post-item .post-widget-thumbnail {
     border-radius: 5px;
     overflow: hidden;
-    width: 100px;
+    width: 140px;
     margin-right: 30px;
 }
 
@@ -19715,7 +19715,7 @@ Download Two
 }
 
 .gp-posts-widget-wrapper .post-item .post-widget-info .post-widget-title a:hover {
-    color: #fa7070;
+    color: #FFC928;
 }
 
 .gp-posts-widget-wrapper .post-item .post-widget-info .post-date {

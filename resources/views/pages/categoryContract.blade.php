@@ -17,16 +17,16 @@
             </h5>
         </div>
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <div class=" col-lg-3">
+            <form action="" class=" col-lg-3">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search">
+                    <input type="text" name="name" value="{{$name}}" class="form-control" placeholder="Search">
                     <div class="input-group-append">
-                        <button class="btn text-white" style="background-color: #1B3061; border-radius: 0 5px 5px 0;" type="button">
+                        <button class="btn text-white" style="background-color: #1B3061; border-radius: 0 5px 5px 0;" type="submit">
                             <i class="fa fa-search"></i>
                         </button>
                     </div>
                 </div>
-            </div>
+            </form>
             <div>
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-create"
                     style="background-color: #1B3061; border-radius: 10px"><i class="fas fa-plus"
@@ -109,7 +109,7 @@
                                 <div class="d-flex justify-content-center" style="min-height:16rem">
                                     <div class="my-auto">
                                         <img src="{{ asset('no-data.png') }}" width="300" height="300" />
-                                        <h4 class="text-center mt-4">Tahun aggaran Kosong!!</h4>
+                                        <h4 class="text-center mt-4">Kategori Kontrak {{$name ? 'Tidak Ditemukan' : 'Kosong'}}!!</h4>
                                     </div>
                                 </div>
                             </td>
