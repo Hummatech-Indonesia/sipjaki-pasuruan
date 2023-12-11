@@ -132,18 +132,6 @@ Route::middleware('auth')->group(function () {
         Route::resources([
             'projects' => ProjectController::class
         ]);
-
-        Route::get('list-fiscal-year', [FiscalYearController::class, 'listFiscalYear'])->name('list-fiscal-year');
-        Route::get('list-fund-source', [FundSourceController::class, 'listFundSource'])->name('list-fund-source');
-
-        Route::get('list-qualifications', [QualificationController::class, 'listQualifications'])->name('list-qualifications');
-        Route::get('list-qualification-level/{qualification}', [QualificationLevelController::class, 'listQualificationLevel'])->name('list-qualification-level/');
-
-        Route::get('list-classifications', [ClassificationController::class, 'listClassifications'])->name('list-classifications');
-        Route::get('list-sub-classifications/{classification}', [SubClassificationController::class, 'listSubClassificcation'])->name('list-sub-classifications/');
-
-        Route::get('list-training-method', [TrainingMethodController::class, 'listTrainingMethod'])->name('list-training-method');
-        Route::get('list-projects', [ProjectController::class, 'listProjects'])->name('list-projects');
     });
 });
 
