@@ -19,6 +19,8 @@ use App\Http\Controllers\ClassificationController;
 use App\Http\Controllers\RuleCategoriesController;
 use App\Http\Controllers\TrainingMemberController;
 use App\Http\Controllers\TrainingMethodController;
+use App\Http\Controllers\ContractCategoryController;
+use App\Http\Controllers\SubClassificationController;
 use App\Http\Controllers\QualificationLevelController;
 
 
