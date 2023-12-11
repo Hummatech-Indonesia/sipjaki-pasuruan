@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignUuid('sub_classifications_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignUuid('qualification_level_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('name');
+            $table->string('organizer');
             $table->dateTime('start_at');
             $table->dateTime('end_time');
             $table->integer('lesson_hour');

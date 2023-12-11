@@ -76,6 +76,7 @@ class TrainingRepository extends BaseRepository implements TrainingInterface
             ->when($request->name,function($query) use ($request){
                 $query->where('name','LIKE','%'.$request->name.'%');
             })
+            ->withCount('trainingMembers')
             ->fastPaginate($pagination);
     }
 }

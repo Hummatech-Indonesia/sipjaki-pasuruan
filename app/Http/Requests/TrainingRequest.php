@@ -27,6 +27,7 @@ class TrainingRequest extends FormRequest
             'sub_classifications_id' => 'required|exists:sub_classifications,id',
             'qualification_level_id' => 'required|exists:qualification_levels,id',
             'name' => 'required|max:255',
+            'organizer' => 'required|max:255',
             'start_at' => 'required|before:end_time|date',
             'end_time' => 'required|date',
             'lesson_hour' => 'integer|max:100|min:0',

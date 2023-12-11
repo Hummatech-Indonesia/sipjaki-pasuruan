@@ -80,7 +80,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('history-login.index') }}" class="waves-effect">
+                    <a href="#" class="waves-effect">
                         <i class="bx bx-history"></i>
                         <span key="t-file-manager">History Login</span>
                     </a>

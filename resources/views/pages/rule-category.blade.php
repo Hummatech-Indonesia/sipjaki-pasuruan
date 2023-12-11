@@ -1,21 +1,29 @@
 @extends('layouts.app')
 @section('content')
-@if(session('success'))
-<script>
-    Swal.fire({
-        icon: 'success',
-        title: 'Success',
-        text: '{{ session('success') }}',
-    });
-</script>
-@endif
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: '{{ session('success') }}',
+            });
+        </script>
+    @endif
     <h2>Kategori Peraturan</h2>
     <div class="card p-3">
+        <h5 class="mb-3">
+            Daftar Daftar Peraturan
+        </h5>
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <div>
-                <h5>
-                    Daftar-Daftar Peraturan
-                </h5>
+            <div class=" col-lg-3">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                    <div class="input-group-append">
+                        <button class="btn btn-secondary" type="button">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
             <div>
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-create"
@@ -103,7 +111,7 @@
                     @endforelse
                 </tbody>
             </table>
-            {{$ruleCategories->links('pagination::bootstrap-5')}}
+            {{ $ruleCategories->links('pagination::bootstrap-5') }}
         </div>
 
         <div class="modal fade" id="modal-update" tabindex="-1" aria-labelledby="exampleModalLabel1">

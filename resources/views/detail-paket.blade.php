@@ -23,11 +23,32 @@
 <div class="tabs-wrapper">
     <div class="section-title text-center">
         <h2 style="border-radius: 16px;
-        background: var(--Kuning, #FFC928);" class="title p-1">Data Paket Pekerjaan</h2>
+        background: var(--Kuning, #FFC928);" class="title p-1">Detail Paket Pekerjaan</h2>
     </div>
 </div>
-<div class="row justify-content-center">
-    <div class="col-12">
+<div class="row">
+    <div class="col-4">
+        <div class="card">
+            <div class="card-header">
+                <table class="table">
+                    <tr>
+                        <td>
+                            No
+                        </td>
+                        <td>
+                            Kab/Kota
+                        </td>
+                        <td>
+                            Jumlah
+                        </td>
+                    </tr>
+            </div>
+            <div class="card-body">
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-8">
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex d-row align-items-center mb-3">
@@ -52,26 +73,7 @@
                                         style="background-color: #1B3061; color: white; text-align: center">Aksi</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                @forelse ($dinas as $item)
-                                <tr>
-                                    <th scope="row" class="fs-5">{{$loop->iteration}}</th>
-                                    <td class="fs-5">{{$item->user->name}}</td>
-                                    <td class="fs-5 text-center">{{$item->projects_count}}</td>
-                                </tr>
-                                @empty
-                                <tr>
-                                    <td colspan="3" class="text-center">
-                                        <div class="d-flex justify-content-center" style="min-height:16rem">
-                                            <div class="my-auto">
-                                                <img src="{{ asset('no-data.png') }}" width="300" height="300" />
-                                                <h4 class="text-center mt-4">Belum Ada Dinas Ditambahkan!!</h4>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                @endforelse
-                            </tbody>
+                            
                         </table>
                     </div>
                 </div>

@@ -4,14 +4,16 @@ namespace App\Models;
 
 use App\Base\Interfaces\HasDinas;
 use App\Base\Interfaces\HasFiscalYear;
-use App\Base\Interfaces\HasQualificationLevel;
-use App\Base\Interfaces\HasSubClassification;
-use App\Base\Interfaces\HasTrainingMethod;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Base\Interfaces\HasTrainingMethod;
+use App\Base\Interfaces\HasTrainingMembers;
+use App\Base\Interfaces\HasSubClassification;
+use App\Base\Interfaces\HasQualificationLevel;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Training extends Model implements HasTrainingMethod,HasFiscalYear,HasSubClassification,HasQualificationLevel
+class Training extends Model implements HasTrainingMethod,HasFiscalYear,HasSubClassification,HasQualificationLevel,HasTrainingMembers
 {
     use HasFactory;
 
@@ -24,6 +26,7 @@ class Training extends Model implements HasTrainingMethod,HasFiscalYear,HasSubCl
         'sub_classifications_id',
         'qualification_level_id',
         'name',
+        'organizer',
         'start_at',
         'end_time',
         'lesson_hour',
@@ -74,6 +77,16 @@ class Training extends Model implements HasTrainingMethod,HasFiscalYear,HasSubCl
     public function qualificationLevel(): BelongsTo
     {
         return $this->belongsTo(QualificationLevel::class);
+    }
+
+    /**
+     * Get all of the trainingMembers for the Training
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function trainingMembers(): HasMany
+    {
+        return $this->hasMany(TrainingMember::class);
     }
 
 }

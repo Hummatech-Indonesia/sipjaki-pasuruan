@@ -57,10 +57,10 @@
                         @method('POST')
                         <div id="basic-example">
                             <!-- Seller Details -->
-                            <h3>Data 1</h3>
+                            <h3>Step 1</h3>
                             <section>
                                 <div class="row">
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-4">
                                         <div class="mb-3">
                                             <label for="basicpill-firstname-input">Tahun Anggaran</label>
                                             <select name="fiscal_year_id" class="form-select select2-create"
@@ -74,12 +74,24 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-4">
                                         <div class="mb-3">
                                             <label for="basicpill-lastname-input">Nama</label>
                                             <input name="name" type="text" class="form-control"
                                                 id="basicpill-phoneno-input" placeholder="Enter Your Name.">
                                             @error('name')
+                                                <p class="text-danger">
+                                                    {{ $message }}
+                                                </p>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <label for="basicpill-lastname-input">Organize</label>
+                                            <input name="organizer" type="text" class="form-control"
+                                                id="basicpill-phoneno-input" placeholder="Enter Your Name.">
+                                            @error('organizer')
                                                 <p class="text-danger">
                                                     {{ $message }}
                                                 </p>
@@ -136,7 +148,7 @@
                             </section>
 
                             <!-- Company Document -->
-                            <h3>Data 2</h3>
+                            <h3>Step 2</h3>
                             <section>
                                 <div class="row">
                                     <div class="col-lg-3">
@@ -229,7 +241,7 @@
                             <h3>Data 1</h3>
                             <section>
                                 <div class="row">
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-4">
                                         <div class="mb-3">
                                             <label for="basicpill-firstname-input">Tahun Anggaran</label>
                                             <select name="fiscal_year_id" class="form-select select2-update"
@@ -243,12 +255,24 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-4">
                                         <div class="mb-3">
                                             <label for="basicpill-lastname-input">Nama</label>
                                             <input name="name" type="text" class="form-control"
                                                 id="basicpill-phoneno-input" placeholder="Enter Your Name.">
                                             @error('name')
+                                                <p class="text-danger">
+                                                    {{ $message }}
+                                                </p>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <label for="basicpill-lastname-input">Organisasi</label>
+                                            <input name="organizer" type="text" class="form-control"
+                                                id="basicpill-phoneno-input" placeholder="Enter Your Name.">
+                                            @error('organizer')
                                                 <p class="text-danger">
                                                     {{ $message }}
                                                 </p>
@@ -409,6 +433,7 @@
                                 <button class="btn btn-warning btn-edit" id="btn-edit-{{ $training->id }}"
                                     data-id="{{ $training->id }}" data-name="{{ $training->name }}"
                                     data-lesson_hour="{{ $training->lesson_hour }}"
+                                    data-organizer="{{ $training->organizer }}"
                                     data-start_at="{{ \Carbon\Carbon::parse($training->start_at)->format('Y-m-d') }}"
                                     data-end_time="{{ \Carbon\Carbon::parse($training->end_time)->format('Y-m-d') }}"
                                     data-sub_classifications_id="{{ $training->sub_classifications_id }}"
@@ -532,9 +557,6 @@
                         $('#update-list-training-method').append(option);
                     });
                     
-                    // Mendapatkan nilai fiscal_year_id dari data training
-                    var fiscalYearId = "{{ $training->training_method_id }}";
-
                     // Mengatur nilai fiscal_year_id pada elemen select2
                     $('#update-list-training-method').val(fiscalYearId).trigger('change');
                 }
@@ -606,11 +628,9 @@
                     $.each(response.data, function(index, item) {
                         var option = `<option value="${item.id}">${item.name}</option>`;
                         $('#update-list-fiscal-year').append(option);
+                        $('#list-fiscal-year').append(option);
+                        
                     });
-
-                    // Mendapatkan nilai fiscal_year_id dari data training
-                    var fiscalYearId = "{{ $training->fiscal_year_id }}";
-
                     // Mengatur nilai fiscal_year_id pada elemen select2
                     $('#update-list-fiscal-year').val(fiscalYearId).trigger('change');
                 }

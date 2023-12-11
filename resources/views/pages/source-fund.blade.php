@@ -8,10 +8,20 @@
             <div class="card">
                 <div class="card">
                     <div class="card-body">
+                        <span>
+                            <h5 class="mb-3" style="color: #1B3061">Berikut List - List Sumber Dana</h4>
+                        </span>
                         <div class="d-flex justify-content-between align-items-center mb-3">
-                            <span>
-                                <h5 style="color: #1B3061">Berikut List - List Sumber Dana</h4>
-                            </span>
+                            <div class=" col-lg-3">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-secondary" type="button">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                             <span>
                                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-create"
                                     style="background-color: #1B3061"><i class="fas fa-plus"

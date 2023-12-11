@@ -10,4 +10,17 @@ use App\Contracts\Interfaces\Eloquent\UpdateInterface;
 
 interface NewsInterface extends StoreInterface, CustomPaginationInterface, DeleteInterface, UpdateInterface, ShowInterface
 {
+    /**
+     * displayLatestNews
+     *
+     * @return mixed
+     */
+    public function displayLatestNews(): mixed;
+
+    /**
+     * randomNews
+     *
+     * @return mixed
+     */
+    public function randomNews(): mixed;
 }

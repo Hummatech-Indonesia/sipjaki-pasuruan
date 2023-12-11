@@ -55,9 +55,17 @@
     {{-- end modal --}}
     <div class="card">
         <div class="card-body">
+            <h4 class="card-title mt-2 mb-3">Daftar Metode Pelatihan</h4>
             <div class="d-flex justify-content-between mb-3">
-                <div class="">
-                    <h4 class="card-title mt-2">Daftar Metode Pelatihan</h4>
+                <div class=" col-lg-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <div class="input-group-append">
+                            <button class="btn btn-secondary" type="button">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 <div class="">
                     <button class="btn me-2 btn-md btn-create text-white" data-bs-toggle="modal"

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\RuleController;
 use App\Http\Controllers\UserController;
@@ -61,11 +62,7 @@ Route::get('tugas-fungsi-DKSDK', function () {
 Auth::routes(['verify' => true]);
 // Route::middleware(['auth'])->group(function () {
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::get('/pelatihan', function () {
-    return view('pelatihan');
-})->name('pelatihan');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/kecelakaan', function () {
     return view('kecelakaan');
@@ -76,6 +73,7 @@ Route::get('/bantuan', function () {
 })->name('bantuan');
 
 Route::get('data-paket-pekerjaan', [LandingController::class, 'project'])->name('paket-pekerjaan');
+Route::get('/pelatihan',[LandingController::class,'training'])->name('pelatihan');
 
 Route::get('/opd', function () {
     return view('opd');
@@ -132,18 +130,6 @@ Route::middleware('auth')->group(function () {
         Route::resources([
             'projects' => ProjectController::class
         ]);
-
-        Route::get('list-fiscal-year', [FiscalYearController::class, 'listFiscalYear'])->name('list-fiscal-year');
-        Route::get('list-fund-source', [FundSourceController::class, 'listFundSource'])->name('list-fund-source');
-
-        Route::get('list-qualifications', [QualificationController::class, 'listQualifications'])->name('list-qualifications');
-        Route::get('list-qualification-level/{qualification}', [QualificationLevelController::class, 'listQualificationLevel'])->name('list-qualification-level/');
-
-        Route::get('list-classifications', [ClassificationController::class, 'listClassifications'])->name('list-classifications');
-        Route::get('list-sub-classifications/{classification}', [SubClassificationController::class, 'listSubClassificcation'])->name('list-sub-classifications/');
-
-        Route::get('list-training-method', [TrainingMethodController::class, 'listTrainingMethod'])->name('list-training-method');
-        Route::get('list-projects', [ProjectController::class, 'listProjects'])->name('list-projects');
     });
 });
 
