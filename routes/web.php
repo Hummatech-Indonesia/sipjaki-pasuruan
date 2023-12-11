@@ -17,10 +17,8 @@ use App\Http\Controllers\RuleController;
 use App\Http\Controllers\SubClassificationController;
 use App\Http\Controllers\TrainingMemberController;
 use App\Http\Controllers\TrainingMethodController;
-use App\Http\Controllers\ContractCategoryController;
 use App\Http\Controllers\HistoryLoginController;
-use App\Http\Controllers\SubClassificationController;
-use App\Http\Controllers\QualificationLevelController;
+
 
 /*
 |--------------------------------------------------------------------------
