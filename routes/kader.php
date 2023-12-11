@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\AccidentController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\SubClassificationController;
+use App\Http\Controllers\TrainingMemberController;
 use App\Http\Controllers\TrainingController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,7 +16,7 @@ Route::put('reset-passsword-user/{user}', [ResetPasswordController::class, 'rese
 Route::get('send-email', function () { return view('auth.send-email'); })->name('send-email');
 
 // accident
-Route::get('accident', function () {return view('pages.dinas.accident');})->name('accident');
+Route::get('accident', [AccidentController::class ,'index'])->name('accident');
 Route::get('detail-accident.index', function () {return view('pages.dinas.detail-accident.index');})->name('detail-accident.index');
 
 // Training
@@ -22,6 +24,12 @@ Route::get('training' , [TrainingController::class , 'index'])->name('training')
 Route::post('training', [TrainingController::class , 'store'])->name('training.store');
 Route::put('training.update/{training}', [TrainingController::class , 'update'])->name('training.update/');
 Route::delete('training.destroy/{training}', [TrainingController::class , 'destroy'])->name('training.destroy/');
+
+//Training Member
+Route::get('training-members/{training}', [TrainingMemberController::class, 'index']);
+Route::post('training-members/{training}', [TrainingMemberController::class, 'store'])->name('training-members/');
+Route::put('training-members/{training_member}', [TrainingMemberController::class, 'update'])->name('training-member-update/');
+Route::delete('training-members/{training_member}', [TrainingMemberController::class, 'destroy'])->name('training-members/');
 
 // verify token 
 Route::get('/redirect-verify-account', [VerificationController::class, 'verifyAccount'])->name('redirect.verify.account');
@@ -35,3 +43,6 @@ Route::post('sub-classifications/{classification}', [SubClassificationController
 Route::put('sub-classifications/{sub_classification}', [SubClassificationController::class, 'update']);
 Route::delete('sub-classifications/{sub_classification}', [SubClassificationController::class, 'delete']);
 Route::get('sub-qualification', function () { return view('pages.sub-qualification'); })->name('sub-qualification');
+
+// verifikasi account 
+Route::get('verify.account/{id}' , [VerificationController::class ,'verifyacount'])->name('verify.account/');
