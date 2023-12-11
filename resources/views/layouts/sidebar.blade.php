@@ -30,7 +30,7 @@
                         <span key="t-file-manager" class="px-2">Klasifikasi</span>
                     </a>
                 </li>
-                
+
                 <li>
                     <a href="{{ route('training-methods.index') }}" class="waves-effect">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 44 44"
@@ -72,7 +72,7 @@
                         <span key="t-file-manager">Kualifikasi</span>
                     </a>
                 </li>
-                
+
                 <li>
                     <a href="{{ route('contract-categories.index') }}" class="waves-effect">
                         <i class="bx bx-bx bx-task"></i>
@@ -108,7 +108,7 @@
                     </a>
                 </li>
                 @endif
-                @if ( Auth::user()->roles->pluck('name')[0]  == 'dinas')        
+                @if ( Auth::user()->roles->pluck('name')[0]  == 'dinas')
                 <li>
                     <a href="{{ route('accident') }}" class="waves-effect">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
@@ -128,6 +128,27 @@
                     <a href="/profile-OPD" class="waves-effect">
                         <i class="bx bx-user-plus"></i>
                         <span key="t-file-manager">Profile OPD</span>
+                    </a>
+                </li>
+                @endif
+                @if (Auth::user()->roles->pluck('name')[0] == 'service provider')
+                <li>
+                    <a href="{{ route('dashboard-service-provider') }}" class="waves-effect">
+                        <i class="bx bxs-dashboard"></i>
+                        <span key="t-file-manager">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('work-package') }}" class="waves-effect">
+                        <i class="bx bx-briefcase"></i>
+                        <span key="t-file-manager">Paket Pekerjaan</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('workforce') }}" class="waves-effect">
+                        <i class="fas fa-users-cog
+                        fa-sm"></i>
+                        <span key="t-file-manager">Tenaga Kerja</span>
                     </a>
                 </li>
                 @endif

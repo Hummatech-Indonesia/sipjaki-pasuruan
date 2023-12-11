@@ -1287,10 +1287,10 @@ body[data-layout=horizontal][data-layout-size=boxed] .navbar-header {
 
 /*!
  * Waves v0.7.6
- * http://fian.my.id/Waves 
- * 
- * Copyright 2014-2018 Alfiana E. Sibuea and other contributors 
- * Released under the MIT license 
+ * http://fian.my.id/Waves
+ *
+ * Copyright 2014-2018 Alfiana E. Sibuea and other contributors
+ * Released under the MIT license
  * https://github.com/fians/Waves/blob/master/LICENSE */
 .waves-effect {
     position: relative;
@@ -1473,7 +1473,7 @@ body[data-layout=horizontal][data-layout-size=boxed] .navbar-header {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    background-color: #556ee6;
+    background-color: #1B3061;
     color: #fff;
     display: -webkit-box;
     display: -ms-flexbox;
