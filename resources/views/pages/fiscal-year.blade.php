@@ -11,11 +11,19 @@
 @endif
     <h2>Tahun Anggaran</h2>
     <div class="card p-3">
+        <h5 class="mb-3">
+            Berikut daftar anggaran setiap tahun
+        </h5>
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <div>
-                <h5>
-                    Berikut daftar anggaran setiap tahun
-                </h5>
+            <div class=" col-lg-3">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                    <div class="input-group-append">
+                        <button class="btn btn-secondary" type="button">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
             <div>
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-create"
