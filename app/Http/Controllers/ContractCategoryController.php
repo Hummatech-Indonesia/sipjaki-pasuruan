@@ -36,7 +36,8 @@ class ContractCategoryController extends Controller
 
         }else{
 
-            return view('pages.categoryContract',compact('contractCategories'));
+            $name = $request->name;
+            return view('pages.categoryContract',compact('contractCategories','name'));
 
         }
     }

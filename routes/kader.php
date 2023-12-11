@@ -9,6 +9,10 @@ use App\Http\Controllers\TrainingMemberController;
 use App\Http\Controllers\TrainingController;
 use Illuminate\Support\Facades\Route;
 
+
+// landing 
+Route::get('detail-paket', function () { return view('detail-paket'); })->name('detail-paket');
+
 //Reset Password
 Route::get('reset-password/{id}', [ResetPasswordController::class ,'index'])->name('reset-password/');
 Route::post('send-email-reset-passsword', [ForgotPasswordController::class, 'sendEmail'])->name('send-email-reset-passsword');
@@ -38,10 +42,6 @@ Route::put('verify-token/{user}', [VerificationController::class, 'verifyToken']
 Route::get('verify-account/{user}', [VerificationController::class, 'verifyacount']);
 
 // sub classification 
-Route::get('sub-classifications/{classification}', [SubClassificationController::class, 'showSubClassification']);
-Route::post('sub-classifications/{classification}', [SubClassificationController::class, 'store']);
-Route::put('sub-classifications/{sub_classification}', [SubClassificationController::class, 'update']);
-Route::delete('sub-classifications/{sub_classification}', [SubClassificationController::class, 'delete']);
 Route::get('sub-qualification', function () { return view('pages.sub-qualification'); })->name('sub-qualification');
 
 // verifikasi account 

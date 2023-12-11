@@ -411,7 +411,7 @@
                                 Jenis Kelamin
                             </td>
                             <td class="text-white" style="background-color: #1B3061">
-                                Decree
+                                Surat Keputusan
                             </td>
                             <td class="text-white" style="background-color: #1B3061">
                                 File
@@ -456,7 +456,7 @@
                                     {{ $trainingMember->decree }}
                                 </td>
                                 <td>
-                                    <img src="{{ asset('storage/') }}" alt="">
+                                    <img src="{{ asset('storage/trainingmember/' .$trainingMember->file) }}" alt="file">
                                 </td>
                                 <td>
                                     {{ $trainingMember->national_identity_number }}

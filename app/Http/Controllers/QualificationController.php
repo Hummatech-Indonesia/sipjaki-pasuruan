@@ -36,7 +36,8 @@ class QualificationController extends Controller
 
         }else{
 
-            return view('pages.qualification',compact('qualifications'));
+            $name = $request->name;
+            return view('pages.qualification',compact('qualifications','name'));
 
         }
     }

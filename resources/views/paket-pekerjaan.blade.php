@@ -48,16 +48,32 @@
                                         Nama Dinas</th>
                                     <th class="fw-medium"
                                         style="background-color: #1B3061; color: white; text-align: center">Jumlah</th>
+                                    <th class="fw-medium"
+                                        style="background-color: #1B3061; color: white; text-align: center">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($dinas as $item)
-                                    <tr>
-                                        <th scope="row" class="fs-5">{{$loop->iteration}}</th>
-                                        <td class="fs-5">{{$item->user->name}}</td>
-                                        <td class="fs-5 text-center">{{$item->projects_count}}</td>
-                                    </tr>
-                                @endforeach
+                                @forelse ($dinas as $item)
+                                <tr>
+                                    <th scope="row" class="fs-5">{{$loop->iteration}}</th>
+                                    <td class="fs-5">{{$item->user->name}}</td>
+                                    <td class="fs-5 text-center">{{$item->projects_count}}</td>
+                                    <td class="text-center">
+                                        <a href="{{ route('detail-paket') }}" class="text-white btn" style="background-color: #1B3061">Detail</a>
+                                    </td>
+                                </tr>
+                                @empty
+                                <tr>
+                                    <td colspan="3" class="text-center">
+                                        <div class="d-flex justify-content-center" style="min-height:16rem">
+                                            <div class="my-auto">
+                                                <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                                <h4 class="text-center mt-4">Belum Ada Dinas Ditambahkan!!</h4>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>

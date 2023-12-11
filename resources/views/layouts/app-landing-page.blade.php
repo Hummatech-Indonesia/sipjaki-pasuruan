@@ -104,8 +104,8 @@
                         <div class="menu-wrapper" data-top="992">
                             <ul class="site-main-menu">
                                 <li>
-                                    <a class="{{ request()->routeIs('welcome') ? 'active' : '' }}"
-                                        href="{{ route('welcome') }}">Beranda</a>
+                                    <a class="{{ request()->routeIs('landing-page') ? 'active' : '' }}"
+                                        href="{{ route('landing-page') }}">Beranda</a>
                                 </li>
                                 <li class="menu-item-has-children">
                                     <a class="d-flex d-row {{ request()->routeIs('struktur-organisasi') || request()->routeIs('rencana-strategis') || request()->routeIs('tugas-fungsi') ? 'active' : '' }}"

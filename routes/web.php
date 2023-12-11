@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\RuleController;
 use App\Http\Controllers\UserController;
@@ -16,7 +17,7 @@ use App\Http\Controllers\FundSourceController;
 use App\Http\Controllers\HistoryLoginController;
 use App\Http\Controllers\QualificationController;
 use App\Http\Controllers\ClassificationController;
-use App\Http\Controllers\RuleCategoriesController;
+use App\Http\Controllers\RuleCategoryController;
 use App\Http\Controllers\TrainingMemberController;
 use App\Http\Controllers\TrainingMethodController;
 use App\Http\Controllers\ContractCategoryController;
@@ -39,10 +40,6 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::get('berita-terbaru', function () {
-    return view('berita-terbaru');
-})->name('berita-terbaru');
-
 Route::get('peraturan', function (){
     return view('peraturan');
 })->name('peraturan');
@@ -61,11 +58,7 @@ Route::get('tugas-fungsi-DKSDK', function () {
 Auth::routes(['verify' => true]);
 // Route::middleware(['auth'])->group(function () {
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::get('/pelatihan', function () {
-    return view('pelatihan');
-})->name('pelatihan');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/kecelakaan', function () {
     return view('kecelakaan');
@@ -76,6 +69,7 @@ Route::get('/bantuan', function () {
 })->name('bantuan');
 
 Route::get('data-paket-pekerjaan', [LandingController::class, 'project'])->name('paket-pekerjaan');
+Route::get('/pelatihan',[LandingController::class,'training'])->name('pelatihan');
 
 Route::get('/opd', function () {
     return view('opd');
@@ -89,7 +83,7 @@ Route::middleware('auth')->group(function () {
             'fund-sources' => FundSourceController::class,
             'qualifications' => QualificationController::class,
             'source-fund' => FundSourceController::class,
-            'rule-categories' => RuleCategoriesController::class,
+            'rule-categories' => RuleCategoryController::class,
             'fiscal-years' => FiscalYearController::class,
             'classifications' => ClassificationController::class,
             'news' => NewsController::class,
@@ -103,6 +97,13 @@ Route::middleware('auth')->group(function () {
             Route::post('sub-qualifications/{qualification}', [QualificationLevelController::class, 'store'])->name('store');
             Route::put('sub-qualifications/{qualification_level}', [QualificationLevelController::class, 'update'])->name('update');
             Route::delete('sub-qualifications/{qualification_level}', [QualificationLevelController::class, 'store'])->name('destroy');
+        });
+
+        Route::name('sub-classfication.')->group(function(){
+            Route::get('sub-classifications/{classification}', [SubClassificationController::class, 'showSubClassification'])->name('index');
+            Route::post('sub-classifications/{classification}', [SubClassificationController::class, 'store'])->name('store');
+            Route::put('sub-classifications/{sub_classification}', [SubClassificationController::class, 'update'])->name('update');
+            Route::delete('sub-classifications/{sub_classification}', [SubClassificationController::class, 'delete'])->name('destroy');
         });
     });
 

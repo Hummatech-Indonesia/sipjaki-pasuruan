@@ -10,6 +10,7 @@ use App\Models\Classification;
 use App\Traits\PaginationTrait;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class ClassificationController extends Controller
 {
@@ -23,7 +24,7 @@ class ClassificationController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index(Request $request) : View | JsonResponse
     {
         $classifications = $this->classification->customPaginate($request, 10);
         if ($request->is('api/*')) {
@@ -31,7 +32,8 @@ class ClassificationController extends Controller
             $data['data'] = ClassificationResource::collection($classifications);
             return ResponseHelper::success($data);
         } else {
-            return view('pages.classification.index', ['classifications' => $classifications]);
+            $name = $request->name;
+            return view('pages.classification.index',compact('classifications','name'));
         }
     }
 

@@ -1,22 +1,30 @@
 @extends('layouts.app')
 @section('content')
-@if(session('success'))
-<script>
-    Swal.fire({
-        icon: 'success',
-        title: 'Success',
-        text: '{{ session('success') }}',
-    });
-</script>
-@endif
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: '{{ session('success') }}',
+            });
+        </script>
+    @endif
     <h2>Kategori Peraturan</h2>
     <div class="card p-3">
+        <h5 class="mb-3">
+            Daftar Daftar Peraturan
+        </h5>
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <div>
-                <h5>
-                    Daftar-Daftar Peraturan
-                </h5>
-            </div>
+            <form action="" class=" col-lg-3">
+                <div class="input-group">
+                    <input type="search" value="{{$name}}" name="name" class="form-control" placeholder="Search">
+                    <div class="input-group-append">
+                        <button class="btn text-white" type="submit" style="background-color: #1B3061; border-radius: 0 5px 5px 0;">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
             <div>
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-create"
                     style="background-color: #1B3061; border-radius: 10px"><i class="fas fa-plus"
@@ -95,7 +103,7 @@
                                 <div class="d-flex justify-content-center" style="min-height:16rem">
                                     <div class="my-auto">
                                         <img src="{{ asset('no-data.png') }}" width="300" height="300" />
-                                        <h4 class="text-center mt-4">Kategori Peraturan Kosong!!</h4>
+                                        <h4 class="text-center mt-4">Kategori Peraturan {{$name ? 'Tidak Ditemukan' : 'Kosong'}}!!</h4>
                                     </div>
                                 </div>
                             </td>
@@ -103,7 +111,7 @@
                     @endforelse
                 </tbody>
             </table>
-            {{$ruleCategories->links('pagination::bootstrap-5')}}
+            {{ $ruleCategories->links('pagination::bootstrap-5') }}
         </div>
 
         <div class="modal fade" id="modal-update" tabindex="-1" aria-labelledby="exampleModalLabel1">
