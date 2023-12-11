@@ -28,6 +28,19 @@ class NewsRepository extends BaseRepository implements NewsInterface
     }
 
     /**
+     * randomNews
+     *
+     * @return mixed
+     */
+    public function randomNews(): mixed
+    {
+        return $this->model->query()
+            ->inRandomOrder()
+            ->take(5)
+            ->get();
+    }
+
+    /**
      * store
      *
      * @param  mixed $data

@@ -16,4 +16,11 @@ interface NewsInterface extends StoreInterface, CustomPaginationInterface, Delet
      * @return mixed
      */
     public function displayLatestNews(): mixed;
+
+    /**
+     * randomNews
+     *
+     * @return mixed
+     */
+    public function randomNews(): mixed;
 }
