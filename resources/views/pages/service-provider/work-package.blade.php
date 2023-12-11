@@ -33,7 +33,7 @@
                             </div>
                             <div class="d-flex justify-content-end">
                                 <a href="{{ route('detail-work-package') }}" class="btn btn-primary btn-md rounded-4  " style="background-color: #1B3061;">
-                                    Detail
+                                    Lihat Progress
                                 </a>
                             </div>
                         </div>
@@ -55,11 +55,8 @@
                                 <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                             <div class="d-flex justify-content-end">
-                                <a href="" class="btn btn-success btn-md me-2 rounded-4">
-                                    Upload Progres
-                                </a>
                                 <a href="{{ route('detail-work-package') }}" class="btn btn-primary btn-md rounded-4" style="background-color: #1B3061;">
-                                    Detail
+                                    Lihat Progress
                                 </a>
                             </div>
                         </div>
