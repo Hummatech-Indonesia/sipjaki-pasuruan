@@ -107,6 +107,7 @@
                     @endforelse
                 </tbody>
             </table>
+            {{$fiscalYears->links('pagination::bootstrap-5')}}
         </div>
 
         <div class="modal fade" id="modal-update" tabindex="-1" aria-labelledby="exampleModalLabel1">

@@ -105,9 +105,10 @@
                             </div>
                         </td>
                     </tr>
-            @endforelse
+                    @endforelse
             </tbody>
             </table>
+            {{$qualifications->links('pagination::bootstrap-5')}}
         </div>
 
         <div class="modal fade" id="modal-update" tabindex="-1" aria-labelledby="exampleModalLabel1">
