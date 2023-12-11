@@ -79,13 +79,6 @@
                         <span key="t-file-manager">Kategori Kontrak</span>
                     </a>
                 </li>
-                    
-                <li>
-                    <a href="/profile-OPD" class="waves-effect">
-                        <i class="bx bx-user-plus"></i>
-                        <span key="t-file-manager">Profile OPD</span>
-                    </a>
-                </li>
                 <li>
                     <a href="{{ route('history-login.index') }}" class="waves-effect">
                         <i class="bx bx-history"></i>
@@ -100,15 +93,12 @@
                         <span key="t-file-manager">Berita</span>
                     </a>
                 </li>
-                @endif
-                @if ( Auth::user()->roles->pluck('name')[0]  == 'dinas')
                 <li>
                     <a href="{{ route('agencies.index') }}" class="waves-effect">
                         <i class="bx bx-user-plus"></i>
                         <span key="t-file-manager">Dinas</span>
                     </a>
                 </li>
-                
                 <li>
                     <a href="{{ route('training') }}" class="waves-effect">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 36 36" fill="currentColor">
@@ -117,6 +107,8 @@
                         <span key="t-file-manager">Pelatihan</span>
                     </a>
                 </li>
+                @endif
+                @if ( Auth::user()->roles->pluck('name')[0]  == 'dinas')        
                 <li>
                     <a href="{{ route('accident') }}" class="waves-effect">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
@@ -130,6 +122,12 @@
                     <a href="{{ route('projects.index') }}" class="waves-effect">
                         <i class="bx bxs-package"></i>
                         <span key="t-file-manager">Paket Pekerjaan</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/profile-OPD" class="waves-effect">
+                        <i class="bx bx-user-plus"></i>
+                        <span key="t-file-manager">Profile OPD</span>
                     </a>
                 </li>
                 @endif

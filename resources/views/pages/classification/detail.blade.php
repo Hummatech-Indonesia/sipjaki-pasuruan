@@ -66,7 +66,7 @@
         <div class="card-body">
             <div class="d-flex justify-content-between mb-3">
                 <div class="">
-                    <h4 class=" mt-2" style="font-weight:600">Arsiktektur</h4>
+                    <h4 class=" mt-2" style="font-weight:600">{{$classification->name}}</h4>
                 </div>
                 <div class="">
                     <button class="btn me-2 btn-md btn-create text-white" data-bs-toggle="modal"
@@ -94,9 +94,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($subClassifications as $index => $subClassification)
+                        @forelse ($subClassifications as $subClassification)
                             <tr>
-                                <th scope="row" class="fs-5">{{ $index + 1 }}</th>
+                                <th scope="row" class="fs-5">{{ $loop->iteration }}</th>
                                 <td>{{ $subClassification->name }}</td>
                                 <td>
                                     <div class="d-flex justify-content-center gap-2">
@@ -149,7 +149,7 @@
                                     <div class="d-flex justify-content-center" style="min-height:16rem">
                                         <div class="my-auto">
                                             <img src="{{ asset('no-data.png') }}" width="300" height="300" />
-                                            <h4 class="text-center mt-4">Tahun aggaran Kosong!!</h4>
+                                            <h4 class="text-center mt-4">Sub Klasifikasi Kosong!!</h4>
                                         </div>
                                     </div>
                                 </td>
@@ -165,7 +165,7 @@
             <div class="modal-content">
                 <div class="modal-header d-flex align-items-center text-white" style="background-color: #1B3061">
                     <h4 class="modal-title" id="exampleModalLabel1">
-                        Edit Metode Pelatihan
+                        Edit Sub Klasifikasi
                     </h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                         style="color: white;"></button>

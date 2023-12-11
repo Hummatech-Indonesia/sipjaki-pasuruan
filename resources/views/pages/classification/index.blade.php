@@ -81,14 +81,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($classifications as $index => $data)
+                        @forelse ($classifications as $classification)
                             <tr>
-                                <th scope="row" class="fs-5">{{ $index + 1 }}</th>
-                                <td>{{ $data->name }}</td>
+                                <th scope="row" class="fs-5">{{ $loop->iteration }}</th>
+                                <td>{{ $classification->name }}</td>
                                 <td>
                                     <div class="d-flex justify-content-center gap-2">
                                         <div class="">
-                                            <a href="sub-classifications/{{ $data->id }}" type="button" class="btn  waves-effect waves-light text-white"
+                                            <a href="sub-classifications/{{ $classification->id }}" type="button" class="btn  waves-effect waves-light text-white"
                                                 style="background-color: #1B3061">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19"
                                                     viewBox="0 0 24 24" fill="none">
@@ -102,8 +102,8 @@
                                             </a>
                                         </div>
                                         <div class="">
-                                            <button type="button" class="btn btn-warning waves-effect waves-light btn-edit" id="btn-edit-{{ $data->id }}" data-id="{{ $data->id }}"
-                                                data-name="{{ $data->name }}">
+                                            <button type="button" class="btn btn-warning waves-effect waves-light btn-edit" id="btn-edit-{{ $classification->id }}" data-id="{{ $classification->id }}"
+                                                data-name="{{ $classification->name }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                     viewBox="0 0 24 24" fill="none">
                                                     <g clip-path="url(#clip0_26_1791)">
@@ -127,7 +127,7 @@
                                             </button>
                                         </div>
                                         <div class="">
-                                            <button type="button" class="btn btn-danger waves-effect waves-light btn-delete" data-id="{{ $data->id }}" id="btn-delete-{{ $data->id }}">
+                                            <button type="button" class="btn btn-danger waves-effect waves-light btn-delete" data-id="{{ $classification->id }}" id="btn-delete-{{ $classification->id }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                     viewBox="0 0 20 20" fill="none">
                                                     <path fill-rule="evenodd" clip-rule="evenodd"
@@ -153,6 +153,7 @@
                             @endforelse
                     </tbody>
                 </table>
+                {{$classifications->links('pagination::bootstrap-5')}}
             </div>
 
         </div>

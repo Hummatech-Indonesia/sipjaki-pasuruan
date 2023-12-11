@@ -26,17 +26,17 @@ class ContractCategoryController extends Controller
     public function index(Request $request) : View | JsonResponse
     {
 
-        $contractCategorys = $this->contractCategory->customPaginate($request, 15);
+        $contractCategories = $this->contractCategory->customPaginate($request, 15);
         
         if( $request->is('api/*')){
 
-            $data['paginate'] = $this->customPaginate($contractCategorys->currentPage(), $contractCategorys->lastPage());
-            $data['data'] = ContractCategoryResource::collection($contractCategorys);
+            $data['paginate'] = $this->customPaginate($contractCategories->currentPage(), $contractCategories->lastPage());
+            $data['data'] = ContractCategoryResource::collection($contractCategories);
             return ResponseHelper::success($data,trans('alert.get_success'));
 
         }else{
 
-            return view('pages.categoryContract',compact('contractCategorys'));
+            return view('pages.categoryContract',compact('contractCategories'));
 
         }
     }

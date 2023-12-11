@@ -65,6 +65,7 @@
                                         </tr>
                                         @endforelse
                                 </tbody>
+                                {{$fundSources->links('pagination::bootstrap-5')}}
                             </table>
                         </div>
                     </div>

@@ -114,6 +114,7 @@
             <div>
         @endforelse
     </div>
+    {{$users->links('pagination::bootstrap-5')}}
     <div class="modal fade" id="modal-update" tabindex="-1" id="modal-create" aria-labelledby="exampleModalLabel1">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
