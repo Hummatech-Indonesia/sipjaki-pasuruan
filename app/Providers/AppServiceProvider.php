@@ -30,6 +30,7 @@ use App\Contracts\Interfaces\TrainingMethodInterface;
 use App\Contracts\Interfaces\ContractCategoryInterface;
 use App\Contracts\Interfaces\DinasInterface;
 use App\Contracts\Interfaces\FieldInterface;
+use App\Contracts\Interfaces\HistoryLoginInterface;
 use App\Contracts\Repositories\Auth\RegisterRepository;
 use App\Contracts\Repositories\QualificationRepository;
 use App\Contracts\Interfaces\SubClassificationInterface;
@@ -45,6 +46,7 @@ use App\Contracts\Repositories\AccidentRepository;
 use App\Contracts\Repositories\ContractCategoryRepository;
 use App\Contracts\Repositories\DinasRepository;
 use App\Contracts\Repositories\FieldRepository;
+use App\Contracts\Repositories\HistoryLoginRepository;
 use App\Contracts\Repositories\SubClassificationRepository;
 use App\Contracts\Repositories\QualificationLevelRepository;
 use App\Contracts\Repositories\ServiceProviderRepository;
@@ -76,6 +78,7 @@ class AppServiceProvider extends ServiceProvider
         FieldInterface::class => FieldRepository::class,
         WorkerInterface::class => WorkerRepository::class,
         DinasInterface::class => DinasRepository::class,
+        HistoryLoginInterface::class => HistoryLoginRepository::class,
     ];
 
     /**

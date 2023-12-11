@@ -58,10 +58,14 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
-        // if ($request->is('api/*')) {
-        // auth()->user()->currentAccessToken()->delete();
-        // return ResponseHelper::success(Auth::user()->token, 'success logout');
-        // }
+        if ($request->is('api/*')) {
+            auth()->user()->currentAccessToken()->delete();
+            return ResponseHelper::success(Auth::user()->token, 'success logout');
+        }
+        else {
+            auth()->logout();
+            return to_route('login');
+        }
     }
 
     /**

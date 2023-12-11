@@ -16,7 +16,7 @@ class TrainingMember extends Model implements HasTraining
         'id',
         'training_id',
         'name',
-        'posisition',
+        'position',
         'address',
         'phone_number',
         'decree',

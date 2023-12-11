@@ -38,13 +38,13 @@ class TrainingMemberController extends Controller
     {
         $request->merge(['training_id' => $training->id]);
         $trainingMembers = $this->trainingMember->customPaginate($request, 10);
-        // if ($request->is('api/*')) {
+        if ($request->is('api/*')) {
         $data['paginate'] = $this->customPaginate($trainingMembers->currentPage(), $trainingMembers->lastPage());
         $data['data'] = TrainingMemberResource::collection($trainingMembers);
         return ResponseHelper::success($data);
-        // }else{
-        //     return view();
-        // }
+        }else{
+            return view('pages.dinas.detail-training' ,compact('trainingMembers' ,'training'));
+        }
     }
 
     /**
@@ -71,9 +71,9 @@ class TrainingMemberController extends Controller
      * @param  mixed $trainingMember
      * @return void
      */
-    public function update(TrainingMemberRequest $request, TrainingMember $trainingMember)
+    public function update(TrainingMemberRequest $request, TrainingMember $training_member)
     {
-        $this->trainingMember->update($trainingMember->id, $this->service->update($request, $trainingMember));
+        $this->trainingMember->update($training_member->id, $this->service->update($request, $training_member));
         if ($request->is('api/*')) {
             return ResponseHelper::success(null, trans('alert.update_success'));
         } else {

@@ -21,27 +21,27 @@ class TrainingController extends Controller
     {
         $this->training = $training;
     }
-
- /**
+    
+    /**
      * Display a listing of the resource.
      */
     public function index(Request $request) : View | JsonResponse
     {
-
+        
         $trainings = $this->training->customPaginate($request, 15);
         
         if( $request->is('api/*')){
             $data['paginate'] = $this->customPaginate($trainings->currentPage(), $trainings->lastPage());
             $data['data'] = TrainingResource::collection($trainings);
             return ResponseHelper::success($data,trans('alert.get_success'));
-
+            
         }else{
-
+            
             return view('pages.dinas.training',compact('trainings'));
 
         }
     }
-
+    
     /**
      * Store a newly created resource in storage.
      */

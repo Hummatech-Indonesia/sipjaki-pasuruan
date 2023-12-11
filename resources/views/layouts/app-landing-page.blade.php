@@ -99,44 +99,43 @@
 
                         <div class="menu-wrapper" data-top="992">
                             <ul class="site-main-menu">
-                                <li class="menu-item-has-children">
-                                    <a class="active" href="/">Beranda</a>
+                                <li>
+                                    <a class="{{ request()->routeIs('welcome') ? 'active' : '' }}"
+                                        href="{{ route('welcome') }}">Beranda</a>
                                 </li>
                                 <li class="menu-item-has-children">
-                                    <a class="d-flex d-row" href="#">Profil DKSDK</a>
+                                    <a class="d-flex d-row {{ request()->routeIs('struktur-organisasi') || request()->routeIs('rencana-strategis') || request()->routeIs('tugas-fungsi') ? 'active' : '' }}"
+                                        href="#">Profil DKSDK</a>
                                     <ul class="sub-menu">
-                                        <li><a href="/struktur-organisasi-DKSDK">Struktur Organisasi DKSDK</a></li>
-                                        <li><a href="/rencana-strategis-DKSDK">Rencana Strategis DKSDK</a></li>
-                                        <li><a href="/tugas-fungsi-DKSDK">Tugas Dan Fungsi DKSDK</a></li>
+                                        <li><a class="{{ request()->routeIs('struktur-organisasi') ? 'active' : '' }}" href="{{ route('struktur-organisasi') }}">Struktur Organisasi DKSDK</a></li>
+                                        <li><a class="{{ request()->routeIs('rencana-strategis') ? 'active' : '' }}" href="{{ route('rencana-strategis') }}">Rencana Strategis DKSDK</a></li>
+                                        <li><a class="{{ request()->routeIs('tugas-fungsi') ? 'active' : '' }}" href="{{ route('tugas-fungsi') }}">Tugas Dan Fungsi DKSDK</a></li>
                                     </ul>
                                 </li>
+
                                 <li class="menu-item-has-children">
-                                    <a class="d-flex d-row" href="#">Layanan</a>
+                                    <a class="d-flex d-row {{ request()->routeIs('bantuan') ? 'active' : '' }}" href="#">Layanan</a>
                                     <ul class="sub-menu">
-                                        <li><a href="/faq">Bantuan</a></li>
+                                        <li><a class="{{ request()->routeIs('bantuan') ? 'active' : '' }}" href="{{ route('bantuan') }}">Bantuan</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="/berita-terbaru">Berita Terbaru</a></li>
-                                <li><a href="/peraturan">Peraturan</a></li>
+                                <li><a class="{{ request()->routeIs('berita-terbaru') ? 'active' : '' }}" href="{{ route('berita-terbaru') }}">Berita Terbaru</a></li>
+                                <li><a class="{{ request()->routeIs('pertauran') ? 'active' : '' }}" href="{{ route('peraturan') }}">Peraturan</a></li>
                                 <li class="menu-item-has-children">
-                                    <a class="d-flex d-row" href="#">Data Jakon</a>
-                                            <ul class="sub-menu">
-                                                <li><a href="/opd">OPD</a></li>
-                                                <li><a href="/data-paket-pekerjaan">Paket Pekerjaan</a></li>
-                                            </ul>
+                                    <a class="d-flex d-row {{ request()->routeIs('opd') || request()->routeIs('paket-pekerjaan') ? 'active' : '' }}" href="#">Data Jakon</a>
+                                    <ul class="sub-menu">
+                                        <li><a class="{{ request()->routeIs('opd') ? 'active' : '' }}" href="{{ route('opd') }}">OPD</a></li>
+                                        <li><a class="{{ request()->routeIs('paket-pekerjaan') ? 'active' : '' }}" href="{{ route('paket-pekerjaan') }}">Paket Pekerjaan</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a class="d-flex d-row {{ request()->routeIs('pelatihan') ? 'active' : '' }}" href="{{ route('pelatihan') }}">Pelatihan</a>
                                 </li>
                                 <li class="menu-item-has-children">
-                                    <a class="d-flex d-row" href="#">Pelatihan</a>
-                                            <ul class="sub-menu">
-                                                <li><a href="/tenaga-ahli">Tenaga Ahli</a></li>
-                                                <li><a href="/tenaga-terampil">Tenaga Terampil</a></li>
-                                            </ul>
-                                </li>
-                                <li class="menu-item-has-children">
-                                    <a class="d-flex d-row" href="#">Pengawasan</a>
-                                            <ul class="sub-menu">
-                                                <li><a href="/kecelakaan">Kecelakaan</a></li>
-                                            </ul>
+                                    <a class="d-flex d-row {{ request()->routeIs('kecelakaan') ? 'active' : '' }}" href="#">Pengawasan</a>
+                                    <ul class="sub-menu">
+                                        <li><a class="{{ request()->routeIs('kecelakaan') ? 'active' : '' }}" href="{{ route('kecelakaan') }}">Kecelakaan</a></li>
+                                    </ul>
                                 </li>
                             </ul>
 
@@ -301,13 +300,14 @@
                                         fill="#1B3061" />
                                 </svg>
 
-                                <div class="mt-2 me-3" >
+                                <div class="mt-2 me-3">
                                     <a style="color: var(--White-Original, #1B3061);
                                     font-family: Poppins;
                                     font-size: 14px;
                                     font-style: normal;
                                     font-weight: 600;
-                                    line-height: normal;" href="kelembagaan.djbk@pu.go.id">kelembagaan.djbk@pu.go.id</a>
+                                    line-height: normal;"
+                                        href="kelembagaan.djbk@pu.go.id">kelembagaan.djbk@pu.go.id</a>
                                 </div>
                                 <svg style="margin-right: 5px;" width="35" height="35" viewBox="0 0 45 45"
                                     fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -446,7 +446,6 @@ text-decoration-thickness: 2px;
 
     <script src="assets/js/header.js"></script>
     <script src="assets/js/app-min.js"></script>
-
 </body>
 
 

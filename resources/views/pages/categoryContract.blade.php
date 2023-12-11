@@ -75,7 +75,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($contractCategorys as $index => $contractCategory)
+                    @forelse ($contractCategories as $index => $contractCategory)
                         <tr>
                             <td scope="row" class="fs-5">{{ $index + 1 }}</td>
                             <td class="fs-5">{{ $contractCategory->name }}</td>
@@ -107,6 +107,7 @@
                     @endforelse
                 </tbody>
             </table>
+            {{$contractCategories->links('pagination::bootstrap-5')}}
         </div>
 
         <div class="modal fade" id="modal-update" tabindex="-1" aria-labelledby="exampleModalLabel1">

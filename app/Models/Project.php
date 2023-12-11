@@ -11,7 +11,7 @@ use App\Base\Interfaces\HasContractCategory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Project extends Model implements HasDinas, HasServiceProvider, HasFundSource,HasContractCategory
+class Project extends Model implements HasDinas, HasServiceProvider, HasFundSource, HasContractCategory
 {
     use HasFactory;
     protected $table = 'projects';
@@ -38,7 +38,7 @@ class Project extends Model implements HasDinas, HasServiceProvider, HasFundSour
      */
     public function serviceProvider(): BelongsTo
     {
-        return $this->serviceProvider(ServiceProvider::class);
+        return $this->belongsTo(ServiceProvider::class, 'service_provider_id');
     }
 
     /**

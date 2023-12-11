@@ -9,6 +9,7 @@ use App\Models\Dinas;
 use App\Models\Field;
 use App\Models\FiscalYear;
 use App\Models\FundSource;
+use App\Models\HistoryLogin;
 use App\Models\Image;
 use App\Models\News;
 use App\Models\Project;
@@ -30,6 +31,7 @@ use App\Observers\DinasObserver;
 use App\Observers\FieldObserver;
 use App\Observers\FiscalYearObserver;
 use App\Observers\FundSourceObserver;
+use App\Observers\HistoryLoginObserver;
 use App\Observers\ImageObserver;
 use App\Observers\NewsObserver;
 use App\Observers\ProjectObserver;
@@ -88,6 +90,7 @@ class EventServiceProvider extends ServiceProvider
         ModelsServiceProvider::observe(ServiceProviderObserver::class);
         Worker::observe(WorkerObserver::class);
         Accident::observe(AccidentObserver::class);
+        HistoryLogin::observe(HistoryLoginObserver::class);
     }
 
     /**
