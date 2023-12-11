@@ -1,25 +1,26 @@
 <?php
 
-use App\Http\Controllers\AccidentController;
-use App\Http\Controllers\ClassificationController;
-use App\Http\Controllers\ContractCategoryController;
-use App\Http\Controllers\FieldController;
-use App\Http\Controllers\FiscalYearController;
-use App\Http\Controllers\FundSourceController;
-use App\Http\Controllers\ImagesController;
-use App\Http\Controllers\NewsController;
-use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\QualificationController;
-use App\Http\Controllers\QualificationLevelController;
-use App\Http\Controllers\RuleCategoriesController;
-use App\Http\Controllers\RuleController;
-use App\Http\Controllers\SubClassificationController;
-use App\Http\Controllers\TrainingMemberController;
-use App\Http\Controllers\TrainingMethodController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\WorkerController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\RuleController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\FieldController;
+use App\Http\Controllers\ImagesController;
+use App\Http\Controllers\WorkerController;
+use App\Http\Controllers\LandingController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\AccidentController;
+use App\Http\Controllers\FiscalYearController;
+use App\Http\Controllers\FundSourceController;
+use App\Http\Controllers\QualificationController;
+use App\Http\Controllers\ClassificationController;
+use App\Http\Controllers\RuleCategoriesController;
+use App\Http\Controllers\TrainingMemberController;
+use App\Http\Controllers\TrainingMethodController;
+use App\Http\Controllers\ContractCategoryController;
+use App\Http\Controllers\SubClassificationController;
+use App\Http\Controllers\QualificationLevelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,58 +69,59 @@ Route::get('/faq', function () {
     return view('faq');
 });
 
-Route::get('/data-paket-pekerjaan', function () {
-    return view('dpp');
-});
+Route::get('data-paket-pekerjaan',[LandingController::class,'project']);
 
 Route::get('/opd', function () {
     return view('opd');
 });
 
-// Route::middleware('role:superadmin')->group(function () {
-Route::resources([
-    'contract-categories' => ContractCategoryController::class,
-    'fund-sources' => FundSourceController::class,
-    'qualifications' => QualificationController::class,
-    'source-fund' => FundSourceController::class,
-    'rule-categories' => RuleCategoriesController::class,
-    'fiscal-years' => FiscalYearController::class,
-    'classifications' => ClassificationController::class,
-    'news' => NewsController::class,
-    'training-methods' => TrainingMethodController::class,
-    'users' => UserController::class,
-    'rules' => RuleController::class,
-]);
 
-// Route::middleware('role:superadmin')->group(function () {
-Route::resources([
-    'contract-categories' => ContractCategoryController::class,
-    'fund-sources' => FundSourceController::class,
-    'qualifications' => QualificationController::class,
-    'source-fund' => FundSourceController::class,
-    'rule-categories' => RuleCategoriesController::class,
-    'fiscal-years' => FiscalYearController::class,
-    'classifications' => ClassificationController::class,
-    'news' => NewsController::class,
-    'training-methods' => TrainingMethodController::class,
-    'users' => UserController::class,
-    'rules' => RuleController::class,
-]);
+Route::middleware('auth')->group(function(){
+    Route::middleware('role:superadmin')->group(function(){
+        Route::resources([
+            'contract-categories' => ContractCategoryController::class,
+            'fund-sources' => FundSourceController::class,
+            'qualifications' => QualificationController::class,
+            'source-fund' => FundSourceController::class,
+            'rule-categories' => RuleCategoriesController::class,
+            'fiscal-years' => FiscalYearController::class,
+            'classifications' => ClassificationController::class,
+            'news' => NewsController::class,
+            'training-methods' => TrainingMethodController::class,
+            
+            'rules' => RuleController::class,
+        ]);
 
-Route::name('qualifications.level.')->group(function () {
-    Route::post('sub-qualifications/{qualification}', [QualificationLevelController::class, 'store'])->name('store');
-    Route::put('sub-qualifications/{qualification_level}', [QualificationLevelController::class, 'update'])->name('update');
-    Route::delete('sub-qualifications/{qualification_level}', [QualificationLevelController::class, 'store'])->name('destroy');
-});
-// });
+        Route::name('qualifications.level.')->group(function () {
+            Route::post('sub-qualifications/{qualification}', [QualificationLevelController::class, 'store'])->name('store');
+            Route::put('sub-qualifications/{qualification_level}', [QualificationLevelController::class, 'update'])->name('update');
+            Route::delete('sub-qualifications/{qualification_level}', [QualificationLevelController::class, 'store'])->name('destroy');
+        });
+    });
 
-// Route::middleware('role:admin',)->group(function () {
-Route::resources([
-    'news' => NewsController::class,
-]);
-// });
+    Route::middleware('role:admin')->group(function(){
+        Route::resources([
+            'news' => NewsController::class,
+        ]);
+        Route::get('agencies', [UserController::class, 'index'])->name('agencies.index');
+        Route::post('agencies', [UserController::class, 'store'])->name('agencies.store');
+        Route::put('agencies/{user}', [UserController::class, 'update'])->name('agencies.update');
+        Route::delete('agencies/{user}', [UserController::class, 'destroy'])->name('agencies.destroy');
 
-    Route::middleware(['role:dinas'])->group(function () {
+        Route::get('images', [ImagesController::class, 'index']);
+        Route::post('images', [ImagesController::class, 'store']);
+        Route::put('images/{image}', [ImagesController::class, 'update']);
+        Route::delete('images/{image}', [ImagesController::class, 'destroy']);
+
+        Route::get('training-members/{training}', [TrainingMemberController::class, 'index']);
+        Route::post('training-members/{training}', [TrainingMemberController::class, 'store']);
+        Route::put('training-members/{training_member}', [TrainingMemberController::class, 'update']);
+        Route::delete('training-members/{training_member}', [TrainingMemberController::class, 'destroy']);
+        Route::post('import-training-members', [TrainingMemberController::class, 'import']);
+
+    });
+
+    Route::middleware('role:dinas')->group(function(){
         Route::resource('accident', AccidentController::class)->except('create', 'edit', 'show');
         Route::resources([
             'projects' => ProjectController::class
@@ -138,54 +140,15 @@ Route::resources([
         Route::get('list-projects', [ProjectController::class, 'listProjects']);
     });
 
-    // Route::middleware('role:service provider',function(){
-    // });
-// Route::middleware('role:dinas',function(){
-//     // Accident
-// });
-
-Route::middleware(['role:dinas'])->group(function () {
-    Route::resource('accident', AccidentController::class)->except('create', 'edit');
-    Route::resources([
-        'projects' => ProjectController::class,
-        'fields' => FieldController::class
-    ]);
+    Route::middleware('role:service provider')->group(function(){
+        Route::resource('worker', WorkerController::class)->only('index', 'update', 'destroy');
+        Route::post('worker/{service_provider}', [WorkerController::class, 'store']);
+    });
 });
-
-// Route::middleware('role:service provider',function(){
-// });
-
-Route::get('agencies', [UserController::class, 'index'])->name('agencies.index');
-Route::post('agencies', [UserController::class, 'store'])->name('agencies.store');
-Route::put('agencies/{user}', [UserController::class, 'update'])->name('agencies.update');
-Route::delete('agencies/{user}', [UserController::class, 'destroy'])->name('agencies.destroy');
-
-Route::get('test', function () {
-    return view('auth.verify');
-});
-
-// });
-
-Route::get('images', [ImagesController::class, 'index']);
-Route::post('images', [ImagesController::class, 'store']);
-Route::put('images/{image}', [ImagesController::class, 'update']);
-Route::delete('images/{image}', [ImagesController::class, 'destroy']);
 
 Route::get('profile-OPD', function () {
     return view('pages.profile-opd');
 });
-
-
-//Training Member
-Route::get('training-members/{training}', [TrainingMemberController::class, 'index']);
-Route::post('training-members/{training}', [TrainingMemberController::class, 'store']);
-Route::put('training-members/{training_member}', [TrainingMemberController::class, 'update']);
-Route::delete('training-members/{training_member}', [TrainingMemberController::class, 'destroy']);
-Route::post('import-training-members', [TrainingMemberController::class, 'import']);
-Route::resource('worker', WorkerController::class)->only('index', 'update', 'destroy');
-Route::post('worker/{service_provider}', [WorkerController::class, 'store']);
-
-
 
 require __DIR__.'/aldy.php';
 require __DIR__.'/arif.php';
