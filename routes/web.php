@@ -174,12 +174,9 @@ Route::get('profile-OPD', function () {
 Route::post('import-training-members', [TrainingMemberController::class, 'import']);
 Route::resource('worker', WorkerController::class)->only('index', 'update', 'destroy');
 Route::post('worker/{service_provider}', [WorkerController::class, 'store']);
-
-
-
-require __DIR__ . '/aldy.php';
-require __DIR__ . '/arif.php';
-require __DIR__ . '/daffa.php';
-require __DIR__ . '/ibnu.php';
-require __DIR__ . '/kader.php';
-require __DIR__ . '/femas.php';
+require __DIR__.'/aldy.php';
+require __DIR__.'/arif.php';
+require __DIR__.'/daffa.php';
+require __DIR__.'/ibnu.php';
+require __DIR__.'/kader.php';
+require __DIR__.'/femas.php';
