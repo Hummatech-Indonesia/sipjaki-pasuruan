@@ -61,7 +61,7 @@
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search">
                         <div class="input-group-append">
-                            <button class="btn btn-secondary" type="button">
+                            <button class="btn text-white" style="background-color: #1B3061; border-radius: 0 5px 5px 0;" type="button">
                                 <i class="fa fa-search"></i>
                             </button>
                         </div>

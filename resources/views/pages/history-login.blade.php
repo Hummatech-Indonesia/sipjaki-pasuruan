@@ -14,14 +14,16 @@
         <div class="card-body">
             <form action="" class="d-flex gap-4">
                 <div class="position-relative mb-3 col-lg-3">
-                    <input type="search" value="{{$name}}" class="form-control search-chat py-2 ps-5" name="name" id="search-name" placeholder="Search">
-                    <i
-                        class="bx bx-search-alt-2
-                position-absolute top-50 translate-middle-y fs-6 text-dark ms-3"></i>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <div class="input-group-append">
+                            <button class="btn text-white" style="background-color: #1B3061; border-radius: 0 5px 5px 0;" type="button">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <button class="btn btn-success"><i class="bx bx-search-alt-2" style="margin-right:10px"></i>Cari</button>
-                </div>
+                
             </form>
             <div class="table-responsive">
                 <table class="table">
