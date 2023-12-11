@@ -2,9 +2,11 @@
 
 namespace App\Contracts\Repositories;
 
+use App\Contracts\Interfaces\LengthAwarePaginator as InterfacesLengthAwarePaginator;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Contracts\Interfaces\ProjectInterface;
+use App\Contracts\Interfaces\Request as InterfacesRequest;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class ProjectRepository extends BaseRepository implements ProjectInterface
@@ -86,6 +88,23 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
             ->when($request->name, function ($query) use ($request) {
                 $query->where('name', 'LIKE', '%' . $request->name . '%');
             })
+            ->fastPaginate($pagination);
+    }
+
+    /**
+     * serviceProviderProject
+     *
+     * @param  mixed $request
+     * @param  mixed $pagination
+     * @return LengthAwarePaginator
+     */
+    public function serviceProviderProject(Request $request, int $pagination = 10): LengthAwarePaginator
+    {
+        return $this->model->query()
+            ->when($request->name, function ($query) use ($request) {
+                $query->where('name', 'LIKE', '%' . $request->name . '%');
+            })
+            ->where('service_provider_id', auth()->user()->serviceProvider->id)
             ->fastPaginate($pagination);
     }
 }
