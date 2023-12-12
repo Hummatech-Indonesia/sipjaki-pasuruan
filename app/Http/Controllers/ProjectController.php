@@ -25,8 +25,9 @@ class ProjectController extends Controller
     private ContractCategoryInterface $contractCategory;
     private ServiceProviderProjectInterface $serviceProviderProject;
 
-    public function __construct(ProjectInterface $project, ServiceProviderInterface $serviceProvider, FundSourceInterface $fundSource, ContractCategoryInterface $contractCategory)
+    public function __construct(ProjectInterface $project, ServiceProviderInterface $serviceProvider, FundSourceInterface $fundSource, ContractCategoryInterface $contractCategory, ServiceProviderProjectInterface $serviceProviderProjectInterface)
     {
+        $this->serviceProviderProject = $serviceProviderProjectInterface;
         $this->project = $project;
         $this->serviceProvider = $serviceProvider;
         $this->fundSource = $fundSource;
