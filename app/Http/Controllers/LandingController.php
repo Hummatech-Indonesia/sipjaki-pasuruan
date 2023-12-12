@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Contracts\Interfaces\DinasInterface;
 use App\Contracts\Interfaces\NewsInterface;
 use App\Contracts\Interfaces\TrainingInterface;
+use App\Models\News;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
@@ -48,6 +49,15 @@ class LandingController extends Controller
     public function latestNews(Request $request) : view {
         $news = $this->news->customPaginate($request, 10);
         return view('berita-terbaru', ['news' => $news]);
+    }
+
+    public function show(News $news,Request $request) : View {
+    {
+        $data = $this->news->show($news->id);
+        $dataNews = $this->news->customPaginate($request, 10);
+        return view('detail-berita', compact('data', 'dataNews'));
+    }
+
     }
 
     /**
