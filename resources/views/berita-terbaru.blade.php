@@ -42,6 +42,14 @@
                 </article><!-- /.post -->
             </div>
         @empty
+            <div class="text-center col-12">
+                <div class="d-flex justify-content-center" style="min-height:16rem">
+                    <div class="my-auto">
+                        <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                        <h4 class="text-center mt-4">Berita Kosong!!</h4>
+                    </div>
+                </div>
+            </div>
         @endforelse
 
     </div>

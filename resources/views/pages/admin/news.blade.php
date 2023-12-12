@@ -1,16 +1,6 @@
 @extends('layouts.app')
 @section('content')
     <h2>Berita</h2>
-    @if (session('success'))
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: '{{ session('success') }}',
-            });
-        </script>
-    @endif
-
     <div class="card p-3">
         <div class="d-flex justify-content-between align-items-center mb-3">
             <div>
@@ -31,7 +21,7 @@
                         @csrf
                         <div class="modal-header d-flex align-items-center">
                             <h4 class="modal-title" id="exampleModalLabel1">
-                                Tambah Kategori Kontrak
+                                Tambah Berita
                             </h4>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
@@ -42,13 +32,13 @@
                                         <label id="name" for="recipient-name" class="control-label mb-2">Judul</label>
                                         <input type="text" class="form-control" id="create-name" class="form-control"
                                             name="title" id="nametext" aria-describedby="name"
-                                            placeholder="Masukan Kategori Kontrak" />
+                                            placeholder="Masukan Judul" />
                                     </div>
                                     <div class="col-md-6 col-12 ">
                                         <label id="name" for="recipient-name" class="control-label mb-2">Masukan
                                             Gambar</label>
                                         <input type="file" class="form-control mb-3" name="thumbnail" id="thumbnail"
-                                            aria-describedby="name" placeholder="Masukan Kategori Kontrak"
+                                            aria-describedby="name" placeholder="Masukan"
                                             accept="image/png, image/jpeg, image/jpg" />
                                         <img src="" height="200" style="" id="preview-img" alt="">
                                     </div>
@@ -98,7 +88,7 @@
                         <tr>
                             <td scope="row" class="fs-5">{{ $index + 1 }}</td>
                             <td class="fs-5">{{ $news->title }}</td>
-                            <td class="fs-5">{{ \Carbon\Carbon::parse($news->created_at)->format('d-m-Y') }}</td>
+                            <td class="fs-5">{{ \Carbon\Carbon::parse($news->created_at)->translatedFormat('d F Y') }}</td>
                             <td class="d-flex flex-row gap-3 justify-content-center">
                                 <button type="button"
                                     class="btn waves-effect waves-light d-flex btn-edit flex-row gap-1 justify-content-evenly"
@@ -150,7 +140,7 @@
                                     <label id="name" for="recipient-name" class="control-label mb-2">Judul</label>
                                     <input type="text" class="form-control" id="update-name" class="form-control"
                                         name="title" id="nametext" aria-describedby="name"
-                                        placeholder="Masukan Kategori Kontrak" />
+                                        placeholder="Masukan Judul" />
                                 </div>
                                 <div class="col-md-6 col-12 ">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Masukan
@@ -185,6 +175,15 @@
 @section('script')
     <script src="{{ asset('assets/libs/tinymce/tinymce.min.js') }}"></script>
     <script src="{{ asset('assets/js/pages/form-editor.init.js') }}"></script>
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: '{{ session('success') }}',
+            });
+        </script>
+    @endif
     <script>
         // const thumbnailInput = document.getElementById('thumbnail');
         // const previewImg = document.getElementById('preview-img');
