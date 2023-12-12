@@ -141,7 +141,7 @@
                                         <li><a class="{{ request()->routeIs('opd') ? 'active' : '' }}"
                                                 href="{{ route('opd') }}">OPD</a></li>
                                         <li><a class="{{ request()->routeIs('paket-pekerjaan') ? 'active' : '' }}"
-                                                href="{{ route('paket-pekerjaan') }}">Paket Pekerjaan</a></li>
+                                                href="{{ route('paket.pekerjaan') }}">Paket Pekerjaan</a></li>
                                     </ul>
                                 </li>
                                 <li>
