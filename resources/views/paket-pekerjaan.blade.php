@@ -59,12 +59,12 @@
                                     <td class="fs-5">{{$item->user->name}}</td>
                                     <td class="fs-5 text-center">{{$item->projects_count}}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('detail-paket') }}" class="text-white btn" style="background-color: #1B3061">Detail</a>
+                                        <a href="{{ route('detail-project',['dinas' => $item->id]) }}" class="text-white btn" style="background-color: #1B3061">Detail</a>
                                     </td>
                                 </tr>
                                 @empty
                                 <tr>
-                                    <td colspan="3" class="text-center">
+                                    <td colspan="4" class="text-center">
                                         <div class="d-flex justify-content-center" style="min-height:16rem">
                                             <div class="my-auto">
                                                 <img src="{{ asset('no-data.png') }}" width="300" height="300" />

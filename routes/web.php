@@ -21,6 +21,7 @@ use App\Http\Controllers\RuleCategoryController;
 use App\Http\Controllers\TrainingMemberController;
 use App\Http\Controllers\TrainingMethodController;
 use App\Http\Controllers\ContractCategoryController;
+use App\Http\Controllers\DinasController;
 use App\Http\Controllers\SubClassificationController;
 use App\Http\Controllers\QualificationLevelController;
 
@@ -69,6 +70,7 @@ Route::get('/bantuan', function () {
 })->name('bantuan');
 
 Route::get('data-paket-pekerjaan', [LandingController::class, 'project'])->name('paket-pekerjaan');
+Route::get('data-paket-pekerjaan/{dinas}',[LandingController::class,'projectDetail'])->name('detail-project');
 Route::get('/pelatihan', [LandingController::class, 'training'])->name('pelatihan');
 
 Route::get('/opd', function () {
@@ -147,14 +149,12 @@ Route::middleware(['role:dinas'])->group(function () {
     ]);
     Route::middleware('role:service provider')->group(function () {
         Route::resource('workers', WorkerController::class)->only('index', 'update', 'destroy');
-        Route::delete('delete-workers', WorkerController::class, 'deleteMultiple');
+        Route::delete('delete-workers', [WorkerController::class, 'deleteMultiple']);
         Route::post('workers/{service_provider}', [WorkerController::class, 'store']);
     });
 });
 
-Route::get('profile-OPD', function () {
-    return view('pages.profile-opd');
-});
+Route::get('profile-OPD', [DinasController::class, 'index']);
 require __DIR__ . '/aldy.php';
 require __DIR__ . '/arif.php';
 require __DIR__ . '/daffa.php';

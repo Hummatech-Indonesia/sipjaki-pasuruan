@@ -9,13 +9,6 @@
                 <i class="bx bxs-download mt-1 me-1"></i>Export
             </div>
         </div>
-
-        <div>
-            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-create"
-                style="background-color: #1B3061; border-radius: 10px">
-                <i class="fas fa-plus" style="margin-right:10px"></i>Tambah Paket Pekerjaan
-            </button>
-        </div>
     </div>
     <div class="row">
         <div class="col-md-4">
