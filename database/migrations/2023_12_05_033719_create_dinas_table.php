@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->foreignUuid('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignUuid('field_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignUuid('section_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignUuid('section_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignUuid('type_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->text('address')->nullable();
             $table->string('phone_number')->nullable();
