@@ -41,7 +41,7 @@ class ServiceProviderProjectController extends Controller
             $data['data'] = ProjectResource::collection($serviceProviderProjects);
             return ResponseHelper::success($data);
         } else {
-            return view('', ['serviceProviderProjects' => $serviceProviderProjects]);
+            return view('pages.service-provider.work-package', ['serviceProviderProjects' => $serviceProviderProjects]);
         }
     }
 
@@ -57,21 +57,21 @@ class ServiceProviderProjectController extends Controller
         $service = $this->service->store($request, $serviceProviderProjects, $project);
         if ($service == true) {
             $this->serviceProviderProject->store($service);
-            // if ($request->is('api/*')) {
+             if ($request->is('api/*')) {
             return ResponseHelper::success(null, trans('alert.add_success'));
-            // } else {
-            //     return redirect()->back()->with('success', trans('alert.add_success'));
-            // }
+             } else {
+                 return redirect()->back()->with('success', trans('alert.add_success'));
+             }
         } else {
             $progres = 0;
             foreach ($serviceProviderProjects as $serviceProviderProject) {
                 $progres += $serviceProviderProject->progres;
             }
-            // if ($request->is('api/*')) {
+             if ($request->is('api/*')) {
             return ResponseHelper::error(null, "Project yang anda kerjakan saat ini sudah mencapai " . $progres . "% jadi anda hanya bisa menambahkan progress maksimal " . 100 - $progres . "%");
-            // } else {
-            // return redirect()->back()->withErrors("Project yang anda kerjakan saat ini sudah mencapai " . $progres . "% jadi anda hanya bisa menambahkan progress maksimal " . 100 - $progres . "%");
-            // }
+             } else {
+             return redirect()->back()->withErrors("Project yang anda kerjakan saat ini sudah mencapai " . $progres . "% jadi anda hanya bisa menambahkan progress maksimal " . 100 - $progres . "%");
+             }
         }
     }
 
@@ -84,7 +84,7 @@ class ServiceProviderProjectController extends Controller
     public function show(ServiceProviderProject $service_provider_project) {
         $projectYear = $service_provider_project->project->year;
         $projectName = $service_provider_project->project->name;
-        return view('', ['service_provider_project' => $service_provider_project]);
+        return view('pages.service-provider.detail-progress', ['service_provider_project' => $service_provider_project]);
     }
 
     /**
@@ -112,7 +112,11 @@ class ServiceProviderProjectController extends Controller
                 return redirect()->back()->withErrors("Project yang anda kerjakan saat ini sudah mencapai " . $progres - $service_provider_project->progres . "% jadi anda hanya bisa mengubah nilai progress maksimal " . 100 - ($progres - $service_provider_project->progres) . "%");
             }
         }
-        return ResponseHelper::success(null, trans('alert.update_success'));
+        if ($request->is('api/*')) {
+            return ResponseHelper::success(null, trans('alert.update_success'));
+        }else{
+            return redirect()->back()->with('success', trans('alert.update_success'));
+        }
     }
 
     /**
@@ -121,7 +125,7 @@ class ServiceProviderProjectController extends Controller
      * @param  mixed $service_provider_project
      * @return void
      */
-    public function destroy(ServiceProviderProject $service_provider_project)
+    public function destroy(ServiceProviderProject $service_provider_project, Request $request)
     {
         $this->service->remove($service_provider_project->file);
         $this->serviceProviderProject->delete($service_provider_project->id);

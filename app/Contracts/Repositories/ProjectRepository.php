@@ -24,6 +24,7 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
     public function get(): mixed
     {
         return $this->model->query()
+        ->with('serviceProviderProjects')
             ->get();
     }
 
@@ -85,6 +86,7 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
     public function customPaginate(Request $request, int $pagination = 10): LengthAwarePaginator
     {
         return $this->model->query()
+        ->with('serviceProviderProjects')
             ->when($request->name, function ($query) use ($request) {
                 $query->where('name', 'LIKE', '%' . $request->name . '%');
             })
@@ -101,6 +103,7 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
     public function serviceProviderProject(Request $request, int $pagination = 10): LengthAwarePaginator
     {
         return $this->model->query()
+        ->with('serviceProviderProjects')
             ->when($request->name, function ($query) use ($request) {
                 $query->where('name', 'LIKE', '%' . $request->name . '%');
             })

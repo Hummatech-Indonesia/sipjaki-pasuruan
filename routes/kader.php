@@ -4,6 +4,8 @@ use App\Http\Controllers\AccidentController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\VerificationController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ServiceProviderProjectController;
 use App\Http\Controllers\SubClassificationController;
 use App\Http\Controllers\TrainingMemberController;
 use App\Http\Controllers\TrainingController;
@@ -43,3 +45,14 @@ Route::get('sub-qualification', function () { return view('pages.sub-qualificati
 
 // verifikasi account
 Route::get('verify.account/{id}' , [VerificationController::class ,'verifyacount'])->name('verify.account/');
+// verifikasi account 
+
+
+// pekerjaan 
+Route::get('work-package', [ServiceProviderProjectController::class, 'index'])->name('work-package');
+Route::get('detail-project/{project}', [ProjectController::class, 'projectDetail']);
+Route::get('service-provider-project-detail/{service_provider_project}', [ServiceProviderProjectController::class,'show'])->name('service-provider-project-detail/');
+
+// download 
+Route::get('download-all-service-provider-project/{project}' , [ServiceProviderProjectController::class ,'downloadServiceProviderProject'])->name('download-all-service-provider-project/');
+Route::get('download-service-provider-project/{service_provider_project}', [ServiceProviderProjectController::class, 'downloadFile'])->name('download-service-provider-project/');
