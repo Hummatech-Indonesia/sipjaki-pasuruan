@@ -26,6 +26,8 @@ use App\Http\Controllers\SubClassificationController;
 use App\Http\Controllers\QualificationLevelController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\ServiceProviderProjectController;
+use App\Http\Controllers\TypeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -70,7 +72,7 @@ Route::get('/bantuan', function () {
 })->name('bantuan');
 
 Route::get('data-paket-pekerjaan', [LandingController::class, 'project'])->name('paket-pekerjaan');
-Route::get('data-paket-pekerjaan/{dinas}',[LandingController::class,'projectDetail'])->name('detail-project');
+Route::get('data-paket-pekerjaan/{dinas}', [LandingController::class, 'projectDetail'])->name('detail-project');
 Route::get('/pelatihan', [LandingController::class, 'training'])->name('pelatihan');
 
 Route::get('/opd', function () {
@@ -93,6 +95,7 @@ Route::middleware('auth')->group(function () {
             'sections' => SectionController::class,
             'rules' => RuleController::class,
             'fields' => FieldController::class,
+            'types' => TypeController::class,
         ]);
 
         Route::get('history-login', [HistoryLoginController::class, 'index'])->name('history-login.index');
