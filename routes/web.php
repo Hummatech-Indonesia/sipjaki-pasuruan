@@ -69,6 +69,7 @@ Route::get('/bantuan', function () {
 })->name('bantuan');
 
 Route::get('data-paket-pekerjaan', [LandingController::class, 'project'])->name('paket-pekerjaan');
+Route::get('data-paket-pekerjaan/{dinas}',[LandingController::class,'projectDetail'])->name('detail-project');
 Route::get('/pelatihan', [LandingController::class, 'training'])->name('pelatihan');
 
 Route::get('/opd', function () {

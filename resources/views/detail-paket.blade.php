@@ -35,7 +35,7 @@
                             No
                         </div>
                         <div class="">
-                            Kab/Kota
+                            Dinas
                         </div>
                         <div class="">
                             Jumlah
@@ -43,39 +43,19 @@
                     </div>
                 </div>
                 <div class="card-body">
+                    @for ($dinas as $item) 
                     <div class="d-flex justify-content-between mb-3">
                         <div class="">
-                            1
+                            {{$loop->iteration}}
                         </div>
                         <div class="">
-                            KAB. Malang
+                            {{$item->user->name}}
                         </div>
                         <div class="">
-                            2844
+                            {{$item->projects_count}}
                         </div>
                     </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <div class="">
-                            1
-                        </div>
-                        <div class="">
-                            KAB. Malang
-                        </div>
-                        <div class="">
-                            2844
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <div class="">
-                            1
-                        </div>
-                        <div class="">
-                            KAB. Malang
-                        </div>
-                        <div class="">
-                            2844
-                        </div>
-                    </div>
+                    @endfor
                 </div>
             </div>
         </div>
@@ -95,13 +75,13 @@
                                     <th class="fw-medium"
                                         style="background-color: #1B3062; color: white; border-right: 1px solid #1B3061;">
                                         No</th>
+                                        <th class="fw-medium"
+                                        style="background-color: #1B3061; color: white; border-right: 1px solid #1B3061;">
+                                        Nama Pekerjaan</th>
                                     <th class="fw-medium"
                                         style="background-color: #1B3061; color: white; border-right: 1px solid #1B3061;">
                                         Tahun
                                         Anggaran</th>
-                                    <th class="fw-medium"
-                                        style="background-color: #1B3061; color: white; text-align: center">Nama
-                                        Dinas</th>
                                     <th class="fw-medium"
                                         style="background-color: #1B3061; color: white; text-align: center">Nilai
                                         Kontrak</th>
@@ -114,7 +94,20 @@
                                 </tr>
                             </thead>
                             <tbody>
-
+                                @forelse ($dinasDetail->projects as $project)
+                                    <th scope="row" class="fs-5">{{$loop->iteration}}</th>
+                                    <td class="fs-5">{{$project->name}}</td>
+                                    <td class="fs-5">{{$project->fundSource->name}}</td>
+                                    <td class="fs-5">{{$project->project_value}}</td>
+                                    <td class="fs-5">{{$project->start_at->isoFormat('Do MMMM YYYY', 'ID')}}</td>
+                                    <td class="fs-5">{{$project->end_at->isoFormat('Do MMMM YYYY', 'ID')}}</td>
+                                    <td class="fs-5">{{$project->status}}</td>
+                                    <td class="text-center">
+                                        <a href="{{ route('detail-project',['dinas' => $item->id]) }}" class="text-white btn" style="background-color: #1B3061">Detail</a>
+                                    </td>
+                                @empty
+                                    
+                                @endforelse
                             </tbody>
                         </table>
                     </div>
