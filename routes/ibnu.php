@@ -6,6 +6,10 @@ Route::get('detail-berita', function () {
     return view('detail-berita');
 })->name('detail-berita');
 
+Route::get('settings-sections', function () {
+    return view('pages.settings-sections');
+})->name('settings-sections');
+
 Route::get('dashboard', function(){
     return view('pages.service-provider.dashboard');
 })->name('dashboard-service-provider');
