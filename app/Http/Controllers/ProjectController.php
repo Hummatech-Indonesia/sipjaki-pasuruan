@@ -77,6 +77,17 @@ class ProjectController extends Controller
     }
 
     /**
+     * projectDetail
+     *
+     * @param  mixed $project
+     * @return View
+     */
+    public function projectDetail(Project $project): View
+    {
+        return view('', ['project' => $project]);
+    }
+
+    /**
      * Update the specified resource in storage.
      */
     public function update(ProjectRequest $request, Project $project): RedirectResponse | JsonResponse

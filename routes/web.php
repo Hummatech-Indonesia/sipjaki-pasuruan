@@ -148,7 +148,7 @@ Route::middleware(['role:dinas'])->group(function () {
     Route::middleware('role:service provider')->group(function () {
         Route::resource('workers', WorkerController::class)->only('index', 'update', 'destroy');
         Route::post('workers/{service_provider}', [WorkerController::class, 'store']);
-        Route::get('detail-project/{project}', [ProjectController::class, 'show']);
+        Route::get('detail-project/{project}', [ProjectController::class, 'projectDetail']);
     });
 });
 
