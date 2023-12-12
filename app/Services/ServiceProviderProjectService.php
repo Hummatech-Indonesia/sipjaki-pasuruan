@@ -82,7 +82,7 @@ class ServiceProviderProjectService
     {
         if (!$data->isEmpty()) {
             $zip = new ZipArchive;
-            $filename = $data->first()->project->name . now();
+            $filename = $data->first()->project->name . now() . ".zip";
             if ($zip->open(storage_path('app/public/'.$filename), ZipArchive::CREATE) === TRUE) {
                 foreach ($data as $value) {
                     if (Storage::exists($value->file)) {
@@ -92,6 +92,12 @@ class ServiceProviderProjectService
                 $zip->close();
                 return response()->download(storage_path('app/public/'.$filename))->deleteFileAfterSend(true);
             }
+            else {
+                return "Gagal membuat zip";
+            }
+        }
+        else {
+            return "Data kosong";
         }
     }
 

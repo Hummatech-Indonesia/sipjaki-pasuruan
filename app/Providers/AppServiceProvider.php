@@ -43,6 +43,7 @@ use App\Contracts\Interfaces\QualificationLevelInterface;
 use App\Contracts\Interfaces\SectionInterface;
 use App\Contracts\Interfaces\ServiceProviderInterface;
 use App\Contracts\Interfaces\ServiceProviderProjectInterface;
+use App\Contracts\Interfaces\TypeInterface;
 use App\Contracts\Interfaces\WorkerInterface;
 use App\Contracts\Repositories\AccidentRepository;
 use App\Contracts\Repositories\ContractCategoryRepository;
@@ -54,6 +55,7 @@ use App\Contracts\Repositories\QualificationLevelRepository;
 use App\Contracts\Repositories\SectionRepository;
 use App\Contracts\Repositories\ServiceProviderProjectRepository;
 use App\Contracts\Repositories\ServiceProviderRepository;
+use App\Contracts\Repositories\TypeRepository;
 use App\Contracts\Repositories\WorkerRepository;
 
 class AppServiceProvider extends ServiceProvider
@@ -84,7 +86,8 @@ class AppServiceProvider extends ServiceProvider
         DinasInterface::class => DinasRepository::class,
         HistoryLoginInterface::class => HistoryLoginRepository::class,
         ServiceProviderProjectInterface::class => ServiceProviderProjectRepository::class,
-        SectionInterface::class => SectionRepository::class
+        SectionInterface::class => SectionRepository::class,
+        TypeInterface::class => TypeRepository::class
     ];
 
     /**
