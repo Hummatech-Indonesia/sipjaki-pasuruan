@@ -7,9 +7,9 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title mb-4">Form Grid Layout</h4>
-                    <form>
-
+                    <form method="PUT" action="{{ route('dinas.update') }}">
+                        @csrf
+                        @method('PUT')
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
@@ -21,22 +21,12 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="formrow-inputState" class="form-label">Nama Dinas</label>
-                                    <select id="formrow-inputState" class="form-select">
-                                        <option disabled selected>Choose...</option>
-                                        <option>Binamarga Singosari</option>
-                                        <option>Binamarga Kepanjeng</option>
-                                    </select>
-                                </div>
-                            </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="formrow-inputState" class="form-label">Pilih Tipe</label>
+                                    <label for="formrow-inputState" class="form-label">Nama Bidang</label>
 
                                     <select class="select2 form-control select2-multiple" multiple="multiple"
                                         data-placeholder="Choose ...">
@@ -49,7 +39,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="formrow-inputState" class="form-label">Pilih Tipe</label>
+                                    <label for="formrow-inputState" class="form-label">Nama Saksi</label>
 
                                     <select class="select2 form-control select2-multiple" multiple="multiple"
                                         data-placeholder="Choose ...">
@@ -65,7 +55,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="mb-3">
-                                    <label class="form-label">Textarea</label>
+                                    <label class="form-label">Alamat</label>
                                     <div>
                                         <textarea rows="4" required class="form-control" rows="3"></textarea>
                                     </div>
@@ -85,7 +75,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label">E-Mail</label>
+                                    <label class="form-label">Email</label>
                                     <div>
                                         <input type="email" class="form-control" required parsley-type="email"
                                             placeholder="Enter a valid e-mail" />
@@ -107,6 +97,26 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label">Eseleon</label>
+                                    <div>
+                                        <input type="text" class="form-control" required
+                                            placeholder="Enter your eselon" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Jabatan</label>
+                                    <div>
+                                        <input type="text" class="form-control" required
+                                            placeholder="Enter your name" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Email Penjabat</label>
                                     <div>
                                         <input type="text" class="form-control" required
                                             placeholder="Enter your eselon" />
@@ -201,9 +211,30 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">No Sk Tpjk</label>
+                                    <div>
+                                        <input type="number" class="form-control" required
+                                            placeholder="Enter your no Hp" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">No Sk Sipjaki</label>
+                                    <div>
+                                        <input type="number" class="form-control" required
+                                            placeholder="Enter your Number" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="d-flex justify-content-end">
-                            <button type="submit" class="btn bg-white w-md mx-1 rounded-3" style="border: 1px solid #1B3061">Kembali</button>
-                            <button type="submit" class="btn w-md mx-1 text-white rounded-3" style="background-color: #1B3061">Save</button>
+                            <button type="button" class="btn w-md mx-1 rounded-3" style="background-color: #1B3061; color:white">Batal</button>
+                            <button type="submit" class="btn btn-success w-md mx-1 text-white rounded-3">Save</button>
                         </div>
                     </form>
                 </div>

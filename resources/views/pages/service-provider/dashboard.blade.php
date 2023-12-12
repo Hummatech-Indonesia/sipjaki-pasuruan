@@ -8,8 +8,8 @@
                 <div class="card-body">
                     <div class="d-flex">
                         <div class="flex-grow-1">
-                            <p class="text-muted fw-medium">Total Peraturan</p>
-                            <h4 class="mb-0">1,235</h4>
+                            <p class="text-muted fw-medium">Total Progress</p>
+                            <h4 style="color: #1B3061" class="mb-0">23 Progress</h4>
                         </div>
 
                         <div class="flex-shrink-0 align-self-center">
@@ -28,8 +28,8 @@
                 <div class="card-body">
                     <div class="d-flex">
                         <div class="flex-grow-1">
-                            <p class="text-muted fw-medium">Sub Klasifikasi Terbanyak</p>
-                            <h4 class="mb-0">$35, 723</h4>
+                            <p class="text-muted fw-medium">Tugas Belum Selesai</p>
+                            <h4 class="mb-0" style="color: #1B3061">8 Tugas</h4>
                         </div>
 
                         <div class="flex-shrink-0 align-self-center ">
@@ -48,8 +48,8 @@
                 <div class="card-body">
                     <div class="d-flex">
                         <div class="flex-grow-1">
-                            <p class="text-muted fw-medium">Total List Sumber Dana</p>
-                            <h4 class="mb-0">$16.2</h4>
+                            <p class="text-muted fw-medium">Peserta Tenanga Kerja</p>
+                            <h4 class="mb-0" style="color: #1B3061">33 Peserta</h4>
                         </div>
 
                         <div class="flex-shrink-0 align-self-center">
