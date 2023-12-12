@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\VerificationController;
+use App\Http\Controllers\DinasController;
 use App\Http\Controllers\ServiceProviderProjectController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkerController;
@@ -24,6 +25,4 @@ Route::delete('service-provider-projects/{service_provider_project}', [ServicePr
 
 Route::post('import-workers', [WorkerController::class, 'import']);
 Route::get('export-workers', [WorkerController::class, 'export']);
-Route::get('export-workers-test', function () {
-    return view('exports.workers', ['workers' => Worker::all()]);
-});
+Route::put('dinas', [DinasController::class, 'update']);
