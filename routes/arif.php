@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\ServiceProviderProjectController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WorkerController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('send-email', [ForgotPasswordController::class, 'sendEmail'])->name('send.email');
@@ -19,3 +20,6 @@ Route::get('service-provider-projects', [ServiceProviderProjectController::class
 Route::post('service-provider-projects/{project}', [ServiceProviderProjectController::class, 'store']);
 Route::put('service-provider-projects/{service_provider_project}', [ServiceProviderProjectController::class, 'update']);
 Route::delete('service-provider-projects/{service_provider_project}', [ServiceProviderProjectController::class, 'destroy']);
+
+Route::post('import-workers', [WorkerController::class, 'import']);
+Route::get('export-workers', [WorkerController::class, 'export']);

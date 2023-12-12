@@ -146,17 +146,14 @@ Route::middleware(['role:dinas'])->group(function () {
         'fields' => FieldController::class
     ]);
     Route::middleware('role:service provider')->group(function () {
-        Route::resource('worker', WorkerController::class)->only('index', 'update', 'destroy');
-        Route::post('worker/{service_provider}', [WorkerController::class, 'store']);
+        Route::resource('workers', WorkerController::class)->only('index', 'update', 'destroy');
+        Route::post('workers/{service_provider}', [WorkerController::class, 'store']);
     });
 });
 
 Route::get('profile-OPD', function () {
     return view('pages.profile-opd');
 });
-
-Route::resource('worker', WorkerController::class)->only('index', 'update', 'destroy');
-Route::post('worker/{service_provider}', [WorkerController::class, 'store']);
 require __DIR__ . '/aldy.php';
 require __DIR__ . '/arif.php';
 require __DIR__ . '/daffa.php';
