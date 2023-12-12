@@ -25,14 +25,14 @@ class TypeController extends Controller
     public function index(Request $request)
     {
         $types = $this->type->customPaginate($request, 10);
-        // if ($request->is('api/*')) {
+        if ($request->is('api/*')) {
         $data['paginate'] = $this->customPaginate($types->currentPage(), $types->lastPage());
         $data['data'] = TypeResource::collection($types);
         return ResponseHelper::success($data);
-        // } else {
-        //     $name = $request->name;
-        //     return view('pages.fields', compact('fields', 'name'));
-        // }
+        } else {
+            $name = $request->name;
+            return view('pages.types', compact('types', 'name'));
+        }
     }
 
     /**

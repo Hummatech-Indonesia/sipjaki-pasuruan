@@ -93,8 +93,14 @@
                 </li>
                 <li>
                     <a href="{{route('fields.index')}}" class="waves-effect">
-                        <i class="bx bx-archive"></i>
-                        <span key="t-file-manager">Nama Bidang</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7a4 4 0 1 0 8 0a4 4 0 1 0-8 0M2.5 17a4 4 0 1 0 8 0a4 4 0 1 0-8 0m11 0a4 4 0 1 0 8 0a4 4 0 1 0-8 0"/></svg>
+                        <span key="t-file-manager">Bidang</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('types.index')}}" class="waves-effect">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="20" height="20" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M4 6a8 3 0 1 0 16 0A8 3 0 1 0 4 6"/><path d="M4 6v6a8 3 0 0 0 16 0V6"/><path d="M4 12v6a8 3 0 0 0 16 0v-6"/></g></svg>
+                        <span key="t-file-manager">Type</span>
                     </a>
                 </li>
                 @endif
@@ -138,7 +144,7 @@
                 </li>
                 <li>
                     <a href="/profile-OPD" class="waves-effect">
-                        <i class="bx bx-user-plus"></i>
+                        <i class="bx bxs-user-circle"></i>
                         <span key="t-file-manager">Profile OPD</span>
                     </a>
                 </li>
