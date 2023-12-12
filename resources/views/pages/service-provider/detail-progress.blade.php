@@ -45,7 +45,7 @@
                                         <td>60% Progress</td>
                                     </tr>
                                     <tr>
-                                        <td width="120">Tanggal Mulai</td>
+                                        <td>Tanggal Mulai</td>
                                         <td>:</td>
                                         <td>08-05-2023</td>
                                     </tr>

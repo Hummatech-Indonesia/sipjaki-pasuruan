@@ -1,5 +1,10 @@
 @extends('layouts.app')
 @section('content')
+<style>
+    td {
+        vertical-align: top;
+    }
+</style>
     <h4 class="mb-3 font-size-18">Detail Daftar Progres</h4>
     <div class="d-flex justify-content-between mb-3">
         <div class="d-flex position-relative">
@@ -28,11 +33,87 @@
                 <div class="card-body">
                     <div class="d-flex">
                         <div class="flex-grow-1">
-                            <div class="btn btn-sm mb-2 text-dark rounded-3" style="background-color: #E4ECFF;">
-                                2023
+                            <div class="ms-2">
+                                <div class="btn btn-sm mb-3 text-dark rounded-3" style="background-color: #E4ECFF;">
+                                    2023
+                                </div>
+                                <p class="fw-bolder fs-5">PJL Kel. Purwosari Kec. Purwosari</p>
                             </div>
-                            <p class="fw-bolder fs-5">PJL Kel. Purwosari Kec. Purwosari</p>
+                            <table cellpadding="10" style="border-collapse: collapse; width: 75%;">
+                                <tbody>
+                                    <tr>
+                                        <td>Nilai Kontrak</td>
+                                        <td>:</td>
+                                        <td>546.103.000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Progres Fisik</td>
+                                        <td>:</td>
+                                        <td>100</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Progres Keuangan</td>
+                                        <td>:</td>
+                                        <td>100</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Status</td>
+                                        <td>:</td>
+                                        <td>Non-Aktive</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mulai</td>
+                                        <td>:</td>
+                                        <td>2022-08-22</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Selesai</td>
+                                        <td>:</td>
+                                        <td>2022-08-22</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fisik Bulanan</td>
+                                        <td>:</td>
+                                        <td>2022-08</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Keuangan Bulanan</td>
+                                        <td>:</td>
+                                        <td>2022-08</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sumber Dana</td>
+                                        <td>:</td>
+                                        <td>6</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Penggunaan Jasa</td>
+                                        <td>:</td>
+                                        <td colspan="2" style="vertical-align: top;">Dinas Perumahan dan Kawasan Permukiman Kab. Pasuruan</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Penyedia NIB</td>
+                                        <td>:</td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Penyedia Nama</td>
+                                        <td>:</td>
+                                        <td>CV. Fattaah Rizqi</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jenis Kontrak</td>
+                                        <td>:</td>
+                                        <td>Harga Satuan</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Karakteristik Kontrak</td>
+                                        <td>:</td>
+                                        <td>Tahun Tunggal</td>
+                                    </tr>
 
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -44,9 +125,9 @@
             <div class="card rounded-4">
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
-                        <div>
-                            <p class="fw-bold">Daftar Progress</p>
-                            <div class="card-title-desc fs-4 fw-bold" style="color: #1B3061;">
+                        <div class="ms-2 fw">
+                            <p class="fw-medium fs-5" style="margin-bottom: 25%;">Daftar Progress</p>
+                            <div class="fs-4 fw-bold" style="color: #1B3061;">
                                 10 PROGRESS
                             </div>
                         </div>
@@ -99,7 +180,7 @@
                                         consectetur adipiscing elit. Maecenas eu scelerisque felis. Maecenas dolor tortor,
                                         tincid....</td>
                                     <td>
-                                        <a href="{{ route('detail-progress') }}" class="btn btn-md" style="background-color: #1B3061;">
+                                        <a href="{{ route('detail-progress') }}" class="btn btn-sm rounded-3" style="background-color: #1B3061;">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                 viewBox="0 0 24 24" fill="none">
                                                 <path d="M4.5 12.5C7.5 6 16.5 6 19.5 12.5" stroke="white" stroke-width="2"
@@ -112,7 +193,7 @@
                                         </a>
                                     </td>
                                     <td>
-                                        <div class="btn btn-success btn-md">
+                                        <div class="btn btn-success btn-sm rounded-3">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                 viewBox="0 0 24 24" fill="none">
                                                 <path
