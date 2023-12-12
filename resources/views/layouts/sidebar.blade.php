@@ -86,7 +86,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('settings-sections')}}" class="waves-effect">
+                    <a href="{{route('sections.index')}}" class="waves-effect">
                         <i class="bx bx-slider"></i>
                         <span key="t-file-manager">Pengaturan Seksi</span>
                     </a>

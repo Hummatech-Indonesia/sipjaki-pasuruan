@@ -8,6 +8,8 @@ use App\Http\Requests\ServiceProviderProjectRequest;
 use App\Models\Project;
 use App\Models\ServiceProviderProject;
 use App\Traits\UploadTrait;
+use Illuminate\Support\Facades\Storage;
+use ZipArchive;
 
 class ServiceProviderProjectService
 {
@@ -67,6 +69,23 @@ class ServiceProviderProjectService
             return false;
         } else {
             return $data;
+        }
+    }
+
+    public function downloadFiles(mixed $data)
+    {
+        if (!$data->isEmpty()) {
+            $zip = new ZipArchive;
+            $filename = $data->project->name + now();
+            if ($zip->open(storage_path('app/public/'.$filename), ZipArchive::CREATE) === TRUE) {
+                foreach ($data as $value) {
+                    if (Storage::exists($value->file)) {
+                        $zip->addFile(storage_path('app/public/'.$value->file), basename($value->file));
+                    }
+                }
+                $zip->close();
+                return response()->download(storage_path('app/public/'.$filename))->deleteFileAfterSend(true);
+            }
         }
     }
 }

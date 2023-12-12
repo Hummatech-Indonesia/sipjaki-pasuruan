@@ -125,4 +125,10 @@ class ServiceProviderProjectController extends Controller
         $this->serviceProviderProject->delete($service_provider_project->id);
         return ResponseHelper::success(null, trans('alert.delete_success'));
     }
+
+    public function downloadServiceProviderProject(ServiceProviderProject $service_provider_project)
+    {
+        $data = $this->serviceProviderProject->getByProject($service_provider_project->id);
+        return $this->service->downloadFiles($data);
+    }
 }

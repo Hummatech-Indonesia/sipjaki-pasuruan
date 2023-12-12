@@ -39,7 +39,7 @@ class DinasRepository extends BaseRepository implements DinasInterface
     public function show(mixed $id): mixed
     {
         return $this->model->query()
-            ->findOrFail($id)->with('projects');
+            ->findOrFail($id);
     }
 
     /**
