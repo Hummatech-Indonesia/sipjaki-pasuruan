@@ -151,7 +151,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('work-package') }}" class="waves-effect">
+                    <a href="{{ route('work.package') }}" class="waves-effect">
                         <i class="bx bx-briefcase"></i>
                         <span key="t-file-manager">Paket Pekerjaan</span>
                     </a>

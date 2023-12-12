@@ -83,7 +83,7 @@
 
                                             <div class="mb-3">
                                                 <div class="float-end">
-                                                    <a href="{{ route('send-email') }}" style="color: #457DFF">Forgot
+                                                    <a href="{{ route('send.email') }}" style="color: #457DFF">Forgot
                                                         password?</a>
                                                 </div>
                                                 <label class="form-label" style="font-weight: bold">Password</label>
