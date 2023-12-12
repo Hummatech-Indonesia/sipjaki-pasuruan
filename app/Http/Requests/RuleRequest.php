@@ -15,6 +15,7 @@ class RuleRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'rule_category_id' => 'required|exists:rule_categories,id',
             'fiscal_year_id' => 'required|exists:fiscal_years,id',
             'title' => 'required|max:255',
             'code' => 'required|max:255',
@@ -30,6 +31,8 @@ class RuleRequest extends FormRequest
     public function messages(): array
     {
         return [
+            'rule_category_id.required' => 'Kategori wajib diisi',
+            'rule_category_id.exists' => 'Kategori tidak valid',
             'fiscal_year_id.required' => 'Tahun fiskal wajib diisi',
             'fiscal_year_id.exists' => 'Tahun fiskal tidak valid',
             'title.required' => 'Judul wajib diisi',

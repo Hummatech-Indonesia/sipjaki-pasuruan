@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Enums\UploadDiskEnum;
 use App\Helpers\ResponseHelper;
+use Illuminate\Support\Str;
 use App\Http\Requests\ServiceProviderProjectRequest;
 use App\Models\Project;
 use App\Models\ServiceProviderProject;
@@ -72,11 +73,17 @@ class ServiceProviderProjectService
         }
     }
 
+    /**
+     * downloadFiles
+     *
+     * @param  mixed $data
+     * @return void
+     */
     public function downloadFiles(mixed $data)
     {
-        if (!$data->isEmpty()) {
+        if ($data->isNotEmpty()) {
             $zip = new ZipArchive;
-            $filename = $data->project->name + now();
+            $filename = Str::random() . ".zip";
             if ($zip->open(storage_path('app/public/'.$filename), ZipArchive::CREATE) === TRUE) {
                 foreach ($data as $value) {
                     if (Storage::exists($value->file)) {
@@ -86,6 +93,25 @@ class ServiceProviderProjectService
                 $zip->close();
                 return response()->download(storage_path('app/public/'.$filename))->deleteFileAfterSend(true);
             }
+            else {
+                return "Gagal membuat zip";
+            }
+        }
+        else {
+            return "Data kosong";
+        }
+    }
+
+    /**
+     * download
+     *
+     * @param  mixed $data
+     * @return void
+     */
+    public function download(mixed $data)
+    {
+        if (Storage::exists($data)) {
+            return response()->download(storage_path('app/public/'.$data), basename($data));
         }
     }
 }

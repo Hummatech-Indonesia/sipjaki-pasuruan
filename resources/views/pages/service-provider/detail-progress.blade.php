@@ -22,9 +22,9 @@
         </div>
 
         <div>
-            <button class="btn btn-warning btn-md rounded-3">
+            <a class="btn btn-warning btn-md rounded-3" onclick="history.back()">
                 <i class="fas fa-arrow-left" style="margin-right:10px"></i>Kembali
-            </button>
+            </a>
         </div>
     </div>
     <div class="row">
@@ -42,33 +42,28 @@
                                     <tr>
                                         <td width="120">Progress (%)</td>
                                         <td>:</td>
-                                        <td>60% Progress</td>
+                                        <td>{{ $service_provider_project->progres }}% Progress</td>
                                     </tr>
                                     <tr>
                                         <td>Tanggal Mulai</td>
                                         <td>:</td>
-                                        <td>08-05-2023</td>
+                                        <td>{{ $service_provider_project->date_start }}</td>
                                     </tr>
                                     <tr>
                                         <td>Tanggal Akhir</td>
                                         <td>:</td>
-                                        <td>18-05-2023</td>
+                                        <td>{{ $service_provider_project->date_finish }}</td>
                                     </tr>
                                     <tr>
                                         <td>Deskripsi</td>
                                         <td>:</td>
-                                        <td colspan="2" style="vertical-align: top;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-                                            eu scelerisque felis. Maecenas dolor tortor, tincidunt suscipit egestas quis,
-                                            fermentum non lacus. Praesent venenatis placerat lectus. Pellentesque at massa
-                                            in dui feugiat pretium. Fusce vulputate auctor tempus. Cras luctus ac risus
-                                            volutpat porttitor. Donec convallis lobortis tellus, eu feugiat risus vestibulum
-                                            nec. Cras at ex volutpat quam euismod dignissim ut vel mauris. Suspendisse</td>
+                                        <td colspan="2" style="vertical-align: top;">{{ $service_provider_project->description }}</td>
                                     </tr>
                                     <tr>
                                         <td>File</td>
                                         <td>:</td>
                                         <td colspan="2">
-                                            <div class="btn btn-sm rounded-3"
+                                            <a href="{{ asset('storage/' . $service_provider_project->file) }}" class="btn btn-sm rounded-3"
                                                 style="background-color: #1B3061; color: white;">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="me-1" width="15"
                                                     height="15" viewBox="0 0 24 24" fill="none">
@@ -81,7 +76,7 @@
                                                     <path d="M12 15V3" stroke="white" stroke-width="2"
                                                         stroke-linecap="round" stroke-linejoin="round" />
                                                 </svg>Download File
-                                            </div>
+                                            </a>
                                         </td>
                                     </tr>
                                 </tbody>

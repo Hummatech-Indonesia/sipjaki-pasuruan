@@ -2,44 +2,54 @@
 
 namespace App\Http\Controllers;
 
-use App\Contracts\Interfaces\FieldInterface;
+use App\Contracts\Interfaces\TypeInterface;
 use App\Helpers\ResponseHelper;
-use App\Http\Requests\FieldRequest;
-use App\Http\Resources\FieldResource;
-use App\Models\Field;
+use App\Http\Requests\TypeRequest;
+use App\Http\Resources\TypeResource;
+use App\Models\Type;
 use App\Traits\PaginationTrait;
 use Illuminate\Http\Request;
 
-class FieldController extends Controller
+class TypeController extends Controller
 {
     use PaginationTrait;
-    private FieldInterface $field;
-    public function __construct(FieldInterface $field)
+    private TypeInterface $type;
+
+    public function __construct(TypeInterface $type)
     {
-        $this->field = $field;
+        $this->type = $type;
     }
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
-        $fields = $this->field->customPaginate($request, 10);
+        $types = $this->type->customPaginate($request, 10);
         if ($request->is('api/*')) {
-            $data['paginate'] = $this->customPaginate($fields->currentPage(), $fields->lastPage());
-            $data['data'] = FieldResource::collection($fields);
-            return ResponseHelper::success($data);
+        $data['paginate'] = $this->customPaginate($types->currentPage(), $types->lastPage());
+        $data['data'] = TypeResource::collection($types);
+        return ResponseHelper::success($data);
         } else {
             $name = $request->name;
-            return view('pages.fields', compact('fields', 'name'));
+            return view('pages.types', compact('types', 'name'));
         }
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(FieldRequest $request)
+    public function store(TypeRequest $request)
     {
-        $this->field->store($request->validated());
+        $this->type->store($request->validated());
+
         if ($request->is('api/*')) {
             return ResponseHelper::success(null, trans('alert.add_success'));
         } else {
@@ -64,15 +74,12 @@ class FieldController extends Controller
     }
 
     /**
-     * update
-     *
-     * @param  mixed $request
-     * @param  mixed $field
-     * @return void
+     * Update the specified resource in storage.
      */
-    public function update(FieldRequest $request, Field $field)
+    public function update(TypeRequest $request, Type $type)
     {
-        $this->field->update($field->id, $request->validated());
+        $this->type->update($type->id, $request->validated());
+
         if ($request->is('api/*')) {
             return ResponseHelper::success(null, trans('alert.update_success'));
         } else {
@@ -81,14 +88,12 @@ class FieldController extends Controller
     }
 
     /**
-     * destroy
-     *
-     * @param  mixed $field
-     * @return void
+     * Remove the specified resource from storage.
      */
-    public function destroy(Field $field, Request $request)
+    public function destroy(Type $type, Request $request)
     {
-        $this->field->delete($field->id);
+        $this->type->delete($type->id);
+
         if ($request->is('api/*')) {
             return ResponseHelper::success(null, trans('alert.delete_success'));
         } else {

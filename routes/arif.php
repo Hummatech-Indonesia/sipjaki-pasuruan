@@ -19,10 +19,12 @@ Route::patch('verify-account/{user}', [VerificationController::class, 'verifyTok
 Route::post('update-profile', [UserController::class, 'updateProfile']);
 
 Route::get('service-provider-projects', [ServiceProviderProjectController::class, 'index']);
-Route::post('service-provider-projects/{project}', [ServiceProviderProjectController::class, 'store']);
-Route::put('service-provider-projects/{service_provider_project}', [ServiceProviderProjectController::class, 'update']);
-Route::delete('service-provider-projects/{service_provider_project}', [ServiceProviderProjectController::class, 'destroy']);
+Route::post('service-provider-projects/{project}', [ServiceProviderProjectController::class, 'store'])->name('service-provider-projects/');
+Route::put('service-provider-projects/{service_provider_project}', [ServiceProviderProjectController::class, 'update'])->name('service-provider-projects/');
+Route::delete('service-provider-projects/{service_provider_project}', [ServiceProviderProjectController::class, 'destroy'])->name('/service-provider-projects/');
 
 Route::post('import-workers', [WorkerController::class, 'import']);
 Route::get('export-workers', [WorkerController::class, 'export']);
 Route::put('dinas', [DinasController::class, 'update'])->name('dinas.update');
+
+Route::get('accident-chart', [DinasController::class, 'chart']);

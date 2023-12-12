@@ -11,42 +11,36 @@
                         @csrf
                         @method('PUT')
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="formrow-inputState" class="form-label">Pilih Tipe</label>
                                     <select id="formrow-inputState" class="form-select">
-                                        <option disabled selected>Choose...</option>
-                                        <option>A++</option>
-                                        <option>B++</option>
+                                        @foreach ($types as $type)
+                                                    <option value="{{ $type->id }}">{{ $type->name }}
+                                                    </option>
+                                                @endforeach
                                     </select>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="formrow-inputState" class="form-label">Nama Bidang</label>
-
-                                    <select class="select2 form-control select2-multiple" multiple="multiple"
-                                        data-placeholder="Choose ...">
-                                        <optgroup label="Alaskan/Hawaiian Time Zone">
-                                            <option>Binamarga Singosari</option>
-                                            <option>Binamarga Kepanjeng</option>
-                                        </optgroup>
+                                    <select id="formrow-inputState" class="form-select">
+                                        @foreach ($fields as $field)
+                                                    <option name="field_id" value="{{ $field->id }}">{{ $field->name }}
+                                                    </option>
+                                                @endforeach
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="formrow-inputState" class="form-label">Nama Saksi</label>
-
-                                    <select class="select2 form-control select2-multiple" multiple="multiple"
-                                        data-placeholder="Choose ...">
-                                        <optgroup label="Alaskan/Hawaiian Time Zone">
-                                            <option>Pengaturan</option>
-                                            <option>Pengawasan</option>
-                                        </optgroup>
+                                    <select id="formrow-inputState" class="form-select">
+                                        @foreach ($sections as $section)
+                                                    <option value="{{ $section->id }}">{{ $section->name }}
+                                                    </option>
+                                                @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -68,8 +62,8 @@
                                 <div class="mb-3">
                                     <label class="form-label">No Telp</label>
                                     <div>
-                                        <input data-parsley-type="number" type="text" class="form-control" required
-                                            placeholder="Enter only numbers" />
+                                        <input type="number" type="text" class="form-control" required
+                                            placeholder="Masukkan No Telepon" />
                                     </div>
                                 </div>
                             </div>
@@ -78,7 +72,7 @@
                                     <label class="form-label">Email</label>
                                     <div>
                                         <input type="email" class="form-control" required parsley-type="email"
-                                            placeholder="Enter a valid e-mail" />
+                                            placeholder="Masukkan Email" />
                                     </div>
                                 </div>
                             </div>
@@ -90,7 +84,7 @@
                                     <label class="form-label">Nama Penjabat</label>
                                     <div>
                                         <input type="text" class="form-control" required
-                                            placeholder="Enter your name" />
+                                            placeholder="Masukkan Nama Penjabat" />
                                     </div>
                                 </div>
                             </div>
@@ -99,7 +93,7 @@
                                     <label class="form-label">Eseleon</label>
                                     <div>
                                         <input type="text" class="form-control" required
-                                            placeholder="Enter your eselon" />
+                                            placeholder="Masukkan Eseleon" />
                                     </div>
                                 </div>
                             </div>
@@ -110,7 +104,7 @@
                                     <label class="form-label">Jabatan</label>
                                     <div>
                                         <input type="text" class="form-control" required
-                                            placeholder="Enter your name" />
+                                            placeholder="Masukkan Jabatan" />
                                     </div>
                                 </div>
                             </div>
@@ -119,7 +113,7 @@
                                     <label class="form-label">Email Penjabat</label>
                                     <div>
                                         <input type="text" class="form-control" required
-                                            placeholder="Enter your eselon" />
+                                            placeholder="Masukkan Email Penjabat" />
                                     </div>
                                 </div>
                             </div>
@@ -128,19 +122,10 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label">No Hp</label>
-                                    <div>
-                                        <input type="number" class="form-control" required
-                                            placeholder="Enter your no Hp" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
                                     <label class="form-label">No Perda</label>
                                     <div>
-                                        <input type="text" class="form-control" required
-                                            placeholder="Enter your Number" />
+                                        <input type="number" class="form-control" required
+                                            placeholder="Masukkan No Perda" />
                                     </div>
                                 </div>
                             </div>
@@ -218,7 +203,7 @@
                                     <label class="form-label">No Sk Tpjk</label>
                                     <div>
                                         <input type="number" class="form-control" required
-                                            placeholder="Enter your no Hp" />
+                                            placeholder="Masukkan No Sk Tpjk" />
                                     </div>
                                 </div>
                             </div>
@@ -227,7 +212,7 @@
                                     <label class="form-label">No Sk Sipjaki</label>
                                     <div>
                                         <input type="number" class="form-control" required
-                                            placeholder="Enter your Number" />
+                                            placeholder="Masukkan No Sk Sipjaki" />
                                     </div>
                                 </div>
                             </div>

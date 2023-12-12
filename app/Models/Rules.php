@@ -12,7 +12,7 @@ class Rules extends Model implements HasFiscalYear
     use HasFactory;
     protected $table = 'rules';
     protected $primaryKey = 'id';
-    protected $fillable = ['id', 'fiscal_year_id', 'title', 'code', 'file'];
+    protected $fillable = ['id','rule_category_id', 'fiscal_year_id', 'title', 'code', 'file'];
     protected $guarded = [];
     public $incrementing = false;
     public $keyType = 'char';

@@ -26,6 +26,8 @@ use App\Http\Controllers\SubClassificationController;
 use App\Http\Controllers\QualificationLevelController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\ServiceProviderProjectController;
+use App\Http\Controllers\TypeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -69,8 +71,8 @@ Route::get('/bantuan', function () {
     return view('faq');
 })->name('bantuan');
 
-Route::get('data-paket-pekerjaan', [LandingController::class, 'project'])->name('paket-pekerjaan');
-Route::get('data-paket-pekerjaan/{dinas}',[LandingController::class,'projectDetail'])->name('detail-project');
+Route::get('data-paket-pekerjaan', [LandingController::class, 'project'])->name('paket.pekerjaan');
+Route::get('data-paket-pekerjaan/{dinas}', [LandingController::class, 'projectDetail'])->name('detail.project');
 Route::get('/pelatihan', [LandingController::class, 'training'])->name('pelatihan');
 
 Route::get('/opd', function () {
@@ -92,6 +94,8 @@ Route::middleware('auth')->group(function () {
             'training-methods' => TrainingMethodController::class,
             'sections' => SectionController::class,
             'rules' => RuleController::class,
+            'fields' => FieldController::class,
+            'types' => TypeController::class,
         ]);
 
         Route::get('history-login', [HistoryLoginController::class, 'index'])->name('history-login.index');
@@ -139,16 +143,15 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('service-provider-project-detail/{service_provider_project}', [ServiceProviderProjectController::class, 'show']);
-Route::get('download-service-provider-project/{service_provider_project}', [ServiceProviderProjectController::class, 'downloadServiceProviderProject']);
+Route::get('download-all-service-provider-project/{project}', [ServiceProviderProjectController::class, 'downloadServiceProviderProject']);
 
 Route::middleware(['role:dinas'])->group(function () {
     Route::resource('accident', AccidentController::class)->except('create', 'show');
-    Route::put('accident.update/{accident}', [AccidentController::class, 'update'])->name('accident.update/');
-    Route::get('accident.show/{accident}', [AccidentController::class, 'show'])->name('accident.show/');
-    Route::delete('accident.destroy/{accident}', [AccidentController::class, 'destroy'])->name('accident.destroy/');
+    Route::put('accident.update/{accident}', [AccidentController::class, 'update'])->name('accident.update');
+    Route::get('accident.show/{accident}', [AccidentController::class, 'show'])->name('accident.show');
+    Route::delete('accident.destroy/{accident}', [AccidentController::class, 'destroy'])->name('accident.destroy');
     Route::resources([
         'projects' => ProjectController::class,
-        'fields' => FieldController::class
     ]);
     Route::middleware('role:service provider')->group(function () {
         Route::resource('workers', WorkerController::class)->only('index', 'update', 'destroy');

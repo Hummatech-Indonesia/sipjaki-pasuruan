@@ -292,13 +292,13 @@
                                 ">
                                                             Tautan ini aktif selama 4 jam
                                                         </h2>
-                                                        <h4 style="font-weight: 700">
+                                                        <h4 style="font-weight: 700; color: #000000;">
                                                             Aktivasi Akun Anda
                                                         </h4>
                                                         <p>
-                                                            Terimakasih telah mendaftar di Tracer Study Sipjaki
-                                                            Pasuruan, Mohon masukan kode verifikasi di
-                                                            bawah ini untuk melanjutkan aktivasi akun anda.
+                                                            Terimakasih telah mendaftar di SIPJAKI, Mohon masukan Kode
+                                                            Verifikasi di bawah ini untuk melanjutkan aktivasi akun
+                                                            anda.
                                                         </p>
                                                         <h1 align="center" style="color: #000000;">
                                                             {{ $data['token'] }}
@@ -325,13 +325,13 @@
                                       cursor: auto;
                                       padding: 15px 19px;
                                     "
-                                                                    align="center" valign="middle" bgcolor="#7289DA">
+                                                                    align="center" valign="middle" bgcolor="#1B3061">
                                                                     <a href="{{ route('verify-account/', $data['id']) }}"
                                                                         target="_blank" rel="noopener noreferrer"
                                                                         style="
                                         text-decoration: none;
                                         line-height: 100%;
-                                        background: #7289da;
+                                        background: #1B3061;
                                         color: white;
                                         font-family: Ubuntu, Helvetica, Arial,
                                           sans-serif;

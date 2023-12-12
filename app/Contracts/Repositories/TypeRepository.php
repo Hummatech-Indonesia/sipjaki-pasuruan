@@ -2,18 +2,18 @@
 
 namespace App\Contracts\Repositories;
 
-use App\Contracts\Interfaces\LengthAwarePaginator as InterfacesLengthAwarePaginator;
-use App\Models\Project;
+use App\Contracts\Interfaces\FieldInterface;
+use App\Contracts\Interfaces\TypeInterface;
+use App\Models\Field;
+use App\Models\Type;
 use Illuminate\Http\Request;
-use App\Contracts\Interfaces\ProjectInterface;
-use App\Contracts\Interfaces\Request as InterfacesRequest;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-class ProjectRepository extends BaseRepository implements ProjectInterface
+class TypeRepository extends BaseRepository implements TypeInterface
 {
-    public function __construct(Project $project)
+    public function __construct(Type $type)
     {
-        $this->model = $project;
+        $this->model = $type;
     }
 
     /**
@@ -24,7 +24,6 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
     public function get(): mixed
     {
         return $this->model->query()
-        ->with('serviceProviderProjects')
             ->get();
     }
 
@@ -86,28 +85,9 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
     public function customPaginate(Request $request, int $pagination = 10): LengthAwarePaginator
     {
         return $this->model->query()
-        ->with('serviceProviderProjects')
             ->when($request->name, function ($query) use ($request) {
                 $query->where('name', 'LIKE', '%' . $request->name . '%');
             })
-            ->fastPaginate($pagination);
-    }
-
-    /**
-     * serviceProviderProject
-     *
-     * @param  mixed $request
-     * @param  mixed $pagination
-     * @return LengthAwarePaginator
-     */
-    public function serviceProviderProject(Request $request, int $pagination = 10): LengthAwarePaginator
-    {
-        return $this->model->query()
-        ->with('serviceProviderProjects')
-            ->when($request->name, function ($query) use ($request) {
-                $query->where('name', 'LIKE', '%' . $request->name . '%');
-            })
-            ->where('service_provider_id', auth()->user()->serviceProvider->id)
             ->fastPaginate($pagination);
     }
 }

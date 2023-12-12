@@ -2,23 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dinas;
+use Illuminate\Http\Request;
+use App\Http\Requests\DinasRequest;
+use App\Contracts\Interfaces\TypeInterface;
 use App\Contracts\Interfaces\DinasInterface;
 use App\Contracts\Interfaces\FieldInterface;
 use App\Contracts\Interfaces\SectionInterface;
-use App\Http\Requests\DinasRequest;
-use App\Models\Dinas;
-use Illuminate\Http\Request;
+use App\Helpers\ResponseHelper;
 
 class DinasController extends Controller
 {
     private DinasInterface $dinas;
     private FieldInterface $field;
     private SectionInterface $section;
-    public function __construct(DinasInterface $dinas, FieldInterface $field, SectionInterface $section)
+    private TypeInterface $type;
+
+    public function __construct(DinasInterface $dinas, FieldInterface $field, SectionInterface $section, TypeInterface $type)
     {
         $this->dinas = $dinas;
         $this->field = $field;
         $this->section = $section;
+        $this->type = $type;
     }
 
     /**
@@ -30,9 +35,11 @@ class DinasController extends Controller
     {
         $sections = $this->section->get();
         $fields = $this->field->get();
+        $types = $this->type->get();
         return view('pages.profile-opd', [
             'sections' => $sections,
-            'fields' => $fields
+            'fields' => $fields,
+            'types' => $types,
         ]);
     }
     /**
@@ -46,5 +53,21 @@ class DinasController extends Controller
     {
         $this->dinas->update(auth()->user()->dinas->id, $request->validated());
         return redirect()->back()->with('success', trans('alert.add_success'));
+    }
+
+    /**
+     * chart
+     *
+     * @return void
+     */
+    public function chart()
+    {
+        $dinases =  $this->dinas->get();
+        foreach ($dinases as $dinas) {
+            foreach ($dinas->projects as $project) {
+                dd($project->accidents);
+            }
+        }
+        return ResponseHelper::success($dinas);
     }
 }

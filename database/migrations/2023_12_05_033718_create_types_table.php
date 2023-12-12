@@ -11,13 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('rules', function (Blueprint $table) {
+        Schema::create('types', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('rule_category_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignUuid('fiscal_year_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->string('title');
-            $table->string('code');
-            $table->text('file');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -27,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('rules');
+        Schema::dropIfExists('types');
     }
 };

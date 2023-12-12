@@ -2,16 +2,19 @@
 
 namespace App\Models;
 
+use App\Base\Interfaces\HasAccidents;
 use App\Models\ServiceProvider;
 use App\Base\Interfaces\HasDinas;
 use App\Base\Interfaces\HasFundSource;
 use Illuminate\Database\Eloquent\Model;
 use App\Base\Interfaces\HasServiceProvider;
 use App\Base\Interfaces\HasContractCategory;
+use App\Base\Interfaces\HasServiceProviderProjects;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Project extends Model implements HasDinas, HasServiceProvider, HasFundSource, HasContractCategory
+class Project extends Model implements HasDinas, HasServiceProvider, HasFundSource, HasContractCategory, HasServiceProviderProjects
 {
     use HasFactory;
     protected $table = 'projects';
@@ -59,5 +62,24 @@ class Project extends Model implements HasDinas, HasServiceProvider, HasFundSour
     public function contractCategory(): BelongsTo
     {
         return $this->belongsTo(ContractCategory::class);
+    }
+
+    /**
+     * serviceProviderProjects
+     *
+     * @return HasMany
+     */
+    public function serviceProviderProjects(): HasMany
+    {
+        return $this->hasMany(ServiceProviderProject::class);
+    }
+        /**
+     * accidents
+     *
+     * @return HasMany
+     */
+    public function accidents(): HasMany
+    {
+        return $this->hasMany(Accident::class);
     }
 }

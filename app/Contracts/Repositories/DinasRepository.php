@@ -12,7 +12,7 @@ class DinasRepository extends BaseRepository implements DinasInterface
     {
         $this->model = $dinas;
     }
-    
+
     /**
      * search
      *
@@ -22,11 +22,11 @@ class DinasRepository extends BaseRepository implements DinasInterface
     public function search(Request $request): mixed
     {
         return $this->model->query()
-            ->when($request->name,function($query) use ($request){
-                $query->where('name','LIKE','%'.$request->name.'%');
+            ->when($request->name, function ($query) use ($request) {
+                $query->where('name', 'LIKE', '%' . $request->name . '%');
             })
             ->withCount('projects')
-            ->with('user','projects')
+            ->with('user', 'projects')
             ->get();
     }
 
@@ -52,5 +52,16 @@ class DinasRepository extends BaseRepository implements DinasInterface
     public function update(mixed $id, array $data): mixed
     {
         return $this->show($id)->update($data);
+    }
+
+    /**
+     * get
+     *
+     * @return mixed
+     */
+    public function get(): mixed
+    {
+        return $this->model->query()
+            ->get();
     }
 }
