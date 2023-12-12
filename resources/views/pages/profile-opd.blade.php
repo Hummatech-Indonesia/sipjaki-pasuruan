@@ -16,7 +16,7 @@
                                     <label for="formrow-inputState" class="form-label">Pilih Tipe</label>
                                     <select id="formrow-inputState" class="form-select">
                                         @foreach ($types as $type)
-                                                    <option value="{{ $type->id }}">{{ $type->name }}
+                                                    <option name="type_id" value="{{ $type->id }}">{{ $type->name }}
                                                     </option>
                                                 @endforeach
                                     </select>
@@ -38,7 +38,7 @@
                                     <label for="formrow-inputState" class="form-label">Nama Saksi</label>
                                     <select id="formrow-inputState" class="form-select">
                                         @foreach ($sections as $section)
-                                                    <option value="{{ $section->id }}">{{ $section->name }}
+                                                    <option name="section_id" value="{{ $section->id }}">{{ $section->name }}
                                                     </option>
                                                 @endforeach
                                     </select>
@@ -51,7 +51,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Alamat</label>
                                     <div>
-                                        <textarea rows="4" required class="form-control" rows="3"></textarea>
+                                        <textarea rows="4" name="address" required class="form-control" rows="3"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -62,7 +62,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">No Telp</label>
                                     <div>
-                                        <input type="number" type="text" class="form-control" required
+                                        <input type="number" name="phone_number" type="text" class="form-control" required
                                             placeholder="Masukkan No Telepon" />
                                     </div>
                                 </div>
@@ -71,7 +71,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Email</label>
                                     <div>
-                                        <input type="email" class="form-control" required parsley-type="email"
+                                        <input type="email"  class="form-control" required parsley-type="email"
                                             placeholder="Masukkan Email" />
                                     </div>
                                 </div>
