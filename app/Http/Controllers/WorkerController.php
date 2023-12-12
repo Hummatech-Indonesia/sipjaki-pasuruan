@@ -35,12 +35,12 @@ class WorkerController extends Controller
      */
     public function index(Request $request): JsonResponse|View
     {
-        $workers = $this->worker->get();
-        // if ($request->is('api/*')) {
-        return ResponseHelper::success(WorkerResource::collection($workers));
-        // } else {
-        //     return view('', ['workers' => $workers]);
-        // }
+         $workers = $this->worker->get();
+         if ($request->is('api/*')) {
+         return ResponseHelper::success(WorkerResource::collection($workers));
+         } else {
+             return view('pages.service-provider.workforce', ['workers' => $workers]);
+         }
     }
 
     /**
@@ -65,11 +65,11 @@ class WorkerController extends Controller
         $data = $request->validated();
         $data['service_provider_id'] = $service_provider->id;
         $this->worker->store($data);
-        // if ($request->is('api/*')) {
+        if ($request->is('api/*')) {
         return ResponseHelper::success(null, trans('alert.add_success'));
-        // } else {
-        //     return redirect()->back()->with('success', trans('alert.delete_success'));
-        // }
+         } else {
+             return redirect()->back()->with('success', trans('alert.delete_success'));
+         }
     }
 
     /**
@@ -98,11 +98,11 @@ class WorkerController extends Controller
     public function update(WorkerRequest $request, Worker $worker): JsonResponse|RedirectResponse
     {
         $this->worker->update($worker->id, $request->validated());
-        // if ($request->is('api/*')) {
+        if ($request->is('api/*')) {
         return ResponseHelper::success(null, trans('alert.update_success'));
-        // } else {
-        //     return redirect()->back()->with('success', trans('alert.update_success'));
-        // }
+        } else {
+            return redirect()->back()->with('success', trans('alert.update_success'));
+        }
     }
     /**
      * destroy

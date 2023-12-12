@@ -26,7 +26,7 @@
                         </button>
                     </div>
                 </div>
-            </form>
+            </form> 
             <div>
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-create"
                     style="background-color: #1B3061; border-radius: 10px"><i class="fas fa-plus"
