@@ -41,7 +41,7 @@ class Project extends Model implements HasDinas, HasServiceProvider, HasFundSour
      */
     public function serviceProvider(): BelongsTo
     {
-        return $this->belongsTo(ServiceProvider::class, 'service_provider_id');
+        return $this->belongsTo(ServiceProvider::class);
     }
 
     /**
@@ -73,7 +73,7 @@ class Project extends Model implements HasDinas, HasServiceProvider, HasFundSour
     {
         return $this->hasMany(ServiceProviderProject::class);
     }
-        /**
+    /**
      * accidents
      *
      * @return HasMany
