@@ -18,6 +18,10 @@ Route::get('detail-work-package', function(){
     return view('pages.service-provider.detail-work-package');
 })->name('detail-work-package');
 
+Route::get('detail-progress', function(){
+    return view('pages.service-provider.detail-progress');
+})->name('detail-progress');
+
 Route::get('workforce', function(){
     return view('pages.service-provider.workforce');
 })->name('workforce');

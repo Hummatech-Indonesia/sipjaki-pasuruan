@@ -63,7 +63,8 @@
                                         stroke-linejoin="round" />
                                 </svg> Download Semua
                             </div>
-                            <div class="btn btn-sm rounded-3" style="background-color:#1B3061; color:white;">
+                            <div data-bs-toggle="modal" data-bs-target="#modal-create" class="btn btn-sm rounded-3"
+                                style="background-color:#1B3061; color:white;">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
                                     fill="none">
                                     <path fill-rule="evenodd" clip-rule="evenodd"
@@ -98,7 +99,7 @@
                                         consectetur adipiscing elit. Maecenas eu scelerisque felis. Maecenas dolor tortor,
                                         tincid....</td>
                                     <td>
-                                        <div class="btn btn-md" style="background-color: #1B3061;">
+                                        <a href="{{ route('detail-progress') }}" class="btn btn-md" style="background-color: #1B3061;">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                 viewBox="0 0 24 24" fill="none">
                                                 <path d="M4.5 12.5C7.5 6 16.5 6 19.5 12.5" stroke="white" stroke-width="2"
@@ -108,7 +109,7 @@
                                                     stroke="white" stroke-width="2" stroke-linecap="round"
                                                     stroke-linejoin="round" />
                                             </svg>
-                                        </div>
+                                        </a>
                                     </td>
                                     <td>
                                         <div class="btn btn-success btn-md">
@@ -133,5 +134,53 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="modal fade bs-example-modal-xl" id="modal-create" tabindex="-1" role="dialog"
+        aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div style="background-color: #1B3061;">
+                    <h5 class="modal-title text-white text-center m-3 fs-4">Tambah Progress</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                                <label class="form-label">Tanggal Mulai</label>
+                                <input type="date" class="form-control" name="" id="">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                                <label class="form-label">Tanggal Akhir</label>
+                                <input type="date" class="form-control" name="" id="">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                                <label class="form-label">Upload File</label>
+                                <input class="form-control" type="file" name="" id="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <label class="form-label" for="">Deskripsi</label>
+                            <textarea class="form-control" name="" id="" cols="20" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <div class="d-flex d-row justify-content-end mt-3">
+
+                        <button type="button" class="btn btn-danger btn-md me-2" data-bs-dismiss="modal"
+                        aria-label="Close">Batal</button>
+                            <button type="submit" style="background-color: #1B3061; color:white;" class="btn btn-md">Tambah</button>
+
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
     </div>
 @endsection
