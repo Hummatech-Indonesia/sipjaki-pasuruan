@@ -43,7 +43,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    @for ($dinas as $item) 
+                    @foreach($data as $item) 
                     <div class="d-flex justify-content-between mb-3">
                         <div class="">
                             {{$loop->iteration}}
@@ -55,7 +55,7 @@
                             {{$item->projects_count}}
                         </div>
                     </div>
-                    @endfor
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -94,7 +94,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($dinasDetail->projects as $project)
+                                @forelse ($detailDinas->projects as $project)
                                     <th scope="row" class="fs-5">{{$loop->iteration}}</th>
                                     <td class="fs-5">{{$project->name}}</td>
                                     <td class="fs-5">{{$project->fundSource->name}}</td>
@@ -106,7 +106,16 @@
                                         <a href="{{ route('detail-project',['dinas' => $item->id]) }}" class="text-white btn" style="background-color: #1B3061">Detail</a>
                                     </td>
                                 @empty
-                                    
+                                <tr>
+                                    <td colspan="7" class="text-center">
+                                        <div class="d-flex justify-content-center" style="min-height:16rem">
+                                            <div class="my-auto">
+                                                <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                                <h4 class="text-center mt-4">Tidak Ada Paket!!</h4>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
                                 @endforelse
                             </tbody>
                         </table>

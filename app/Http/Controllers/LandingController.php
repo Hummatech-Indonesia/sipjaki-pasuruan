@@ -40,13 +40,13 @@ class LandingController extends Controller
      *
      * @return View
      */
-    public function projectDetail(Request $request, Dinas $dinas): View
+    public function projectDetail(Request $request,Dinas $dinas): View
     {
-        $dinas = $this->dinas->search($request);
+        $data = $this->dinas->search($request);
 
         $detailDinas = $this->dinas->show($dinas->id);
 
-        return view('detail-paket',compact('dinas','detailDinas'));
+        return view('detail-paket',compact('data','detailDinas'));
     }
 
     /**
