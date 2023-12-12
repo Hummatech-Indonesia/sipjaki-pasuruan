@@ -10,6 +10,7 @@ use App\Contracts\Interfaces\DinasInterface;
 use App\Contracts\Interfaces\FieldInterface;
 use App\Contracts\Interfaces\SectionInterface;
 use App\Helpers\ResponseHelper;
+use App\Http\Resources\DinasAccidentResource;
 
 class DinasController extends Controller
 {
@@ -63,11 +64,7 @@ class DinasController extends Controller
     public function chart()
     {
         $dinases =  $this->dinas->get();
-        foreach ($dinases as $dinas) {
-            foreach ($dinas->projects as $project) {
-                dd($project->accidents);
-            }
-        }
-        return ResponseHelper::success($dinas);
+        $data = DinasAccidentResource::collection($dinases);
+        return ResponseHelper::success($data);
     }
 }
