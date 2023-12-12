@@ -145,7 +145,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('workforce') }}" class="waves-effect">
+                    <a href="{{ route('workers.index') }}" class="waves-effect">
                         <i class="fas fa-users-cog
                         fa-sm"></i>
                         <span key="t-file-manager">Tenaga Kerja</span>
