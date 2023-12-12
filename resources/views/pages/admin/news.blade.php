@@ -53,7 +53,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">berita</label>
-                                    <textarea name="content" id="create-content" class="form-control" cols="30" rows="10"></textarea>
+                                    <textarea name="content" id="summernote" class="form-control" cols="30" rows="10"></textarea>
                                 </div>
                         </div>
                         <div class="modal-footer">
@@ -217,6 +217,9 @@
         //         previewupdate.src = '';
         //     }
         // });
+        $(document).ready(function() {
+            $('#summernote').summernote();
+        });
         $('.btn-edit').click(function() {
             const formData = getDataAttributes($(this).attr('id'))
             var actionUrl = `news/${formData['id']}`;
