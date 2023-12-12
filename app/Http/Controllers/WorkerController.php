@@ -129,7 +129,7 @@ class WorkerController extends Controller
      */
     public function deleteMultiple(Request $request)
     {
-        $this->worker->deleteMultiple($request->id);
+        $this->worker->deleteMultiple(explode(",", $request->worker_id));
         return back()->with('success', trans('alert.delete_success'));
     }
 
