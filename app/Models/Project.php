@@ -11,7 +11,7 @@ use App\Base\Interfaces\HasContractCategory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Project extends Model implements HasDinas, HasServiceProvider, HasFundSource, HasContractCategory, HasDinas
+class Project extends Model implements HasDinas, HasServiceProvider, HasFundSource, HasContractCategory
 {
     use HasFactory;
     protected $table = 'projects';
