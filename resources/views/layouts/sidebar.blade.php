@@ -91,6 +91,12 @@
                         <span key="t-file-manager">Pengaturan Seksi</span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{route('fields.index')}}" class="waves-effect">
+                        <i class="bx bx-archive"></i>
+                        <span key="t-file-manager">Nama Bidang</span>
+                    </a>
+                </li>
                 @endif
                 @if (Auth::user()->roles->pluck('name')[0] == 'admin')
                 <li>
