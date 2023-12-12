@@ -77,4 +77,15 @@ class SectionRepository extends BaseRepository implements SectionInterface
             })
             ->fastPaginate($pagination);
     }
+
+    /**
+     * get
+     *
+     * @return mixed
+     */
+    public function get(): mixed
+    {
+        return $this->model->query()
+            ->get();
+    }
 }
