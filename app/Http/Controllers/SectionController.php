@@ -27,15 +27,15 @@ class SectionController extends Controller
     {
         $sections = $this->section->customPaginate($request, 10);
 
-        // if ($request->is('api/*')) {
-        $data['paginate'] = $this->customPaginate($sections->currentPage(), $sections->lastPage());
-        $data['data'] = SectionResource::collection($sections);
-        return ResponseHelper::success($data);
-        // } else {
-        // return view('', ['sections' => $sections]);
-        // }
+        if ($request->is('api/*')) {
+            $data['paginate'] = $this->customPaginate($sections->currentPage(), $sections->lastPage());
+            $data['data'] = SectionResource::collection($sections);
+            return ResponseHelper::success($data);
+        } else {
+            $name = $request->name;
+            return view('pages.settings-sections', compact('sections', 'name'));
+        }
     }
-
 
     /**
      * Store a newly created resource in storage.
