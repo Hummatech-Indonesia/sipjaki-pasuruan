@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\ServiceProviderProjectController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkerController;
+use App\Models\Worker;
 use Illuminate\Support\Facades\Route;
 
 Route::post('send-email', [ForgotPasswordController::class, 'sendEmail'])->name('send.email');
@@ -23,3 +24,6 @@ Route::delete('service-provider-projects/{service_provider_project}', [ServicePr
 
 Route::post('import-workers', [WorkerController::class, 'import']);
 Route::get('export-workers', [WorkerController::class, 'export']);
+Route::get('export-workers-test', function () {
+    return view('exports.workers', ['workers' => Worker::all()]);
+});

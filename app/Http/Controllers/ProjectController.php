@@ -14,6 +14,7 @@ use Illuminate\Http\RedirectResponse;
 use App\Http\Resources\ProjectResource;
 use App\Contracts\Interfaces\ProjectInterface;
 use App\Contracts\Interfaces\ServiceProviderInterface;
+use App\Contracts\Interfaces\ServiceProviderProjectInterface;
 
 class ProjectController extends Controller
 {
@@ -22,9 +23,11 @@ class ProjectController extends Controller
     private ServiceProviderInterface $serviceProvider;
     private FundSourceInterface $fundSource;
     private ContractCategoryInterface $contractCategory;
+    private ServiceProviderProjectInterface $serviceProviderProject;
 
-    public function __construct(ProjectInterface $project, ServiceProviderInterface $serviceProvider, FundSourceInterface $fundSource, ContractCategoryInterface $contractCategory)
+    public function __construct(ProjectInterface $project, ServiceProviderInterface $serviceProvider, FundSourceInterface $fundSource, ContractCategoryInterface $contractCategory, ServiceProviderProjectInterface $serviceProviderProjectInterface)
     {
+        $this->serviceProviderProject = $serviceProviderProjectInterface;
         $this->project = $project;
         $this->serviceProvider = $serviceProvider;
         $this->fundSource = $fundSource;
@@ -84,7 +87,8 @@ class ProjectController extends Controller
      */
     public function projectDetail(Project $project): View
     {
-        return view('pages.service-provider.detail-work-package', ['project' => $project]);
+        $listProviderProject = $this->serviceProviderProject->getByProject($project->id);
+        return view('pages.service-provider.detail-work-package', ['project' => $project, 'serviceProviderProject' => $listProviderProject]);
     }
 
     /**
