@@ -10,7 +10,7 @@ use App\Http\Controllers\TrainingController;
 use Illuminate\Support\Facades\Route;
 
 
-// landing 
+// landing
 Route::get('detail-paket', function () { return view('detail-paket'); })->name('detail-paket');
 
 //Reset Password
@@ -32,17 +32,17 @@ Route::delete('training.destroy/{training}', [TrainingController::class , 'destr
 //Training Member
 Route::get('training-members/{training}', [TrainingMemberController::class, 'index']);
 Route::post('training-members/{training}', [TrainingMemberController::class, 'store'])->name('training-members/');
-Route::put('training-members/{training_member}', [TrainingMemberController::class, 'update'])->name('training-member-update/');
-Route::delete('training-members/{training_member}', [TrainingMemberController::class, 'destroy'])->name('training-members/');
+// Route::put('training-members/{training_member}', [TrainingMemberController::class, 'update'])->name('training-member-update/');
+// Route::delete('training-members/{training_member}', [TrainingMemberController::class, 'destroy'])->name('training-members/');
 
-// verify token 
+// verify token
 Route::get('/redirect-verify-account', [VerificationController::class, 'verifyAccount'])->name('redirect.verify.account');
 Route::put('update-token/{user}', [VerificationController::class, 'updateToken']);
 Route::put('verify-token/{user}', [VerificationController::class, 'verifyToken'])->name('verify-token/');
 Route::get('verify-account/{user}', [VerificationController::class, 'verifyacount'])->name('verify-account/');
 
-// sub classification 
+// sub classification
 Route::get('sub-qualification', function () { return view('pages.sub-qualification'); })->name('sub-qualification');
 
-// verifikasi account 
+// verifikasi account
 Route::get('verify.account/{id}' , [VerificationController::class ,'verifyacount'])->name('verify.account/');

@@ -147,7 +147,7 @@ Route::middleware(['role:dinas'])->group(function () {
     ]);
     Route::middleware('role:service provider')->group(function () {
         Route::resource('workers', WorkerController::class)->only('index', 'update', 'destroy');
-        Route::delete('delete-workers', WorkerController::class, 'deleteMultiple');
+        Route::delete('delete-workers', [WorkerController::class, 'deleteMultiple']);
         Route::post('workers/{service_provider}', [WorkerController::class, 'store']);
     });
 });

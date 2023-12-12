@@ -25,4 +25,4 @@ Route::delete('service-provider-projects/{service_provider_project}', [ServicePr
 
 Route::post('import-workers', [WorkerController::class, 'import']);
 Route::get('export-workers', [WorkerController::class, 'export']);
-Route::put('dinas', [DinasController::class, 'update']);
+Route::put('dinas', [DinasController::class, 'update'])->name('dinas.update');

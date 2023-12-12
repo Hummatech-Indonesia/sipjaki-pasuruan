@@ -7,7 +7,9 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-body">
-                    <form>
+                    <form method="PUT" action="{{ route('dinas.update') }}">
+                        @csrf
+                        @method('PUT')
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
@@ -16,16 +18,6 @@
                                         <option disabled selected>Choose...</option>
                                         <option>A++</option>
                                         <option>B++</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="formrow-inputState" class="form-label">Nama Dinas</label>
-                                    <select id="formrow-inputState" class="form-select">
-                                        <option disabled selected>Choose...</option>
-                                        <option>Binamarga Singosari</option>
-                                        <option>Binamarga Kepanjeng</option>
                                     </select>
                                 </div>
                             </div>
