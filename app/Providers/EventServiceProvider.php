@@ -17,6 +17,7 @@ use App\Models\Qualification;
 use App\Models\QualificationLevel;
 use App\Models\RuleCategory;
 use App\Models\Rules;
+use App\Models\Section;
 use App\Models\ServiceProvider as ModelsServiceProvider;
 use App\Models\ServiceProviderProject;
 use App\Models\SubClassification;
@@ -40,6 +41,7 @@ use App\Observers\QualificationLevelObserver;
 use App\Observers\QualificationObserver;
 use App\Observers\RuleCategoriesObserver;
 use App\Observers\RuleObserver;
+use App\Observers\SectionObserver;
 use App\Observers\ServiceProviderObserver;
 use App\Observers\ServiceProviderProjectObserver;
 use App\Observers\SubClassificationOberserve;
@@ -94,6 +96,7 @@ class EventServiceProvider extends ServiceProvider
         Accident::observe(AccidentObserver::class);
         HistoryLogin::observe(HistoryLoginObserver::class);
         ServiceProviderProject::observe(ServiceProviderProjectObserver::class);
+        Section::observe(SectionObserver::class);
     }
 
     /**

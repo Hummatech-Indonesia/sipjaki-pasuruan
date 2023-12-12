@@ -1,5 +1,14 @@
 @extends('layouts.app')
 @section('content')
+@if(session('success'))
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Success',
+        text: '{{ session('success') }}',
+    });
+</script>
+@endif
     <h2>Kerangka Kualifikasi Nasional Indonesia</h2>
     <div class="card p-3">
         <div>
@@ -148,7 +157,7 @@
                                 Close
                             </button>
                             <button type="submit" style="background-color: #1B3061" class="btn text-white btn-create">
-                                Tambah
+                                Edit
                             </button>
                         </div>
                     </form>

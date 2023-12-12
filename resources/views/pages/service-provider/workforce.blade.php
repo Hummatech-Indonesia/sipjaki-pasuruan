@@ -3,23 +3,27 @@
     <h4 class="mb-3 font-size-18">Tenaga Kerja</h4>
     <div class="d-flex justify-content-between">
         <div class="">
-            <button type="button" class="btn text-white fw-normal" style="background-color:#1B3061;">
-                <svg xmlns="http://www.w3.org/2000/svg" height="14" width="12" fill="white"
-                    viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
-                    <path
-                        d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3V320c0 17.7 14.3 32 32 32s32-14.3 32-32V109.3l73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32v64c0 53 43 96 96 96H352c53 0 96-43 96-96V352c0-17.7-14.3-32-32-32s-32 14.3-32 32v64c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V352z" />
-                </svg>
-                <span class="ms-2">Import</span>
-            </button>
-            <button type="button" class="btn text-white fw-normal" style="background-color:#2CA67A;">
-                <svg xmlns="http://www.w3.org/2000/svg" height="14" width="14" fill="white" transform="rotate(90)"
-                    viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
-                    <path
-                        d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 192 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128zM160 96c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 32C43 32 0 75 0 128L0 384c0 53 43 96 96 96l64 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l64 0z" />
-                </svg>
-                <span class="ms-2">Export</span>
-            </button>
+            <form action="/export-workers" method="GET" id="fomr-export">
+                <button type="button" class="btn text-white fw-normal" style="background-color:#1B3061;">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="14" width="12" fill="white"
+                        viewBox="0 0 448 512">
+                        <path
+                            d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3V320c0 17.7 14.3 32 32 32s32-14.3 32-32V109.3l73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32v64c0 53 43 96 96 96H352c53 0 96-43 96-96V352c0-17.7-14.3-32-32-32s-32 14.3-32 32v64c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V352z" />
+                    </svg>
+                    <span class="ms-2">Import</span>
+                </button>
+                <button type="submit" class="btn text-white fw-normal" style="background-color:#2CA67A;">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="14" width="14" fill="white"
+                        transform="rotate(90)"
+                        viewBox="0 0 512 512">
+                        <path
+                            d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 192 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128zM160 96c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 32C43 32 0 75 0 128L0 384c0 53 43 96 96 96l64 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l64 0z" />
+                    </svg>
+                    <span class="ms-2">Export</span>
+                </button>
+            </form>
         </div>
+
         <div class="">
             <button type="button" class="btn text-white fw-normal" style="background-color:#FFC928;">
                 <svg xmlns="http://www.w3.org/2000/svg" height="14" width="14" fill="white"
@@ -107,12 +111,18 @@
                         placeholder="Search">
                     <i class="bx bx-search-alt-2 position-absolute top-50 translate-middle-y fs-6 text-dark ms-3"></i>
                 </div>
-                <button class="btn ms-1 text-white rounded" style="background-color:#1B3061">
+                <button class="btn ms-1 text-white rounded" style="background-color:#1B3061" onclick="selectAll()">
                     Pilih Semua
                 </button>
-                <button class="btn ms-1 text-white rounded" style="background-color:#E05C39">
-                    Hapus Pilihan
-                </button>
+                <form action="{{ route('delete-workers') }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <input type="hidden" name="worker_id" id="selected-worker">
+                    <button class="btn ms-1 text-white rounded" style="background-color:#E05C39"
+                        onclick="deleteSelected()">
+                        Hapus Pilihan
+                    </button>
+                </form>
             </div>
             <button class="btn ms-1 rounded" data-bs-toggle="modal" data-bs-target="#modal-create"
                 style="background-color:#1B3061;color:white">
@@ -142,8 +152,10 @@
                 <tbody>
                     @forelse ($workers as $worker)
                         <tr>
-                            <th scope="row" class="text-center"><input type="checkbox"
-                                    aria-label="Checkbox for following text input"></th>
+                            <th scope="row" class="text-center">
+                                <input value="{{ $worker->id }}" type="checkbox"
+                                    aria-label="Checkbox for following text input">
+                            </th>
                             <td class="text-center">{{ $worker->name }}</td>
                             <td class="text-center">
                                 {{ \Carbon\Carbon::parse($worker->birth_date)->translatedFormat('d F Y') }}</td>
@@ -153,10 +165,13 @@
                             <td class="d-flex flex-row gap-3 justify-content-center"
                                 style="border-bottom: 1px solid #fff">
                                 <button id="btn-edit-{{ $worker->id }}" data-id="{{ $worker->id }}"
-                                    data-name="{{ $worker->name }}" data-birth_date="{{ \Carbon\Carbon::parse($worker->birth_date)->translatedFormat('d F Y') }}"
+                                    data-name="{{ $worker->name }}"
+                                    data-birth_date="{{ \Carbon\Carbon::parse($worker->birth_date)->translatedFormat('d F Y') }}"
                                     data-cerificate="{{ $worker->cerificate }}"
                                     data-education="{{ $worker->education }}"
-                                    data-registration_number="{{ $worker->registration_number }}" type="button" data-bs-target="#modal-detail" data-bs-toggle="modal" class="btn  waves-effect waves-light text-white"
+                                    data-registration_number="{{ $worker->registration_number }}" type="button"
+                                    data-bs-target="#modal-detail" data-bs-toggle="modal"
+                                    class="btn btn-detail waves-effect waves-light text-white"
                                     style="background-color: #1B3061">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19"
                                         viewBox="0 0 24 24" fill="none">
@@ -187,6 +202,16 @@
                             </td>
                         </tr>
                     @empty
+                    <tr>
+                        <td colspan="7" class="text-center">
+                            <div class="d-flex justify-content-center" style="min-height:19rem">
+                                <div class="my-auto">
+                                    <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                    <h4 class="text-center mt-4">Tenaga kerja kosong!!</h4>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
                     @endforelse
                 </tbody>
             </table>
@@ -274,49 +299,44 @@
                 <div class="modal-body">
                     <div class="card">
                         <div class="card-body">
-                            <div class="badge bg-info">
-                                <p class="mb-0 px-3 py-1 fs-6">
-                                    <span id="detail-year"></span>
-                                </p>
-                            </div>
                             <p class="mt-3 fs-5 text-dark mb-2" style="font-weight: 700">
                                 <span id="detail-name"></span>
                             </p>
                             <div class="">
                                 <div class="row mb-1">
                                     <div class="col-md-5">
-                                        <p class="mb-2 text-dark">Nilai Kontrak :</p>
+                                        <p class="mb-2 text-dark">Tanggal Lahir :</p>
                                     </div>
                                     <div class="col-md-5">
                                         <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                id="detail-project_value"></span></p>
+                                                id="detail-birth_date"></span></p>
                                     </div>
                                 </div>
                                 <div class="row mb-1">
                                     <div class="col-md-5">
-                                        <p class="mb-2 text-dark">Progres Fisik :</p>
+                                        <p class="mb-2 text-dark">Pendidikan :</p>
                                     </div>
                                     <div class="col-md-5">
                                         <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                id="detail-physical_progress"></span> %</p>
+                                                id="detail-education"></span></p>
                                     </div>
                                 </div>
                                 <div class="row mb-1">
                                     <div class="col-md-5">
-                                        <p class="mb-2 text-dark">Progres Keuangan :</p>
+                                        <p class="mb-2 text-dark">No. Registrasi :</p>
                                     </div>
                                     <div class="col-md-5">
                                         <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                id="detail-finance_progress"></span> %</p>
+                                                id="detail-registration_number"></span></p>
                                     </div>
                                 </div>
                                 <div class="row mb-1">
                                     <div class="col-md-5">
-                                        <p class="mb-2 text-dark">Status :</p>
+                                        <p class="mb-2 text-dark">Jenis Sertifikat :</p>
                                     </div>
                                     <div class="col-md-5">
                                         <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                id="detail-status"></span></p>
+                                                id="detail-cerificate"></span></p>
                                     </div>
                                 </div>
                             </div>
@@ -345,6 +365,11 @@
 @endsection
 @section('script')
     <script>
+        $('.btn-detail').click(function() {
+            const data = getDataAttributes($(this).attr('id'))
+            handleDetail(data)
+            $('#modal-detail').modal('show')
+        })
         $('.btn-edit').click(function() {
             const formData = getDataAttributes($(this).attr('id'))
             var actionUrl = `workers/${formData['id']}`;
@@ -360,5 +385,39 @@
             $('#form-delete').attr('action', actionUrl);
             $('#modal-delete').modal('show')
         })
+
+        function updateSelected() {
+            var selectedIds = [];
+            var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(function(checkbox) {
+                if (checkbox.checked) {
+                    var workerId = checkbox.value;
+                    selectedIds.push(workerId);
+                }
+            });
+            document.getElementById('selected-worker').value = selectedIds;
+        }
+
+        function deleteSelected() {
+            updateSelected();
+            var selectedIds = document.getElementById('selected-worker').value;
+            if (selectedIds) {
+                document.getElementById('delete-form').submit();
+            } else {
+                alert('Pilih setidaknya satu pekerja untuk dihapus.');
+            }
+        }
+
+        var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(function(checkbox) {
+            checkbox.addEventListener('change', updateSelected);
+        });
+
+        function selectAll() {
+            var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(function(checkbox) {
+                checkbox.checked = true;
+            });
+        }
     </script>
 @endsection

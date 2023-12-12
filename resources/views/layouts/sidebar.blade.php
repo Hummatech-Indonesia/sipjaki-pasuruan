@@ -85,6 +85,12 @@
                         <span key="t-file-manager">History Login</span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{route('settings-sections')}}" class="waves-effect">
+                        <i class="bx bx-slider"></i>
+                        <span key="t-file-manager">Pengaturan Seksi</span>
+                    </a>
+                </li>
                 @endif
                 @if (Auth::user()->roles->pluck('name')[0] == 'admin')
                 <li>
