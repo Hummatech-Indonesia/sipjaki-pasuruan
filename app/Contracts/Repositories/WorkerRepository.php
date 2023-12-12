@@ -71,4 +71,17 @@ class WorkerRepository extends BaseRepository implements WorkerInterface
         return $this->show($id)
             ->delete();
     }
+
+    /**
+     * deleteMultiple
+     *
+     * @param  mixed $data
+     * @return mixed
+     */
+    public function deleteMultiple(array $data): mixed
+    {
+        return $this->model->query()
+            ->whereIn('id', $data)
+            ->delete();
+    }
 }

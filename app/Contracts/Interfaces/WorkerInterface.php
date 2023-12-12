@@ -10,5 +10,11 @@ use App\Contracts\Interfaces\Eloquent\UpdateInterface;
 
 interface WorkerInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface
 {
-    // Define your interface methods here
+    /**
+     * deleteMultiple
+     *
+     * @param  mixed $data
+     * @return mixed
+     */
+    public function deleteMultiple(array $data): mixed;
 }

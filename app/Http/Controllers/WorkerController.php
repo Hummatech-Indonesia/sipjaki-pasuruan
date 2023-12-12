@@ -122,6 +122,18 @@ class WorkerController extends Controller
     }
 
     /**
+     * deleteMultiple
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    public function deleteMultiple(Request $request)
+    {
+        $this->worker->deleteMultiple($request->id);
+        return back()->with('success', trans('alert.delete_success'));
+    }
+
+    /**
      * import
      *
      * @param  mixed $request
@@ -135,6 +147,11 @@ class WorkerController extends Controller
         return ResponseHelper::success(null, trans('alert.add_success'));
     }
 
+    /**
+     * export
+     *
+     * @return void
+     */
     public function export()
     {
         return Excel::download(new WorkerExport, 'tenaga-kerja-' . auth()->user()->name . '.xlsx');
