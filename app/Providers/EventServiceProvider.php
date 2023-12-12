@@ -24,6 +24,7 @@ use App\Models\SubClassification;
 use App\Models\Training;
 use App\Models\TrainingMember;
 use App\Models\TrainingMethod;
+use App\Models\Type;
 use App\Models\User;
 use App\Models\Worker;
 use App\Observers\AccidentObserver;
@@ -49,6 +50,7 @@ use App\Observers\SubClassificationObserver;
 use App\Observers\TrainingMemberObserver;
 use App\Observers\TrainingMethodObserver;
 use App\Observers\TrainingObserver;
+use App\Observers\TypeObserver;
 use App\Observers\UserObserver;
 use App\Observers\WorkerObserver;
 use Illuminate\Auth\Events\Registered;
@@ -97,6 +99,7 @@ class EventServiceProvider extends ServiceProvider
         HistoryLogin::observe(HistoryLoginObserver::class);
         ServiceProviderProject::observe(ServiceProviderProjectObserver::class);
         Section::observe(SectionObserver::class);
+        Type::observe(TypeObserver::class);
     }
 
     /**
