@@ -9,6 +9,7 @@ use App\Contracts\Interfaces\TypeInterface;
 use App\Contracts\Interfaces\DinasInterface;
 use App\Contracts\Interfaces\FieldInterface;
 use App\Contracts\Interfaces\SectionInterface;
+use App\Helpers\ResponseHelper;
 
 class DinasController extends Controller
 {
@@ -52,5 +53,21 @@ class DinasController extends Controller
     {
         $this->dinas->update(auth()->user()->dinas->id, $request->validated());
         return redirect()->back()->with('success', trans('alert.add_success'));
+    }
+
+    /**
+     * chart
+     *
+     * @return void
+     */
+    public function chart()
+    {
+        $dinases =  $this->dinas->get();
+        foreach ($dinases as $dinas) {
+            foreach ($dinas->projects as $project) {
+                dd($project->accidents);
+            }
+        }
+        return ResponseHelper::success($dinas);
     }
 }

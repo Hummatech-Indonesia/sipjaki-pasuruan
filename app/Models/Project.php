@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Base\Interfaces\HasAccidents;
 use App\Models\ServiceProvider;
 use App\Base\Interfaces\HasDinas;
 use App\Base\Interfaces\HasFundSource;
@@ -63,8 +64,22 @@ class Project extends Model implements HasDinas, HasServiceProvider, HasFundSour
         return $this->belongsTo(ContractCategory::class);
     }
 
+    /**
+     * serviceProviderProjects
+     *
+     * @return HasMany
+     */
     public function serviceProviderProjects(): HasMany
     {
         return $this->hasMany(ServiceProviderProject::class);
+    }
+        /**
+     * accidents
+     *
+     * @return HasMany
+     */
+    public function accidents(): HasMany
+    {
+        return $this->hasMany(Accident::class);
     }
 }
