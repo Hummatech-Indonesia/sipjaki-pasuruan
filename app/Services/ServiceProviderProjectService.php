@@ -72,6 +72,12 @@ class ServiceProviderProjectService
         }
     }
 
+    /**
+     * downloadFiles
+     *
+     * @param  mixed $data
+     * @return void
+     */
     public function downloadFiles(mixed $data)
     {
         if (!$data->isEmpty()) {
@@ -89,6 +95,12 @@ class ServiceProviderProjectService
         }
     }
 
+    /**
+     * download
+     *
+     * @param  mixed $data
+     * @return void
+     */
     public function download(mixed $data)
     {
         if (Storage::exists($data->file)) {

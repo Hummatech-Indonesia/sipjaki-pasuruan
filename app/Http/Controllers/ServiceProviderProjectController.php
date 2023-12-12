@@ -82,6 +82,8 @@ class ServiceProviderProjectController extends Controller
      * @return void
      */
     public function show(ServiceProviderProject $service_provider_project) {
+        $projectYear = $service_provider_project->project->year;
+        $projectName = $service_provider_project->project->name;
         return view('', ['service_provider_project' => $service_provider_project]);
     }
 
