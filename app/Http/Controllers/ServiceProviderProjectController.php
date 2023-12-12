@@ -140,6 +140,12 @@ class ServiceProviderProjectController extends Controller
         return $this->service->downloadFiles($data);
     }
 
+    /**
+     * downloadFile
+     *
+     * @param  mixed $service_provider_project
+     * @return void
+     */
     public function downloadFile(ServiceProviderProject $service_provider_project)
     {
         return $this->service->download($service_provider_project->file);
