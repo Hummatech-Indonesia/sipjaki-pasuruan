@@ -126,9 +126,20 @@ class ServiceProviderProjectController extends Controller
         return ResponseHelper::success(null, trans('alert.delete_success'));
     }
 
-    public function downloadServiceProviderProject(ServiceProviderProject $service_provider_project)
+    /**
+     * downloadServiceProviderProject
+     *
+     * @param  mixed $project
+     * @return void
+     */
+    public function downloadServiceProviderProject(Project $project)
     {
-        $data = $this->serviceProviderProject->getByProject($service_provider_project->id);
+        $data = $this->serviceProviderProject->getByProject($project->id);
         return $this->service->downloadFiles($data);
+    }
+
+    public function downloadFile(ServiceProviderProject $service_provider_project)
+    {
+        return $this->service->download($service_provider_project->file);
     }
 }

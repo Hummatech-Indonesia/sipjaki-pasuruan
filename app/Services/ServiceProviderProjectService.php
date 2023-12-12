@@ -88,4 +88,11 @@ class ServiceProviderProjectService
             }
         }
     }
+
+    public function download(mixed $data)
+    {
+        if (Storage::exists($data->file)) {
+            return response()->download(storage_path('app/public/'.$data->file), basename($data->file));
+        }
+    }
 }
