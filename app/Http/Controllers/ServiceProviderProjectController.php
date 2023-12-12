@@ -76,6 +76,16 @@ class ServiceProviderProjectController extends Controller
     }
 
     /**
+     * show
+     *
+     * @param  mixed $service_provider_project
+     * @return void
+     */
+    public function show(ServiceProviderProject $service_provider_project) {
+        return view('', ['service_provider_project' => $service_provider_project]);
+    }
+
+    /**
      * update
      *
      * @param  mixed $request
