@@ -11,7 +11,7 @@
         <div class="post-wrapper">
             <article class="post">
                 <div class="feature-image">
-                    <a href="blog-signle.html">
+                    <a href="javascript:void(0)">
                         <img src="{{ asset('storage/'.$data->thumbnail) }}" alt="blog">
                     </a>
                 </div>
@@ -23,7 +23,7 @@
                     <h4 class="entry-title">{{ $data->title }}</h4>
 
                     <p>
-                        {{ $data->content }}
+                        {!! $data->content !!}
                     </p>
 
                 </div><!-- /.post-content -->
