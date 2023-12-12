@@ -114,11 +114,11 @@ class WorkerController extends Controller
     public function destroy(Request $request, Worker $worker): JsonResponse|RedirectResponse
     {
         $this->worker->delete($worker->id);
-        // if ($request->is('api/*')) {
+        if ($request->is('api/*')) {
         return ResponseHelper::success(null, trans('alert.delete_success'));
-        // } else {
-        //     return redirect()->back()->with('success', trans('alert.delete_success'));
-        // }
+        } else {
+            return redirect()->back()->with('success', trans('alert.delete_success'));
+        }
     }
 
     /**
