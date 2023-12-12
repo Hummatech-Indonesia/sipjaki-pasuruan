@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Enums\UploadDiskEnum;
 use App\Helpers\ResponseHelper;
+use Illuminate\Support\Str;
 use App\Http\Requests\ServiceProviderProjectRequest;
 use App\Models\Project;
 use App\Models\ServiceProviderProject;
@@ -80,9 +81,9 @@ class ServiceProviderProjectService
      */
     public function downloadFiles(mixed $data)
     {
-        if (!$data->isEmpty()) {
+        if ($data->isNotEmpty()) {
             $zip = new ZipArchive;
-            $filename = now() . ".zip";
+            $filename = Str::random() . ".zip";
             if ($zip->open(storage_path('app/public/'.$filename), ZipArchive::CREATE) === TRUE) {
                 foreach ($data as $value) {
                     if (Storage::exists($value->file)) {
