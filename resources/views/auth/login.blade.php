@@ -20,13 +20,12 @@
     <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- App Css-->
     <link href="{{ asset('assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
-    <!-- App js -->
+    <link href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
     <script src="{{ asset('assets/js/plugin.js') }}"></script>
 
 </head>
 
 <body class="auth-body-bg">
-
     <div>
         <div class="container-fluid p-0">
             <div class="row g-0">
@@ -36,8 +35,8 @@
                         <div class="w-100 h-100 d-flex align-items-center justify-content-center">
                             <div class="p-4">
                                 <div class="row justify-content-center">
-                                        <img src="{{ asset('assets/images/icon-kontruksi.png') }}" alt=""
-                                            srcset="">
+                                    <img src="{{ asset('assets/images/icon-kontruksi.png') }}" alt=""
+                                        srcset="">
                                 </div>
                             </div>
                         </div>
@@ -63,17 +62,18 @@
                                         <p style="color: #1B3061">Login untuk melanjutkan</p>
                                     </div>
 
+
                                     <div class="mt-4">
                                         <form method="POST" action="{{ route('login') }}">
                                             @csrf
                                             <div class="mb-3">
-                                                <label for="email"
-                                                    class="form-label" style="font-weight: bold">{{ __('Email Address') }}</label>
+                                                <label for="email" class="form-label"
+                                                    style="font-weight: bold">{{ __('Email Address') }}</label>
                                                 <input id="email" type="email"
                                                     class="form-control @error('email') is-invalid @enderror"
                                                     name="email" placeholder="Masukan Email"
-                                                    value="{{ old('email') }}" required autocomplete="email"
-                                                    autofocus style="border-radius: 8px">
+                                                    value="{{ old('email') }}" required autocomplete="email" autofocus
+                                                    style="border-radius: 8px">
                                                 @error('email')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -92,7 +92,8 @@
                                                         class="form-control  @error('password') is-invalid @enderror"
                                                         name="password" required autocomplete="current-password"
                                                         placeholder="Masukakn Password" aria-label="Password"
-                                                        aria-describedby="password-addon" style="border-radius: 8px 0 0 8px;">
+                                                        aria-describedby="password-addon"
+                                                        style="border-radius: 8px 0 0 8px;">
                                                     <button class="btn btn-light " type="button" id="password-addon"><i
                                                             class="mdi mdi-eye-outline"></i></button>
                                                     @error('password')
@@ -103,13 +104,15 @@
                                                 </div>
                                             </div>
                                             <div class="mt-3 d-grid">
-                                                <button style="background-color: #1B3061" class="btn text-white waves-effect waves-light"
-                                                    type="submit">Log In</button>
+                                                <button style="background-color: #1B3061"
+                                                    class="btn text-white waves-effect waves-light" type="submit">Log
+                                                    In</button>
                                             </div>
 
                                         </form>
                                         <div class="mt-5 text-center">
-                                            <p>Belum punya akun? <span style="color: #457DFF"><a href="{{ route('register') }}">Register</a></span></a> </p>
+                                            <p>Belum punya akun? <span style="color: #457DFF"><a
+                                                        href="{{ route('register') }}">Register</a></span></a> </p>
                                         </div>
                                     </div>
                                 </div>
@@ -118,7 +121,7 @@
                                     <p class="mb-0">©
                                         <script>
                                             document.write(new Date().getFullYear())
-                                        </script> Powered By Hummatech 
+                                        </script> Powered By Hummatech
                                     </p>
                                 </div>
                             </div>
@@ -147,8 +150,24 @@
     <!-- auth-2-carousel init -->
     <script src="{{ asset('assets/js/pages/auth-2-carousel.init.js') }}"></script>
 
+    <script src="{{ asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
+
+    <!-- Sweet alert init js-->
+    <script src="{{ asset('assets/js/pages/sweet-alerts.init.js') }}"></script>
+
     <!-- App js -->
     <script src="{{ asset('assets/js/app.js') }}"></script>
+    @if ($errors->any())
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            html: `@foreach ($errors->all() as $error){{ $error }}<br>@endforeach`,
+            showConfirmButton: true,
+            confirmButtonText: 'OK',
+        });
+    </script>
+@endif
 
 </body>
 
