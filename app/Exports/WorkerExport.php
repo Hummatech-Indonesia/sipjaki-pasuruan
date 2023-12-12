@@ -3,15 +3,22 @@
 namespace App\Exports;
 
 use App\Models\Worker;
-use Maatwebsite\Excel\Concerns\FromCollection;
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\Exportable;
+use Maatwebsite\Excel\Concerns\FromView;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class WorkerExport implements FromCollection
+class WorkerExport implements FromView, ShouldAutoSize
 {
+    use Exportable;
     /**
      * @return \Illuminate\Support\Collection
      */
-    public function collection()
+    public function view(): View
     {
-        return Worker::query()->where('service_provider_id', auth()->user()->serviceProvider->id)->get();
+        $workers = Worker::query()->where('service_provider_id', auth()->user()->serviceProvider->id)->get();
+        return view('exports.workers', [
+            'workers' => $workers
+        ]);
     }
 }
