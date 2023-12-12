@@ -132,8 +132,8 @@
                                 </li>
                                 <li><a class="{{ request()->routeIs('berita-terbaru') || request()->routeIs('detail-berita') ? 'active' : '' }}"
                                         href="{{ route('berita-terbaru') }}">Berita Terbaru</a></li>
-                                <li><a class="{{ request()->routeIs('pertauran') ? 'active' : '' }}"
-                                        href="{{ route('peraturan') }}">Peraturan</a></li>
+                                <li><a class="{{ request()->routeIs('rules.landing') ? 'active' : '' }}"
+                                        href="{{ route('rules.landing') }}">Peraturan</a></li>
                                 <li class="menu-item-has-children">
                                     <a class="d-flex d-row {{ request()->routeIs('opd') || request()->routeIs('paket-pekerjaan') ? 'active' : '' }}"
                                         href="#">Data Jakon</a>
