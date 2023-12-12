@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Interfaces\DinasInterface;
+use App\Contracts\Interfaces\FieldInterface;
 use App\Http\Requests\DinasRequest;
 use App\Models\Dinas;
 use Illuminate\Http\Request;
@@ -10,11 +11,23 @@ use Illuminate\Http\Request;
 class DinasController extends Controller
 {
     private DinasInterface $dinas;
-    public function __construct(DinasInterface $dinas)
+    private FieldInterface $field;
+    public function __construct(DinasInterface $dinas, FieldInterface $field)
     {
         $this->dinas = $dinas;
+        $this->field = $field;
     }
 
+    /**
+     * index
+     *
+     * @return void
+     */
+    public function index()
+    {
+        $fields = $this->field->get();
+        return view('pages.profile-opd', compact('fields'));
+    }
     /**
      * update
      *

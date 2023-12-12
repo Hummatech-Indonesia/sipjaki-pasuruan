@@ -21,6 +21,7 @@ use App\Http\Controllers\RuleCategoryController;
 use App\Http\Controllers\TrainingMemberController;
 use App\Http\Controllers\TrainingMethodController;
 use App\Http\Controllers\ContractCategoryController;
+use App\Http\Controllers\DinasController;
 use App\Http\Controllers\SubClassificationController;
 use App\Http\Controllers\QualificationLevelController;
 
@@ -152,9 +153,7 @@ Route::middleware(['role:dinas'])->group(function () {
     });
 });
 
-Route::get('profile-OPD', function () {
-    return view('pages.profile-opd');
-});
+Route::get('profile-OPD', [DinasController::class, 'index']);
 require __DIR__ . '/aldy.php';
 require __DIR__ . '/arif.php';
 require __DIR__ . '/daffa.php';
