@@ -27,7 +27,6 @@ class LoginService
     public function handleLogin(LoginRequest $request)
     {
         if (auth()->attempt(['email' => $request->email, 'password' => $request->password])) {
-
             if (auth()->user()->email_verified_at) {
                 $this->historyLogin->store(['ip_address' => $request->ip()]);
                 if ($request->is('api/*')) {
@@ -43,6 +42,12 @@ class LoginService
                 } else {
                     return redirect()->back()->withErrors(trans('alert.account_unverified'));
                 }
+            }
+        } else {
+            if ($request->is('api/*')) {
+                return ResponseHelper::error(null, trans('auth.login_failed'), Response::HTTP_FORBIDDEN);
+            } else {
+                return redirect()->back()->withErrors(trans('auth.login_failed'));
             }
         }
     }
