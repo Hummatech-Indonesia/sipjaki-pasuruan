@@ -1,5 +1,10 @@
 @extends('layouts.app')
 @section('content')
+<style>
+    td {
+        vertical-align: top;
+    }
+</style>
     <h4 class="mb-3 font-size-18">Detail Progress</h4>
     <div class="d-flex justify-content-between mb-3">
         <div class="d-flex position-relative">
@@ -35,6 +40,11 @@
                             <table cellpadding="10" style="border-collapse: collapse; width: 100%;">
                                 <tbody>
                                     <tr>
+                                        <td width="120">Progress (%)</td>
+                                        <td>:</td>
+                                        <td>60% Progress</td>
+                                    </tr>
+                                    <tr>
                                         <td width="120">Tanggal Mulai</td>
                                         <td>:</td>
                                         <td>08-05-2023</td>
@@ -47,7 +57,7 @@
                                     <tr>
                                         <td>Deskripsi</td>
                                         <td>:</td>
-                                        <td colspan="2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
+                                        <td colspan="2" style="vertical-align: top;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
                                             eu scelerisque felis. Maecenas dolor tortor, tincidunt suscipit egestas quis,
                                             fermentum non lacus. Praesent venenatis placerat lectus. Pellentesque at massa
                                             in dui feugiat pretium. Fusce vulputate auctor tempus. Cras luctus ac risus
