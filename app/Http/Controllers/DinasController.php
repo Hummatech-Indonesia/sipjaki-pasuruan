@@ -24,7 +24,7 @@ class DinasController extends Controller
      */
     public function update(DinasRequest $request)
     {
-        $this->dinas->update(auth()->user()->id, $request->validated());
+        $this->dinas->update(auth()->user()->dinas->id, $request->validated());
         return redirect()->back()->with('success', trans('alert.add_success'));
     }
 }
