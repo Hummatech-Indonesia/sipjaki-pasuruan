@@ -25,7 +25,7 @@ use App\Http\Controllers\DinasController;
 use App\Http\Controllers\SubClassificationController;
 use App\Http\Controllers\QualificationLevelController;
 use App\Http\Controllers\SectionController;
-
+use App\Http\Controllers\ServiceProviderProjectController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -137,6 +137,8 @@ Route::middleware('auth')->group(function () {
         ]);
     });
 });
+
+Route::get('service-provider-project-detail/{service_provider_project}', [ServiceProviderProjectController::class, 'show']);
 
 Route::middleware(['role:dinas'])->group(function () {
     Route::resource('accident', AccidentController::class)->except('create', 'show');
