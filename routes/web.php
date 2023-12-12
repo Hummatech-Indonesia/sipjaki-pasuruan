@@ -139,6 +139,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('service-provider-project-detail/{service_provider_project}', [ServiceProviderProjectController::class, 'show']);
+Route::get('download-service-provider-project/{service_provider_project}', [ServiceProviderProjectController::class, 'downloadServiceProviderProject']);
 
 Route::middleware(['role:dinas'])->group(function () {
     Route::resource('accident', AccidentController::class)->except('create', 'show');
