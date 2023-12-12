@@ -71,8 +71,8 @@ Route::get('/bantuan', function () {
     return view('faq');
 })->name('bantuan');
 
-Route::get('data-paket-pekerjaan', [LandingController::class, 'project'])->name('paket-pekerjaan');
-Route::get('data-paket-pekerjaan/{dinas}', [LandingController::class, 'projectDetail'])->name('detail-project');
+Route::get('data-paket-pekerjaan', [LandingController::class, 'project'])->name('paket.pekerjaan');
+Route::get('data-paket-pekerjaan/{dinas}', [LandingController::class, 'projectDetail'])->name('detail.project');
 Route::get('/pelatihan', [LandingController::class, 'training'])->name('pelatihan');
 
 Route::get('/opd', function () {
@@ -147,9 +147,9 @@ Route::get('download-all-service-provider-project/{project}', [ServiceProviderPr
 
 Route::middleware(['role:dinas'])->group(function () {
     Route::resource('accident', AccidentController::class)->except('create', 'show');
-    Route::put('accident.update/{accident}', [AccidentController::class, 'update'])->name('accident.update/');
-    Route::get('accident.show/{accident}', [AccidentController::class, 'show'])->name('accident.show/');
-    Route::delete('accident.destroy/{accident}', [AccidentController::class, 'destroy'])->name('accident.destroy/');
+    Route::put('accident.update/{accident}', [AccidentController::class, 'update'])->name('accident.update');
+    Route::get('accident.show/{accident}', [AccidentController::class, 'show'])->name('accident.show');
+    Route::delete('accident.destroy/{accident}', [AccidentController::class, 'destroy'])->name('accident.destroy');
     Route::resources([
         'projects' => ProjectController::class,
     ]);

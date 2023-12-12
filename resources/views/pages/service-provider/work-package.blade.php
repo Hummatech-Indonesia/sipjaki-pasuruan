@@ -1,13 +1,20 @@
 @extends('layouts.app')
 @section('content')
     <h4 class="mb-3 font-size-18">Paket Pekerjaan</h4>
-    <div class="d-flex justify-content-between">
-        <div class="d-flex position-relative mb-3 col-lg-3 ">
-            <input type="search" class="form-control search-chat py-2 ps-5" id="search-name" placeholder="Search">
-            <i class="bx bx-search-alt-2 position-absolute top-50 translate-middle-y fs-6 text-dark ms-3"></i>
-            <div class="d-flex btn btn-success btn-md ms-2">
-                <i class="bx bxs-download mt-1 me-1"></i>Export
+    <div class="d-flex justify-content-header mb-3 col-12 col-lg-3 col-xxl-4">
+        <div class="">
+            <div class="input-group">
+                <input type="text" name="name" value="" class="form-control" placeholder="Search">
+                <div class="input-group-append">
+                    <button class="btn text-white" style="background-color: #1B3061; border-radius: 0 5px 5px 0;"
+                        type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
             </div>
+        </div>
+        <div class="d-flex btn btn-success btn-md ms-2">
+            <i class="bx bxs-download mt-1 me-1"></i>Export
         </div>
     </div>
     </div>
