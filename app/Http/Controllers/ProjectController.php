@@ -84,7 +84,7 @@ class ProjectController extends Controller
      */
     public function projectDetail(Project $project): View
     {
-        return view('', ['project' => $project]);
+        return view('pages.service-provider.detail-work-package', ['project' => $project]);
     }
 
     /**
