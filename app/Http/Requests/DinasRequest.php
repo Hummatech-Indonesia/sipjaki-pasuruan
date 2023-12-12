@@ -16,7 +16,7 @@ class DinasRequest extends FormRequest
         return [
             'field_id' => 'required|exists:fields,id',
             'type' => 'required|max:4',
-            'sections' => 'required|max:255',
+            'sections' => 'required|exists:sections,id',
             'address' => 'required',
             'phone_number' => 'required|max:255',
             'echelon' => 'required|max:4',

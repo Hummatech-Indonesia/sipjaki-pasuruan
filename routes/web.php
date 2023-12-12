@@ -24,7 +24,7 @@ use App\Http\Controllers\ContractCategoryController;
 use App\Http\Controllers\DinasController;
 use App\Http\Controllers\SubClassificationController;
 use App\Http\Controllers\QualificationLevelController;
-
+use App\Http\Controllers\SectionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -90,7 +90,7 @@ Route::middleware('auth')->group(function () {
             'classifications' => ClassificationController::class,
             'news' => NewsController::class,
             'training-methods' => TrainingMethodController::class,
-
+            'sections' => SectionController::class,
             'rules' => RuleController::class,
         ]);
 
