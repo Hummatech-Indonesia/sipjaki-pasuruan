@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[LandingController::class,'news'])->name('landing-page');
 Route::get('berita-terbaru',[LandingController::class,'latestNews'])->name('berita-terbaru');
+Route::get('berita/{news}',[LandingController::class,'show'])->name('berita');
 Route::middleware(['role:admin'])->group(function () {
     Route::get('agencies', [UserController::class, 'index'])->name('agencies.index');
     Route::post('agencies', [UserController::class, 'store'])->name('agencies.store');

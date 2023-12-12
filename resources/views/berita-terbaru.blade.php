@@ -23,9 +23,9 @@
                             </li>
                         </ul>
 
-                        <h3 class="entry-title"><a href="#">{{ $news->title }}</a></h3>
+                        <h3 class="entry-title"><a href="{{ route('berita', ['news' => $news->id]) }}">{{ $news->title }}</a></h3>
                         <div class="row">
-                            <a href="javascript:void(0)" class="col-12">
+                            <a href="{{ route('berita', ['news' => $news->id]) }}" class="col-12">
                                 <button class="btn btn-outline-primary d-flex align-items-center justify-content-between"
                                     style="width:100%">
                                     <span>Lihat selengkapnya</span>

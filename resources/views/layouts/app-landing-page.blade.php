@@ -18,15 +18,15 @@
     <meta name="theme-color" content="#fa7070">
 
     <!-- Dependency Styles -->
-    <link rel="stylesheet" href="dependencies/bootstrap/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="dependencies/fontawesome/css/all.min.css" type="text/css">
-    <link rel="stylesheet" href="dependencies/swiper/css/swiper.min.css" type="text/css">
-    <link rel="stylesheet" href="dependencies/wow/css/animate.css" type="text/css">
-    <link rel="stylesheet" href="dependencies/magnific-popup/css/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="dependencies/components-elegant-icons/css/elegant-icons.min.css" type="text/css">
-    <link rel="stylesheet" href="dependencies/simple-line-icons/css/simple-line-icons.css" type="text/css">
+    <link rel="stylesheet" href="{{ asset('dependencies/bootstrap/css/bootstrap.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('dependencies/fontawesome/css/all.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('dependencies/swiper/css/swiper.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('dependencies/wow/css/animate.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('dependencies/magnific-popup/css/magnific-popup.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('dependencies/components-elegant-icons/css/elegant-icons.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('dependencies/simple-line-icons/css/simple-line-icons.css') }}" type="text/css">
     <!-- Site Stylesheet -->
-    <link rel="stylesheet" href="assets/css/app.css" type="text/css">
+    <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}" type="text/css">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com/">
@@ -335,22 +335,22 @@
 
     </div>
 
-    <script src="dependencies/jquery/jquery.min.js"></script>
-    <script src="dependencies/bootstrap/js/bootstrap.min.js"></script>
-    <script src="dependencies/swiper/js/swiper.min.js"></script>
-    <script src="dependencies/jquery.appear/jquery.appear.js"></script>
-    <script src="dependencies/wow/js/wow.min.js"></script>
-    <script src="dependencies/countUp.js/countUp.min.js"></script>
-    <script src="dependencies/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="dependencies/imagesloaded/imagesloaded.pkgd.min.js"></script>
-    <script src="dependencies/jquery.parallax-scroll/js/jquery.parallax-scroll.js"></script>
-    <script src="dependencies/magnific-popup/js/jquery.magnific-popup.min.js"></script>
-    <script src="dependencies/gmap3/js/gmap3.min.js"></script>
+    <script src="{{ asset('dependencies/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('dependencies/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('dependencies/swiper/js/swiper.min.js') }}"></script>
+    <script src="{{ asset('dependencies/jquery.appear/jquery.appear.js') }}"></script>
+    <script src="{{ asset('dependencies/wow/js/wow.min.js') }}"></script>
+    <script src="{{ asset('dependencies/countUp.js/countUp.min.js') }}"></script>
+    <script src="{{ asset('dependencies/isotope-layout/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ asset('dependencies/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
+    <script src="{{ asset('dependencies/jquery.parallax-scroll/js/jquery.parallax-scroll.js') }}"></script>
+    <script src="{{ asset('dependencies/magnific-popup/js/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ asset('dependencies/gmap3/js/gmap3.min.js') }}"></script>
     <script type='text/javascript'
         src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDk2HrmqE4sWSei0XdKGbOMOHN3Mm2Bf-M&amp;ver=2.1.6'></script>
 
-    <script src="assets/js/header.js"></script>
-    <script src="assets/js/app-min.js"></script>
+    <script src="{{ asset('assets/js/header.js') }}"></script>
+    <script src="{{ asset('assets/js/app-min.js') }}"></script>
 </body>
 
 
