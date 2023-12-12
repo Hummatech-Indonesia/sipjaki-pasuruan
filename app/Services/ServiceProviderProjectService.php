@@ -82,7 +82,7 @@ class ServiceProviderProjectService
     {
         if (!$data->isEmpty()) {
             $zip = new ZipArchive;
-            $filename = $data->first()->project->name + now();
+            $filename = $data->first()->project->name . now();
             if ($zip->open(storage_path('app/public/'.$filename), ZipArchive::CREATE) === TRUE) {
                 foreach ($data as $value) {
                     if (Storage::exists($value->file)) {
