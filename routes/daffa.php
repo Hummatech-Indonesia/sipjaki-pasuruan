@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\RuleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkerController;
 use Illuminate\Support\Facades\Route;
@@ -11,7 +12,8 @@ Route::get('berita-terbaru',[LandingController::class,'latestNews'])->name('beri
 Route::get('berita/{news}',[LandingController::class,'show'])->name('berita');
 Route::delete('delete-workers',[ WorkerController::class, 'deleteMultiple'])->name('delete-workers');
 Route::resources([
-    'workers' => WorkerController::class
+    'workers' => WorkerController::class,
+    'rules' => RuleController::class
 ]);
 
 

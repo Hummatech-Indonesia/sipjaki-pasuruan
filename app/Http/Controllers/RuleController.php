@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Interfaces\FiscalYearInterface;
 use App\Contracts\Interfaces\RuleInterface;
 use App\Contracts\Interfaces\ServiceProviderInterface;
 use App\Helpers\ResponseHelper;
@@ -18,12 +19,14 @@ class RuleController extends Controller
     private RuleInterface $rule;
     private RuleService $service;
     private ServiceProviderInterface $serviceProvider;
+    private FiscalYearInterface $fiscalYear;
 
-    public function __construct(RuleInterface $rule, RuleService $service, ServiceProviderInterface $serviceProvider)
+    public function __construct(RuleInterface $rule, RuleService $service, ServiceProviderInterface $serviceProvider,FiscalYearInterface $fiscalYear)
     {
         $this->rule = $rule;
         $this->service = $service;
         $this->serviceProvider = $serviceProvider;
+        $this->fiscalYear = $fiscalYear;
     }
 
     /**
@@ -32,13 +35,14 @@ class RuleController extends Controller
     public function index(Request $request)
     {
         $rules = $this->rule->customPaginate($request, 10);
+        $fiscalYears = $this->fiscalYear->get();
         if ($request->is('api/*')) {
             $data['paginate'] = $this->customPaginate($rules->currentPage(), $rules->lastPage());
             $data['data'] = RuleResource::collection($rules);
             return ResponseHelper::success($data);
         } else {
             $serviceProviders = $this->serviceProvider->get();
-            return view('rules.news', ['rules' => $rules, 'serviveProviders' => $serviceProviders]);
+            return view('pages.admin.rule', ['rules' => $rules, 'serviveProviders' => $serviceProviders,'fiscalYears' => $fiscalYears]);
         }
     }
 

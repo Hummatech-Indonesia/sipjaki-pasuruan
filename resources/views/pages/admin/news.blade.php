@@ -88,7 +88,7 @@
                         <tr>
                             <td scope="row" class="fs-5">{{ $index + 1 }}</td>
                             <td class="fs-5">{{ $news->title }}</td>
-                            <td class="fs-5">{{ \Carbon\Carbon::parse($news->created_at)->translatedFormat('d F Y') }}</td>
+                            <td class="fs-5">{{ \Carbon\Carbon::parse($news->created_at)->format('d-m-Y') }}</td>
                             <td class="d-flex flex-row gap-3 justify-content-center">
                                 <button type="button"
                                     class="btn waves-effect waves-light d-flex btn-edit flex-row gap-1 justify-content-evenly"

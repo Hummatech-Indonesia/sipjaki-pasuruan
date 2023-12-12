@@ -113,6 +113,12 @@
                         <span key="t-file-manager">Pelatihan</span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{ route('rules.index') }}" class="waves-effect">
+                        <i class="fas fa-clipboard"></i>
+                        <span key="t-file-manager">Peraturan</span>
+                    </a>
+                </li>
                 @endif
                 @if ( Auth::user()->roles->pluck('name')[0]  == 'dinas')
                 <li>
