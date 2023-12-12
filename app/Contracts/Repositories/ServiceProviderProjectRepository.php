@@ -14,6 +14,19 @@ class ServiceProviderProjectRepository extends BaseRepository implements Service
     }
 
     /**
+     * getByProject
+     *
+     * @param  mixed $id
+     * @return mixed
+     */
+    public function getByProject(mixed $id): mixed
+    {
+        return $this->model->query()
+            ->where('project_id', $id)
+            ->get();
+    }
+
+    /**
      * store
      *
      * @param  mixed $data

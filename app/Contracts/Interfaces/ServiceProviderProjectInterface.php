@@ -10,4 +10,11 @@ use App\Contracts\Interfaces\Eloquent\UpdateInterface;
 
 interface ServiceProviderProjectInterface extends StoreInterface, DeleteInterface, UpdateInterface, ShowInterface, SearchInterface
 {
+    /**
+     * getByProject
+     *
+     * @param  mixed $id
+     * @return mixed
+     */
+    public function getByProject(mixed $id): mixed;
 }
