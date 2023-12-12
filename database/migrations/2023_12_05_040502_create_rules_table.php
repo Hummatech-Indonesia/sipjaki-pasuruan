@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('rules', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->foreignUuid('rule_category_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignUuid('fiscal_year_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('title');
             $table->string('code');
