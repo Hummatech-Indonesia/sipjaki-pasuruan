@@ -26,7 +26,7 @@ class DinasRepository extends BaseRepository implements DinasInterface
                 $query->where('name','LIKE','%'.$request->name.'%');
             })
             ->withCount('projects')
-            ->with('user')
+            ->with('user','projects')
             ->get();
     }
 
@@ -39,7 +39,7 @@ class DinasRepository extends BaseRepository implements DinasInterface
     public function show(mixed $id): mixed
     {
         return $this->model->query()
-            ->findOrFail($id);
+            ->findOrFail($id)->with('projects');
     }
 
     /**

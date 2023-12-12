@@ -10,9 +10,6 @@ use App\Http\Controllers\TrainingController;
 use Illuminate\Support\Facades\Route;
 
 
-// landing
-Route::get('detail-paket', function () { return view('detail-paket'); })->name('detail-paket');
-
 //Reset Password
 Route::get('reset-password/{id}', [ResetPasswordController::class ,'index'])->name('reset-password/');
 Route::post('send-email-reset-passsword', [ForgotPasswordController::class, 'sendEmail'])->name('send-email-reset-passsword');
