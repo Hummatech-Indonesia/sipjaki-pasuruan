@@ -11,20 +11,19 @@
                         @csrf
                         @method('PUT')
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="formrow-inputState" class="form-label">Pilih Tipe</label>
                                     <select id="formrow-inputState" class="form-select">
-                                        <option disabled selected>Choose...</option>
-                                        <option>A++</option>
-                                        <option>B++</option>
+                                        <option disabled selected>Pilih...</option>
+                                        @foreach ($types as $type)
+                                                    <option value="{{ $type->id }}">{{ $type->name }}
+                                                    </option>
+                                                @endforeach
                                     </select>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="formrow-inputState" class="form-label">Nama Bidang</label>
 
@@ -39,7 +38,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="formrow-inputState" class="form-label">Nama Saksi</label>
 
