@@ -82,7 +82,7 @@ class ServiceProviderProjectService
     {
         if (!$data->isEmpty()) {
             $zip = new ZipArchive;
-            $filename = $data->project->name + now();
+            $filename = $data->first()->project->name . now();
             if ($zip->open(storage_path('app/public/'.$filename), ZipArchive::CREATE) === TRUE) {
                 foreach ($data as $value) {
                     if (Storage::exists($value->file)) {
@@ -103,8 +103,8 @@ class ServiceProviderProjectService
      */
     public function download(mixed $data)
     {
-        if (Storage::exists($data->file)) {
-            return response()->download(storage_path('app/public/'.$data->file), basename($data->file));
+        if (Storage::exists($data)) {
+            return response()->download(storage_path('app/public/'.$data), basename($data));
         }
     }
 }
