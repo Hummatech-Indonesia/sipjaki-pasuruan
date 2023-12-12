@@ -30,9 +30,11 @@
 
                                     <select class="select2 form-control select2-multiple" multiple="multiple"
                                         data-placeholder="Choose ...">
-                                        <optgroup label="Alaskan/Hawaiian Time Zone">
-                                            <option>Binamarga Singosari</option>
-                                            <option>Binamarga Kepanjeng</option>
+                                        <optgroup label="Pilih Nama Bidang">
+                                            @foreach ($fields as $field)
+                                                    <option value="{{ $field->id }}">{{ $field->name }}
+                                                    </option>
+                                                @endforeach
                                         </optgroup>
                                     </select>
                                 </div>
@@ -43,9 +45,11 @@
 
                                     <select class="select2 form-control select2-multiple" multiple="multiple"
                                         data-placeholder="Choose ...">
-                                        <optgroup label="Alaskan/Hawaiian Time Zone">
-                                            <option>Pengaturan</option>
-                                            <option>Pengawasan</option>
+                                        <optgroup label="Pilih Nama Saksi">
+                                            @foreach ($sections as $section)
+                                                    <option value="{{ $section->id }}">{{ $section->name }}
+                                                    </option>
+                                                @endforeach
                                         </optgroup>
                                     </select>
                                 </div>

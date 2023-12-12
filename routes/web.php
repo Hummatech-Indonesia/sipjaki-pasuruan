@@ -92,6 +92,7 @@ Route::middleware('auth')->group(function () {
             'training-methods' => TrainingMethodController::class,
             'sections' => SectionController::class,
             'rules' => RuleController::class,
+            'fields' => FieldController::class,
         ]);
 
         Route::get('history-login', [HistoryLoginController::class, 'index'])->name('history-login.index');
@@ -149,7 +150,6 @@ Route::middleware(['role:dinas'])->group(function () {
     Route::delete('accident.destroy/{accident}', [AccidentController::class, 'destroy'])->name('accident.destroy/');
     Route::resources([
         'projects' => ProjectController::class,
-        'fields' => FieldController::class
     ]);
     Route::middleware('role:service provider')->group(function () {
         Route::resource('workers', WorkerController::class)->only('index', 'update', 'destroy');

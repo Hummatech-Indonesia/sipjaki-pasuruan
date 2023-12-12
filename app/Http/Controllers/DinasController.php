@@ -32,7 +32,7 @@ class DinasController extends Controller
         $fields = $this->field->get();
         return view('pages.profile-opd', [
             'sections' => $sections,
-            'fields' => $fields
+            'fields' => $fields,
         ]);
     }
     /**

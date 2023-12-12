@@ -24,13 +24,14 @@ class FieldController extends Controller
     public function index(Request $request)
     {
         $fields = $this->field->customPaginate($request, 10);
-        // if ($request->is('api/*')) {
-        $data['paginate'] = $this->customPaginate($fields->currentPage(), $fields->lastPage());
-        $data['data'] = FieldResource::collection($fields);
-        return ResponseHelper::success($data);
-        // } else {
-        // return view('pages.news', ['news' => $news]);
-        // }
+        if ($request->is('api/*')) {
+            $data['paginate'] = $this->customPaginate($fields->currentPage(), $fields->lastPage());
+            $data['data'] = FieldResource::collection($fields);
+            return ResponseHelper::success($data);
+        } else {
+            $name = $request->name;
+            return view('pages.fields', compact('fields', 'name'));
+        }
     }
 
     /**
@@ -39,11 +40,11 @@ class FieldController extends Controller
     public function store(FieldRequest $request)
     {
         $this->field->store($request->validated());
-        // if ($request->is('api/*')) {
-        return ResponseHelper::success(null, trans('alert.add_success'));
-        // } else {
-        //     return redirect()->back()->with('succcess', trans('alert.add_success'));
-        // }
+        if ($request->is('api/*')) {
+            return ResponseHelper::success(null, trans('alert.add_success'));
+        } else {
+            return redirect()->back()->with('success', trans('alert.add_success'));
+        }
     }
 
     /**
@@ -75,7 +76,7 @@ class FieldController extends Controller
         if ($request->is('api/*')) {
             return ResponseHelper::success(null, trans('alert.update_success'));
         } else {
-            return redirect()->back()->with('succcess', trans('alert.update_success'));
+            return redirect()->back()->with('success', trans('alert.update_success'));
         }
     }
 
@@ -91,7 +92,7 @@ class FieldController extends Controller
         if ($request->is('api/*')) {
             return ResponseHelper::success(null, trans('alert.delete_success'));
         } else {
-            return redirect()->back()->with('succcess', trans('alert.delete_success'));
+            return redirect()->back()->with('success', trans('alert.delete_success'));
         }
     }
 }
