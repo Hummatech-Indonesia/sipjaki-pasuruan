@@ -73,7 +73,7 @@
                                     Masukkan Email Anda dan instruksi akan dikirimkan kepada Anda!
                                 </div>
                             @endif
-                                <form class="form-horizontal" action="{{ route('send-email-reset-passsword') }}" method="POST">
+                                <form class="form-horizontal" action="{{ route('send.email.reset.passsword') }}" method="POST">
                                     @csrf
                                     @method('POST')
                                     <div class="mb-3">
