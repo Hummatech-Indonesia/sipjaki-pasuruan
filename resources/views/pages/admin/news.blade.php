@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class="modal fade" id="modal-create" tabindex="-1" id="modal-create" aria-labelledby="exampleModalLabel1">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <form action="{{ route('news.store') }}" enctype="multipart/form-data" method="POST">
                         @csrf
@@ -37,19 +37,21 @@
                         </div>
                         <div class="modal-body">
                             <form id="form-create" method="POST">
-                                <div class="mb-3">
-                                    <label id="name" for="recipient-name" class="control-label mb-2">Judul</label>
-                                    <input type="text" class="form-control" id="create-name" class="form-control"
-                                        name="title" id="nametext" aria-describedby="name"
-                                        placeholder="Masukan Kategori Kontrak" />
-                                </div>
-                                <div class="mb-3">
-                                    <label id="name" for="recipient-name" class="control-label mb-2">Masukan
-                                        Gambar</label>
-                                    <input type="file" class="form-control mb-3" name="thumbnail" id="thumbnail"
-                                        aria-describedby="name" placeholder="Masukan Kategori Kontrak"
-                                        accept="image/png, image/jpeg, image/jpg" />
-                                    <img src="" height="200" style="" id="preview-img" alt="">
+                                <div class="row">
+                                    <div class="col-md-6 col-12 mb-3">
+                                        <label id="name" for="recipient-name" class="control-label mb-2">Judul</label>
+                                        <input type="text" class="form-control" id="create-name" class="form-control"
+                                            name="title" id="nametext" aria-describedby="name"
+                                            placeholder="Masukan Kategori Kontrak" />
+                                    </div>
+                                    <div class="col-md-6 col-12 ">
+                                        <label id="name" for="recipient-name" class="control-label mb-2">Masukan
+                                            Gambar</label>
+                                        <input type="file" class="form-control mb-3" name="thumbnail" id="thumbnail"
+                                            aria-describedby="name" placeholder="Masukan Kategori Kontrak"
+                                            accept="image/png, image/jpeg, image/jpg" />
+                                        <img src="" height="200" style="" id="preview-img" alt="">
+                                    </div>
                                 </div>
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">berita</label>
@@ -130,7 +132,7 @@
         </div>
 
         <div class="modal fade" id="modal-update" tabindex="-1" aria-labelledby="exampleModalLabel1">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <form id="form-update" enctype="multipart/form-data" method="POST">
                         @method('PUT')
@@ -143,22 +145,25 @@
                                 aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <div class="mb-3">
-                                <label id="name" for="recipient-name" class="control-label mb-2">Judul</label>
-                                <input type="text" class="form-control" id="update-name" class="form-control"
-                                    name="title" id="nametext" aria-describedby="name"
-                                    placeholder="Masukan Kategori Kontrak" />
-                            </div>
-                            <div class="mb-3">
-                                <label id="name" for="recipient-name" class="control-label mb-2">Masukan
-                                    Gambar</label>
-                                <input type="file" class="form-control" name="thumbnail" id="update-thumbnail"
-                                    accept="image/png, image/jpeg, image/jpg" />
-                                <img src="" id="preview-update" alt="">
+                            <div class="row">
+                                <div class="col-md-6 col-12 mb-3">
+                                    <label id="name" for="recipient-name" class="control-label mb-2">Judul</label>
+                                    <input type="text" class="form-control" id="update-name" class="form-control"
+                                        name="title" id="nametext" aria-describedby="name"
+                                        placeholder="Masukan Kategori Kontrak" />
+                                </div>
+                                <div class="col-md-6 col-12 ">
+                                    <label id="name" for="recipient-name" class="control-label mb-2">Masukan
+                                        Gambar</label>
+                                    <input type="file" class="form-control mb-3" name="thumbnail" id="thumbnail"
+                                        aria-describedby="name" placeholder="Masukan Kategori Kontrak"
+                                        accept="image/png, image/jpeg, image/jpg" />
+                                    <img src="" height="200" style="" id="preview-img" alt="">
+                                </div>
                             </div>
                             <div class="mb-3">
                                 <label id="name" for="recipient-name" class="control-label mb-2">berita</label>
-                                <textarea name="content" id="update-content" class="form-control" cols="30" rows="10"></textarea>
+                                <textarea name="content" id="update" class="form-control" cols="30" rows="10"></textarea>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -220,13 +225,18 @@
         $(document).ready(function() {
             $('#summernote').summernote();
         });
+        $(document).ready(function() {
+            $('#update').summernote();
+        });
         $('.btn-edit').click(function() {
             const formData = getDataAttributes($(this).attr('id'))
             var actionUrl = `news/${formData['id']}`;
             const detailPhoto = document.getElementById("detail-photo");
-            detailPhoto.src = data['photo'];
 
             $('#form-update').attr('action', actionUrl);
+            var contentData = formData['content'];
+
+            $('#update').summernote('code', contentData);
 
             setFormValues('form-update', formData)
             $('#form-update').data('id', formData['id'])
