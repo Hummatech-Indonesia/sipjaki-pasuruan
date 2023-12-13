@@ -64,7 +64,7 @@ class LoginController extends Controller
         }
         else {
             auth()->logout();
-            return to_route('login');
+            return to_route('landing-page');
         }
     }
 

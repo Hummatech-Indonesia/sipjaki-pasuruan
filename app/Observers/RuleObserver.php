@@ -2,16 +2,16 @@
 
 namespace App\Observers;
 
-use App\Models\Rules;
+use App\Models\Rule;
 use Faker\Provider\Uuid;
 
 class RuleObserver
 {
     /**
-     * Handle the Rules "created" event.
+     * Handle the Rule "created" event.
      */
-    public function creating(Rules $rules): void
+    public function creating(Rule $rule): void
     {
-        $rules->id = Uuid::uuid();
+        $rule->id = Uuid::uuid();
     }
 }

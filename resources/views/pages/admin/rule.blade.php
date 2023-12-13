@@ -2,28 +2,6 @@
 
 @section('content')
     <h4 class="mb-3 font-size-18">Peraturan</h4>
-    <div class="d-flex justify-content-between">
-        <div class="">
-            <form action="/export-workers" method="GET" id="fomr-export">
-                <button type="button" class="btn text-white fw-normal" style="background-color:#1B3061;">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="14" width="12" fill="white"
-                        viewBox="0 0 448 512">
-                        <path
-                            d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3V320c0 17.7 14.3 32 32 32s32-14.3 32-32V109.3l73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32v64c0 53 43 96 96 96H352c53 0 96-43 96-96V352c0-17.7-14.3-32-32-32s-32 14.3-32 32v64c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V352z" />
-                    </svg>
-                    <span class="ms-2">Import</span>
-                </button>
-                <button type="submit" class="btn text-white fw-normal" style="background-color:#2CA67A;">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="14" width="14" fill="white"
-                        transform="rotate(90)" viewBox="0 0 512 512">
-                        <path
-                            d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 192 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128zM160 96c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 32C43 32 0 75 0 128L0 384c0 53 43 96 96 96l64 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l64 0z" />
-                    </svg>
-                    <span class="ms-2">Export</span>
-                </button>
-            </form>
-        </div>
-    </div>
     <div class="modal fade" tabindex="-1" id="modal-create" aria-labelledby="exampleModalLabel1">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -40,39 +18,44 @@
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label id="category" for="recipient-category"
-                                        class="control-label mb-2">Category</label>
-                                    <input type="text" class="form-control" id="create-category" class="form-control"
-                                        name="category" aria-describedby="name" placeholder="Masukkan Nama" />
+                                        class="control-label mb-2">Kategori</label>
+                                    <select name="rule_category_id" class="form-control" id="create-category">
+                                        @foreach ($ruleCategories as $ruleCategory)
+                                            <option value="{{ $ruleCategory->id }}"
+                                                {{ old('rule_category_id') == $ruleCategory->id ? 'selected' : '' }}>
+                                                {{ $ruleCategory->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Nomor</label>
-                                    <input type="text" class="form-control" id="create-name" class="form-control"
-                                        name="code" aria-describedby="name" placeholder="Masukkan Jenis Sertifikat" />
+                                    <input type="text" class="form-control" id="create-name" name="code"
+                                        aria-describedby="name" placeholder="Masukkan Jenis Sertifikat"
+                                        value="{{ old('code') }}" />
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="mb-3">
-                                    <label id="name" for="recipient-name" class="control-label mb-2">FIle</label>
-                                    <input type="file" class="form-control" id="create-name" class="form-control"
-                                        name="file" aria-describedby="name" placeholder="Masukkan Pendidikan" />
+                                    <label id="name" for="recipient-name" class="control-label mb-2">File</label>
+                                    <input type="file" class="form-control" id="create-name" name="file"
+                                        aria-describedby="name" placeholder="Masukkan Pendidikan" />
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Tahun</label>
-                                    <select name="fiscal_year_id" class="form-select" id="">
-                                        @foreach ($fiscalYears as $fiscalYear)
-                                            <option value="{{ $fiscalYear->id }}">{{ $fiscalYear->name }}</option>
-                                        @endforeach
-                                    </select>
+                                    <input type="number" name="year" id="" class="form-control"
+                                        value="{{ old('year') }}">
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Judul</label>
-                                    <textarea name="title" id="" class="form-control" cols="30" rows="10"></textarea>
+                                    <input name="title" id="" class="form-control" type="text"
+                                        value="{{ old('title') }}">
                                 </div>
                             </div>
                         </div>
@@ -91,7 +74,7 @@
         </div>
     </div>
 
-    <div class="mt-4 rounded p-4" style="background-color: #fff;box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);">
+    <div class="mt-4 mb-3 rounded p-4" style="background-color: #fff;box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);">
         <div class="d-flex justify-content-between">
             <h6 class="mb-3 font-size-14">Berikut Daftar Peraturan</h6>
             <div>
@@ -102,7 +85,7 @@
         </div>
         @if ($errors->any())
             @foreach ($errors->all() as $error)
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <div class="alert alert-danger alert-dismissible mt-3 fade show" role="alert">
                     {{ $error }}
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
@@ -131,17 +114,17 @@
                     @forelse ($rules as $index => $rule)
                         <tr>
                             <td class="text-center">{{ $index + 1 }}</td>
-                            <td class="text-center">Undang-Undang</td>
+                            <td class="text-center">{{ $rule->ruleCategory->name }}</td>
                             <td class="text-center">{{ $rule->code }}</td>
-                            <td class="text-center">{{ $rule->fiscalYear->name }}</td>
+                            <td class="text-center">{{ $rule->year }}</td>
                             <td>{{ $rule->title }}</td>
                             <td class="d-flex flex-row gap-3 justify-content-center"
                                 style="border-bottom: 1px solid #fff">
                                 <button class="btn btn-detail waves-effect waves-light text-white"
                                     id="btn-detail-{{ $rule->id }}" data-title="{{ $rule->title }}"
                                     data-code="{{ $rule->code }}"
-                                    data-fiscal_year_name="{{ $rule->fiscalYear->name }}"
-                                    style="background-color: #1B3061">
+                                    data-rule_category_name="{{ $rule->ruleCategory->name }}"
+                                    data-year="{{ $rule->year }}" style="background-color: #1B3061">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19"
                                         viewBox="0 0 24 24" fill="none">
                                         <path d="M4.5 12.5C7.5 6 16.5 6 19.5 12.5" stroke="white" stroke-width="1.5"
@@ -153,8 +136,10 @@
                                     </svg> Detail
                                 </button>
                                 <button type="button" id="btn-edit-{{ $rule->id }}"
-                                    data-title="{{ $rule->title }}" data-code="{{ $rule->code }}"
-                                    data-fiscal_year_id="{{ $rule->fiscal_year_id }}" data-id="{{ $rule->id }}"
+                                    data-title="{{ $rule->title }}"
+                                    data-rule_category_id="{{ $rule->rule_category_id }}"
+                                    data-code="{{ $rule->code }}" data-year="{{ $rule->year }}"
+                                    data-id="{{ $rule->id }}"
                                     class="btn waves-effect waves-light d-flex btn-edit flex-row gap-1 justify-content-evenly"
                                     style="width: 90px; background-color: #FFC928; color: white"><i
                                         class="bx bx-bx bxs-edit fs-4"></i>
@@ -166,15 +151,17 @@
                                     Hapus</button>
                             </td>
                             <td>
-                                <button type="submit" class="btn text-white fw-normal"
-                                    style="background-color:#2CA67A;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" height="14" width="14" fill="white"
-                                        transform="rotate(90)" viewBox="0 0 512 512">
-                                        <path
-                                            d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 192 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128zM160 96c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 32C43 32 0 75 0 128L0 384c0 53 43 96 96 96l64 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l64 0z" />
-                                    </svg>
-                                    <span class="ms-2">Downlaoad</span>
-                                </button>
+                                <a href="{{ asset('storage/' . $rule->file) }}">
+                                    <button type="submit" class="btn text-white fw-normal"
+                                        style="background-color:#2CA67A;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="14" width="14"
+                                            fill="white" transform="rotate(90)" viewBox="0 0 512 512">
+                                            <path
+                                                d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 192 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128zM160 96c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 32C43 32 0 75 0 128L0 384c0 53 43 96 96 96l64 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l64 0z" />
+                                        </svg>
+                                        <span class="ms-2">Download</span>
+                                    </button>
+                                </a>
                             </td>
                         </tr>
                     @empty
@@ -213,9 +200,12 @@
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label id="category" for="recipient-category"
-                                        class="control-label mb-2">Category</label>
-                                    <input type="text" class="form-control" id="create-category" class="form-control"
-                                        name="category" aria-describedby="name" placeholder="Masukkan Nama" />
+                                        class="control-label mb-2">Kategori</label>
+                                    <select name="rule_category_id" class="form-control" id="create-category">
+                                        @foreach ($ruleCategories as $ruleCategory)
+                                            <option value="{{ $ruleCategory->id }}">{{ $ruleCategory->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-6">
@@ -235,17 +225,15 @@
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Tahun</label>
-                                    <select name="fiscal_year_id" class="form-select" id="">
-                                        @foreach ($fiscalYears as $fiscalYear)
-                                            <option value="{{ $fiscalYear->id }}">{{ $fiscalYear->name }}</option>
-                                        @endforeach
-                                    </select>
+                                    <input type="number" name="year" id="" class="form-control">
+
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Judul</label>
-                                    <textarea name="title" id="" class="form-control" cols="30" rows="10"></textarea>
+                                    <input name="title" id="" class="form-control" type="text"
+                                        value="{{ old('title') }}">
                                 </div>
                             </div>
                         </div>
@@ -265,7 +253,7 @@
     </div>
     <div class="modal fade bs-example-modal-md" id="modal-detail" tabindex="-1" role="dialog"
         aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-md">
+        <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #1B3061">
                     <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Detail</h5>
@@ -293,8 +281,8 @@
                                         <p class="mb-2 text-dark">Nomor :</p>
                                     </div>
                                     <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                id="detail-code"></span></p>
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-code"></span>
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="row mb-1">
@@ -302,32 +290,17 @@
                                         <p class="mb-2 text-dark">Tahun :</p>
                                     </div>
                                     <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                id="detail-fiscal_year_name"></span></p>
-                                    </div>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark">file :</p>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <button type="submit" class="btn text-white fw-normal"
-                                        style="background-color:#2CA67A;">
-                                        <svg xmlns="http://www.w3.org/2000/svg" height="14" width="14" fill="white"
-                                            transform="rotate(90)" viewBox="0 0 512 512">
-                                            <path
-                                                d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 192 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128zM160 96c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 32C43 32 0 75 0 128L0 384c0 53 43 96 96 96l64 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l64 0z" />
-                                        </svg>
-                                        <span class="ms-2">Downlaoad</span>
-                                    </button>
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-year"></span>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
     </div>
     <x-delete-modal-component />
 @endsection
