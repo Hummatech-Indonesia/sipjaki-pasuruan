@@ -6,7 +6,7 @@ use App\Enums\UploadDiskEnum;
 use App\Http\Requests\NewsRequest;
 use App\Http\Requests\RuleRequest;
 use App\Models\News;
-use App\Models\Rules;
+use App\Models\Rule;
 use App\Traits\UploadTrait;
 
 class RuleService
@@ -24,7 +24,8 @@ class RuleService
     {
         $data = $request->validated();
         return [
-            'fiscal_year_id' => $data['fiscal_year_id'],
+            'rule_category_id'=>$data['rule_category_id'],
+            'year' => $data['year'],
             'title' => $data['title'],
             'code' => $data['code'],
             'file' => $this->upload(UploadDiskEnum::RULE->value, $request->file('file')),
@@ -39,7 +40,7 @@ class RuleService
      * @param  mixed $rules
      * @return array
      */
-    public function update(RuleRequest $request, Rules $rules): array
+    public function update(RuleRequest $request, Rule $rule): array
     {
         $data = $request->validated();
         $old_file = $rules->file;
@@ -48,7 +49,8 @@ class RuleService
             $old_file = $this->upload(UploadDiskEnum::RULE->value, $request->file('file'));
         }
         return [
-            'fiscal_year_id' => $data['fiscal_year_id'],
+            'rule_category_id'=>$data['rule_category_id'],
+            'year' => $data['year'],
             'title' => $data['title'],
             'code' => $data['code'],
             'file' => $old_file,

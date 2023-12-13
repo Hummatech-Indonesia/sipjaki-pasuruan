@@ -11,6 +11,7 @@ use App\Http\Requests\RuleRequest;
 use App\Http\Resources\RuleResource;
 use App\Contracts\Interfaces\RuleInterface;
 use App\Contracts\Interfaces\FiscalYearInterface;
+use App\Contracts\Interfaces\RuleCategoriesInterface;
 use App\Contracts\Interfaces\ServiceProviderInterface;
 
 class RuleController extends Controller
@@ -19,14 +20,14 @@ class RuleController extends Controller
     private RuleInterface $rule;
     private RuleService $service;
     private ServiceProviderInterface $serviceProvider;
-    private FiscalYearInterface $fiscalYear;
+    private RuleCategoriesInterface $ruleCategory;
 
-    public function __construct(RuleInterface $rule, RuleService $service, ServiceProviderInterface $serviceProvider,FiscalYearInterface $fiscalYear)
+    public function __construct(RuleInterface $rule, RuleService $service, ServiceProviderInterface $serviceProvider,RuleCategoriesInterface $ruleCategory )
     {
         $this->rule = $rule;
         $this->service = $service;
         $this->serviceProvider = $serviceProvider;
-        $this->fiscalYear = $fiscalYear;
+        $this->ruleCategory = $ruleCategory;
     }
 
     /**
@@ -35,14 +36,14 @@ class RuleController extends Controller
     public function index(Request $request)
     {
         $rules = $this->rule->customPaginate($request, 10);
-        $fiscalYears = $this->fiscalYear->get();
+        $ruleCategory = $this->ruleCategory->customPaginate($request,100);
         if ($request->is('api/*')) {
             $data['paginate'] = $this->customPaginate($rules->currentPage(), $rules->lastPage());
             $data['data'] = RuleResource::collection($rules);
             return ResponseHelper::success($data);
         } else {
             $serviceProviders = $this->serviceProvider->get();
-            return view('pages.admin.rule', ['rules' => $rules, 'serviveProviders' => $serviceProviders,'fiscalYears' => $fiscalYears]);
+            return view('pages.admin.rule', ['rules' => $rules, 'serviveProviders' => $serviceProviders,'ruleCategories' => $ruleCategory]);
         }
     }
 

@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Rule extends Model
 {
@@ -15,4 +16,8 @@ class Rule extends Model
     public $incrementing = false;
     public $keyType = 'char';
 
+    public function ruleCategory(): BelongsTo
+    {
+        return $this->belongsTo(RuleCategory::class);
+    }
 }
