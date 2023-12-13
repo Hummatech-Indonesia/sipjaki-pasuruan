@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('trainings', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->foreignUuid('fund_source_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignUuid('training_method_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignUuid('fiscal_year_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignUuid('sub_classifications_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();

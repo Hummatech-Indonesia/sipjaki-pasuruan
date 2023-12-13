@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Base\Interfaces\HasDinas;
 use App\Base\Interfaces\HasFiscalYear;
+use App\Base\Interfaces\HasFundSource;
 use Illuminate\Database\Eloquent\Model;
 use App\Base\Interfaces\HasTrainingMethod;
 use App\Base\Interfaces\HasTrainingMembers;
@@ -13,7 +14,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Training extends Model implements HasTrainingMethod,HasFiscalYear,HasSubClassification,HasQualificationLevel,HasTrainingMembers
+class Training extends Model implements HasFundSource,HasTrainingMethod,HasFiscalYear,HasSubClassification,HasQualificationLevel,HasTrainingMembers
 {
     use HasFactory;
 
@@ -22,6 +23,7 @@ class Training extends Model implements HasTrainingMethod,HasFiscalYear,HasSubCl
     protected $fillable = [
         'id',
         'training_method_id',
+        'fund_source_id',
         'fiscal_year_id',
         'sub_classifications_id',
         'qualification_level_id',
@@ -38,6 +40,15 @@ class Training extends Model implements HasTrainingMethod,HasFiscalYear,HasSubCl
     public $keyType = 'char';
 
 
+    /**
+     * Get the fundSource that owns the Training
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function fundSource(): BelongsTo
+    {
+        return $this->belongsTo(FundSource::class);
+    }
     /**
      * Get the dinas that owns the Training
      *

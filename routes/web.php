@@ -68,9 +68,7 @@ Route::get('/kecelakaan', function () {
     return view('kecelakaan');
 })->name('kecelakaan');
 
-Route::get('/bantuan', function () {
-    return view('faq');
-})->name('bantuan');
+Route::get('bantuan',[LandingController::class,'faq'])->name('bantuan');
 
 Route::get('data-paket-pekerjaan', [LandingController::class, 'project'])->name('paket.pekerjaan');
 Route::get('data-paket-pekerjaan/{dinas}', [LandingController::class, 'projectDetail'])->name('detail.project');

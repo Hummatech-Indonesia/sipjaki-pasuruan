@@ -59,7 +59,7 @@
                                     <td class="fs-5">{{$item->user->name}}</td>
                                     <td class="fs-5 text-center">{{$item->projects_count}}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('detail-project',['dinas' => $item->id]) }}" class="text-white btn" style="background-color: #1B3061">Detail</a>
+                                        <a href="{{ route('detail.project',['dinas' => $item->id]) }}" class="text-white btn" style="background-color: #1B3061">Detail</a>
                                     </td>
                                 </tr>
                                 @empty

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Interfaces\DinasInterface;
+use App\Contracts\Interfaces\FaqInterface;
 use App\Contracts\Interfaces\NewsInterface;
 use App\Contracts\Interfaces\RuleInterface;
 use App\Contracts\Interfaces\TrainingInterface;
@@ -18,13 +19,15 @@ class LandingController extends Controller
     private NewsInterface $news;
     private TrainingInterface $training;
     private RuleInterface $rule;
+    private FaqInterface $faq;
 
-    public function __construct(DinasInterface $dinas, NewsInterface $news, TrainingInterface $training,RuleInterface $rule)
+    public function __construct(FaqInterface $faq,DinasInterface $dinas, NewsInterface $news, TrainingInterface $training,RuleInterface $rule)
     {
         $this->dinas = $dinas;
         $this->news = $news;
         $this->training = $training;
         $this->rule = $rule;
+        $this->faq = $faq;
     }
     /**
      * project
@@ -105,8 +108,16 @@ class LandingController extends Controller
         return view('pelatihan', compact('trainings'));
     }
 
-    public function rules(Request $request) : View {
+    public function rules(Request $request) : View 
+    {
         $rules = $this->rule->customPaginate($request,10);
         return view('peraturan',compact('rules'));
+    }
+
+    public function faq() : View 
+    {
+        $faqs = $this->faq->get();
+
+        return view('faq',compact('faqs'));
     }
 }
