@@ -146,10 +146,10 @@ Route::get('service-provider-project-detail/{service_provider_project}', [Servic
 Route::get('download-all-service-provider-project/{project}', [ServiceProviderProjectController::class, 'downloadServiceProviderProject']);
 
 Route::middleware(['role:dinas'])->group(function () {
-    Route::resource('accident', AccidentController::class)->except('create', 'show');
-    Route::put('accident.update/{accident}', [AccidentController::class, 'update'])->name('accident.update');
-    Route::get('accident.show/{accident}', [AccidentController::class, 'show'])->name('accident.show');
-    Route::delete('accident.destroy/{accident}', [AccidentController::class, 'destroy'])->name('accident.destroy');
+    // Route::resource('accident', AccidentController::class)->except('create', 'show');
+    Route::put('accident-update/{accident}', [AccidentController::class, 'update'])->name('accident.update');
+    Route::get('accident-show/{accident}', [AccidentController::class, 'show'])->name('accident.show');
+    Route::delete('accident-destroy/{accident}', [AccidentController::class, 'destroy'])->name('accident.destroy');
     Route::resources([
         'projects' => ProjectController::class,
     ]);

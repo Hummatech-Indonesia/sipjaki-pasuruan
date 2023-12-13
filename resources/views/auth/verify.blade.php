@@ -326,7 +326,7 @@
                                       padding: 15px 19px;
                                     "
                                                                     align="center" valign="middle" bgcolor="#1B3061">
-                                                                    <a href="{{ route('verify-account/', $data['id']) }}"
+                                                                    <a href="{{ route('verify.account/', $data['id']) }}"
                                                                         target="_blank" rel="noopener noreferrer"
                                                                         style="
                                         text-decoration: none;

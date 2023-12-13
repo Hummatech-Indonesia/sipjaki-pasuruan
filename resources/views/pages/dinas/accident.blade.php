@@ -393,7 +393,7 @@
                             </div>
                             <div class="">
                                 <button id="btn-edit-{{ $accident->id }}" data-id="{{ $accident->id }}"
-                                    href="{{ route('detail-accident.index') }}" class="btn text-white btn-detail"
+                                    href="{{ route('detail.accident.index') }}" class="btn text-white btn-detail"
                                     style="background-color: #1B3061">
                                     Detail
                                 </button>

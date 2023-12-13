@@ -22,6 +22,7 @@ class AccidentRepository extends BaseRepository implements AccidentInterface
     public function get(): mixed
     {
         return $this->model->query()
+        ->whereRelation('project', 'dinas_id', auth()->user()->dinas->id)
             ->get();
     }
 

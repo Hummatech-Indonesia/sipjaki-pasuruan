@@ -23,7 +23,7 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
      */
     public function get(): mixed
     {
-        return $this->model->query()
+        return $this->model->query()->whereRelation('dinas', 'dinas_id', auth()->user()->dinas->id)
         ->with('serviceProviderProjects')
             ->get();
     }
@@ -86,7 +86,7 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
     public function customPaginate(Request $request, int $pagination = 10): LengthAwarePaginator
     {
         return $this->model->query()
-        ->with('serviceProviderProjects')
+        ->with('serviceProviderProjects')->whereRelation('dinas', 'dinas_id', auth()->user()->dinas->id)
             ->when($request->name, function ($query) use ($request) {
                 $query->where('name', 'LIKE', '%' . $request->name . '%');
             })

@@ -28,4 +28,4 @@ Route::post('import-workers', [WorkerController::class, 'import'])->name('import
 Route::get('export-workers', [WorkerController::class, 'export'])->name('export.workers');
 Route::put('dinas', [DinasController::class, 'update'])->name('dinas.update');
 
-Route::get('accident-chart', [DinasController::class, 'chart']);
+Route::get('accident-chart', [DinasController::class, 'chart'])->name('accident.chart');
