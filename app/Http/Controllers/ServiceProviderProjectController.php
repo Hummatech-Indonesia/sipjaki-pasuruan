@@ -8,6 +8,7 @@ use App\Contracts\Interfaces\ServiceProviderProjectInterface;
 use App\Helpers\ResponseHelper;
 use App\Http\Requests\ServiceProviderProjectRequest;
 use App\Http\Resources\ProjectResource;
+use App\Http\Resources\ServiceProviderProjectResource;
 use App\Models\Project;
 use App\Models\ServiceProviderProject;
 use App\Services\ServiceProviderProjectService;
@@ -84,7 +85,8 @@ class ServiceProviderProjectController extends Controller
     public function show(ServiceProviderProject $service_provider_project) {
         $projectYear = $service_provider_project->project->year;
         $projectName = $service_provider_project->project->name;
-        return view('pages.service-provider.detail-progress', ['service_provider_project' => $service_provider_project]);
+        return ResponseHelper::success(ServiceProviderProjectResource::make($service_provider_project));
+        // return view('pages.service-provider.detail-progress', ['service_provider_project' => $service_provider_project]);
     }
 
     /**
