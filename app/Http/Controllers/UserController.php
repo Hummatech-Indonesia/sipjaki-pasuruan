@@ -7,6 +7,7 @@ use App\Contracts\Interfaces\FieldInterface;
 use App\Contracts\Interfaces\UserInterface;
 use App\Helpers\ResponseHelper;
 use App\Helpers\UserHelper;
+use App\Http\Requests\UpdatePasswordRequest;
 use App\Http\Requests\UpdateProfileRequest;
 use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
@@ -107,5 +108,19 @@ class UserController extends Controller
         } else {
             return redirect()->back(null, trans('alert.profile_updated'));
         }
+    }
+
+    /**
+     * updatePassword
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    public function updatePassword(UpdatePasswordRequest $request)
+    {
+        $data = $request->validated();
+        $data['password'] = bcrypt($data['password']);
+        $this->user->update(UserHelper::getUserId(), $data);
+        return redirect()->back()->with('success', trans('alert.update_success'));
     }
 }
