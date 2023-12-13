@@ -5,28 +5,80 @@
             vertical-align: top;
         }
     </style>
-    <h4 class="mb-3 font-size-18">Detail Daftar Progres</h4>
     <div class="d-flex justify-content-between mb-3">
-        <div class="d-flex position-relative">
-            <div class="btn btn-success btn-md rounded-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="me-1" width="15" height="15" viewBox="0 0 24 24"
-                    fill="none">
-                    <path
-                        d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15"
-                        stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M7 10L12 15L17 10" stroke="white" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                    <path d="M12 15V3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>Export
-            </div>
+        <div class="">
+            <h4 class="mb-3 font-size-18" style="font-weight: 800">Detail Daftar Progres</h4>
         </div>
-
         <div>
             <a href="/work-package" class="btn btn-warning btn-md rounded-3">
                 <i class="fas fa-arrow-left" style="margin-right:10px"></i>Kembali
             </a>
         </div>
     </div>
+    {{-- modal detail  --}}
+    <div class="modal fade bs-example-modal-md" id="modal-detail" tabindex="-1" role="dialog"
+        aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #1B3061">
+                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Detail Progres</h5>
+                    <button type="button" class="btn-close" style="background-color: white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="btn btn-sm mb-2 text-dark rounded-3 year-detail" style="background-color: #E4ECFF;">
+                                
+                            </div>
+                            <p class="mt-1 fs-5 text-dark mb-2" style="font-weight: 700">
+                                <span id="detail-name " class="name-detail"></span>
+                            </p>
+                            <div class="">
+                                <div class="row mb-1">
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark">Progress (%) :</p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
+                                                id="detail-birth_date" class="progres-detail"></span></p>
+                                    </div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark">Tanggal Mulai :</p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
+                                                id="detail-education" class="date_start-detail"></span></p>
+                                    </div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark">Tanggal Akhir :</p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
+                                                id="detail-registration_number" class="date_finish-detail"></span></p>
+                                    </div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark">Deskripsi :</p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
+                                                id="detail-cerificate" class="description-detail"></span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+    {{-- end modal  --}}
     <div class="row">
         <div class="col-md-12">
             <div class="card rounded-4">
@@ -121,7 +173,7 @@
                         </div>
                         <div>
                             <a href="/download-all-service-provider-project/{{ $project->id }}"
-                                class="btn btn-success btn-sm rounded-3 me-2">
+                                class="btn btn-success  rounded-3 me-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="me-1" width="15" height="15"
                                     viewBox="0 0 24 24" fill="none">
                                     <path
@@ -133,7 +185,7 @@
                                         stroke-linejoin="round" />
                                 </svg> Download Semua
                             </a>
-                            <div data-bs-toggle="modal" data-bs-target="#modal-create" class="btn btn-sm rounded-3"
+                            <div data-bs-toggle="modal" data-bs-target="#modal-create" class="btn  rounded-3"
                                 style="background-color:#1B3061; color:white;">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
                                     fill="none">
@@ -148,31 +200,12 @@
                         </div>
 
                     </div>
-                    @if ($errors->has('date_start'))
-                        <div class="alert mt-3 alert-danger alert-dismissible fade show" role="alert">
-                            {{ $errors->first('date_start') }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    @endif
-                    @if ($errors->has('date_finish'))
-                        <div class="alert mt-3 alert-danger alert-dismissible fade show" role="alert">
-                            {{ $errors->first('date_finish') }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    @endif
-                    @if ($errors->has('description'))
-                        <div class="alert mt-3 alert-danger alert-dismissible fade show" role="alert">
-                            {{ $errors->first('description') }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    @endif
-                    @if ($errors->has('progres'))
-                        <div class="alert mt-3 alert-danger alert-dismissible fade show" role="alert">
-                            {{ $errors->first('progres') }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                aria-label="Close"></button>
-                        </div>
-                    @endif
+                    @if (session('errors'))
+                    <div class="alert mt-3 alert-danger alert-dismissible fade show" role="alert">
+                        {!! session('errors') !!}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
                     <div class="table-responsive">
                         <table class="table mb-0">
 
@@ -184,7 +217,9 @@
                                     <th>Deskripsi</th>
                                     <th>Progres (%)</th>
                                     <th>Aksi</th>
-                                    <th>file</th>
+                                    <th>
+                                        File
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -198,8 +233,8 @@
                                         <td>
                                             <div class="d-flex justify-content-header gap-2">
                                                 <div class="">
-                                                    <a href="/service-provider-project-detail/{{ $serviceProviderProjec->id }}"
-                                                        class="btn btn-sm" style="background-color: #1B3061;">
+                                                    <button type="button" id="{{ $serviceProviderProjec->id }}" data-id="{{ $serviceProviderProjec->id }}"
+                                                        class="btn btn-sm btn-detail" style="background-color: #1B3061;">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="20"
                                                             height="20" viewBox="0 0 24 24" fill="none">
                                                             <path d="M4.5 12.5C7.5 6 16.5 6 19.5 12.5" stroke="white"
@@ -210,7 +245,7 @@
                                                                 stroke="white" stroke-width="2" stroke-linecap="round"
                                                                 stroke-linejoin="round" />
                                                         </svg>
-                                                    </a>
+                                                    </button>
                                                 </div>
                                                 <div class="">
                                                     <button class="btn btn-edit btn-sm btn-warning"
@@ -309,7 +344,7 @@
                             <div class="col-lg-3">
                                 <div class="mb-3 ajax-select mt-3 mt-lg-0">
                                     <label class="form-label">Tanggal Mulai</label>
-                                    <input type="date" class="form-control" name="date_start" id="">
+                                    <input type="date" class="form-control" value="{{ old('date_start') }}" name="date_start" id="">
 
                                 </div>
                             </div>
@@ -317,32 +352,31 @@
                             <div class="col-lg-3">
                                 <div class="mb-3 ajax-select mt-3 mt-lg-0">
                                     <label class="form-label">Tanggal Akhir</label>
-                                    <input type="date" class="form-control" name="date_finish" id="">
+                                    <input type="date" class="form-control" value="{{ old('date_finish') }}" name="date_finish" id="">
                                 </div>
                             </div>
 
                             <div class="col-lg-3">
                                 <div class="mb-3 ajax-select mt-3 mt-lg-0">
                                     <label class="form-label">Progres (%)</label>
-                                    <input type="text" class="form-control" name="progres" id="">
+                                    <input type="text" class="form-control" value="{{ old('progres') }}" name="progres" id="">
                                 </div>
                             </div>
 
                             <div class="col-lg-3">
                                 <div class="mb-3 ajax-select mt-3 mt-lg-0">
                                     <label class="form-label">File Pendukung</label>
-                                    <input class="form-control" type="file" name="file" id="">
+                                    <input class="form-control" type="file" value="{{ old('file') }}" name="file" id="">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
                                 <label class="form-label" for="">Deskripsi</label>
-                                <textarea class="form-control" name="description" id="" cols="20" rows="5"></textarea>
+                                <textarea class="form-control" name="description" id="" cols="20" rows="5">{{ old('description') }}</textarea>
                             </div>
                         </div>
                         <div class="d-flex d-row justify-content-end mt-3">
-
                             <button type="button" class="btn btn-danger btn-md me-2" data-bs-dismiss="modal"
                                 aria-label="Close">Batal</button>
                             <button type="submit" style="background-color: #1B3061; color:white;"
@@ -369,7 +403,7 @@
                             <div class="col-lg-3">
                                 <div class="mb-3 ajax-select mt-3 mt-lg-0">
                                     <label class="form-label">Tanggal Mulai</label>
-                                    <input type="date" class="form-control" name="date_start" id="update-date_start">
+                                    <input type="date" class="form-control" value="{{ old('date_start') }}" name="date_start" id="update-date_start">
 
                                 </div>
                             </div>
@@ -377,7 +411,7 @@
                             <div class="col-lg-3">
                                 <div class="mb-3 ajax-select mt-3 mt-lg-0">
                                     <label class="form-label">Tanggal Akhir</label>
-                                    <input type="date" class="form-control" name="date_finish"
+                                    <input type="date" class="form-control" value="{{ old('date_finish') }}" name="date_finish"
                                         id="update-date_finish">
                                 </div>
                             </div>
@@ -385,21 +419,21 @@
                             <div class="col-lg-3">
                                 <div class="mb-3 ajax-select mt-3 mt-lg-0">
                                     <label class="form-label">Progres (%)</label>
-                                    <input type="text" class="form-control" name="progres" id="update-progres">
+                                    <input type="text" class="form-control" name="progres" value="{{ old('progres') }}" id="update-progres">
                                 </div>
                             </div>
 
                             <div class="col-lg-3">
                                 <div class="mb-3 ajax-select mt-3 mt-lg-0">
                                     <label class="form-label">File Pendukung</label>
-                                    <input class="form-control" type="file" name="file" id="update-file">
+                                    <input class="form-control" type="file" name="file" value="{{ old('file') }}" id="update-file">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
                                 <label class="form-label" for="">Deskripsi</label>
-                                <textarea class="form-control" name="description" id="update-description" cols="20" rows="5"></textarea>
+                                <textarea class="form-control" name="description" id="update-description" cols="20" rows="5">{{ old('description') }}</textarea>
                             </div>
                         </div>
                         <div class="d-flex d-row justify-content-end mt-3">
@@ -427,12 +461,34 @@
             });
         </script>
     @endif
+
     <script>
         $('.btn-delete').click(function() {
             id = $(this).data('id')
             var actionUrl = `/service-provider-projects/${id}`;
             $('#form-delete').attr('action', actionUrl);
             $('#modal-delete').modal('show')
+        })
+        $('.btn-detail').click(function() {
+            id = $(this).data('id')
+            get()            
+            function get() {
+                $.ajax({
+                    url: "/service-provider-project-detail/" + id,
+                    type: 'GET',
+                    dataType: "JSON",
+                    success: function(response) {
+                        $('.year-detail').text(response.data.project.year)
+                        $('.name-detail').text(response.data.project.name)
+                        $('.progres-detail').text(response.data.progres)
+                        $('.date_start-detail').text(response.data.date_start)
+                        $('.date_finish-detail').text(response.data.date_finish)
+                        $('.description-detail').text(response.data.description)
+                        $('.file-detail').attr('href' ,response.data.file)
+                    }
+                });
+            }
+            $('#modal-detail').modal('show')
         })
         $('.btn-edit').click(function() {
             const formData = getDataAttributes($(this).attr('id'))

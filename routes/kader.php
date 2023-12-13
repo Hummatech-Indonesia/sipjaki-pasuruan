@@ -47,7 +47,6 @@ Route::get('sub-qualification', function () { return view('pages.sub-qualificati
 Route::get('verify.account/{id}' , [VerificationController::class ,'verifyacount'])->name('verify.account');
 // verifikasi account 
 
-
 // pekerjaan 
 Route::get('work-package', [ServiceProviderProjectController::class, 'index'])->name('work.package');
 Route::get('detail-project/{project}', [ProjectController::class, 'projectDetail']);
@@ -56,3 +55,6 @@ Route::get('service-provider-project-detail/{service_provider_project}', [Servic
 // download 
 Route::get('download-all-service-provider-project/{project}' , [ServiceProviderProjectController::class ,'downloadServiceProviderProject'])->name('download.all.service.provider.project');
 Route::get('download-service-provider-project/{service_provider_project}', [ServiceProviderProjectController::class, 'downloadFile'])->name('download.service-provider.project');
+
+// Faq 
+Route::get('faq', function () { return view('pages.admin.faq'); })->name('faq');

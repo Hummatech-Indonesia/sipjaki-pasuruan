@@ -1,8 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <h4 class="mb-3 font-size-18">Paket Pekerjaan</h4>
-    <div class="d-flex justify-content-header mb-3 col-12 col-lg-3 col-xxl-4">
-        <div class="">
+        <div class="col-12 col-lg-4 col-xxl-3 mb-3">
             <div class="input-group">
                 <input type="text" name="name" value="" class="form-control" placeholder="Search">
                 <div class="input-group-append">
@@ -13,10 +12,6 @@
                 </div>
             </div>
         </div>
-        <div class="d-flex btn btn-success btn-md ms-2">
-            <i class="bx bxs-download mt-1 me-1"></i>Export
-        </div>
-    </div>
     </div>
     <div class="row">
         @forelse ($serviceProviderProjects as $serviceProviderProject)
