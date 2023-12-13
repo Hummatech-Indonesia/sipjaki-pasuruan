@@ -25,7 +25,6 @@
     <style>
         .btn-sipjaki {
             background-color: #1B3061;
-            color: white
         }
 
         thead .table-sipjaki {

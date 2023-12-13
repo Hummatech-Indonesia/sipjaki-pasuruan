@@ -39,7 +39,7 @@ class ImagesController extends Controller
             $data['data'] = ImageResource::collection($images);
             return ResponseHelper::success($data);
         } else {
-            return view('pages.news', ['images' => $images]);
+            return view('pages.admin.input-image', ['images' => $images]);
         }
     }
 

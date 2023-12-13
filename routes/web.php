@@ -81,6 +81,9 @@ Route::get('/opd', function () {
 
 
 Route::middleware('auth')->group(function () {
+    Route::get('profile', function (){
+        return view('pages.profile');
+    })->name('profile');
     Route::middleware('role:superadmin')->group(function () {
         Route::resources([
             'contract-categories' => ContractCategoryController::class,

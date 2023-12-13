@@ -14,11 +14,16 @@ class DinasRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'field_id' => 'required|exists:fields,id',
-            'type' => 'required|exists:types,id',
             'section_id' => 'required|exists:sections,id',
+            'type_id' => 'required|exists:types,id',
+            'field_id' => 'required|array',
+            'position' => 'required',
+            'name_official' => 'required|max:255',
+            'email_official' => 'required|email|max:255',
+            'field_id.*' => 'exists:fields,id',
             'address' => 'required',
-            'phone_number' => 'required|max:255',
+            'phone_number' => 'required|numeric',
+            'mobile_phone_number' => 'required|numeric',
             'echelon' => 'required|max:4',
             'local_regulation' => 'required|max:255',
             'number_local_regulation' => 'required|max:255',
@@ -28,7 +33,8 @@ class DinasRequest extends FormRequest
             'number_sk_sipjaki' => 'required|max:255',
             'activity' => 'required|max:255',
             'last_year_budget' => 'required|max:10',
-            'budget_this_year' => 'required|max:10'
+            'budget_this_year' => 'required|max:10',
+            'sturucture_organization_file' => 'required|mimes:png,jpg,jpeg'
         ];
     }
 }

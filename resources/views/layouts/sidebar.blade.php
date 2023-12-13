@@ -131,6 +131,12 @@
                         <span key="t-file-manager">Peraturan</span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{ route('images.index') }}" class="waves-effect">
+                        <i class="bx bx-image-add"></i>
+                        <span key="t-file-manager">Input Image</span>
+                    </a>
+                </li>
                 @endif
                 @if ( Auth::user()->roles->pluck('name')[0]  == 'dinas')
                 <li>

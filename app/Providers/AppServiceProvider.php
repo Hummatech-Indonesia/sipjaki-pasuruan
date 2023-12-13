@@ -28,6 +28,7 @@ use App\Contracts\Interfaces\RuleCategoriesInterface;
 use App\Contracts\Interfaces\TrainingMemberInterface;
 use App\Contracts\Interfaces\TrainingMethodInterface;
 use App\Contracts\Interfaces\ContractCategoryInterface;
+use App\Contracts\Interfaces\DinasFieldInterface;
 use App\Contracts\Interfaces\DinasInterface;
 use App\Contracts\Interfaces\FaqInterface;
 use App\Contracts\Interfaces\FieldInterface;
@@ -48,6 +49,7 @@ use App\Contracts\Interfaces\TypeInterface;
 use App\Contracts\Interfaces\WorkerInterface;
 use App\Contracts\Repositories\AccidentRepository;
 use App\Contracts\Repositories\ContractCategoryRepository;
+use App\Contracts\Repositories\DinasFieldRepository;
 use App\Contracts\Repositories\DinasRepository;
 use App\Contracts\Repositories\FaqRepository;
 use App\Contracts\Repositories\FieldRepository;
@@ -90,6 +92,7 @@ class AppServiceProvider extends ServiceProvider
         ServiceProviderProjectInterface::class => ServiceProviderProjectRepository::class,
         SectionInterface::class => SectionRepository::class,
         TypeInterface::class => TypeRepository::class,
+        DinasFieldInterface::class => DinasFieldRepository::class,
         FaqInterface::class => FaqRepository::class
     ];
 

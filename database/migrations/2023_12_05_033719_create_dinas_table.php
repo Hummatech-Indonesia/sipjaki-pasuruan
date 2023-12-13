@@ -14,14 +14,17 @@ return new class extends Migration
         Schema::create('dinas', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignUuid('field_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignUuid('section_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignUuid('type_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->text('address')->nullable();
             $table->string('phone_number')->nullable();
+            $table->string('mobile_phone_number')->nullable();
             $table->char('echelon', 4)->nullable();
-            $table->string('local_regulation')->nullable();
-            $table->string('number_local_regulation')->nullable();
+            $table->string('position')->nullable();
+            $table->string('name_official')->nullable();
+            $table->string('email_official')->nullable();
+            $table->string('local_regulation')->nullable(); //Perda STOK
+            $table->string('number_local_regulation')->nullable(); //No Perda
             $table->string('sk_tpjk')->nullable();
             $table->string('number_sk_tpjk')->nullable();
             $table->string('admin_sipjaki')->nullable();
@@ -29,6 +32,7 @@ return new class extends Migration
             $table->string('activity')->nullable();
             $table->integer('last_year_budget')->nullable();
             $table->integer('budget_this_year')->nullable();
+            $table->text('sturucture_organization_file')->nullable();
             $table->timestamps();
         });
     }
