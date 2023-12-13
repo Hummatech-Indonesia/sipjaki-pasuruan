@@ -16,8 +16,8 @@ Route::patch('reset-passsword', [ResetPasswordController::class, 'reset'])->name
 
 Route::patch('verify-account/{user}', [VerificationController::class, 'verifyToken'])->name('verify.account');
 
-Route::patch('update-profile', [UserController::class, 'updateProfile']);
-Route::patch('update-password', [UserController::class, 'updatePassword']);
+Route::patch('update-profile', [UserController::class, 'updateProfile'])->name('update.profile');
+Route::patch('update-password', [UserController::class, 'updatePassword'])->name('update.password');
 
 Route::get('service-provider-projects', [ServiceProviderProjectController::class, 'index']);
 Route::post('service-provider-projects/{project}', [ServiceProviderProjectController::class, 'store'])->name('service-provider-projects/');

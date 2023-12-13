@@ -106,7 +106,7 @@ class UserController extends Controller
         if ($request->is('api/*')) {
             return ResponseHelper::success(null, trans('alert.profile_updated'));
         } else {
-            return redirect()->back(null, trans('alert.profile_updated'));
+            return redirect()->back()->with('success', trans('alert.profile_updated'));
         }
     }
 
