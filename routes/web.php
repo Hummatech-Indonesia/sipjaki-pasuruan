@@ -68,7 +68,7 @@ Route::get('/kecelakaan', function () {
     return view('kecelakaan');
 })->name('kecelakaan');
 
-Route::get('bantuan',[LandingController::class,'faq'])->name('bantuan');
+Route::get('bantuan', [LandingController::class, 'faq'])->name('bantuan');
 
 Route::get('data-paket-pekerjaan', [LandingController::class, 'project'])->name('paket.pekerjaan');
 Route::get('data-paket-pekerjaan/{dinas}', [LandingController::class, 'projectDetail'])->name('detail.project');
@@ -125,6 +125,9 @@ Route::middleware('auth')->group(function () {
         Route::put('agencies/{user}', [UserController::class, 'update'])->name('agencies.update');
         Route::delete('agencies/{user}', [UserController::class, 'destroy'])->name('agencies.destroy');
 
+        Route::get('images', function () {
+            return view('pages.admin.input-image');
+        });
         Route::post('images', [ImagesController::class, 'store']);
 
         Route::get('training-members/{training}', [TrainingMemberController::class, 'index']);
