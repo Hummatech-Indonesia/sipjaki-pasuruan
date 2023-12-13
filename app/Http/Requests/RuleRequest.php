@@ -19,7 +19,7 @@ class RuleRequest extends FormRequest
             'year' => 'required|integer',
             'title' => 'required|max:255',
             'code' => 'required|max:255',
-            'file' => 'required'
+            'file' => 'required|mimes:pdf,xlsx,docx'
         ];
     }
 
@@ -33,10 +33,11 @@ class RuleRequest extends FormRequest
         return [
             'rule_category_id.required' => 'Kategori wajib diisi',
             'rule_category_id.exists' => 'Kategori tidak valid',
-        'year.required' => 'Tahun wajib diisi',
+            'year.required' => 'Tahun wajib diisi',
             'title.required' => 'Judul wajib diisi',
             'code.required' => 'Kode wajib diisi',
-            'file.required' => 'File wajib diisi'
+            'file.required' => 'File wajib diisi',
+            'file.mimes' => 'File harus berformat Pdf, Xlsx, dan Docx'
         ];
     }
 }
