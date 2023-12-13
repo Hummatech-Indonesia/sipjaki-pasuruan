@@ -95,7 +95,7 @@
                                                         </svg>
                                                         <span class="ms-2">Download</span>
                                                     </button>
-                                                </a>
+                                            </a>
                                             </div>
                                         </td>
                                     </tr>
