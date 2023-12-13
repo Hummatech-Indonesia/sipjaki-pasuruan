@@ -6,6 +6,7 @@ use App\Models\Accident;
 use App\Models\Classification;
 use App\Models\ContractCategory;
 use App\Models\Dinas;
+use App\Models\DinasField;
 use App\Models\Field;
 use App\Models\FiscalYear;
 use App\Models\FundSource;
@@ -99,6 +100,7 @@ class EventServiceProvider extends ServiceProvider
         ServiceProviderProject::observe(ServiceProviderProjectObserver::class);
         Section::observe(SectionObserver::class);
         Type::observe(TypeObserver::class);
+        DinasField::observe(DinasField::class);
     }
 
     /**
