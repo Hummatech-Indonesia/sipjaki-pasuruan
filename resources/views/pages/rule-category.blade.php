@@ -46,7 +46,7 @@
                             <div class="mb-3">
                                 <label id="name" for="recipient-name" class="control-label mb-2">Nama Kategori
                                     Peraturan</label>
-                                <input type="text" class="form-control" id="create-name" class="form-control"
+                                <input type="text" class="form-control" value="{{ old('name') }}" id="create-name" class="form-control"
                                     name="name" aria-describedby="name" placeholder="Masukkan Peraturan" />
                             </div>
 
@@ -130,7 +130,7 @@
                             <div class="mb-3">
                                 <label id="name" for="recipient-name" class="control-label mb-2">Nama Kategori
                                     Peraturan</label>
-                                <input type="text" class="form-control" id="update-name" class="form-control"
+                                <input type="text" value="{{ old('name') }}"  class="form-control" id="update-name" class="form-control"
                                     name="name" aria-describedby="name" placeholder="Masukkan Nama Peraturan" />
                             </div>
 
