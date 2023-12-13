@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('dinas', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignUuid('section_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignUuid('type_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->text('address')->nullable();

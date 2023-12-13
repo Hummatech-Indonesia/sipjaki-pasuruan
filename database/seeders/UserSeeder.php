@@ -20,7 +20,6 @@ class UserSeeder extends Seeder
         foreach (Role::all() as $role) {
             $profile = User::query()
                 ->create([
-                    'id' => Uuid::uuid(),
                     'name' => $role['name'],
                     'phone_number' => $faker->phoneNumber,
                     'email' => str_replace(' ', '', $role['name']) . "@gmail.com",
