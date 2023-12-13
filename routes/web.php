@@ -22,6 +22,7 @@ use App\Http\Controllers\TrainingMemberController;
 use App\Http\Controllers\TrainingMethodController;
 use App\Http\Controllers\ContractCategoryController;
 use App\Http\Controllers\DinasController;
+use App\Http\Controllers\FaqController;
 use App\Http\Controllers\SubClassificationController;
 use App\Http\Controllers\QualificationLevelController;
 use App\Http\Controllers\SectionController;
@@ -119,6 +120,7 @@ Route::middleware('auth')->group(function () {
     Route::middleware('role:admin')->group(function () {
         Route::resources([
             'news' => NewsController::class,
+            'faqs' => FaqController::class
         ]);
         Route::get('agencies', [UserController::class, 'index'])->name('agencies.index');
         Route::post('agencies', [UserController::class, 'store'])->name('agencies.store');
