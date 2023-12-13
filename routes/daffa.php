@@ -18,7 +18,6 @@ Route::delete('delete-training-members',[ TrainingMember::class, 'multipleDelete
 Route::resources([
     'workers' => WorkerController::class,
     'rules' => RuleController::class,
-    'images'=> ImagesController::class
 ]);
 
 

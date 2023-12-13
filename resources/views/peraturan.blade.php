@@ -31,6 +31,14 @@
                 <div class="card-body">
                     <h4 class="card-title mb-4">Peraturan</h4>
                     <div id="column_chart_datalabel" data-colors='["#FFC928"]' class="apex-charts" dir="ltr"></div>
+                    <div class="text-center col-12" style="display: none;">
+                        <div class="d-flex justify-content-center" style="min-height:16rem">
+                            <div class="my-auto">
+                                <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                <h4 class="text-center mt-4">Data Masih Kosong!!</h4>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -100,6 +108,16 @@
                                         </td>
                                     </tr>
                                 @empty
+                                <tr>
+                                    <td colspan="6" class="text-center">
+                                        <div class="d-flex justify-content-center" style="min-height:16rem">
+                                            <div class="my-auto">
+                                                <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                                <h4 class="text-center mt-4">Belum Peraturan Ditambahkan!!</h4>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
                                 @endforelse
                             </tbody>
                         </table>
@@ -108,133 +126,139 @@
             </div>
         </div>
     </div>
+    
     <script src="{{ asset('assets/libs/apexcharts/apexcharts.min.js') }}"></script>
     <script src="{{ asset('assets/js/pages/apexcharts.init.js') }}"></script>
     <script>
         get()
-
         function get() {
             $.ajax({
                 url: "accident-chart",
                 type: 'GET',
                 dataType: "JSON",
                 success: function(response) {
-                    var seriesData = [];
-                    var categories = [];
+                    if (response.data.length === 0) {
+            $("#column_chart_datalabel").hide();
+                        $(".text-center.col-12").show();
 
-                    $.each(response.data, function(index, item) {
-                        seriesData.push(item.accidentCount);
-                        categories.push(item.name);
-                    });
+        }else{
+            var seriesData = [];
+            var categories = [];
 
-                    var options = {
-                        chart: {
-                            height: 350,
-                            type: "bar",
-                            toolbar: {
-                                show: false
-                            }
-                        },
-                        plotOptions: {
-                            bar: {
-                                dataLabels: {
-                                    position: "top"
-                                }
-                            }
-                        },
+            $.each(response.data, function(index, item) {
+                seriesData.push(item.accidentCount);
+                categories.push(item.name);
+            });
+
+            var options = {
+                chart: {
+                    height: 350,
+                    type: "bar",
+                    toolbar: {
+                        show: false
+                    }
+                },
+                plotOptions: {
+                    bar: {
                         dataLabels: {
-                            enabled: true,
-                            formatter: function(e) {
-                                return e + "";
-                            },
-                            offsetY: -22,
-                            style: {
-                                fontSize: "12px",
-                                colors: ["#304758"]
-                            }
-                        },
-                        series: [{
-                            name: "Kecelakaan",
-                            data: seriesData
-                        }],
-                        colors: ['#FFC928'],
-                        grid: {
-                            borderColor: "#f1f1f1"
-                        },
-                        xaxis: {
-                            categories: categories,
-                            position: "top",
-                            labels: {
-                                offsetY: -18
-                            },
-                            axisBorder: {
-                                show: false
-                            },
-                            axisTicks: {
-                                show: false
-                            },
-                            crosshairs: {
-                                fill: {
-                                    type: "gradient",
-                                    gradient: {
-                                        colorFrom: "#D8E3F0",
-                                        colorTo: "#BED1E6",
-                                        stops: [0, 100],
-                                        opacityFrom: 0.4,
-                                        opacityTo: 0.5
-                                    }
-                                }
-                            },
-                            tooltip: {
-                                enabled: true,
-                                offsetY: -35
-                            }
-                        },
+                            position: "top"
+                        }
+                    }
+                },
+                dataLabels: {
+                    enabled: true,
+                    formatter: function(e) {
+                        return e + "";
+                    },
+                    offsetY: -22,
+                    style: {
+                        fontSize: "12px",
+                        colors: ["#304758"]
+                    }
+                },
+                series: [{
+                    name: "Kecelakaan",
+                    data: seriesData
+                }],
+                colors: ['#FFC928'],
+                grid: {
+                    borderColor: "#f1f1f1"
+                },
+                xaxis: {
+                    categories: categories,
+                    position: "top",
+                    labels: {
+                        offsetY: -18
+                    },
+                    axisBorder: {
+                        show: false
+                    },
+                    axisTicks: {
+                        show: false
+                    },
+                    crosshairs: {
                         fill: {
+                            type: "gradient",
                             gradient: {
-                                shade: "light",
-                                type: "horizontal",
-                                shadeIntensity: 0.25,
-                                gradientToColors: undefined,
-                                inverseColors: true,
-                                opacityFrom: 1,
-                                opacityTo: 1,
-                                stops: [50, 0, 100, 100]
-                            }
-                        },
-                        yaxis: {
-                            axisBorder: {
-                                show: false
-                            },
-                            axisTicks: {
-                                show: false
-                            },
-                            labels: {
-                                show: false,
-                                formatter: function(e) {
-                                    return e + "";
-                                }
+                                colorFrom: "#D8E3F0",
+                                colorTo: "#BED1E6",
+                                stops: [0, 100],
+                                opacityFrom: 0.4,
+                                opacityTo: 0.5
                             }
                         }
-                    };
+                    },
+                    tooltip: {
+                        enabled: true,
+                        offsetY: -35
+                    }
+                },
+                fill: {
+                    gradient: {
+                        shade: "light",
+                        type: "horizontal",
+                        shadeIntensity: 0.25,
+                        gradientToColors: undefined,
+                        inverseColors: true,
+                        opacityFrom: 1,
+                        opacityTo: 1,
+                        stops: [50, 0, 100, 100]
+                    }
+                },
+                yaxis: {
+                    axisBorder: {
+                        show: false
+                    },
+                    axisTicks: {
+                        show: false
+                    },
+                    labels: {
+                        show: false,
+                        formatter: function(e) {
+                            return e + "";
+                        }
+                    }
+                }
+            };
 
-                    var chart = new ApexCharts(
-                        document.querySelector("#column_chart_datalabel"),
-                        options
-                    );
+            var chart = new ApexCharts(
+                document.querySelector("#column_chart_datalabel"),
+                options
+            );
 
-                    chart.render();
+            chart.render();
 
-                    // Menambahkan teks di bawah grafik
-                    var chartContainer = document.querySelector("#column_chart_datalabel");
-                    var textContainer = document.createElement("div");
-                    textContainer.innerHTML = categories.map(function(category, index) {
-                        return "<span style='display: block; text-align: center; width: " + (100 /
-                            categories.length) + "%;'>" + category + "</span>";
-                    }).join("");
-                    textContainer.style.display = "flex";
-                    textContainer.style.justifyContent = "space-between";
-                    chartContainer.parentNode.appendChild(textContainer);
+            // Menambahkan teks di bawah grafik
+            var chartContainer = document.querySelector("#column_chart_datalabel");
+            var textContainer = document.createElement("div");
+            textContainer.innerHTML = categories.map(function(category, index) {
+                return "<span style='display: block; text-align: center; width: " + (100 /
+                    categories.length) + "%;'>" + category + "</span>";
+            }).join("");
+            textContainer.style.display = "flex";
+            textContainer.style.justifyContent = "space-between";
+            chartContainer.parentNode.appendChild(textContainer);
+        }
                 }
             });
         }
