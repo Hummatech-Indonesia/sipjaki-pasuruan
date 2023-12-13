@@ -35,6 +35,8 @@ class User extends Authenticatable implements MustVerifyEmail, HasOneDinas, HasO
         'profile',
         'email',
         'password',
+        'phone_number',
+        'decree',
         'email_verified_at',
         'token',
         'expired_token'
