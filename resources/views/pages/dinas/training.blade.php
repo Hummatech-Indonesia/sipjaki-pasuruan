@@ -60,7 +60,7 @@
                             <h3>Step 1</h3>
                             <section>
                                 <div class="row">
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-firstname-input">Tahun Anggaran</label>
                                             <select name="fiscal_year_id" class="form-select select2-create"
@@ -74,7 +74,7 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-lastname-input">Nama</label>
                                             <input name="name" type="text" class="form-control"
@@ -86,10 +86,22 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-lastname-input">Penyelenggara</label>
                                             <input name="organizer" type="text" class="form-control"
+                                                id="basicpill-phoneno-input" placeholder="Enter Your Name.">
+                                            @error('organizer')
+                                                <p class="text-danger">
+                                                    {{ $message }}
+                                                </p>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="mb-3">
+                                            <label for="basicpill-lastname-input">Sumber Dana</label>
+                                            <input name="fund_source_id" type="text" class="form-control"
                                                 id="basicpill-phoneno-input" placeholder="Enter Your Name.">
                                             @error('organizer')
                                                 <p class="text-danger">
@@ -241,7 +253,7 @@
                             <h3>Data 1</h3>
                             <section>
                                 <div class="row">
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-firstname-input">Tahun Anggaran</label>
                                             <select name="fiscal_year_id" class="form-select select2-update"
@@ -255,7 +267,7 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-lastname-input">Nama</label>
                                             <input name="name" type="text" class="form-control"
@@ -267,10 +279,22 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-lastname-input">Penyelenggara</label>
                                             <input name="organizer" type="text" class="form-control"
+                                                id="basicpill-phoneno-input" placeholder="Enter Your Name.">
+                                            @error('organizer')
+                                                <p class="text-danger">
+                                                    {{ $message }}
+                                                </p>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="mb-3">
+                                            <label for="basicpill-lastname-input">Sumber Dana</label>
+                                            <input name="fund_source_id" type="text" class="form-control"
                                                 id="basicpill-phoneno-input" placeholder="Enter Your Name.">
                                             @error('organizer')
                                                 <p class="text-danger">
