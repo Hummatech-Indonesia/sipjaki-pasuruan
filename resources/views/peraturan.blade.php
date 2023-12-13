@@ -30,7 +30,6 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title mb-4">Peraturan</h4>
-
                     <div id="column_chart_datalabel" data-colors='["#FFC928"]' class="apex-charts" dir="ltr"></div>
                 </div>
             </div>
@@ -86,13 +85,17 @@
                                         <td>
                                             <div class="d-flex align-items-center">
                                                 <a href="{{ asset('storage/' . $rule->file) }}">
-                                                    <button type="submit" class="btn text-white fw-normal" style="background-color:#2CA67A;">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" height="14" width="14" fill="white" transform="rotate(90)" viewBox="0 0 512 512">
-                                                            <path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 192 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128zM160 96c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 32C43 32 0 75 0 128L0 384c0 53 43 96 96 96l64 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l64 0z" />
+                                                    <button type="submit" class="btn btn-detail waves-effect waves-light text-white btn waves-effect d-flex flex-row gap-1 justify-content-evenly"
+                                                        style="background-color:#2CA67A;">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" height="15"
+                                                            width="15" fill="white" transform="rotate(90)"
+                                                            viewBox="0 0 512 512">
+                                                            <path
+                                                                d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 192 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128zM160 96c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 32C43 32 0 75 0 128L0 384c0 53 43 96 96 96l64 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l64 0z" />
                                                         </svg>
                                                         <span class="ms-2">Download</span>
                                                     </button>
-                                                </a>
+                                            </a>
                                             </div>
                                         </td>
                                     </tr>
@@ -107,4 +110,133 @@
     </div>
     <script src="{{ asset('assets/libs/apexcharts/apexcharts.min.js') }}"></script>
     <script src="{{ asset('assets/js/pages/apexcharts.init.js') }}"></script>
+    <script>
+        get()
+
+        function get() {
+            $.ajax({
+                url: "accident-chart",
+                type: 'GET',
+                dataType: "JSON",
+                success: function(response) {
+                    var seriesData = [];
+                    var categories = [];
+
+                    $.each(response.data, function(index, item) {
+                        seriesData.push(item.accidentCount);
+                        categories.push(item.name);
+                    });
+
+                    var options = {
+                        chart: {
+                            height: 350,
+                            type: "bar",
+                            toolbar: {
+                                show: false
+                            }
+                        },
+                        plotOptions: {
+                            bar: {
+                                dataLabels: {
+                                    position: "top"
+                                }
+                            }
+                        },
+                        dataLabels: {
+                            enabled: true,
+                            formatter: function(e) {
+                                return e + "";
+                            },
+                            offsetY: -22,
+                            style: {
+                                fontSize: "12px",
+                                colors: ["#304758"]
+                            }
+                        },
+                        series: [{
+                            name: "Kecelakaan",
+                            data: seriesData
+                        }],
+                        colors: ['#FFC928'],
+                        grid: {
+                            borderColor: "#f1f1f1"
+                        },
+                        xaxis: {
+                            categories: categories,
+                            position: "top",
+                            labels: {
+                                offsetY: -18
+                            },
+                            axisBorder: {
+                                show: false
+                            },
+                            axisTicks: {
+                                show: false
+                            },
+                            crosshairs: {
+                                fill: {
+                                    type: "gradient",
+                                    gradient: {
+                                        colorFrom: "#D8E3F0",
+                                        colorTo: "#BED1E6",
+                                        stops: [0, 100],
+                                        opacityFrom: 0.4,
+                                        opacityTo: 0.5
+                                    }
+                                }
+                            },
+                            tooltip: {
+                                enabled: true,
+                                offsetY: -35
+                            }
+                        },
+                        fill: {
+                            gradient: {
+                                shade: "light",
+                                type: "horizontal",
+                                shadeIntensity: 0.25,
+                                gradientToColors: undefined,
+                                inverseColors: true,
+                                opacityFrom: 1,
+                                opacityTo: 1,
+                                stops: [50, 0, 100, 100]
+                            }
+                        },
+                        yaxis: {
+                            axisBorder: {
+                                show: false
+                            },
+                            axisTicks: {
+                                show: false
+                            },
+                            labels: {
+                                show: false,
+                                formatter: function(e) {
+                                    return e + "";
+                                }
+                            }
+                        }
+                    };
+
+                    var chart = new ApexCharts(
+                        document.querySelector("#column_chart_datalabel"),
+                        options
+                    );
+
+                    chart.render();
+
+                    // Menambahkan teks di bawah grafik
+                    var chartContainer = document.querySelector("#column_chart_datalabel");
+                    var textContainer = document.createElement("div");
+                    textContainer.innerHTML = categories.map(function(category, index) {
+                        return "<span style='display: block; text-align: center; width: " + (100 /
+                            categories.length) + "%;'>" + category + "</span>";
+                    }).join("");
+                    textContainer.style.display = "flex";
+                    textContainer.style.justifyContent = "space-between";
+                    chartContainer.parentNode.appendChild(textContainer);
+                }
+            });
+        }
+    </script>
 @endsection

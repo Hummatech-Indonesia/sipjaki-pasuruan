@@ -60,7 +60,7 @@
                                     <div class="alert alert-info text-center mb-4" role="alert">
                                         Verifikasi akun anda! </div>
                                 @endif
-                                <form class="form-horizontal" action="{{ route('verify-token/', $Id) }}" method="POST">
+                                <form class="form-horizontal" action="{{ route('verify.token/', $Id) }}" method="POST">
                                     @csrf
                                     @method('PUT')
                                     <div class="mb-3">

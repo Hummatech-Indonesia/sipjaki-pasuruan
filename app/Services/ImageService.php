@@ -40,9 +40,13 @@ class ImageService
     {
         $data = $request->validated();
         $old_photo = $image->photo;
-        if ($request->hasFile('photo')) {
-            $this->remove($old_photo);
-            $old_photo = $this->upload($data['categories'], $request->file('photo'));
+        if ($old_photo) {
+            if ($request->hasFile('photo')) {
+                $this->remove($old_photo);
+                $old_photo = $this->updateWithCustomName($data['categories'], $request->file('photo'), $data['categories']);
+            }
+        } else {
+            $old_photo = $this->updateWithCustomName($data['categories'], $request->file('photo'), $data['categories']);
         }
         return [
             'categories' => $data['categories'],

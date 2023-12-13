@@ -14,9 +14,11 @@
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <form action="" class=" col-lg-3">
                                 <div class="input-group">
-                                    <input type="text" value="{{$name}}" name="name" class="form-control" placeholder="Search">
+                                    <input type="text" value="{{ $name }}" name="name" class="form-control"
+                                        placeholder="Search">
                                     <div class="input-group-append">
-                                        <button class="btn text-white" style="background-color: #1B3061; border-radius: 0 5px 5px 0;" type="submit">
+                                        <button class="btn text-white"
+                                            style="background-color: #1B3061; border-radius: 0 5px 5px 0;" type="submit">
                                             <i class="fa fa-search"></i>
                                         </button>
                                     </div>
@@ -29,7 +31,14 @@
                             </span>
                         </div>
                         <div class="table-responsive">
-                            <table class="table table-borderless mb-0" border="1">
+                            @if ($errors->has('name'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    {{ $errors->first('name') }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                </div>
+                            @endif
+                            <table class="table table-borderless mb-2" border="1">
                                 <thead class="table-light">
                                     <tr>
                                         <th class="fw-medium"
@@ -62,21 +71,23 @@
                                                     Hapus</button>
                                             </td>
                                         </tr>
-                                        @empty
+                                    @empty
                                         <tr>
                                             <td colspan="3" class="text-center">
                                                 <div class="d-flex justify-content-center" style="min-height:16rem">
                                                     <div class="my-auto">
-                                                        <img src="{{ asset('no-data.png') }}" width="300" height="300" />
-                                                        <h4 class="text-center mt-4">Tahun aggaran {{$name ? 'Tidak Ditemukan' : 'Kosong'}}!!</h4>
+                                                        <img src="{{ asset('no-data.png') }}" width="300"
+                                                            height="300" />
+                                                        <h4 class="text-center mt-4">Tahun aggaran
+                                                            {{ $name ? 'Tidak Ditemukan' : 'Kosong' }}!!</h4>
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
-                                        @endforelse
+                                    @endforelse
                                 </tbody>
-                                {{$fundSources->links('pagination::bootstrap-5')}}
                             </table>
+                            {{ $fundSources->links('pagination::bootstrap-5') }}
                         </div>
                     </div>
                 </div>
@@ -99,9 +110,9 @@
                         <form id="form-create" method="POST">
                             <div class="mb-3">
                                 <label id="name" for="recipient-name" class="control-label mb-2">Nama</label>
-                                <input type="text" class="form-control" id="create-school_year" class="form-control"
-                                    name="name" id="nametext" aria-describedby="name"
-                                    placeholder="Masukkan Nama Sumber Dana" />
+                                <input type="text" class="form-control" value="{{ old('name') }}"
+                                    id="create-school_year" class="form-control" name="name" id="nametext"
+                                    aria-describedby="name" placeholder="Masukkan Nama Sumber Dana" />
                             </div>
                     </div>
                     <div class="modal-footer">
@@ -133,8 +144,9 @@
                         @csrf
                         <div class="mb-3">
                             <label id="name" for="recipient-name" class="control-label mb-2">Sumber Dana</label>
-                            <input type="text" class="form-control" class="form-control" name="name"
-                                id="nametext" aria-describedby="name" placeholder="Masukkan Nama Sumber Dana" />
+                            <input type="text" value="{{ old('name') }}" class="form-control" class="form-control"
+                                name="name" id="nametext" aria-describedby="name"
+                                placeholder="Masukkan Nama Sumber Dana" />
                         </div>
 
                 </div>

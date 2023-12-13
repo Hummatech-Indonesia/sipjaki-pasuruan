@@ -16,8 +16,8 @@ Route::patch('reset-passsword', [ResetPasswordController::class, 'reset'])->name
 
 Route::patch('verify-account/{user}', [VerificationController::class, 'verifyToken'])->name('verify.account');
 
-Route::patch('update-profile', [UserController::class, 'updateProfile']);
-Route::patch('update-password', [UserController::class, 'updatePassword']);
+Route::patch('update-profile', [UserController::class, 'updateProfile'])->name('update.profile');
+Route::patch('update-password', [UserController::class, 'updatePassword'])->name('update.password');
 
 Route::get('service-provider-projects', [ServiceProviderProjectController::class, 'index']);
 Route::post('service-provider-projects/{project}', [ServiceProviderProjectController::class, 'store'])->name('service-provider-projects/');
@@ -28,4 +28,4 @@ Route::post('import-workers', [WorkerController::class, 'import'])->name('import
 Route::get('export-workers', [WorkerController::class, 'export'])->name('export.workers');
 Route::put('dinas', [DinasController::class, 'update'])->name('dinas.update');
 
-Route::get('accident-chart', [DinasController::class, 'chart']);
+Route::get('accident-chart', [DinasController::class, 'chart'])->name('accident.chart');

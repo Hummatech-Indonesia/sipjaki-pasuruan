@@ -81,7 +81,7 @@ Route::get('/opd', function () {
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('profile', function (){
+    Route::get('profile', function () {
         return view('pages.profile');
     })->name('profile');
     Route::middleware('role:superadmin')->group(function () {
@@ -112,7 +112,7 @@ Route::middleware('auth')->group(function () {
             Route::get('sub-classifications/{classification}', [SubClassificationController::class, 'showSubClassification'])->name('index');
             Route::post('sub-classifications/{classification}', [SubClassificationController::class, 'store'])->name('store');
             Route::put('sub-classifications/{sub_classification}', [SubClassificationController::class, 'update'])->name('update');
-            Route::delete('sub-classifications/{sub_classification}', [SubClassificationController::class, 'delete'])->name('destroy');
+            Route::delete('sub-classifications/{sub_classification}', [SubClassificationController::class, 'destroy'])->name('destroy');
         });
     });
 
@@ -125,10 +125,7 @@ Route::middleware('auth')->group(function () {
         Route::put('agencies/{user}', [UserController::class, 'update'])->name('agencies.update');
         Route::delete('agencies/{user}', [UserController::class, 'destroy'])->name('agencies.destroy');
 
-        Route::get('images', [ImagesController::class, 'index']);
         Route::post('images', [ImagesController::class, 'store']);
-        Route::put('images/{image}', [ImagesController::class, 'update']);
-        Route::delete('images/{image}', [ImagesController::class, 'destroy']);
 
         Route::get('training-members/{training}', [TrainingMemberController::class, 'index']);
         Route::post('training-members/{training}', [TrainingMemberController::class, 'store']);
@@ -149,10 +146,10 @@ Route::get('service-provider-project-detail/{service_provider_project}', [Servic
 Route::get('download-all-service-provider-project/{project}', [ServiceProviderProjectController::class, 'downloadServiceProviderProject']);
 
 Route::middleware(['role:dinas'])->group(function () {
-    Route::resource('accident', AccidentController::class)->except('create', 'show');
-    Route::put('accident.update/{accident}', [AccidentController::class, 'update'])->name('accident.update');
-    Route::get('accident.show/{accident}', [AccidentController::class, 'show'])->name('accident.show');
-    Route::delete('accident.destroy/{accident}', [AccidentController::class, 'destroy'])->name('accident.destroy');
+    // Route::resource('accident', AccidentController::class)->except('create', 'show');
+    Route::put('accident-update/{accident}', [AccidentController::class, 'update'])->name('accident.update');
+    Route::get('accident-show/{accident}', [AccidentController::class, 'show'])->name('accident.show');
+    Route::delete('accident-destroy/{accident}', [AccidentController::class, 'destroy'])->name('accident.destroy');
     Route::resources([
         'projects' => ProjectController::class,
     ]);

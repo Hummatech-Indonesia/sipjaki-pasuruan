@@ -3,6 +3,7 @@
 namespace App\Contracts\Repositories;
 
 use App\Contracts\Interfaces\ImageInterface;
+use App\Enums\RoleEnum;
 use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -58,7 +59,9 @@ class ImageRepository extends BaseRepository implements ImageInterface
      */
     public function delete(mixed $id): mixed
     {
-        return $this->show($id)->delete($id);
+        $user = $this->show($id);
+        $user->removeRole(RoleEnum::SERVICE_PRODIVER->value);
+        $user->delete($id);
     }
 
 
@@ -72,8 +75,8 @@ class ImageRepository extends BaseRepository implements ImageInterface
     public function customPaginate(Request $request, int $pagination = 10): LengthAwarePaginator
     {
         return $this->model->query()
-            ->when($request->name,function($query) use ($request){
-                $query->where('name','LIKE','%'.$request->name.'%');
+            ->when($request->name, function ($query) use ($request) {
+                $query->where('name', 'LIKE', '%' . $request->name . '%');
             })
             ->fastPaginate($pagination);
     }

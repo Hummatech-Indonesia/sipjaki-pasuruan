@@ -1,5 +1,14 @@
 @extends('layouts.app')
 @section('content')
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: '{{ session('success') }}',
+            });
+        </script>
+    @endif
     <h4 class="mb-3 font-size-18">Tenaga Kerja</h4>
     <div class="d-flex justify-content-between">
         <div class="">
@@ -39,40 +48,44 @@
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Nama</label>
-                                    <input type="text" class="form-control" id="create-name" class="form-control"
-                                        name="name" aria-describedby="name" placeholder="Masukkan Nama" />
+                                    <input type="text" value="{{ old('name') }}" class="form-control" id="create-name"
+                                        class="form-control" name="name" aria-describedby="name"
+                                        placeholder="Masukkan Nama" />
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Jenis
                                         Sertifikat</label>
-                                    <input type="text" class="form-control" id="create-name" class="form-control"
-                                        name="cerificate" aria-describedby="name" placeholder="Masukkan Jenis Sertifikat" />
+                                    <input type="text" value="{{ old('cerificate') }}" class="form-control"
+                                        id="create-name" class="form-control" name="cerificate" aria-describedby="name"
+                                        placeholder="Masukkan Jenis Sertifikat" />
                                 </div>
                             </div>
                             <div class="col-6 col-md-4">
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Pendidikan</label>
-                                    <input type="text" class="form-control" id="create-name" class="form-control"
-                                        name="education" aria-describedby="name" placeholder="Masukkan Pendidikan" />
+                                    <input type="text" value="{{ old('education') }}" class="form-control"
+                                        id="create-name" class="form-control" name="education" aria-describedby="name"
+                                        placeholder="Masukkan Pendidikan" />
                                 </div>
                             </div>
                             <div class="col-6 col-md-4">
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">No.
                                         Registrasi</label>
-                                    <input type="text" class="form-control" id="create-name" class="form-control"
-                                        name="registration_number" aria-describedby="name"
-                                        placeholder="Masukkan No. Registrasi" />
+                                    <input type="text" value="{{ old('registration_number') }}" class="form-control"
+                                        id="create-name" class="form-control" name="registration_number"
+                                        aria-describedby="name" placeholder="Masukkan No. Registrasi" />
                                 </div>
                             </div>
                             <div class="col-6 col-md-4">
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Tanggal
                                         Lahir</label>
-                                    <input type="date" class="form-control" id="create-name" class="form-control"
-                                        name="birth_date" aria-describedby="name" placeholder="Masukkan Tanggal Lahir" />
+                                    <input type="date" value="{{ old('birth_date') }}" class="form-control"
+                                        id="create-name" class="form-control" name="birth_date" aria-describedby="name"
+                                        placeholder="Masukkan Tanggal Lahir" />
                                 </div>
                             </div>
                         </div>
@@ -118,6 +131,36 @@
             </button>
         </div>
         <div class="table-responsive">
+            @if ($errors->has('name'))
+                <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                    {{ $errors->first('name') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+            @if ($errors->has('birth_date'))
+                <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                    {{ $errors->first('birth_date') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+            @if ($errors->has('education'))
+                <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                    {{ $errors->first('education') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+            @if ($errors->has('registration_number'))
+                <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                    {{ $errors->first('registration_number') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+            @if ($errors->has('cerificate'))
+                <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                    {{ $errors->first('cerificate') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
             <table class="table table-bordered table-hover mt-4">
                 <thead>
                     <tr>
@@ -231,16 +274,17 @@
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Nama</label>
-                                    <input type="text" class="form-control" id="update-name" class="form-control"
-                                        name="name" aria-describedby="name" placeholder="Masukkan Nama" />
+                                    <input type="text" class="form-control" value="{{ old('name') }}"
+                                        id="update-name" class="form-control" name="name" aria-describedby="name"
+                                        placeholder="Masukkan Nama" />
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Jenis
                                         Sertifikat</label>
-                                    <input type="text" class="form-control" id="update-name" class="form-control"
-                                        name="cerificate" aria-describedby="name"
+                                    <input value="{{ old('cerificate') }}" type="text" class="form-control"
+                                        id="update-name" class="form-control" name="cerificate" aria-describedby="name"
                                         placeholder="Masukkan Jenis Sertifikat" />
                                 </div>
                             </div>
@@ -248,25 +292,27 @@
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name"
                                         class="control-label mb-2">Pendidikan</label>
-                                    <input type="text" class="form-control" id="update-name" class="form-control"
-                                        name="education" aria-describedby="name" placeholder="Masukkan Pendidikan" />
+                                    <input value="{{ old('education') }}" type="text" class="form-control"
+                                        id="update-name" class="form-control" name="education" aria-describedby="name"
+                                        placeholder="Masukkan Pendidikan" />
                                 </div>
                             </div>
                             <div class="col-6 col-md-4">
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">No.
                                         Registrasi</label>
-                                    <input type="text" class="form-control" id="update-name" class="form-control"
-                                        name="registration_number" aria-describedby="name"
-                                        placeholder="Masukkan No. Registrasi" />
+                                    <input value="{{ old('registration_number') }}" type="text" class="form-control"
+                                        id="update-name" class="form-control" name="registration_number"
+                                        aria-describedby="name" placeholder="Masukkan No. Registrasi" />
                                 </div>
                             </div>
                             <div class="col-6 col-md-4">
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Tanggal
                                         Lahir</label>
-                                    <input type="date" class="form-control" id="update-name" class="form-control"
-                                        name="birth_date" aria-describedby="name" placeholder="Masukkan Tanggal Lahir" />
+                                    <input type="date" value="{{ old('birth_date') }}" class="form-control"
+                                        id="update-name" class="form-control" name="birth_date" aria-describedby="name"
+                                        placeholder="Masukkan Tanggal Lahir" />
                                 </div>
                             </div>
                         </div>

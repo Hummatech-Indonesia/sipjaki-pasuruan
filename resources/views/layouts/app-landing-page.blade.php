@@ -23,14 +23,17 @@
     <link rel="stylesheet" href="{{ asset('dependencies/swiper/css/swiper.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('dependencies/wow/css/animate.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('dependencies/magnific-popup/css/magnific-popup.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('dependencies/components-elegant-icons/css/elegant-icons.min.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('dependencies/simple-line-icons/css/simple-line-icons.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('dependencies/components-elegant-icons/css/elegant-icons.min.css') }}"
+        type="text/css">
+    <link rel="stylesheet" href="{{ asset('dependencies/simple-line-icons/css/simple-line-icons.css') }}"
+        type="text/css">
     <!-- Site Stylesheet -->
     <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}" type="text/css">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com/">
     <link rel="stylesheet" href="path/to/your/style.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
 
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&amp;family=Satisfy&amp;display=swap"
@@ -38,6 +41,41 @@
     <style>
         path {
             stroke: rgb(68, 116, 226);
+        }
+
+        @media (max-width: 540px) {
+            .logo3 {
+                width: 150px;
+            }
+            .font-size-email{
+                font-size: 11px;
+            }
+            .icon-email{
+                margin-top: 7px;
+                margin-left: 10px;
+                width:20px;
+                height:20px;
+            }
+
+        }
+
+        @media(min-width: 541px && max-width:1199px) {
+            .logo3 {
+                width: 40%;
+            }
+        }
+
+        @media(min-width:1200px) {
+            .logo3 {
+                width: 70%;
+            }
+            .font-size-email{
+                font-size: 14px;
+            }
+            .icon-email{
+                width:35px;
+                height:35px;
+            }
         }
     </style>
 
@@ -211,11 +249,11 @@
             flex-shrink: 0;background: var(--Biru-Primary, #1B3061);">
             <div class="d-flex flex-row">
                 <div style="margin-left: 30px;">
-                    <img width="70%" src="{{ asset('logo-3.png') }}" alt="logo-sipkali.png">
+                    <img class="logo3" src="{{ asset('logo-3.png') }}" alt="logo-sipkali.png">
                 </div>
             </div>
             <div class="d-flex d-row" style="margin-right: 30px;">
-                <svg style="margin-right: 5px;" class="me-2" width="35" height="35" viewBox="0 0 45 45"
+                <svg style="margin-right: 5px;" class="icon-email me-2"  viewBox="0 0 45 45"
                     fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="22.5" cy="22.5" r="22.5" fill="white" />
                     <path
@@ -226,10 +264,9 @@
                         fill="#1B3061" />
                 </svg>
 
-                <div class="mt-1">
+                <div class="font-size-email mt-1">
                     <a style="color: var(--White-Original, #FFF);
                     font-family: Poppins;
-                    font-size: 14px;
                     font-style: normal;
                     font-weight: 600;
                     line-height: normal;"

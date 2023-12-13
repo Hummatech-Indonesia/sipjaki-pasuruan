@@ -20,7 +20,7 @@ Route::get('send-email', function () { return view('auth.send-email'); })->name(
 
 // accident
 Route::get('accident', [AccidentController::class ,'index'])->name('accident');
-Route::get('detail-accident.index', function () {return view('pages.dinas.detail-accident.index');})->name('detail.accident.index');
+Route::get('detail-accident-index', function () {return view('pages.dinas.detail-accident.index');})->name('detail.accident.index');
 
 // Training
 Route::get('training' , [TrainingController::class , 'index'])->name('training');
@@ -37,8 +37,8 @@ Route::post('training-members/{training}', [TrainingMemberController::class, 'st
 // verify token
 Route::get('/redirect-verify-account', [VerificationController::class, 'verifyAccount'])->name('redirect.verify.account');
 Route::put('update-token/{user}', [VerificationController::class, 'updateToken']);
-Route::put('verify-token/{user}', [VerificationController::class, 'verifyToken'])->name('verify.token');
-Route::get('verify-account/{user}', [VerificationController::class, 'verifyacount'])->name('verify-account');
+Route::put('verify-token/{user}', [VerificationController::class, 'verifyToken'])->name('verify.token/');
+Route::get('verify-account/{user}', [VerificationController::class, 'verifyacount'])->name('verify.account/');
 
 // sub classification
 Route::get('sub-qualification', function () { return view('pages.sub-qualification'); })->name('sub.qualification');

@@ -14,7 +14,7 @@ class UpdateProfileRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'profile' => 'required|mimes:png,jpg,jpeg',
+            'profile' => 'nullable|mimes:png,jpg,jpeg',
             'name' => 'required|max:255',
             'email' => 'required|max:255|email',
             'phone_number' => 'required|numeric',
