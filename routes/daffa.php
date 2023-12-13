@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\RuleController;
@@ -14,7 +15,8 @@ Route::get('peraturan',[LandingController::class,'rules'])->name('rules.landing'
 Route::delete('delete-workers',[ WorkerController::class, 'deleteMultiple'])->name('delete-workers');
 Route::resources([
     'workers' => WorkerController::class,
-    'rules' => RuleController::class
+    'rules' => RuleController::class,
+    'images'=> ImagesController::class
 ]);
 
 
