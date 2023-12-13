@@ -104,8 +104,8 @@ class TrainingMemberController extends Controller
 
     public function multipleDelete(DeleteTrainingMemberRequest $request) : RedirectResponse | JsonResponse
     {
-        $data = $request->validated();
-        $this->trainingMember->multipleDelete($data['id']);
+        $data = explode($request->id,',');
+        $this->trainingMember->multipleDelete($data);
 
         return redirect()->back()->with('success', trans('alert.delete_success'));
     }
