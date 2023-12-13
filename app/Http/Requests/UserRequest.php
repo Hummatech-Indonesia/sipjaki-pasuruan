@@ -24,7 +24,7 @@ class UserRequest extends FormRequest
             'type' => 'nullable|max:4',
             'sections' => 'nullable|max:255',
             'address' => 'nullable',
-            'phone_number' => 'nullable|max:255',
+            'phone_number' => 'required|max:255',
             'echelon' => 'nullable|max:4',
             'local_regulation' => 'nullable|max:255',
             'number_local_regulation' => 'nullable|max:255',
