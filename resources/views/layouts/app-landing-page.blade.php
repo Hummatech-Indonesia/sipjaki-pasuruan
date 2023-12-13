@@ -67,6 +67,12 @@
             .logo-kab-pasuruan {
                 margin-bottom: 30px;
             }
+            .banner{
+               height: 100px;
+            }
+            .page-banner .bradcurmed li {
+                font-size: 16px;
+            }
 
 
         }
@@ -74,6 +80,9 @@
         @media(min-width: 541px && max-width:1199px) {
             .logo3 {
                 width: 40%;
+            }
+            .banner{
+                height: 140px;
             }
         }
 
@@ -98,6 +107,10 @@
 
             .logo-kab-pasuruan {
                 width: 90%;
+            }
+
+            .banner{
+                height: 140px;
             }
         }
     </style>
@@ -240,7 +253,7 @@
                     <h4 class="page-title-2">JASA KONSTRUKSI</h4>
 
                     <ul class="bradcurmed mt-4">
-                        <li><a href="#" rel="noopener noreferrer">SIPJAKI adalah sistem informasi yang dikelola bersama oleh pembina jasa konstruksi nasional, provinsi dan kabupaten/kota dalam rangka meningkatkan kemudahan akses informasi usaha jasa konstruksi, peningkatan transparansi, serta membantu memperkuat jaringan bisnis pelaku usaha dalam rantai pasok konstruksi.</a></li>
+                        <li style="color: #1B3061;font-weight:600" class="font-sipjaki">SIPJAKI adalah sistem informasi yang dikelola bersama oleh pembina jasa konstruksi nasional, provinsi dan kabupaten/kota dalam rangka meningkatkan kemudahan akses informasi usaha jasa konstruksi, peningkatan transparansi, serta membantu memperkuat jaringan bisnis pelaku usaha dalam rantai pasok konstruksi.</li>
                     </ul>
                 </div>
                 <!-- /.page-title-wrapper -->
@@ -262,9 +275,8 @@
                 <li class="ball"></li>
             </ul>
         </section>
-        <div class="d-flex w-full d-row align-items-center justify-content-between"
-            style="height: 154px;
-            flex-shrink: 0;background: var(--Biru-Primary, #1B3061);">
+        <div class="d-flex w-full d-row align-items-center justify-content-between banner"
+            style="flex-shrink: 0;background: var(--Biru-Primary, #1B3061);">
             <div class="d-flex flex-row">
                 <div style="margin-left: 30px;">
                     <img class="logo3" src="{{ asset('logo-3.png') }}" alt="logo-sipkali.png">
