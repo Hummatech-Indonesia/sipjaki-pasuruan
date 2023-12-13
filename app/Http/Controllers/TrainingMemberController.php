@@ -2,18 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Contracts\Interfaces\TrainingMemberInterface;
+use App\Models\Training;
+use Illuminate\Http\Request;
+use App\Models\TrainingMember;
 use App\Helpers\ResponseHelper;
+use App\Traits\PaginationTrait;
+use Illuminate\Http\JsonResponse;
 use App\Http\Requests\ImportRequest;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\TrainingMemberImport;
+use Illuminate\Http\RedirectResponse;
+use App\Services\TrainingMemberService;
 use App\Http\Requests\TrainingMemberRequest;
 use App\Http\Resources\TrainingMemberResource;
-use App\Imports\TrainingMemberImport;
-use App\Models\Training;
-use App\Models\TrainingMember;
-use App\Services\TrainingMemberService;
-use App\Traits\PaginationTrait;
-use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Requests\DeleteTrainingMemberRequest;
+use App\Contracts\Interfaces\TrainingMemberInterface;
 
 class TrainingMemberController extends Controller
 {
@@ -96,6 +100,14 @@ class TrainingMemberController extends Controller
         } else {
             return redirect()->back()->with('success', trans('alert.delete_success'));
         }
+    }
+
+    public function multipleDelete(DeleteTrainingMemberRequest $request) : RedirectResponse | JsonResponse
+    {
+        $data = $request->validated();
+        $this->trainingMember->multipleDelete($data['id']);
+
+        return redirect()->back()->with('success', trans('alert.delete_success'));
     }
 
     /**

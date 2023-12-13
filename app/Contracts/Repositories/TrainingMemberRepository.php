@@ -75,4 +75,11 @@ class TrainingMemberRepository extends BaseRepository implements TrainingMemberI
             ->where('training_id', $request->training_id)
             ->fastPaginate($pagination);
     }
+
+    public function multipleDelete(array $data): mixed
+    {
+        return $this->model->query()
+            ->whereIn('id',$data)
+            ->delete();
+    }
 }
