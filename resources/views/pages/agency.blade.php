@@ -93,7 +93,7 @@
                                 <div class="col-6 mb-2">
                                     <button class="btn text-white btn-edit" id="btn-edit-{{ $user->id }}"
                                         data-id="{{ $user->id }}" data-name="{{ $user->name }}"
-                                        data-email="{{ $user->email }}" style="background-color: #1B3061; width: 100%;">
+                                        data-email="{{ $user->email }}" data-phone_number="{{ $user->phone_number }}" style="background-color: #1B3061; width: 100%;">
                                         edit
                                     </button>
                                 </div>
@@ -135,13 +135,18 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label id="name" for="recipient-name" class="control-label mb-2">Username</label>
-                            <input type="text" class="form-control" id="update-name" class="form-control"
-                                name="name" id="nametext" aria-describedby="name" placeholder="Masukan Nama" />
+                            <input type="text" class="form-control" id="update-name" class="form-control" name="name"
+                                id="nametext" aria-describedby="name" placeholder="Masukan nama" />
                         </div>
                         <div class="mb-3">
-                            <label id="email" for="recipient-name" class="control-label mb-2">email</label>
-                            <input type="email" class="form-control" id="update-email" class="form-control"
-                                name="email" aria-describedby="name" placeholder="Masukan Email" />
+                            <label id="phone_number" for="recipient-name" class="control-label mb-2">Nomor Handphone</label>
+                            <input type="number" class="form-control" id="update-name" class="form-control" name="phone_number"
+                                id="nametext" aria-describedby="name" placeholder="Masukan nomor hp anda" />
+                        </div>
+                        <div class="mb-3">
+                            <label id="email" for="recipient-name" class="control-label mb-2">Email</label>
+                            <input type="email" class="form-control" id="update-email" class="form-control" name="email"
+                                aria-describedby="name" placeholder="Masukan email" />
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -149,7 +154,7 @@
                             data-bs-dismiss="modal">
                             Close
                         </button>
-                        <button type="submit" style="background-color: #1B3061" class="btn text-white btn-create">
+                        <button type="submit" style="background-color: #1B3061" class="btn text-white btn-update">
                             Edit
                         </button>
                     </div>

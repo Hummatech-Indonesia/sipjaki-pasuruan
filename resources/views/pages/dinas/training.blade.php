@@ -88,7 +88,7 @@
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="mb-3">
-                                            <label for="basicpill-lastname-input">Organize</label>
+                                            <label for="basicpill-lastname-input">Penyelenggara</label>
                                             <input name="organizer" type="text" class="form-control"
                                                 id="basicpill-phoneno-input" placeholder="Enter Your Name.">
                                             @error('organizer')
@@ -269,7 +269,7 @@
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="mb-3">
-                                            <label for="basicpill-lastname-input">Organisasi</label>
+                                            <label for="basicpill-lastname-input">Penyelenggara</label>
                                             <input name="organizer" type="text" class="form-control"
                                                 id="basicpill-phoneno-input" placeholder="Enter Your Name.">
                                             @error('organizer')

@@ -9,7 +9,7 @@
                     <form action="" method="post">
                         <div class="row">
                             <div class="col-lg-2 d-flex flex-column align-items-center">
-                                <img id="preview" class="rounded-circle" width="90%" style="object-fit: cover"
+                                <img id="preview" class="rounded-circle" width="100" style="object-fit: cover"
                                     alt="">
                                 <div class="btn btn-sm mt-3 btn-upload rounded-3" id="btn-upload"
                                     style="background-color: #1B3061; color: white; padding-left: 50px; padding-right: 50px;">

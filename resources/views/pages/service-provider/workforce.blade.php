@@ -11,24 +11,16 @@
                 </svg>
                 <span class="ms-2">Import</span>
             </button>
-            <button type="submit" class="btn text-white fw-normal" style="background-color:#2CA67A;">
-                <svg xmlns="http://www.w3.org/2000/svg" height="14" width="14" fill="white" transform="rotate(90)"
-                    viewBox="0 0 512 512">
-                    <path
-                        d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 192 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128zM160 96c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 32C43 32 0 75 0 128L0 384c0 53 43 96 96 96l64 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l64 0z" />
-                </svg>
-                <span class="ms-2">Export</span>
-            </button>
-        </div>
-
-        <div class="">
-            <button type="button" class="btn text-white fw-normal" style="background-color:#FFC928;">
-                <svg xmlns="http://www.w3.org/2000/svg" height="14" width="14" fill="white" viewBox="0 0 512 512">
-                    <path
-                        d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 288 480 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-370.7 0 73.4-73.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-128 128z" />
-                </svg>
-                <span class="ms-1">Kembali</span>
-            </button>
+            <a href="{{ route('export.workers') }}">
+                <button type="submit" class="btn text-white fw-normal" style="background-color:#2CA67A;">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="14" width="14" fill="white" transform="rotate(90)"
+                        viewBox="0 0 512 512">
+                        <path
+                            d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 192 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128zM160 96c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 32C43 32 0 75 0 128L0 384c0 53 43 96 96 96l64 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l64 0z" />
+                    </svg>
+                    <span class="ms-2">Export</span>
+                </button>
+            </a>
         </div>
     </div>
     <div class="modal fade" tabindex="-1" id="modal-create" aria-labelledby="exampleModalLabel1">
@@ -110,11 +102,11 @@
                 <button class="btn ms-1 text-white rounded" style="background-color:#1B3061" onclick="selectAll()">
                     Pilih Semua
                 </button>
-                <form action="{{ route('delete-workers') }}" method="POST">
+                <form action="{{ route('delete-workers') }}" id="delete-multiple" method="POST">
                     @csrf
                     @method('DELETE')
                     <input type="hidden" name="worker_id" id="selected-worker">
-                    <button class="btn ms-1 text-white rounded" style="background-color:#E05C39"
+                    <button type="button" class="btn ms-1 text-white rounded" style="background-color:#E05C39"
                         onclick="deleteSelected()">
                         Hapus Pilihan
                     </button>
@@ -297,7 +289,7 @@
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #1B3061">
-                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Tambah Pelatihan</h5>
+                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Detail Tenaga Kerja</h5>
                     <button type="button" class="btn-close" style="background-color: white" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
@@ -351,15 +343,6 @@
                                 data-bs-dismiss="modal">
                                 Close
                             </button>
-                            <button type="button" class="btn text-white fw-normal" style="background-color:#2CA67A;">
-                                <svg xmlns="http://www.w3.org/2000/svg" height="14" width="14" fill="white"
-                                    transform="rotate(90)"
-                                    viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
-                                    <path
-                                        d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 192 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128zM160 96c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 32C43 32 0 75 0 128L0 384c0 53 43 96 96 96l64 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l64 0z" />
-                                </svg>
-                                <span class="ms-2">Export</span>
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -407,9 +390,26 @@
             updateSelected();
             var selectedIds = document.getElementById('selected-worker').value;
             if (selectedIds) {
-                document.getElementById('delete-form').submit();
+                Swal.fire({
+                    title: 'Konfirmasi',
+                    text: 'Apakah Anda yakin ingin melanjutkan?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'OK',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.getElementById('delete-multiple').submit();
+                    } else {
+                        Swal.fire('Dibatalkan', 'Aksi telah dibatalkan.', 'error');
+                    }
+                });
             } else {
-                alert('Pilih setidaknya satu pekerja untuk dihapus.');
+                Swal.fire({
+                    'icon': 'error',
+                    'title': 'error',
+                    'text': 'Setidaknya Pilih Satu Tenaga kerja Untuk Dihapus'
+                })
             }
         }
 

@@ -1,14 +1,14 @@
 @extends('layouts.app')
 @section('content')
-@if (session('success'))
-<script>
-    Swal.fire({
-        icon: 'success',
-        title: 'Success',
-        text: '{{ session('success') }}',
-    });
-</script>
-@endif
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: '{{ session('success') }}',
+            });
+        </script>
+    @endif
     <h3 class="text-dark" style="font-weight: 600">
         Detail Pelatihan
     </h3>
@@ -54,6 +54,120 @@
     </div>
     <div class="card">
         <div class="card-body">
+            <div class="badge bg-info">
+                <p class="mb-0 px-3 py-1 fs-6">
+                    <span id="detail-year">{{ $training->fiscalYear->name }}</span>
+                </p>
+            </div>
+            <p class="mt-3 fs-5 text-dark mb-2" style="font-weight: 700">
+                <span id="detail-name">{{ $training->name }}</span>
+            </p>
+            <div class="">
+                <div class="row mb-1">
+                    <div class="col-md-5">
+                        <p class="mb-2 text-dark">Kualifikasi
+                    <div class="col-md-5">
+                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-project_value"></span></p>
+                    </div>
+                </div>
+                <div class="row mb-1">
+                    <div class="col-md-5">
+                        <p class="mb-2 text-dark">Progres Fisik :</p>
+                    </div>
+                    <div class="col-md-5">
+                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-physical_progress"></span> %</p>
+                    </div>
+                </div>
+                <div class="row mb-1">
+                    <div class="col-md-5">
+                        <p class="mb-2 text-dark">Progres Keuangan :</p>
+                    </div>
+                    <div class="col-md-5">
+                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-finance_progress"></span> %</p>
+                    </div>
+                </div>
+                <div class="row mb-1">
+                    <div class="col-md-5">
+                        <p class="mb-2 text-dark">Status :</p>
+                    </div>
+                    <div class="col-md-5">
+                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-status"></span></p>
+                    </div>
+                </div>
+                <div class="row mb-1">
+                    <div class="col-md-5">
+                        <p class="mb-2 text-dark">Penyedia jasa :</p>
+                    </div>
+                    <div class="col-md-5">
+                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-service_provider_name"></span>
+                        </p>
+                    </div>
+                </div>
+                <div class="row mb-1">
+                    <div class="col-md-5">
+                        <p class="mb-2 text-dark">Mulai :</p>
+                    </div>
+                    <div class="col-md-5">
+                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-start_at"></span></p>
+                    </div>
+                </div>
+                <div class="row mb-1">
+                    <div class="col-md-5">
+                        <p class="mb-2 text-dark">Selesai :</p>
+                    </div>
+                    <div class="col-md-5">
+                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-end_at"></span></p>
+                    </div>
+                </div>
+                <div class="row mb-1">
+                    <div class="col-md-5">
+                        <p class="mb-2 text-dark">Fisik Bulan :</p>
+                    </div>
+                    <div class="col-md-5">
+                        <p class="mb-2 text-dark" style="font-weight:600;"><span
+                                id="detail-physical_progress_start"></span></p>
+                    </div>
+                </div>
+                <div class="row mb-1">
+                    <div class="col-md-5">
+                        <p class="mb-2 text-dark">Keuangan Bulan :</p>
+                    </div>
+                    <div class="col-md-5">
+                        <p class="mb-2 text-dark" style="font-weight:600;"><span
+                                id="detail-finance_progress_start"></span></p>
+                    </div>
+                </div>
+                <div class="row mb-1">
+                    <div class="col-md-5">
+                        <p class="mb-2 text-dark">Sumber Dana :</p>
+                    </div>
+                    <div class="col-md-5">
+                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-fund_source"></span></p>
+                    </div>
+                </div>
+                <div class="row mb-1">
+                    <div class="col-md-5">
+                        <p class="mb-2 text-dark">jenis Kontrak :</p>
+                    </div>
+                    <div class="col-md-5">
+                        <p class="mb-2 text-dark" style="font-weight:600;"> <span
+                                id="detail-contract_category_name"></span></p>
+                    </div>
+                </div>
+                <div class="row mb-1">
+                    <div class="col-md-5">
+                        <p class="mb-2 text-dark">Karakteristik Kontrak :</p>
+                    </div>
+                    <div class="col-md-5">
+                        <p class="mb-2 text-dark" style="font-weight:600;"><span
+                                id="detail-characteristic_project_name"></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
             <h4 class="text-dark" style="font-weight: 600">
                 Berikut Daftar Peserta Pelatihan
             </h4>
@@ -95,8 +209,8 @@
                 </div>
             </div>
             {{-- modal --}}
-            <div class="modal fade" id="modal-update" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
-                aria-hidden="true">
+            <div class="modal fade" id="modal-update" tabindex="-1" role="dialog"
+                aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header" style="background-color: #1B3061">
@@ -167,7 +281,7 @@
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="mb-3">
-                                                    <label for="basicpill-email-input">Deccre</label>
+                                                    <label for="basicpill-email-input">Surat Keputusan</label>
                                                     <input name="decree" type="text" class="form-control"
                                                         id="basicpill-phoneno-input" placeholder="Enter Your Name.">
                                                     @error('decree')
@@ -252,7 +366,7 @@
                                 data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('training-members/', $training->id) }}" id="form-create"
+                            <form action="{{ route('training.members', $training->id) }}" id="form-create"
                                 method="post" enctype="multipart/form-data">
                                 @csrf
                                 @method('POST')
@@ -302,8 +416,8 @@
                                             <div class="col-lg-4">
                                                 <div class="mb-3">
                                                     <label for="basicpill-phoneno-input">Jenis kelamin</label> <br>
-                                                    <input type="checkbox" name="gender" value="male">&nbsp;Laki-Laki
-                                                    <input type="checkbox" name="gender" value="female">&nbsp;Perempuan
+                                                    <input type="radio" name="gender" value="male">&nbsp;Laki-Laki
+                                                    <input type="radio" name="gender" value="female">&nbsp;Perempuan
                                                     @error('gender')
                                                         <p class="text-danger">
                                                             {{ $message }}
@@ -313,7 +427,7 @@
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="mb-3">
-                                                    <label for="basicpill-email-input">Deccre</label>
+                                                    <label for="basicpill-email-input">Surat Keputusan</label>
                                                     <input name="decree" type="text" class="form-control"
                                                         id="basicpill-phoneno-input" placeholder="Enter Your Name.">
                                                     @error('decree')
@@ -414,9 +528,6 @@
                                 Surat Keputusan
                             </td>
                             <td class="text-white" style="background-color: #1B3061">
-                                File
-                            </td>
-                            <td class="text-white" style="background-color: #1B3061">
                                 nomor identitas Nasional
                             </td>
                             <td class="text-white" style="background-color: #1B3061">
@@ -454,9 +565,6 @@
                                 </td>
                                 <td>
                                     {{ $trainingMember->decree }}
-                                </td>
-                                <td>
-                                    <img src="{{ asset('storage/trainingmember/' .$trainingMember->file) }}" alt="file">
                                 </td>
                                 <td>
                                     {{ $trainingMember->national_identity_number }}
