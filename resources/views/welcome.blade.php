@@ -1,12 +1,25 @@
 @extends('layouts.app-landing-page')
 @section('content')
+<style>
+@media (max-width: 540px) {
+    .berita-terbaru{
+        width:50%;
+    }
+}
+
+@media(min-width:1200px) {
+    .berita-terbaru{
+        width:20%;
+    }
+}
+</style>
     <div class="container d-flex justify-content-center" style="margin-top:12px">
         <iframe src="{{ asset('assets/PUPR.mp4') }}" width="1200" height="700" frameborder="2"></iframe>
     </div>
     <div class="blog-post-archive">
         <div class="container">
             <div class="d-flex justify-content-center mb-4">
-                <div style="width:20%;height:auto;flex-shrink:0;border-radius: 16px;background: var(--Kuning, #FFC928);">
+                <div class="berita-terbaru" style="height:auto;flex-shrink:0;border-radius: 16px;background: var(--Kuning, #FFC928);">
                     <p class="my-auto"
                         style="color: var(--Biru-Primary, #1B3061);
             text-align: center;

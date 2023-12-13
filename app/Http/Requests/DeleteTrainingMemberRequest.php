@@ -22,8 +22,7 @@ class DeleteTrainingMemberRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id' => 'array',
-            'id.*' => 'exists:training_members,id'
+            'id' => 'required',
         ];
     }
 }

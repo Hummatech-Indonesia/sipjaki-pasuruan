@@ -101,13 +101,9 @@
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-lastname-input">Sumber Dana</label>
-                                            <input name="fund_source_id" type="text" class="form-control"
-                                                id="basicpill-phoneno-input" placeholder="Enter Your Name.">
-                                            @error('organizer')
-                                                <p class="text-danger">
-                                                    {{ $message }}
-                                                </p>
-                                            @enderror
+                                            <select name="fund_source_id" class="form-select  founds-source" id="">
+
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -146,7 +142,7 @@
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-email-input">Sub Klasifikasi</label>
-                                            <select name="sub_classifications_id" class="form-select select2-create"
+                                            <select name="sub_classification_id" class="form-select select2-create"
                                                 style="width:100%" id="list-sub-classifications">
                                             </select>
                                             @error('sub_classification_id')
@@ -294,13 +290,9 @@
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-lastname-input">Sumber Dana</label>
-                                            <input name="fund_source_id" type="text" class="form-control"
-                                                id="basicpill-phoneno-input" placeholder="Enter Your Name.">
-                                            @error('organizer')
-                                                <p class="text-danger">
-                                                    {{ $message }}
-                                                </p>
-                                            @enderror
+                                            <select name="fund_source_id" class="form-select founds-source" id="">
+
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -339,7 +331,7 @@
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-email-input">Sub Klasifikasi</label>
-                                            <select name="sub_classifications_id" class="form-select select2-update"
+                                            <select name="sub_classification_id" class="form-select select2-update"
                                                 style="width:100%" id="update-list-sub-classifications">
                                             </select>
                                             @error('sub_classification_id')
@@ -429,6 +421,14 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div>
+    @if ($errors->any())
+    @foreach ($errors->all() as $error)
+        <div class="alert alert-danger alert-dismissible mt-3 fade show" role="alert">
+            {{ $error }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endforeach
+@endif
     <div class="row mt-4">
         @forelse ($trainings as $training)
             <div class="col-12 col-lg-6 col-xxl-4">
@@ -455,12 +455,13 @@
                             </div>
                             <div class="">
                                 <button class="btn btn-warning btn-edit" id="btn-edit-{{ $training->id }}"
+                                    data-fund_source_id="{{ $training->fund_source_id }}"
                                     data-id="{{ $training->id }}" data-name="{{ $training->name }}"
                                     data-lesson_hour="{{ $training->lesson_hour }}"
                                     data-organizer="{{ $training->organizer }}"
                                     data-start_at="{{ \Carbon\Carbon::parse($training->start_at)->format('Y-m-d') }}"
                                     data-end_time="{{ \Carbon\Carbon::parse($training->end_time)->format('Y-m-d') }}"
-                                    data-sub_classifications_id="{{ $training->sub_classifications_id }}"
+                                    data-sub_classification_id="{{ $training->sub_classification_id }}"
                                     data-training_method_id="{{ $training->training_method_id }}"
                                     data-location="{{ $training->location }}"
                                     data-qualification_level_id="{{ $training->qualification_level_id }}"
@@ -509,6 +510,7 @@
                 dropdownParent: $("#modal-update")
             });
         });
+        
         $('.btn-edit').click(function() {
             const formData = getDataAttributes($(this).attr('id'))
             console.log(formData);
@@ -549,6 +551,23 @@
                             );
                         }
                     });
+                }
+            });
+        }
+
+        getFoundSource()
+        function getFoundSource() {
+            $.ajax({
+                url: "{{ route('list-fund-source') }}",
+                type: 'GET',
+                dataType: "JSON",
+                success: function(response) {
+                    $.each(response.data, function(index, item) {
+                            var option = $('<option>');
+                            option.val(item.id);
+                            option.text(item.name);
+                            $('.founds-source').append(option);
+                        });
                 }
             });
         }

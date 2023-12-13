@@ -62,108 +62,73 @@
             <p class="mt-3 fs-5 text-dark mb-2" style="font-weight: 700">
                 <span id="detail-name">{{ $training->name }}</span>
             </p>
-            <div class="">
-                <div class="row mb-1">
-                    <div class="col-md-5">
-                        <p class="mb-2 text-dark">Kualifikasi
-                    <div class="col-md-5">
-                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-project_value"></span></p>
-                    </div>
-                </div>
-                <div class="row mb-1">
-                    <div class="col-md-5">
-                        <p class="mb-2 text-dark">Progres Fisik :</p>
-                    </div>
-                    <div class="col-md-5">
-                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-physical_progress"></span> %</p>
-                    </div>
-                </div>
-                <div class="row mb-1">
-                    <div class="col-md-5">
-                        <p class="mb-2 text-dark">Progres Keuangan :</p>
-                    </div>
-                    <div class="col-md-5">
-                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-finance_progress"></span> %</p>
-                    </div>
-                </div>
-                <div class="row mb-1">
-                    <div class="col-md-5">
-                        <p class="mb-2 text-dark">Status :</p>
-                    </div>
-                    <div class="col-md-5">
-                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-status"></span></p>
-                    </div>
-                </div>
-                <div class="row mb-1">
-                    <div class="col-md-5">
-                        <p class="mb-2 text-dark">Penyedia jasa :</p>
-                    </div>
-                    <div class="col-md-5">
-                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-service_provider_name"></span>
-                        </p>
-                    </div>
-                </div>
-                <div class="row mb-1">
-                    <div class="col-md-5">
-                        <p class="mb-2 text-dark">Mulai :</p>
-                    </div>
-                    <div class="col-md-5">
-                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-start_at"></span></p>
-                    </div>
-                </div>
-                <div class="row mb-1">
-                    <div class="col-md-5">
-                        <p class="mb-2 text-dark">Selesai :</p>
-                    </div>
-                    <div class="col-md-5">
-                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-end_at"></span></p>
-                    </div>
-                </div>
-                <div class="row mb-1">
-                    <div class="col-md-5">
-                        <p class="mb-2 text-dark">Fisik Bulan :</p>
-                    </div>
-                    <div class="col-md-5">
-                        <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                id="detail-physical_progress_start"></span></p>
-                    </div>
-                </div>
-                <div class="row mb-1">
-                    <div class="col-md-5">
-                        <p class="mb-2 text-dark">Keuangan Bulan :</p>
-                    </div>
-                    <div class="col-md-5">
-                        <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                id="detail-finance_progress_start"></span></p>
-                    </div>
-                </div>
-                <div class="row mb-1">
-                    <div class="col-md-5">
-                        <p class="mb-2 text-dark">Sumber Dana :</p>
-                    </div>
-                    <div class="col-md-5">
-                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-fund_source"></span></p>
-                    </div>
-                </div>
-                <div class="row mb-1">
-                    <div class="col-md-5">
-                        <p class="mb-2 text-dark">jenis Kontrak :</p>
-                    </div>
-                    <div class="col-md-5">
-                        <p class="mb-2 text-dark" style="font-weight:600;"> <span
-                                id="detail-contract_category_name"></span></p>
-                    </div>
-                </div>
-                <div class="row mb-1">
-                    <div class="col-md-5">
-                        <p class="mb-2 text-dark">Karakteristik Kontrak :</p>
-                    </div>
-                    <div class="col-md-5">
-                        <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                id="detail-characteristic_project_name"></span></p>
-                    </div>
-                </div>
-            </div>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td class="text-dark" style="font-weight: bold;">Sumber Dana:</td>
+                        <td class="text-dark" style="font-weight: 600;"><span
+                                id="detail-project_value">{{ $training->fundSource->name }}</span></td>
+                    </tr>
+                    <tr>
+                        <td class="text-dark" style="font-weight: bold;">Kualifikasi:</td>
+                        <td class="text-dark" style="font-weight: 600;"><span
+                                id="detail-physical_progress"></span>{{ $training->qualificationLevel->qualification->name }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-dark" style="font-weight: bold;">Jenjang KKNI:</td>
+                        <td class="text-dark" style="font-weight: 600;"><span
+                                id="detail-finance_progress">{{ $training->qualificationLevel->name }}</span></td>
+                    </tr>
+                    <tr>
+                        <td class="text-dark" style="font-weight: bold;">Klasifikasi:</td>
+                        <td class="text-dark" style="font-weight: 600;"><span
+                                id="detail-status">{{ $training->subClassification->classification->name }}</span></td>
+                    </tr>
+                    <tr>
+                        <td class="text-dark" style="font-weight: bold;">Sub Klasifikasi:</td>
+                        <td class="text-dark" style="font-weight: 600;"><span
+                                id="detail-service_provider_name">{{ $training->subClassification->name }}</span></td>
+                    </tr>
+                    <tr>
+                        <td class="text-dark" style="font-weight: bold;">Waktu Pelaksanaan:</td>
+                        <td class="text-dark" style="font-weight: 600;"><span
+                                id="detail-start_at">{{ \Carbon\Carbon::parse($training->start_at)->translatedFormat('d F Y') }}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-dark" style="font-weight: bold;">Selesai Pelaksanaan:</td>
+                        <td class="text-dark" style="font-weight: 600;"><span
+                                id="detail-end_at">{{ \Carbon\Carbon::parse($training->end_at)->translatedFormat('d F Y') }}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-dark" style="font-weight: bold;">Jam Pelajaran:</td>
+                        <td class="text-dark" style="font-weight: 600;"><span
+                                id="detail-physical_progress_start">{{ $training->lesson_hour }}</span></td>
+                    </tr>
+                    <tr>
+                        <td class="text-dark" style="font-weight: bold;">Metode Pelatihan:</td>
+                        <td class="text-dark" style="font-weight: 600;"><span
+                                id="detail-finance_progress_start">{{ $training->TrainingMethod->name }}</span></td>
+                    </tr>
+                    <tr>
+                        <td class="text-dark" style="font-weight: bold;">Sumber Dana:</td>
+                        <td class="text-dark" style="font-weight: 600;"><span
+                                id="detail-fund_source">{{ $training->fundSource->name }}</span></td>
+                    </tr>
+                    <tr>
+                        <td class="text-dark" style="font-weight: bold;">Loaksi:</td>
+                        <td class="text-dark" style="font-weight: 600;"><span
+                                id="detail-contract_category_name">{{ $training->location }}</span></td>
+                    </tr>
+                    <tr>
+                        <td class="text-dark" style="font-weight: bold;">Keterangan:</td>
+                        <td class="text-dark" style="font-weight: 600;"><span
+                                id="detail-characteristic_project_name">{{ $training->description }}</span></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
     <div class="card">
@@ -183,14 +148,19 @@
                         </div>
                     </div>
                     <div class="">
-                        <button id="checkAll" class="btn text-white" style="background-color: #1B3061">
+                        <button id="checkAll" onclick="selectAll()" class="btn text-white" style="background-color: #1B3061">
                             Select All
                         </button>
                     </div>
                     <div class="">
-                        <button id="DeleteAll" class="btn text-white btn-danger">
-                            Delete Select
-                        </button>
+                        <form id="delete-multiple" action="{{ route('delete-member') }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <input type="hidden" name="id" id="selected-worker">
+                            <button id="DeleteAll" onclick="deleteSelected()" type="button" class="btn text-white btn-danger">
+                                Delete Select
+                            </button>
+                        </form>
                     </div>
                 </div>
                 <div class="">
@@ -542,7 +512,7 @@
                         @forelse ($trainingMembers as $trainingMember)
                             <tr>
                                 <td>
-                                    <input type="checkbox" class="check">
+                                    <input type="checkbox" value="{{ $trainingMember->id }}" class="check">
                                 </td>
                                 <td>
                                     {{ $trainingMember->name }}
@@ -666,11 +636,55 @@
             $('#form-update').attr('action', );
             $('#modal-update').modal('show')
         })
-        $("#checkAll").click(function() {
-            $(".check").prop('checked', true);
+        function updateSelected() {
+            var selectedIds = [];
+            var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(function(checkbox) {
+                if (checkbox.checked) {
+                    var workerId = checkbox.value;
+                    selectedIds.push(workerId);
+                }
+            });
+            document.getElementById('selected-worker').value = selectedIds;
+        }
+
+        function deleteSelected() {
+            updateSelected();
+            var selectedIds = document.getElementById('selected-worker').value;
+            if (selectedIds) {
+                Swal.fire({
+                    title: 'Konfirmasi',
+                    text: 'Apakah Anda yakin ingin melanjutkan?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'OK',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.getElementById('delete-multiple').submit();
+                    } else {
+                        Swal.fire('Dibatalkan', 'Aksi telah dibatalkan.', 'error');
+                    }
+                });
+            } else {
+                Swal.fire({
+                    'icon': 'error',
+                    'title': 'error',
+                    'text': 'Setidaknya Pilih Satu Tenaga kerja Untuk Dihapus'
+                })
+            }
+        }
+
+        var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(function(checkbox) {
+            checkbox.addEventListener('change', updateSelected);
         });
-        $("#DeleteAll").click(function() {
-            $(".check").prop('checked', false);
-        });
+
+        function selectAll() {
+            var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(function(checkbox) {
+                checkbox.checked = true;
+            });
+        }
     </script>
 @endsection
