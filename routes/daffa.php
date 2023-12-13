@@ -16,7 +16,6 @@ Route::delete('delete-workers',[ WorkerController::class, 'deleteMultiple'])->na
 Route::resources([
     'workers' => WorkerController::class,
     'rules' => RuleController::class,
-    'images'=> ImagesController::class
 ]);
 
 
