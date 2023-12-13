@@ -47,15 +47,27 @@
             .logo3 {
                 width: 150px;
             }
-            .font-size-email{
+
+            .font-size-email {
                 font-size: 11px;
             }
-            .icon-email{
+
+            .icon-email {
                 margin-top: 7px;
                 margin-left: 10px;
-                width:20px;
-                height:20px;
+                width: 20px;
+                height: 20px;
             }
+
+            .icon-location {
+                width: 80px;
+                height: 25px;
+            }
+
+            .logo-kab-pasuruan {
+                margin-bottom: 30px;
+            }
+
 
         }
 
@@ -69,12 +81,23 @@
             .logo3 {
                 width: 70%;
             }
-            .font-size-email{
+
+            .font-size-email {
                 font-size: 14px;
             }
-            .icon-email{
-                width:35px;
-                height:35px;
+
+            .icon-email {
+                width: 35px;
+                height: 35px;
+            }
+
+            .icon-location {
+                width: 50px;
+                height: 25px;
+            }
+
+            .logo-kab-pasuruan {
+                width: 90%;
             }
         }
     </style>
@@ -214,16 +237,11 @@
             <div class="container">
                 <div class="page-title-wrapper">
                     <h2 class="page-title-1">SISTEM INFORMASI PEMBINA</h2>
-                    <h class="page-title-2">JASA KONSTRUKSI</h1>
+                    <h4 class="page-title-2">JASA KONSTRUKSI</h4>
 
-                        <ul class="bradcurmed mt-5">
-                            <li><a href="#" rel="noopener noreferrer">Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit. Duis pharetra turpis eu sapien suscipit blandit. Sed semper erat
-                                    non egestas viverra. Proin tempus condimentum tortor quis tempor. Donec faucibus
-                                    dolor nisi. Phasellus tincidunt maximus sapien, nec gravida ex condimentum sit amet.
-                                    Nulla convallis posuere ligula, sed pulvinar lacus elementum ut. Nunc condimentum
-                                    mauris vitae interdum imperdiet. Integer ac imperdiet erat</a></li>
-                        </ul>
+                    <ul class="bradcurmed mt-4">
+                        <li><a href="#" rel="noopener noreferrer">SIPJAKI adalah sistem informasi yang dikelola bersama oleh pembina jasa konstruksi nasional, provinsi dan kabupaten/kota dalam rangka meningkatkan kemudahan akses informasi usaha jasa konstruksi, peningkatan transparansi, serta membantu memperkuat jaringan bisnis pelaku usaha dalam rantai pasok konstruksi.</a></li>
+                    </ul>
                 </div>
                 <!-- /.page-title-wrapper -->
             </div>
@@ -253,8 +271,8 @@
                 </div>
             </div>
             <div class="d-flex d-row" style="margin-right: 30px;">
-                <svg style="margin-right: 5px;" class="icon-email me-2"  viewBox="0 0 45 45"
-                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg style="margin-right: 5px;" class="icon-email me-2" viewBox="0 0 45 45" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
                     <circle cx="22.5" cy="22.5" r="22.5" fill="white" />
                     <path
                         d="M11.7047 16.9428L22.5001 22.3405L33.2957 16.9428C33.2143 15.5248 32.0386 14.4 30.6002 14.4H14.4002C12.9618 14.4 11.7861 15.5248 11.7047 16.9428Z"
@@ -291,8 +309,10 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6">
                             <div>
-                                <img style="width: 90%;" src="{{ asset('logo-kab-pasuruan-2.png') }}" alt=""
-                                    srcset="">
+                                <img class="logo-kab-pasuruan" src="{{ asset('logo-kab-pasuruan-2.png') }}"
+                                    alt="" srcset="">
+                                {{-- <div id="googleMap" style="width:100%;height:400px;"></div> --}}
+
                             </div>
                             <!-- /.widget footer-widget -->
                         </div>
@@ -315,8 +335,8 @@
                                     Alamat
                                 </div>
                                 <div class="d-flex d-row mt-3">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="25"
-                                        viewBox="0 0 34 34" fill="none">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon-location" viewBox="0 0 34 34"
+                                        fill="none">
                                         <path
                                             d="M17 2.125C11.1343 2.125 6.375 6.40887 6.375 11.6875C6.375 20.1875 17 31.875 17 31.875C17 31.875 27.625 20.1875 27.625 11.6875C27.625 6.40887 22.8657 2.125 17 2.125ZM17 17C16.1594 17 15.3377 16.7507 14.6388 16.2837C13.9399 15.8167 13.3952 15.153 13.0735 14.3764C12.7518 13.5998 12.6677 12.7453 12.8317 11.9209C12.9956 11.0964 13.4004 10.3392 13.9948 9.7448C14.5892 9.15042 15.3464 8.74565 16.1709 8.58166C16.9953 8.41768 17.8498 8.50184 18.6264 8.82351C19.403 9.14518 20.0667 9.68992 20.5337 10.3888C21.0007 11.0877 21.25 11.9094 21.25 12.75C21.2488 13.8768 20.8006 14.9571 20.0038 15.7538C19.2071 16.5506 18.1268 16.9988 17 17Z"
                                             fill="#1B3061" />
@@ -371,7 +391,6 @@
 
 
     </div>
-
     <script src="{{ asset('dependencies/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('dependencies/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('dependencies/swiper/js/swiper.min.js') }}"></script>
@@ -383,8 +402,6 @@
     <script src="{{ asset('dependencies/jquery.parallax-scroll/js/jquery.parallax-scroll.js') }}"></script>
     <script src="{{ asset('dependencies/magnific-popup/js/jquery.magnific-popup.min.js') }}"></script>
     <script src="{{ asset('dependencies/gmap3/js/gmap3.min.js') }}"></script>
-    <script type='text/javascript'
-        src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDk2HrmqE4sWSei0XdKGbOMOHN3Mm2Bf-M&amp;ver=2.1.6'></script>
 
     <script src="{{ asset('assets/js/header.js') }}"></script>
     <script src="{{ asset('assets/js/app-min.js') }}"></script>

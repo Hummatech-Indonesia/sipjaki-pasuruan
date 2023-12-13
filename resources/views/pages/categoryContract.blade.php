@@ -17,7 +17,7 @@
             </h5>
         </div>
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <form action="" class=" col-lg-3">
+            <form action="" class="col-lg-3">
                 <div class="input-group">
                     <input type="text" name="name" value="{{$name}}" class="form-control" placeholder="Search">
                     <div class="input-group-append">
@@ -26,7 +26,7 @@
                         </button>
                     </div>
                 </div>
-            </form> 
+            </form>
             <div>
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-create"
                     style="background-color: #1B3061; border-radius: 10px"><i class="fas fa-plus"
