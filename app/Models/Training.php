@@ -25,7 +25,7 @@ class Training extends Model implements HasFundSource,HasTrainingMethod,HasFisca
         'training_method_id',
         'fund_source_id',
         'fiscal_year_id',
-        'sub_classifications_id',
+        'sub_classification_id',
         'qualification_level_id',
         'name',
         'organizer',

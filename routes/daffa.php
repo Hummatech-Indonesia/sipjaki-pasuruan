@@ -6,6 +6,7 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\RuleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkerController;
+use App\Models\TrainingMember;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/',[LandingController::class,'news'])->name('landing-page');
@@ -13,6 +14,7 @@ Route::get('berita-terbaru',[LandingController::class,'latestNews'])->name('beri
 Route::get('berita/{news}',[LandingController::class,'show'])->name('berita');
 Route::get('peraturan',[LandingController::class,'rules'])->name('rules.landing');
 Route::delete('delete-workers',[ WorkerController::class, 'deleteMultiple'])->name('delete-workers');
+Route::delete('delete-training-members',[ TrainingMember::class, 'multipleDelete'])->name('delete-member');
 Route::resources([
     'workers' => WorkerController::class,
     'rules' => RuleController::class,
