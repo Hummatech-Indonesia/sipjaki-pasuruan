@@ -11,7 +11,7 @@
                         @csrf
                         <div class="row">
                             <div class="col-lg-2 d-flex flex-column align-items-center">
-                                <img id="preview" src="{{ asset(auth()->user()->profile == null ? 'Default.png' : 'storage/' . auth()->user()->profile) }}" class="rounded-circle" width="90%" style="object-fit: cover" alt="">
+                                <img id="preview" src="{{ asset(auth()->user()->profile == null ? 'Default.png' : 'storage/' . auth()->user()->profile) }}" class="rounded-circle avatar-xl" width="90%" style="object-fit: cover" alt="">
                                 <div class="btn btn-sm mt-3 btn-upload rounded-3" id="btn-upload"
                                     style="background-color: #1B3061; color: white; padding-left: 50px; padding-right: 50px;">
                                     UPLOAD</div>
@@ -37,7 +37,7 @@
                                     </div>
                                     <div class="col">
                                         <label for="" class="form-label">Sk</label>
-                                    <input type="number" class="form-control" value="{{ auth()->user()->decree }}" name="decree" id="">
+                                    <input type="text" class="form-control" value="{{ auth()->user()->decree }}" name="decree" id="">
                                     </div>
                                 </div>
                                 <div class="d-flex mt-4 justify-content-end">
@@ -69,25 +69,34 @@
                         @method('PATCH')
                         @csrf
                         <div class="row">
-                            <div class="col-lg-2 d-flex flex-column align-items-center">
-                                <img id="preview" src="{{ asset(auth()->user()->profile == null ? 'Default.png' : 'storage/' . auth()->user()->profile) }}" class="rounded-circle" width="90%" style="object-fit: cover" alt="">
+                            <div class="col-lg-3 d-flex flex-column align-items-center">
+                                <img width="90%" src="{{ asset('assets/images/Password 1.png') }}" alt="">
                             </div>
 
-                            <div class="col-lg-10">
+                            <div class="col-lg-9">
                                 <div class="row">
                                     <div class="col-6">
                                         <label for="" class="form-label">Password Sekarang</label>
-                                        <input type="password" class="form-control" name="current_password" id="">
+                                        <div class="input-group auth-pass-inputgroup">
+                                            <input type="password" class="form-control" placeholder="Masukkan password sekarang" aria-label="Password" name="current_password" aria-describedby="password-addon" >
+                                            <button class="btn btn-light " type="button" id="password-addon"><i class="mdi mdi-eye-outline"></i></button>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col">
                                         <label for="" class="form-label">Password Baru</label>
-                                        <input type="password" class="form-control" name="password" id="">
+                                        <div class="input-group auth-pass-inputgroup">
+                                            <input type="password" class="form-control" placeholder="Masukkan password baru" aria-label="Password" name="current_password" aria-describedby="password-addon" name="password">
+                                            <button class="btn btn-light " type="button" id="password-addon"><i class="mdi mdi-eye-outline"></i></button>
+                                        </div>
                                     </div>
                                     <div class="col">
                                         <label for="" class="form-label">Konfirmasi Password</label>
-                                        <input type="password" class="form-control" name="password_confirmation" id="">
+                                        <div class="input-group auth-pass-inputgroup">
+                                            <input type="password" class="form-control" placeholder="Konfirmasi password sekarang" aria-label="Password" name="password_confirmation" aria-describedby="password-addon" >
+                                            <button class="btn btn-light " type="button" id="password-addon"><i class="mdi mdi-eye-outline"></i></button>
+                                        </div>
                                     </div>
 
                                 </div>
