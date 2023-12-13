@@ -33,7 +33,7 @@ class RuleRequest extends FormRequest
         return [
             'rule_category_id.required' => 'Kategori wajib diisi',
             'rule_category_id.exists' => 'Kategori tidak valid',
-        'year.required' => 'Tahunr wajib diisi',
+        'year.required' => 'Tahun wajib diisi',
             'title.required' => 'Judul wajib diisi',
             'code.required' => 'Kode wajib diisi',
             'file.required' => 'File wajib diisi'
