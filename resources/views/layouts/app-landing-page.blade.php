@@ -33,6 +33,9 @@
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com/">
     <link rel="stylesheet" href="path/to/your/style.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
 
     <link
@@ -67,9 +70,11 @@
             .logo-kab-pasuruan {
                 margin-bottom: 30px;
             }
-            .banner{
-               height: 100px;
+
+            .banner {
+                height: 100px;
             }
+
             .page-banner .bradcurmed li {
                 font-size: 16px;
             }
@@ -81,7 +86,8 @@
             .logo3 {
                 width: 40%;
             }
-            .banner{
+
+            .banner {
                 height: 140px;
             }
         }
@@ -109,7 +115,7 @@
                 width: 90%;
             }
 
-            .banner{
+            .banner {
                 height: 140px;
             }
         }
@@ -253,7 +259,11 @@
                     <h4 class="page-title-2">JASA KONSTRUKSI</h4>
 
                     <ul class="bradcurmed mt-4">
-                        <li style="color: #1B3061;font-weight:600" class="font-sipjaki">SIPJAKI adalah sistem informasi yang dikelola bersama oleh pembina jasa konstruksi nasional, provinsi dan kabupaten/kota dalam rangka meningkatkan kemudahan akses informasi usaha jasa konstruksi, peningkatan transparansi, serta membantu memperkuat jaringan bisnis pelaku usaha dalam rantai pasok konstruksi.</li>
+                        <li style="color: #1B3061;font-weight:600" class="font-sipjaki">SIPJAKI adalah sistem
+                            informasi yang dikelola bersama oleh pembina jasa konstruksi nasional, provinsi dan
+                            kabupaten/kota dalam rangka meningkatkan kemudahan akses informasi usaha jasa konstruksi,
+                            peningkatan transparansi, serta membantu memperkuat jaringan bisnis pelaku usaha dalam
+                            rantai pasok konstruksi.</li>
                     </ul>
                 </div>
                 <!-- /.page-title-wrapper -->
@@ -324,6 +334,7 @@
                                 <img class="logo-kab-pasuruan" src="{{ asset('logo-kab-pasuruan-2.png') }}"
                                     alt="" srcset="">
                                 {{-- <div id="googleMap" style="width:100%;height:400px;"></div> --}}
+                                <div id="map" style="height: 300px;"></div>
 
                             </div>
                             <!-- /.widget footer-widget -->
@@ -403,6 +414,24 @@
 
 
     </div>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<YOUR_GOOGLE_MAPS_API_KEY>" defer></script>
+        <script>
+            var map = L.map('map').setView([-7.608875876607843, 112.83035837823894], 17);
+
+            // Menggunakan Google Maps sebagai tileset
+            L.tileLayer('https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+                maxZoom: 20,
+                subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+                attribution: '© Google Maps'
+            }).addTo(map);
+
+            // Tambahkan marker
+            var marker = L.marker([-7.608875876607843, 112.83035837823894]).addTo(map);
+            marker.bindPopup("<b>Hai!</b><br>Kantor PUPR Kab Pasuruan.").openPopup();
+        </script>
+    {{-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=myMap"></script> --}}
+
     <script src="{{ asset('dependencies/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('dependencies/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('dependencies/swiper/js/swiper.min.js') }}"></script>
