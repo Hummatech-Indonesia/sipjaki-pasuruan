@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Qualification;
+use Faker\Provider\Uuid;
 use Illuminate\Database\Seeder;
 
 class QualificationSeeder extends Seeder
@@ -28,12 +29,15 @@ class QualificationSeeder extends Seeder
 
             $qualification->qualificationLevels()->insert([
                 [
+                    'id' => Uuid::uuid(),
                     'name' => 'Jenjang 1',
                 ],
                 [
+                    'id' => Uuid::uuid(),
                     'name' => 'Jenjang 2',
                 ],
                 [
+                    'id' => Uuid::uuid(),
                     'name' => 'Jenjang 3',
                 ],
             ]);
