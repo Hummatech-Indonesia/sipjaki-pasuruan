@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Contracts\Interfaces\NewsInterface;
 use App\Helpers\ResponseHelper;
 use App\Http\Requests\NewsRequest;
+use App\Http\Requests\NewsUpdateRequest;
 use App\Http\Resources\NewsResource;
 use App\Models\News;
 use App\Services\NewsService;
@@ -83,7 +84,7 @@ class NewsController extends Controller
      * @param  mixed $news
      * @return void
      */
-    public function update(NewsRequest $request, News $news)
+    public function update(NewsUpdateRequest $request, News $news)
     {
         $this->news->update($news->id, $this->service->update($request, $news));
         if ($request->is('api/*')) {
