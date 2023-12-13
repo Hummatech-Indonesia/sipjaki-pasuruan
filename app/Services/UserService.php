@@ -40,6 +40,7 @@ class UserService
     {
         $old_logo = UserHelper::getUserPhoto();
 
+        $data = $request->validated();
         $folderName = auth()->user()->name;
         $folderPath = public_path('storage/' . UploadDiskEnum::PROFILE->value . '/' . $folderName);
 
@@ -52,8 +53,7 @@ class UserService
             $old_logo = $request->file('profile')->storeAs(UploadDiskEnum::PROFILE->value . '/' . $folderName, uniqid() . '.' . $request->file('profile')->getClientOriginalExtension(), 'public');
         }
 
-        return [
-            'profile' => $old_logo,
-        ];
+        $data['profile'] = $old_logo;
+        return $data;
     }
 }
