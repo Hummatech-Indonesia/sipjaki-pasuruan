@@ -153,11 +153,11 @@
                         </button>
                     </div>
                     <div class="">
-                        <form action="{{ route('delete-member') }}" method="POST">
+                        <form id="delete-multiple" action="{{ route('delete-member') }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <input type="hidden" name="id" id="selected-worker">
-                            <button id="DeleteAll" onclick="deleteSelected()" class="btn text-white btn-danger">
+                            <button id="DeleteAll" onclick="deleteSelected()" type="button" class="btn text-white btn-danger">
                                 Delete Select
                             </button>
                         </form>
