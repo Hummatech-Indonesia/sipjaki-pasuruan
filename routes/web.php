@@ -128,7 +128,7 @@ Route::middleware('auth')->group(function () {
         Route::get('images', function () {
             return view('pages.admin.input-image');
         })->name('images.index');
-        Route::post('images', [ImagesController::class, 'store']);
+        Route::post('images', [ImagesController::class, 'store'])->name('images.store');
 
         Route::get('training-members/{training}', [TrainingMemberController::class, 'index']);
         Route::post('training-members/{training}', [TrainingMemberController::class, 'store']);
