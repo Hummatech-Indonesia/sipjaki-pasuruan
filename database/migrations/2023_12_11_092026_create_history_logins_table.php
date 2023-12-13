@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('history_logins', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('ip_address');
             $table->timestamps();
         });
