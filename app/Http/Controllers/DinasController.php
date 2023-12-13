@@ -55,7 +55,7 @@ class DinasController extends Controller
      * @return void
      */
     public function update(DinasRequest $request)
-    {
+{
         $this->dinas->update(auth()->user()->dinas->id, $this->service->updateDinas($request));
         $service = $this->service->store($request);
         foreach ($service as $data) {
