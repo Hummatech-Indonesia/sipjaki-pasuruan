@@ -49,6 +49,27 @@ trait UploadTrait
     }
 
     /**
+     * updateNotRandomName
+     *
+     * @param  mixed $disk
+     * @param  mixed $file
+     * @param  mixed $originalName
+     * @return string
+     */
+    public function updateWithCustomName(string $disk, UploadedFile $file, string $customName = null): string
+    {
+        if (!$this->exist($disk)) {
+            Storage::makeDirectory($disk);
+        }
+        if ($customName) {
+            return $file->storeAs($disk, $customName . '.' . $file->getClientOriginalExtension());
+        }
+        return Storage::put($disk, $file);
+    }
+
+
+
+    /**
      * Handle get original name
      * @param UploadedFile $file
      * @return string

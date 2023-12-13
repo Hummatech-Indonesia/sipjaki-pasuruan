@@ -26,68 +26,17 @@ class ImagesController extends Controller
     }
 
     /**
-     * index
-     *
-     * @return JsonResponse
-     */
-    public function index(Request $request): JsonResponse|View
-    {
-        $images = $this->image->customPaginate($request, 10);
-
-        if ($request->is('api/*')) {
-            $data['paginate'] = $this->customPaginate($images->currentPage(), $images->lastPage());
-            $data['data'] = ImageResource::collection($images);
-            return ResponseHelper::success($data);
-        } else {
-            return view('pages.admin.input-image', ['images' => $images]);
-        }
-    }
-
-    /**
-     * store
-     *
-     * @param  mixed $request
-     * @return void
-     */
-    public function store(ImageRequest $request)
-    {
-        $this->image->store($this->service->store($request));
-        if ($request->is('api/*')) {
-            return ResponseHelper::success(null, trans('alert.add_success'));
-        } else {
-            return redirect()->back()->with('success', trans('alert.add_success'));
-        }
-    }
-
-    /**
      * update
      *
      * @return void
      */
-    public function update(ImageRequest $request, Image $image)
+    public function store(ImageRequest $request, Image $image)
     {
-        $this->image->update($image->id, $this->service->update($request, $image));
-        if ($request->is('api/*')) {
-            return ResponseHelper::success(null, trans('alert.update_success'));
-        } else {
-            return redirect()->back()->with('success', trans('alert.update_success'));
-        }
-    }
-
-    /**
-     * destroy
-     *
-     * @param  mixed $image
-     * @return void
-     */
-    public function destroy(Image $image, Request $request)
-    {
-        $this->image->delete($image->id);
-        $this->service->remove($image->photo);
-        if ($request->is('api/*')) {
-            return ResponseHelper::success(null, trans('alert.delete_success'));
-        } else {
-            return redirect()->back()->with('success', trans('alert.delete_success'));
-        }
+        $this->service->update($request, $image);
+        // if ($request->is('api/*')) {
+        return ResponseHelper::success(null, trans('alert.update_success'));
+        // } else {
+        //     return redirect()->back()->with('success', trans('alert.update_success'));
+        // }
     }
 }

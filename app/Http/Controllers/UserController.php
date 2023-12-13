@@ -88,10 +88,14 @@ class UserController extends Controller
      * @param  mixed $user
      * @return void
      */
-    public function destroy(User $user)
+    public function destroy(User $user, Request $request)
     {
         $this->user->delete($user->id);
-        return ResponseHelper::success(null, trans('alert.delete_success'));
+        if ($request->is('api/*')) {
+            return ResponseHelper::success(null, trans('alert.delete_success'));
+        } else {
+            return redirect()->back()->with('success', trans('alert.delete_success'));
+        }
     }
 
     /**

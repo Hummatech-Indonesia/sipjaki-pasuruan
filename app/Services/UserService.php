@@ -41,6 +41,7 @@ class UserService
         $old_logo = UserHelper::getUserPhoto();
 
         $data = $request->validated();
+        
         $folderName = auth()->user()->name;
         $folderPath = public_path('storage/' . UploadDiskEnum::PROFILE->value . '/' . $folderName);
 

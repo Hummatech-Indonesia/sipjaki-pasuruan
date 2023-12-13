@@ -7,7 +7,7 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-body">
-                    <form method="PUT" action="{{ route('dinas.update') }}">
+                    <form method="POST" action="{{ route('dinas.update') }}">
                         @csrf
                         @method('PUT')
                         <div class="row">
@@ -16,9 +16,9 @@
                                     <label for="formrow-inputState" class="form-label">Pilih Tipe</label>
                                     <select id="formrow-inputState" class="form-select">
                                         @foreach ($types as $type)
-                                                    <option name="type_id" value="{{ $type->id }}">{{ $type->name }}
-                                                    </option>
-                                                @endforeach
+                                            <option name="type_id" value="{{ $type->id }}">{{ $type->name }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -27,9 +27,9 @@
                                     <label for="formrow-inputState" class="form-label">Nama Bidang</label>
                                     <select id="formrow-inputState" class="form-select">
                                         @foreach ($fields as $field)
-                                                    <option name="field_id" value="{{ $field->id }}">{{ $field->name }}
-                                                    </option>
-                                                @endforeach
+                                            <option name="field_id" value="{{ $field->id }}">{{ $field->name }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -38,9 +38,9 @@
                                     <label for="formrow-inputState" class="form-label">Nama Saksi</label>
                                     <select id="formrow-inputState" class="form-select">
                                         @foreach ($sections as $section)
-                                                    <option name="section_id" value="{{ $section->id }}">{{ $section->name }}
-                                                    </option>
-                                                @endforeach
+                                            <option name="section_id" value="{{ $section->id }}">{{ $section->name }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -51,7 +51,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Alamat</label>
                                     <div>
-                                        <textarea rows="4" name="address" required class="form-control" rows="3"></textarea>
+                                        <textarea rows="4" name="address" class="form-control" rows="3"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -62,7 +62,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">No Telp</label>
                                     <div>
-                                        <input type="number" name="phone_number" type="text" class="form-control" required
+                                        <input type="number" name="phone_number" type="text" class="form-control"
                                             placeholder="Masukkan No Telepon" />
                                     </div>
                                 </div>
@@ -71,7 +71,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Email</label>
                                     <div>
-                                        <input type="email"  class="form-control" required parsley-type="email"
+                                        <input type="email" class="form-control" parsley-type="email"
                                             placeholder="Masukkan Email" />
                                     </div>
                                 </div>
@@ -83,8 +83,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Nama Penjabat</label>
                                     <div>
-                                        <input type="text" class="form-control" required
-                                            placeholder="Masukkan Nama Penjabat" />
+                                        <input type="text" class="form-control" placeholder="Masukkan Nama Penjabat" />
                                     </div>
                                 </div>
                             </div>
@@ -92,8 +91,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Eseleon</label>
                                     <div>
-                                        <input type="text" class="form-control" required
-                                            placeholder="Masukkan Eseleon" />
+                                        <input type="text" class="form-control" placeholder="Masukkan Eseleon" />
                                     </div>
                                 </div>
                             </div>
@@ -103,8 +101,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Jabatan</label>
                                     <div>
-                                        <input type="text" class="form-control" required
-                                            placeholder="Masukkan Jabatan" />
+                                        <input type="text" class="form-control" placeholder="Masukkan Jabatan" />
                                     </div>
                                 </div>
                             </div>
@@ -112,8 +109,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Email Penjabat</label>
                                     <div>
-                                        <input type="text" class="form-control" required
-                                            placeholder="Masukkan Email Penjabat" />
+                                        <input type="text" class="form-control" placeholder="Masukkan Email Penjabat" />
                                     </div>
                                 </div>
                             </div>
@@ -124,8 +120,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">No Perda</label>
                                     <div>
-                                        <input type="number" class="form-control" required
-                                            placeholder="Masukkan No Perda" />
+                                        <input type="number" class="form-control" placeholder="Masukkan No Perda" />
                                     </div>
                                 </div>
                             </div>
@@ -138,14 +133,14 @@
                                     <div class="d-flex flex-row gap-4">
                                         <div class="form-check mb-3">
                                             <input class="form-check-input" type="radio" name="formRadios"
-                                                id="formRadios1" checked>
+                                                id="formRadios1">
                                             <label class="form-check-label" for="formRadios1">
                                                 Ada
                                             </label>
                                         </div>
                                         <div class="form-check mb-3">
                                             <input class="form-check-input" type="radio" name="formRadios"
-                                                id="formRadios2" checked>
+                                                id="formRadios2">
                                             <label class="form-check-label" for="formRadios2">
                                                 Tidak Ada
                                             </label>
@@ -159,14 +154,14 @@
                                     <div class="d-flex flex-row gap-4">
                                         <div class="form-check mb-3">
                                             <input class="form-check-input" type="radio" name="formRadios"
-                                                id="formRadios1" checked>
+                                                id="formRadios1">
                                             <label class="form-check-label" for="formRadios1">
                                                 Ada
                                             </label>
                                         </div>
                                         <div class="form-check mb-3">
                                             <input class="form-check-input" type="radio" name="formRadios"
-                                                id="formRadios2" checked>
+                                                id="formRadios2">
                                             <label class="form-check-label" for="formRadios2">
                                                 Tidak Ada
                                             </label>
@@ -180,14 +175,14 @@
                                     <div class="d-flex flex-row gap-4">
                                         <div class="form-check mb-3">
                                             <input class="form-check-input" type="radio" name="formRadios"
-                                                id="formRadios1" checked>
-                                            <label class="form-check-label" for="formRadios1">
-                                                Ada
+                                                id="formRadios2">
+                                            <label class="form-check-label" for="formRadios2">
+                                                Tidak Ada
                                             </label>
                                         </div>
                                         <div class="form-check mb-3">
                                             <input class="form-check-input" type="radio" name="formRadios"
-                                                id="formRadios2" checked>
+                                                id="formRadios2">
                                             <label class="form-check-label" for="formRadios2">
                                                 Tidak Ada
                                             </label>
@@ -202,8 +197,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">No Sk Tpjk</label>
                                     <div>
-                                        <input type="number" class="form-control" required
-                                            placeholder="Masukkan No Sk Tpjk" />
+                                        <input type="number" class="form-control" placeholder="Masukkan No Sk Tpjk" />
                                     </div>
                                 </div>
                             </div>
@@ -211,14 +205,15 @@
                                 <div class="mb-3">
                                     <label class="form-label">No Sk Sipjaki</label>
                                     <div>
-                                        <input type="number" class="form-control" required
+                                        <input type="number" class="form-control"
                                             placeholder="Masukkan No Sk Sipjaki" />
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <button type="button" class="btn w-md mx-1 rounded-3" style="background-color: #1B3061; color:white">Batal</button>
+                            <button type="button" class="btn w-md mx-1 rounded-3"
+                                style="background-color: #1B3061; color:white">Batal</button>
                             <button type="submit" class="btn btn-success w-md mx-1 text-white rounded-3">Save</button>
                         </div>
                     </form>
