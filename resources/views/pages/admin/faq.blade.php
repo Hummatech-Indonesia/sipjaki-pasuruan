@@ -3,38 +3,11 @@
     <h3>
         FAQ
     </h3>
-    <div class="d-flex justify-content-header mt-3 gap-2">
-        <div class="">
-            <button class="text-white btn" style="background-color: #1B3061">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none">
-                    <path
-                        d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15"
-                        stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M17 8L12 3L7 8" stroke="white" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                    <path d="M12 3V15" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-                Import
-            </button>
-        </div>
-        <div class="">
-            <button class="text-white btn" style="background-color: #2CA67A">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none">
-                    <path
-                        d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15"
-                        stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M7 10L12 15L17 10" stroke="white" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                    <path d="M12 15V3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-                Export
-            </button>
-        </div>
-    </div>
     <div class="modal fade bs-example-modal-xl" id="modal-create" tabindex="-1" role="dialog"
         aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
-            <div class="modal-content">
+            <form method="POST" action="{{route('faqs.store')}}" class="modal-content">
+                @csrf
                 <div style="background-color: #1B3061;">
                     <h5 class="modal-title text-white text-center m-3 fs-4">Tambah FAQ</h5>
                 </div>
@@ -42,11 +15,11 @@
                     <p class="text-dark fs-5 mb-0" style="font-weight: 600">
                         Pertanyaan
                     </p>
-                    <textarea name="" id="" cols="30" rows="3" class="form-control"></textarea>
+                    <textarea name="question" id="" cols="30" rows="3" class="form-control"></textarea>
                     <p class="text-dark fs-5 mb-0 mt-3" style="font-weight: 600">
                         Jawaban
                     </p>
-                    <textarea name="" id="" cols="30" rows="3" class="form-control"></textarea>
+                    <textarea name="answer" id="" cols="30" rows="3" class="form-control"></textarea>
                 </div>
                 <div class="modal-footer">
                     <div class="d-flex justify-content-end gap-2">
@@ -62,7 +35,7 @@
                         </div>
                     </div>
                 </div>
-            </div><!-- /.modal-content -->
+            </form><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div>
     <div class="card mt-3">
@@ -71,9 +44,9 @@
                 Berikut Daftar FAQ
             </h5>
             <div class="d-flex justify-content-between mt-4">
-                <div class="">
+                <form action="" class="">
                     <div class="input-group">
-                        <input name="name" type="text" class="form-control" placeholder="Search">
+                        <input name="name" value="{{$name}}" type="text" class="form-control" placeholder="Search">
                         <div class="input-group-append">
                             <button class="btn text-white" style="background-color: #1B3061; border-radius: 0 5px 5px 0;"
                                 type="submit">
@@ -81,7 +54,7 @@
                             </button>
                         </div>
                     </div>
-                </div>
+                </form>
                 <div class="">
                     <button data-bs-toggle="modal" data-bs-target="#modal-create" class="text-white btn" style="background-color: #1B3061">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
@@ -116,20 +89,19 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @forelse ($faqs as $faq)
                         <tr>
                             <td>
-                                1.
+                                {{$loop->iteration}}
                             </td>
                             <td>
                                 <p class="d-inline-block text-truncate" style="max-width: 400px;">
-                                    Berapa lama waktu untuk mengerjakan suatu proyek jalan
-                                    tol semarang malang
+                                    {{$faq->question}}
                                 </p>
                             </td>
                             <td>
                                 <p class="d-inline-block text-truncate" style="max-width: 600px;">
-                                    Dengan Pertanyaan tersebut saya selaku komputer membantu anda dalam menghitu-
-                                    ng jarak antara semarang malang yaitu 8092 Kilometer dengan per 10 kilometer....
+                                    {{$faq->answer}}
                                 </p>
                             </td>
                             <td>
@@ -182,6 +154,18 @@
                                 </div>
                             </td>
                         </tr>
+                        @empty
+                        <tr>
+                            <td colspan="4" class="text-center">
+                                <div class="d-flex justify-content-center" style="min-height:19rem">
+                                    <div class="my-auto">
+                                        <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                        <h4 class="text-center mt-4">Faq kosong!!</h4>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
