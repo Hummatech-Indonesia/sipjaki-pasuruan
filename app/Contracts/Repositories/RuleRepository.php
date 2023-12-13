@@ -3,15 +3,15 @@
 namespace App\Contracts\Repositories;
 
 use App\Contracts\Interfaces\RuleInterface;
-use App\Models\Rules;
+use App\Models\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class RuleRepository extends BaseRepository implements RuleInterface
 {
-    public function __construct(Rules $rules)
+    public function __construct(Rule $rule)
     {
-        $this->model = $rules;
+        $this->model = $rule;
     }
 
     /**

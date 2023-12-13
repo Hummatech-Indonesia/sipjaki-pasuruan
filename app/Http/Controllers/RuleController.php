@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Contracts\Interfaces\FiscalYearInterface;
-use App\Contracts\Interfaces\RuleInterface;
-use App\Contracts\Interfaces\ServiceProviderInterface;
+use App\Models\Rule;
+use Illuminate\Http\Request;
+use App\Services\RuleService;
 use App\Helpers\ResponseHelper;
+use App\Traits\PaginationTrait;
 use App\Http\Requests\RuleRequest;
 use App\Http\Resources\RuleResource;
-use App\Models\Rules;
-use App\Services\RuleService;
-use App\Traits\PaginationTrait;
-use Illuminate\Http\Request;
+use App\Contracts\Interfaces\RuleInterface;
+use App\Contracts\Interfaces\FiscalYearInterface;
+use App\Contracts\Interfaces\ServiceProviderInterface;
 
 class RuleController extends Controller
 {
@@ -90,7 +90,7 @@ class RuleController extends Controller
      * @param  mixed $rule
      * @return void
      */
-    public function update(RuleRequest $request, Rules $rule)
+    public function update(RuleRequest $request, Rule $rule)
     {
         $this->rule->update($rule->id, $this->service->update($request, $rule));
         if ($request->is('api/*')) {
@@ -103,7 +103,7 @@ class RuleController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Rules $rule, Request $request)
+    public function destroy(Rule $rule, Request $request)
     {
         $this->rule->delete($rule->id);
         $this->service->remove($rule->file);

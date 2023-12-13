@@ -18,7 +18,7 @@ class NewsRequest extends FormRequest
             'title' => 'required|max:150',
             'thumbnail' => 'required|mimes:png,jpg,jpeg',
             'content' => 'required',
-        ];
+        ];;
     }
 
     public function messages(): array

@@ -16,7 +16,7 @@ class RuleRequest extends FormRequest
     {
         return [
             'rule_category_id' => 'required|exists:rule_categories,id',
-            'fiscal_year_id' => 'required|exists:fiscal_years,id',
+            'year' => 'required|integer',
             'title' => 'required|max:255',
             'code' => 'required|max:255',
             'file' => 'required'
@@ -33,8 +33,7 @@ class RuleRequest extends FormRequest
         return [
             'rule_category_id.required' => 'Kategori wajib diisi',
             'rule_category_id.exists' => 'Kategori tidak valid',
-            'fiscal_year_id.required' => 'Tahun fiskal wajib diisi',
-            'fiscal_year_id.exists' => 'Tahun fiskal tidak valid',
+        'year.required' => 'Tahunr wajib diisi',
             'title.required' => 'Judul wajib diisi',
             'code.required' => 'Kode wajib diisi',
             'file.required' => 'File wajib diisi'
