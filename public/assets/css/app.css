@@ -6512,7 +6512,7 @@ select {
 
 @media (max-width: 768px) {
     .section-title .title {
-        font-size: 28px;
+        font-size: 20px;
     }
 
     .section-title .title br {
