@@ -3,14 +3,14 @@
         <div class="tabs-wrapper">
             <div class="section-title text-center">
                 <h2 style="border-radius: 16px;
-                background: var(--Kuning, #FFC928);" class="title p-2">Frequently Asked Questions</h2>
+                background: var(--Kuning, #FFC928);" class="title p-1">Frequently Asked Questions</h2>
             </div>
         </div>
         <div class="tab-content">
             <div class="tab-pane fade active show" id="design" role="tabpanel" aria-labelledby="design-tab">
                 <div id="accordionsing" class="faq faq-two pixFade">
                     @forelse ($faqs as $faq)
-                    <div class="card">   
+                    <div class="card">
                         <div class="card-header" id="heading10">
                             <h5>
                                 <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse00" aria-expanded="false" aria-controls="collapse00">

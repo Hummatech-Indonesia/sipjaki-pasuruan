@@ -42,6 +42,11 @@
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&amp;family=Satisfy&amp;display=swap"
         rel="stylesheet">
     <style>
+        .site-header .site-nav .site-main-menu li.menu-item-has-children a:hover,
+        .site-header .site-nav .site-main-menu li.menu-item-has-children:focus {
+            color: #FFC928;
+        }
+
         path {
             stroke: rgb(68, 116, 226);
         }
@@ -68,6 +73,7 @@
             }
 
             .logo-kab-pasuruan {
+                width: 80%;
                 margin-bottom: 30px;
             }
 
@@ -99,51 +105,78 @@
                 margin: 20px auto 10px;
             }
 
-            @media (max-width: 991px) {
-                .page-banner {
-                    height: 550px;
-                }
+            .maps {
+                height: 200px;
+                margin-bottom: 20px;
+            }
+            .alamat{
+                margin-top: 20px;
+            }
+            .img-sipjaki{
+                margin-top:30px;
+                max-width: 80%;
+            }
+            .tabs-wrapper {
+    max-width: 320px;
+    margin: 0 auto;
+}
+        }
 
+        @media (max-width: 991px) {
+            .page-banner {
+                height: 550px;
+            }
+        }
 
+        @media(min-width: 541px && max-width:1199px) {
+            .logo3 {
+                width: 40%;
             }
 
-            @media(min-width: 541px && max-width:1199px) {
-                .logo3 {
-                    width: 40%;
-                }
+            .banner {
+                height: 140px;
+            }
+        }
 
-                .banner {
-                    height: 140px;
-                }
+        @media(min-width:1200px) {
+            .logo3 {
+                width: 70%;
             }
 
-            @media(min-width:1200px) {
-                .logo3 {
-                    width: 70%;
-                }
-
-                .font-size-email {
-                    font-size: 14px;
-                }
-
-                .icon-email {
-                    width: 35px;
-                    height: 35px;
-                }
-
-                .icon-location {
-                    width: 50px;
-                    height: 25px;
-                }
-
-                .logo-kab-pasuruan {
-                    width: 90%;
-                }
-
-                .banner {
-                    height: 140px;
-                }
+            .font-size-email {
+                font-size: 14px;
             }
+
+            .icon-email {
+                width: 35px;
+                height: 35px;
+            }
+
+            .icon-location {
+                width: 50px;
+                height: 25px;
+            }
+
+            .logo-kab-pasuruan {
+                width: 75%;
+            }
+
+            .banner {
+                height: 140px;
+            }
+
+            .maps {
+                height: 280px;
+            }
+
+            .img-sipjaki{
+                margin-top:20px;
+                max-width: 75%;
+            }
+            .alamat{
+                margin-top: 70px;
+            }
+        }
     </style>
 
 </head>
@@ -356,10 +389,10 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6">
                             <div>
-                                <img class="logo-kab-pasuruan" src="{{ asset('logo-kab-pasuruan-2.png') }}"
+                                <img class="logo-kab-pasuruan mb-4" src="{{ asset('logo-kab-pasuruan-2.png') }}"
                                     alt="" srcset="">
                                 {{-- <div id="googleMap" style="width:100%;height:400px;"></div> --}}
-                                <div id="map" style="height: 300px;"></div>
+                                <div id="map" class="maps" style="border:1px solid;"></div>
 
                             </div>
                             <!-- /.widget footer-widget -->
@@ -369,8 +402,8 @@
 
                         <div class="col-lg-6 col-md-6">
                             <div class="widget footer-widget">
-                                <img src="{{ asset('logo.png') }}" alt="" srcset="">
-                                <div
+                                <img class="img-sipjaki" src="{{ asset('sipjaki.png') }}" alt="" srcset="">
+                                <div class="alamat"
                                     style="color: var(--Biru-Primary, #1B3061);
                                 font-family: Poppins;
                                 font-size: 20px;
@@ -378,8 +411,7 @@
                                 font-weight: 600;
                                 line-height: normal;
                                 text-decoration-line: underline;
-                                text-decoration-thickness: 2px;
-                                margin-top:10px;">
+                                text-decoration-thickness: 2px;">
                                     Alamat
                                 </div>
                                 <div class="d-flex d-row mt-3">
@@ -389,7 +421,7 @@
                                             d="M17 2.125C11.1343 2.125 6.375 6.40887 6.375 11.6875C6.375 20.1875 17 31.875 17 31.875C17 31.875 27.625 20.1875 27.625 11.6875C27.625 6.40887 22.8657 2.125 17 2.125ZM17 17C16.1594 17 15.3377 16.7507 14.6388 16.2837C13.9399 15.8167 13.3952 15.153 13.0735 14.3764C12.7518 13.5998 12.6677 12.7453 12.8317 11.9209C12.9956 11.0964 13.4004 10.3392 13.9948 9.7448C14.5892 9.15042 15.3464 8.74565 16.1709 8.58166C16.9953 8.41768 17.8498 8.50184 18.6264 8.82351C19.403 9.14518 20.0667 9.68992 20.5337 10.3888C21.0007 11.0877 21.25 11.9094 21.25 12.75C21.2488 13.8768 20.8006 14.9571 20.0038 15.7538C19.2071 16.5506 18.1268 16.9988 17 17Z"
                                             fill="#1B3061" />
                                     </svg>
-                                    <div
+                                    <div class="mb-3"
                                         style="color: var(--Biru-Primary, #1B3061);
                                       font-family: Poppins;
                                       font-size: 16px;
@@ -400,6 +432,18 @@
                                         Jalan Raya Raci KM 9 Masangan, Karangpanas, Raci, Kec. Bangil, Pasuruan, Jawa
                                         Timur 67153
                                     </div>
+                                </div>
+                                <div
+                                    style="color: var(--Biru-Primary, #1B3061);
+                                font-family: Poppins;
+                                font-size: 20px;
+                                font-style: normal;
+                                font-weight: 600;
+                                line-height: normal;
+                                text-decoration-line: underline;
+                                text-decoration-thickness: 2px;
+                                margin-top:20px;">
+                                    Email
                                 </div>
                                 <div class="d-flex d-row mt-3">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="25"
@@ -418,19 +462,19 @@
                                             href="dbmbk@pasuruankab.go.id">dbmbk@pasuruankab.go.id</a>
                                     </div>
                                 </div>
-                                <ul class="mt-4"
-                                    style="color: var(--Biru-Primary, #1B3061);
-                                font-family: Poppins;
-                                font-size: 16px;
-                                font-style: normal;
-                                font-weight: 500;"
-                                    class="footer-social-link">
-                                    Copyright C2021. All Rights Reserved by SipjakiTeam
-                                </ul>
                             </div>
                             <!-- /.widget footer-widget -->
                         </div>
                     </div>
+                    <ul class="d-flex justify-content-end"
+                        style="color: var(--Biru-Primary, #1B3061);
+                    font-family: Poppins;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 500;"
+                        class="footer-social-link">
+                        Copyright C2021. All Rights Reserved by SipjakiTeam
+                    </ul>
                     <!-- /.row -->
 
                 </div><!-- /.footer-inner -->

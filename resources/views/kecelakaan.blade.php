@@ -8,7 +8,7 @@
     <div class="tabs-wrapper">
         <div class="section-title text-center">
             <h2 style="border-radius: 16px;
-        background: var(--Kuning, #FFC928);" class="title">Data Kecelakaan Kabupaten Pasuruan</h2>
+        background: var(--Kuning, #FFC928);" class="title p-1">Data Kecelakaan Kabupaten Pasuruan</h2>
         </div>
     </div>
     <div class="d-flex row">
