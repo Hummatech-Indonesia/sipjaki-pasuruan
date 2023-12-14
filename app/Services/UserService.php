@@ -23,9 +23,8 @@ class UserService
     public function store(UserRequest $request, UserInterface $user)
     {
         $data = $request->validated();
-        $password = bcrypt('password');
         $data['email_verified_at'] = now();
-        $data['password'] = $password;
+        $data['password'] = bcrypt($data['password']);
         $user = $user->store($data);
         $user->dinas()->create($data);
         $user->assignRole(RoleEnum::DINAS);
@@ -41,7 +40,7 @@ class UserService
         $old_logo = UserHelper::getUserPhoto();
 
         $data = $request->validated();
-        
+
         $folderName = auth()->user()->name;
         $folderPath = public_path('storage/' . UploadDiskEnum::PROFILE->value . '/' . $folderName);
 
