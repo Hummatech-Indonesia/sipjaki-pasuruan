@@ -75,7 +75,7 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        $this->user->update($user->id, $request->validated());
+        $this->user->update($user->id, $this->service->update($request));
         $this->dinas->update($user->dinas->id, $request->validated());
         if ($request->is('api/*')) {
             return ResponseHelper::success(null, trans('alert.update_success'));
