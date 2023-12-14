@@ -7,6 +7,7 @@ use App\Enums\RoleEnum;
 use App\Enums\UploadDiskEnum;
 use App\Helpers\UserHelper;
 use App\Http\Requests\UpdateProfileRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Http\Requests\UserRequest;
 use App\Traits\UploadTrait;
 
@@ -23,12 +24,38 @@ class UserService
     public function store(UserRequest $request, UserInterface $user)
     {
         $data = $request->validated();
-        $password = bcrypt('password');
         $data['email_verified_at'] = now();
-        $data['password'] = $password;
+        $data['password'] = bcrypt($data['password']);
         $user = $user->store($data);
         $user->dinas()->create($data);
         $user->assignRole(RoleEnum::DINAS);
+    }
+
+    /**
+     * update
+     *
+     * @param  mixed $request
+     * @return array
+     */
+    public function update(UpdateUserRequest $request): array
+    {
+        $data = $request->validated();
+        if ($data['password'] != null) {
+            return [
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'phone_number' => $data['phone_number'],
+                'person_responsible' => $data['person_responsible'],
+                'password' => bcrypt($data['password']),
+            ];
+        } else {
+            return [
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'phone_number' => $data['phone_number'],
+                'person_responsible' => $data['person_responsible'],
+            ];
+        }
     }
 
     /**
@@ -41,7 +68,7 @@ class UserService
         $old_logo = UserHelper::getUserPhoto();
 
         $data = $request->validated();
-        
+
         $folderName = auth()->user()->name;
         $folderPath = public_path('storage/' . UploadDiskEnum::PROFILE->value . '/' . $folderName);
 

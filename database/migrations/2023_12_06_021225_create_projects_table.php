@@ -11,7 +11,7 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     * 
+     *
      */
     public function up(): void
     {
@@ -26,7 +26,6 @@ return new class extends Migration
             $table->enum('characteristic_project',[CharacteristicProjectEnum::SINGLE->value,CharacteristicProjectEnum::MULTIPLE->value]);
             $table->dateTime('physical_progress_start');
             $table->dateTime('finance_progress_start');
-            $table->integer('physical_progress')->default(0);
             $table->integer('finance_progress')->default(0);
             $table->integer('year');
             $table->dateTime('start_at');

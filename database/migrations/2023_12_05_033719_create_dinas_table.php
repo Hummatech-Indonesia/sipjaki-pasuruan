@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignUuid('section_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignUuid('type_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->text('address')->nullable();
+            $table->string('person_responsible'); //penanggung jawab
             $table->string('mobile_phone_number')->nullable();
             $table->char('echelon', 4)->nullable();
             $table->string('position')->nullable();
@@ -24,9 +25,10 @@ return new class extends Migration
             $table->string('email_official')->nullable();
             $table->string('local_regulation')->nullable(); //Perda STOK
             $table->string('number_local_regulation')->nullable(); //No Perda
-            $table->string('sk_tpjk')->nullable();
+            $table->boolean('sk_tpjk')->nullable();
+            $table->boolean('admin_sipjaki')->nullable();
+            $table->boolean('the_phone_number')->nullable();
             $table->string('number_sk_tpjk')->nullable();
-            $table->string('admin_sipjaki')->nullable();
             $table->string('number_sk_sipjaki')->nullable();
             $table->string('activity')->nullable();
             $table->integer('last_year_budget')->nullable();
