@@ -79,46 +79,71 @@
                 font-size: 16px;
             }
 
-
-        }
-
-        @media(min-width: 541px && max-width:1199px) {
-            .logo3 {
-                width: 40%;
+            .page-banner .page-title-1 {
+                font-size: 30px;
+                font-weight: 800;
+                color: #2b2350;
+                position: relative;
+                z-index: 2;
+                max-width: 820px;
+                margin: 20px auto 15px;
             }
 
-            .banner {
-                height: 140px;
-            }
-        }
-
-        @media(min-width:1200px) {
-            .logo3 {
-                width: 70%;
-            }
-
-            .font-size-email {
-                font-size: 14px;
+            .page-banner .page-title-2 {
+                font-size: 25px;
+                font-weight: 800;
+                color: #FFC928;
+                position: relative;
+                z-index: 2;
+                max-width: 820px;
+                margin: 20px auto 10px;
             }
 
-            .icon-email {
-                width: 35px;
-                height: 35px;
+            @media (max-width: 991px) {
+                .page-banner {
+                    height: 550px;
+                }
+
+
             }
 
-            .icon-location {
-                width: 50px;
-                height: 25px;
+            @media(min-width: 541px && max-width:1199px) {
+                .logo3 {
+                    width: 40%;
+                }
+
+                .banner {
+                    height: 140px;
+                }
             }
 
-            .logo-kab-pasuruan {
-                width: 90%;
-            }
+            @media(min-width:1200px) {
+                .logo3 {
+                    width: 70%;
+                }
 
-            .banner {
-                height: 140px;
+                .font-size-email {
+                    font-size: 14px;
+                }
+
+                .icon-email {
+                    width: 35px;
+                    height: 35px;
+                }
+
+                .icon-location {
+                    width: 50px;
+                    height: 25px;
+                }
+
+                .logo-kab-pasuruan {
+                    width: 90%;
+                }
+
+                .banner {
+                    height: 140px;
+                }
             }
-        }
     </style>
 
 </head>
@@ -416,21 +441,18 @@
     </div>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=<YOUR_GOOGLE_MAPS_API_KEY>" defer></script>
-        <script>
-            var map = L.map('map').setView([-7.608875876607843, 112.83035837823894], 17);
+    <script>
+        var map = L.map('map').setView([-7.608875876607843, 112.83035837823894], 17);
 
-            // Menggunakan Google Maps sebagai tileset
-            L.tileLayer('https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
-                maxZoom: 20,
-                subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
-                attribution: '© Google Maps'
-            }).addTo(map);
+        L.tileLayer('https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+            maxZoom: 20,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+            attribution: '© Google Maps'
+        }).addTo(map);
 
-            // Tambahkan marker
-            var marker = L.marker([-7.608875876607843, 112.83035837823894]).addTo(map);
-            marker.bindPopup("<b>Hai!</b><br>Kantor PUPR Kab Pasuruan.").openPopup();
-        </script>
-    {{-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=myMap"></script> --}}
+        var marker = L.marker([-7.608875876607843, 112.83035837823894]).addTo(map);
+        marker.bindPopup("<b>Hai!</b><br>Kantor PUPR Kab Pasuruan.").openPopup();
+    </script>
 
     <script src="{{ asset('dependencies/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('dependencies/bootstrap/js/bootstrap.min.js') }}"></script>
