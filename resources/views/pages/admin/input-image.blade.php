@@ -65,15 +65,6 @@
     </style>
 @endsection
 @section('content')
-    @if (session('success'))
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: '{{ session('success') }}',
-            });
-        </script>
-    @endif
     @if ($errors->any())
         @foreach ($errors->all() as $error)
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -97,7 +88,8 @@
                         <div id="preview"></div>
                     </div>
                     <div class="col-10">
-                        <input type="file" name="photo" id="fileInput" class="form-control">
+                        <input type="file" value="{{ old('photo') }}" name="photo" id="fileInput"
+                            class="form-control">
                     </div>
                     <button class="btn btn-primary col-2 " data-bs-toggle="modal" data-bs-target="#modal-create"
                         style="background-color: #1B3061; border-radius: 10px"><i class="fas fa-plus"
@@ -156,6 +148,15 @@
     </div>
 @endsection
 @section('script')
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: '{{ session('success') }}',
+            });
+        </script>
+    @endif
     <script>
         // preview 
         const fileInput = document.getElementById('fileInput');
