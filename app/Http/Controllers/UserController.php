@@ -9,6 +9,7 @@ use App\Helpers\ResponseHelper;
 use App\Helpers\UserHelper;
 use App\Http\Requests\UpdatePasswordRequest;
 use App\Http\Requests\UpdateProfileRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
@@ -72,7 +73,7 @@ class UserController extends Controller
      * @param  mixed $user
      * @return void
      */
-    public function update(UserRequest $request, User $user)
+    public function update(UpdateUserRequest $request, User $user)
     {
         $this->user->update($user->id, $request->validated());
         $this->dinas->update($user->dinas->id, $request->validated());
