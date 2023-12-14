@@ -19,7 +19,7 @@ class Project extends Model implements HasDinas, HasServiceProvider, HasFundSour
     use HasFactory;
     protected $table = 'projects';
     protected $primaryKey = 'id';
-    protected $fillable = ['id', 'dinas_id', 'service_provider_id', 'fund_source_id', 'contract_category_id', 'name', 'project_value', 'characteristic_project', 'physical_progress_start', 'finance_progress_start', 'physical_progress', 'finance_progress', 'year', 'start_at', 'end_at', 'status'];
+    protected $fillable = ['id', 'dinas_id', 'service_provider_id', 'fund_source_id', 'contract_category_id', 'name', 'project_value', 'characteristic_project', 'physical_progress_start', 'finance_progress_start', 'finance_progress', 'year', 'start_at', 'end_at', 'status'];
     protected $guarded = [];
     public $incrementing = false;
     public $keyType = 'char';
