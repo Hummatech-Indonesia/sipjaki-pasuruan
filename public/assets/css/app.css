@@ -3547,11 +3547,6 @@ select {
         display: none;
     }
 
-    .site-header .site-nav .site-main-menu li.menu-item-has-children a:hover,
-    .site-header .site-nav .site-main-menu li.menu-item-has-children:focus {
-        color: #FFC928;
-    }
-
     .site-header .site-nav .site-main-menu li.menu-item-has-children i {
         position: absolute;
         top: 6px;

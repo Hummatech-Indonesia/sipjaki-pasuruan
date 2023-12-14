@@ -6,9 +6,11 @@
             background: var(--Kuning, #FFC928);" class="title p-1">Struktur Organisasi DKSDK</h2>
         </div>
     </div>
-    <div class="px-3 py-3" style="border-radius: 15px; background-color: #1B3061">
-        <div class="px-1 py-1" style="border-radius: 4px">
-            <img src="https://www.traknus.co.id/app/sam/assets/images/best%20tractor%20recommendations.jpg?v=1685690951" alt="" style="border-radius: 4px; object-fit: cover">
+    <div class="px-2 py-2 d-flex justify-content-center">
+        <div class="px-1 py-1" style="border-radius: 4px; overflow: hidden;">
+            <img src="{{ asset('struktur-organisasi.jpg') }}" alt="" style="border:10px solid #1B3061;border-radius: 20px; width: 100%; height: auto; max-width: 700px;">
         </div>
     </div>
+
+
 @endsection
