@@ -2,7 +2,7 @@
 @section('style')
     <style>
         #preview {
-            height: 200px;
+            height: 300px;
             border: 1px dashed #ccc;
             padding: 10px;
             position: relative;
@@ -23,7 +23,7 @@
         }
 
         #preview::after {
-            content: "Upload Video";
+            content: "Upload Image";
             position: absolute;
             top: 80px;
             left: 50%;
@@ -33,7 +33,7 @@
         }
 
         .PreviewData {
-            height: 200px;
+            height: 300px;
             border: 1px dashed #ccc;
             padding: 10px;
             position: relative;
@@ -146,6 +146,7 @@
             </form>
         </div>
     </div>
+
 @endsection
 @section('script')
     @if (session('success'))
@@ -161,44 +162,80 @@
         // preview 
         const fileInput = document.getElementById('fileInput');
         const previewDiv = document.getElementById('preview');
+        const defaultImageUrl = "{{ asset('storage/structure_organitation/structure_organitation.jpg') }}";
 
-        fileInput.addEventListener('change', function() {
-            const file = fileInput.files[0];
-            const fileUrl = URL.createObjectURL(file);
+        // Tampilkan gambar default saat halaman dimuat
+        previewDiv.innerHTML = `<img src="${defaultImageUrl}" style="width: 100%; height: 100%; object-fit: cover;">`;
 
-            previewDiv.style.backgroundImage = `url(${fileUrl})`;
-            previewDiv.style.backgroundSize = 'cover';
-            previewDiv.style.backgroundPosition = 'center';
-            previewDiv.style.backgroundRepeat = 'no-repeat';
-            previewDiv.textContent = '';
+        fileInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+
+            if (file) {
+                const fileReader = new FileReader();
+
+                fileReader.onload = function(event) {
+                    const imageUrl = event.target.result;
+                    previewDiv.innerHTML =
+                        `<img src="${imageUrl}" style="width: 100%; height: 100%; object-fit: cover;">`;
+                };
+
+                fileReader.readAsDataURL(file);
+            } else {
+                previewDiv.innerHTML =
+                    `<img src="${defaultImageUrl}" style="width: 100%; height: 100%; object-fit: cover;">`;
+            }
         });
         // preview rencana 
         const FileRencana = document.getElementById('FileRencana');
         const previewRencana = document.getElementById('previewRencana');
+        const defaultImageUrlRencana = "{{ asset('storage/strategic_plan/strategic_plan.jpg') }}";
+        previewRencana.style.backgroundImage = `url(${defaultImageUrlRencana})`;
+        previewRencana.style.backgroundSize = 'cover';
+        previewRencana.style.backgroundPosition = 'center';
+        previewRencana.style.backgroundRepeat = 'no-repeat';
 
         FileRencana.addEventListener('change', function() {
             const file = FileRencana.files[0];
-            const fileUrl = URL.createObjectURL(file);
 
-            previewRencana.style.backgroundImage = `url(${fileUrl})`;
-            previewRencana.style.backgroundSize = 'cover';
-            previewRencana.style.backgroundPosition = 'center';
-            previewRencana.style.backgroundRepeat = 'no-repeat';
-            previewRencana.textContent = '';
+            if (file) {
+                const fileUrl = URL.createObjectURL(file);
+
+                previewRencana.style.backgroundImage = `url(${fileUrl})`;
+                previewRencana.style.backgroundSize = 'cover';
+                previewRencana.style.backgroundPosition = 'center';
+                previewRencana.style.backgroundRepeat = 'no-repeat';
+                previewRencana.textContent = '';
+            } else {
+                // Kembali ke gambar default jika tidak ada file yang dipilih
+                previewRencana.style.backgroundImage = `url(${defaultImageUrlRencana})`;
+            }
         });
         // preview tugas
         const FileTugas = document.getElementById('FileTugas');
         const previewTugas = document.getElementById('previewTugas');
+        const defaultImageUrltugas = "{{ asset('storage/job_and_function/job_and_function.jpg') }}";
+
+        // Tampilkan gambar default saat halaman dimuat
+        previewTugas.style.backgroundImage = `url(${defaultImageUrltugas})`;
+        previewTugas.style.backgroundSize = 'cover';
+        previewTugas.style.backgroundPosition = 'center';
+        previewTugas.style.backgroundRepeat = 'no-repeat';
 
         FileTugas.addEventListener('change', function() {
             const file = FileTugas.files[0];
-            const fileUrl = URL.createObjectURL(file);
 
-            previewTugas.style.backgroundImage = `url(${fileUrl})`;
-            previewTugas.style.backgroundSize = 'cover';
-            previewTugas.style.backgroundPosition = 'center';
-            previewTugas.style.backgroundRepeat = 'no-repeat';
-            previewTugas.textContent = '';
+            if (file) {
+                const fileUrl = URL.createObjectURL(file);
+
+                previewTugas.style.backgroundImage = `url(${fileUrl})`;
+                previewTugas.style.backgroundSize = 'cover';
+                previewTugas.style.backgroundPosition = 'center';
+                previewTugas.style.backgroundRepeat = 'no-repeat';
+                previewTugas.textContent = '';
+            } else {
+                // Kembali ke gambar default jika tidak ada file yang dipilih
+                previewTugas.style.backgroundImage = `url(${defaultImageUrltugas})`;
+            }
         });
     </script>
 @endsection
