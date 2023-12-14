@@ -9,12 +9,11 @@
             });
         </script>
     @endif
-    <p class="fs-4 text-dark" style="font-weight: 600">
-        Pelatihan
-    </p>
-    <div class="d-flex justify-content-between">
-        <div class="d-flex justify-content-header gap-3">
-           
+    <div class="d-flex justify-content-between mb-3">
+        <div class="">
+            <p class="fs-4 text-dark" style="font-weight: 600">
+                Pelatihan
+            </p>
         </div>
         <div class="">
             <button data-bs-toggle="modal" data-bs-target="#modal-create" class="btn text-white"
