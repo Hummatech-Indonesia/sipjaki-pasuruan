@@ -6,6 +6,17 @@
     <div class="row">
         <div class="col-xl-12">
             <div class="card">
+                <div class="row">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                </div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('dinas.update') }}">
                         @csrf
@@ -14,9 +25,20 @@
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="formrow-inputState" class="form-label">Pilih Tipe</label>
-                                    <select id="formrow-inputState" class="form-select">
+                                    <select id="formrow-inputState" name="type_id" class="form-select">
                                         @foreach ($types as $type)
-                                            <option name="type_id" value="{{ $type->id }}">{{ $type->name }}
+                                            <option value="{{ $type->id }}">{{ $type->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="formrow-inputState" class="form-label">Nama Seksi</label>
+                                    <select id="formrow-inputState" name="section_id" class="form-select">
+                                        @foreach ($sections as $section)
+                                            <option value="{{ $section->id }}">{{ $section->name }}
                                             </option>
                                         @endforeach
                                     </select>
@@ -25,22 +47,13 @@
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="formrow-inputState" class="form-label">Nama Bidang</label>
-                                    <select id="formrow-inputState" class="form-select">
-                                        @foreach ($fields as $field)
-                                            <option name="field_id" value="{{ $field->id }}">{{ $field->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="mb-3">
-                                    <label for="formrow-inputState" class="form-label">Nama Saksi</label>
-                                    <select id="formrow-inputState" class="form-select">
-                                        @foreach ($sections as $section)
-                                            <option name="section_id" value="{{ $section->id }}">{{ $section->name }}
-                                            </option>
-                                        @endforeach
+                                    <select class="select2 form-control select2-multiple" name="field_id" multiple="multiple"
+                                        data-placeholder="Choose ...">
+                                        <optgroup label="Pilih Nama Seksi">
+                                            @foreach ($fields as $field)
+                                                <option value="{{ $field->id }}">{{ $field->name }}</option>
+                                            @endforeach
+                                        </optgroup>
                                     </select>
                                 </div>
                             </div>
@@ -51,7 +64,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Alamat</label>
                                     <div>
-                                        <textarea rows="4" name="address" class="form-control" rows="3"></textarea>
+                                        <textarea rows="4" name="address" class="form-control" rows="3">{{ $dinas->address }}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -62,7 +75,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">No Telp</label>
                                     <div>
-                                        <input type="number" name="phone_number" type="text" class="form-control"
+                                        <input type="number" name="mobile_phone_number" type="text" class="form-control"
                                             placeholder="Masukkan No Telepon" />
                                     </div>
                                 </div>
