@@ -98,14 +98,13 @@
                 max-width: 820px;
                 margin: 20px auto 10px;
             }
+        }
 
-            @media (max-width: 991px) {
-                .page-banner {
-                    height: 550px;
-                }
-
-
+        @media (max-width: 991px) {
+            .page-banner {
+                height: 550px;
             }
+        }
 
             @media(min-width: 541px && max-width:1199px) {
                 .logo3 {
