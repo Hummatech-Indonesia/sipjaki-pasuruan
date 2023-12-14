@@ -1,4 +1,4 @@
-<div class="modal fade" id="modal-delete" tabindex="-1" id="modal-delete" aria-labelledby="exampleModalLabel1">
+<div class="modal fade" id="modal-delete" tabindex="-1" aria-labelledby="exampleModalLabel1">
     <div class="modal-dialog modal-sm" role="document">
         <form id="form-delete" method="POST">
             @method('DELETE')
@@ -11,7 +11,6 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-
                     <h5>Apakah anda yakin ingin menghapus data?</h5>
                 </div>
                 <div class="modal-footer">
@@ -23,6 +22,7 @@
                         Hapus
                     </button>
                 </div>
+            </div>
         </form>
     </div>
 </div>

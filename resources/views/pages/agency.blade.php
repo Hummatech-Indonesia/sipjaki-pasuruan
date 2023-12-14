@@ -47,9 +47,9 @@
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Penanggung
                                         Jawab</label>
-                                    <input type="text" class="form-control" id="create-person_responsible" class="form-control"
-                                        name="person_responsible" id="nametext" aria-describedby="name"
-                                        placeholder="Masukan penanggung jawab" />
+                                    <input type="text" class="form-control" id="create-person_responsible"
+                                        class="form-control" name="person_responsible" id="nametext"
+                                        aria-describedby="name" placeholder="Masukan penanggung jawab" />
                                 </div>
                             </div>
                             <div class="col-4">
@@ -104,13 +104,15 @@
             <div class="col-12 col-md-6 col-xl-4">
                 <div class="card">
                     <div class="card-body d-flex align-items-center">
-                        <img class="rounded-circle" src="{{ $user->profile ?  asset('storage/'.$user->profile) : asset('Default.png') }}" alt=""
-                            width="70" height="70" style="object-fit: cover;">
+                        <img class="rounded-circle"
+                            src="{{ $user->profile ? asset('storage/' . $user->profile) : asset('Default.png') }}"
+                            alt="" width="70" height="70" style="object-fit: cover;">
                         <div class="ms-3">
                             <h5 class="card-title">{{ $user->name }}</h5>
                             <p class="card-text">{{ $user->email }}</p>
                             <p>
-                                <span class="badge bg-primary-subtle text-primary fs-6">{{ $user->dinas->person_responsible }}</span>
+                                <span
+                                    class="badge bg-primary-subtle text-primary fs-6">{{ $user->dinas->person_responsible }}</span>
                             </p>
                         </div>
                     </div>
@@ -120,7 +122,9 @@
                                 <div class="col-6 mb-2">
                                     <button class="btn text-white btn-edit" id="btn-edit-{{ $user->id }}"
                                         data-id="{{ $user->id }}" data-name="{{ $user->name }}"
-                                        data-email="{{ $user->email }}" data-person_responsible="{{ $user->dinas->person_responsible }}" data-phone_number="{{ $user->phone_number }}"
+                                        data-email="{{ $user->email }}"
+                                        data-person_responsible="{{ $user->dinas->person_responsible }}"
+                                        data-phone_number="{{ $user->phone_number }}"
                                         style="background-color: #1B3061; width: 100%;">
                                         edit
                                     </button>
@@ -144,11 +148,11 @@
                         <h4 class="text-center mt-4">Dinas Kosong!!</h4>
                     </div>
                 </div>
-                <div>
+            </div>
         @endforelse
     </div>
     {{ $users->links('pagination::bootstrap-5') }}
-    <div class="modal fade" id="modal-update" tabindex="-1" id="modal-create" aria-labelledby="exampleModalLabel1">
+    <div class="modal fade" id="modal-update" tabindex="-1" aria-labelledby="exampleModalLabel1">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <form method="POST" id="form-update">
@@ -166,17 +170,16 @@
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Nama
                                         Dinas</label>
-                                    <input type="text" class="form-control" id="update-name" class="form-control"
-                                        name="name" id="nametext" aria-describedby="name"
-                                        placeholder="Masukan nama" />
+                                    <input type="text" class="form-control" id="update-name" name="name"
+                                        aria-describedby="name" placeholder="Masukan nama" />
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Penanggung
                                         Jawab</label>
-                                    <input type="text" class="form-control" id="update-person_responsible" class="form-control"
-                                        name="person_responsible" id="nametext" aria-describedby="name"
+                                    <input type="text" class="form-control" id="update-person_responsible"
+                                        name="person_responsible" aria-describedby="name"
                                         placeholder="Masukan penanggung jawab" />
                                 </div>
                             </div>
@@ -184,36 +187,37 @@
                                 <div class="mb-3">
                                     <label id="phone_number" for="recipient-name" class="control-label mb-2">Nomor
                                         Handphone</label>
-                                    <input type="number" class="form-control" id="update-phone_number" class="form-control"
-                                        name="phone_number" id="nametext" aria-describedby="name"
+                                    <input type="number" class="form-control" id="update-phone_number"
+                                        name="phone_number" aria-describedby="name"
                                         placeholder="Masukan nomor hp anda" />
                                 </div>
                             </div>
                             <div class="col-4">
                                 <div class="mb-3">
                                     <label id="email" for="recipient-name" class="control-label mb-2">Email</label>
-                                    <input type="email" class="form-control" id="update-email" class="form-control"
-                                        name="email" aria-describedby="name" placeholder="Masukan email" />
+                                    <input type="email" class="form-control" id="update-email" name="email"
+                                        aria-describedby="name" placeholder="Masukan email" />
                                 </div>
                             </div>
                             <div class="col-4">
                                 <div class="mb-3">
                                     <label id="email" for="recipient-name"
                                         class="control-label mb-2">Password</label>
-                                    <input type="password" class="form-control" id="update-password" class="form-control"
-                                        name="password" aria-describedby="name" placeholder="Masukan password" />
+                                    <input type="password" class="form-control" id="update-password" name="password"
+                                        aria-describedby="name" placeholder="Masukan password" />
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger text-white font-medium waves-effect"
-                                data-bs-dismiss="modal">
-                                Close
-                            </button>
-                            <button type="submit" style="background-color: #1B3061" class="btn text-white btn-update">
-                                Edit
-                            </button>
-                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger text-white font-medium waves-effect"
+                            data-bs-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="submit" style="background-color: #1B3061" class="btn text-white btn-update">
+                            Edit
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -233,10 +237,11 @@
             $('#modal-update').modal('show')
         })
         $('.btn-delete').click(function() {
-            id = $(this).data('id')
+            var id = $(this).data('id');
             var actionUrl = `agencies/${id}`;
+
             $('#form-delete').attr('action', actionUrl);
-            $('#modal-delete').modal('show')
+            $('#modal-delete').modal('show');
         })
     </script>
 @endsection
