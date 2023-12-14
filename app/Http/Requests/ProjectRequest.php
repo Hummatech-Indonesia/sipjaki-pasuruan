@@ -30,7 +30,6 @@ class ProjectRequest extends FormRequest
             'characteristic_project' => 'required',
             'physical_progress_start' => 'required|date',
             'finance_progress_start' => 'required|date',
-            'physical_progress' => 'required',
             'finance_progress' => 'required',
             'year' => 'min:4|max:4',
             'start_at' => 'required|before:end_at|date',
