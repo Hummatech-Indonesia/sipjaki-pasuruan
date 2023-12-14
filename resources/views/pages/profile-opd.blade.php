@@ -40,7 +40,7 @@
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="formrow-inputState" class="form-label">Email OPD</label>
-                                    <select name="" class="form-control" id="">
+                                    <select name="" class="form-select" id="">
                                         <option value="">Pilih Email</option>
                                     </select>
                                 </div>
