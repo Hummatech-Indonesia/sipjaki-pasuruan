@@ -43,7 +43,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    @foreach($data as $item) 
+                    @foreach($data as $item)
                     <div class="d-flex justify-content-between mb-3">
                         <div class="">
                             {{$loop->iteration}}

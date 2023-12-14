@@ -12,8 +12,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th colspan="2" style="text-align: center; padding:4px; background-color:#1B3061; color:white">Penyedia
-                    Jasa</th>
+                <th colspan="2" style="text-align: center; padding:4px; background-color:#1B3061; color:white">Penyedia Jasa</th>
                 <th colspan="2" style="text-align: center; padding:4px; background-color:#1B3061; color:white">Nama</th>
                 <th colspan="2" style="text-align: center; padding:4px; background-color:#1B3061; color:white">Tanggal Lahir</th>
                 <th colspan="2" style="text-align: center; padding:4px; background-color:#1B3061; color:white">Edukasi</th>

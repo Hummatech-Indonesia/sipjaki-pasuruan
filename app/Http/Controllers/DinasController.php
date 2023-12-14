@@ -63,11 +63,11 @@ class DinasController extends Controller
         foreach ($service as $data) {
             $this->dinasField->store($data);
         }
-        // if ($request->is('api/*')) {
+         if ($request->is('api/*')) {
         return ResponseHelper::success(null, trans('alert.update_success'));
-        // } else {
-        //     return redirect()->back()->with('success', trans('alert.update_success'));
-        // }
+        } else {
+             return redirect()->back()->with('success', trans('alert.update_success'));
+         }
     }
 
     /**

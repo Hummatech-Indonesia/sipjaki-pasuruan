@@ -7,6 +7,7 @@ use App\Enums\RoleEnum;
 use App\Enums\UploadDiskEnum;
 use App\Helpers\UserHelper;
 use App\Http\Requests\UpdateProfileRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Http\Requests\UserRequest;
 use App\Traits\UploadTrait;
 
@@ -28,6 +29,33 @@ class UserService
         $user = $user->store($data);
         $user->dinas()->create($data);
         $user->assignRole(RoleEnum::DINAS);
+    }
+
+    /**
+     * update
+     *
+     * @param  mixed $request
+     * @return array
+     */
+    public function update(UpdateUserRequest $request): array
+    {
+        $data = $request->validated();
+        if ($data['password'] != null) {
+            return [
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'phone_number' => $data['phone_number'],
+                'person_responsible' => $data['person_responsible'],
+                'password' => bcrypt($data['password']),
+            ];
+        } else {
+            return [
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'phone_number' => $data['phone_number'],
+                'person_responsible' => $data['person_responsible'],
+            ];
+        }
     }
 
     /**

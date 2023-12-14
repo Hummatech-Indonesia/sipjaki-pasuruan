@@ -3,7 +3,7 @@
     <div class="tabs-wrapper">
         <div class="section-title text-center">
             <h2 style="border-radius: 16px;
-    background: var(--Kuning, #FFC928);" class="title">Detail Berita</h2>
+    background: var(--Kuning, #FFC928);" class="title p-1">Detail Berita</h2>
         </div>
     </div>
     <div class="row">

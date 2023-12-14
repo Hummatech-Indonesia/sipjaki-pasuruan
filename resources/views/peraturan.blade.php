@@ -22,7 +22,7 @@
     <div class="tabs-wrapper">
         <div class="section-title text-center">
             <h2 style="border-radius: 16px;
-        background: var(--Kuning, #FFC928);" class="title">Data Peraturan</h2>
+        background: var(--Kuning, #FFC928);" class="title p-1">Data Peraturan</h2>
         </div>
     </div>
     <div class="d-flex row">
@@ -126,7 +126,7 @@
             </div>
         </div>
     </div>
-    
+
     <script src="{{ asset('assets/libs/apexcharts/apexcharts.min.js') }}"></script>
     <script src="{{ asset('assets/js/pages/apexcharts.init.js') }}"></script>
     <script>

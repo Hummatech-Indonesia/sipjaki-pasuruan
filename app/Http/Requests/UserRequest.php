@@ -25,4 +25,22 @@ class UserRequest extends FormRequest
             'password' => 'required|max:16'
         ];
     }
+
+    /**
+     * messages
+     *
+     * @return array
+     */
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Nama wajib diisi',
+            'name.max' => 'Nama maksimal 255 karakter',
+            'phone_number.required' => 'Nomor HP wajib diisi',
+            'phone_number.max' => 'Nomor HP maksimal 255 karakter',
+            'person_responsible' => 'Penanggung jawab wajib diisi',
+            'password.required' => 'Penanggung jawab wajib diisi',
+            'password.max' => 'Penanggung jawab maksimal 255 karakter',
+        ];
+    }
 }
