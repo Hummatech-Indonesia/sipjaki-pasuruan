@@ -8,6 +8,7 @@ use App\Contracts\Interfaces\TypeInterface;
 use App\Contracts\Interfaces\DinasInterface;
 use App\Contracts\Interfaces\FieldInterface;
 use App\Contracts\Interfaces\SectionInterface;
+use App\Contracts\Interfaces\UserInterface;
 use App\Helpers\ResponseHelper;
 use App\Http\Resources\DinasAccidentResource;
 use App\Services\DinasService;
@@ -18,14 +19,12 @@ class DinasController extends Controller
     private FieldInterface $field;
     private SectionInterface $section;
     private TypeInterface $type;
-    private DinasFieldInterface $dinasField;
-    private DinasService $service;
+    private UserInterface $user;
 
-    public function __construct(DinasInterface $dinas, FieldInterface $field, SectionInterface $section, TypeInterface $type, DinasFieldInterface $dinasField, DinasService $service)
+    public function __construct(DinasInterface $dinas, FieldInterface $field, SectionInterface $section, TypeInterface $type, UserInterface $user)
     {
-        $this->service = $service;
+        $this->user = $user;
         $this->dinas = $dinas;
-        $this->dinasField = $dinasField;
         $this->field = $field;
         $this->section = $section;
         $this->type = $type;
@@ -58,16 +57,13 @@ class DinasController extends Controller
      */
     public function update(DinasRequest $request)
     {
-        $this->dinas->update(auth()->user()->dinas->id, $this->service->updateDinas($request));
-        $service = $this->service->store($request);
-        foreach ($service as $data) {
-            $this->dinasField->store($data);
-        }
-         if ($request->is('api/*')) {
-        return ResponseHelper::success(null, trans('alert.update_success'));
+        $this->user->update(auth()->user()->id, $request->validated(    ));
+        $this->dinas->update(auth()->user()->dinas->id, $request->validated());
+        if ($request->is('api/*')) {
+            return ResponseHelper::success(null, trans('alert.update_success'));
         } else {
-             return redirect()->back()->with('success', trans('alert.update_success'));
-         }
+            return redirect()->back()->with('success', trans('alert.update_success'));
+        }
     }
 
     /**
