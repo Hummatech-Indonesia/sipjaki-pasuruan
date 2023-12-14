@@ -38,6 +38,7 @@ class DinasController extends Controller
      */
     public function index()
     {
+        $dinas = auth()->user()->dinas;
         $sections = $this->section->get();
         $fields = $this->field->get();
         $types = $this->type->get();
@@ -45,6 +46,7 @@ class DinasController extends Controller
             'sections' => $sections,
             'fields' => $fields,
             'types' => $types,
+            'dinas' => $dinas
         ]);
     }
     /**
@@ -55,7 +57,7 @@ class DinasController extends Controller
      * @return void
      */
     public function update(DinasRequest $request)
-{
+    {
         $this->dinas->update(auth()->user()->dinas->id, $this->service->updateDinas($request));
         $service = $this->service->store($request);
         foreach ($service as $data) {

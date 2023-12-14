@@ -22,7 +22,6 @@ class DinasRequest extends FormRequest
             'email_official' => 'required|email|max:255',
             'field_id.*' => 'exists:fields,id',
             'address' => 'required',
-            'phone_number' => 'required|numeric',
             'mobile_phone_number' => 'required|numeric',
             'echelon' => 'required|max:4',
             'local_regulation' => 'required|max:255',
