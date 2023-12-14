@@ -47,7 +47,7 @@
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Penanggung
                                         Jawab</label>
-                                    <input type="text" class="form-control" id="create-name" class="form-control"
+                                    <input type="text" class="form-control" id="create-person_responsible" class="form-control"
                                         name="person_responsible" id="nametext" aria-describedby="name"
                                         placeholder="Masukan penanggung jawab" />
                                 </div>
@@ -56,7 +56,7 @@
                                 <div class="mb-3">
                                     <label id="phone_number" for="recipient-name" class="control-label mb-2">Nomor
                                         Handphone</label>
-                                    <input type="number" class="form-control" id="create-name" class="form-control"
+                                    <input type="number" class="form-control" id="create-phone_number" class="form-control"
                                         name="phone_number" id="nametext" aria-describedby="name"
                                         placeholder="Masukan nomor hp anda" />
                                 </div>
@@ -71,7 +71,7 @@
                             <div class="col-4">
                                 <div class="mb-3">
                                     <label id="email" for="recipient-name" class="control-label mb-2">Password</label>
-                                    <input type="password" class="form-control" id="create-email" class="form-control"
+                                    <input type="password" class="form-control" id="create-password" class="form-control"
                                         name="password" aria-describedby="name" placeholder="Masukan password" />
                                 </div>
                             </div>
@@ -110,7 +110,7 @@
                             <h5 class="card-title">{{ $user->name }}</h5>
                             <p class="card-text">{{ $user->email }}</p>
                             <p>
-                                <span class="badge bg-primary-subtle text-primary fs-6">Dinas</span>
+                                <span class="badge bg-primary-subtle text-primary fs-6">{{ $user->dinas->person_responsible }}</span>
                             </p>
                         </div>
                     </div>
@@ -184,7 +184,7 @@
                                 <div class="mb-3">
                                     <label id="phone_number" for="recipient-name" class="control-label mb-2">Nomor
                                         Handphone</label>
-                                    <input type="number" class="form-control" id="update-name" class="form-control"
+                                    <input type="number" class="form-control" id="update-phone_number" class="form-control"
                                         name="phone_number" id="nametext" aria-describedby="name"
                                         placeholder="Masukan nomor hp anda" />
                                 </div>
@@ -200,7 +200,7 @@
                                 <div class="mb-3">
                                     <label id="email" for="recipient-name"
                                         class="control-label mb-2">Password</label>
-                                    <input type="password" class="form-control" id="update-email" class="form-control"
+                                    <input type="password" class="form-control" id="update-password" class="form-control"
                                         name="password" aria-describedby="name" placeholder="Masukan password" />
                                 </div>
                             </div>
