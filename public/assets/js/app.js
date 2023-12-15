@@ -279,6 +279,18 @@
                     ? s(this).siblings("input").attr("type", "input")
                     : s(this).siblings("input").attr("type", "password"));
         }),
+        s("#password-addon2").on("click", function () {
+            0 < s(this).siblings("input").length &&
+                ("password" == s(this).siblings("input").attr("type")
+                    ? s(this).siblings("input").attr("type", "input")
+                    : s(this).siblings("input").attr("type", "password"));
+        }),
+        s("#password-addon3").on("click", function () {
+            0 < s(this).siblings("input").length &&
+                ("password" == s(this).siblings("input").attr("type")
+                    ? s(this).siblings("input").attr("type", "input")
+                    : s(this).siblings("input").attr("type", "password"));
+        }),
         null != t && t !== a && n(t),
         s(".language").on("click", function (e) {
             n(s(this).attr("data-lang"));

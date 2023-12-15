@@ -54,11 +54,20 @@
                             <div class="p-2">
                                 @if (session('success'))
                                     <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                        {{ session('success') }} Silahkan <a href="{{ route('login') }}">Login</a> 
+                                        {{ session('success') }} Silahkan <a href="{{ route('login') }}">Login</a>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    </div>
+                                @elseif (session('errors'))
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        Token yang anda inputkan tiidak valid"
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
                                     </div>
                                 @else
                                     <div class="alert alert-info text-center mb-4" role="alert">
-                                        Verifikasi akun anda! </div>
+                                        Verifikasi akun anda!
+                                    </div>
                                 @endif
                                 <form class="form-horizontal" action="{{ route('verify.token/', $Id) }}" method="POST">
                                     @csrf

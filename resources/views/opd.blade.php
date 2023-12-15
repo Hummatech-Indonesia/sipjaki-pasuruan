@@ -15,9 +15,43 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Total Kecelakaan</h5>
-                    <h2>234 Korban</h2>
-                    <h5>Tahun 2023</h5>
+                    <div class="row d-flex">
+                        <div class="col-4">
+                            <h5 class="title fw-bold">Total OPD Pasuruan</h5>
+                            <h1 class="fw-bolder" style="color: #1B3061;">34</h1>
+                        </div>
+                        <div class="col-6">
+                            <h5 class="title fw-bold">Total OPD Kabupaten Kota</h5>
+                            <h1 class="fw-bolder" style="color:#1B3061;">513</h1>
+                        </div>
+                        <div class="row">
+                            <div class="col-1">
+                                <div class="mb-1 fw-semibold">
+                                    Pringkat 1
+                                </div>
+                                <div class="btn btn-sm rounded-3 fs-5 fw-semibold" style="background-color: #E4ECFF;color:#1B3061;">
+                                    Sumbat
+                                </div>
+                            </div>
+                            <div class="col-1">
+                                <div class="mb-1 fw-semibold">
+                                    Pringkat 2
+                                </div>
+                                <div class="btn btn-sm rounded-3 fs-5 fw-semibold" style="background-color: #E4ECFF;color:#1B3061;">
+                                    Sumbat
+                                </div>
+                            </div>
+                            <div class="col-1">
+                                <div class="mb-1 fw-semibold">
+                                    Pringkat 3
+                                </div>
+                                <div class="btn btn-sm rounded-3 fs-5 fw-semibold" style="background-color: #E4ECFF;color:#1B3061;">
+                                    Sumbat
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
 
                     <div id="bar_chart" data-colors='["--bs-success"]' class="apex-charts" dir="ltr"></div>
                 </div>

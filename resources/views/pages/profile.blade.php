@@ -11,7 +11,10 @@
                         @csrf
                         <div class="row">
                             <div class="col-lg-2 d-flex flex-column align-items-center">
-                                <img id="preview" src="{{ asset(auth()->user()->profile == null ? 'Default.png' : 'storage/' . auth()->user()->profile) }}" class="rounded-circle avatar-xl" width="90%" style="object-fit: cover" alt="">
+                                <img id="preview"
+                                    src="{{ asset(auth()->user()->profile == null ? 'Default.png' : 'storage/' . auth()->user()->profile) }}"
+                                    class="rounded-circle avatar-xl" width="90%" style="object-fit: cover"
+                                    alt="">
                                 <div class="btn btn-sm mt-3 btn-upload rounded-3" id="btn-upload"
                                     style="background-color: #1B3061; color: white; padding-left: 50px; padding-right: 50px;">
                                     UPLOAD</div>
@@ -22,22 +25,26 @@
                                 <div class="row">
                                     <div class="col">
                                         <label for="" class="form-label">Nama</label>
-                                        <input type="text" class="form-control" name="name" value="{{ auth()->user()->name }}" id="">
+                                        <input type="text" class="form-control" name="name"
+                                            value="{{ auth()->user()->name }}" id="">
                                     </div>
                                     <div class="col">
                                         <label for="" class="form-label">Email</label>
-                                        <input type="text" value="{{ auth()->user()->email }}" class="form-control" name="email" id="">
+                                        <input type="text" value="{{ auth()->user()->email }}" class="form-control"
+                                            name="email" id="">
                                     </div>
 
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col">
                                         <label for="" class="form-label">No Telepon</label>
-                                        <input type="number" value="{{ auth()->user()->phone_number }}" class="form-control" name="phone_number" id="">
+                                        <input type="number" value="{{ auth()->user()->phone_number }}"
+                                            class="form-control" name="phone_number" id="">
                                     </div>
                                     <div class="col">
                                         <label for="" class="form-label">Sk</label>
-                                    <input type="text" class="form-control" value="{{ auth()->user()->decree }}" name="decree" id="">
+                                        <input type="text" class="form-control" value="{{ auth()->user()->decree }}"
+                                            name="decree" id="">
                                     </div>
                                 </div>
                                 <div class="d-flex mt-4 justify-content-end">
@@ -78,8 +85,11 @@
                                     <div class="col-6">
                                         <label for="" class="form-label">Password Sekarang</label>
                                         <div class="input-group auth-pass-inputgroup">
-                                            <input type="password" class="form-control" placeholder="Masukkan password sekarang" aria-label="Password" name="current_password" aria-describedby="password-addon" >
-                                            <button class="btn btn-light " type="button" id="password-addon"><i class="mdi mdi-eye-outline"></i></button>
+                                            <input type="password" name="current_password" class="form-control"
+                                                placeholder="Masukkan password sekarang" aria-label="Password"
+                                                aria-describedby="password-addon2">
+                                            <button class="btn btn-light " type="button" id="password-addon2"><i
+                                                    class="mdi mdi-eye-outline"></i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -87,15 +97,21 @@
                                     <div class="col">
                                         <label for="" class="form-label">Password Baru</label>
                                         <div class="input-group auth-pass-inputgroup">
-                                            <input type="password" class="form-control" placeholder="Masukkan password baru" aria-label="Password" name="current_password" aria-describedby="password-addon" name="password">
-                                            <button class="btn btn-light " type="button" id="password-addon"><i class="mdi mdi-eye-outline"></i></button>
+                                            <input type="password" name="password" class="form-control"
+                                                placeholder="Masukkan password sekarang" aria-label="Password"
+                                                aria-describedby="password-addon3">
+                                            <button class="btn btn-light " type="button" id="password-addon3"><i
+                                                    class="mdi mdi-eye-outline"></i></button>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <label for="" class="form-label">Konfirmasi Password</label>
                                         <div class="input-group auth-pass-inputgroup">
-                                            <input type="password" class="form-control" placeholder="Konfirmasi password sekarang" aria-label="Password" name="password_confirmation" aria-describedby="password-addon" >
-                                            <button class="btn btn-light " type="button" id="password-addon"><i class="mdi mdi-eye-outline"></i></button>
+                                            <input type="password" name="password_confirmation" class="form-control"
+                                                placeholder="Masukkan password sekarang" aria-label="Password"
+                                                aria-describedby="password-addon">
+                                            <button class="btn btn-light " type="button" id="password-addon"><i
+                                                    class="mdi mdi-eye-outline"></i></button>
                                         </div>
                                     </div>
 
@@ -121,6 +137,15 @@
     </div>
 @endsection
 @section('script')
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: '{{ session('success') }}',
+            });
+        </script>
+    @endif
     <script>
         document.getElementById('btn-upload').addEventListener('click', function() {
             document.getElementById('photo').click();
