@@ -1,0 +1,422 @@
+@extends('layouts.app')
+@section('content')
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: '{{ session('success') }}',
+            });
+        </script>
+    @endif
+    <h4 class="mb-3 font-size-18">Tenaga Kerja</h4>
+    <div class="d-flex justify-content-between">
+        <div class="">
+            <button type="button" data-bs-toggle="modal" data-bs-target="#modal-create" class="btn text-white fw-normal"
+                style="background-color:#1B3061;">
+                <svg xmlns="http://www.w3.org/2000/svg" height="14" width="12" fill="white" viewBox="0 0 448 512">
+                    <path
+                        d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3V320c0 17.7 14.3 32 32 32s32-14.3 32-32V109.3l73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32v64c0 53 43 96 96 96H352c53 0 96-43 96-96V352c0-17.7-14.3-32-32-32s-32 14.3-32 32v64c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V352z" />
+                </svg>
+                <span class="ms-2">Import</span>
+            </button>
+            <a href="{{ route('export.workers') }}">
+                <button type="submit" class="btn text-white fw-normal" style="background-color:#2CA67A;">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="14" width="14" fill="white"
+                        transform="rotate(90)" viewBox="0 0 512 512">
+                        <path
+                            d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 192 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128zM160 96c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 32C43 32 0 75 0 128L0 384c0 53 43 96 96 96l64 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l64 0z" />
+                    </svg>
+                    <span class="ms-2">Export</span>
+                </button>
+            </a>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" id="modal-create" aria-labelledby="exampleModalLabel1">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header d-flex align-items-center">
+                    <h4 class="modal-title" id="exampleModalLabel1">
+                        Tambah Asosiasi
+                    </h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('asscoations.index') }}" method="POST" id="form-create">
+                        @csrf
+                        <div id="basic-example">
+                            <!-- Seller Details -->
+                            <h3>Asosiasi</h3>
+                            <section>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label for="basicpill-year">Nama</label>
+                                            <input type="text" class="form-control" name="name" id="basicpill-year"
+                                                placeholder="Masukan Tahun">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label for="basicpill-name">Email</label>
+                                            <input type="email" class="form-control" name="email" id="basicpill-name"
+                                                placeholder="masukan nama pekerjaan">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <label for="basicpill-fund_source_id">Telepon</label>
+                                            <input type="number" name="phone_number" id="create-phone_number"
+                                                class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <label for="basicpill-email-input">Kota/Kab</label>
+                                            <input type="text" name="city" id="create-city" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <label for="basicpill-email-input">Kode Pos</label>
+                                            <input type="number" name="postal_code" id="create-postal-code"
+                                                class="form-control">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label for="" class="form-label">Alamat</label>
+                                        <textarea name="address" id="create-address" class="form-control" cols="25" rows="5"></textarea>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <!-- Company Document -->
+                            <h3>Ketua Asosiasi</h3>
+                            <section>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <label for="basicpill-nilai_kontrak">Nama Ketua</label>
+                                            <input type="text" class="form-control" name="leader"
+                                                id="basicpill-nilai_kontrak" placeholder="Masukan nilai kontrak">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <label for="basicpill-contract_category_id">Email</label>
+                                            <input type="email" name="email_leader" id="create-email_leader"
+                                                class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <label for="basicpill-cstno-input">Telepon</label>
+                                            <input type="number" name="phone_number_leader"
+                                                id="create-phone_number_leader" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="mb-3">
+                                            <label>Alamat</label>
+                                            <textarea name="address_leader" class="form-control" id="create-leader_address" cols="30" rows="5"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mt-4 rounded p-4" style="background-color: #fff;box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);">
+        <h6 class="mb-3 font-size-14">Berikut Daftar Peserta Pelatihan</h6>
+        <div class="d-flex justify-content-between">
+            <div class="d-flex">
+                <div class="d-flex position-relative col-lg-5">
+                    <input type="search" class="form-control search-chat py-2 ps-5" id="search-name"
+                        placeholder="Search">
+                    <i class="bx bx-search-alt-2 position-absolute top-50 translate-middle-y fs-6 text-dark ms-3"></i>
+                </div>
+            </div>
+            <button class="btn ms-1 rounded" data-bs-toggle="modal" data-bs-target="#modal-create"
+                style="background-color:#1B3061;color:white">
+                + Tambah
+            </button>
+        </div>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover mt-4">
+                <thead>
+                    <tr>
+                        <th scope="col" class="table-sipjaki text-center">NO</th>
+                        <th scope="col" class="table-sipjaki text-center">Name</th>
+                        <th scope="col" class="table-sipjaki text-center">Email</th>
+                        <th scope="col" class="table-sipjaki text-center">No Telepone</th>
+                        <th scope="col" class="table-sipjaki text-center">Nama Ketua</th>
+                        <th scope="col" class="text-white text-center"
+                            style="background-color: #1B3061; border-radius:0px 5px 5px 0px; color: #ffffff; border-color: #1B3061; border-width: 0px;">
+                            Aksi
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse ($associations as $association)
+                        <tr>
+                            <td class="text-center">{{ $loop->iteration }}</td>
+                            <td class="text-center">{{ $association->name }}</td>
+                            <td class="text-center">{{ $association->email }}</td>
+                            <td class="text-center">{{ $association->phone_number }}</td>
+                            <td class="text-center">{{ $association->leader }}</td>
+                            <td class="" style="border-bottom: 1px solid #fff">
+                                <div class="d-flex justify-content-header gap-3">
+                                    <div class="">
+                                        <button type="button"
+                                            class="btn btn-edit waves-effect waves-light text-white btn waves-effect d-flex flex-row gap-1 justify-content-evenly"
+                                            style="background-color: #1B3061">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19"
+                                                viewBox="0 0 24 24" fill="none">
+                                                <path d="M4.5 12.5C7.5 6 16.5 6 19.5 12.5" stroke="white"
+                                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path
+                                                    d="M12 16C10.8954 16 10 15.1046 10 14C10 12.8954 10.8954 12 12 12C13.1046 12 14 12.8954 14 14C14 15.1046 13.1046 16 12 16Z"
+                                                    stroke="white" stroke-width="1.5" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                            </svg> Detail
+                                        </button>
+                                    </div>
+                                    <div class="">
+                                        <button id="btn-edit-{{ $association->id }}" data-name="{{ $association->name }}"
+                                            data-leader="{{ $association->leader }}"
+                                            data-email="{{ $association->email }}"
+                                            data-phone_number="{{ $association->phone_number }}"
+                                            data-city="{{ $association->city }}"
+                                            data-phone_number_leader="{{ $association->phone_number_leader }}"
+                                            data-email_leader="{{ $association->email_leader }}"
+                                            data-postal_code="{{ $association->postal_code }}"
+                                            data-address_leader="{{ $association->address_leader }}"
+                                            data-address="{{ $association->address }}"
+                                            data-id="{{ $association->id }}" type="button"
+                                            class="btn waves-effect waves-light d-flex btn-edit flex-row gap-1 justify-content-evenly"
+                                            style="width: 90px; background-color: #FFC928; color: white"><i
+                                                class="bx bx-bx bxs-edit fs-4"></i>
+                                            <span>Edit</span>
+                                        </button>
+                                    </div>
+                                    <div class="">
+                                        <button type="button"
+                                            class="btn waves-effect waves-light d-flex flex-row gap-1 justify-content-between btn-delete"
+                                            style="width: 90px; background-color: #E05C39; color: white" data-id=""
+                                            data-bs-toggle="modal" data-bs-target="#modal-delete"><i
+                                                class="bx bx-bx bxs-trash fs-4"></i>
+                                            Hapus
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    @empty
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" id="modal-update" aria-labelledby="exampleModalLabel1">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header d-flex align-items-center">
+                    <h4 class="modal-title" id="exampleModalLabel1">
+                        Tambah Asosiasi
+                    </h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form  method="POST" id="form-update">
+                        @csrf
+                        @method('PUT')
+                        <div id="basic-update">
+                            <!-- Seller Details -->
+                            <h3>Asosiasi</h3>
+                            <section>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label for="update-name">Nama</label>
+                                            <input type="text" class="form-control" name="name" id="update-name"
+                                                placeholder="Masukan Tahun">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label for="update-email">Email</label>
+                                            <input type="email" class="form-control" name="email" id="update-email"
+                                                placeholder="masukan nama pekerjaan">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <label for="update-fund_source_id">Telepon</label>
+                                            <input type="number" name="phone_number" id="update-phone_number"
+                                                class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <label for="basicpill-email-input">Kota/Kab</label>
+                                            <input type="text" name="city" id="update-city" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <label for="basicpill-email-input">Kode Pos</label>
+                                            <input type="number" name="postal_code" id="update-postal-code"
+                                                class="form-control">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label for="" class="form-label">Alamat</label>
+                                        <textarea name="address" id="update-address" class="form-control" cols="25" rows="5"></textarea>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <!-- Company Document -->
+                            <h3>Ketua Asosiasi</h3>
+                            <section>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <label for="basicpill-nilai_kontrak">Nama Ketua</label>
+                                            <input type="text" class="form-control" name="leader"
+                                                id="basicpill-nilai_kontrak" placeholder="Masukan nilai kontrak">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <label for="basicpill-contract_category_id">Email</label>
+                                            <input type="email" name="email_leader" id="update-email_leader"
+                                                class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <label for="basicpill-cstno-input">Telepon</label>
+                                            <input type="number" name="phone_number_leader"
+                                                id="update-phone_number_leader" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="mb-3">
+                                            <label>Alamat</label>
+                                            <textarea name="address_leader" class="form-control" id="update-leader_address" cols="30" rows="5"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade bs-example-modal-md" id="modal-detail" tabindex="-1" role="dialog"
+        aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #1B3061">
+                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Detail Tenaga Kerja</h5>
+                    <button type="button" class="btn-close" style="background-color: white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="mt-3 fs-5 text-dark mb-2" style="font-weight: 700">
+                                <span id="detail-name"></span>
+                            </p>
+                            <div class="">
+                                <div class="row mb-1">
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark">Tanggal Lahir :</p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
+                                                id="detail-birth_date"></span></p>
+                                    </div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark">Pendidikan :</p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
+                                                id="detail-education"></span></p>
+                                    </div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark">No. Registrasi :</p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
+                                                id="detail-registration_number"></span></p>
+                                    </div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark">Jenis Sertifikat :</p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
+                                                id="detail-cerificate"></span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger text-white font-medium waves-effect"
+                                data-bs-dismiss="modal">
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+    <x-delete-modal-component />
+@endsection
+@section('script')
+    <script>
+        $('.btn-edit').click(function() {
+            const formData = getDataAttributes($(this).attr('id'))
+            var actionUrl = `associations/${formData['id']}`;
+            $('#form-update').attr('action', actionUrl);
+
+            setFormValues('form-update', formData)
+            $('#form-update').data('id', formData['id'])
+            $('#form-update').attr('action', );
+            $('#modal-update').modal('show')
+        })
+    </script>
+@endsection
