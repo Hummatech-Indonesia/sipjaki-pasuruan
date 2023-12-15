@@ -46,7 +46,7 @@
     <div>
         <div class="container-fluid p-0">
             <div class="row g-0">
-                <div class="col-xl-9">
+                <div class="col-xl-7">
                     <div class="auth-full-bg pt-lg-5 p-4">
                         <div class="w-100 h-100 d-flex align-items-center justify-content-center">
                             <div class="p-4">
@@ -58,8 +58,7 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="col-xl-3">
+                <div class="col-xl-5">
                     <div class="auth-full-page-content p-md-5 p-4">
                         <div class="w-100">
 
@@ -78,91 +77,106 @@
                                     <div class="mt-4">
                                         <form method="POST" action="{{ route('register') }}">
                                             @csrf
-                                            <div class="mb-3">
-                                                <label for="email" class="form-label"
-                                                    style="font-weight: bold">{{ __('Email Address') }}</label>
-                                                <input id="email" type="email"
-                                                    class="form-control @error('email') is-invalid @enderror"
-                                                    name="email" placeholder="Masukan Email"
-                                                    value="{{ old('email') }}" autocomplete="email" autofocus
-                                                    style="border-radius: 8px">
-                                                @error('email')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="phone" class="form-label"
-                                                    style="font-weight: bold">{{ __('No telephone') }}</label>
-                                                <input id="phone" type="number"
-                                                    class="form-control @error('phone') is-invalid @enderror"
-                                                    name="phone_number" placeholder="Masukan phone"
-                                                    value="{{ old('phone') }}" autocomplete="phone" autofocus
-                                                    style="border-radius: 8px">
-                                                @error('phone')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-
-                                            <div class="mb-3">
-                                                <label for="username" class="form-label"
-                                                    style="font-weight: bold">{{ __('username') }}</label>
-                                                <input id="username" type="text"
-                                                    class="form-control @error('username') is-invalid @enderror"
-                                                    name="name" placeholder="Masukan Username"
-                                                    value="{{ old('username') }}" autocomplete="email" autofocus
-                                                    style="border-radius: 8px">
-                                                @error('email')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-
-                                            <div class="mb-3">
-                                                <label class="form-label" style="font-weight: bold">Password</label>
-                                                <div class="input-group auth-pass-inputgroup">
-                                                    <input type="password"
-                                                        class="form-control  @error('password') is-invalid @enderror"
-                                                        name="password" autocomplete="current-password"
-                                                        placeholder="Masukan Password" aria-label="Password"
-                                                        aria-describedby="password-addon"
-                                                        style="border-radius: 8px 0 0 8px;">
-                                                    <button class="btn btn-light " type="button"
-                                                        id="password-addon"><i
-                                                            class="mdi mdi-eye-outline"></i></button>
-                                                    @error('password')
+                                            <div class="row">
+                                                <div class="mb-3 col-md-6 col-12">
+                                                    <label for="username" class="form-label"
+                                                        style="font-weight: bold">{{ __('Badan Usaha') }}</label>
+                                                    <input id="username" type="text"
+                                                        class="form-control @error('username') is-invalid @enderror"
+                                                        name="name" placeholder="Masukan Badan Usaha"
+                                                        value="{{ old('username') }}" autocomplete="email" autofocus
+                                                        style="border-radius: 8px">
+                                                    @error('email')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
                                                         </span>
                                                     @enderror
                                                 </div>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label" style="font-weight: bold">Konfimasi
-                                                    Password</label>
-                                                <div class="input-group auth-pass-inputgroup">
-                                                    <input type="password"
-                                                        class="form-control  @error('password_confirmation') is-invalid @enderror"
-                                                        name="password_confirmation"
-                                                        autocomplete="current-password_confirmation"
-                                                        placeholder="Masukan password_confirmation"
-                                                        aria-label="password_confirmation"
-                                                        aria-describedby="password_confirmation-addon"
-                                                        style="border-radius: 8px 0 0 8px;">
-                                                    <button class="btn btn-light " type="button"
-                                                        id="password_confirmation-addon"><i
-                                                            class="mdi mdi-eye-outline"></i></button>
-                                                    @error('password_confirmation')
+                                                <div class="mb-3 col-md-6 col-12">
+                                                    <label for="email" class="form-label"
+                                                        style="font-weight: bold">{{ __('Email') }}</label>
+                                                    <input id="email" type="email"
+                                                        class="form-control @error('email') is-invalid @enderror"
+                                                        name="email" placeholder="Masukan Email"
+                                                        value="{{ old('email') }}" autocomplete="email" autofocus
+                                                        style="border-radius: 8px">
+                                                    @error('email')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
                                                         </span>
                                                     @enderror
                                                 </div>
+                                                <div class="mb-3 col-md-6 col-12">
+                                                    <label for="email" class="form-label"
+                                                        style="font-weight: bold">{{ __('Asosiasi') }}</label>
+                                                    <select name="asosiation_id" class="form-select" id="">
+                                                        <option value="">Pilih asosiasi</option>
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3 col-md-6 col-12">
+                                                    <label for="phone" class="form-label"
+                                                        style="font-weight: bold">{{ __('No telephone') }}</label>
+                                                    <input id="phone" type="number"
+                                                        class="form-control @error('phone') is-invalid @enderror"
+                                                        name="phone_number" placeholder="Masukan phone"
+                                                        value="{{ old('phone') }}" autocomplete="phone" autofocus
+                                                        style="border-radius: 8px">
+                                                    @error('phone')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+
+                                                <div class="mb-3 col-md-6 col-12">
+                                                    <label class="form-label"
+                                                        style="font-weight: bold">Password</label>
+                                                    <div class="input-group auth-pass-inputgroup">
+                                                        <input type="password"
+                                                            class="form-control  @error('password') is-invalid @enderror"
+                                                            name="password" autocomplete="current-password"
+                                                            placeholder="Masukan Password" aria-label="Password"
+                                                            aria-describedby="password-addon"
+                                                            style="border-radius: 8px 0 0 8px;">
+                                                        <button class="btn btn-light " type="button"
+                                                            id="password-addon"><i
+                                                                class="mdi mdi-eye-outline"></i></button>
+                                                        @error('password')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3 col-md-6 col-12">
+                                                    <label class="form-label" style="font-weight: bold">Konfimasi
+                                                        Password</label>
+                                                    <div class="input-group auth-pass-inputgroup">
+                                                        <input type="password"
+                                                            class="form-control  @error('password_confirmation') is-invalid @enderror"
+                                                            name="password_confirmation"
+                                                            autocomplete="current-password_confirmation"
+                                                            placeholder="Masukan password_confirmation"
+                                                            aria-label="Password Konfirmasi"
+                                                            aria-describedby="password_confirmation-addon"
+                                                            style="border-radius: 8px 0 0 8px;">
+                                                        <button class="btn btn-light " type="button"
+                                                            id="password_confirmation-addon"><i
+                                                                class="mdi mdi-eye-outline"></i></button>
+                                                        @error('password_confirmation')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
                                             </div>
+
+
+
+
+
+
                                             <div class="mt-3 d-grid">
                                                 <button style="background-color: #1B3061;"
                                                     class="btn text-white waves-effect waves-light"
@@ -175,14 +189,6 @@
                                                         href="{{ route('login') }}">Login</a></span></a> </p>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="text-center">
-                                    <p class="mb-0">©
-                                        <script>
-                                            document.write(new Date().getFullYear())
-                                        </script> Powered By Hummatech
-                                    </p>
                                 </div>
                             </div>
 

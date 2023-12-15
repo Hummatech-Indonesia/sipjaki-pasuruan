@@ -68,7 +68,7 @@
                                             @csrf
                                             <div class="mb-3">
                                                 <label for="email" class="form-label"
-                                                    style="font-weight: bold">{{ __('Email Address') }}</label>
+                                                    style="font-weight: bold">{{ __('Email') }}</label>
                                                 <input id="email" type="email"
                                                     class="form-control @error('email') is-invalid @enderror"
                                                     name="email" placeholder="Masukan Email"

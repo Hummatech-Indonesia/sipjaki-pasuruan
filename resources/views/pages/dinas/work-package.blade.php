@@ -55,14 +55,14 @@
                                         <div class="mb-3">
                                             <label for="basicpill-year">Tahun</label>
                                             <input type="number" class="form-control" name="year" id="basicpill-year"
-                                                placeholder="Masukan Tahun" value="{{ old('year') }}">
+                                                placeholder="Masukan Tahun">
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="basicpill-name">Nama Pekerjaan</label>
                                             <input type="text" class="form-control" name="name" id="basicpill-name"
-                                                placeholder="masukan nama pekerjaan" value="{{ old('name') }}">
+                                                placeholder="masukan nama pekerjaan">
                                         </div>
                                     </div>
                                 </div>
@@ -74,9 +74,8 @@
                                             <select name="fund_source_id" class="form-control select2-create"
                                                 style="width:100%" id="basicpill-fund_source_id">
                                                 @foreach ($fundSources as $fundSource)
-                                                    <option value="{{ $fundSource->id }}"
-                                                        @if (old('fund_source_id') == $fundSource->id) selected @endif>
-                                                        {{ $fundSource->name }}</option>
+                                                    <option value="{{ $fundSource->id }}">{{ $fundSource->name }}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -87,8 +86,7 @@
                                             <select class="form-control select2-create" style="width:100%"
                                                 name="service_provider_id" id="basicpill-penyedia-jasa">
                                                 @foreach ($serviceProviders as $serviceProvider)
-                                                    <option value="{{ $serviceProvider->id }}"
-                                                        @if (old('service_provider_id') == $serviceProvider->id) selected @endif>
+                                                    <option value="{{ $serviceProvider->id }}">
                                                         {{ $serviceProvider->user->name }}</option>
                                                 @endforeach
                                             </select>
@@ -105,8 +103,7 @@
                                         <div class="mb-3">
                                             <label for="basicpill-nilai_kontrak">Nilai Kontrak</label>
                                             <input type="number" class="form-control" name="project_value"
-                                                id="basicpill-nilai_kontrak" placeholder="Masukan nilai kontrak"
-                                                value="{{ old('project_value') }}">
+                                                id="basicpill-nilai_kontrak" placeholder="Masukan nilai kontrak">
                                         </div>
                                     </div>
 
@@ -117,8 +114,7 @@
                                                 class="form-control select2-create" style="width:100%"
                                                 id="basicpill-contract_category_id">
                                                 @foreach ($contractCategories as $contractCategory)
-                                                    <option value="{{ $contractCategory->id }}"
-                                                        @if (old('contract_category_id') == $contractCategory->id) selected @endif>
+                                                    <option value="{{ $contractCategory->id }}">
                                                         {{ $contractCategory->name }}</option>
                                                 @endforeach
                                             </select>
@@ -130,10 +126,8 @@
                                         <div class="mb-3">
                                             <label for="basicpill-cstno-input">karakteristik Kontrak</label>
                                             <select name="characteristic_project" class="form-select" id="">
-                                                <option value="single" @if (old('characteristic_project') == 'single') selected @endif>
-                                                    tahun tunggal</option>
-                                                <option value="multiple" @if (old('characteristic_project') == 'multiple') selected @endif>
-                                                    tahun jamak</option>
+                                                <option value="single">tahun tunggal</option>
+                                                <option value="multiple">tahun jamak</option>
                                             </select>
                                         </div>
                                     </div>
@@ -141,11 +135,74 @@
                                         <div class="mb-3">
                                             <label>Status</label>
                                             <select name="status" class="form-select">
-                                                <option value="active" @if (old('status') == 'active') selected @endif>
-                                                    Aktif</option>
-                                                <option value="inactive" @if (old('status') == 'inactive') selected @endif>
-                                                    Tidak Aktif</option>
+                                                <option selected disabled>Pilih status</option>
+                                                <option value="active">Aktif</option>
+                                                <option value="nonactive">Nonaktif</option>
                                             </select>
+                                        </div>
+                                    </div>
+
+                                  
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label for="basicpill-start_at">Mulai</label>
+                                            <input type="date" name="start_at" class="form-control"
+                                                id="basicpill-start_at" placeholder="Credit Card Number">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label for="basicpill-card-verification-input">Selesai</label>
+                                            <input type="date" name="end_at" class="form-control"
+                                                id="basicpill-end_at" placeholder="Credit Verification Number">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </section>
+
+                            <!-- Bank Details -->
+                            <h3>Detail (optional)</h3>
+                            <section>
+                                <div>
+                                    <div class="row">
+                                        
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="basicpill-physical_progress_start">Progress Fisik Pada</label>
+                                                <input type="date" name="physical_progress_start" class="form-control"
+                                                    id="basicpill-physical_progress_start"
+                                                    placeholder="Masukan Progress Fisik">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="basicpill-servicetax-input">Progress Fisik(%)</label>
+                                                <input type="number" name="physical_progress" class="form-control"
+                                                    id="basicpill-servicetax-input" placeholder="Masukan progress">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="basicpill-physical_progress_start">Progress Keuangan
+                                                    Pada</label>
+                                                <input type="date" class="form-control" name="finance_progress_start"
+                                                    id="basicpill-physical_progress_start" placeholder="">
+                                            </div>
+                                        </div>
+    
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="basicpill-declaration-input">Progress Keuangan(%)</label>
+                                                <input type="number" name="finance_progress" class="form-control"
+                                                    id="basicpill-Declaration-input" placeholder="Masukan progress keuangan">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
