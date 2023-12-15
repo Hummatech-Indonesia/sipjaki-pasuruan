@@ -87,8 +87,7 @@ Route::middleware('auth')->group(function () {
     })->name('profile');
 
     Route::middleware('role:superadmin|admin')->group(function () {
-        Route::get('all-service-provider', [ServiceProviderProjectController::class, 'allServiceProvider']);
-        Route::get('project-detail/{project}', [ServiceProviderProjectController::class, 'projectDetail']);
+        Route::get('project-detail/{project}', [ServiceProviderProjectController::class, 'projectDetail'])->name('projectDetail');
     });
     Route::middleware('role:superadmin')->group(function () {
         Route::resources([
