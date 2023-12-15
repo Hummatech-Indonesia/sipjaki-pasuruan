@@ -56,7 +56,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #1B3061">
-                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Tambah Pelatihan</h5>
+                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Tambah Kecelakaan</h5>
                     <button type="button" class="btn-close" style="background-color: white" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
@@ -167,7 +167,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #1B3061">
-                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Tambah Pelatihan</h5>
+                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Edit Pelatihan</h5>
                     <button type="button" class="btn-close" style="background-color: white" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
@@ -279,7 +279,7 @@
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #1B3061">
-                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Tambah Pelatihan</h5>
+                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Detail Pelatihan</h5>
                     <button type="button" class="btn-close" style="background-color: white" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
