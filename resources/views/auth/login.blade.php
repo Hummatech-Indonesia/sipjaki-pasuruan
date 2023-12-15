@@ -115,15 +115,7 @@
                                                         href="{{ route('register') }}">Register</a></span></a> </p>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="mt-4 mt-md-5 text-center">
-                                    <p class="mb-0">©
-                                        <script>
-                                            document.write(new Date().getFullYear())
-                                        </script> Powered By Hummatech
-                                    </p>
-                                </div>
+                                </div> 
                             </div>
 
 
