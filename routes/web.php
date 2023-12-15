@@ -150,7 +150,7 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::middleware('role:dinas')->group(function () {
-        Route::resource('accident', AccidentController::class)->except('create', 'edit', 'show');
+        Route::resource('accident', AccidentController::class)->except('create', 'edit');
         Route::resources([
             'projects' => ProjectController::class
         ]);

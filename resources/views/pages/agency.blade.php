@@ -99,57 +99,84 @@
             </ul>
         </div>
     @endif
-    <div class="row">
-        @forelse ($users as $user)
-            <div class="col-12 col-md-6 col-xl-4">
-                <div class="card">
-                    <div class="card-body d-flex align-items-center">
-                        <img class="rounded-circle"
+    <div class="table-responsive">
+        <table class="table table-borderless" border="1">
+            <thead>
+                <tr>
+                    <th class=" table-sipjaki" >No</th>
+                    <th class=" table-sipjaki" >Nama</th>
+                    <th class=" table-sipjaki" >Email</th>
+                    <th class=" table-sipjaki" >Penanggung jawab</th>
+                    <th class=" table-sipjaki" >Aksi</th>
+                </tr>
+            </thead>
+            @forelse ($users as $index=>$user)
+            <tbody>
+                <tr>
+                    <td class="">
+                        <p class="mt-2">
+                            {{ $index + 1 }}
+                        </p>
+                    </td>
+                    <td class="">
+                        <div class="d-flex justify-content-header gap-2">
+                            <div class="">
+                                <img class="rounded-circle"
                             src="{{ $user->profile ? asset('storage/' . $user->profile) : asset('Default.png') }}"
-                            alt="" width="70" height="70" style="object-fit: cover;">
-                        <div class="ms-3">
-                            <h5 class="card-title">{{ $user->name }}</h5>
-                            <p class="card-text">{{ $user->email }}</p>
-                            <p>
-                                <span
-                                    class="badge bg-primary-subtle text-primary fs-6">{{ $user->dinas->person_responsible }}</span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <div class="container">
-                            <div class="row justify-content-between">
-                                <div class="col-6 mb-2">
-                                    <button class="btn text-white btn-edit" id="btn-edit-{{ $user->id }}"
-                                        data-id="{{ $user->id }}" data-name="{{ $user->name }}"
-                                        data-email="{{ $user->email }}"
-                                        data-person_responsible="{{ $user->dinas->person_responsible }}"
-                                        data-phone_number="{{ $user->phone_number }}"
-                                        style="background-color: #1B3061; width: 100%;">
-                                        edit
-                                    </button>
-                                </div>
-                                <div class="col-6">
-                                    <button data-id="{{ $user->id }}" class="btn text-white btn-delete btn-danger"
-                                        style="width: 100%;">
-                                        hapus
-                                    </button>
-                                </div>
+                            alt="" width="45" height="45" style="object-fit: cover;">
+                            </div>
+                            <div class="">
+                                <p class="mt-2">
+                                    {{ $user->name }}
+                                </p>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
+                    </td>
+                    <td class="">
+                        <p class="mt-2">
+                            {{ $user->email }}
+                        </p>
+                    </td>
+                    <td class="">
+                        <p class="mt-2">
+                            {{ $user->dinas->person_responsible }}
+                        </p>
+                    </td>
+                    <td class="">
+                        <div class="d-flex justify-content-header gap-2">
+                            <div class="">
+                                <button class="btn text-white btn-edit" id="btn-edit-{{ $user->id }}"
+                                    data-id="{{ $user->id }}" data-name="{{ $user->name }}"
+                                    data-email="{{ $user->email }}"
+                                    data-person_responsible="{{ $user->dinas->person_responsible }}"
+                                    data-phone_number="{{ $user->phone_number }}"
+                                    style="background-color: #1B3061; width: 100%;">
+                                    edit
+                                </button>
+                            </div>
+                            <div class="">
+                                <button data-id="{{ $user->id }}" class="btn text-white btn-delete btn-danger"
+                                    style="width: 100%;">
+                                    hapus
+                                </button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
         @empty
-            <div class="text-center">
+        <tr>
+            <td colspan="5" class="text-center">
                 <div class="d-flex justify-content-center" style="min-height:16rem">
                     <div class="my-auto">
                         <img src="{{ asset('no-data.png') }}" width="300" height="300" />
                         <h4 class="text-center mt-4">Dinas Kosong!!</h4>
                     </div>
                 </div>
-            </div>
+            </td>
+        </tr>
         @endforelse
+        </table>
     </div>
     {{ $users->links('pagination::bootstrap-5') }}
     <div class="modal fade" id="modal-update" tabindex="-1" aria-labelledby="exampleModalLabel1">

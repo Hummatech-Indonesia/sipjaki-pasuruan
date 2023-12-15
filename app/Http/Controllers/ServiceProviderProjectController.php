@@ -170,7 +170,7 @@ class ServiceProviderProjectController extends Controller
     public function allServiceProvider(Request $request)
     {
         $data = $this->project->getAllProject($request);
-        return view('', ['serviceProviders' => $data]);
+        return view('pages.service-provider.servic-provider', ['serviceProviders' => $data]);
     }
 
     /**
