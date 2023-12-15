@@ -61,13 +61,34 @@ class AssociationController extends Controller
     }
 
     /**
+     * show
+     *
+     * @param  mixed $association
+     * @param  mixed $request
+     * @return JsonResponse
+     */
+    public function show(Association $association, Request $request): JsonResponse|View
+    {
+
+        if ($request->is('api/*')) {
+            return ResponseHelper::success($association);
+        } else {
+            return view('', ['association' => $association]);
+        }
+    }
+
+    /**
      * delete
      *
      * @return Returntype
      */
-    public function delete(Association $association)
+    public function delete(Association $association, Request $request)
     {
         $this->association->delete($association->id);
-        return ResponseHelper::success(null, trans('alert.delete_success'));
+        if ($request->is('api/*')) {
+            return ResponseHelper::success(null, trans('alert.delete_success'));
+        } else {
+            return redirect()->back()->with('success', trans('alert.add_success'));
+        }
     }
 }
