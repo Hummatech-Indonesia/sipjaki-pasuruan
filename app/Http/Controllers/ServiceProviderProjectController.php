@@ -170,17 +170,17 @@ class ServiceProviderProjectController extends Controller
     public function allServiceProvider(Request $request)
     {
         $data = $this->project->getAllProject($request);
-        return view('', ['serviceProviders' => $data]);
+        return view('pages.service-provider.servic-provider', ['serviceProviders' => $data]);
     }
 
     /**
      * projectDetail
      *
      * @param  mixed $project
-     * @return void
+     * @return JsonResponse
      */
-    public function projectDetail(Project $project)
+    public function projectDetail(Project $project): JsonResponse
     {
-        return view('', ['project' => $project]);
+        return ResponseHelper::success(ProjectResource::make($project));
     }
 }

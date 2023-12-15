@@ -56,3 +56,5 @@ Route::get('service-provider-project-detail/{service_provider_project}', [Servic
 Route::get('download-all-service-provider-project/{project}' , [ServiceProviderProjectController::class ,'downloadServiceProviderProject'])->name('download.all.service.provider.project');
 Route::get('download-service-provider-project/{service_provider_project}', [ServiceProviderProjectController::class, 'downloadFile'])->name('download.service-provider.project');
 
+// service provider 
+Route::get('all-service-provider', [ServiceProviderProjectController::class, 'allServiceProvider'])->name('all.service.provider');
