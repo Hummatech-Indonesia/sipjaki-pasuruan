@@ -31,6 +31,9 @@
             background-color: #1B3061;
             color: #ffffff
         }
+         .badge-sipjaki{
+            background-color: #1B3061;
+        }
     </style>
 </head>
 

@@ -74,7 +74,7 @@ class AssociationController extends Controller
         if ($request->is('api/*')) {
             return ResponseHelper::success($association);
         } else {
-            return view('', ['association' => $association]);
+            return view('pages.detail-association', ['association' => $association]);
         }
     }
 
