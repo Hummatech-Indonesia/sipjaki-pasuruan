@@ -9,7 +9,7 @@
             });
         </script>
     @endif
-    <h4 class="mb-3 font-size-18">Tenaga Kerja</h4>
+    <h4 class="mb-3 font-size-18">Assosiasi</h4>
     <div class="d-flex justify-content-between">
         <div class="">
             <button type="button" data-bs-toggle="modal" data-bs-target="#modal-create" class="btn text-white fw-normal"
@@ -137,18 +137,24 @@
     </div>
     <div class="mt-4 rounded p-4" style="background-color: #fff;box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);">
         <h6 class="mb-3 font-size-14">Berikut Daftar Peserta Pelatihan</h6>
-        <div class="d-flex justify-content-between">
-            <div class="d-flex">
-                <div class="d-flex position-relative col-lg-5">
-                    <input type="search" class="form-control search-chat py-2 ps-5" id="search-name"
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <form action="" class=" col-lg-3">
+                <div class="input-group">
+                    <input type="text" name="name" class="form-control"
                         placeholder="Search">
-                    <i class="bx bx-search-alt-2 position-absolute top-50 translate-middle-y fs-6 text-dark ms-3"></i>
+                    <div class="input-group-append">
+                        <button class="btn text-white"
+                            style="background-color: #1B3061; border-radius: 0 5px 5px 0;" type="submit">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
                 </div>
-            </div>
-            <button class="btn ms-1 rounded" data-bs-toggle="modal" data-bs-target="#modal-create"
-                style="background-color:#1B3061;color:white">
-                + Tambah
-            </button>
+            </form>
+            <span>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-create"
+                    style="background-color: #1B3061"><i class="fas fa-plus"
+                        style="margin-right:10px"></i>Tambah</button>
+            </span>
         </div>
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -185,19 +191,21 @@
                             <td class="" style="border-bottom: 1px solid #fff">
                                 <div class="d-flex justify-content-header gap-3">
                                     <div class="">
-                                        <button type="button"
-                                            class="btn btn-edit waves-effect waves-light text-white btn waves-effect d-flex flex-row gap-1 justify-content-evenly"
-                                            style="background-color: #1B3061">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19"
-                                                viewBox="0 0 24 24" fill="none">
-                                                <path d="M4.5 12.5C7.5 6 16.5 6 19.5 12.5" stroke="white"
-                                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                                <path
-                                                    d="M12 16C10.8954 16 10 15.1046 10 14C10 12.8954 10.8954 12 12 12C13.1046 12 14 12.8954 14 14C14 15.1046 13.1046 16 12 16Z"
-                                                    stroke="white" stroke-width="1.5" stroke-linecap="round"
-                                                    stroke-linejoin="round" />
-                                            </svg> Detail
-                                        </button>
+                                        <a href="{{ route('asscoation.show', ['association' => $association->id]) }}">
+                                            <button type="button"
+                                                class="btn btn-edit waves-effect waves-light text-white btn waves-effect d-flex flex-row gap-1 justify-content-evenly"
+                                                style="background-color: #1B3061">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19"
+                                                    viewBox="0 0 24 24" fill="none">
+                                                    <path d="M4.5 12.5C7.5 6 16.5 6 19.5 12.5" stroke="white"
+                                                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                    <path
+                                                        d="M12 16C10.8954 16 10 15.1046 10 14C10 12.8954 10.8954 12 12 12C13.1046 12 14 12.8954 14 14C14 15.1046 13.1046 16 12 16Z"
+                                                        stroke="white" stroke-width="1.5" stroke-linecap="round"
+                                                        stroke-linejoin="round" />
+                                                </svg> Detail
+                                            </button>
+                                        </a>
                                     </div>
                                     <div class="">
                                         <button id="btn-edit-{{ $association->id }}" data-name="{{ $association->name }}"
@@ -209,8 +217,8 @@
                                             data-email_leader="{{ $association->email_leader }}"
                                             data-postal_code="{{ $association->postal_code }}"
                                             data-address_leader="{{ $association->address_leader }}"
-                                            data-address="{{ $association->address }}"
-                                            data-id="{{ $association->id }}" type="button"
+                                            data-address="{{ $association->address }}" data-id="{{ $association->id }}"
+                                            type="button"
                                             class="btn waves-effect waves-light d-flex btn-edit flex-row gap-1 justify-content-evenly"
                                             style="width: 90px; background-color: #FFC928; color: white"><i
                                                 class="bx bx-bx bxs-edit fs-4"></i>
@@ -218,10 +226,9 @@
                                         </button>
                                     </div>
                                     <div class="">
-                                        <button type="button"
+                                        <button type="button" data-id="{{ $association->id }}"
                                             class="btn waves-effect waves-light d-flex flex-row gap-1 justify-content-between btn-delete"
-                                            style="width: 90px; background-color: #E05C39; color: white" data-id=""
-                                            data-bs-toggle="modal" data-bs-target="#modal-delete"><i
+                                            style="width: 90px; background-color: #E05C39; color: white" data-id=""><i
                                                 class="bx bx-bx bxs-trash fs-4"></i>
                                             Hapus
                                         </button>
@@ -230,6 +237,17 @@
                             </td>
                         </tr>
                     @empty
+                    <tr>
+                        <td colspan="6" class="text-center">
+                            <div class="d-flex justify-content-center" style="min-height:16rem">
+                                <div class="my-auto">
+                                    <img src="{{ asset('no-data.png') }}" width="300"
+                                        height="300" />
+                                    <h4 class="text-center mt-4">Asosiasi Kosong !!</h4>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
                     @endforelse
                 </tbody>
             </table>
@@ -245,7 +263,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form  method="POST" id="form-update">
+                    <form method="POST" id="form-update">
                         @csrf
                         @method('PUT')
                         <div id="basic-update">
@@ -417,6 +435,12 @@
             $('#form-update').data('id', formData['id'])
             $('#form-update').attr('action', );
             $('#modal-update').modal('show')
+        })
+        $('.btn-delete').click(function() {
+            id = $(this).data('id')
+            var actionUrl = `associations/${id}`;
+            $('#form-delete').attr('action', actionUrl);
+            $('#modal-delete').modal('show')
         })
     </script>
 @endsection
