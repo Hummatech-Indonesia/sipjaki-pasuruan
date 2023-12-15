@@ -142,7 +142,7 @@
                                         </div>
                                     </div>
 
-                                  
+
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6">
@@ -169,7 +169,7 @@
                             <section>
                                 <div>
                                     <div class="row">
-                                        
+
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <label for="basicpill-physical_progress_start">Progress Fisik Pada</label>
@@ -196,12 +196,13 @@
                                                     id="basicpill-physical_progress_start" placeholder="">
                                             </div>
                                         </div>
-    
+
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <label for="basicpill-declaration-input">Progress Keuangan(%)</label>
                                                 <input type="number" name="finance_progress" class="form-control"
-                                                    id="basicpill-Declaration-input" placeholder="Masukan progress keuangan">
+                                                    id="basicpill-Declaration-input"
+                                                    placeholder="Masukan progress keuangan">
                                             </div>
                                         </div>
                                     </div>
@@ -228,25 +229,25 @@
             <table class="table table-borderless" border="1">
                 <thead>
                     <tr>
-                        <th style="background-color: #1B3061;color:#ffffff">No</th>
-                        <th style="background-color: #1B3061;color:#ffffff">Tahun</th>
-                        <th style="background-color: #1B3061;color:#ffffff">Nama Pekerjaan</th>
-                        <th style="background-color: #1B3061;color:#ffffff;text-align: center">Aksi</th>
+                        <th class="text-center table-sipjaki" >No</th>
+                        <th class="text-center table-sipjaki" >Tahun</th>
+                        <th class="text-center table-sipjaki" >Nama Pekerjaan</th>
+                        <th class="text-center table-sipjaki" >Aksi</th>
                     </tr>
                 </thead>
                 @forelse ($projects as $index=>$project)
                     <tbody>
                         <tr>
-                            <td>
+                            <td class="text-center">
                                 {{ $index + 1 }}
                             </td>
-                            <td>
+                            <td class="text-center">
                                 {{ $project->year }}
                             </td>
-                            <td>
+                            <td class="text-center">
                                 {{ $project->name }}
                             </td>
-                            <td>
+                            <td class="text-center">
                                 <div class="d-flex justify-content-center gap-2">
                                     <div class="d-flex justify-content-center mb-2">
                                         <button data-id="{{ $project->id }}" style="min-width: 90px;width:100%"
@@ -622,6 +623,15 @@
     <x-delete-modal-component />
 @endsection
 @section('script')
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: '{{ session('success') }}',
+            });
+        </script>
+    @endif
     <script>
         $('a[href="#finish"]').click(function() {
             console.log(true);

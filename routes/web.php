@@ -111,6 +111,8 @@ Route::middleware('auth')->group(function () {
         Route::get('associations', [AssociationController::class, 'index'])->name('asscoation');
         Route::post('associations', [AssociationController::class, 'store'])->name('asscoation.store');
         Route::put('associations/{association}', [AssociationController::class, 'update'])->name('asscoation.update');
+        Route::get('associations/{association}', [AssociationController::class, 'show'])->name('asscoation.show');
+        Route::delete('associations/{association}', [AssociationController::class, 'delete'])->name('asscoation.destroy');
 
         Route::get('history-login', [HistoryLoginController::class, 'index'])->name('history-login.index');
         Route::name('qualifications.level.')->group(function () {
@@ -150,7 +152,7 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::middleware('role:dinas')->group(function () {
-        Route::resource('accident', AccidentController::class)->except('create', 'edit', 'show');
+        Route::resource('accident', AccidentController::class)->except('create', 'edit');
         Route::resources([
             'projects' => ProjectController::class
         ]);
