@@ -17,6 +17,7 @@ use App\Http\Controllers\FundSourceController;
 use App\Http\Controllers\HistoryLoginController;
 use App\Http\Controllers\QualificationController;
 use App\Http\Controllers\ClassificationController;
+use App\Http\Controllers\ClassificationTrainingController;
 use App\Http\Controllers\RuleCategoryController;
 use App\Http\Controllers\TrainingMemberController;
 use App\Http\Controllers\TrainingMethodController;
@@ -98,6 +99,7 @@ Route::middleware('auth')->group(function () {
             'rules' => RuleController::class,
             'fields' => FieldController::class,
             'types' => TypeController::class,
+            'classification-training' => ClassificationTrainingController::class,
         ]);
 
         Route::get('history-login', [HistoryLoginController::class, 'index'])->name('history-login.index');
