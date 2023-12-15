@@ -23,4 +23,20 @@ interface ProjectInterface extends GetInterface, StoreInterface, CustomPaginatio
      */
 
     public function serviceProviderProject(Request $request, int $pagination = 10): LengthAwarePaginator;
+
+    /**
+     * getAllProject
+     *
+     * @param  mixed $request
+     * @return mixed
+     */
+    public function getAllProject(Request $request): mixed;
+
+
+    /**
+     * getbyId
+     *
+     * @return mixed
+     */
+    public function getbyId(): mixed;
 }

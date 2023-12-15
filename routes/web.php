@@ -12,6 +12,7 @@ use App\Http\Controllers\WorkerController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\AccidentController;
+use App\Http\Controllers\AssociationController;
 use App\Http\Controllers\FiscalYearController;
 use App\Http\Controllers\FundSourceController;
 use App\Http\Controllers\HistoryLoginController;
@@ -84,6 +85,11 @@ Route::middleware('auth')->group(function () {
     Route::get('profile', function () {
         return view('pages.profile');
     })->name('profile');
+
+    Route::middleware('role:superadmin|admin')->group(function () {
+        Route::get('all-service-provider', [ServiceProviderProjectController::class, 'allServiceProvider']);
+        Route::get('project-detail/{project}', [ServiceProviderProjectController::class, 'projectDetail']);
+    });
     Route::middleware('role:superadmin')->group(function () {
         Route::resources([
             'contract-categories' => ContractCategoryController::class,
@@ -101,6 +107,10 @@ Route::middleware('auth')->group(function () {
             'types' => TypeController::class,
             'classification-training' => ClassificationTrainingController::class,
         ]);
+
+        Route::get('associations', [AssociationController::class, 'index'])->name('asscoation');
+        Route::post('associations', [AssociationController::class, 'store'])->name('asscoation.store');
+        Route::put('associations/{association}', [AssociationController::class, 'update'])->name('asscoation.update');
 
         Route::get('history-login', [HistoryLoginController::class, 'index'])->name('history-login.index');
         Route::name('qualifications.level.')->group(function () {

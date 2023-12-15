@@ -64,4 +64,5 @@ class DinasRepository extends BaseRepository implements DinasInterface
         return $this->model->query()
             ->get();
     }
+
 }

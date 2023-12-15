@@ -31,6 +31,4 @@ Route::put('dinas', [DinasController::class, 'update'])->name('dinas.update');
 
 Route::get('accident-chart', [DinasController::class, 'chart'])->name('accident.chart');
 
-Route::get('associations', [AssociationController::class, 'index'])->name('asscoation');
-Route::post('associations', [AssociationController::class, 'store'])->name('asscoation.store');
-Route::put('associations/{association}', [AssociationController::class, 'update'])->name('asscoation.update');
+Route::get('dashboard-dinas', [DinasController::class, 'dashboard']);
