@@ -26,13 +26,11 @@ class UserController extends Controller
     private UserInterface $user;
     private UserService $service;
     private DinasInterface $dinas;
-    private FieldInterface $field;
-    public function __construct(UserInterface $user, UserService $service, DinasInterface $dinas, FieldInterface $field)
+    public function __construct(UserInterface $user, UserService $service, DinasInterface $dinas)
     {
         $this->user = $user;
         $this->service = $service;
         $this->dinas = $dinas;
-        $this->field = $field;
     }
 
     /**
@@ -48,8 +46,7 @@ class UserController extends Controller
             $data['data'] = UserResource::collection($users);
             return ResponseHelper::success($data);
         } else {
-            $fields = $this->field->get();
-            return view('pages.agency', ['users' => $users, 'fields' => $fields]);
+            return view('pages.agency', ['users' => $users]);
         }
     }
 

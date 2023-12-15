@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AssociationController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\VerificationController;
@@ -29,3 +30,7 @@ Route::get('export-workers', [WorkerController::class, 'export'])->name('export.
 Route::put('dinas', [DinasController::class, 'update'])->name('dinas.update');
 
 Route::get('accident-chart', [DinasController::class, 'chart'])->name('accident.chart');
+
+Route::get('associations', [AssociationController::class, 'index'])->name('asscoation');
+Route::post('associations', [AssociationController::class, 'store'])->name('asscoation.store');
+Route::put('associations/{association}', [AssociationController::class, 'update'])->name('asscoation.update');

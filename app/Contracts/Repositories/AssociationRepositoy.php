@@ -2,16 +2,17 @@
 
 namespace App\Contracts\Repositories;
 
+use App\Contracts\Interfaces\AssociationInterface;
 use App\Contracts\Interfaces\FieldInterface;
-use App\Models\Field;
+use App\Models\Association;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-class FieldRepository extends BaseRepository implements FieldInterface
+class AssociationRepositoy extends BaseRepository implements AssociationInterface
 {
-    public function __construct(Field $field)
+    public function __construct(Association $association)
     {
-        $this->model = $field;
+        $this->model = $association;
     }
 
     /**

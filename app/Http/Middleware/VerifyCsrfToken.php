@@ -25,6 +25,9 @@ class VerifyCsrfToken extends Middleware
         'service-provider-projects/633b52a6-61e0-3a1d-af41-9467b7898c71',
         'import-workers',
         'dinas',
-        'images'
+        'images',
+        'update-password',
+        'associations',
+        'associations/nama-asosiasi'
     ];
 }

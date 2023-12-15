@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Contracts\Interfaces\AccidentInterface;
+use App\Contracts\Interfaces\AssociationInterface;
 use Illuminate\Support\ServiceProvider;
 use App\Contracts\Interfaces\NewsInterface;
 use App\Contracts\Interfaces\RuleInterface;
@@ -31,7 +32,6 @@ use App\Contracts\Interfaces\ContractCategoryInterface;
 use App\Contracts\Interfaces\DinasFieldInterface;
 use App\Contracts\Interfaces\DinasInterface;
 use App\Contracts\Interfaces\FaqInterface;
-use App\Contracts\Interfaces\FieldInterface;
 use App\Contracts\Interfaces\HistoryLoginInterface;
 use App\Contracts\Repositories\Auth\RegisterRepository;
 use App\Contracts\Repositories\QualificationRepository;
@@ -48,6 +48,7 @@ use App\Contracts\Interfaces\ServiceProviderProjectInterface;
 use App\Contracts\Interfaces\TypeInterface;
 use App\Contracts\Interfaces\WorkerInterface;
 use App\Contracts\Repositories\AccidentRepository;
+use App\Contracts\Repositories\AssociationRepositoy;
 use App\Contracts\Repositories\ContractCategoryRepository;
 use App\Contracts\Repositories\DinasFieldRepository;
 use App\Contracts\Repositories\DinasRepository;
@@ -85,7 +86,7 @@ class AppServiceProvider extends ServiceProvider
         TrainingMemberInterface::class => TrainingMemberRepository::class,
         ServiceProviderInterface::class => ServiceProviderRepository::class,
         AccidentInterface::class => AccidentRepository::class,
-        FieldInterface::class => FieldRepository::class,
+        AssociationInterface::class => AssociationRepositoy::class,
         WorkerInterface::class => WorkerRepository::class,
         DinasInterface::class => DinasRepository::class,
         HistoryLoginInterface::class => HistoryLoginRepository::class,
