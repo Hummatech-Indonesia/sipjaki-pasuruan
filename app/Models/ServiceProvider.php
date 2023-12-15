@@ -9,12 +9,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class ServiceProvider extends Model implements HasUser , HasProjects
+class ServiceProvider extends Model implements HasUser, HasProjects
 {
     use HasFactory;
     protected $table = 'service_providers';
     protected $primaryKey = 'id';
-    protected $fillable = ['id', 'user_id'];
+    protected $fillable = ['id', 'user_id', 'association_id'];
     protected $guarded = [];
     public $incrementing = false;
     public $keyType = 'char';

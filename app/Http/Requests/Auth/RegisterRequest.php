@@ -17,6 +17,7 @@ class RegisterRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
+            'association_id' => 'required|exists:associations,id',
             'email' => ['required', 'email', 'max:255', Rule::unique('users', 'email')->ignore($this->user)],
             'password' => 'required|same:password_confirmation',
             'password_confirmation' => 'required',
