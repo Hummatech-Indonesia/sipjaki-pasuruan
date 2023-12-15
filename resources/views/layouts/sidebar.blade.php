@@ -189,6 +189,12 @@
                         <span key="t-file-manager">Tenaga Kerja</span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{ route('service-provider-profile') }}" class="waves-effect">
+                        <i class="fas fa-user-circle"></i>
+                        <span key="t-file-manager">Profile Penyedia Jasa</span>
+                    </a>
+                </li>
                 @endif
             </ul>
         </div>
