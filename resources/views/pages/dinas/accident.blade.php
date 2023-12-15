@@ -15,11 +15,13 @@
     <div class="d-flex justify-content-between mb-3">
         <div class="d-flex justify-content-header gap-3 mt-4">
             <div class="">
-                <div class="position-relative mb-3 ">
-                    <input type="search" class="form-control search-chat py-2 ps-5" id="search-name" placeholder="Search">
-                    <i
-                        class="bx bx-search-alt-2
-                position-absolute top-50 translate-middle-y fs-6 text-dark ms-3"></i>
+                <div class="input-group">
+                    <input name="name" type="text" class="form-control" placeholder="Search">
+                    <div class="input-group-append">
+                        <button class="btn text-white" style="background-color: #1B3061; border-radius: 0 5px 5px 0;" type="submit">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
             <div class="">
@@ -363,10 +365,10 @@
         <table class="table table-borderless" border="1">
             <thead>
                 <tr>
-                    <th class="text-center" style="background-color: #1B3061;color:#ffffff">No</th>
-                    <th class="text-center" style="background-color: #1B3061;color:#ffffff">Nama Pekerjaan</th>
-                    <th class="text-center" style="background-color: #1B3061;color:#ffffff">Masalah</th>
-                    <th class="text-center" style="background-color: #1B3061;color:#ffffff;text-align: center">Aksi</th>
+                    <th class="text-center table-sipjaki" >No</th>
+                    <th class="text-center table-sipjaki" >Nama Pekerjaan</th>
+                    <th class="text-center table-sipjaki" >Masalah</th>
+                    <th class="text-center table-sipjaki" >Aksi</th>
                 </tr>
             </thead>
             @forelse ($accidents as $index=>$accident)
