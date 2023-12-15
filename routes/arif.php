@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\DinasController;
+use App\Http\Controllers\ServiceProviderController;
 use App\Http\Controllers\ServiceProviderProjectController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkerController;
@@ -32,3 +33,5 @@ Route::put('dinas', [DinasController::class, 'update'])->name('dinas.update');
 Route::get('accident-chart', [DinasController::class, 'chart'])->name('accident.chart');
 
 Route::get('dashboard-dinas', [DinasController::class, 'dashboard']);
+
+Route::put('profile-service-providers', [ServiceProviderController::class, 'update']);

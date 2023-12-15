@@ -28,6 +28,7 @@ class VerifyCsrfToken extends Middleware
         'images',
         'update-password',
         'associations',
-        'associations/nama-asosiasi'
+        'associations/nama-asosiasi',
+        'profile-service-providers'
     ];
 }
