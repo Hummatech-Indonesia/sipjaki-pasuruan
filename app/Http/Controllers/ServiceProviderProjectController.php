@@ -160,4 +160,27 @@ class ServiceProviderProjectController extends Controller
     {
         return $this->service->download($service_provider_project->file);
     }
+
+    /**
+     * allServiceProvider
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    public function allServiceProvider(Request $request)
+    {
+        $data = $this->project->getAllProject($request);
+        return view('', ['serviceProviders' => $data]);
+    }
+
+    /**
+     * projectDetail
+     *
+     * @param  mixed $project
+     * @return void
+     */
+    public function projectDetail(Project $project)
+    {
+        return view('', ['project' => $project]);
+    }
 }

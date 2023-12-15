@@ -17,6 +17,21 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
     }
 
     /**
+     * getAllProject
+     *
+     * @param  mixed $request
+     * @return mixed
+     */
+    public function getAllProject(Request $request): mixed
+    {
+        return $this->model->query()
+            ->when($request->name, function ($query) use ($request) {
+                $query->where('name', 'LIKE', '%'. $request->name .'%');
+            })
+            ->get();
+    }
+
+    /**
      * get
      *
      * @return mixed
