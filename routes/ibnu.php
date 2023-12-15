@@ -10,6 +10,10 @@ Route::get('dashboard', function(){
     return view('pages.service-provider.dashboard');
 })->name('dashboard-service-provider');
 
+Route::get('service-provider-profile', function (){
+    return view('pages.service-provider.profile');
+})->name('service-provider-profile');
+
 // Route::get('work-package', function(){
 //     return view('pages.service-provider.work-package');
 // })->name('work-package');

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AssociationController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\RuleController;
@@ -17,6 +18,7 @@ Route::delete('delete-training-members',[ TrainingMemberController::class, 'mult
 Route::resources([
     'workers' => WorkerController::class,
     'rules' => RuleController::class,
+    'asscoations'=> AssociationController::class
 ]);
 
 

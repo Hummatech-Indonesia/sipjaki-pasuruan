@@ -4423,18 +4423,6 @@ textarea.form-control-lg {
     list-style: none
 }
 
-.nav-link {
-    display: block;
-    padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
-    font-size: var(--bs-nav-link-font-size);
-    font-weight: var(--bs-nav-link-font-weight);
-    color: var(--bs-nav-link-color);
-    background: 0 0;
-    border: 0;
-    -webkit-transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
-    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out
-}
-
 @media (prefers-reduced-motion:reduce) {
     .nav-link {
         -webkit-transition: none;
@@ -4500,13 +4488,22 @@ textarea.form-control-lg {
     --bs-nav-pills-link-active-bg: #556ee6
 }
 
-.nav-pills .nav-link {
-    border-radius: var(--bs-nav-pills-border-radius)
+.nav-link {
+    display: block;
+    padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
+    font-size: var(--bs-nav-link-font-size);
+    font-weight: var(--bs-nav-link-font-weight);
+    color: #000000;
+    background: 0 0;
+    border: 0;
+    -webkit-transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out
 }
 
-.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
     color: var(--bs-nav-pills-link-active-color);
-    background-color: var(--bs-nav-pills-link-active-bg)
+    background-color: #1B3061;
 }
 
 .nav-underline {

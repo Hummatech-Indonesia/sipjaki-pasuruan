@@ -64,10 +64,10 @@
                         <span key="t-file-manager">Tahun Anggaran</span>
                     </a>
                 </li>
-
+                
                 <li class="{{ request()->routeIs('qualifications.*') ? 'mm-active' : '' }}">
                     <a href="{{ route('qualifications.index') }}"
-                        class="waves-effect {{ request()->routeIs('qualifications.*') ? 'active' : '' }}">
+                    class="waves-effect {{ request()->routeIs('qualifications.*') ? 'active' : '' }}">
                         <i class="bx bx-sitemap"></i>
                         <span key="t-file-manager">Kualifikasi</span>
                     </a>
@@ -103,6 +103,12 @@
                         <span key="t-file-manager">Type</span>
                     </a>
                 </li>
+                        <li>
+                            <a href="{{ route('asscoations.index') }}" class="waves-effect">
+                                <i class="bx bx-group"></i>
+                                <span key="t-file-manager">Asosiasi</span>
+                            </a>
+                        </li>
                 @endif
                 @if (Auth::user()->roles->pluck('name')[0] == 'admin')
                 <li>
@@ -187,6 +193,12 @@
                         <i class="fas fa-users-cog
                         fa-sm"></i>
                         <span key="t-file-manager">Tenaga Kerja</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('service-provider-profile') }}" class="waves-effect">
+                        <i class="fas fa-user-circle"></i>
+                        <span key="t-file-manager">Profile Penyedia Jasa</span>
                     </a>
                 </li>
                 @endif
