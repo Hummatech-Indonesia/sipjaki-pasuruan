@@ -15,11 +15,13 @@
     <div class="d-flex justify-content-between mb-3">
         <div class="d-flex justify-content-header gap-3 mt-4">
             <div class="">
-                <div class="position-relative mb-3 ">
-                    <input type="search" class="form-control search-chat py-2 ps-5" id="search-name" placeholder="Search">
-                    <i
-                        class="bx bx-search-alt-2
-                position-absolute top-50 translate-middle-y fs-6 text-dark ms-3"></i>
+                <div class="input-group">
+                    <input name="name" type="text" class="form-control" placeholder="Search">
+                    <div class="input-group-append">
+                        <button class="btn text-white" style="background-color: #1B3061; border-radius: 0 5px 5px 0;" type="submit">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
             <div class="">
@@ -56,7 +58,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #1B3061">
-                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Tambah Pelatihan</h5>
+                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Tambah Kecelakaan</h5>
                     <button type="button" class="btn-close" style="background-color: white" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
@@ -167,7 +169,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #1B3061">
-                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Tambah Pelatihan</h5>
+                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Edit Pelatihan</h5>
                     <button type="button" class="btn-close" style="background-color: white" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
@@ -279,7 +281,7 @@
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #1B3061">
-                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Tambah Pelatihan</h5>
+                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Detail Pelatihan</h5>
                     <button type="button" class="btn-close" style="background-color: white" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
@@ -359,57 +361,70 @@
         </div><!-- /.modal-dialog -->
     </div>
     {{-- end modal --}}
-    <div class="row">
-        @forelse ($accidents as $accident)
-            <div class="col-12 col-lg-6 col-xxl-4">
-                <div class="card ">
-                    <div class="card-body">
-                        <div class="badge bg-light text-info">
-                            <p class="mb-0 px-3 py-1 fs-6">
-                                {{ $accident->project->name }}
-                            </p>
-                        </div>
-                        <div class="">
-                            <p class="mb-0 mt-3 fs-4" style="font-weight: 600">
-                                {{ $accident->problem }}
-                            </p>
-                        </div>
-                        <div class="d-flex justify-content-header gap-3 mt-4">
-                            <div class="">
-                                <button class="btn btn-danger btn-delete" id="btn-edit-{{ $accident->id }}"
-                                    data-id="{{ $accident->id }}">
-                                    Hapus
-                                </button>
+    <div class="table-responsive">
+        <table class="table table-borderless" border="1">
+            <thead>
+                <tr>
+                    <th class="text-center table-sipjaki" >No</th>
+                    <th class="text-center table-sipjaki" >Nama Pekerjaan</th>
+                    <th class="text-center table-sipjaki" >Masalah</th>
+                    <th class="text-center table-sipjaki" >Aksi</th>
+                </tr>
+            </thead>
+            @forelse ($accidents as $index=>$accident)
+                <tbody>
+                    <tr>
+                        <td class="text-center">
+                            {{ $index + 1 }}
+                        </td>
+                        <td class="text-center">
+                            {{ $accident->project->name }}
+                        </td>
+                        <td class="text-center">
+                            {{ $accident->problem }}
+                        </td>
+                        <td class="text-center">
+                            <div class="d-flex justify-content-center gap-3">
+                                <div class="">
+                                    <button class="btn btn-danger btn-delete" id="btn-edit-{{ $accident->id }}"
+                                        data-id="{{ $accident->id }}">
+                                        Hapus
+                                    </button>
+                                </div>
+                                <div class="">
+                                    <button class="btn btn-warning btn-edit" id="btn-edit-{{ $accident->id }}"
+                                        data-project_id="{{ $accident->project_id }}"
+                                        data-location="{{ $accident->location }}"
+                                        data-description="{{ $accident->description }}"
+                                        data-time="{{ \Carbon\Carbon::parse($accident->time)->format('Y-m-d') }}"
+                                        data-loss="{{ $accident->loss }}" data-problem="{{ $accident->problem }}">
+                                        Edit
+                                    </button>
+                                </div>
+                                <div class="">
+                                    <button id="btn-edit-{{ $accident->id }}" data-id="{{ $accident->id }}"
+                                        href="{{ route('detail.accident.index') }}" class="btn text-white btn-detail"
+                                        style="background-color: #1B3061">
+                                        Detail
+                                    </button>
+                                </div>
                             </div>
-                            <div class="">
-                                <button class="btn btn-warning btn-edit" id="btn-edit-{{ $accident->id }}"
-                                    data-project_id="{{ $accident->project_id }}"
-                                    data-location="{{ $accident->location }}"
-                                    data-description="{{ $accident->description }}"
-                                    data-time="{{ \Carbon\Carbon::parse($accident->time)->format('Y-m-d') }}"
-                                    data-loss="{{ $accident->loss }}" data-problem="{{ $accident->problem }}">
-                                    Edit
-                                </button>
-                            </div>
-                            <div class="">
-                                <button id="btn-edit-{{ $accident->id }}" data-id="{{ $accident->id }}"
-                                    href="{{ route('detail.accident.index') }}" class="btn text-white btn-detail"
-                                    style="background-color: #1B3061">
-                                    Detail
-                                </button>
+                        </td>
+                    </tr>
+                </tbody>
+            @empty
+                <tr>
+                    <td colspan="5" class="text-center">
+                        <div class="d-flex justify-content-center" style="min-height:16rem">
+                            <div class="my-auto">
+                                <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                <h4 class="text-center mt-4">Project Masih Kosong!!</h4>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        @empty
-            <div class="d-flex justify-content-center" style="min-height:16rem">
-                <div class="my-auto">
-                    <img src="{{ asset('no-data.png') }}" width="300" height="300" />
-                    <h4 class="text-center mt-4">Kecelakaan Tidak Tersedia!!</h4>
-                </div>
-            </div>
-        @endforelse
+                    </td>
+                </tr>
+            @endforelse
+        </table>
     </div>
     <x-delete-modal-component />
 @endsection
@@ -436,7 +451,7 @@
 
             function show() {
                 $.ajax({
-                    url: "accident.show/" + actionUrl,
+                    url: "accident-show/" + actionUrl,
                     type: 'GET',
                     dataType: "JSON",
                     success: function(response) {
@@ -454,13 +469,13 @@
         });
         $('.btn-edit').click(function() {
             const formData = getDataAttributes($(this).attr('id'));
-            var actionUrl = `training-member-update/${formData['id']}`;
+            var actionUrl = `accident/${formData['id']}`;
             var id = `${formData['id']}`;
             show();
 
             function show() {
                 $.ajax({
-                    url: "accident.show/" + id,
+                    url: "accident-show/" + id,
                     type: 'GET',
                     dataType: "JSON",
                     success: function(response) {

@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Accident;
 use App\Models\Classification;
+use App\Models\ClassificationTraining;
 use App\Models\ContractCategory;
 use App\Models\Dinas;
 use App\Models\DinasField;
@@ -30,6 +31,7 @@ use App\Models\User;
 use App\Models\Worker;
 use App\Observers\AccidentObserver;
 use App\Observers\ClassificationObserver;
+use App\Observers\ClassificationTrainingObserver;
 use App\Observers\ContractCategoryObserver;
 use App\Observers\DinasObserver;
 use App\Observers\FieldObserver;
@@ -101,6 +103,7 @@ class EventServiceProvider extends ServiceProvider
         Section::observe(SectionObserver::class);
         Type::observe(TypeObserver::class);
         DinasField::observe(DinasField::class);
+        ClassificationTraining::observe(ClassificationTrainingObserver::class);
     }
 
     /**
