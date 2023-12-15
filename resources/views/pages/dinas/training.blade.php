@@ -501,7 +501,6 @@
         
         $('.btn-edit').click(function() {
             const formData = getDataAttributes($(this).attr('id'))
-            console.log(formData);
             var actionUrl = `training.update/${formData['id']}`;
             $('#form-update').attr('action', actionUrl);
             setFormValues('form-update', formData)
