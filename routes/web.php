@@ -28,6 +28,7 @@ use App\Http\Controllers\FaqController;
 use App\Http\Controllers\SubClassificationController;
 use App\Http\Controllers\QualificationLevelController;
 use App\Http\Controllers\SectionController;
+use App\Http\Controllers\ServiceProviderController;
 use App\Http\Controllers\ServiceProviderProjectController;
 use App\Http\Controllers\TypeController;
 
@@ -87,7 +88,8 @@ Route::middleware('auth')->group(function () {
     })->name('profile');
 
     Route::middleware('role:superadmin|admin')->group(function () {
-        Route::get('project-detail/{project}', [ServiceProviderProjectController::class, 'projectDetail'])->name('projectDetail');
+        Route::get('all-service-provider', [ServiceProviderProjectController::class, 'allServiceProvider']);
+        Route::get('service-provider-detail/{service_provider}', [ServiceProviderProjectController::class, 'projectDetail']);
     });
     Route::middleware('role:superadmin')->group(function () {
         Route::resources([
@@ -170,6 +172,7 @@ Route::middleware(['role:dinas'])->group(function () {
         'projects' => ProjectController::class,
     ]);
     Route::middleware('role:service provider')->group(function () {
+        Route::get('dashboard-service-provider', [ServiceProviderController::class, 'dahsboard']);
         Route::resource('workers', WorkerController::class)->only('index', 'update', 'destroy');
         Route::delete('delete-workers', [WorkerController::class, 'deleteMultiple']);
         Route::post('workers/{service_provider}', [WorkerController::class, 'store']);

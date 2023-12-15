@@ -4,12 +4,26 @@ namespace App\Contracts\Repositories;
 
 use App\Contracts\Interfaces\WorkerInterface;
 use App\Models\Worker;
+use Illuminate\Http\Request;
 
 class WorkerRepository extends BaseRepository implements WorkerInterface
 {
     public function __construct(Worker $worker)
     {
         $this->model = $worker;
+    }
+
+    /**
+     * getByServiceProvider
+     *
+     * @param  mixed $request
+     * @return mixed
+     */
+    public function getByServiceProvider(Request $request): mixed
+    {
+        return $this->model->query()
+            ->where('service_provider_id', auth()->user()->serviceProvider->id)
+            ->get();
     }
 
     /**

@@ -17,6 +17,7 @@ class ServiceProviderResource extends JsonResource
         return [
             'id' => $this->id,
             'user' => UserResource::make($this->user),
+            'association' => AssociationResource::make($this->association),
         ];
     }
 }

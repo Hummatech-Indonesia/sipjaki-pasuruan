@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Base\Interfaces\HasAssociation;
 use App\Base\Interfaces\HasUser;
 use App\Base\Interfaces\HasProjects;
 use Illuminate\Database\Eloquent\Model;
@@ -9,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class ServiceProvider extends Model implements HasUser, HasProjects
+class ServiceProvider extends Model implements HasUser, HasProjects, HasAssociation
 {
     use HasFactory;
     protected $table = 'service_providers';
@@ -37,5 +38,15 @@ class ServiceProvider extends Model implements HasUser, HasProjects
     public function projects(): HasMany
     {
         return $this->hasMany(Project::class);
+    }
+
+    /**
+     * association
+     *
+     * @return BelongsTo
+     */
+    public function association(): BelongsTo
+    {
+        return $this->belongsTo(Association::class);
     }
 }
