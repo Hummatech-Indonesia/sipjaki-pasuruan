@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ClassificationTrainingRequest extends FormRequest
 {
@@ -14,7 +15,7 @@ class ClassificationTrainingRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required',
+            'name' => ['required', Rule::unique('classification_trainings', 'name')->ignore($this->classification_training->id)],
             'code' => 'required',
             'description' => 'required',
         ];
@@ -29,6 +30,7 @@ class ClassificationTrainingRequest extends FormRequest
     {
         return [
             'name.required' => 'Nama wajib diisi',
+            'name.unique' => 'Nama sudah digunakan',
             'kode.required' => 'Kode wajib diisi',
             'description.required' => 'Deskripsi wajib di isi',
         ];
