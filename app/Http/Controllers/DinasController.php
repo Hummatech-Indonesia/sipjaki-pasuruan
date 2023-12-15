@@ -7,27 +7,30 @@ use App\Http\Requests\DinasRequest;
 use App\Contracts\Interfaces\TypeInterface;
 use App\Contracts\Interfaces\DinasInterface;
 use App\Contracts\Interfaces\FieldInterface;
+use App\Contracts\Interfaces\ProjectInterface;
 use App\Contracts\Interfaces\SectionInterface;
 use App\Contracts\Interfaces\UserInterface;
 use App\Helpers\ResponseHelper;
 use App\Http\Resources\DinasAccidentResource;
 use App\Services\DinasService;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 
 class DinasController extends Controller
 {
     private DinasInterface $dinas;
-    private FieldInterface $field;
     private SectionInterface $section;
     private TypeInterface $type;
     private UserInterface $user;
+    private ProjectInterface $project;
 
-    public function __construct(DinasInterface $dinas, FieldInterface $field, SectionInterface $section, TypeInterface $type, UserInterface $user)
+    public function __construct(DinasInterface $dinas, SectionInterface $section, TypeInterface $type, UserInterface $user, ProjectInterface $project)
     {
         $this->user = $user;
         $this->dinas = $dinas;
-        $this->field = $field;
         $this->section = $section;
         $this->type = $type;
+        $this->project = $project;
     }
 
     /**
@@ -39,11 +42,9 @@ class DinasController extends Controller
     {
         $dinas = auth()->user()->dinas;
         $sections = $this->section->get();
-        $fields = $this->field->get();
         $types = $this->type->get();
         return view('pages.profile-opd', [
             'sections' => $sections,
-            'fields' => $fields,
             'types' => $types,
             'dinas' => $dinas
         ]);
@@ -57,7 +58,7 @@ class DinasController extends Controller
      */
     public function update(DinasRequest $request)
     {
-        $this->user->update(auth()->user()->id, $request->validated(    ));
+        $this->user->update(auth()->user()->id, $request->validated());
         $this->dinas->update(auth()->user()->dinas->id, $request->validated());
         if ($request->is('api/*')) {
             return ResponseHelper::success(null, trans('alert.update_success'));
@@ -76,5 +77,20 @@ class DinasController extends Controller
         $dinases =  $this->dinas->get();
         $data = DinasAccidentResource::collection($dinases);
         return ResponseHelper::success($data);
+    }
+
+    /**
+     * dashboard
+     *
+     * @return JsonResponse
+     */
+    public function dashboard(): JsonResponse|View
+    {
+        $accident_total = 0;
+        $projects = $this->project->getbyId();
+        foreach ($projects as $project) {
+            $accident_total += $project->accidents->count();
+        }
+        return ResponseHelper::success(['accident_count' => $accident_total, 'project' => $projects]);
     }
 }

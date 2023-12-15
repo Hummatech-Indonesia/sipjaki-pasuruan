@@ -39,7 +39,7 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
     public function get(): mixed
     {
         return $this->model->query()->whereRelation('dinas', 'dinas_id', auth()->user()->dinas->id)
-        ->with('serviceProviderProjects')
+            ->with('serviceProviderProjects')
             ->get();
     }
 
@@ -101,7 +101,7 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
     public function customPaginate(Request $request, int $pagination = 10): LengthAwarePaginator
     {
         return $this->model->query()
-        ->with('serviceProviderProjects')->whereRelation('dinas', 'dinas_id', auth()->user()->dinas->id)
+            ->with('serviceProviderProjects')->whereRelation('dinas', 'dinas_id', auth()->user()->dinas->id)
             ->when($request->name, function ($query) use ($request) {
                 $query->where('name', 'LIKE', '%' . $request->name . '%');
             })
@@ -118,11 +118,23 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
     public function serviceProviderProject(Request $request, int $pagination = 10): LengthAwarePaginator
     {
         return $this->model->query()
-        ->with('serviceProviderProjects')
+            ->with('serviceProviderProjects')
             ->when($request->name, function ($query) use ($request) {
                 $query->where('name', 'LIKE', '%' . $request->name . '%');
             })
             ->where('service_provider_id', auth()->user()->serviceProvider->id)
             ->fastPaginate($pagination);
+    }
+
+    /**
+     * getbyId
+     *
+     * @return mixed
+     */
+    public function getbyId(): mixed
+    {
+        return $this->model->query()
+            ->where(['status' => 'active', 'dinas_id' => auth()->user()->dinas->id])
+            ->get();
     }
 }

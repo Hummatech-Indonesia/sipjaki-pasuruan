@@ -31,4 +31,12 @@ interface ProjectInterface extends GetInterface, StoreInterface, CustomPaginatio
      * @return mixed
      */
     public function getAllProject(Request $request): mixed;
+
+
+    /**
+     * getbyId
+     *
+     * @return mixed
+     */
+    public function getbyId(): mixed;
 }
