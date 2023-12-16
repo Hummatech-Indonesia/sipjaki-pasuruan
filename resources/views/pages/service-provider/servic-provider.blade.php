@@ -216,7 +216,7 @@
         $('#modal-detail').modal('show');
         function get() {
             $.ajax({
-                url: "project-detail/" + id,
+                url: "service-provider-detail/" + id,
                 type: 'GET',
                 dataType: "JSON",
                 success: function(response) {
