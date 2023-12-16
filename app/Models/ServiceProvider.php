@@ -3,14 +3,18 @@
 namespace App\Models;
 
 use App\Base\Interfaces\HasAssociation;
+use App\Base\Interfaces\HasOneAmendmentDeed;
+use App\Base\Interfaces\HasOneFoundingDeed;
+use App\Base\Interfaces\HasOneVerification;
 use App\Base\Interfaces\HasUser;
 use App\Base\Interfaces\HasProjects;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class ServiceProvider extends Model implements HasUser, HasProjects, HasAssociation
+class ServiceProvider extends Model implements HasUser, HasProjects, HasAssociation, HasOneAmendmentDeed, HasOneFoundingDeed, HasOneVerification
 {
     use HasFactory;
     protected $table = 'service_providers';
@@ -48,5 +52,35 @@ class ServiceProvider extends Model implements HasUser, HasProjects, HasAssociat
     public function association(): BelongsTo
     {
         return $this->belongsTo(Association::class);
+    }
+
+    /**
+     * amendmentDeed
+     *
+     * @return HasOne
+     */
+    public function amendmentDeed(): HasOne
+    {
+        return $this->hasOne(AmendmentDeed::class);
+    }
+
+    /**
+     * foundingDeed
+     *
+     * @return HasOne
+     */
+    public function foundingDeed(): HasOne
+    {
+        return $this->hasOne(FoundingDeed::class);
+    }
+
+    /**
+     * verification
+     *
+     * @return HasOne
+     */
+    public function verification(): HasOne
+    {
+        return $this->hasOne(Verification::class);
     }
 }

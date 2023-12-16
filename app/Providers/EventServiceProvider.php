@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Accident;
+use App\Models\AmendmentDeed;
 use App\Models\Association;
 use App\Models\Classification;
 use App\Models\ClassificationTraining;
@@ -11,6 +12,7 @@ use App\Models\Dinas;
 use App\Models\DinasField;
 use App\Models\Field;
 use App\Models\FiscalYear;
+use App\Models\FoundingDeed;
 use App\Models\FundSource;
 use App\Models\HistoryLogin;
 use App\Models\Image;
@@ -29,8 +31,10 @@ use App\Models\TrainingMember;
 use App\Models\TrainingMethod;
 use App\Models\Type;
 use App\Models\User;
+use App\Models\Verification;
 use App\Models\Worker;
 use App\Observers\AccidentObserver;
+use App\Observers\AmendmendDeedObserver;
 use App\Observers\AssociationObserver;
 use App\Observers\ClassificationObserver;
 use App\Observers\ClassificationTrainingObserver;
@@ -38,6 +42,7 @@ use App\Observers\ContractCategoryObserver;
 use App\Observers\DinasObserver;
 use App\Observers\FieldObserver;
 use App\Observers\FiscalYearObserver;
+use App\Observers\FoundingDeedObserver;
 use App\Observers\FundSourceObserver;
 use App\Observers\HistoryLoginObserver;
 use App\Observers\ImageObserver;
@@ -56,6 +61,7 @@ use App\Observers\TrainingMethodObserver;
 use App\Observers\TrainingObserver;
 use App\Observers\TypeObserver;
 use App\Observers\UserObserver;
+use App\Observers\VerificationObserver;
 use App\Observers\WorkerObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -107,6 +113,9 @@ class EventServiceProvider extends ServiceProvider
         DinasField::observe(DinasField::class);
         ClassificationTraining::observe(ClassificationTrainingObserver::class);
         Association::observe(AssociationObserver::class);
+        FoundingDeed::observe(FoundingDeedObserver::class);
+        Verification::observe(VerificationObserver::class);
+        AmendmentDeed::observe(AmendmendDeedObserver::class);
     }
 
     /**
