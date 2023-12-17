@@ -6,12 +6,12 @@
             <ul class="metismenu list-unstyled" id="side-menu">
                 <li class="menu-title" key="t-menu">Menu</li>
                 @if (Auth::user()->roles->pluck('name')[0] == 'superadmin')
-                <li>
-                    <a href="/dashboard-superadmin" class="waves-effect">
-                        <i class="bx bxs-dashboard"></i>
-                        <span key="t-file-manager">Dashboard</span>
-                    </a>
-                </li>
+                    <li>
+                        <a href="/dashboard-superadmin" class="waves-effect">
+                            <i class="bx bxs-dashboard"></i>
+                            <span key="t-file-manager">Dashboard</span>
+                        </a>
+                    </li>
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 42 42"
@@ -231,6 +231,12 @@
                 @endif
                 @if (Auth::user()->roles->pluck('name')[0] == 'admin')
                     <li>
+                        <a href="/dashboard-admin" class="waves-effect">
+                            <i class="bx bxs-dashboard"></i>
+                            <span key="t-file-manager">Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ route('news.index') }}" class="waves-effect">
                             <i class="bx bx-news"></i>
                             <span key="t-file-manager">Berita</span>
@@ -244,14 +250,40 @@
                     </li>
                     <li>
                         <a href="{{ route('training') }}" class="waves-effect">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                viewBox="0 0 36 36" fill="currentColor">
-                                <path
-                                    d="M27 13.5V18M27 18V22.5M27 18H31.5M27 18H22.5M19.5 10.5C19.5 13.8137 16.8137 16.5 13.5 16.5C10.1863 16.5 7.5 13.8137 7.5 10.5C7.5 7.18629 10.1863 4.5 13.5 4.5C16.8137 4.5 19.5 7.18629 19.5 10.5ZM4.5 30C4.5 25.0294 8.52944 21 13.5 21C18.4706 21 22.5 25.0294 22.5 30V31.5H4.5V30Z"
-                                    stroke="white" stroke-width="3" stroke-linecap="round"
-                                    stroke-linejoin="round" />
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 44 44"
+                                fill="currentColor">
+                                <g clip-path="url(#clip0_26_6710)">
+                                    <path d="M9.16675 5.5V38.5" stroke="currentColor" stroke-width="3"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M34.8333 38.5V5.5" stroke="currentColor" stroke-width="3"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M9.16675 12.8335H34.8334" stroke="currentColor" stroke-width="3"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M9.16675 27.5H34.8334" stroke="currentColor" stroke-width="3"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M14.6667 23.8335V31.1668" stroke="currentColor" stroke-width="3"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M20.1667 23.8335V31.1668" stroke="currentColor" stroke-width="3"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M29.3333 23.8335V31.1668" stroke="currentColor" stroke-width="3"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M25.6667 9.1665V16.4998" stroke="currentColor" stroke-width="3"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M20.1667 9.1665V16.4998" stroke="currentColor" stroke-width="3"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M14.6667 9.1665V16.4998" stroke="currentColor" stroke-width="3"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M5.5 38.5H38.5" stroke="currentColor" stroke-width="3"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_26_6710">
+                                        <rect width="44" height="44" fill="currentColor" />
+                                    </clipPath>
+                                </defs>
                             </svg>
-                            <span key="t-file-manager">Pelatihan</span>
+                            <span key="t-dashboards" class="px-2">Pelatihan
+                            </span>
                         </a>
                     </li>
                     <li>

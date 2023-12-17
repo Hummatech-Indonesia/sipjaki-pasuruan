@@ -126,6 +126,10 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::middleware('role:admin')->group(function () {
+        Route::get('dashboard-admin', function (){
+            return view('pages.admin.dashboard');
+        })->name('dashboard-admin');
+
         Route::resources([
             'news' => NewsController::class,
             'faqs' => FaqController::class
