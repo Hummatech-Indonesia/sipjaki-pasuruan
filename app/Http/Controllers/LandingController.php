@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Contracts\Interfaces\AssociationInterface;
-use App\Contracts\Interfaces\DinasInterface;
+use App\Models\News;
+use App\Models\Dinas;
+use App\Models\Association;
+use Illuminate\Http\Request;
+use App\Helpers\ResponseHelper;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Contracts\View\View;
 use App\Contracts\Interfaces\FaqInterface;
 use App\Contracts\Interfaces\NewsInterface;
 use App\Contracts\Interfaces\RuleInterface;
+use App\Contracts\Interfaces\DinasInterface;
 use App\Contracts\Interfaces\TrainingInterface;
-use App\Models\Dinas;
-use App\Models\News;
-use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
+use App\Contracts\Interfaces\AssociationInterface;
 
 class LandingController extends Controller
 {
@@ -124,8 +127,13 @@ class LandingController extends Controller
         return view('faq',compact('faqs'));
     }
 
-    public function association() : View {
-        $associations = $this->association->get();
-        return view('asosiasi',compact('associations'));
+    public function associationDetail(Association $association, Request $request): JsonResponse|View
+    {
+
+        if ($request->is('api/*')) {
+            return ResponseHelper::success($association);
+        } else {
+            return view('detail-asosiasi', ['association' => $association]);
+        }
     }
 }

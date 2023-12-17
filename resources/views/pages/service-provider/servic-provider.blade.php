@@ -75,7 +75,7 @@
                                     {{ $serviceProvider->user->email }}
                                 </td>
                                 <td>
-
+                                    {{ $serviceProvider->association->name }}
                                 </td>
                                 <td>
                                     {{ $serviceProvider->user->phone_number }}

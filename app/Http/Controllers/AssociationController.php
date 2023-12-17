@@ -107,7 +107,7 @@ class AssociationController extends Controller
         if ($request->is('api/*')) {
             return ResponseHelper::success($associations);
         } else {
-            return view('', ['associations' => $associations]);
+            return view('asosiasi', ['associations' => $associations]);
         };
     }
 }

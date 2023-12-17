@@ -42,7 +42,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('asscoations.index') }}" method="POST" id="form-create">
+                    <form action="{{ route('associations.store') }}" method="POST" id="form-create">
                         @csrf
                         <div id="basic-example">
                             <!-- Seller Details -->
@@ -190,7 +190,7 @@
                             <td class="" style="border-bottom: 1px solid #fff">
                                 <div class="d-flex justify-content-header gap-3">
                                     <div class="">
-                                        <a href="{{ route('asscoation.show', ['association' => $association->id]) }}">
+                                        <a href="{{ route('associations.show', ['association' => $association->id]) }}">
                                             <button type="button"
                                                 class="btn btn-edit waves-effect waves-light text-white btn waves-effect d-flex flex-row gap-1 justify-content-evenly"
                                                 style="background-color: #1B3061">

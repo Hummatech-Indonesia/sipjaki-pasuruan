@@ -186,7 +186,7 @@
                             <span key="t-file-manager">Pengaturan Seksi</span>
                         </a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a href="{{ route('fields.index') }}" class="waves-effect">
                             <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="20" height="20"
                                 viewBox="0 0 24 24">
@@ -196,7 +196,7 @@
                             </svg>
                             <span key="t-file-manager">Bidang</span>
                         </a>
-                    </li>
+                    </li> --}}
                     <li>
                         <a href="{{ route('types.index') }}" class="waves-effect">
                             <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="20" height="20"
@@ -212,7 +212,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('asscoation') }}" class="waves-effect">
+                        <a href="{{ route('associations.index') }}" class="waves-effect">
                             <i class="bx bxs-group
                             "></i>
                             <span key="t-file-manager">Asosiasi</span>

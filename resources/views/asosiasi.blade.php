@@ -45,9 +45,9 @@
                                         No</th>
                                     <th class="fw-medium"
                                         style="background-color: #1B3061; color: white; border-right: 1px solid #1B3061;">
-                                        Penyedia Jasa</th>
+                                        Nama</th>
                                     <th class="fw-medium"
-                                        style="background-color: #1B3061; color: white; text-align: center">Jumlah</th>
+                                        style="background-color: #1B3061; color: white; text-align: center">Jumlah Penyedia Jasa</th>
                                     <th class="fw-medium"
                                         style="background-color: #1B3061; color: white; text-align: center">Aksi</th>
                                 </tr>
@@ -57,9 +57,9 @@
                                 <tr>
                                     <th scope="row" class="fs-5">{{ $loop->iteration }}</th>
                                     <td class="fs-5">{{ $association->name }}</td>
-                                    <td class="fs-5 text-center"></td>
+                                    <td class="fs-5 text-center">{{ $association->serviceProviders->count() }}</td>
                                     <td class="text-center">
-                                        <a href="javascript:void(0)" class="text-white btn" style="background-color: #1B3061">Detail</a>
+                                        <a href="{{ route('association-detail.landing',['association' => $association->id]) }}" class="text-white btn" style="background-color: #1B3061">Detail</a>
                                     </td>
                                 </tr>
                                 @empty

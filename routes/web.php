@@ -110,12 +110,6 @@ Route::middleware('auth')->group(function () {
             'classification-training' => ClassificationTrainingController::class,
         ]);
 
-        Route::get('associations', [AssociationController::class, 'index'])->name('asscoation');
-        Route::post('associations', [AssociationController::class, 'store'])->name('asscoation.store');
-        Route::put('associations/{association}', [AssociationController::class, 'update'])->name('asscoation.update');
-        Route::get('associations/{association}', [AssociationController::class, 'show'])->name('asscoation.show');
-        Route::delete('associations/{association}', [AssociationController::class, 'delete'])->name('asscoation.destroy');
-
         Route::get('history-login', [HistoryLoginController::class, 'index'])->name('history-login.index');
         Route::name('qualifications.level.')->group(function () {
             Route::post('sub-qualifications/{qualification}', [QualificationLevelController::class, 'store'])->name('store');
