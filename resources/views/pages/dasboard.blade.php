@@ -1,5 +1,20 @@
 @extends('layouts.app')
 @section('content')
+<style>
+    .search-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.search-icon {
+    margin-left: 10px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+</style>
 <div class="page-title-box d-sm-flex align-items-center">
     <h4 class="mb-sm-0 font-size-18">Dashboard</h4>
 </div>
@@ -267,6 +282,53 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+<div class="page-title-box d-sm-flex align-items-center">
+    <h4 class="mb-sm-0 font-size-18">Pekerjaan Aktif</h4>
+</div>
+
+<div class="card p-3">
+    <h5 class="mb-2">
+        Berikut daftar Pekerjaan sedang aktif
+    </h5>
+        <form action="" class="d-flex">
+            <div class="position-relative search-container me-2">
+                <input type="search" class="form-control py-2 ps-5" id="search-name" placeholder="Search">
+                <i class="bx bx-search-alt search-icon"></i>
+            </div>
+            <div class="py-3">
+                <select class="form-select pe-5">
+                    <option>2022</option>
+                    <option>2023</option>
+                </select>
+            </div>
+        </form>
+    <div class="table-responsive">
+        <table class="table table-borderless" border="1">
+            <thead>
+                <tr>
+                    <th style="background-color: #1B3061;color:#ffffff">No</th>
+                    <th style="background-color: #1B3061;color:#ffffff">Nama Pekerja</th>
+                    <th style="background-color: #1B3061;color:#ffffff">Tahun</th>
+                    <th style="background-color: #1B3061;color:#ffffff">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="fs-5">1</td>
+                    <td class="fs-5">Arsitektur</td>
+                    <td class="fs-5">2023</td>
+                    <td><span class="fs-6 badge px-4 py-2" style="background-color: #E4ECFF;color:#1B3061;">Aktif</span></td>
+                </tr>
+                <tr>
+                    <td class="fs-5">2</td>
+                    <td class="fs-5">Arsitektur</td>
+                    <td class="fs-5">2023</td>
+                    <td><span class="fs-6 badge text-bg-danger px-4 py-2">Non Aktif</span></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 @endsection
