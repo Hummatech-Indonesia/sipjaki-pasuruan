@@ -109,8 +109,10 @@
                                                 <div class="mb-3 col-md-6 col-12">
                                                     <label for="email" class="form-label"
                                                         style="font-weight: bold">{{ __('Asosiasi') }}</label>
-                                                    <select name="asosiation_id" class="form-select" id="">
-                                                        <option value="">Pilih asosiasi</option>
+                                                    <select name="association_id" class="form-select" id="">
+                                                        @foreach ($associations as $association)
+                                                        <option value="{{ $association->id }}">{{ $association->name }}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                                 <div class="mb-3 col-md-6 col-12">
