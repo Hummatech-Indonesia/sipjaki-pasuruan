@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Interfaces\DinasInterface;
-use App\Contracts\Interfaces\FieldInterface;
 use App\Contracts\Interfaces\UserInterface;
 use App\Helpers\ResponseHelper;
 use App\Helpers\UserHelper;
