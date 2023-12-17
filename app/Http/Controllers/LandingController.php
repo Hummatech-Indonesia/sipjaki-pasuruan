@@ -6,6 +6,7 @@ use App\Contracts\Interfaces\DinasInterface;
 use App\Contracts\Interfaces\FaqInterface;
 use App\Contracts\Interfaces\NewsInterface;
 use App\Contracts\Interfaces\RuleInterface;
+use App\Contracts\Interfaces\ServiceProviderInterface;
 use App\Contracts\Interfaces\TrainingInterface;
 use App\Models\Dinas;
 use App\Models\News;
@@ -20,14 +21,16 @@ class LandingController extends Controller
     private TrainingInterface $training;
     private RuleInterface $rule;
     private FaqInterface $faq;
+    private ServiceProviderInterface $serviceProvider;
 
-    public function __construct(FaqInterface $faq,DinasInterface $dinas, NewsInterface $news, TrainingInterface $training,RuleInterface $rule)
+    public function __construct(FaqInterface $faq,DinasInterface $dinas, NewsInterface $news, TrainingInterface $training,RuleInterface $rule,ServiceProviderInterface $serviceProvider) 
     {
         $this->dinas = $dinas;
         $this->news = $news;
         $this->training = $training;
         $this->rule = $rule;
         $this->faq = $faq;
+        $this->serviceProvider = $serviceProvider;
     }
     /**
      * project
@@ -119,5 +122,10 @@ class LandingController extends Controller
         $faqs = $this->faq->get();
 
         return view('faq',compact('faqs'));
+    }
+
+    public function serviceProvider() : View {
+        $serviceProviders = $this->serviceProvider->get();
+        return view('opd',compact('serviceProviders'));
     }
 }

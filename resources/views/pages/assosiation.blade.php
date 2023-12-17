@@ -166,7 +166,7 @@
             </div>
         @endif
         <div class="table-responsive">
-            <table class="table table-bordered table-hover mt-4">
+            <table class="table table-borderless table-hover mt-4">
                 <thead>
                     <tr>
                         <th scope="col" class="table-sipjaki text-center">NO</th>
@@ -174,8 +174,7 @@
                         <th scope="col" class="table-sipjaki text-center">Email</th>
                         <th scope="col" class="table-sipjaki text-center">No Telepone</th>
                         <th scope="col" class="table-sipjaki text-center">Nama Ketua</th>
-                        <th scope="col" class="text-white text-center"
-                            style="background-color: #1B3061; border-radius:0px 5px 5px 0px; color: #ffffff; border-color: #1B3061; border-width: 0px;">
+                        <th scope="col" class="table-sipjaki text-center">
                             Aksi
                         </th>
                     </tr>

@@ -1,86 +1,81 @@
 @extends('layouts.app-landing-page')
 @section('content')
-    <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+<style>
+    .search-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.search-icon {
+    margin-left: 10px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+</style>
+<link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
     <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <!-- App Css-->
     <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
-    <div class="tabs-wrapper">
-        <div class="section-title text-center">
-            <h2 style="border-radius: 16px;
-        background: var(--Kuning, #FFC928);" class="title p-1">OPD</h2>
-        </div>
+<div class="tabs-wrapper">
+    <div class="section-title text-center">
+        <h2 style="border-radius: 16px;
+        background: var(--Kuning, #FFC928);" class="title p-1">Data Penyedia Jasa</h2>
     </div>
-    <div class="d-flex row">
-        <div class="col-xl-12">
+</div>
+<div class="row justify-content-center">
+    <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="row d-flex">
-                        <div class="col-4">
-                            <h5 class="title fw-bold">Total OPD Pasuruan</h5>
-                            <h1 class="fw-bolder" style="color: #1B3061;">34</h1>
-                        </div>
-                        <div class="col-6">
-                            <h5 class="title fw-bold">Total OPD Kabupaten Kota</h5>
-                            <h1 class="fw-bolder" style="color:#1B3061;">513</h1>
-                        </div>
-                        <div class="row">
-                            <div class="col-1">
-                                <div class="mb-1 fw-semibold">
-                                    Pringkat 1
-                                </div>
-                                <div class="btn btn-sm rounded-3 fs-5 fw-semibold" style="background-color: #E4ECFF;color:#1B3061;">
-                                    Sumbat
-                                </div>
-                            </div>
-                            <div class="col-1">
-                                <div class="mb-1 fw-semibold">
-                                    Pringkat 2
-                                </div>
-                                <div class="btn btn-sm rounded-3 fs-5 fw-semibold" style="background-color: #E4ECFF;color:#1B3061;">
-                                    Sumbat
-                                </div>
-                            </div>
-                            <div class="col-1">
-                                <div class="mb-1 fw-semibold">
-                                    Pringkat 3
-                                </div>
-                                <div class="btn btn-sm rounded-3 fs-5 fw-semibold" style="background-color: #E4ECFF;color:#1B3061;">
-                                    Sumbat
-                                </div>
-                            </div>
-
+                    <div class="d-flex d-row align-items-center mb-3">
+                        <div class="position-relative col-lg-3 search-container">
+                            <input type="search" class="py-2 ps-5" id="search-name" placeholder="Search">
+                            <i class="bx bx-search-alt search-icon"></i>
                         </div>
                     </div>
-
-                    <div id="bar_chart" data-colors='["--bs-success"]' class="apex-charts" dir="ltr"></div>
+                    <div class="table-responsive">
+                        <table class="table table-borderless mb-0" border="1">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="fw-medium"
+                                        style="background-color: #1B3062; color: white; border-right: 1px solid #1B3061;">
+                                        No</th>
+                                    <th class="fw-medium"
+                                        style="background-color: #1B3061; color: white; border-right: 1px solid #1B3061;">
+                                        Penyedia Jasa</th>
+                                    <th class="fw-medium"
+                                        style="background-color: #1B3061; color: white; text-align: center">Jumlah</th>
+                                    <th class="fw-medium"
+                                        style="background-color: #1B3061; color: white; text-align: center">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row" class="fs-5">1</th>
+                                    <td class="fs-5">Pt Makmur Sejahtera</td>
+                                    <td class="fs-5 text-center">12</td>
+                                    <td class="text-center">
+                                        <a href="javascript:void(0)" class="text-white btn" style="background-color: #1B3061">Detail</a>
+                                    </td>
+                                </tr>
+                                {{-- <tr>
+                                    <td colspan="4" class="text-center">
+                                        <div class="d-flex justify-content-center" style="min-height:16rem">
+                                            <div class="my-auto">
+                                                <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                                <h4 class="text-center mt-4">Belum Ada Dinas Ditambahkan!!</h4>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr> --}}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-
-        </div>
     </div>
-    <div class="d-flex row">
-        <div class="col-xl-6">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title mb-4">Column Chart</h4>
-
-                    <div id="column_chart" data-colors='["--bs-success","--bs-primary", "--bs-danger"]' class="apex-charts"
-                        dir="ltr"></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-6">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title mb-4">Donut Chart</h4>
-
-                    <div id="donut_chart" data-colors='["#FFC928", "#1B3061"]' class="apex-charts" dir="ltr"></div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
-    <script src="assets/js/pages/apexcharts.init.js"></script>
+</div>
 @endsection

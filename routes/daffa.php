@@ -12,9 +12,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[LandingController::class,'news'])->name('landing-page');
 Route::get('berita-terbaru',[LandingController::class,'latestNews'])->name('berita-terbaru');
 Route::get('berita/{news}',[LandingController::class,'show'])->name('berita');
+
 Route::get('peraturan',[LandingController::class,'rules'])->name('rules.landing');
+
 Route::delete('delete-workers',[ WorkerController::class, 'deleteMultiple'])->name('delete-workers');
 Route::delete('delete-training-members',[ TrainingMemberController::class, 'multipleDelete'])->name('delete-member');
+
+Route::get('penyedia-jasa',[LandingController::class,'serviceProvider'])->name('service-provider.landing');
+
 Route::resources([
     'workers' => WorkerController::class,
     'rules' => RuleController::class,
