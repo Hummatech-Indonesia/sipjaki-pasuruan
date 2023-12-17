@@ -2,9 +2,7 @@
 
 namespace App\Contracts\Repositories;
 
-use App\Contracts\Interfaces\FieldInterface;
 use App\Contracts\Interfaces\TypeInterface;
-use App\Models\Field;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
