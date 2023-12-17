@@ -1,5 +1,10 @@
 @extends('layouts.app')
 @section('content')
+<a href="{{ route('asscoations.index') }}" class="d-flex justify-content-end">
+    <button class="btn btn-warning mb-3">
+        Kembali
+    </button>
+</a>
 <div class="card">
     <div class="card-body">
         <span class="badge text-white fs-6 mb-2" style="background-color: #1B3061">Profile Asosiasi</span>
