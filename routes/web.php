@@ -6,7 +6,6 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\RuleController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\FieldController;
 use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\WorkerController;
 use App\Http\Controllers\LandingController;
@@ -104,7 +103,6 @@ Route::middleware('auth')->group(function () {
             'training-methods' => TrainingMethodController::class,
             'sections' => SectionController::class,
             'rules' => RuleController::class,
-            'fields' => FieldController::class,
             'types' => TypeController::class,
             'classification-training' => ClassificationTrainingController::class,
         ]);
