@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Contracts\Interfaces\AssociationInterface;
 use App\Contracts\Interfaces\Auth\RegisterInterface;
 use App\Helpers\ResponseHelper;
 use App\Http\Controllers\Controller;
@@ -42,15 +43,17 @@ class RegisterController extends Controller
 
     private RegisterService $service;
     private RegisterInterface $register;
+    private AssociationInterface $association;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(RegisterService $service, RegisterInterface $register)
+    public function __construct(RegisterService $service, RegisterInterface $register,AssociationInterface $association)
     {
         $this->service = $service;
         $this->register = $register;
+        $this->association = $association;
     }
 
     /**
@@ -61,7 +64,9 @@ class RegisterController extends Controller
     public function showRegistrationForm(): View
     {
         $title = trans('title.register');
-        return view('auth.register', compact('title'));
+        $associations = $this->association->get();
+
+        return view('auth.register', compact('title','associations'));
     }
 
 

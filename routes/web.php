@@ -91,6 +91,9 @@ Route::middleware('auth')->group(function () {
         Route::get('service-provider-detail/{service_provider}', [ServiceProviderProjectController::class, 'projectDetail']);
     });
     Route::middleware('role:superadmin')->group(function () {
+        Route::get('dashboard-superadmin', function(){
+            return view('pages.dasboard');
+        })->name('dashboard-superadmin');
         Route::resources([
             'contract-categories' => ContractCategoryController::class,
             'fund-sources' => FundSourceController::class,

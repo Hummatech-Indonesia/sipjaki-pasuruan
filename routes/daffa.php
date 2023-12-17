@@ -18,7 +18,7 @@ Route::get('peraturan',[LandingController::class,'rules'])->name('rules.landing'
 Route::delete('delete-workers',[ WorkerController::class, 'deleteMultiple'])->name('delete-workers');
 Route::delete('delete-training-members',[ TrainingMemberController::class, 'multipleDelete'])->name('delete-member');
 
-Route::get('penyedia-jasa',[LandingController::class,'serviceProvider'])->name('service-provider.landing');
+Route::get('asosiasi',[LandingController::class,'association'])->name('association.landing');
 
 Route::resources([
     'workers' => WorkerController::class,

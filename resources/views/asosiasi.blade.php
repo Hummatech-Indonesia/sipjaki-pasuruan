@@ -23,7 +23,7 @@
 <div class="tabs-wrapper">
     <div class="section-title text-center">
         <h2 style="border-radius: 16px;
-        background: var(--Kuning, #FFC928);" class="title p-1">Data Penyedia Jasa</h2>
+        background: var(--Kuning, #FFC928);" class="title p-1">Data Asosiasi</h2>
     </div>
 </div>
 <div class="row justify-content-center">
@@ -53,24 +53,28 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @forelse ($associations as $association)
                                 <tr>
-                                    <th scope="row" class="fs-5">1</th>
-                                    <td class="fs-5">Pt Makmur Sejahtera</td>
-                                    <td class="fs-5 text-center">12</td>
+                                    <th scope="row" class="fs-5">{{ $loop->iteration }}</th>
+                                    <td class="fs-5">{{ $association->name }}</td>
+                                    <td class="fs-5 text-center"></td>
                                     <td class="text-center">
                                         <a href="javascript:void(0)" class="text-white btn" style="background-color: #1B3061">Detail</a>
                                     </td>
                                 </tr>
-                                {{-- <tr>
+                                @empty
+                                    <tr>
                                     <td colspan="4" class="text-center">
                                         <div class="d-flex justify-content-center" style="min-height:16rem">
                                             <div class="my-auto">
                                                 <img src="{{ asset('no-data.png') }}" width="300" height="300" />
-                                                <h4 class="text-center mt-4">Belum Ada Dinas Ditambahkan!!</h4>
+                                                <h4 class="text-center mt-4">Belum Ada Asosiasi Ditambahkan!!</h4>
                                             </div>
                                         </div>
                                     </td>
-                                </tr> --}}
+                                </tr>
+                                @endforelse
+                                
                             </tbody>
                         </table>
                     </div>
