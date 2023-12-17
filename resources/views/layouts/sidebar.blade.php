@@ -167,6 +167,7 @@
                             <span key="t-file-manager">Kategori Kontrak</span>
                         </a>
                     </li>
+                    
                     <li>
                         <a href="{{ route('history-login.index') }}" class="waves-effect">
                             <i class="bx bx-history"></i>
@@ -202,6 +203,13 @@
                                 </g>
                             </svg>
                             <span key="t-file-manager">Type</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('asscoation') }}" class="waves-effect">
+                            <i class="bx bxs-group
+                            "></i>
+                            <span key="t-file-manager">Asosiasi</span>
                         </a>
                     </li>
                     <li>
