@@ -6,6 +6,12 @@
             <ul class="metismenu list-unstyled" id="side-menu">
                 <li class="menu-title" key="t-menu">Menu</li>
                 @if (Auth::user()->roles->pluck('name')[0] == 'superadmin')
+                <li>
+                    <a href="/dashboard-superadmin" class="waves-effect">
+                        <i class="bx bxs-dashboard"></i>
+                        <span key="t-file-manager">Dashboard</span>
+                    </a>
+                </li>
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 42 42"
@@ -167,7 +173,7 @@
                             <span key="t-file-manager">Kategori Kontrak</span>
                         </a>
                     </li>
-                    
+
                     <li>
                         <a href="{{ route('history-login.index') }}" class="waves-effect">
                             <i class="bx bx-history"></i>
