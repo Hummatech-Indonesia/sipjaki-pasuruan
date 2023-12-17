@@ -10,7 +10,6 @@ use App\Contracts\Interfaces\ServiceProviderInterface;
 class ServiceProviderRepository extends BaseRepository implements ServiceProviderInterface
 {
 
-
     public function __construct(ServiceProvider $serviceProvider)
     {
         $this->model = $serviceProvider;
@@ -24,6 +23,23 @@ class ServiceProviderRepository extends BaseRepository implements ServiceProvide
     public function get() : mixed
     {
         return $this->model->query()
+            ->with('user', 'association')
+            ->get();
+    }
+
+    /**
+     * search
+     *
+     * @param  mixed $request
+     * @return mixed
+     */
+    public function search(Request $request): mixed
+    {
+        return $this->model->query()
+            ->with('user', 'association')
+            ->when($request->service_provider, function ($query) use ($request) {
+                $query->whereRelation('user', 'name', 'LIKE', '%'. $request->service_provider .'%');
+            })
             ->get();
     }
 
