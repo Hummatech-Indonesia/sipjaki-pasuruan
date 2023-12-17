@@ -103,7 +103,7 @@
                     </div>
                     <p class="font-16 text-muted mb-2"></p>
                     <div class="text-muted fw-medium">Jumlah Kecelakaan</div>
-                    <h4 class="mb-0" style="color: #1B3061">8 Tugas</h4>
+                    <h4 class="mb-0" style="color: #1B3061">8</h4>
                 </div>
             </div>
         </div>

@@ -152,6 +152,8 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::middleware('role:dinas')->group(function () {
+        Route::get('dashboard-dinas', [DinasController::class, 'dashboard']);
+        
         Route::resource('accident', AccidentController::class)->except('create', 'edit');
         Route::resources([
             'projects' => ProjectController::class

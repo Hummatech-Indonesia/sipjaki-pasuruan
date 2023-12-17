@@ -32,8 +32,6 @@ Route::put('dinas', [DinasController::class, 'update'])->name('dinas.update');
 
 Route::get('accident-chart', [DinasController::class, 'chart'])->name('accident.chart');
 
-Route::get('dashboard-dinas', [DinasController::class, 'dashboard']);
-
 Route::put('profile-service-providers', [ServiceProviderController::class, 'update']);
 
 Route::get('data-service-providers', [AssociationController::class, 'dataServiceProvider']);
