@@ -16443,7 +16443,7 @@ a, button {
 }
 
 .table-bordered {
-    border: var(--bs-border-width) solid var(--bs-border-color)
+    border: #1B3061 solid var(--bs-border-color)
 }
 
 .table-nowrap td, .table-nowrap th {
