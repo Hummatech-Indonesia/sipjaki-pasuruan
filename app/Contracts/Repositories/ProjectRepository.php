@@ -7,6 +7,7 @@ use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Contracts\Interfaces\ProjectInterface;
 use App\Contracts\Interfaces\Request as InterfacesRequest;
+use App\Enums\StatusEnum;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class ProjectRepository extends BaseRepository implements ProjectInterface
@@ -27,6 +28,23 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
         return $this->model->query()
             ->when($request->name, function ($query) use ($request) {
                 $query->where('name', 'LIKE', '%'. $request->name .'%');
+            })
+            ->get();
+    }
+
+    /**
+     * getByServiceProvider
+     *
+     * @param  mixed $request
+     * @return mixed
+     */
+    public function getByServiceProvider(Request $request): mixed
+    {
+        return $this->model->query()
+            ->where('service_provider_id', auth()->user()->serviceProvider->id)
+            ->where('status', StatusEnum::ACTIVE->value)
+            ->when($request->year, function ($query) use ($request) {
+                $query->where('year', $request->year);
             })
             ->get();
     }
@@ -125,6 +143,7 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
             ->where('service_provider_id', auth()->user()->serviceProvider->id)
             ->fastPaginate($pagination);
     }
+
 
     /**
      * getbyId

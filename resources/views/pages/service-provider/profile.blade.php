@@ -128,41 +128,401 @@
                     </div>
                 </div>
             </div>
-            <div class="table-responsive">
+            <div class="table-responsive rounded-4">
                 <table class="table table-borderless" border="1">
                     <thead>
-                        <tr>
-                            <th style="background-color: #1B3061;color:#ffffff">No</th>
-                            <th style="background-color: #1B3061;color:#ffffff">Judul</th>
-                            <th style="background-color: #1B3061;color:#ffffff">Nomor Kode</th>
-                            <th style="background-color: #1B3061;color:#ffffff">Kualifikasi</th>
-                            <th style="background-color: #1B3061;color:#ffffff;vertical-align: middle" colspan="2">Kemampuan Dasar</th>
+                        <tr align="center">
+                            <th style="background-color: #1B3061;color:#ffffff; vertical-align: middle" rowspan="2">No
+                            </th>
+                            <th style="background-color: #1B3061;color:#ffffff; vertical-align: middle" colspan="4" rowspan="2">Judul</th>
+                            <th style="background-color: #1B3061;color:#ffffff; vertical-align: middle" colspan="4" rowspan="2">Nomor Kode</th>
+                            <th style="background-color: #1B3061;color:#ffffff; vertical-align: middle" colspan="4" rowspan="2">Kualifikasi</th>
+                            <th colspan="2" style="background-color: #1B3061;color:#ffffff;">Kemampuan Dasar</th>
+                            <th style="background-color: #1B3061;color:#ffffff;vertical-align: middle" rowspan="2">
+                                Asosiasi</th>
+                            <th style="background-color: #1B3061;color:#ffffff;vertical-align: middle;width:150px;"
+                                rowspan="2">Tanggal Permohonan</th>
+                            <th style="background-color: #1B3061;color:#ffffff;vertical-align: middle;width:150px;"
+                                rowspan="2">Tanggal Cetak Pertama</th>
+                            <th style="background-color: #1B3061;color:#ffffff;vertical-align: middle;width:150px;"
+                                rowspan="2">Tanggal Cetak Perubahan Terakhir</th>
                         </tr>
                         <tr align="center">
-                            <th>Tahun</th>
-                            <th>Nilai (Rp Juta)</th>
+                            <th style="background-color: #1B3061;color:#ffffff;">Tahun</th>
+                            <th style="background-color: #1B3061;color:#ffffff;">Nilai (Rp Juta)</th>
                         </tr>
                     </thead>
                     <tbody>
-                            <tr>
-                                <td class="fs-5"></td>
-                                <td class="fs-5"></td>
-                            </tr>
+
                     </tbody>
                 </table>
             </div>
         </div>
         <div class="tab-pane fade" id="administrasi" role="tabpanel" aria-labelledby="administrasi-tab">
-            <h1>tap 3</h1>
+            <div class="card rounded-4">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <div class="flex-grow-1">
+                            <div class="ms-2">
+                                <div class="btn btn-sm mb-3 text-dark rounded-3" style="background-color: #E4ECFF;">
+                                    Data Administrasi
+                                </div>
+                                <p class="fw-bolder fs-4">MITRA BAHAGIA UTAMA BUMIAJI</p>
+                            </div>
+                            <table cellpadding="5" style="border-collapse: collapse; width: 40%;" class="fs-6 fw-normal">
+                                <tbody>
+                                    <tr>
+                                        <td>Alamat Badan Usaha</td>
+                                        <td>:</td>
+                                        <td>Jl. G. Lokon No. 59</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Telepon</td>
+                                        <td>:</td>
+                                        <td>0411 - 3584897987</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h4 class="mt-3 mb-3 fw-bold">Akte Pendiri</h4>
+            <div class="card rounded-bottom-4" style="border: 1px solid black;border-radius: 20px 20px 20px 20px;">
+                <h5 class="card-header text-center border-bottom text-uppercase rounded-top-4 p-3"
+                    style="background-color: #1B3061;color:white;">Akte Pendiri</h5>
+                <div class="card-body">
+                    <table cellpadding="5" style="border-collapse: collapse; width: 40%;" class="fs-6 fw-normal">
+                        <tbody>
+                            <tr>
+                                <td>No</td>
+                                <td>:</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td>Nama Notaris</td>
+                                <td>:</td>
+                                <td>Taufiq Arifin. SH</td>
+                            </tr>
+                            <tr>
+                                <td>Alamat</td>
+                                <td>:</td>
+                                <td>JL Haji Puniti</td>
+                            </tr>
+                            <tr>
+                                <td>Kota / Kabupaten</td>
+                                <td>:</td>
+                                <td>Kota Malang</td>
+                            </tr>
+                            <tr>
+                                <td>Provinsi</td>
+                                <td>:</td>
+                                <td>Jawa Timur</td>
+                            </tr>
+                            <tr>
+                                <td>Tanggal Akte</td>
+                                <td>:</td>
+                                <td>08 Januari</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <h4 class="mt-3 mb-3 fw-bold">Pengesahan</h4>
+            <div class="table-responsive rounded-4">
+                <table class="table table-bordered" border="1">
+                    <thead>
+                        <tr align="center">
+                            <th colspan="2" style="background-color: #1B3061;color:#ffffff;">Materi Kehakiman dan HAM
+                            </th>
+                            <th colspan="2" style="background-color: #1B3061;color:#ffffff;">Pengadilan Negeri</th>
+                            <th colspan="2" style="background-color: #1B3061;color:#ffffff;">Lembar Negara</th>
+
+                        </tr>
+                        <tr align="center">
+                            <th style="background-color: #1B3061;color:#ffffff;">Nomor</th>
+                            <th style="background-color: #1B3061;color:#ffffff;">Tanggal</th>
+                            <th style="background-color: #1B3061;color:#ffffff;">Nomor</th>
+                            <th style="background-color: #1B3061;color:#ffffff;">Tanggal</th>
+                            <th style="background-color: #1B3061;color:#ffffff;">Nomor</th>
+                            <th style="background-color: #1B3061;color:#ffffff;">Tanggal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr align="center">
+                            <td>No Akte</td>
+                            <td>22 Maret 2023</td>
+                            <td>-</td>
+                            <td>22 Maret 2023</td>
+                            <td>-</td>
+                            <td>22 Maret 2023</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h4 class="mt-3 mb-3 fw-bold">Akte Perubahan</h4>
+            <div class="table-responsive rounded-4">
+                <table class="table table-bordered" border="1">
+                    <thead>
+                        <tr>
+                            <th class="text-white" style="background-color: #1B3061">
+                                No Akte
+                            </th>
+                            <th class="text-white" style="background-color: #1B3061">
+                                Nama Notaris
+                            </th>
+                            <th class="text-white" style="background-color: #1B3061">
+                                Alamat
+                            </th>
+                            <th class="text-white" style="background-color: #1B3061">
+                                Kota / Kabupaten
+                            </th>
+                            <th class="text-white" style="background-color: #1B3061">
+                                Provinsi
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>10</td>
+                            <td>Tuafiq Arifin, SH</td>
+                            <td>Jl. Singa No 4</td>
+                            <td>Kota Malang</td>
+                            <td>Jawa Timur</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div class="tab-pane fade" id="pengurus" role="tabpanel" aria-labelledby="pengurus-tab">
-            <h1>tap 4</h1>
+            <div class="card rounded-4">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <div class="flex-grow-1">
+                            <div class="ms-2">
+                                <div class="btn btn-sm mb-3 text-dark rounded-3" style="background-color: #E4ECFF;">
+                                    Data Pengurus Badan Usaha
+                                </div>
+                                <p class="fw-bolder fs-4">MITRA BAHAGIA UTAMA BUMIAJI</p>
+                            </div>
+                            <table cellpadding="5" style="border-collapse: collapse; width: 40%;" class="fs-6 fw-normal">
+                                <tbody>
+                                    <tr>
+                                        <td>Alamat Badan Usaha</td>
+                                        <td>:</td>
+                                        <td>Jl. G. Lokon No. 59</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Telepon</td>
+                                        <td>:</td>
+                                        <td>0411 - 3584897987</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive rounded-4 mt-4">
+                <table class="table table-bordered" border="1">
+                    <thead>
+                        <tr>
+                            <th class="text-white" style="background-color: #1B3061">
+                                No
+                            </th>
+                            <th class="text-white" style="background-color: #1B3061">
+                                Nama
+                            </th>
+                            <th class="text-white" style="background-color: #1B3061">
+                                Tanggal Lahir
+                            </th>
+                            <th class="text-white" style="background-color: #1B3061">
+                                Alamat
+                            </th>
+                            <th class="text-white" style="background-color: #1B3061">
+                                Jabatan
+                            </th>
+                            <th class="text-white" style="background-color: #1B3061">
+                                Pendidikan
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Tuafiq Arifin, SH</td>
+                            <td>Jl. Singa No 4</td>
+                            <td>Kota Malang</td>
+                            <td>Jawa Timur</td>
+                            <td>Jawa Timur</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div class="tab-pane fade" id="tenaga-kerja" role="tabpanel" aria-labelledby="tenaga-kerja-tab">
-            <h1>tap 5</h1>
+            <div class="card rounded-4">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <div class="flex-grow-1">
+                            <div class="ms-2">
+                                <div class="btn btn-sm mb-3 text-dark rounded-3" style="background-color: #E4ECFF;">
+                                    Data Pengurus Badan Usaha
+                                </div>
+                                <p class="fw-bolder fs-4">MITRA BAHAGIA UTAMA BUMIAJI</p>
+                            </div>
+                            <table cellpadding="5" style="border-collapse: collapse; width: 40%;" class="fs-6 fw-normal">
+                                <tbody>
+                                    <tr>
+                                        <td>Alamat Badan Usaha</td>
+                                        <td>:</td>
+                                        <td>Jl. G. Lokon No. 59</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Telepon</td>
+                                        <td>:</td>
+                                        <td>0411 - 3584897987</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive rounded-4">
+                        <table class="table table-bordered" border="1">
+                            <thead>
+                                <tr>
+                                    <th class="text-white" style="background-color: #1B3061">
+                                        No
+                                    </th>
+                                    <th class="text-white" style="background-color: #1B3061">
+                                        Nama
+                                    </th>
+                                    <th class="text-white" style="background-color: #1B3061">
+                                        Tanggal Lahir
+                                    </th>
+                                    <th class="text-white" style="background-color: #1B3061">
+                                        Pendidikan
+                                    </th>
+                                    <th class="text-white" style="background-color: #1B3061">
+                                        No Registrasi
+                                    </th>
+                                    <th class="text-white" style="background-color: #1B3061">
+                                        Jenis Sertifikat
+                                    </th>
+                                    <th class="text-white" style="background-color: #1B3061">
+                                        Detail
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Tuafiq Arifin, SH</td>
+                                    <td>Jl. Singa No 4</td>
+                                    <td>Kota Malang</td>
+                                    <td>Jawa Timur</td>
+                                    <td>1231457</td>
+                                    <td><button class="btn btn-sm rounded-3"
+                                            style="background-color: #1B3061;color:white;"><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none">
+                                                <path d="M4.5 12.5C7.5 6 16.5 6 19.5 12.5" stroke="white" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round" />
+                                                <path
+                                                    d="M12 16C10.8954 16 10 15.1046 10 14C10 12.8954 10.8954 12 12 12C13.1046 12 14 12.8954 14 14C14 15.1046 13.1046 16 12 16Z"
+                                                    stroke="white" stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                            </svg> Detail</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="tab-pane fade" id="pengalaman" role="tabpanel" aria-labelledby="pengalaman-tab">
-            <h1>tap 6</h1>
+            <div class="card rounded-4">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <div class="flex-grow-1">
+                            <div class="ms-2">
+                                <div class="btn btn-sm mb-3 text-dark rounded-3" style="background-color: #E4ECFF;">
+                                    Data Pengurus Badan Usaha
+                                </div>
+                                <p class="fw-bolder fs-4">MITRA BAHAGIA UTAMA BUMIAJI</p>
+                            </div>
+                            <table cellpadding="5" style="border-collapse: collapse; width: 40%;" class="fs-6 fw-normal">
+                                <tbody>
+                                    <tr>
+                                        <td>Alamat Badan Usaha</td>
+                                        <td>:</td>
+                                        <td>Jl. G. Lokon No. 59</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Telepon</td>
+                                        <td>:</td>
+                                        <td>0411 - 3584897987</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h4 class="mt-3 mb-3 fw-bold">Pengesahan</h4>
+            <div class="table-responsive rounded-4">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr align="center">
+                            <th style="background-color: #1B3061; color: #ffffff; vertical-align: middle" colspan="1" rowspan="2">No</th>
+                            <th colspan="3" style="background-color: #1B3061; color: #ffffff;">Proyek</th>
+                            <th style="background-color: #1B3061; color: #ffffff; vertical-align: middle" colspan="1" rowspan="2">Pemberi Tugas</th>
+                            <th style="background-color: #1B3061; color: #ffffff; vertical-align: middle" colspan="1" rowspan="2">Sub Bidang Kualifikasi</th>
+                            <th colspan="3" style="background-color: #1B3061; color: #ffffff;">Nomor</th>
+                            <th colspan="4" style="background-color: #1B3061; color: #ffffff;">Tanggal</th>
+                        </tr>
+                        <tr align="center">
+                            <th style="background-color: #1B3061; color: #ffffff;">Tahun</th>
+                            <th style="background-color: #1B3061; color: #ffffff;">Nama</th>
+                            <th style="background-color: #1B3061; color: #ffffff;">Nama Rupiah (dalam Ribuan)</th>
+                            <th style="background-color: #1B3061; color: #ffffff;">Kontrak</th>
+                            <th style="background-color: #1B3061; color: #ffffff;">NKPK</th>
+                            <th style="background-color: #1B3061; color: #ffffff;">Berita Acara Serah Terima</th>
+                            <th style="background-color: #1B3061; color: #ffffff;">Berita Acara Serah Terima</th>
+                            <th style="background-color: #1B3061; color: #ffffff;">Kontrak</th>
+                            <th style="background-color: #1B3061; color: #ffffff;">Mulai</th>
+                            <th style="background-color: #1B3061; color: #ffffff;">Selesai</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr align="center">
+                            <td colspan="1">1</td>
+                            <td colspan="1">2023</td>
+                            <td colspan="1">Peningkatan Jalan Laston Paket VI Kab. Bulukumba</td>
+                            <td colspan="1">123132456478</td>
+                            <td colspan="1">S1</td>
+                            <td colspan="1">SI0084</td>
+                            <td colspan="1">1</td>
+                            <td colspan="1">06/SPK/Laston/PPK/DBM/III/2015</td>
+                            <td colspan="1">02/PHO/Laston-Dau/DBM/IX/2015</td>
+                            <td colspan="1">02/PHO/Laston-Dau/DBM/IX/2015</td>
+                            <td colspan="1">25 Juni 2023</td>
+                            <td colspan="1">25 Juni 2023</td>
+                            <td colspan="1">25 Juni 2023</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+            </div>
         </div>
     </div>
 @endsection

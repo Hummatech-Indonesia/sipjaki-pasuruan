@@ -39,4 +39,12 @@ interface ProjectInterface extends GetInterface, StoreInterface, CustomPaginatio
      * @return mixed
      */
     public function getbyId(): mixed;
+
+    /**
+     * getByServiceProvider
+     *
+     * @param  mixed $request
+     * @return mixed
+     */
+    public function getByServiceProvider(Request $request): mixed;
 }

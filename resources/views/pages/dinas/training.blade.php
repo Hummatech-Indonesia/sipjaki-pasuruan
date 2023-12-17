@@ -98,7 +98,7 @@
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-phoneno-input">Kualifikasi</label>
-                                            <select name="" class="form-select list-qualifications select2-create" style="width:100%"
+                                            <select name="kualifikasi" class="form-select list-qualifications select2-create" style="width:100%"
                                                 id="list-qualifications">
                                                 <option value="">Pilih Kualifikasi</option>
                                             </select>
@@ -107,7 +107,7 @@
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-email-input">Jenjang KKNI</label>
-                                            <select name="qualification_level_id list-qualification-level" class="form-select select2-create"
+                                            <select name="qualification_level_id" class="form-select select2-create"
                                                 style="width:100%" id="list-qualification-level">
                                             </select>
                                             @error('qulification_level_id')
@@ -223,7 +223,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #1B3061">
-                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Tambah Pelatihan</h5>
+                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Edit Pelatihan</h5>
                     <button type="button" class="btn-close" style="background-color: white" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
@@ -288,7 +288,7 @@
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-phoneno-input">Kualifikasi</label>
-                                            <select name="" class="form-select list-qualifications select2-update" style="width:100%"
+                                            <select name="qualifications" class="form-select list-qualifications select2-update" style="width:100%"
                                                 id="update-list-qualifications">
                                                 <option value="">Pilih Kualifikasi</option>
                                             </select>
@@ -310,7 +310,7 @@
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-email-input">Klasifikasi</label>
-                                            <select name="" class="form-select list-classifications select2-update" style="width:100%"
+                                            <select name="kualifikasi" class="form-select list-classifications select2-update" style="width:100%"
                                                 id="update-list-classifications">
                                                 <option value="">Pilih Kualifikasi</option>
                                             </select>
@@ -453,6 +453,7 @@
                         <div class="">
                             <button class="btn btn-warning btn-edit" id="btn-edit-{{ $training->id }}"
                                 data-fund_source_id="{{ $training->fund_source_id }}"
+                                data-fiscal_year_id="{{ $training->fiscal_year_id }}"
                                 data-id="{{ $training->id }}" data-name="{{ $training->name }}"
                                 data-lesson_hour="{{ $training->lesson_hour }}"
                                 data-organizer="{{ $training->organizer }}"
@@ -461,6 +462,8 @@
                                 data-sub_classification_id="{{ $training->sub_classification_id }}"
                                 data-training_method_id="{{ $training->training_method_id }}"
                                 data-location="{{ $training->location }}"
+                                data-kualifikasi="{{ $training->subClassification->classification->id }}"
+                                data-qualifications="{{ $training->qualificationLevel->qualification->id }}"
                                 data-qualification_level_id="{{ $training->qualification_level_id }}"
                                 data-description="{{ $training->description }}">
                                 Edit

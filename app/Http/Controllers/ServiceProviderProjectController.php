@@ -9,7 +9,9 @@ use App\Helpers\ResponseHelper;
 use App\Http\Requests\ServiceProviderProjectRequest;
 use App\Http\Resources\ProjectResource;
 use App\Http\Resources\ServiceProviderProjectResource;
+use App\Http\Resources\ServiceProviderResource;
 use App\Models\Project;
+use App\Models\ServiceProvider;
 use App\Models\ServiceProviderProject;
 use App\Services\ServiceProviderProjectService;
 use App\Traits\PaginationTrait;
@@ -21,9 +23,11 @@ class ServiceProviderProjectController extends Controller
     use PaginationTrait;
     private ProjectInterface $project;
     private ServiceProviderProjectService $service;
+    private ServiceProviderInterface $serviceProvider;
     private ServiceProviderProjectInterface $serviceProviderProject;
-    public function __construct(ServiceProviderProjectInterface $serviceProviderProject, ProjectInterface $project, ServiceProviderProjectService $service)
+    public function __construct(ServiceProviderInterface $serviceProviderInterface, ServiceProviderProjectInterface $serviceProviderProject, ProjectInterface $project, ServiceProviderProjectService $service)
     {
+        $this->serviceProvider = $serviceProviderInterface;
         $this->service = $service;
         $this->serviceProviderProject = $serviceProviderProject;
         $this->project = $project;
@@ -169,7 +173,7 @@ class ServiceProviderProjectController extends Controller
      */
     public function allServiceProvider(Request $request)
     {
-        $data = $this->project->getAllProject($request);
+        $data = $this->serviceProvider->get();
         return view('pages.service-provider.servic-provider', ['serviceProviders' => $data]);
     }
 
@@ -179,8 +183,8 @@ class ServiceProviderProjectController extends Controller
      * @param  mixed $project
      * @return JsonResponse
      */
-    public function projectDetail(Project $project): JsonResponse
+    public function projectDetail(ServiceProvider $service_provider): JsonResponse
     {
-        return ResponseHelper::success(ProjectResource::make($project));
+        return ResponseHelper::success(ServiceProviderResource::make($service_provider));
     }
 }
