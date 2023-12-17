@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Base\Interfaces\HasServiceProviders;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Association extends Model
+class Association extends Model implements HasServiceProviders
 {
     use HasFactory;
     protected $table = 'associations';
@@ -26,4 +28,14 @@ class Association extends Model
     protected $guarded = [];
     public $incrementing = false;
     public $keyType = 'char';
+
+    /**
+     * serviceProviders
+     *
+     * @return HasMany
+     */
+    public function serviceProviders(): HasMany
+    {
+        return $this->hasMany(ServiceProvider::class);
+    }
 }
