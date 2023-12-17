@@ -27,11 +27,11 @@ class AssociationController extends Controller
     {
         $associations = $this->association->customPaginate($request, 10);
         if ($request->is('api/*')) {
-        $data['paginate'] = $this->customPaginate($associations->currentPage(), $associations->lastPage());
-        $data['data'] = AssociationResource::collection($associations);
-        return ResponseHelper::success($data);
+            $data['paginate'] = $this->customPaginate($associations->currentPage(), $associations->lastPage());
+            $data['data'] = AssociationResource::collection($associations);
+            return ResponseHelper::success($data);
         } else {
-            return view('pages.assosiation',compact('associations'));
+            return view('pages.assosiation', compact('associations'));
         }
     }
 
@@ -91,5 +91,23 @@ class AssociationController extends Controller
         } else {
             return redirect()->back()->with('success', trans('alert.add_success'));
         }
+    }
+
+    /**
+     * dataServiceProvider
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    public function dataServiceProvider(Request $request)
+    {
+        $associations = $this->association->customPaginate($request, 10);
+        $data['paginate'] = $this->customPaginate($associations->currentPage(), $associations->lastPage());
+        $data['data'] = AssociationResource::collection($associations);
+        if ($request->is('api/*')) {
+            return ResponseHelper::success($associations);
+        } else {
+            return view('', ['associations' => $associations]);
+        };
     }
 }

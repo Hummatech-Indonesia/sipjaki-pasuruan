@@ -173,7 +173,7 @@ class ServiceProviderProjectController extends Controller
      */
     public function allServiceProvider(Request $request)
     {
-        $data = $this->serviceProvider->get();
+        $data = $this->serviceProvider->search($request);
         return view('pages.service-provider.servic-provider', ['serviceProviders' => $data]);
     }
 

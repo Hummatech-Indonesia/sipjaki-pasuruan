@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Interfaces\AssociationInterface;
 use App\Contracts\Interfaces\DinasInterface;
 use App\Contracts\Interfaces\FaqInterface;
 use App\Contracts\Interfaces\NewsInterface;
@@ -20,14 +21,16 @@ class LandingController extends Controller
     private TrainingInterface $training;
     private RuleInterface $rule;
     private FaqInterface $faq;
+    private AssociationInterface $association;
 
-    public function __construct(FaqInterface $faq,DinasInterface $dinas, NewsInterface $news, TrainingInterface $training,RuleInterface $rule)
+    public function __construct(FaqInterface $faq,DinasInterface $dinas, NewsInterface $news, TrainingInterface $training,RuleInterface $rule,AssociationInterface $association) 
     {
         $this->dinas = $dinas;
         $this->news = $news;
         $this->training = $training;
         $this->rule = $rule;
         $this->faq = $faq;
+        $this->association = $association;
     }
     /**
      * project
@@ -119,5 +122,10 @@ class LandingController extends Controller
         $faqs = $this->faq->get();
 
         return view('faq',compact('faqs'));
+    }
+
+    public function association() : View {
+        $associations = $this->association->get();
+        return view('asosiasi',compact('associations'));
     }
 }

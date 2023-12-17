@@ -3,7 +3,6 @@
 namespace App\Contracts\Repositories;
 
 use App\Contracts\Interfaces\AssociationInterface;
-use App\Contracts\Interfaces\FieldInterface;
 use App\Models\Association;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;

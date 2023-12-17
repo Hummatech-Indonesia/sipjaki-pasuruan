@@ -273,11 +273,11 @@
                                 <li><a class="{{ request()->routeIs('rules.landing') ? 'active' : '' }}"
                                         href="{{ route('rules.landing') }}">Peraturan</a></li>
                                 <li class="menu-item-has-children">
-                                    <a class="d-flex d-row {{ request()->routeIs('opd') || request()->routeIs('paket.pekerjaan') || request()->routeIs('detail.project') ? 'active' : '' }}"
+                                    <a class="d-flex d-row {{ request()->routeIs('association.landing') || request()->routeIs('paket.pekerjaan') || request()->routeIs('detail.project') ? 'active' : '' }}"
                                         href="#">Data Jakon</a>
                                     <ul class="sub-menu">
-                                        <li><a class="{{ request()->routeIs('opd') ? 'active' : '' }}"
-                                                href="{{ route('opd') }}">OPD</a></li>
+                                        <li><a class="{{ request()->routeIs('association.landing') ? 'active' : '' }}"
+                                                href="{{ route('association.landing') }}">Asosiasi</a></li>
                                         <li><a class="{{ request()->routeIs('paket.pekerjaan') || request()->routeIs('detail.project') ? 'active' : '' }}"
                                                 href="{{ route('paket.pekerjaan') }}">Paket Pekerjaan</a></li>
                                     </ul>

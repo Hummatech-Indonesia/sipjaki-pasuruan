@@ -2,17 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Contracts\Interfaces\DinasFieldInterface;
 use App\Http\Requests\DinasRequest;
 use App\Contracts\Interfaces\TypeInterface;
 use App\Contracts\Interfaces\DinasInterface;
-use App\Contracts\Interfaces\FieldInterface;
 use App\Contracts\Interfaces\ProjectInterface;
 use App\Contracts\Interfaces\SectionInterface;
 use App\Contracts\Interfaces\UserInterface;
 use App\Helpers\ResponseHelper;
 use App\Http\Resources\DinasAccidentResource;
-use App\Services\DinasService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 
