@@ -2,42 +2,44 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FaqController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\RuleController;
+use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DinasController;
 use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\WorkerController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\SectionController;
 use App\Http\Controllers\AccidentController;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\AssociationController;
-use App\Http\Controllers\Auth\ForgotPasswordController;
-use App\Http\Controllers\Auth\ResetPasswordController;
-use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\FiscalYearController;
 use App\Http\Controllers\FundSourceController;
+use App\Http\Controllers\SuperadminController;
+use App\Http\Controllers\AssociationController;
 use App\Http\Controllers\HistoryLoginController;
+use App\Http\Controllers\RuleCategoryController;
 use App\Http\Controllers\QualificationController;
 use App\Http\Controllers\ClassificationController;
-use App\Http\Controllers\ClassificationTrainingController;
-use App\Http\Controllers\RuleCategoryController;
 use App\Http\Controllers\TrainingMemberController;
 use App\Http\Controllers\TrainingMethodController;
-use App\Http\Controllers\ContractCategoryController;
-use App\Http\Controllers\DinasController;
-use App\Http\Controllers\FaqController;
-use App\Http\Controllers\SubClassificationController;
-use App\Http\Controllers\QualificationLevelController;
-use App\Http\Controllers\QualificationLevelTrainingController;
-use App\Http\Controllers\QualificationTrainingController;
-use App\Http\Controllers\SectionController;
 use App\Http\Controllers\ServiceProviderController;
+use App\Http\Controllers\ContractCategoryController;
+use App\Http\Controllers\SubQualificationController;
+use App\Http\Controllers\Auth\VerificationController;
+use App\Http\Controllers\SubClassificationController;
+use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\QualificationLevelController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\QualificationTrainingController;
+use App\Http\Controllers\ClassificationTrainingController;
 use App\Http\Controllers\ServiceProviderProjectController;
+use App\Http\Controllers\SubQualificationTrainingController;
 use App\Http\Controllers\SubClassificationTrainingController;
-use App\Http\Controllers\SuperadminController;
-use App\Http\Controllers\TypeController;
+use App\Http\Controllers\QualificationLevelTrainingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -132,6 +134,11 @@ Route::middleware('auth')->group(function () {
         Route::post('sub-clasification-training/store/{classification_training}',[SubClassificationTrainingController::class,'store'])->name('sub-clasification-training.store');
         Route::put('sub-clasification-training/update/{sub_classification_training}',[SubClassificationTrainingController::class,'update'])->name('sub-clasification-training.update');
         Route::delete('sub-clasification-training/delete/{sub_classification_training}',[SubClassificationTrainingController::class,'destroy'])->name('sub-clasification-training.delete');
+
+        Route::get('sub-qualification-training/{qualification_training}', [SubQualificationTrainingController::class,'index'])->name('sub-qualification.index');
+        Route::post('sub-qualification-training/store/{qualification_training}', [SubQualificationTrainingController::class,'store'])->name('sub-qualification.store');
+        Route::put('sub-qualification-training/update/{sub_qualification_training}', [SubQualificationTrainingController::class,'update'])->name('sub-qualification.update');
+        Route::delete('sub-qualification-training/destroy/{sub_qualification_training}', [SubQualificationTrainingController::class,'destroy'])->name('sub-qualification.destroy');
 
         Route::get('history-login', [HistoryLoginController::class, 'index'])->name('history-login.index');
         Route::get('classification-trainings', [ClassificationTrainingController::class, 'index'])->name('classification-training.index');

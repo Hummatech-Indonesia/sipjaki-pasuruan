@@ -19,8 +19,9 @@ class SubQualificationTrainingController extends Controller
      */
     public function index(QualificationTraining $qualification_training)
     {
-        $data = $this->subQualificationTraining->show($qualification_training->id);
-        return view('');
+        $id = $qualification_training->id;
+        $subQualificationTrainings = $this->subQualificationTraining->show($qualification_training->id);
+        return view('pages.sub-qualification-training', compact('subQualificationTrainings','id'));
     }
 
     /**
@@ -39,6 +40,8 @@ class SubQualificationTrainingController extends Controller
         $data = $request->validated();
         $data['qualification_training_id'] = $qualification_training->id;
         $this->subQualificationTraining->store($data);
+
+        return redirect()->back()->with('success',trans('alert.add_success'));
     }
 
     /**
@@ -63,6 +66,8 @@ class SubQualificationTrainingController extends Controller
     public function update(SubQualificationTrainingRequest $request, SubQualificationTraining $sub_qualification_training)
     {
         $this->subQualificationTraining->update($sub_qualification_training->id, $request->validated());
+
+        return redirect()->back()->with('success',trans('alert.update_success'));
     }
 
     /**
@@ -71,5 +76,6 @@ class SubQualificationTrainingController extends Controller
     public function destroy(SubQualificationTraining $sub_qualification_training)
     {
         $this->subQualificationTraining->delete($sub_qualification_training->id);
+        return redirect()->back()->with('success',trans('alert.delete_success'));
     }
 }

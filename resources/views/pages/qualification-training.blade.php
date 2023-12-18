@@ -87,7 +87,7 @@
                             <td>{{ $qualificationTraining->name }}
                             </td>
                             <td class="d-flex flex-row gap-3 justify-content-center" style="border-bottom: 1px solid #fff">
-                                <a href="#" type="button" class="btn  waves-effect waves-light text-white"
+                                <a href="{{ route('sub-qualification.index',['qualification_training' => $qualificationTraining]) }}" type="button" class="btn  waves-effect waves-light text-white"
                                     style="background-color: #1B3061">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19"
                                         viewBox="0 0 24 24" fill="none">
@@ -101,13 +101,17 @@
                                 </a>
                                 <button type="button"
                                     class="btn waves-effect waves-light d-flex btn-edit flex-row gap-1 justify-content-evenly"
-                                    style="width: 90px; background-color: #FFC928; color: white"><i
-                                        class="bx bx-bx bxs-edit fs-4"></i>
-                                    <span>Edit</span></button>
+                                    style="width: 90px; background-color: #FFC928; color: white"
+                                    id="btn-edit-{{ $qualificationTraining->id }}" data-id="{{ $qualificationTraining->id }}"
+                                    data-name="{{ $qualificationTraining->name }}"><i class="bx bx-bx bxs-edit fs-4"></i>
+                                    <span>Edit</span>
+                                </button>
                                 <button type="button"
                                     class="btn waves-effect waves-light d-flex flex-row gap-1 justify-content-between btn-delete"
-                                    style="width: 90px; background-color: #E05C39; color: white" data-bs-toggle="modal"
-                                    data-bs-target="#modal-delete"><i class="bx bx-bx bxs-trash fs-4"></i> Hapus</button>
+                                    style="width: 90px; background-color: #E05C39; color: white"
+                                    data-id="{{ $qualificationTraining->id }}" data-bs-toggle="modal"
+                                    data-bs-target="#modal-delete"><i class="bx bx-bx bxs-trash fs-4"></i> Hapus
+                                </button>
                             </td>
                         </tr>
                     @empty
@@ -126,6 +130,60 @@
             </table>
             {{ $qualificationTrainings->links('pagination::bootstrap-5') }}
         </div>
+        <div class="modal fade" id="modal-update" tabindex="-1" aria-labelledby="exampleModalLabel1">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <form id="form-update" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <div class="modal-header d-flex align-items-center">
+                            <h4 class="modal-title" id="exampleModalLabel1">
+                                Edit Kualifikasi Nasional Indonesia
+                            </h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label id="name" for="recipient-name" class="control-label mb-2">Masukan KKNI</label>
+                                <input type="text" class="form-control" id="update-name" class="form-control"
+                                    name="name" aria-describedby="name"
+                                    placeholder="Masukkan Kualifikasi Nasional Indonesia" />
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger text-white font-medium waves-effect"
+                                data-bs-dismiss="modal">
+                                Close
+                            </button>
+                            <button type="submit" style="background-color: #1B3061" class="btn text-white btn-create">
+                                Edit
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
     <x-delete-modal-component />
+@endsection
+@section('script')
+    <script>
+        $('.btn-edit').click(function() {
+            const formData = getDataAttributes($(this).attr('id'))
+            var actionUrl = `sub-qualification-training/${formData['id']}`;
+            $('#form-update').attr('action', actionUrl);
+
+            setFormValues('form-update', formData)
+            $('#form-update').data('id', formData['id'])
+            $('#form-update').attr('action', );
+            $('#modal-update').modal('show')
+        })
+        $('.btn-delete').click(function() {
+            id = $(this).data('id')
+            var actionUrl = `sub-qualification-training/${id}`;
+            $('#form-delete').attr('action', actionUrl);
+            $('#modal-delete').modal('show')
+        })
+    </script>
 @endsection
