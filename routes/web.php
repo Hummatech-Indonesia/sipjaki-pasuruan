@@ -187,23 +187,23 @@ Route::middleware(['role:dinas'])->group(function () {
     Route::resources([
         'projects' => ProjectController::class,
     ]);
-    Route::middleware('role:service provider')->group(function () {
-        Route::get('service-provider-projects', [ServiceProviderProjectController::class, 'index']);
-        Route::post('service-provider-projects/{project}', [ServiceProviderProjectController::class, 'store'])->name('service-provider-projects/');
-        Route::put('service-provider-projects/{service_provider_project}', [ServiceProviderProjectController::class, 'update'])->name('service-provider-projects/');
-        Route::delete('service-provider-projects/{service_provider_project}', [ServiceProviderProjectController::class, 'destroy'])->name('/service-provider-projects/');
+});
+Route::middleware('role:service provider')->group(function () {
+    Route::get('service-provider-projects', [ServiceProviderProjectController::class, 'index']);
+    Route::post('service-provider-projects/{project}', [ServiceProviderProjectController::class, 'store'])->name('service-provider-projects/');
+    Route::put('service-provider-projects/{service_provider_project}', [ServiceProviderProjectController::class, 'update'])->name('service-provider-projects/');
+    Route::delete('service-provider-projects/{service_provider_project}', [ServiceProviderProjectController::class, 'destroy'])->name('/service-provider-projects/');
 
-        Route::get('dashboard', [ServiceProviderController::class, 'dahsboard'])->name('dashboard-service-provider');
-        Route::resource('workers', WorkerController::class)->only('index', 'update', 'destroy');
-        Route::delete('delete-workers', [WorkerController::class, 'deleteMultiple']);
-        Route::post('workers/{service_provider}', [WorkerController::class, 'store']);
+    Route::get('dashboard-service-provider', [ServiceProviderController::class, 'dashboard'])->name('dashboard-service-provider');
+    Route::resource('workers', WorkerController::class)->only('index', 'update', 'destroy');
+    Route::delete('delete-workers', [WorkerController::class, 'deleteMultiple']);
+    Route::post('workers/{service_provider}', [WorkerController::class, 'store']);
 
-        Route::post('import-workers', [WorkerController::class, 'import'])->name('import.workers');
-        Route::get('export-workers', [WorkerController::class, 'export'])->name('export.workers');
+    Route::post('import-workers', [WorkerController::class, 'import'])->name('import.workers');
+    Route::get('export-workers', [WorkerController::class, 'export'])->name('export.workers');
 
-        Route::put('profile-service-providers', [ServiceProviderController::class, 'update']);
-        Route::get('data-service-providers', [AssociationController::class, 'dataServiceProvider']);
-    });
+    Route::put('profile-service-providers', [ServiceProviderController::class, 'update']);
+    Route::get('data-service-providers', [AssociationController::class, 'dataServiceProvider']);
 });
 
 Route::get('profile-OPD', [DinasController::class, 'index']);
