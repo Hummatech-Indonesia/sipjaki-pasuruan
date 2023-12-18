@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('content')
+@section('style')
     <style>
         .avatar-title {
             -webkit-box-align: center;
@@ -31,6 +31,8 @@
             transform: translateY(-50%);
         }
     </style>
+@endsection
+@section('content')
     <div class="page-title-box d-sm-flex align-items-center">
         <h4 class="mb-sm-0 font-size-18">Dashboard</h4>
     </div>
@@ -55,7 +57,7 @@
                         </div>
                         <p class="font-16 text-muted mb-2"></p>
                         <div class="text-muted fw-medium">Jumlah Penyedia Jasa</div>
-                        <h4 class="mb-0" style="color: #1B3061">8</h4>
+                        <h4 class="mb-0" style="color: #1B3061">{{ $serviceProvider }}</h4>
                     </div>
                 </div>
             </div>
@@ -74,8 +76,8 @@
                             </div>
                         </div>
                         <p class="font-16 text-muted mb-2"></p>
-                        <div class="text-muted fw-medium">Jumlah Pengguna</div>
-                        <h4 class="mb-0" style="color: #1B3061">8 </h4>
+                        <div class="text-muted fw-medium">Jumlah Dinas</div>
+                        <h4 class="mb-0" style="color: #1B3061"> {{ $dinas }} </h4>
                     </div>
                 </div>
             </div>
@@ -106,7 +108,7 @@
                         </div>
                         <p class="font-16 text-muted mb-2"></p>
                         <div class="text-muted fw-medium">Jumlah Pekerjaan</div>
-                        <h4 class="mb-0" style="color: #1B3061">8 </h4>
+                        <h4 class="mb-0" style="color: #1B3061"> {{ $project }} </h4>
                     </div>
                 </div>
             </div>
@@ -134,7 +136,7 @@
                         </div>
                         <p class="font-16 text-muted mb-2"></p>
                         <div class="text-muted fw-medium">Jumlah Kecelakaan</div>
-                        <h4 class="mb-0" style="color: #1B3061">8</h4>
+                        <h4 class="mb-0" style="color: #1B3061">{{ $accident }}</h4>
                     </div>
                 </div>
             </div>
@@ -183,8 +185,8 @@
                             <div class="fw-bold mt-3">Kategori Peraturan</div>
                         </div>
                         <div class="flex-shrink-0 mt-2">
-                            <button class="btn btn-md rounded-3"
-                                style="background-color: #1B3061;color:white;width:100px;">Lihat</button>
+                            <a href="{{ route('contract-categories.index') }}" class="btn btn-md rounded-3"
+                                style="background-color: #1B3061;color:white;width:100px;">Lihat</a>
                         </div>
                     </div>
                 </div>
@@ -226,8 +228,8 @@
                             <div class="fw-bold mt-3">Sumber Dana</div>
                         </div>
                         <div class="flex-shrink-0 mt-2">
-                            <button class="btn btn-md rounded-3"
-                                style="background-color: #1B3061;color:white;width:100px;">Lihat</button>
+                            <a href="{{ route('fund-sources.index') }}" class="btn btn-md rounded-3"
+                                style="background-color: #1B3061;color:white;width:100px;">Lihat</a>
                         </div>
                     </div>
                 </div>
@@ -251,8 +253,8 @@
                             <div class="fw-bold mt-3">Penyedia Jasa</div>
                         </div>
                         <div class="flex-shrink-0 mt-2">
-                            <button class="btn btn-md rounded-3"
-                                style="background-color: #1B3061;color:white;width:100px;">Lihat</button>
+                            <a href="{{ route('all.service.provider') }}" class="btn btn-md rounded-3"
+                                style="background-color: #1B3061;color:white;width:100px;">Lihat</a>
                         </div>
                     </div>
                 </div>
@@ -288,8 +290,8 @@
                             <div class="fw-bold mt-3">History Login</div>
                         </div>
                         <div class="flex-shrink-0 mt-2">
-                            <button class="btn btn-md rounded-3"
-                                style="background-color: #1B3061;color:white;width:100px;">Lihat</button>
+                            <a href="{{ route('history-login.index') }}" class="btn btn-md rounded-3"
+                                style="background-color: #1B3061;color:white;width:100px;">Lihat</a>
                         </div>
                     </div>
                 </div>
@@ -322,8 +324,8 @@
                             <div class="fw-bold mt-3">Tahun Anggaran</div>
                         </div>
                         <div class="flex-shrink-0 mt-2">
-                            <button class="btn btn-md rounded-3"
-                                style="background-color: #1B3061;color:white;width:100px;">Lihat</button>
+                            <a href="{{ route('fiscal-years.index') }}" class="btn btn-md rounded-3"
+                                style="background-color: #1B3061;color:white;width:100px;">Lihat</a>
                         </div>
                     </div>
                 </div>
@@ -359,11 +361,11 @@
                                     </svg>
                                 </span>
                             </div>
-                            <div class="fw-bold mt-3">Pengaturan Seksi</div>
+                            <div class="fw-bold mt-3">Dinas</div>
                         </div>
                         <div class="flex-shrink-0 mt-2">
-                            <button class="btn btn-md rounded-3"
-                                style="background-color: #1B3061;color:white;width:100px;">Lihat</button>
+                            <a href="" class="btn btn-md rounded-3"
+                                style="background-color: #1B3061;color:white;width:100px;">Lihat</a>
                         </div>
                     </div>
                 </div>
@@ -395,25 +397,31 @@
                 <thead>
                     <tr>
                         <th style="background-color: #1B3061;color:#ffffff">No</th>
-                        <th style="background-color: #1B3061;color:#ffffff">Nama Pekerja</th>
-                        <th style="background-color: #1B3061;color:#ffffff">Tahun</th>
-                        <th style="background-color: #1B3061;color:#ffffff">Status</th>
+                        <th style="background-color: #1B3061;color:#ffffff">Nama Pekerjaan</th>
+                        <th style="background-color: #1B3061;color:#ffffff">Dinas</th>
+                        <th style="background-color: #1B3061;color:#ffffff">Nilai Pekerjaan</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @forelse ($activeProjects as $activeProject)   
+                        <tr>
+                            <td class="fs-5">{{$loop->iteration}}</td>
+                            <td class="fs-5">{{$activeProject->name}}</td>
+                            <td class="fs-5">{{$activeProject->dinas->user->name}}</td>
+                            <td class="fs-5">{{$activeProject->project_value}}</td>
+                        </tr>
+                    @empty
                     <tr>
-                        <td class="fs-5">1</td>
-                        <td class="fs-5">Arsitektur</td>
-                        <td class="fs-5">2023</td>
-                        <td><span class="fs-6 badge px-4 py-2"
-                                style="background-color: #E4ECFF;color:#1B3061;">Aktif</span></td>
+                        <td colspan="4" class="text-center">
+                            <div class="d-flex justify-content-center" style="min-height:16rem">
+                                <div class="my-auto">
+                                    <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                    <h4 class="text-center mt-4">Pekerjaan Kosong!!</h4>
+                                </div>
+                            </div>
+                        </td>
                     </tr>
-                    <tr>
-                        <td class="fs-5">2</td>
-                        <td class="fs-5">Arsitektur</td>
-                        <td class="fs-5">2023</td>
-                        <td><span class="fs-6 badge text-bg-danger px-4 py-2">Non Aktif</span></td>
-                    </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>

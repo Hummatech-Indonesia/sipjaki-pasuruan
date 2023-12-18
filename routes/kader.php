@@ -45,18 +45,18 @@ Route::get('sub-qualification', function () { return view('pages.sub-qualificati
 
 // verifikasi account
 Route::get('verify.account/{id}' , [VerificationController::class ,'verifyacount'])->name('verify.account');
-// verifikasi account 
+// verifikasi account
 
-// pekerjaan 
+// pekerjaan
 Route::get('work-package', [ServiceProviderProjectController::class, 'index'])->name('work.package');
 Route::get('detail-project/{project}', [ProjectController::class, 'projectDetail']);
 Route::get('service-provider-project-detail/{service_provider_project}', [ServiceProviderProjectController::class,'show'])->name('service.provider.project.detail');
 
-// download 
+// download
 Route::get('download-all-service-provider-project/{project}' , [ServiceProviderProjectController::class ,'downloadServiceProviderProject'])->name('download.all.service.provider.project');
 Route::get('download-service-provider-project/{service_provider_project}', [ServiceProviderProjectController::class, 'downloadFile'])->name('download.service-provider.project');
 
-// service provider 
+// service provider
 Route::get('all-service-provider', [ServiceProviderProjectController::class, 'allServiceProvider'])->name('all.service.provider');
 
 // Clasification training 

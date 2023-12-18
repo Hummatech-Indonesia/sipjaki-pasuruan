@@ -42,7 +42,7 @@
                     <div class="d-flex">
                         <div class="flex-grow-1">
                             <p class="text-muted fw-medium">Jumlah Tenaga Kerja</p>
-                            <h4 style="color: #1B3061" class="mb-0">23</h4>
+                            <h4 style="color: #1B3061" class="mb-0">{{ $countWorker }}</h4>
                         </div>
 
                         <div class="flex-shrink-0 align-self-center">
@@ -62,7 +62,7 @@
                     <div class="d-flex">
                         <div class="flex-grow-1">
                             <p class="text-muted fw-medium">Jumlah Pekerja Aktif</p>
-                            <h4 class="mb-0" style="color: #1B3061">8</h4>
+                            <h4 class="mb-0" style="color: #1B3061">{{ $countExperience }}</h4>
                         </div>
 
                         <div class="flex-shrink-0 align-self-center ">
@@ -87,7 +87,7 @@
                     <div class="d-flex">
                         <div class="flex-grow-1">
                             <p class="text-muted fw-medium">Jumlah Paket Pekerjaan</p>
-                            <h4 class="mb-0" style="color: #1B3061">33</h4>
+                            <h4 class="mb-0" style="color: #1B3061">{{ $countAllExperience }}</h4>
                         </div>
 
                         <div class="flex-shrink-0 align-self-center">
@@ -143,19 +143,30 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @forelse ($experiences as $experience)
                     <tr>
-                        <td class="fs-5">1</td>
-                        <td class="fs-5">Arsitektur</td>
-                        <td class="fs-5">2023</td>
-                        <td><span class="fs-6 badge px-4 py-2" style="background-color: #E4ECFF;color:#1B3061;">Aktif</span>
+                        <td class="fs-5">{{ $loop->iteration }}</td>
+                        <td class="fs-5">{{ $experience->name }}</td>
+                        <td class="fs-5">{{ $experience->year }}</td>
+                        <td>
+                            <span class="fs-6 badge px-4 py-2" style="background-color: {{ $experience->status == 'nonactive' ? '#FF0000' : '#E4ECFF' }}; color: {{ $experience->status == 'nonactive' ? '#FFFFFF' : '#1B3061' }}">
+                                {{ $experience->status }}
+                            </span>
+                        </td>
+
+                    </tr>
+                    @empty
+                    <tr>
+                        <td colspan="6" class="text-center">
+                            <div class="d-flex justify-content-center" style="min-height:16rem">
+                                <div class="my-auto">
+                                    <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                    <h4 class="text-center mt-4">Tidak Ada Pekerjaan Yang Aktif !!</h4>
+                                </div>
+                            </div>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="fs-5">2</td>
-                        <td class="fs-5">Arsitektur</td>
-                        <td class="fs-5">2023</td>
-                        <td><span class="fs-6 badge text-bg-danger px-4 py-2">Non Aktif</span></td>
-                    </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>

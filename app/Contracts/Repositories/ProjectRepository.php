@@ -145,9 +145,15 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
     public function customPaginate(Request $request, int $pagination = 10): LengthAwarePaginator
     {
         return $this->model->query()
-            ->with('serviceProviderProjects')->whereRelation('dinas', 'dinas_id', auth()->user()->dinas->id)
+            ->with('serviceProviderProjects')
+            ->when(auth()->user()->dinas,function($query){
+                $query->whereRelation('dinas', 'dinas_id', auth()->user()->dinas->id);
+            })
             ->when($request->name, function ($query) use ($request) {
                 $query->where('name', 'LIKE', '%' . $request->name . '%');
+            })
+            ->when($request->status,function($query) use ($request){
+                $query->where('status',$request->status);
             })
             ->fastPaginate($pagination);
     }
@@ -181,5 +187,17 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
         return $this->model->query()
             ->where(['status' => 'active', 'dinas_id' => auth()->user()->dinas->id])
             ->get();
+    }
+    
+    /**
+     * count
+     *
+     * @param  mixed $data
+     * @return int
+     */
+    public function count(?array $data): int
+    {
+        return $this->model->query()
+            ->count();
     }
 }

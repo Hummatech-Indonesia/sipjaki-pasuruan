@@ -5,7 +5,7 @@
                 <li class="menu-title" key="t-menu">Menu</li>
                 @if (Auth::user()->roles->pluck('name')[0] == 'superadmin')
                     <li>
-                        <a href="/dashboard-superadmin" class="waves-effect">
+                        <a href="{{ route('dashboard-superadmin') }}" class="waves-effect">
                             <i class="bx bxs-dashboard"></i>
                             <span key="t-file-manager">Dashboard</span>
                         </a>
@@ -90,7 +90,7 @@
                 @endif
                 @if (Auth::user()->roles->pluck('name')[0] == 'admin')
                     <li>
-                        <a href="/dashboard-admin" class="waves-effect">
+                        <a href="{{ route('dashboard-admin') }}" class="waves-effect">
                             <i class="bx bxs-dashboard"></i>
                             <span key="t-file-manager">Dashboard</span>
                         </a>
