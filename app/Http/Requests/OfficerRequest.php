@@ -18,10 +18,15 @@ class OfficerRequest extends FormRequest
             'birth_date' => 'required|date',
             'address' => 'required',
             'position' => 'required',
-            'education' => 'education',
+            'education' => 'required',
         ];
     }
 
+    /**
+     * messages
+     *
+     * @return array
+     */
     public function messages(): array
     {
         return [
