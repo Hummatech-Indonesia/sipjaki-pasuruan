@@ -92,7 +92,6 @@ class EventServiceProvider extends ServiceProvider
     public function boot(): void
     {
         News::observe(NewsObserver::class);
-        // User::observe(UserObserver::class);
         RuleCategory::observe(RuleCategoriesObserver::class);
         Classification::observe(ClassificationObserver::class);
         FundSource::observe(FundSourceObserver::class);
@@ -108,15 +107,12 @@ class EventServiceProvider extends ServiceProvider
         Image::observe(ImageObserver::class);
         TrainingMember::observe(TrainingMemberObserver::class);
         Project::observe(ProjectObserver::class);
-        Field::observe(FieldObserver::class);
         ModelsServiceProvider::observe(ServiceProviderObserver::class);
         Worker::observe(WorkerObserver::class);
         Accident::observe(AccidentObserver::class);
         HistoryLogin::observe(HistoryLoginObserver::class);
         ServiceProviderProject::observe(ServiceProviderProjectObserver::class);
-        Section::observe(SectionObserver::class);
         Type::observe(TypeObserver::class);
-        DinasField::observe(DinasField::class);
         ClassificationTraining::observe(ClassificationTrainingObserver::class);
         Association::observe(AssociationObserver::class);
         FoundingDeed::observe(FoundingDeedObserver::class);
