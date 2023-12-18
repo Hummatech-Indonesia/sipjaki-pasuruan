@@ -13,6 +13,9 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\AccidentController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AssociationController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\FiscalYearController;
 use App\Http\Controllers\FundSourceController;
 use App\Http\Controllers\HistoryLoginController;
@@ -87,6 +90,15 @@ Route::middleware('auth')->group(function () {
     Route::get('profile', function () {
         return view('pages.profile');
     })->name('profile');
+
+    Route::patch('update-profile', [UserController::class, 'updateProfile'])->name('update.profile');
+    Route::patch('update-password', [UserController::class, 'updatePassword'])->name('update.password');
+
+    Route::post('send-email', [ForgotPasswordController::class, 'sendEmail'])->name('send.email');
+
+    Route::patch('reset-passsword', [ResetPasswordController::class, 'reset'])->name('reset.password');
+
+    Route::patch('verify-account/{user}', [VerificationController::class, 'verifyToken'])->name('verify.account');
 
     Route::middleware('role:superadmin|admin')->group(function () {
         Route::get('all-service-provider', [ServiceProviderProjectController::class, 'allServiceProvider']);
@@ -176,10 +188,21 @@ Route::middleware(['role:dinas'])->group(function () {
         'projects' => ProjectController::class,
     ]);
     Route::middleware('role:service provider')->group(function () {
+        Route::get('service-provider-projects', [ServiceProviderProjectController::class, 'index']);
+        Route::post('service-provider-projects/{project}', [ServiceProviderProjectController::class, 'store'])->name('service-provider-projects/');
+        Route::put('service-provider-projects/{service_provider_project}', [ServiceProviderProjectController::class, 'update'])->name('service-provider-projects/');
+        Route::delete('service-provider-projects/{service_provider_project}', [ServiceProviderProjectController::class, 'destroy'])->name('/service-provider-projects/');
+
         Route::get('dashboard', [ServiceProviderController::class, 'dahsboard'])->name('dashboard-service-provider');
         Route::resource('workers', WorkerController::class)->only('index', 'update', 'destroy');
         Route::delete('delete-workers', [WorkerController::class, 'deleteMultiple']);
         Route::post('workers/{service_provider}', [WorkerController::class, 'store']);
+
+        Route::post('import-workers', [WorkerController::class, 'import'])->name('import.workers');
+        Route::get('export-workers', [WorkerController::class, 'export'])->name('export.workers');
+
+        Route::put('profile-service-providers', [ServiceProviderController::class, 'update']);
+        Route::get('data-service-providers', [AssociationController::class, 'dataServiceProvider']);
     });
 });
 
