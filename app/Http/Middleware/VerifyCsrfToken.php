@@ -11,27 +11,5 @@ class VerifyCsrfToken extends Middleware
      *
      * @var array<int, string>
      */
-    protected $except = [
-        'import-training-members',
-        'reset-passsword/a10d6118-cdbc-3d9c-9805-f432f2636380',
-        'send-email-reset-passsword',
-        'users',
-        'fields',
-        'users/06124858-a94d-338e-b7bf-214fc9529391',
-        'login',
-        'register',
-        'update-profile',
-        'service-provider-projects/b0e392fa-9904-3327-83e4-d845ddeca099',
-        'service-provider-projects/633b52a6-61e0-3a1d-af41-9467b7898c71',
-        'import-workers',
-        'dinas',
-        'images',
-        'update-password',
-        'associations',
-        'associations/nama-asosiasi',
-        'profile-service-providers',
-        'import-associations',
-        'service-provider-qualifications',
-        'approve-service-provider-qualifications/6ad553c7-76d0-3eea-b7b6-8ffc2320ea2a'
-    ];
+    protected $except = [];
 }
