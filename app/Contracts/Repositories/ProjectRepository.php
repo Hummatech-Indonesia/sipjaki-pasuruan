@@ -33,6 +33,18 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
     }
 
     /**
+     * countAllProject
+     *
+     * @return int
+     */
+    public function countAllProject(): int
+    {
+        return $this->model->query()
+            ->where('service_provider_id', auth()->user()->serviceProvider->id)
+            ->count();
+    }
+
+    /**
      * getByServiceProvider
      *
      * @param  mixed $request
@@ -46,7 +58,23 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
             ->when($request->year, function ($query) use ($request) {
                 $query->where('year', $request->year);
             })
+            ->when($request->name, function ($query) use ($request) {
+                $query->where('name', 'LIKE', '%'.$request->name.'%');
+            })
             ->get();
+    }
+
+    /**
+     * countProject
+     *
+     * @return int
+     */
+    public function countProject(): int
+    {
+        return $this->model->query()
+            ->where('service_provider_id', auth()->user()->serviceProvider->id)
+            ->where('status', StatusEnum::ACTIVE->value)
+            ->count();
     }
 
     /**

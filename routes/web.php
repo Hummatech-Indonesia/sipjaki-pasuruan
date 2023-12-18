@@ -11,6 +11,7 @@ use App\Http\Controllers\WorkerController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\AccidentController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AssociationController;
 use App\Http\Controllers\FiscalYearController;
 use App\Http\Controllers\FundSourceController;
@@ -29,6 +30,7 @@ use App\Http\Controllers\QualificationLevelController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\ServiceProviderController;
 use App\Http\Controllers\ServiceProviderProjectController;
+use App\Http\Controllers\SuperadminController;
 use App\Http\Controllers\TypeController;
 
 /*
@@ -91,9 +93,7 @@ Route::middleware('auth')->group(function () {
         Route::get('service-provider-detail/{service_provider}', [ServiceProviderProjectController::class, 'projectDetail']);
     });
     Route::middleware('role:superadmin')->group(function () {
-        Route::get('dashboard-superadmin', function(){
-            return view('pages.dasboard');
-        })->name('dashboard-superadmin');
+        Route::get('dashboard-superadmin', [SuperadminController::class, 'dashboard'])->name('dashboard-superadmin');
         Route::resources([
             'contract-categories' => ContractCategoryController::class,
             'fund-sources' => FundSourceController::class,
@@ -126,9 +126,7 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::middleware('role:admin')->group(function () {
-        Route::get('dashboard-admin', function (){
-            return view('pages.admin.dashboard');
-        })->name('dashboard-admin');
+        Route::get('dashboard-admin', [AdminController::class, 'dashboard'])->name('dashboard-admin');
 
         Route::resources([
             'news' => NewsController::class,

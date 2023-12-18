@@ -27,6 +27,18 @@ class WorkerRepository extends BaseRepository implements WorkerInterface
     }
 
     /**
+     * countWorker
+     *
+     * @return int
+     */
+    public function countWorker(): int
+    {
+        return $this->model->query()
+            ->where('service_provider_id', auth()->user()->serviceProvider->id)
+            ->count();
+    }
+
+    /**
      * get
      *
      * @return mixed
