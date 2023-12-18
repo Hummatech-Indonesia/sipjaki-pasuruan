@@ -92,7 +92,7 @@
             @endforeach
         @endif
         <div class="table-responsive">
-            <table class="table table-bordered table-hover mt-4">
+            <table class="table table-borderless table-hover mt-4">
                 <thead>
                     <tr>
                         <th scope="col" class="text-center text-white"
@@ -176,8 +176,6 @@
                             </td>
                         </tr>
                     @endforelse
-
-
                 </tbody>
             </table>
         </div>
@@ -201,9 +199,12 @@
                                 <div class="mb-3">
                                     <label id="category" for="recipient-category"
                                         class="control-label mb-2">Kategori</label>
-                                    <select name="rule_category_id" class="form-control" id="create-category">
+                                    <select name="rule_category_id" class="form-control" id="update-category">
                                         @foreach ($ruleCategories as $ruleCategory)
-                                            <option value="{{ $ruleCategory->id }}">{{ $ruleCategory->name }}</option>
+                                            <option value="{{ $ruleCategory->id }}"
+                                                {{ old('rule_category_id') == $ruleCategory->id ? 'selected' : '' }}>
+                                                {{ $ruleCategory->name }}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -211,22 +212,23 @@
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Nomor</label>
-                                    <input type="text" class="form-control" id="create-name" class="form-control"
-                                        name="code" aria-describedby="name" placeholder="Masukkan Jenis Sertifikat" />
+                                    <input type="text" class="form-control" id="update-name" name="code"
+                                        aria-describedby="name" placeholder="Masukkan Jenis Sertifikat"
+                                        value="{{ old('code') }}" />
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="mb-3">
-                                    <label id="name" for="recipient-name" class="control-label mb-2">FIle</label>
-                                    <input type="file" class="form-control" id="create-name" class="form-control"
-                                        name="file" aria-describedby="name" placeholder="Masukkan Pendidikan" />
+                                    <label id="name" for="recipient-name" class="control-label mb-2">File</label>
+                                    <input type="file" class="form-control" id="update-name" name="file"
+                                        aria-describedby="name" placeholder="Masukkan Pendidikan" />
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Tahun</label>
-                                    <input type="number" name="year" id="" class="form-control">
-
+                                    <input type="number" name="year" id="" class="form-control"
+                                        value="{{ old('year') }}">
                                 </div>
                             </div>
                             <div class="col-12">
@@ -243,7 +245,7 @@
                             data-bs-dismiss="modal">
                             Close
                         </button>
-                        <button type="submit" style="background-color: #1B3061" class="btn text-white btn-create">
+                        <button type="submit" style="background-color: #1B3061" class="btn text-white btn-update">
                             Tambah
                         </button>
                     </div>
