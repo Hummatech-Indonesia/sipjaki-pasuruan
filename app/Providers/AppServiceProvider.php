@@ -49,8 +49,8 @@ use App\Contracts\Interfaces\QualificationTrainingInterface;
 use App\Contracts\Interfaces\SectionInterface;
 use App\Contracts\Interfaces\ServiceProviderInterface;
 use App\Contracts\Interfaces\ServiceProviderProjectInterface;
+use App\Contracts\Interfaces\ServiceProviderQualificationInterface;
 use App\Contracts\Interfaces\SubClassificationTrainingInterface;
-use App\Contracts\Interfaces\SubQualificationInterface;
 use App\Contracts\Interfaces\SubQualificationTrainingInterface;
 use App\Contracts\Interfaces\TypeInterface;
 use App\Contracts\Interfaces\WorkerInterface;
@@ -69,13 +69,12 @@ use App\Contracts\Repositories\QualificationLevelTrainingRepository;
 use App\Contracts\Repositories\QualificationTrainingRepository;
 use App\Contracts\Repositories\SectionRepository;
 use App\Contracts\Repositories\ServiceProviderProjectRepository;
+use App\Contracts\Repositories\ServiceProviderQualificationRepository;
 use App\Contracts\Repositories\ServiceProviderRepository;
 use App\Contracts\Repositories\SubClassificationTrainingRepository;
-use App\Contracts\Repositories\SubQualificationRepository;
 use App\Contracts\Repositories\SubQualificationTrainingRepository;
 use App\Contracts\Repositories\TypeRepository;
 use App\Contracts\Repositories\WorkerRepository;
-use App\Models\QualificationTraining;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -115,6 +114,7 @@ class AppServiceProvider extends ServiceProvider
         QualificationTrainingInterface::class => QualificationTrainingRepository::class,
         OfficerInterface::class => OfficerRepository::class,
         SubQualificationTrainingInterface::class => SubQualificationTrainingRepository::class,
+        ServiceProviderQualificationInterface::class => ServiceProviderQualificationRepository::class
     ];
 
     /**

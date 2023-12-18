@@ -30,6 +30,8 @@ class VerifyCsrfToken extends Middleware
         'associations',
         'associations/nama-asosiasi',
         'profile-service-providers',
-        'import-associations'
+        'import-associations',
+        'service-provider-qualifications',
+        'approve-service-provider-qualifications/6ad553c7-76d0-3eea-b7b6-8ffc2320ea2a'
     ];
 }
