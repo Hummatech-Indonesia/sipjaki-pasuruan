@@ -212,4 +212,16 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
         return $this->model->query()
             ->count();
     }
+
+    /**
+     * countActiveProject
+     *
+     * @return int
+     */
+    public function countActiveProject(): int
+    {
+        return $this->model->query()
+            ->where('status', StatusEnum::ACTIVE->value)
+            ->count();
+    }
 }
