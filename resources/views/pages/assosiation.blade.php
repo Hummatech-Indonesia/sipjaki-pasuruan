@@ -12,7 +12,7 @@
     <h4 class="mb-3 font-size-18">Assosiasi</h4>
     <div class="d-flex justify-content-between">
         <div class="">
-            <button type="button" data-bs-toggle="modal" data-bs-target="#modal-create" class="btn text-white fw-normal"
+            <button type="button" data-bs-toggle="modal" data-bs-target="#import" class="btn text-white fw-normal"
                 style="background-color:#1B3061;">
                 <svg xmlns="http://www.w3.org/2000/svg" height="14" width="12" fill="white" viewBox="0 0 448 512">
                     <path
@@ -20,7 +20,7 @@
                 </svg>
                 <span class="ms-2">Import</span>
             </button>
-            <a href="{{ route('export.workers') }}">
+            <a href="export-associations">
                 <button type="submit" class="btn text-white fw-normal" style="background-color:#2CA67A;">
                     <svg xmlns="http://www.w3.org/2000/svg" height="14" width="14" fill="white"
                         transform="rotate(90)" viewBox="0 0 512 512">
@@ -30,6 +30,79 @@
                     <span class="ms-2">Export</span>
                 </button>
             </a>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" id="import" aria-labelledby="exampleModalLabel1">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #1B3061">
+                    <div class="d-flex justify-content-center">
+                        <h4 class="text-center text-white" id="">
+                            Import File
+                        </h4>
+                    </div>
+                </div>
+                <form id="form-create" action="import-associations" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="alert alert-warning d-flex align-items-center p-4">
+                            <!--begin::Icon-->
+                            <span class="svg-icon svg-icon-2hx svg-icon-primary me-3">
+                                <span class="svg-icon svg-icon-2hx svg-icon-warning me-4"><svg width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path opacity="0.3"
+                                            d="M20.5543 4.37824L12.1798 2.02473C12.0626 1.99176 11.9376 1.99176 11.8203 2.02473L3.44572 4.37824C3.18118 4.45258 3 4.6807 3 4.93945V13.569C3 14.6914 3.48509 15.8404 4.4417 16.984C5.17231 17.8575 6.18314 18.7345 7.446 19.5909C9.56752 21.0295 11.6566 21.912 11.7445 21.9488C11.8258 21.9829 11.9129 22 12.0001 22C12.0872 22 12.1744 21.983 12.2557 21.9488C12.3435 21.912 14.4326 21.0295 16.5541 19.5909C17.8169 18.7345 18.8277 17.8575 19.5584 16.984C20.515 15.8404 21 14.6914 21 13.569V4.93945C21 4.6807 20.8189 4.45258 20.5543 4.37824Z"
+                                            fill="currentColor"></path>
+                                        <path
+                                            d="M10.5606 11.3042L9.57283 10.3018C9.28174 10.0065 8.80522 10.0065 8.51412 10.3018C8.22897 10.5912 8.22897 11.0559 8.51412 11.3452L10.4182 13.2773C10.8099 13.6747 11.451 13.6747 11.8427 13.2773L15.4859 9.58051C15.771 9.29117 15.771 8.82648 15.4859 8.53714C15.1948 8.24176 14.7183 8.24176 14.4272 8.53714L11.7002 11.3042C11.3869 11.6221 10.874 11.6221 10.5606 11.3042Z"
+                                            fill="currentColor"></path>
+                                    </svg>
+                                </span>
+                            </span>
+                            <!--end::Icon-->
+
+                            <!--begin::Wrapper-->
+                            <div class="d-flex flex-column">
+                                <!--begin::Title-->
+                                <h4 class="mb-1 text-dark">Informasi</h4>
+                                <!--end::Title-->
+                                <!--begin::Content-->
+                                <ul>
+                                    <li class="mb-1">File yang dapat diunggah berupa file excel berekstensi xls, xlsx.
+                                    </li>
+                                    <li class="mb-1">Format pengisian file excel berisi Nama, Tanggal Lahir, Edukasi,
+                                        Nomor Registrasi, Jumlah Sertifikasi</li>
+                                </ul>
+                                <!--end::Content-->
+
+                            </div>
+                            <!--end::Wrapper-->
+                        </div>
+                        <a href="{{ asset('import-assosiaction.xlsx') }}" class="btn btn-success mb-3" style="">
+                            <i class="fas fa-file-excel"></i>
+                            Download Format Excel
+                        </a>
+                        <p class="mb-0 text-dark " style="font-weight: 600">
+                            File Excel *
+                        </p>
+                        <input type="file" class="form-control" name="import" id="">
+                        @error('import')
+                            <p class="text-danger">
+                                {{ $message }}
+                            </p>
+                        @enderror
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger text-white font-medium waves-effect"
+                            data-bs-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="submit" style="background-color: #1B3061" class="btn text-white btn-create">
+                            Simpan
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
     <div class="modal fade" tabindex="-1" id="modal-create" aria-labelledby="exampleModalLabel1">
@@ -59,8 +132,8 @@
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="basicpill-name">Email</label>
-                                            <input type="email" class="form-control" name="email" id="basicpill-name"
-                                                placeholder="Masukkan Email Asosiasi">
+                                            <input type="email" class="form-control" name="email"
+                                                id="basicpill-name" placeholder="Masukkan Email Asosiasi">
                                         </div>
                                     </div>
                                 </div>
@@ -69,26 +142,28 @@
                                     <div class="col-lg-4">
                                         <div class="mb-3">
                                             <label for="basicpill-fund_source_id">Telepon</label>
-                                            <input type="number" placeholder="Telepon Asosiasi" name="phone_number" id="create-phone_number"
-                                                class="form-control">
+                                            <input type="number" placeholder="Telepon Asosiasi" name="phone_number"
+                                                id="create-phone_number" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="mb-3">
                                             <label for="basicpill-email-input">Kota/Kab</label>
-                                            <input type="text" name="city" placeholder="Kota/Kab Asosiasi" id="create-city" class="form-control">
+                                            <input type="text" name="city" placeholder="Kota/Kab Asosiasi"
+                                                id="create-city" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="mb-3">
                                             <label for="basicpill-email-input">Kode Pos</label>
-                                            <input type="number" placeholder="Masukkan Kode Pos" name="postal_code" id="create-postal-code"
-                                                class="form-control">
+                                            <input type="number" placeholder="Masukkan Kode Pos" name="postal_code"
+                                                id="create-postal-code" class="form-control">
                                         </div>
                                     </div>
                                     <div>
                                         <label for="" class="form-label">Alamat</label>
-                                        <textarea name="address" placeholder="Masukkan Alamat" id="create-address" class="form-control" cols="25" rows="5"></textarea>
+                                        <textarea name="address" placeholder="Masukkan Alamat" id="create-address" class="form-control" cols="25"
+                                            rows="5"></textarea>
                                     </div>
                                 </div>
                             </section>
@@ -108,15 +183,16 @@
                                     <div class="col-lg-4">
                                         <div class="mb-3">
                                             <label for="basicpill-contract_category_id">Email</label>
-                                            <input type="email" name="email_leader" placeholder="Masukkan Email" id="create-email_leader"
-                                                class="form-control">
+                                            <input type="email" name="email_leader" placeholder="Masukkan Email"
+                                                id="create-email_leader" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="mb-3">
                                             <label for="basicpill-cstno-input">Telepon</label>
-                                            <input type="number" placeholder="Masukkan Telepon" name="phone_number_leader"
-                                                id="create-phone_number_leader" class="form-control">
+                                            <input type="number" placeholder="Masukkan Telepon"
+                                                name="phone_number_leader" id="create-phone_number_leader"
+                                                class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -124,7 +200,8 @@
                                     <div class="col-lg-12">
                                         <div class="mb-3">
                                             <label>Alamat</label>
-                                            <textarea name="address_leader" placeholder="Masukkan Alamat" class="form-control" id="create-leader_address" cols="30" rows="5"></textarea>
+                                            <textarea name="address_leader" placeholder="Masukkan Alamat" class="form-control" id="create-leader_address"
+                                                cols="30" rows="5"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -140,11 +217,10 @@
         <div class="d-flex justify-content-between align-items-center mb-3">
             <form action="" class=" col-lg-3">
                 <div class="input-group">
-                    <input type="text" name="name" class="form-control"
-                        placeholder="Search">
+                    <input type="text" name="name" class="form-control" placeholder="Search">
                     <div class="input-group-append">
-                        <button class="btn text-white"
-                            style="background-color: #1B3061; border-radius: 0 5px 5px 0;" type="submit">
+                        <button class="btn text-white" style="background-color: #1B3061; border-radius: 0 5px 5px 0;"
+                            type="submit">
                             <i class="fa fa-search"></i>
                         </button>
                     </div>
@@ -197,7 +273,8 @@
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19"
                                                     viewBox="0 0 24 24" fill="none">
                                                     <path d="M4.5 12.5C7.5 6 16.5 6 19.5 12.5" stroke="white"
-                                                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                        stroke-width="1.5" stroke-linecap="round"
+                                                        stroke-linejoin="round" />
                                                     <path
                                                         d="M12 16C10.8954 16 10 15.1046 10 14C10 12.8954 10.8954 12 12 12C13.1046 12 14 12.8954 14 14C14 15.1046 13.1046 16 12 16Z"
                                                         stroke="white" stroke-width="1.5" stroke-linecap="round"
@@ -207,7 +284,8 @@
                                         </a>
                                     </div>
                                     <div class="">
-                                        <button id="btn-edit-{{ $association->id }}" data-name="{{ $association->name }}"
+                                        <button id="btn-edit-{{ $association->id }}"
+                                            data-name="{{ $association->name }}"
                                             data-leader="{{ $association->leader }}"
                                             data-email="{{ $association->email }}"
                                             data-phone_number="{{ $association->phone_number }}"
@@ -236,17 +314,16 @@
                             </td>
                         </tr>
                     @empty
-                    <tr>
-                        <td colspan="6" class="text-center">
-                            <div class="d-flex justify-content-center" style="min-height:16rem">
-                                <div class="my-auto">
-                                    <img src="{{ asset('no-data.png') }}" width="300"
-                                        height="300" />
-                                    <h4 class="text-center mt-4">Asosiasi Kosong !!</h4>
+                        <tr>
+                            <td colspan="6" class="text-center">
+                                <div class="d-flex justify-content-center" style="min-height:16rem">
+                                    <div class="my-auto">
+                                        <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                        <h4 class="text-center mt-4">Asosiasi Kosong !!</h4>
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
                     @endforelse
                 </tbody>
             </table>
