@@ -2,9 +2,10 @@
 
 namespace App\Contracts\Repositories;
 
-use App\Contracts\Interfaces\DinasInterface;
 use App\Models\Dinas;
 use Illuminate\Http\Request;
+use App\Contracts\Interfaces\DinasInterface;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class DinasRepository extends BaseRepository implements DinasInterface
 {
@@ -77,4 +78,19 @@ class DinasRepository extends BaseRepository implements DinasInterface
             ->count();
     }
 
+        /**
+     * customPaginate
+     *
+     * @param  mixed $request
+     * @param  mixed $pagination
+     * @return LengthAwarePaginator
+     */
+    public function customPaginate(Request $request, int $pagination = 10): LengthAwarePaginator
+    {
+        return $this->model->query()
+            ->when($request->name,function($query) use ($request){
+                $query->where('name','LIKE','%'.$request->name.'%');
+            })
+            ->fastPaginate($pagination);
+    }
 }
