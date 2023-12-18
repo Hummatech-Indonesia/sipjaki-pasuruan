@@ -17,6 +17,7 @@ use App\Models\FundSource;
 use App\Models\HistoryLogin;
 use App\Models\Image;
 use App\Models\News;
+use App\Models\Officer;
 use App\Models\Project;
 use App\Models\Qualification;
 use App\Models\QualificationLevel;
@@ -51,6 +52,7 @@ use App\Observers\FundSourceObserver;
 use App\Observers\HistoryLoginObserver;
 use App\Observers\ImageObserver;
 use App\Observers\NewsObserver;
+use App\Observers\OfficerObserver;
 use App\Observers\ProjectObserver;
 use App\Observers\QualificationLevelObserver;
 use App\Observers\QualificationLevelTrainingObserver;
@@ -124,6 +126,7 @@ class EventServiceProvider extends ServiceProvider
         QualificationTraining::observe(QualificationTrainingObserver::class);
         QualificationLevelTraining::observe(QualificationLevelTrainingObserver::class);
         SubQualification::observe(SubQualificationObserver::class);
+        Officer::observe(OfficerObserver::class);
     }
 
     /**
