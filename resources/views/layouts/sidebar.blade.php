@@ -28,7 +28,7 @@
                             <li><a href="{{ route('associations.index') }}" key="t-full-calendar">Assosiasi</a></li>
                         </ul>
                     </li>
-                    
+
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 42 42"
@@ -41,12 +41,12 @@
                             </span>
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="{{ route('qualification.training') }}" key="t-tui-calendar">Kualifikasi</a></li>
+                            <li><a href="{{ route('qualification-trainings.index') }}" key="t-tui-calendar">Kualifikasi</a></li>
                             <li><a href="{{ route('classification-training.index') }}" key="t-full-calendar">Klasifikasi Pelatihan</a></li>
                             <li><a href="{{ route('training-methods.index') }}" key="t-full-calendar">Metode Pelatihan</a></li>
                         </ul>
                     </li>
-                    
+
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect">
                             <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="20" height="20"

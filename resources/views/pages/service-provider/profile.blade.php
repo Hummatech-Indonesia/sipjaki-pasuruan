@@ -129,31 +129,40 @@
                 </div>
             </div>
             <div class="table-responsive rounded-4">
-                <table class="table table-borderless" border="1">
+                <table class="table table-bordered" border="1">
                     <thead>
                         <tr align="center">
                             <th style="background-color: #1B3061;color:#ffffff; vertical-align: middle" rowspan="2">No
                             </th>
-                            <th style="background-color: #1B3061;color:#ffffff; vertical-align: middle" colspan="4" rowspan="2">Judul</th>
-                            <th style="background-color: #1B3061;color:#ffffff; vertical-align: middle" colspan="4" rowspan="2">Nomor Kode</th>
-                            <th style="background-color: #1B3061;color:#ffffff; vertical-align: middle" colspan="4" rowspan="2">Kualifikasi</th>
-                            <th colspan="2" style="background-color: #1B3061;color:#ffffff;">Kemampuan Dasar</th>
-                            <th style="background-color: #1B3061;color:#ffffff;vertical-align: middle" rowspan="2">
+                            <th style="background-color: #1B3061;color:#ffffff; vertical-align: middle" colspan="1" rowspan="2">Sub Bidang Klasifikasi/Layanan</th>
+                            <th style="background-color: #1B3061;color:#ffffff; vertical-align: middle" colspan="1" rowspan="2">Nomor Kode</th>
+                            <th style="background-color: #1B3061;color:#ffffff; vertical-align: middle" colspan="1" rowspan="2">Kualifikasi</th>
+                            <th colspan="1" style="background-color: #1B3061;color:#ffffff;">Kemampuan Dasar</th>
+                            <th style="background-color: #1B3061;color:#ffffff;vertical-align: middle" rowspan="2" colspan="1">
                                 Asosiasi</th>
                             <th style="background-color: #1B3061;color:#ffffff;vertical-align: middle;width:150px;"
-                                rowspan="2">Tanggal Permohonan</th>
+                                rowspan="2" colspan="1">Tanggal Permohonan</th>
                             <th style="background-color: #1B3061;color:#ffffff;vertical-align: middle;width:150px;"
-                                rowspan="2">Tanggal Cetak Pertama</th>
+                                rowspan="2" colspan="1">Tanggal Cetak Pertama</th>
                             <th style="background-color: #1B3061;color:#ffffff;vertical-align: middle;width:150px;"
-                                rowspan="2">Tanggal Cetak Perubahan Terakhir</th>
+                                rowspan="2" colspan="1">Tanggal Cetak Perubahan Terakhir</th>
                         </tr>
                         <tr align="center">
                             <th style="background-color: #1B3061;color:#ffffff;">Tahun</th>
-                            <th style="background-color: #1B3061;color:#ffffff;">Nilai (Rp Juta)</th>
                         </tr>
                     </thead>
                     <tbody>
-
+                        <tr align="center">
+                            <td colspan="1">1</td>
+                            <td colspan="1">Jasa Pelaksanaa Untuk Konstruksi Saluran Air</td>
+                            <td colspan="1">SI001</td>
+                            <td colspan="1">M2</td>
+                            <td colspan="1">2023</td>
+                            <td colspan="1">GAPENSI</td>
+                            <td colspan="1">2021-10-21</td>
+                            <td colspan="1">2021-10-21</td>
+                            <td colspan="1">2021-10-21</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
