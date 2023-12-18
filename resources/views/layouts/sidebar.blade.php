@@ -240,6 +240,13 @@
                         </a>
                     </li>
                     <li>
+                    <li>
+                        <a href="{{ route('officers.index') }}" class="waves-effect">
+                            <i class="fas fa-user-tie fa-sm"></i>
+                            <span key="t-file-manager">Pengurus</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ route('service-provider-profile') }}" class="waves-effect">
                             <i class="fas fa-user-circle"></i>
                             <span key="t-file-manager">Profile Penyedia Jasa</span>
