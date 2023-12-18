@@ -47,4 +47,18 @@ interface ProjectInterface extends GetInterface, StoreInterface, CustomPaginatio
      * @return mixed
      */
     public function getByServiceProvider(Request $request): mixed;
+
+    /**
+     * countProject
+     *
+     * @return int
+     */
+    public function countProject(): int;
+
+    /**
+     * countAllProject
+     *
+     * @return int
+     */
+    public function countAllProject(): int;
 }

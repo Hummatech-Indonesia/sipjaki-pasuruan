@@ -26,4 +26,11 @@ interface WorkerInterface extends GetInterface, StoreInterface, UpdateInterface,
      * @return mixed
      */
     public function getByServiceProvider(Request $request): mixed;
+
+    /**
+     * countWorker
+     *
+     * @return int
+     */
+    public function countWorker(): int;
 }

@@ -15,7 +15,6 @@ use Illuminate\Http\RedirectResponse;
 use App\Services\TrainingMemberService;
 use App\Http\Requests\TrainingMemberRequest;
 use App\Http\Resources\TrainingMemberResource;
-use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Requests\DeleteTrainingMemberRequest;
 use App\Contracts\Interfaces\TrainingMemberInterface;
 
@@ -42,13 +41,13 @@ class TrainingMemberController extends Controller
     {
         $request->merge(['training_id' => $training->id]);
         $trainingMembers = $this->trainingMember->customPaginate($request, 10);
-        
+
         if ($request->is('api/*')) {
-        $data['paginate'] = $this->customPaginate($trainingMembers->currentPage(), $trainingMembers->lastPage());
-        $data['data'] = TrainingMemberResource::collection($trainingMembers);
-        return ResponseHelper::success($data);
-        }else{
-            return view('pages.dinas.detail-training' ,compact('trainingMembers' ,'training'));
+            $data['paginate'] = $this->customPaginate($trainingMembers->currentPage(), $trainingMembers->lastPage());
+            $data['data'] = TrainingMemberResource::collection($trainingMembers);
+            return ResponseHelper::success($data);
+        } else {
+            return view('pages.dinas.detail-training', compact('trainingMembers', 'training'));
         }
     }
 
@@ -103,9 +102,9 @@ class TrainingMemberController extends Controller
         }
     }
 
-    public function multipleDelete(DeleteTrainingMemberRequest $request) : RedirectResponse | JsonResponse
+    public function multipleDelete(DeleteTrainingMemberRequest $request): RedirectResponse | JsonResponse
     {
-        $data = explode(',',$request->id);
+        $data = explode(',', $request->id);
         $this->trainingMember->multipleDelete($data);
 
         return redirect()->back()->with('success', trans('alert.delete_success'));
@@ -122,6 +121,10 @@ class TrainingMemberController extends Controller
         $data = $request->validated();
         Excel::import(new TrainingMemberImport, $data['import']);
 
-        return ResponseHelper::success(null, trans('alert.add_success'));
+        if ($request->is('api/*')) {
+            return ResponseHelper::success(null, trans('alert.add_success'));
+        } else {
+            return redirect()->back()->with('success', trans('alert.add_success'));
+        }
     }
 }

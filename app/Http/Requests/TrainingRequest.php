@@ -31,7 +31,7 @@ class TrainingRequest extends FormRequest
             'organizer' => 'required|max:255',
             'start_at' => 'required|before:end_time|date',
             'end_time' => 'required|date',
-            'lesson_hour' => 'integer|max:100|min:0',
+            'lesson_hour' => 'required|integer|max:100|min:0',
             'location' => 'required|max:255',
             'description' => 'required|max:2048'
         ];

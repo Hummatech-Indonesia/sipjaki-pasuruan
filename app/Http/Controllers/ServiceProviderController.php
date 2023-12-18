@@ -32,10 +32,12 @@ class ServiceProviderController extends Controller
      */
     public function dashboard(Request $request): View
     {
-        //Kualifikasi dan Klasifikasi
         $workers = $this->worker->getByServiceProvider($request);
         $experiences = $this->project->getByServiceProvider($request);
-        return view('pages.service-provider.dashboard', ['experiences' => $experiences, 'workers' => $workers]);
+        $countWorker = $this->worker->countWorker();
+        $countExperience = $this->project->countProject();
+        $countAllExperience = $this->project->countAllProject();
+        return view('pages.service-provider.dashboard', ['experiences' => $experiences, 'workers' => $workers, 'countWorker' => $countWorker, 'countExperience' => $countExperience, 'countAllExperience' => $countAllExperience]);
     }
 
     /**

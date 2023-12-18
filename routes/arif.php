@@ -35,3 +35,6 @@ Route::get('accident-chart', [DinasController::class, 'chart'])->name('accident.
 Route::put('profile-service-providers', [ServiceProviderController::class, 'update']);
 
 Route::get('data-service-providers', [AssociationController::class, 'dataServiceProvider']);
+
+Route::post('import-associations', [AssociationController::class, 'import']);
+Route::get('export-associations', [AssociationController::class, 'export']);

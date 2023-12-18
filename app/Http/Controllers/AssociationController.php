@@ -3,14 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Interfaces\AssociationInterface;
+use App\Exports\AssociationExport;
 use App\Helpers\ResponseHelper;
 use App\Http\Requests\AssociationRequest;
+use App\Http\Requests\ImportRequest;
 use App\Http\Resources\AssociationResource;
+use App\Imports\AssociationImport;
 use App\Models\Association;
 use App\Traits\PaginationTrait;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AssociationController extends Controller
 {
@@ -109,5 +113,27 @@ class AssociationController extends Controller
         } else {
             return view('asosiasi', ['associations' => $associations]);
         };
+    }
+
+    /**
+     * import
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    public function import(ImportRequest $request)
+    {
+        $data = $request->validated();
+        Excel::import(new AssociationImport, $data['import']);
+        // if ($request->is('api/*')) {
+        return ResponseHelper::success(null, trans('alert.add_success'));
+        // } else {
+        //     return redirect()->back()->with('success', trans('alert.add_success'));
+        // }
+    }
+
+    public function export()
+    {
+        return Excel::download(new AssociationExport, 'asosiasi-' . auth()->user()->name . '.xlsx');
     }
 }

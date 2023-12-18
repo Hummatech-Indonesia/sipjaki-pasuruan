@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Enums\UploadDiskEnum;
 use App\Http\Requests\NewsRequest;
+use App\Http\Requests\NewsUpdateRequest;
 use App\Models\News;
 use App\Traits\UploadTrait;
 
@@ -35,7 +36,7 @@ class NewsService
      * @param  mixed $news
      * @return array
      */
-    public function update(NewsRequest $request, News $news): array
+    public function update(NewsUpdateRequest $request, News $news): array
     {
         $data = $request->validated();
         $old_thumbnail = $news->thumbnail;
