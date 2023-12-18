@@ -37,6 +37,7 @@ class AdminController extends Controller
      */
     public function dashboard(Request $request): View
     {
+        
         $request->merge([
             'status' => StatusEnum::ACTIVE->value
         ]);
