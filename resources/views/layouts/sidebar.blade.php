@@ -24,8 +24,9 @@
                             </span>
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="calendar.html" key="t-tui-calendar">Kualifikasi</a></li>
-                            <li><a href="calendar-full.html" key="t-full-calendar">Klasifikasi</a></li>
+                            <li><a href="{{ route('qualifications.index') }}" key="t-tui-calendar">Kualifikasi</a></li>
+                            <li><a href="{{ route('classifications.index') }}" key="t-full-calendar">Klasifikasi</a></li>
+                            <li><a href="{{ route('contract-categories.index') }}" key="t-full-calendar">Kategori Kontrak</a></li>
                         </ul>
                     </li>
                     <li>
@@ -66,9 +67,9 @@
                             </span>
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="calendar.html" key="t-tui-calendar">Kualifikasi</a></li>
-                            <li><a href="calendar-full.html" key="t-full-calendar">Klasifikasi</a></li>
-                            <li><a href="calendar-full.html" key="t-full-calendar">Metode Pelatihan</a></li>
+                            <li><a href="" key="t-tui-calendar">Kualifikasi</a></li>
+                            <li><a href="{{ route('classifications.index') }}" key="t-full-calendar">Klasifikasi</a></li>
+                            <li><a href="{{ route('training-methods.index') }}" key="t-full-calendar">Metode Pelatihan</a></li>
                         </ul>
                     </li>
                     <li>
@@ -93,139 +94,22 @@
                             <span key="t-file-manager">Kategori Peraturan</span>
                         </a>
                     </li>
-
                     <li>
                         <a href="{{ route('fund-sources.index') }}" class="waves-effect">
                             <i class="bx bx-bx bx-money"></i>
                             <span key="t-file-manager">Sumber Dana</span>
                         </a>
                     </li>
-                    <li
-                        class="{{ request()->routeIs('classifications.*') || request()->routeIs('sub-classfication.*') ? 'mm-active' : '' }}">
-                        <a href="{{ route('classifications.index') }}"
-                            class="waves-effect {{ request()->routeIs('classifications.*') || request()->routeIs('sub-classfication.*') ? 'active' : '' }}">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                viewBox="0 0 42 42" fill="currentColor">
-                                <path
-                                    d="M17.5 7V10.5H24.5V7H17.5ZM28 7H29.75C30.6783 7 31.5685 7.36875 32.2249 8.02513C32.8813 8.6815 33.25 9.57174 33.25 10.5V35C33.25 35.9283 32.8813 36.8185 32.2249 37.4749C31.5685 38.1312 30.6783 38.5 29.75 38.5H12.25C11.3217 38.5 10.4315 38.1312 9.77513 37.4749C9.11875 36.8185 8.75 35.9283 8.75 35V10.5C8.75 9.57174 9.11875 8.6815 9.77513 8.02513C10.4315 7.36875 11.3217 7 12.25 7H14C14 6.07174 14.3687 5.1815 15.0251 4.52513C15.6815 3.86875 16.5717 3.5 17.5 3.5H24.5C25.4283 3.5 26.3185 3.86875 26.9749 4.52513C27.6313 5.1815 28 6.07174 28 7ZM28 10.5C28 11.4283 27.6313 12.3185 26.9749 12.9749C26.3185 13.6313 25.4283 14 24.5 14H17.5C16.5717 14 15.6815 13.6313 15.0251 12.9749C14.3687 12.3185 14 11.4283 14 10.5H12.25V35H29.75V10.5H28ZM15.75 17.5H26.25C26.7141 17.5 27.1592 17.6844 27.4874 18.0126C27.8156 18.3408 28 18.7859 28 19.25C28 19.7141 27.8156 20.1592 27.4874 20.4874C27.1592 20.8156 26.7141 21 26.25 21H15.75C15.2859 21 14.8408 20.8156 14.5126 20.4874C14.1844 20.1592 14 19.7141 14 19.25C14 18.7859 14.1844 18.3408 14.5126 18.0126C14.8408 17.6844 15.2859 17.5 15.75 17.5ZM15.75 26.25H26.25C26.7141 26.25 27.1592 26.4344 27.4874 26.7626C27.8156 27.0908 28 27.5359 28 28C28 28.4641 27.8156 28.9092 27.4874 29.2374C27.1592 29.5656 26.7141 29.75 26.25 29.75H15.75C15.2859 29.75 14.8408 29.5656 14.5126 29.2374C14.1844 28.9092 14 28.4641 14 28C14 27.5359 14.1844 27.0908 14.5126 26.7626C14.8408 26.4344 15.2859 26.25 15.75 26.25Z"
-                                    fill="currentColor" />
-                            </svg>
-                            <span key="t-file-manager" class="px-2">Klasifikasi</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="{{ route('training-methods.index') }}" class="waves-effect">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                viewBox="0 0 44 44" fill="currentColor">
-                                <g clip-path="url(#clip0_26_6710)">
-                                    <path d="M9.16675 5.5V38.5" stroke="currentColor" stroke-width="3"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M34.8333 38.5V5.5" stroke="currentColor" stroke-width="3"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M9.16675 12.8335H34.8334" stroke="currentColor" stroke-width="3"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M9.16675 27.5H34.8334" stroke="currentColor" stroke-width="3"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M14.6667 23.8335V31.1668" stroke="currentColor" stroke-width="3"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M20.1667 23.8335V31.1668" stroke="currentColor" stroke-width="3"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M29.3333 23.8335V31.1668" stroke="currentColor" stroke-width="3"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M25.6667 9.1665V16.4998" stroke="currentColor" stroke-width="3"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M20.1667 9.1665V16.4998" stroke="currentColor" stroke-width="3"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M14.6667 9.1665V16.4998" stroke="currentColor" stroke-width="3"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M5.5 38.5H38.5" stroke="currentColor" stroke-width="3"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                </g>
-                                <defs>
-                                    <clipPath id="clip0_26_6710">
-                                        <rect width="44" height="44" fill="currentColor" />
-                                    </clipPath>
-                                </defs>
-                            </svg>
-                            <span class="px-2" key="t-file-manager">Metode Pelatihan</span>
-                        </a>
-                    </li>
-
                     <li>
                         <a href="{{ route('fiscal-years.index') }}" class="waves-effect">
                             <i class="bx bx-bar-chart-alt"></i>
                             <span key="t-file-manager">Tahun Anggaran</span>
                         </a>
                     </li>
-
-                    <li class="{{ request()->routeIs('qualifications.*') ? 'mm-active' : '' }}">
-                        <a href="{{ route('qualifications.index') }}"
-                            class="waves-effect {{ request()->routeIs('qualifications.*') ? 'active' : '' }}">
-                            <i class="bx bx-sitemap"></i>
-                            <span key="t-file-manager">Kualifikasi</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="{{ route('contract-categories.index') }}" class="waves-effect">
-                            <i class="bx bx-bx bx-task"></i>
-                            <span key="t-file-manager">Kategori Kontrak</span>
-                        </a>
-                    </li>
-
                     <li>
                         <a href="{{ route('history-login.index') }}" class="waves-effect">
                             <i class="bx bx-history"></i>
                             <span key="t-file-manager">History Login</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('sections.index') }}" class="waves-effect">
-                            <i class="bx bx-slider"></i>
-                            <span key="t-file-manager">Pengaturan Seksi</span>
-                        </a>
-                    </li>
-                    {{-- <li>
-                        <a href="{{ route('fields.index') }}" class="waves-effect">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="20" height="20"
-                                viewBox="0 0 24 24">
-                                <path fill="none" stroke="currentColor" stroke-linecap="round"
-                                    stroke-linejoin="round" stroke-width="2"
-                                    d="M8 7a4 4 0 1 0 8 0a4 4 0 1 0-8 0M2.5 17a4 4 0 1 0 8 0a4 4 0 1 0-8 0m11 0a4 4 0 1 0 8 0a4 4 0 1 0-8 0" />
-                            </svg>
-                            <span key="t-file-manager">Bidang</span>
-                        </a>
-                    </li> --}}
-                    <li>
-                        <a href="{{ route('types.index') }}" class="waves-effect">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="20" height="20"
-                                viewBox="0 0 24 24">
-                                <g fill="none" stroke="currentColor" stroke-linecap="round"
-                                    stroke-linejoin="round" stroke-width="2">
-                                    <path d="M4 6a8 3 0 1 0 16 0A8 3 0 1 0 4 6" />
-                                    <path d="M4 6v6a8 3 0 0 0 16 0V6" />
-                                    <path d="M4 12v6a8 3 0 0 0 16 0v-6" />
-                                </g>
-                            </svg>
-                            <span key="t-file-manager">Type</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('associations.index') }}" class="waves-effect">
-                            <i class="bx bxs-group
-                            "></i>
-                            <span key="t-file-manager">Asosiasi</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('all.service.provider') }}" class="waves-effect">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                viewBox="0 0 38 38" fill="none">
-                                <path
-                                    d="M12.6665 3.16602H25.3332C27.8527 3.16602 30.2691 4.16691 32.0507 5.9485C33.8323 7.7301 34.8332 10.1465 34.8332 12.666V25.3327C34.8332 27.8522 33.8323 30.2686 32.0507 32.0502C30.2691 33.8318 27.8527 34.8327 25.3332 34.8327H12.6665C10.1469 34.8327 7.73058 33.8318 5.94899 32.0502C4.16739 30.2686 3.1665 27.8522 3.1665 25.3327L3.1665 12.666C3.1665 10.1465 4.16739 7.7301 5.94899 5.9485C7.73058 4.16691 10.1469 3.16602 12.6665 3.16602V3.16602ZM22.1665 17.416C21.7466 17.416 21.3439 17.5828 21.0469 17.8798C20.75 18.1767 20.5832 18.5794 20.5832 18.9993C20.5832 19.4193 20.75 19.822 21.0469 20.1189C21.3439 20.4159 21.7466 20.5827 22.1665 20.5827H26.9165C27.3364 20.5827 27.7392 20.4159 28.0361 20.1189C28.333 19.822 28.4998 19.4193 28.4998 18.9993C28.4998 18.5794 28.333 18.1767 28.0361 17.8798C27.7392 17.5828 27.3364 17.416 26.9165 17.416H22.1665ZM18.9998 23.7493C18.5799 23.7493 18.1772 23.9162 17.8803 24.2131C17.5833 24.51 17.4165 24.9128 17.4165 25.3327C17.4165 25.7526 17.5833 26.1553 17.8803 26.4523C18.1772 26.7492 18.5799 26.916 18.9998 26.916H26.9165C27.3364 26.916 27.7392 26.7492 28.0361 26.4523C28.333 26.1553 28.4998 25.7526 28.4998 25.3327C28.4998 24.9128 28.333 24.51 28.0361 24.2131C27.7392 23.9162 27.3364 23.7493 26.9165 23.7493H18.9998ZM18.9998 11.0827C18.5799 11.0827 18.1772 11.2495 17.8803 11.5464C17.5833 11.8434 17.4165 12.2461 17.4165 12.666C17.4165 13.0859 17.5833 13.4887 17.8803 13.7856C18.1772 14.0825 18.5799 14.2493 18.9998 14.2493H26.9165C27.3364 14.2493 27.7392 14.0825 28.0361 13.7856C28.333 13.4887 28.4998 13.0859 28.4998 12.666C28.4998 12.2461 28.333 11.8434 28.0361 11.5464C27.7392 11.2495 27.3364 11.0827 26.9165 11.0827H18.9998ZM12.3942 19.3841L11.2748 18.2647C11.1287 18.1135 10.954 17.9928 10.7608 17.9099C10.5676 17.8269 10.3599 17.7832 10.1496 17.7814C9.9394 17.7795 9.73091 17.8196 9.53633 17.8992C9.34174 17.9788 9.16496 18.0964 9.01629 18.2451C8.86763 18.3937 8.75006 18.5705 8.67045 18.7651C8.59084 18.9597 8.55078 19.1682 8.55261 19.3784C8.55443 19.5886 8.59811 19.7964 8.68109 19.9896C8.76407 20.1827 8.8847 20.3575 9.03592 20.5035L11.2748 22.7423C11.4218 22.8896 11.5964 23.0063 11.7886 23.086C11.9809 23.1657 12.1869 23.2067 12.395 23.2067C12.603 23.2067 12.8091 23.1657 13.0013 23.086C13.1935 23.0063 13.3681 22.8896 13.5152 22.7423L17.9928 18.2647C18.2901 17.9678 18.4573 17.565 18.4576 17.1448C18.4579 16.7246 18.2913 16.3216 17.9944 16.0243C17.6975 15.727 17.2947 15.5598 16.8745 15.5595C16.4544 15.5592 16.0513 15.7258 15.754 16.0227L12.3942 19.3825V19.3841Z"
-                                    fill="currentColor" />
-                            </svg> <span key="t-file-manager" class="px-2">Penyedia Jasa</span>
                         </a>
                     </li>
                 @endif
