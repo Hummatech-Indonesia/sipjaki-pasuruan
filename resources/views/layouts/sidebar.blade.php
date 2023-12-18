@@ -107,7 +107,7 @@
                             </span>
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="#" key="t-tui-calendar">Klasifikasi</a></li>
+                            <li><a href="{{ route('confirmation.classification') }}" key="t-tui-calendar">Klasifikasi</a></li>
                         </ul>
                     </li>
                     <li>
