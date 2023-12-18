@@ -46,6 +46,7 @@ use App\Contracts\Interfaces\QualificationLevelInterface;
 use App\Contracts\Interfaces\SectionInterface;
 use App\Contracts\Interfaces\ServiceProviderInterface;
 use App\Contracts\Interfaces\ServiceProviderProjectInterface;
+use App\Contracts\Interfaces\SubClassificationTrainingInterface;
 use App\Contracts\Interfaces\TypeInterface;
 use App\Contracts\Interfaces\WorkerInterface;
 use App\Contracts\Repositories\AccidentRepository;
@@ -62,6 +63,7 @@ use App\Contracts\Repositories\QualificationLevelRepository;
 use App\Contracts\Repositories\SectionRepository;
 use App\Contracts\Repositories\ServiceProviderProjectRepository;
 use App\Contracts\Repositories\ServiceProviderRepository;
+use App\Contracts\Repositories\SubClassificationTrainingRepository;
 use App\Contracts\Repositories\TypeRepository;
 use App\Contracts\Repositories\WorkerRepository;
 use App\Models\ClassificationTraining;
@@ -99,6 +101,7 @@ class AppServiceProvider extends ServiceProvider
         DinasFieldInterface::class => DinasFieldRepository::class,
         FaqInterface::class => FaqRepository::class,
         ClassificationTrainingInterface::class => ClassificationTrainingRepository::class,
+        SubClassificationTrainingInterface::class => SubClassificationTrainingRepository::class,
     ];
 
     /**
