@@ -142,6 +142,9 @@ Route::middleware('auth')->group(function () {
         Route::get('images', function () {
             return view('pages.admin.input-image');
         })->name('images.index');
+        Route::get('video', function () {
+            return view('pages.admin.input-video');
+        })->name('video.index');
         Route::post('images', [ImagesController::class, 'store'])->name('images.store');
 
         Route::get('training-members/{training}', [TrainingMemberController::class, 'index']);

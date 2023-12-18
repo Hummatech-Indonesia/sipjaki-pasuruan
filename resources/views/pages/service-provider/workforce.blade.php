@@ -12,7 +12,7 @@
     <h4 class="mb-3 font-size-18">Tenaga Kerja</h4>
     <div class="d-flex justify-content-between">
         <div class="">
-            <button type="button" data-bs-toggle="modal" data-bs-target="#modal-create" class="btn text-white fw-normal"
+            <button type="button" data-bs-toggle="modal" data-bs-target="#import" class="btn text-white fw-normal"
                 style="background-color:#1B3061;">
                 <svg xmlns="http://www.w3.org/2000/svg" height="14" width="12" fill="white" viewBox="0 0 448 512">
                     <path
@@ -22,14 +22,87 @@
             </button>
             <a href="{{ route('export.workers') }}">
                 <button type="submit" class="btn text-white fw-normal" style="background-color:#2CA67A;">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="14" width="14" fill="white" transform="rotate(90)"
-                        viewBox="0 0 512 512">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="14" width="14" fill="white"
+                        transform="rotate(90)" viewBox="0 0 512 512">
                         <path
                             d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 192 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128zM160 96c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 32C43 32 0 75 0 128L0 384c0 53 43 96 96 96l64 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l64 0z" />
                     </svg>
                     <span class="ms-2">Export</span>
                 </button>
             </a>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" id="import" aria-labelledby="exampleModalLabel1">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #1B3061">
+                    <div class="d-flex justify-content-center">
+                        <h4 class="text-center text-white" id="">
+                            Import File
+                        </h4>
+                    </div>
+                </div>
+                <form id="form-create" action="{{ route('import.workers') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="alert alert-warning d-flex align-items-center p-4">
+                            <!--begin::Icon-->
+                            <span class="svg-icon svg-icon-2hx svg-icon-primary me-3">
+                                <span class="svg-icon svg-icon-2hx svg-icon-warning me-4"><svg width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path opacity="0.3"
+                                            d="M20.5543 4.37824L12.1798 2.02473C12.0626 1.99176 11.9376 1.99176 11.8203 2.02473L3.44572 4.37824C3.18118 4.45258 3 4.6807 3 4.93945V13.569C3 14.6914 3.48509 15.8404 4.4417 16.984C5.17231 17.8575 6.18314 18.7345 7.446 19.5909C9.56752 21.0295 11.6566 21.912 11.7445 21.9488C11.8258 21.9829 11.9129 22 12.0001 22C12.0872 22 12.1744 21.983 12.2557 21.9488C12.3435 21.912 14.4326 21.0295 16.5541 19.5909C17.8169 18.7345 18.8277 17.8575 19.5584 16.984C20.515 15.8404 21 14.6914 21 13.569V4.93945C21 4.6807 20.8189 4.45258 20.5543 4.37824Z"
+                                            fill="currentColor"></path>
+                                        <path
+                                            d="M10.5606 11.3042L9.57283 10.3018C9.28174 10.0065 8.80522 10.0065 8.51412 10.3018C8.22897 10.5912 8.22897 11.0559 8.51412 11.3452L10.4182 13.2773C10.8099 13.6747 11.451 13.6747 11.8427 13.2773L15.4859 9.58051C15.771 9.29117 15.771 8.82648 15.4859 8.53714C15.1948 8.24176 14.7183 8.24176 14.4272 8.53714L11.7002 11.3042C11.3869 11.6221 10.874 11.6221 10.5606 11.3042Z"
+                                            fill="currentColor"></path>
+                                    </svg>
+                                </span>
+                            </span>
+                            <!--end::Icon-->
+
+                            <!--begin::Wrapper-->
+                            <div class="d-flex flex-column">
+                                <!--begin::Title-->
+                                <h4 class="mb-1 text-dark">Informasi</h4>
+                                <!--end::Title-->
+                                <!--begin::Content-->
+                                <ul>
+                                    <li class="mb-1">File yang dapat diunggah berupa file excel berekstensi xls, xlsx.
+                                    </li>
+                                    <li class="mb-1">Format pengisian file excel berisi Nama, Tanggal Lahir, Edukasi, Nomor Registrasi, Jumlah Sertifikasi</li>
+                                </ul>
+                                <!--end::Content-->
+
+                            </div>
+                            <!--end::Wrapper-->
+                        </div>
+                        <a href="{{ asset('import-workers.xlsx') }}" class="btn btn-success mb-3" style="">
+                            <i
+                                        class="fas fa-file-excel"></i>
+                            Download Format Excel
+                        </a>
+                        <p class="mb-0 text-dark " style="font-weight: 600">
+                            File Excel *
+                        </p>
+                        <input type="file" class="form-control" name="import" id="">
+                        @error('import')
+                            <p class="text-danger">
+                                {{ $message }}
+                            </p>
+                        @enderror
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger text-white font-medium waves-effect"
+                            data-bs-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="submit" style="background-color: #1B3061" class="btn text-white btn-create">
+                            Simpan
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
     <div class="modal fade" tabindex="-1" id="modal-create" aria-labelledby="exampleModalLabel1">
@@ -48,8 +121,8 @@
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Nama</label>
-                                    <input type="text" value="{{ old('name') }}" class="form-control" id="create-name"
-                                        class="form-control" name="name" aria-describedby="name"
+                                    <input type="text" value="{{ old('name') }}" class="form-control"
+                                        id="create-name" class="form-control" name="name" aria-describedby="name"
                                         placeholder="Masukkan Nama" />
                                 </div>
                             </div>
@@ -64,7 +137,8 @@
                             </div>
                             <div class="col-6 col-md-4">
                                 <div class="mb-3">
-                                    <label id="name" for="recipient-name" class="control-label mb-2">Pendidikan</label>
+                                    <label id="name" for="recipient-name"
+                                        class="control-label mb-2">Pendidikan</label>
                                     <input type="text" value="{{ old('education') }}" class="form-control"
                                         id="create-name" class="form-control" name="education" aria-describedby="name"
                                         placeholder="Masukkan Pendidikan" />
@@ -107,10 +181,16 @@
         <h6 class="mb-3 font-size-14">Berikut Daftar Peserta Pelatihan</h6>
         <div class="d-flex justify-content-between">
             <div class="d-flex">
-                <div class="d-flex position-relative col-lg-5">
-                    <input type="search" class="form-control search-chat py-2 ps-5" id="search-name"
-                        placeholder="Search">
-                    <i class="bx bx-search-alt-2 position-absolute top-50 translate-middle-y fs-6 text-dark ms-3"></i>
+                <div class="col-lg-5">
+                    <div class="input-group">
+                        <input type="text" name="name" value="" class="form-control" placeholder="Search">
+                        <div class="input-group-append">
+                            <button class="btn text-white" style="background-color: #1B3061; border-radius: 0 5px 5px 0;"
+                                type="submit">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 <button class="btn ms-1 text-white rounded" style="background-color:#1B3061" onclick="selectAll()">
                     Pilih Semua
@@ -161,7 +241,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
-            <table class="table table-bordered table-hover mt-4">
+            <table class="table table-borderless table-hover mt-4">
                 <thead>
                     <tr>
                         <th scope="col" class="text-center text-white"

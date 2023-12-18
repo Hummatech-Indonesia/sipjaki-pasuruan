@@ -75,7 +75,7 @@
                                     {{ $serviceProvider->user->email }}
                                 </td>
                                 <td>
-                                    {{ $serviceProvider->association->name }}
+                                    {{ $serviceProvider->association->leader }}
                                 </td>
                                 <td>
                                     {{ $serviceProvider->user->phone_number }}
@@ -113,7 +113,6 @@
                         </div>
                     </div>
                     <h5 class="mt-3 name mb-3">
-
                     </h5>
                     <div class="row mb-1">
                         <div class="col-md-5">
@@ -121,7 +120,7 @@
                         </div>
                         <div class="col-md-5">
                             <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-birth_date"
-                                    class="">JL. Harga Buah no 3</span></p>
+                                    class="address"></span></p>
                         </div>
                     </div>
                     <div class="row mb-1">
@@ -130,7 +129,7 @@
                         </div>
                         <div class="col-md-5">
                             <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-birth_date"
-                                    class="">Malang</span></p>
+                                    class="city"></span></p>
                         </div>
                     </div>
                     <div class="row mb-1">
@@ -139,7 +138,7 @@
                         </div>
                         <div class="col-md-5">
                             <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-birth_date"
-                                    class="">Jawa Timur</span></p>
+                                    class="province"></span></p>
                         </div>
                     </div>
                     <div class="row mb-1">
@@ -148,7 +147,7 @@
                         </div>
                         <div class="col-md-5">
                             <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-birth_date"
-                                    class="">045641</span></p>
+                                    class="postal_code"></span></p>
                         </div>
                     </div>
                     <div class="row mb-1">
@@ -175,7 +174,7 @@
                         </div>
                         <div class="col-md-5">
                             <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-birth_date"
-                                    class="">www.badanusaha.com</span></p>
+                                    class="website"></span></p>
                         </div>
                     </div>
                     <div class="row mb-1">
@@ -184,7 +183,7 @@
                         </div>
                         <div class="col-md-5">
                             <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-birth_date"
-                                    class="">CV. Badan Usaha</span></p>
+                                    class="form_of_business_entity"></span></p>
                         </div>
                     </div>
                     <div class="row mb-1">
@@ -193,7 +192,7 @@
                         </div>
                         <div class="col-md-5">
                             <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-birth_date"
-                                    class="">Pelaksana Kegiatan Kerja</span></p>
+                                    class="type_of_business_entity"></span></p>
                         </div>
                     </div>
                 </div>
@@ -215,7 +214,6 @@
             console.log(id);
             get()
             $('#modal-detail').modal('show');
-
             function get() {
                 $.ajax({
                     url: "service-provider-detail/" + id,
@@ -225,7 +223,57 @@
                         var name = response.data.user.name;
                         var email = response.data.user.email;
                         var phone_number = response.data.user.phone_number;
+                        var address = response.data.association.address;
+                        var province = response.data.province;
+                        var city = response.data.city;
+                        var type_of_business_entity = response.data.type_of_business_entity;
+                        var form_of_business_entity = response.data.form_of_business_entity;
+                        var website = response.data.website;
+                        var postal_code = response.data.postal_code;
+                        var datawebsite = '';
+                        if (website === null) {
+                            var datawebsite = '-';
+                        }else{
+                            var datawebsite = website;
+                        }
+                        var datacity = '';
+                        if (city === null) {
+                            var datacity = '-';
+                        }else{
+                            var datacity = city;
+                        }
+                        var datapostal_code = '';
+                        if (postal_code === null) {
+                            var datapostal_code = '-';
+                        }else{
+                            var datapostal_code = city;
+                        }
+                        var dataprovince = '';
+                        if (province === null) {
+                            var dataprovince = '-';
+                        }else{
+                            var dataprovince = city;
+                        }
+                        var dataform_of_business_entity = '';
+                        if (form_of_business_entity === null) {
+                            var dataform_of_business_entity = '-';
+                        }else{
+                            var dataform_of_business_entity = city;
+                        }
+                        var datatype_of_business_entity = '';
+                        if (type_of_business_entity === null) {
+                            var datatype_of_business_entity = '-';
+                        }else{
+                            var datatype_of_business_entity = city;
+                        }
                         $('#phone_number').text(phone_number)
+                        $('.website').text(datawebsite)
+                        $('.postal_code').text(datapostal_code)
+                        $('.form_of_business_entity').text(dataform_of_business_entity)
+                        $('.type_of_business_entity').text(datatype_of_business_entity)
+                        $('.city').text(datacity)
+                        $('.province').text(dataprovince)
+                        $('.address').text(address)
                         $('#email').text(email)
                         $('.name').text(name)
                     }
