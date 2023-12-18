@@ -78,7 +78,7 @@
                                         <form method="POST" action="{{ route('register') }}">
                                             @csrf
                                             <div class="row">
-                                                <div class="mb-3 col-md-6 col-12">
+                                                <div class="mb-3 col-md-12 col-12">
                                                     <label for="username" class="form-label"
                                                         style="font-weight: bold">{{ __('Badan Usaha') }}</label>
                                                     <input id="username" type="text"
@@ -107,15 +107,6 @@
                                                     @enderror
                                                 </div>
                                                 <div class="mb-3 col-md-6 col-12">
-                                                    <label for="email" class="form-label"
-                                                        style="font-weight: bold">{{ __('Asosiasi') }}</label>
-                                                    <select name="association_id" class="form-select" id="">
-                                                        @foreach ($associations as $association)
-                                                        <option value="{{ $association->id }}">{{ $association->name }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                                <div class="mb-3 col-md-6 col-12">
                                                     <label for="phone" class="form-label"
                                                         style="font-weight: bold">{{ __('No telephone') }}</label>
                                                     <input id="phone" type="number"
@@ -128,6 +119,25 @@
                                                             <strong>{{ $message }}</strong>
                                                         </span>
                                                     @enderror
+                                                </div>
+                                                <div class="mb-3 col-md-6 col-12">
+                                                    <label for="email" class="form-label"
+                                                        style="font-weight: bold">{{ __('Asosiasi') }}</label>
+                                                    <select name="association_id" class="form-select" id="">
+                                                        @foreach ($associations as $association)
+                                                            <option value="{{ $association->id }}">
+                                                                {{ $association->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+                                                <div class="mb-3 col-md-6 col-12">
+                                                    <label for="phone" class="form-label"
+                                                        style="font-weight: bold">{{ __('Tipe') }}</label>
+                                                    <select name="type" class="form-select" id="">
+                                                        <option value="consultant">Konsultan</option>
+                                                        <option value="participant">Peserta</option>
+                                                    </select>
                                                 </div>
 
                                                 <div class="mb-3 col-md-6 col-12">
@@ -158,7 +168,7 @@
                                                             class="form-control  @error('password_confirmation') is-invalid @enderror"
                                                             name="password_confirmation"
                                                             autocomplete="current-password_confirmation"
-                                                            placeholder="Masukan password_confirmation"
+                                                            placeholder="Masukan Ulang Password"
                                                             aria-label="Password Konfirmasi"
                                                             aria-describedby="password_confirmation-addon"
                                                             style="border-radius: 8px 0 0 8px;">

@@ -19,11 +19,6 @@ class ImageRequest extends FormRequest
             'categories' => ['required', new CategoryImageRule],
             'photo' => [
                 'required',
-                Rule::sometimes('mimes:png,jpg,jpeg', function ($input) {
-                    return in_array('video', $input->categories);
-                }, function ($input) {
-                    return in_array('video', $input->categories) ? 'mimes:mp4' : '';
-                }),
             ],
         ];
     }
