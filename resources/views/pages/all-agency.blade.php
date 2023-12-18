@@ -126,7 +126,7 @@
                         <div class="d-flex justify-content-header gap-2">
                             <div class="">
                                 <img class="rounded-circle"
-                            src="{{ asset('Default.png') }}"
+                            src="{{ $dinas->profile ? asset('storage/' . $user->profile) : asset('Default.png') }}"
                             alt="" width="45" height="45" style="object-fit: cover;">
                             </div>
                             <div class="">
@@ -172,6 +172,7 @@
                 </tr>
                 @endforelse
         </table>
+        {{ $dinass->links('pagination::bootstrap-5') }}
     </div>
     <x-delete-modal-component />
 @endsection
