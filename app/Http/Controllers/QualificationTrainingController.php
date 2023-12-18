@@ -26,13 +26,13 @@ class QualificationTrainingController extends Controller
     public function index(Request $request)
     {
         $qualificationTrainings = $this->qualificationTraining->customPaginate($request, 10);
-        // if ($request->is('api/*')) {
+        if ($request->is('api/*')) {
         $data['paginate'] = $this->customPaginate($qualificationTrainings->currentPage(), $qualificationTrainings->lastPage());
         $data['data'] = QualificationTrainingResource::collection($qualificationTrainings);
         return ResponseHelper::success($data);
-        // } else {
-        //     return view();
-        // }
+        } else {
+            return view('pages.qualification-training', ['qualificationTrainings' => $qualificationTrainings]);
+        }
     }
 
     /**
