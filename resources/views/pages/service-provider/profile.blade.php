@@ -40,7 +40,7 @@
                                 <div class="btn btn-sm mb-3 text-dark rounded-3" style="background-color: #E4ECFF;">
                                     Data Badan Usaha
                                 </div>
-                                <button data-bs-toggle="modal" data-bs-target="#modal-update-badan_usaha" class="btn btn-warning">Edit</button>
+                                <button style="background-color: #E4ECFF;" data-bs-toggle="modal" data-bs-target="#modal-update-badan_usaha" class="text-dark btn px-4 fw-bold">Edit</button>
                             </div>
                             <p class="fw-bolder fs-4">MITRA BAHAGIA UTAMA BUMIAJI</p>
                             <table cellpadding="5" style="border-collapse: collapse; width: 50%;" class="fs-6 fw-normal">
@@ -693,7 +693,7 @@
                         </div>
                         <div class="col-12">
                             <label for="" class="form-label">Alamat Badan Usaha</label>
-                            <textarea name="description" id="create-description" class="form-control" cols="30" rows="10"></textarea>
+                            <textarea name="description" id="create-description" class="form-control" cols="15" rows="5"></textarea>
                         </div>
                 </div>
                 <div class="modal-footer">
