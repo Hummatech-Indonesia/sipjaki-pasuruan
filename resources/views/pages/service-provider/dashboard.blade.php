@@ -1,6 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+    .search-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.search-icon {
+    margin-left: 10px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+</style>
 <div class="page-title-box d-sm-flex align-items-center">
     <h4 class="mb-sm-0 font-size-18">Dashboard</h4>
 </div>
