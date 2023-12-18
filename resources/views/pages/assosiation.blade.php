@@ -53,14 +53,14 @@
                                         <div class="mb-3">
                                             <label for="basicpill-year">Nama</label>
                                             <input type="text" class="form-control" name="name" id="basicpill-year"
-                                                placeholder="Masukan Tahun">
+                                                placeholder="Masukkan Nama Asosiasi">
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="basicpill-name">Email</label>
                                             <input type="email" class="form-control" name="email" id="basicpill-name"
-                                                placeholder="masukan nama pekerjaan">
+                                                placeholder="Masukkan Email Asosiasi">
                                         </div>
                                     </div>
                                 </div>
@@ -69,26 +69,26 @@
                                     <div class="col-lg-4">
                                         <div class="mb-3">
                                             <label for="basicpill-fund_source_id">Telepon</label>
-                                            <input type="number" name="phone_number" id="create-phone_number"
+                                            <input type="number" placeholder="Telepon Asosiasi" name="phone_number" id="create-phone_number"
                                                 class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="mb-3">
                                             <label for="basicpill-email-input">Kota/Kab</label>
-                                            <input type="text" name="city" id="create-city" class="form-control">
+                                            <input type="text" name="city" placeholder="Kota/Kab Asosiasi" id="create-city" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="mb-3">
                                             <label for="basicpill-email-input">Kode Pos</label>
-                                            <input type="number" name="postal_code" id="create-postal-code"
+                                            <input type="number" placeholder="Masukkan Kode Pos" name="postal_code" id="create-postal-code"
                                                 class="form-control">
                                         </div>
                                     </div>
                                     <div>
                                         <label for="" class="form-label">Alamat</label>
-                                        <textarea name="address" id="create-address" class="form-control" cols="25" rows="5"></textarea>
+                                        <textarea name="address" placeholder="Masukkan Alamat" id="create-address" class="form-control" cols="25" rows="5"></textarea>
                                     </div>
                                 </div>
                             </section>
@@ -101,21 +101,21 @@
                                         <div class="mb-3">
                                             <label for="basicpill-nilai_kontrak">Nama Ketua</label>
                                             <input type="text" class="form-control" name="leader"
-                                                id="basicpill-nilai_kontrak" placeholder="Masukan nilai kontrak">
+                                                id="basicpill-nilai_kontrak" placeholder="Masukkan Nama Ketua Asosiasi">
                                         </div>
                                     </div>
 
                                     <div class="col-lg-4">
                                         <div class="mb-3">
                                             <label for="basicpill-contract_category_id">Email</label>
-                                            <input type="email" name="email_leader" id="create-email_leader"
+                                            <input type="email" name="email_leader" placeholder="Masukkan Email" id="create-email_leader"
                                                 class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="mb-3">
                                             <label for="basicpill-cstno-input">Telepon</label>
-                                            <input type="number" name="phone_number_leader"
+                                            <input type="number" placeholder="Masukkan Telepon" name="phone_number_leader"
                                                 id="create-phone_number_leader" class="form-control">
                                         </div>
                                     </div>
@@ -124,7 +124,7 @@
                                     <div class="col-lg-12">
                                         <div class="mb-3">
                                             <label>Alamat</label>
-                                            <textarea name="address_leader" class="form-control" id="create-leader_address" cols="30" rows="5"></textarea>
+                                            <textarea name="address_leader" placeholder="Masukkan Alamat" class="form-control" id="create-leader_address" cols="30" rows="5"></textarea>
                                         </div>
                                     </div>
                                 </div>
