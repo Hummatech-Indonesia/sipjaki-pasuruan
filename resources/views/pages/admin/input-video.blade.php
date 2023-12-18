@@ -1,41 +1,41 @@
 @extends('layouts.app')
 @section('style')
-<style>
-    #preview {
-        height: 500px;
-        border: 1px dashed #ccc;
-        padding: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-    }
+    <style>
+        #preview {
+            height: 500px;
+            border: 1px dashed #ccc;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
 
-    #preview::before {
-        content: '';
-        background-image: url('path/to/image-icon.png');
-        background-size: 40px;
-        background-position: center;
-        background-repeat: no-repeat;
-        width: 40px;
-        height: 40px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
+        #preview::before {
+            content: '';
+            background-image: url('path/to/image-icon.png');
+            background-size: 40px;
+            background-position: center;
+            background-repeat: no-repeat;
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
 
-    #preview::after {
-        content: "Upload Video";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 16px;
-        color: #333;
-        text-align: center;
-    }
-</style>
+        #preview::after {
+            content: "Upload Video";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 16px;
+            color: #333;
+            text-align: center;
+        }
+    </style>
 @endsection
 @section('content')
     @if ($errors->any())
@@ -55,7 +55,7 @@
                 @csrf
                 @method('POST')
                 <img src="" id="img-beranda" height="200" alt="">
-                <input type="hidden" name="video" value="structure_organitation">
+                <input type="hidden" name="categories" value="video">
                 <div class="row">
                     <div class="col-12 mb-4">
                         <div id="preview"></div>
@@ -86,31 +86,39 @@
         // preview 
         const fileInput = document.getElementById('fileInput');
         const previewDiv = document.getElementById('preview');
-
+        const defaultVideoSrc = "{{ asset('storage/video/video.mp4') }}";
+    
+        // Set video source to default on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            previewDiv.innerHTML =
+                `<video id="previewVideo" src="${defaultVideoSrc}" style="width: 100%; height: 100%; object-fit: cover;" controls></video>`;
+        });
+    
         fileInput.addEventListener('change', function(e) {
             const file = e.target.files[0];
-
+    
             if (file) {
                 const fileReader = new FileReader();
-
+    
                 fileReader.onload = function(event) {
                     const fileType = file.type;
                     const fileUrl = event.target.result;
-
+    
                     if (fileType.startsWith('image/')) {
                         previewDiv.innerHTML =
                             `<img src="${fileUrl}" style="width: 100%; height: 100%; object-fit: cover;">`;
                     } else if (fileType.startsWith('video/')) {
                         previewDiv.innerHTML =
-                            `<video src="${fileUrl}" style="width: 100%; height: 100%; object-fit: cover;" controls></video>`;
+                            `<video id="previewVideo" src="${fileUrl}" style="width: 100%; height: 100%; object-fit: cover;" controls></video>`;
                     } else {
                         previewDiv.innerHTML = 'File tidak didukung';
                     }
                 };
-
+    
                 fileReader.readAsDataURL(file);
             } else {
-                previewDiv.innerHTML = '';
+                previewDiv.innerHTML =
+                    `<video id="previewVideo" src="${defaultVideoSrc}" style="width: 100%; height: 100%; object-fit: cover;" controls></video>`;
             }
         });
     </script>

@@ -30,9 +30,12 @@ use App\Http\Controllers\DinasController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\SubClassificationController;
 use App\Http\Controllers\QualificationLevelController;
+use App\Http\Controllers\QualificationLevelTrainingController;
+use App\Http\Controllers\QualificationTrainingController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\ServiceProviderController;
 use App\Http\Controllers\ServiceProviderProjectController;
+use App\Http\Controllers\SubClassificationTrainingController;
 use App\Http\Controllers\SuperadminController;
 use App\Http\Controllers\TypeController;
 
@@ -120,9 +123,15 @@ Route::middleware('auth')->group(function () {
             'sections' => SectionController::class,
             'rules' => RuleController::class,
             'types' => TypeController::class,
-            'classification-training' => ClassificationTrainingController::class,
+            'classification-trainings' => ClassificationTrainingController::class,
+            'qualification-level-trainings' => QualificationLevelTrainingController::class,
+            'qualification-trainings' => QualificationTrainingController::class,
+            'classification-training'=> ClassificationTrainingController::class
         ]);
-
+        Route::get('sub-clasification-training/{classification_training}',[SubClassificationTrainingController::class,'index'])->name('sub-trainings.detail');
+        Route::post('sub-clasification-training/store/{classification_training}',[SubClassificationTrainingController::class,'store'])->name('sub-clasification-training.store');
+        Route::put('sub-clasification-training/update/{sub_classification_training}',[SubClassificationTrainingController::class,'update'])->name('sub-clasification-training.update');
+        Route::delete('sub-clasification-training/delete/{sub_classification_training}',[SubClassificationTrainingController::class,'destroy'])->name('sub-clasification-training.delete');
 
         Route::get('history-login', [HistoryLoginController::class, 'index'])->name('history-login.index');
         Route::get('classification-trainings', [ClassificationTrainingController::class, 'index'])->name('classification-training.index');

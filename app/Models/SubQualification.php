@@ -2,28 +2,28 @@
 
 namespace App\Models;
 
-use App\Base\Interfaces\HasDinas;
+use App\Base\Interfaces\HasClassification;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class DinasField extends Model implements HasDinas
+class SubQualification extends Model implements HasClassification
 {
     use HasFactory;
-    protected $table = 'dinas_fields';
+    protected $table = 'sub_qualifications';
     protected $primaryKey = 'id';
-    protected $fillable = ['id', 'dinas_id', 'field_id'];
+    protected $fillable = ['id', 'qualification_id', 'name'];
     protected $guarded = [];
     public $incrementing = false;
     public $keyType = 'char';
 
     /**
-     * dinas
+     * classification
      *
      * @return BelongsTo
      */
-    public function dinas(): BelongsTo
+    public function classification(): BelongsTo
     {
-        return $this->belongsTo(Dinas::class);
+        return $this->belongsTo(Classification::class);
     }
 }

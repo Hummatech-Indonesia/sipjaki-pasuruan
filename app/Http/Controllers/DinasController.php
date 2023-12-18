@@ -12,20 +12,19 @@ use App\Helpers\ResponseHelper;
 use App\Http\Resources\DinasAccidentResource;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class DinasController extends Controller
 {
     private DinasInterface $dinas;
-    private SectionInterface $section;
     private TypeInterface $type;
     private UserInterface $user;
     private ProjectInterface $project;
 
-    public function __construct(DinasInterface $dinas, SectionInterface $section, TypeInterface $type, UserInterface $user, ProjectInterface $project)
+    public function __construct(DinasInterface $dinas, TypeInterface $type, UserInterface $user, ProjectInterface $project)
     {
         $this->user = $user;
         $this->dinas = $dinas;
-        $this->section = $section;
         $this->type = $type;
         $this->project = $project;
     }
@@ -38,13 +37,15 @@ class DinasController extends Controller
     public function index()
     {
         $dinas = auth()->user()->dinas;
-        $sections = $this->section->get();
-        $types = $this->type->get();
         return view('pages.profile-opd', [
-            'sections' => $sections,
-            'types' => $types,
             'dinas' => $dinas
         ]);
+    }
+    public function all(Request $request)
+    {
+        $dinass = $this->dinas->customPaginate($request, 15);
+        // dd($dinass);
+        return view('pages.all-agency', compact('dinass'));
     }
     /**
      * update
@@ -88,7 +89,9 @@ class DinasController extends Controller
         foreach ($projects as $project) {
             $accident_total += $project->accidents->count();
         }
-        return view('pages.dinas.dashboard');
-        // return ResponseHelper::success(['accident_count' => $accident_total, 'project' => $projects]);
+        $project_total = $this->project->countDinas();
+        $countActiveWorker = $this->project->countAllProject();
+
+        return view('pages.dinas.dashboard', ['accident_count' => $accident_total, 'project_count' => $project_total, 'countActiveWorker' => $countActiveWorker]);
     }
 }

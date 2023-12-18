@@ -4,6 +4,7 @@ use App\Http\Controllers\AccidentController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\VerificationController;
+use App\Http\Controllers\DinasController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ServiceProviderProjectController;
 use App\Http\Controllers\SubClassificationController;
@@ -59,19 +60,18 @@ Route::get('download-service-provider-project/{service_provider_project}', [Serv
 // service provider
 Route::get('all-service-provider', [ServiceProviderProjectController::class, 'allServiceProvider'])->name('all.service.provider');
 
-// Clasification training 
+// Clasification training
 Route::get('classification-training', function () {
     return view('pages.classification.training');
 })->name('classification.training');
+Route::get('confirmation-classification', function () {
+    return view('pages.approval.classification');
+})->name('confirmation.classification');
 Route::get('sub-classification-training', function () {
     return view('pages.classification.sub-training');
 })->name('sub.classification.training');
-Route::get('qualification-training', function () {
-    return view('pages.qualification-training');
-})->name('qualification.training');
+
 Route::get('sub-qualification-training', function () {
     return view('pages.sub-qualification-training');
 })->name('sub.qualification.training');
-Route::get('all-agency', function () {
-    return view('pages.all-agency');
-})->name('all.agency');
+Route::get('all-agency' , [DinasController::class , 'all'])->name('all.agency');

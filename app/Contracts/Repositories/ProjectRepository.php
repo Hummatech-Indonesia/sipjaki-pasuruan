@@ -25,7 +25,7 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
     {
         return $this->model->query()
             ->when($request->name, function ($query) use ($request) {
-                $query->where('name', 'LIKE', '%'. $request->name .'%');
+                $query->where('name', 'LIKE', '%' . $request->name . '%');
             })
             ->get();
     }
@@ -38,7 +38,7 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
     public function countAllProject(): int
     {
         return $this->model->query()
-            ->where('service_provider_id', auth()->user()->serviceProvider->id)
+            ->where('service_provider_id', auth()->user()->serviceProvider ? auth()->user()->serviceProvider->id : auth()->user()->dinas->id)
             ->count();
     }
 
@@ -57,7 +57,7 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
                 $query->where('year', $request->year);
             })
             ->when($request->name, function ($query) use ($request) {
-                $query->where('name', 'LIKE', '%'.$request->name.'%');
+                $query->where('name', 'LIKE', '%' . $request->name . '%');
             })
             ->get();
     }
@@ -72,6 +72,18 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
         return $this->model->query()
             ->where('service_provider_id', auth()->user()->serviceProvider->id)
             ->where('status', StatusEnum::ACTIVE->value)
+            ->count();
+    }
+
+    /**
+     * countDinas
+     *
+     * @return int
+     */
+    public function countDinas(): int
+    {
+        return $this->model->query()
+            ->where('dinas_id', auth()->user()->dinas->id)
             ->count();
     }
 
@@ -146,14 +158,14 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
     {
         return $this->model->query()
             ->with('serviceProviderProjects')
-            ->when(auth()->user()->dinas,function($query){
+            ->when(auth()->user()->dinas, function ($query) {
                 $query->whereRelation('dinas', 'dinas_id', auth()->user()->dinas->id);
             })
             ->when($request->name, function ($query) use ($request) {
                 $query->where('name', 'LIKE', '%' . $request->name . '%');
             })
-            ->when($request->status,function($query) use ($request){
-                $query->where('status',$request->status);
+            ->when($request->status, function ($query) use ($request) {
+                $query->where('status', $request->status);
             })
             ->fastPaginate($pagination);
     }
@@ -188,7 +200,7 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
             ->where(['status' => 'active', 'dinas_id' => auth()->user()->dinas->id])
             ->get();
     }
-    
+
     /**
      * count
      *
@@ -198,6 +210,18 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
     public function count(?array $data): int
     {
         return $this->model->query()
+            ->count();
+    }
+
+    /**
+     * countActiveProject
+     *
+     * @return int
+     */
+    public function countActiveProject(): int
+    {
+        return $this->model->query()
+            ->where('status', StatusEnum::ACTIVE->value)
             ->count();
     }
 }

@@ -22,7 +22,7 @@
                         </div>
                     </div>
                     <div class="">
-                        <button class="btn btn-success">
+                        {{-- <button class="btn btn-success">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                                 fill="none">
                                 <path
@@ -34,7 +34,7 @@
                                     stroke-linejoin="round" />
                             </svg>
                             Export
-                        </button>
+                        </button> --}}
                     </div>
                 </div>
             </div>
@@ -90,6 +90,16 @@
                             </tr>
                         </tbody>
                     @empty
+                    <tr>
+                        <td colspan="6" class="text-center">
+                            <div class="d-flex justify-content-center" style="min-height:16rem">
+                                <div class="my-auto">
+                                    <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                    <h4 class="text-center mt-4">Penyedia Jasa Kosong!!</h4>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
                     @endforelse
                 </table>
             </div>

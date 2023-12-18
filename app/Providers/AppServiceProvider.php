@@ -43,9 +43,12 @@ use App\Contracts\Repositories\RuleCategoriesRepository;
 use App\Contracts\Repositories\TrainingMemberRepository;
 use App\Contracts\Repositories\TrainingMethodRepository;
 use App\Contracts\Interfaces\QualificationLevelInterface;
+use App\Contracts\Interfaces\QualificationLevelTrainingInterface;
+use App\Contracts\Interfaces\QualificationTrainingInterface;
 use App\Contracts\Interfaces\SectionInterface;
 use App\Contracts\Interfaces\ServiceProviderInterface;
 use App\Contracts\Interfaces\ServiceProviderProjectInterface;
+use App\Contracts\Interfaces\SubClassificationTrainingInterface;
 use App\Contracts\Interfaces\TypeInterface;
 use App\Contracts\Interfaces\WorkerInterface;
 use App\Contracts\Repositories\AccidentRepository;
@@ -55,16 +58,18 @@ use App\Contracts\Repositories\ContractCategoryRepository;
 use App\Contracts\Repositories\DinasFieldRepository;
 use App\Contracts\Repositories\DinasRepository;
 use App\Contracts\Repositories\FaqRepository;
-use App\Contracts\Repositories\FieldRepository;
 use App\Contracts\Repositories\HistoryLoginRepository;
 use App\Contracts\Repositories\SubClassificationRepository;
 use App\Contracts\Repositories\QualificationLevelRepository;
+use App\Contracts\Repositories\QualificationLevelTrainingRepository;
+use App\Contracts\Repositories\QualificationTrainingRepository;
 use App\Contracts\Repositories\SectionRepository;
 use App\Contracts\Repositories\ServiceProviderProjectRepository;
 use App\Contracts\Repositories\ServiceProviderRepository;
+use App\Contracts\Repositories\SubClassificationTrainingRepository;
 use App\Contracts\Repositories\TypeRepository;
 use App\Contracts\Repositories\WorkerRepository;
-use App\Models\ClassificationTraining;
+use App\Models\QualificationTraining;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -99,6 +104,9 @@ class AppServiceProvider extends ServiceProvider
         DinasFieldInterface::class => DinasFieldRepository::class,
         FaqInterface::class => FaqRepository::class,
         ClassificationTrainingInterface::class => ClassificationTrainingRepository::class,
+        SubClassificationTrainingInterface::class => SubClassificationTrainingRepository::class,
+        QualificationLevelTrainingInterface::class => QualificationLevelTrainingRepository::class,
+        QualificationTrainingInterface::class => QualificationTrainingRepository::class
     ];
 
     /**

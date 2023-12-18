@@ -24,8 +24,7 @@ class AdminController extends Controller
         DinasInterface $dinas,
         ProjectInterface $project,
         AccidentInterface $accident
-    )
-    {
+    ) {
         $this->serviceProvider = $serviceProvider;
         $this->dinas = $dinas;
         $this->project = $project;
@@ -47,8 +46,8 @@ class AdminController extends Controller
         $serviceProvider = $this->serviceProvider->count(null);
         $project = $this->project->count(null);
         $accident = $this->accident->count(null);
-        $activeProjects = $this->project->customPaginate($request,15);
+        $activeProjects = $this->project->customPaginate($request, 15);
 
-        return view('pages.admin.dashboard',compact('dinas','serviceProvider','project','accident','activeProjects'));
+        return view('pages.admin.dashboard', ['dinas' => $dinas, 'serviceProvider' => $serviceProvider, 'project' => $project, 'accident' => $accident, 'serviceProvider' => $serviceProvider, 'activeProjects' => $activeProjects]);
     }
 }
