@@ -24,6 +24,7 @@ use App\Contracts\Interfaces\QualificationInterface;
 use App\Contracts\Repositories\FiscalYearRepository;
 use App\Contracts\Repositories\FundSourceRepository;
 use App\Contracts\Interfaces\ClassificationInterface;
+use App\Contracts\Interfaces\ClassificationTrainingInterface;
 use App\Contracts\Interfaces\ForgotPasswordInterface;
 use App\Contracts\Interfaces\RuleCategoriesInterface;
 use App\Contracts\Interfaces\TrainingMemberInterface;
@@ -49,6 +50,7 @@ use App\Contracts\Interfaces\TypeInterface;
 use App\Contracts\Interfaces\WorkerInterface;
 use App\Contracts\Repositories\AccidentRepository;
 use App\Contracts\Repositories\AssociationRepositoy;
+use App\Contracts\Repositories\ClassificationTrainingRepository;
 use App\Contracts\Repositories\ContractCategoryRepository;
 use App\Contracts\Repositories\DinasFieldRepository;
 use App\Contracts\Repositories\DinasRepository;
@@ -62,6 +64,7 @@ use App\Contracts\Repositories\ServiceProviderProjectRepository;
 use App\Contracts\Repositories\ServiceProviderRepository;
 use App\Contracts\Repositories\TypeRepository;
 use App\Contracts\Repositories\WorkerRepository;
+use App\Models\ClassificationTraining;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -94,7 +97,8 @@ class AppServiceProvider extends ServiceProvider
         SectionInterface::class => SectionRepository::class,
         TypeInterface::class => TypeRepository::class,
         DinasFieldInterface::class => DinasFieldRepository::class,
-        FaqInterface::class => FaqRepository::class
+        FaqInterface::class => FaqRepository::class,
+        ClassificationTrainingInterface::class => ClassificationTrainingRepository::class,
     ];
 
     /**

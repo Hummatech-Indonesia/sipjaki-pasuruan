@@ -1,18 +1,9 @@
 @extends('layouts.app')
 @section('content')
-@if(session('success'))
-<script>
-    Swal.fire({
-        icon: 'success',
-        title: 'Success',
-        text: '{{ session('success') }}',
-    });
-</script>
-@endif
     <div class="">
         <div>
             <h2 class="">
-                Klasifikasi
+                Detail Jenjang Kualifikasi
             </h2>
         </div>
     </div>
@@ -20,23 +11,23 @@
     <div class="modal fade" id="samedata-modal" tabindex="-1" id="modeal-create" aria-labelledby="exampleModalLabel1">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <form action="{{ route('classification-training.store') }}" method="post">
+                <form action=""
+                    method="post">
                     @csrf
                     @method('POST')
                     <div class="modal-header d-flex align-items-center text-white " style="background-color: #1B3061">
                         <h4 class="modal-title" id="exampleModalLabel1">
-                            Tambah Klasifikasi Pelathina
+                            Tambah Jenjang Kualifikasi
                         </h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label id="name" for="recipient-name" class="control-label mb-2">Masukan
-                                Klasifikasi Pelatihan</label>
+                            <label id="name" for="recipient-name" class="control-label mb-2">Masukan Jenjang
+                                Kualifikasi</label>
                             <input type="text" class="form-control" id="create-school_year" class="form-control"
                                 name="name" id="nametext" aria-describedby="name" placeholder="" />
                         </div>
-
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger text-white font-medium waves-effect"
@@ -51,66 +42,46 @@
             </div>
         </div>
     </div>
-    {{-- end modal --}}
+
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title mt-2 mb-3">Berikut Daftar-dafter klasifikasi Pelatihan</h4>
             <div class="d-flex justify-content-between mb-3">
-                <form class=" col-lg-3">
-                    <div class="input-group">
-                        <input name="name"  type="text" class="form-control" placeholder="Search">
-                        <div class="input-group-append">
-                            <button class="btn text-white" style="background-color: #1B3061; border-radius: 0 5px 5px 0;" type="submit">
-                                <i class="fa fa-search"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
                 <div class="">
+                    <h5>
+                        Berikut daftar Jenjang Kualifikasi - </h5>
+                </div>
+                <div class="">
+                    <a href="{{ route('qualifications.index') }}"
+                        class="btn me-2 btn-md btn-create text-white cursor-pointer" style="background-color: #1B3061">
+                        Kembali
+                    </a>
                     <button class="btn me-2 btn-md btn-create text-white" data-bs-toggle="modal"
                         data-bs-target="#samedata-modal" style="background-color: #1B3061">
-                        Tambah
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z" />
+                        </svg>
+                        Tambah Jenjang Kualifikasi
                     </button>
                 </div>
             </div>
-            @if ($errors->has('name'))
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                {{ $errors->first('name') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @endif
             <div class="table-responsive">
                 <table class="table mb-0 table-borderless" border="1">
                     <thead>
                         <tr>
                             <th class="text-white" style="background-color: #1B3061">No</th>
-                            <th class="text-white" style="background-color: #1B3061">Nama Klasifikasi</th>
+                            <th class="text-white" style="background-color: #1B3061">Level Kualifikasi</th>
                             <th class="text-white" style="background-color: #1B3061; text-align: center">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($classificationTrainings as $classificationTraining)
                         <tr>
-                            <th scope="row" class="fs-5">{{ $loop->iteration }}</th>
-                            <td>{{ $classificationTraining->name }}</td>
+                            <td>1</td>
+                            <td>Kader
+                            </td>
                             <td>
                                 <div class="d-flex justify-content-center gap-2">
                                     <div class="">
-                                        <a href="#" type="button" class="btn  waves-effect waves-light text-white"
-                                            style="background-color: #1B3061">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19"
-                                                viewBox="0 0 24 24" fill="none">
-                                                <path d="M4.5 12.5C7.5 6 16.5 6 19.5 12.5" stroke="white"
-                                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                                <path
-                                                    d="M12 16C10.8954 16 10 15.1046 10 14C10 12.8954 10.8954 12 12 12C13.1046 12 14 12.8954 14 14C14 15.1046 13.1046 16 12 16Z"
-                                                    stroke="white" stroke-width="1.5" stroke-linecap="round"
-                                                    stroke-linejoin="round" />
-                                            </svg> Detail
-                                        </a>
-                                    </div>
-                                    <div class="">
-                                        <button data-id="{{ $classificationTraining->id }}" id="btn-edit-{{ $classificationTraining->name }}" data-name="{{ $classificationTraining->name }}" type="button" class="btn btn-edit btn-warning waves-effect waves-light btn-edit" >
+                                        <button type="button" class="btn btn-warning waves-effect waves-light btn-edit">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                 viewBox="0 0 24 24" fill="none">
                                                 <g clip-path="url(#clip0_26_1791)">
@@ -134,7 +105,7 @@
                                         </button>
                                     </div>
                                     <div class="">
-                                        <button type="button" data-id="{{ $classificationTraining->id }}" class="btn btn-danger btn-delete waves-effect waves-light btn-delete">
+                                        <button type="button" class="btn btn-danger waves-effect waves-light btn-delete">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                 viewBox="0 0 20 20" fill="none">
                                                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -146,15 +117,46 @@
                                 </div>
                             </td>
                         </tr>
-                        @empty
-                            
-                        @endforelse
-                            
                     </tbody>
                 </table>
             </div>
-
         </div>
+    </div>
+
+    <div class="modal fade" id="modal-update" tabindex="-1" aria-labelledby="exampleModalLabel1">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header d-flex align-items-center text-white" style="background-color: #1B3061">
+                    <h4 class="modal-title" id="exampleModalLabel1">
+                        Edit Metode Pelatihan
+                    </h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        style="color: white;"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="form-update" method="POST">
+                        @method('PUT')
+                        @csrf
+                        <div class="mb-3">
+                            <label id="name" for="recipient-name" class="control-label mb-2">Masukan
+                                Anggaran</label>
+                            <input type="text" class="form-control" id="update-name" class="form-control"
+                                name="name" aria-describedby="name" placeholder="Masukan Anggaran" />
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger text-white font-medium waves-effect"
+                        data-bs-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="submit" style="background-color: #1B3061" class="btn text-white btn-create">
+                        Edit
+                    </button>
+                </div>
+                </form>
+            </div>
+        </div>
+
     </div>
     <x-delete-modal-component />
 @endsection

@@ -42,7 +42,7 @@
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
                             <li><a href="{{ route('qualification.training') }}" key="t-tui-calendar">Kualifikasi</a></li>
-                            <li><a href="{{ route('classification.training') }}" key="t-full-calendar">Klasifikasi</a></li>
+                            <li><a href="{{ route('classification-training.index') }}" key="t-full-calendar">Klasifikasi Pelatihan</a></li>
                             <li><a href="{{ route('training-methods.index') }}" key="t-full-calendar">Metode Pelatihan</a></li>
                         </ul>
                     </li>
@@ -59,8 +59,8 @@
                             </span>
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="calendar.html" key="t-tui-calendar">Dinas</a></li>
-                            <li><a href="calendar-full.html" key="t-full-calendar">Penyedia Jasa</a></li>
+                            <li><a href="{{ route('all.agency') }}" key="t-tui-calendar">Dinas</a></li>
+                            <li><a href="{{ route('all.service.provider') }}" key="t-full-calendar">Penyedia Jasa</a></li>
                         </ul>
                     </li>
                     <li>

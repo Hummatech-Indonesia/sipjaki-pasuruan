@@ -63,6 +63,15 @@ Route::get('all-service-provider', [ServiceProviderProjectController::class, 'al
 Route::get('classification-training', function () {
     return view('pages.classification.training');
 })->name('classification.training');
+Route::get('sub-classification-training', function () {
+    return view('pages.classification.sub-training');
+})->name('sub.classification.training');
 Route::get('qualification-training', function () {
     return view('pages.qualification-training');
 })->name('qualification.training');
+Route::get('sub-qualification-training', function () {
+    return view('pages.sub-qualification-training');
+})->name('sub.qualification.training');
+Route::get('all-agency', function () {
+    return view('pages.all-agency');
+})->name('all.agency');
