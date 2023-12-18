@@ -34,7 +34,15 @@ class LoginService
                     $data['user'] = UserResource::make(auth()->user());
                     return ResponseHelper::success($data, trans('alert.login_success'));
                 } else {
-                    return to_route('home');
+                    if(auth()->user()->roles->pluck('name')[0] == 'superadmin'){
+                        return to_route('dashboard-superadmin');
+                    }else if(auth()->user()->roles->pluck('name')[0] == 'admin'){
+                        return to_route('dashboard-admin');
+                    }else if(auth()->user()->roles->pluck('name')[0] == 'dinas'){
+                        return to_route('dashboard-dinas');
+                    }else if(auth()->user()->roles->pluck('name')[0] == 'service provider'){
+                        return to_route('dashboard-service-provider');
+                    }
                 }
             } else {
                 if ($request->is('api/*')) {

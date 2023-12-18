@@ -152,8 +152,8 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::middleware('role:dinas')->group(function () {
-        Route::get('dashboard-dinas', [DinasController::class, 'dashboard']);
-        
+        Route::get('dashboard-dinas', [DinasController::class, 'dashboard'])->name('dashboard-dinas');
+
         Route::resource('accident', AccidentController::class)->except('create', 'edit');
         Route::resources([
             'projects' => ProjectController::class
@@ -173,7 +173,7 @@ Route::middleware(['role:dinas'])->group(function () {
         'projects' => ProjectController::class,
     ]);
     Route::middleware('role:service provider')->group(function () {
-        Route::get('dashboard-service-provider', [ServiceProviderController::class, 'dahsboard']);
+        Route::get('dashboard', [ServiceProviderController::class, 'dahsboard'])->name('dashboard-service-provider');
         Route::resource('workers', WorkerController::class)->only('index', 'update', 'destroy');
         Route::delete('delete-workers', [WorkerController::class, 'deleteMultiple']);
         Route::post('workers/{service_provider}', [WorkerController::class, 'store']);

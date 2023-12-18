@@ -35,7 +35,7 @@ class ServiceProviderController extends Controller
         //Kualifikasi dan Klasifikasi
         $workers = $this->worker->getByServiceProvider($request);
         $experiences = $this->project->getByServiceProvider($request);
-        return view('', ['experiences' => $experiences, 'workers' => $workers]);
+        return view('pages.service-provider.dashboard', ['experiences' => $experiences, 'workers' => $workers]);
     }
 
     /**
