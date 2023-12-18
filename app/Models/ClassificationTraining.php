@@ -11,7 +11,7 @@ class ClassificationTraining extends Model
 
     protected $table = 'classification_trainings';
     protected $primaryKey = 'id';
-    protected $fillable = ['id', 'name', 'code', 'description'];
+    protected $fillable = ['id', 'name'];
     protected $guarded = [];
     public $incrementing = false;
     public $keyType = 'char';
