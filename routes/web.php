@@ -136,6 +136,8 @@ Route::middleware('auth')->group(function () {
             Route::put('sub-classifications/{sub_classification}', [SubClassificationController::class, 'update'])->name('update');
             Route::delete('sub-classifications/{sub_classification}', [SubClassificationController::class, 'destroy'])->name('destroy');
         });
+
+        Route::post('import-associations', [AssociationController::class, 'import'])->name('import.assosiations');
     });
 
     Route::middleware('role:admin')->group(function () {

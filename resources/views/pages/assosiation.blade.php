@@ -42,7 +42,7 @@
                         </h4>
                     </div>
                 </div>
-                <form id="form-create" action="import-associations" method="POST" enctype="multipart/form-data">
+                <form id="form-create" action="{{ route('import.assosiations') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
                         <div class="alert alert-warning d-flex align-items-center p-4">
