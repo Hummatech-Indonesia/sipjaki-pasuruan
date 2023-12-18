@@ -2,12 +2,24 @@
 @section('content')
     <h2>Berita</h2>
     <div class="card p-3">
+        <div>
+            <h5>
+                Daftar Berita
+            </h5>
+        </div>
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <div>
-                <h5>
-                    Daftar Berita
-                </h5>
-            </div>
+            <form action="" class="">
+                <div class="input-group">
+                    <input name="title" type="text" class="form-control"
+                        placeholder="Search">
+                    <div class="input-group-append">
+                        <button class="btn text-white" style="background-color: #1B3061; border-radius: 0 5px 5px 0;"
+                            type="submit">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
             <div>
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-create"
                     style="background-color: #1B3061; border-radius: 10px"><i class="fas fa-plus"
@@ -32,7 +44,7 @@
                                         <label id="name" for="recipient-name" class="control-label mb-2">Judul</label>
                                         <input type="text" class="form-control" id="create-name" class="form-control"
                                             name="title" id="nametext" aria-describedby="name"
-                                            placeholder="Masukan Judul" />
+                                            placeholder="Masukan Judul" value="{{ old('title') }}" />
                                     </div>
                                     <div class="col-md-6 col-12 ">
                                         <label id="name" for="recipient-name" class="control-label mb-2">Masukan
@@ -45,7 +57,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">berita</label>
-                                    <textarea name="content" id="summernote" class="form-control" cols="30" rows="10"></textarea>
+                                    <textarea name="content" id="summernote" class="form-control" cols="30" rows="20">{{ old('content') }}</textarea>
                                 </div>
                         </div>
                         <div class="modal-footer">
@@ -135,27 +147,27 @@
                                 aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-6 col-12 mb-3">
-                                    <label id="name" for="recipient-name" class="control-label mb-2">Judul</label>
-                                    <input type="text" class="form-control" id="update-name" class="form-control"
-                                        name="title" id="nametext" aria-describedby="name"
-                                        placeholder="Masukan Judul" />
+                                <div class="row">
+                                    <div class="col-md-6 col-12 mb-3">
+                                        <label id="name" for="recipient-name" class="control-label mb-2">Judul</label>
+                                        <input type="text" class="form-control" id="update-name" class="form-control"
+                                            name="title" id="nametext" aria-describedby="name"
+                                            placeholder="Masukan Judul" value="{{ old('title') }}" />
+                                    </div>
+                                    <div class="col-md-6 col-12 ">
+                                        <label id="name" for="recipient-name" class="control-label mb-2">Masukan
+                                            Gambar</label>
+                                        <input type="file" class="form-control mb-3" name="thumbnail" id="update-thumbnail"
+                                            aria-describedby="name" placeholder="Masukan"
+                                            accept="image/png, image/jpeg, image/jpg" />
+                                        <img src="" height="200" style="" id="preview-img" alt="">
+                                    </div>
                                 </div>
-                                <div class="col-md-6 col-12 ">
-                                    <label id="name" for="recipient-name" class="control-label mb-2">Masukan
-                                        Gambar</label>
-                                    <input type="file" class="form-control mb-3" name="thumbnail" id="thumbnail"
-                                        aria-describedby="name" placeholder="Masukan Kategori Kontrak"
-                                        accept="image/png, image/jpeg, image/jpg" />
-                                    <img src="" height="200" style="" id="preview-img" alt="">
+                                <div class="mb-3">
+                                    <label id="name" for="recipient-name" class="control-label mb-2">berita</label>
+                                    <textarea name="content" id="update" class="form-control" cols="30"
+                                        rows="20">{{ old('content') }}</textarea>
                                 </div>
-                            </div>
-                            <div class="mb-3">
-                                <label id="name" for="recipient-name" class="control-label mb-2">berita</label>
-                                <textarea name="content" id="update" class="form-control" cols="30" rows="10"></textarea>
-                            </div>
-                        </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger text-white font-medium waves-effect"
                                 data-bs-dismiss="modal">
