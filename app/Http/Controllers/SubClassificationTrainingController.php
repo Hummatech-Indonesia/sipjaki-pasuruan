@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Interfaces\SubClassificationTrainingInterface;
+use App\Helpers\ResponseHelper;
 use App\Http\Requests\SubClassificationRequest;
 use App\Http\Requests\SubClassificationTrainingRequest;
+use App\Http\Resources\SubClassificationTrainingResource;
 use App\Models\ClassificationTraining;
 use App\Models\SubClassificationTraining;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class SubClassificationTrainingController extends Controller
@@ -77,5 +80,16 @@ class SubClassificationTrainingController extends Controller
     {
         $this->subClassificationTraining->delete($sub_classification_training->id);
         return redirect()->back()->with('success', trans('alert.delete_success'));
+    }
+
+    /**
+     * jsonSubClassificationTraining
+     *
+     * @param  mixed $classification_training
+     * @return JsonResponse
+     */
+    public function jsonSubClassificationTraining(ClassificationTraining $classification_training): JsonResponse
+    {
+        return ResponseHelper::success(SubClassificationTrainingResource::collection($this->subClassificationTraining->show($classification_training->id)));
     }
 }

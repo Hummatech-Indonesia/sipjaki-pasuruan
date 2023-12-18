@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Interfaces\SubQualificationTrainingInterface;
+use App\Helpers\ResponseHelper;
 use App\Http\Requests\SubQualificationTrainingRequest;
+use App\Http\Resources\SubQualificationTrainingResource;
 use App\Models\QualificationTraining;
 use App\Models\SubQualificationTraining;
+use Illuminate\Http\JsonResponse;
 
 class SubQualificationTrainingController extends Controller
 {
@@ -77,5 +80,16 @@ class SubQualificationTrainingController extends Controller
     {
         $this->subQualificationTraining->delete($sub_qualification_training->id);
         return redirect()->back()->with('success',trans('alert.delete_success'));
+    }
+
+    /**
+     * jsonSubQualificationTraining
+     *
+     * @param  mixed $qualification_training
+     * @return JsonResponse
+     */
+    public function jsonSubQualificationTraining(QualificationTraining $qualification_training): JsonResponse
+    {
+        return ResponseHelper::success(SubQualificationTrainingResource::collection($this->subQualificationTraining->show($qualification_training->id)));
     }
 }

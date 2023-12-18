@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Interfaces\ClassificationTrainingInterface;
+use App\Helpers\ResponseHelper;
 use App\Http\Requests\ClassificationTrainingRequest;
+use App\Http\Resources\ClassificationTrainingResource;
 use App\Models\ClassificationTraining;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class ClassificationTrainingController extends Controller
@@ -88,5 +91,15 @@ class ClassificationTrainingController extends Controller
     {
         $this->classificationTraining->delete($classification_training->id);
         return redirect()->back()->with('success', trans('alert.delete_success'));
+    }
+
+    /**
+     * jsonClassificationTraining
+     *
+     * @return JsonResponse
+     */
+    public function jsonClassificationTraining(): JsonResponse
+    {
+        return ResponseHelper::success(ClassificationTrainingResource::collection($this->classificationTraining->get()));
     }
 }

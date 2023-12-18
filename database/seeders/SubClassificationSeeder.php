@@ -22,6 +22,16 @@ class SubClassificationSeeder extends Seeder
             'Pengawasan Penataan Ruang',
             'Konsultansi Spesialis',
             'Konsultansi Lainnya',
+
+            // BANGUNAN GEDUNG
+
+            'Bangunan Gedung',
+            'Bangunan Sipil',
+            'Instalasi Mekanikal dan Elektrikal',
+            'Jasa Pelaksanaan Lainnya',
+            'Jasa Pelaksanaan Spesialis',
+            // 'Jasa Pelaksanaan Keterampilan',
+            // 'Jasa Konstruksi Terintegrasi',
         ];
         $subclassifications = [
             [
@@ -283,6 +293,303 @@ class SubClassificationSeeder extends Seeder
                 ],
             ],
 
+            // BANGUNAN GEDUNG
+            [
+                'code' => [
+                    'BG001',
+                    'BG002',
+                    'BG003',
+                    'BG004',
+                    'BG005',
+                    'BG006',
+                    'BG007',
+                    'BG008',
+                    'BG009',
+                ],
+                'name' => [
+                    'Jasa Pelaksana Konstruksi Bangunan Hunian Tunggal dan Kopel',
+                    'Jasa Pelaksana Konstruksi Bangunan Multi atau Banyak Hunian',
+                    'Jasa Pelaksana
+                    Konstruksi Bangunan Gudang dan Industri',
+                    'Jasa Pelaksana
+                    Konstruksi Bangunan
+                    Komersial',
+                    'Jasa Pelaksana konstruksi bangunan hiburan publik',
+                    'Jasa Pelaksana Konstruksi Bangunan Hotel, Restoran , dan Bangunan Serupa Lainnya',
+                    'Jasa Pelaksana Konstruksi Bangunan Pendidikan',
+                    'Jasa Pelaksana Konstruksi Bangunan Kesehatan',
+                    'Jasa Pelaksana
+                    Konstruksi Bangunan
+                    Gedung Lainnya',
+                ],
+                'description' => [
+                    'Pekerjaan Pelaksanaan (termasuk didalamnya pembangunan baru, penambahan, serta peningkatan) dari bangunan perumahan yang terdiri dari satu atau dua tempat tinggal maksimum 2 lantai.',
+                    'Pekerjaan Pelaksanaan (termasuk didalamnya pembangunan baru, penambahan serta peningkatan) dari bangunan perumahan bertingkat tinggi yang lebih dari 2 lantai.',
+                    'Pekerjaan Pelaksanaan (termasuk didalamnya pembangunan baru, penambahan, peningkatan serta pekerjaan renovasi) dari bangunan gudang dan bangunan Industri',
+                    'Pekerjaan Pelaksanaan (termasuk didalamnya pembangunan baru, penambahan, peningkatan serta pekerjaan renovasi) dari bangunan dengan tujuan komersial seperti bangunan perkantoran, bangunan BANK, Garasi parkir, stasiun pengisian bahan bakar, terminal kendaraan umum serta bangunan stasiun kereta api, bangunan pusat perbelanjaan',
+                    'Pekerjaan Pelaksanaan (termasuk didalamnya pembangunan baru, penambahan, peningkatan serta pekerjaan renovasi) dari bangunan hiburan publik seperti bioskop, hall konser, nightclubs.',
+                    'Pekerjaan Pelaksanaan (termasuk didalamnya pembangunan baru, penambahan, peningkatan serta pekerjaan renovasi) dari hotel, motel, restoran dan bangunan yang serupa lainnya.',
+                    'Pekerjaan Pelaksanaan (termasuk didalamnya pembangunan baru, penambahan, peningkatan serta pekerjaan renovasi) dari bangunan pendidikan seperti sekolah, universitas, perpustakaan dan museum termasuk juga laboratorium penelitian',
+                    'Pekerjaan Pelaksanaan (termasuk didalamnya pembangunan baru, penambahan, peningkatan serta pekerjaan renovasi) dari bangunan kesehatan seperti rumah sakit dan sanotarium',
+                    'Pekerjaan Pelaksanaan (termasuk didalamnya pembangunan baru, penambahan, peningkatan serta pekerjaan renovasi) dari bangunan lainnya seperti, rumah ibadah dan penjara.',
+
+                ],
+            ],
+            [
+                'code' => [
+                    'SI001',
+                    'SI002',
+                    'SI003',
+                    'SI004',
+                    'SI005',
+                    'SI006',
+                    'SI007',
+                    'SI008',
+                    'SI009',
+                    'SI010',
+                    'SI011',
+                    'SI012',
+                ],
+                'name' => [
+                    'JJasa Pelaksana
+                    Konstruksi Saluran
+                    Air, Pelabuhan, Dam, dan Prasarana Sumber Daya Air Lainnya',
+                    'Jasa Pelaksana
+                    Konstruksi Instalasi Pengolahan Air Minum
+                    dan Air Limbah Serta Bangunan Pengolahan Sampah.',
+                    'Jasa Pelaksana
+                    Konstruksi Jalan Raya
+                    ( kecuali Jalan
+                    Layang),Jalan, Rel
+                    Kereta Api, dan
+                    Landas Pacu Bandara',
+                    'Jasa Pelaksana Konstruksi Jembatan, Jalan Layang, Terowongan dan Subways',
+                    'Jasa Pelaksana Konstruksi Perpipaan Air Minum Jarak Jauh',
+                    'Jasa Pelaksana Konstruksi Perpipaan Air Limbah Jarak Jauh',
+                    'Jasa Pelaksana
+                    Konstruksi Perpipaan
+                    Minyak dan Gas Jarak
+                    Jauh',
+                    'Jasa Pelaksana
+                    Konstruksi Perpipaan
+                    Air Minum Lokal',
+                    'Jasa Pelaksana Konstruksi Perpipaan Air Limbah Lokal',
+                    'Jasa Pelaksana Konstruksi Perpipaan Minyak dan Gas Lokal',
+                    'Jasa pelaksana Konstruksi bangunan stadion untuk olahraga outdoor',
+                    'Jasa Pelaksana KonstruksiBangunan Fasilitas Olah Raga
+                    Indoor dan Fasilitas Rekreasi',
+
+                ],
+                'description' => [
+                    '1. Pekerjaan pelaksanaan pembangunan, pemeliharaan dan perbaikan bangunan bendungan (dam), bendung (weir), embung, pintu air, talang, check dam, tanggul dan saluran pengendali banjir termasuk drainase perkotaan beserta bangunan pelengkapnya, tanggul laut, krib, viaduk dan sarana dan/atau
+                    prasarana sumber daya air lainnya;
+                    2. Pekerjaan pelaksanaan pembangunan, pemeliharaan dan perbaikan konstruksi
+                    jaringan saluran air, sistem irigasi (kanal), reservoir (waduk) dan drainase
+                    irigasi; dan
+                    3. Pekerjaan pelaksanaan pembangunan, pemeliharaan dan perbaikan dermaga,
+                    sarana pelabuhan, penahan gelombang dan sejenisnya. Termasuk konstruksi jalan air atau terusan, pelabuhan dan sarana jalur sungai, dok (pangkalan), lock (panama canal lock, Hoover Dam) dan lain-lain.',
+                    'Pekerjaan pelaksanaan pembangunan, pemeliharaan dan perbaikan instalasi pengolahan air minum, bangunan menara air dan reservoir air beserta bangunan pelengkap air minum lainnya, instalasi pengolahan air limbah beserta bangunan pelengkap air limbah lainnya, bangunan Tempat Pembuangan Akhir Sampah beserta bangunan pelengkapnya.',
+                    'Pekerjaan pelaksanaan pembangunan, peningkatan, pemeliharaan dan perbaikan jalan, jalan raya (kecuali Jalan layang) dan jalan tol termasuk juga jalan untuk pejalan kaki, rel kereta api, dan landas pacu bandara.',
+                    '1. Pekerjaan pelaksanaan pembangunan, peningkatan, pemeliharaan dan perbaikan jembatan dan jalan layang; dan
+                    2. Pelaksanaan pembangunan, peningkatan, pemeliharaan dan perbaikan bangunan terowongan di bawah permukaan air, di bukit atau pegunungan dan di bawah permukaan tanah.',
+                    'Pekerjaan pelaksanaan instalasi, peningkatan, pemeliharaan dan perbaikan jaringan pipa untuk distribusi air bersih jarak jauh antar pulau dan atau di bawah permukaan laut.',
+                    'Pekerjaan pelaksanaan instalasi, peningkatan, pemeliharaan dan perbaikan jaringan pipa untuk distribusi air limbah jarak jauh antar pulau dan atau di bawah permukaan laut.',
+                    'Pekerjaan pelaksanaan instalasi, peningkatan, pemeliharaan dan perbaikan pipa jaringan untuk distribusi minyak dan gas jarak jauh antar pulau dan atau di bawah permukaan laut.',
+                    'Pekerjaan pelaksanaan instalasi, peningkatan, pemeliharaan dan perbaikan jaringan pipa untuk distribusi air minum yang bersifat lokal dan untuk jarak yang dekat.',
+                    'Pekerjaan pelaksanaan instalasi, peningkatan, pemeliharaan dan perbaikan jaringan pipa untuk distribusi air limbah yang bersifat lokal dan untuk jarak yang dekat.',
+                    'pekerjaan pelaksanaan instalasi, peningkatan, pemeliharaan dan perbaikan jaringan pipa untuk distribusi air minyak dan gas yang bersifat lokal dan untuk jarak yang dekat.',
+                    'Pekerjaan pelaksana untuk konstruksi stadium dan olahraga lapangan yang biasanya dimainkan di tempat terbuka (open air) seperti sepakbola, baseball, rugby, lintasan balap mobil dan motor serta lintasan pacu kuda.',
+                    'Pekerjaan pelaksana untuk olahraga lainnya serta instalasi fasilitas rekreasi, olah raga yang dimaksud lebih banyak merupakan olahraga indoor yang membutuhkan ruang yang lebih kecil untuk penonton seperti lapangan basket, hockey, lapangan tenis, hall senam, dan ring tinju dan fasilitas taman rekreasi.'
+                ],
+            ],
+            [
+                'code' => [
+                    'MK001',
+                    'MK002',
+                    'MK003',
+                    'MK004',
+                    'MK005',
+                    'MK006',
+                    'MK007',
+                    'MK008',
+                    'MK009',
+                    'MK010',
+                    'EL001',
+                    'EL002',
+                    'EL003',
+                    'EL004',
+                    'EL005',
+                    'EL006',
+                    'EL007',
+                    'EL008',
+                    'EL009',
+                    'EL010',
+                    'EL011',
+                ],
+                'name' => [
+                    'Jasa pelaksana
+                    konstruksi
+                    pemasangan
+                    pendingin udara (Air
+                    Conditioner), pemanas dan ventilasi',
+                    'Jasa Pelaksana konstruksi Pemasangan Pipa Air (Plumbing) dalam Bangunan dan Salurannya',
+                    'Jasa Pelaksana Konstruksi Pemasangan Pipa Gas dalam Bangunan',
+                    'Jasa Pelaksana Konstruksi Insulasi dalam Bangunan',
+                    'Jasa Pelaksana
+                    Konstruksi
+                    Pemasangan Lift dan tangga berjalan',
+                    'Jasa Pelaksana Konstruksi Pertambangan dan Manufaktur',
+                    'Jasa Pelaksana Konstruksi Instalasi Thermal, Bertekanan, Minyak, Gas, Geothermal (Pekerjaan Rekayasa)',
+                    'Jasa Pelaksana
+                    Konstruksi Instalasi
+                    Alat Angkut dan Alat
+                    Angkat',
+                    'Jasa Pelaksana
+                    Konstruksi Instalasi
+                    Perpipaan, Gas,
+                    Energi (Pekerjaan rekayasa)',
+                    'Jasa Pelaksana Konstruksi Instalasi Fasilitas Produksi, Penyimpanan Minyak dan Gas( Pekerjaan Rekayasa)',
+                    'Jasa Pelaksana Konstruksi Instalasi Pembangkit Tenaga Listrik Semua Daya',
+                    'Jasa Pelaksana
+                    Konstruksi Instalasi Pembangkit Tenaga
+                    Listrik Daya
+                    Maksimum 10MW',
+                    'Jasa Pelaksana
+                    Konstruksi Instalasi
+                    Pembangkit Tenaga
+                    Listrik Energi Baru dan terbarukan',
+                    'Jasa Pelaksana Konstruksi Instalasi Jaringan Transmisi Tenaga Listrik Tegangan Tinggi/ Ekstra Tegangan Tinggi',
+                    'Jasa Pelaksana Konstruksi Jaringan Transmisi Telekomunikasi dan/atau Telepon',
+                    'Jasa Pelaksana
+                    Konstruksi Jaringan
+                    Distribusi Tenaga
+                    Listrik Tegangan
+                    Menengah',
+                    'Jasa Pelaksana
+                    Konstruksi Instalasi Jaringan Distribusi Tenaga Listrik Tegangan Rendah',
+                    'Jasa Pelaksana Konstruksi Instalasi Jaringan Distribusi Telekomunikasi dan/atau Telepon',
+                    'Jasa Pelaksana Konstruksi Instalasi Sistem Kontrol dan Instrumentasi',
+                    'Jasa Pelaksana
+                    Konstruksi Instalasi
+                    Tenaga Listrik Gedung
+                    dan Pabrik',
+                    'Jasa Pelaksana Konstruksi Instalasi Elektrikal Lainnya',
+                ],
+                'description' => [
+                    'Pekerjaan pelaksana pemasangan dan perawatan yang meliputi pemanasan elektrik maupun non-elektrik, ventilasi, lemari pendingin, atau peralatan AC, pekerjaan ducting dan pekerjaan metal lebaran yang dilakukan secara terintegrasi dari pekerjaan tersebut.',
+                    'Pekerjaan pelaksana pemasangan dan perawatan yang meliputi: 1. sistem perpipaan utama air panas dan dingin, instalasi sprinkler, pipa air kotor,
+                    pipa drain; 2. perlengkapan saniter; dan
+                    sistem pemadam kebakaran',
+                    'Pekerjaan pelaksana pemasangan dan perawatan pipa untuk gas, oksigen di rumah sakit dan peralatan pengoperasian gas lainnya',
+                    'Pekerjaan pelaksana pemasangan dan perawatan yang meliputi: 1. insulasi thermal termasuk bahan isolasi penahan panas untuk dinding luar; 2. insulasi thermal untuk pipa air panas dan dingin, ketel uap dan saluran
+                    pembuangan; 3. insulasi suara; dan
+                    insulasi anti kebakaran',
+                    'Pekerjaan konstruksi pemasangan lift dan eskalator serta jalan pejalan kaki yang dapat bergerak juga termasuk pekerjaan konstruksi perlengkapan keselamatan dari kebakaran (contohnya tangga darurat).',
+                    'Pekerjaan pelaksana pemasangan dan perawatan fasilitas pertambangan dan manufaktur termasuk seperti loading and discharging stations, winding shafts, chemical plants,iron foundaries, blast furnaces dan coke oven',
+                    'Pekerjaan pelaksana pemasangan dan perawatan dari: 1. anjungan lepas pantai (platform); dan 2. fasilitas produksi, penyimpanan minyak dan gas lainnya',
+                    'Pekerjaan pelaksana pemasangan dan perawatan dari konstruksi alat angkut dan angkat serta conveyor.',
+                    'Pekerjaan pelaksana pemasangan dan perawatan dari: 1. pipa minyak, gas dan energi di darat; dan 2. pipa minyak, gas dan energi di bawah laut.',
+                    'Pekerjaan pelaksana pemasangan dan perawatan dari: 1.fabrikasi fasilitas produksi, penyimpanan minyak dan gas didarat dan lepas
+                    pantai; 2. fabrikasi bejana tekan (pressure vessel) dan tangki; 3. fabrikasi boiler; dan 4. fabrikasi module.',
+                    'Pekerjaan pemasangan dan perawatan elektromekanik dan kelistrikan pembangkit tenaga listrik semua daya.',
+                    'Jasa pelaksana instalasi dan perawatan elektromekanik dan instalasi kelistrikan pembangkit tenaga listrik dengan daya maksimum 10 MW / unit.',
+                    'Jasa pelaksana instalasi dan perawatan pembangkit tenaga listrik energi baru dan terbarukan antara lain : surya, angin (bayu), micro hydro, gelombang laut',
+                    '1.Jasa pelaksana instalasi dan perawatan jaringan transmisi tenaga listrik tegangan tinggi / ektra tegangan tinggi termasuk instalasi gardu induk; dan
+                    2.Jasa pelaksana instalasi dan perawatan jaringan transmisi tenaga listrik dibawah atau diatas tanah dan dibawah lautan.',
+                    '1. Jasa pelaksana instalasi dan perawatan jaringan transmisi telekomunikasi dan atau telepon diatas permukaan tanah, termasuk pekerjaan untuk menara transmisi telekomunikasi; dan
+                    2. Jasa pelaksana instalasi dan perawatan jaringan transmisi telekomunikasi dan atau telepon dibawah tanah atau dibawah lautan',
+                    'Jasa pelaksana instalasi dan perawatan jaringan distribusi tenaga listrik tegangan menengah, termasuk untuk jalur listrik kereta api, instalasi listrik gardu hubung dan gardu-gardu distribusi',
+                    'Jasa pelaksana instalasi dan perawatan jaringan distribusi tenaga listrik tegangan rendah dan penerangan jalan umum.',
+                    '1. Jasa pelaksana instalasi dan perawatan jaringan distribusi telekomunikasi dan/ atau telepon termasuk jasa pelaksana untuk menara distribusi telekomunikasi;
+                    2. Jasa Pelaksana instalasi dan perawatan stasiun telekomunikasi dan antena untuk distribusi telekomunikasi; dan Jasa Pelaksana instalasi dan perawatan untuk jalur kabel televise untuk dibawah permukaan tanah.',
+                    'Jasa pelaksana pemasangan instalasi kontrol dan instrumentasi untuk sistem pengendali tenaga listrik.',
+                    '1. Jasa pelaksanan instalasi dan perawatan listrik di dalam dan diluar gedung, pabrik maupun jaringan konstruksi;
+                    2. Jasa pelaksana instalasi dan perawatan listrik dan peralatan untuk sistem tenaga listrik darurat;
+                    3. Jasa pelaksana instalasi dan perawatan alat pembatas daya listrik dan meteran listrik; 4. Jasa pelaksana instalasi dan perawatan alarm kebakaran;
+                    5. Jasa pelaksana instalasi dan perawatan alarm pencurian;
+                    6. Jasa pelaksana instalasi dan perawatan antena segala Macam type antena
+                    termasuk antena satelit dan jalur televisi kabel didalam gedung;
+                    7. Jasa pelaksanainstalasi dan perawatanpenangkalpetir; dan
+                    Jasa pelaksana instalasi dan perawatan listrik Khusus seperti instalasi listrik kapal, instalasi Listrik tahan api dan sejenisnya.',
+                    'Jasa pelaksana pemasangan dan perawatan untuk sistem penerangan dan tanda untuk jalan, rel kereta api, bandara, pelabuhan dan sejenis.',
+                ],
+            ],
+            [
+                'code' => [
+                    'PL001',
+                    'PL002',
+                    'PL003',
+                    'PL004',
+                ],
+                'name' => [
+                    'Jasa Penyewaan Alat Konstruksi dan Pembongkaran
+                    Bangunan atau
+                    Pekerjaan Sipil
+                    Lainnya dengan
+                    Operator',
+                    'Jasa Pelaksana
+                    Perakitan dan Pemasangan Konstruksi Prafabrikasi untuk Konstruksi Bangunan Gedung',
+                    'Jasa Pelaksana Perakitan dan Pemasangan Konstruksi
+                    Prafabrikasi untuk Konstruksi Jalan dan Jembatan Serta Rel Kereta Api',
+                    'Jasa Pelaksana
+                    Perakitan dan
+                    Pemasangan
+                    Konstruksi
+                    Prafabrikasi untuk
+                    Konstruksi Prasarana Sumber Daya Air, Irigasi, Dermaga, Pelabuhan, Persungaian, Pantai serta Bangunan Pengolahan Air Bersih, Limbah dan Sampah (Insinerator)'
+                ],
+                'description' => [
+                    'Jasa peminjaman dan penyewaan yang berhubungan dengan peralatan dengan operator untuk konstruksi atau penghancuran dan jasa operasional yang disediakan dengan operator.',
+                    'Pekerjaan khusus pemasangan bangunan konstruksi prafabrikasi yang langsung dilakukan di lokasi konstruksi yang bahan utamanya dari beton untuk beberapa bagian pracetak dari bangunan gedung kecuali pekerjaan pemasangan komponen pracetak baja.',
+                    'Pekerjaan khusus pemasangan bangunan konstruksi prafabrikasi yang langsung dilakukan di lokasi konstruksi yang bahan utamanya dari beton untuk beberapa bagian pracetak dari konstruksi jalan, jembatan dan rel kereta api kecuali pekerjaan pemasangan komponen pracetak baja',
+                    'Pekerjaan khusus pemasangan bangunan konstruksi prafabrikasi yang langsung dilakukan dilokasi konstruksi yang bahan utamanya dari beton untuk beberapa bagian pracetak dari konstruksi prasarana sumber daya air, irigasi, dermaga, pelabuhan, persungaian, pantai serta bangunan pengolahan air bersih dan limbah, kecuali pekerjaan pemasangan komponen pracetak baja.'
+                ],
+            ],
+            [
+                'code' => [
+                    'SP001',
+                    'SP002',
+                    'SP003',
+                    'SP004',
+                    'SP005',
+                    'SP006',
+                    'SP007',
+                    'SP008',
+                    'SP009',
+                    'SP010',
+                    'SP011',
+                    'SP012',
+                    'SP013',
+                    'SP014',
+                    'SP015',
+                    'SP016',
+                ],
+                'name' => [
+                    'Pekerjaan Penyelidikan Lapangan',
+                    'Pekerjaan Pembongkaran',
+                    'Pekerjaan Penyiapan
+                    dan Pematangan
+                    Tanah/Lokasi',
+                    'Pekerjaan Tanah,
+                    Galian dan Timbunan',
+                    'Pekerjaan Persiapan Lapangan untuk Pertambangan',
+                    'Pekerjaan Perancah',
+                    'Pekerjaan Pondasi, Termasuk Pemancangannya',
+                    'Pekerjaan Pengeboran Sumur Air Tanah Dalam.',
+                    'Pekerjaan Atap dan Kedap Air (waterproofing)',
+                    'Pekerjaan Beton',
+                    'Pekerjaan Baja dan
+                    Pemasangannya,
+                    Termasuk Pengelasan',
+                    'Pekerjaan Pemasangan Batu',
+                    'Pekerjaan Konstruksi Khusus Lainnya',
+                    'Pekerjaan Pengaspalan dengan Rangkaian Peralatan Khusus',
+                    ''
+                ],
+                'description' => [
+                    '',
+                ],
+            ],
         ];
 
         foreach ($classifications as $k => $classification) {

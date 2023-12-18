@@ -8,6 +8,7 @@ use App\Http\Requests\QualificationTrainingRequest;
 use App\Http\Resources\QualificationTrainingResource;
 use App\Models\QualificationTraining;
 use App\Traits\PaginationTrait;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class QualificationTrainingController extends Controller
@@ -96,5 +97,15 @@ class QualificationTrainingController extends Controller
         } else {
             return redirect()->back()->with('success', trans('alert.delete_success'));
         }
+    }
+
+    /**
+     * jsonQualificationTraining
+     *
+     * @return JsonResponse
+     */
+    public function jsonQualificationTraining(): JsonResponse
+    {
+        return ResponseHelper::success(QualificationTrainingResource::collection($this->qualificationTraining->get()));
     }
 }
