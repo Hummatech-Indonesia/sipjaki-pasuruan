@@ -27,7 +27,7 @@ class SubClassificationTrainingController extends Controller
     public function index(ClassificationTraining $classification_training): View
     {
         $subClassificationTrainings = $this->subClassificationTraining->show($classification_training->id);
-        return View('', ['subClassificationTrainings' => $subClassificationTrainings]);
+        return view('pages.classification.sub-training', ['subClassificationTrainings' => $subClassificationTrainings,'classification_training' => $classification_training]);
     }
 
     public function create()
@@ -40,6 +40,7 @@ class SubClassificationTrainingController extends Controller
         $data = $request->validated();
         $data['classification_training_id'] = $classification_training->id;
         $this->subClassificationTraining->store($data);
+        return redirect()->back()->with('success', trans('alert.add_success'));
     }
 
     public function show(string $id)
@@ -62,7 +63,9 @@ class SubClassificationTrainingController extends Controller
     public function update(SubClassificationRequest $request, SubClassificationTraining $sub_classification_training)
     {
         $this->subClassificationTraining->update($sub_classification_training->id, $request->validated());
+        return redirect()->back()->with('success', trans('alert.update_success'));
     }
+
 
     /**
      * destroy
@@ -73,5 +76,6 @@ class SubClassificationTrainingController extends Controller
     public function destroy(SubClassificationTraining $sub_classification_training)
     {
         $this->subClassificationTraining->delete($sub_classification_training->id);
+        return redirect()->back()->with('success', trans('alert.delete_success'));
     }
 }
