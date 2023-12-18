@@ -88,7 +88,7 @@
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-lastname-input">Sumber Dana</label>
-                                            <select name="fund_source_id" class="form-select  founds-source" id="">
+                                            <select name="fund_source_id" class="form-select  founds-source" id="" value="{{ olde('fund_source_id') }}">
 
                                             </select>
                                         </div>
@@ -277,7 +277,7 @@
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-lastname-input">Sumber Dana</label>
-                                            <select name="fund_source_id" class="form-select founds-source"
+                                            <select name="fund_source_id" class="form-select founds-source" value="{{ olde('fund_source_id') }}"
                                                 id="">
 
                                             </select>
@@ -289,7 +289,7 @@
                                         <div class="mb-3">
                                             <label for="basicpill-phoneno-input">Kualifikasi</label>
                                             <select name="qualifications" class="form-select list-qualifications select2-update" style="width:100%"
-                                                id="update-list-qualifications">
+                                                id="update-list-qualifications" >
                                                 <option value="">Pilih Kualifikasi</option>
                                             </select>
                                         </div>

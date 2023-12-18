@@ -62,8 +62,8 @@
                             </td>
                         </tr>
                     </thead>
-                    @forelse ($serviceProviders as $index=>$serviceProvider)
-                        <tbody>
+                    <tbody>
+                    @forelse ($association->serviceProviders as $index=>$serviceProvider)
                             <tr>
                                 <td>
                                     {{ $index + 1 }}
@@ -79,18 +79,18 @@
                                 </td>
                                 <td>
                                     {{ $serviceProvider->user->phone_number }}
-
                                 </td>
                                 <td>
                                     <button class="btn text-white btn-detail" id="{{ $serviceProvider->id }}"
-                                        data-id="{{ $serviceProvider->id }}" style="background-color: #1B3061">
+                                        data-id="{{ $serviceProvider->id }}" data-name="{{ $serviceProvider->user->name }}" data-address="{{ $serviceProvider->user->address ? $serviceProvider->user->address : "-"}}" data-phone_number="{{ $serviceProvider->user->phone_number }}" data-email="{{ $serviceProvider->user->email }}" style="background-color: #1B3061">
                                         Detail
                                     </button>
                                 </td>
                             </tr>
+                            @empty
+                            tr
+                            @endforelse
                         </tbody>
-                    @empty
-                    @endforelse
                 </table>
             </div>
         </div>
@@ -108,7 +108,7 @@
                     <div class="bg-info col-3 rounded">
                         <div class="badge bg-info">
                             <p class="mb-0 px-3 py-1 fs-6">
-                                <span id="">Profil Penyedia Jasa</span>
+                                <span id="detail-name">Profil Penyedia Jasa</span>
                             </p>
                         </div>
                     </div>
@@ -210,27 +210,11 @@
 @endsection
 @section('script')
     <script>
-        $('.btn-detail').click(function() {
-            id = $(this).data('id')
-            console.log(id);
-            get()
-            $('#modal-detail').modal('show');
-
-            function get() {
-                $.ajax({
-                    url: "service-provider-detail/" + id,
-                    type: 'GET',
-                    dataType: "JSON",
-                    success: function(response) {
-                        var name = response.data.user.name;
-                        var email = response.data.user.email;
-                        var phone_number = response.data.user.phone_number;
-                        $('#phone_number').text(phone_number)
-                        $('#email').text(email)
-                        $('.name').text(name)
-                    }
-                });
-            }
+         $('.btn-detail').click(function() {
+            const data = getDataAttributes($(this).attr('id'))
+            handleDetail(data)
+            console.log(data);
+            $('#modal-detail').modal('show')
         })
     </script>
 @endsection

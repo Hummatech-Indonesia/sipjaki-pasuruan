@@ -10,12 +10,19 @@
         </script>
     @endif
     <h2>Dinas</h2>
-    <div class="d-flex justify-content-between">
-        <div class="position-relative mb-3 col-lg-3">
-            <input type="search" class="form-control search-chat py-2 ps-5" id="search-name" placeholder="Search">
-            <i class="bx bx-search-alt-2
-            position-absolute top-50 translate-middle-y fs-6 text-dark ms-3"></i>
-        </div>
+    <div class="d-flex justify-content-between mb-3">
+        <form action="" class="">
+            <div class="input-group">
+                <input name="name" type="text" class="form-control"
+                    placeholder="Search">
+                <div class="input-group-append">
+                    <button class="btn text-white" style="background-color: #1B3061; border-radius: 0 5px 5px 0;"
+                        type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
         <div>
             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-create"
                 style="background-color: #1B3061; border-radius: 10px"><i class="fas fa-plus"
