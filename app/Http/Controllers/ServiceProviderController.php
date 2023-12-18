@@ -17,8 +17,9 @@ class ServiceProviderController extends Controller
     private WorkerInterface $worker;
     private ProjectInterface $project;
     private ServiceProviderInterface $serviceProvider;
-    public function __construct(UserInterface $user, ServiceProviderInterface $serviceProvider, ProjectInterface $projectInterface)
+    public function __construct(UserInterface $user, ServiceProviderInterface $serviceProvider, ProjectInterface $projectInterface, WorkerInterface $workerInterface)
     {
+        $this->worker = $workerInterface;
         $this->project = $projectInterface;
         $this->user = $user;
         $this->serviceProvider = $serviceProvider;

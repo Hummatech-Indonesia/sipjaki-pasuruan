@@ -65,23 +65,16 @@ class UserService
      */
     public function updateProfile(UpdateProfileRequest $request): array
     {
-        $old_logo = UserHelper::getUserPhoto();
+        $old_file = UserHelper::getUserPhoto();
 
         $data = $request->validated();
 
-        $folderName = auth()->user()->name;
-        $folderPath = public_path('storage/' . UploadDiskEnum::PROFILE->value . '/' . $folderName);
-
-        if (!file_exists($folderPath)) {
-            mkdir($folderPath, 0777, true);
-        }
-
         if ($request->hasFile('profile')) {
-            if (!is_null($old_logo)) $this->remove($old_logo);
-            $old_logo = $request->file('profile')->storeAs(UploadDiskEnum::PROFILE->value . '/' . $folderName, uniqid() . '.' . $request->file('profile')->getClientOriginalExtension(), 'public');
+            $destinationPath = $this->folderStorage(UserHelper::getUserName(), UploadDiskEnum::PROFILE->value);
+            if ($old_file != null) $this->remove($old_file);
+            $old_file = $request->file('profile')->store($destinationPath, 'public');
         }
-
-        $data['profile'] = $old_logo;
+        $data['profile'] = $old_file;
         return $data;
     }
 }

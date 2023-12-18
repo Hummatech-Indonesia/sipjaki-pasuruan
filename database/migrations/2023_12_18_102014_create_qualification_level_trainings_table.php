@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('classification_trainings', function (Blueprint $table) {
+        Schema::create('qualification_level_trainings', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name')->unique();
-            $table->string('code');
-            $table->text('description');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -25,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('classification_trainings');
+        Schema::dropIfExists('qualification_level_trainings');
     }
 };
