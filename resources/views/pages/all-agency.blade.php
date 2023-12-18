@@ -111,7 +111,7 @@
                     <th class=" table-sipjaki" >Nama</th>
                     <th class=" table-sipjaki" >Email</th>
                     <th class=" table-sipjaki" >Penanggung jawab</th>
-                    <th class=" table-sipjaki" >Aksi</th>
+                    {{-- <th class=" table-sipjaki" >Aksi</th> --}}
                 </tr>
             </thead>
             @forelse ($dinass as $index=>$dinas)     
@@ -146,7 +146,7 @@
                             {{ $dinas->person_responsible }}
                         </p>
                     </td>
-                    <td class="">
+                    {{-- <td class="">
                         <div class="d-flex justify-content-header gap-2">
                             <div class="">
                                 <button class="btn text-white btn-edit" 
@@ -156,7 +156,7 @@
                             </div>
                             
                         </div>
-                    </td>
+                    </td> --}}
                 </tr>
             </tbody>
                 @empty
