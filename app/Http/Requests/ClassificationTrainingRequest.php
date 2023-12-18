@@ -15,9 +15,7 @@ class ClassificationTrainingRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', Rule::unique('classification_trainings', 'name')->ignore($this->classification_training->id)],
-            'code' => 'required',
-            'description' => 'required',
+            'name' => 'required',
         ];
     }
 
@@ -30,9 +28,6 @@ class ClassificationTrainingRequest extends FormRequest
     {
         return [
             'name.required' => 'Nama wajib diisi',
-            'name.unique' => 'Nama sudah digunakan',
-            'kode.required' => 'Kode wajib diisi',
-            'description.required' => 'Deskripsi wajib di isi',
         ];
     }
 }
