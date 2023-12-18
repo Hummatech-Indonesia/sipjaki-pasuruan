@@ -58,3 +58,11 @@ Route::get('download-service-provider-project/{service_provider_project}', [Serv
 
 // service provider 
 Route::get('all-service-provider', [ServiceProviderProjectController::class, 'allServiceProvider'])->name('all.service.provider');
+
+// Clasification training 
+Route::get('classification-training', function () {
+    return view('pages.classification.training');
+})->name('classification.training');
+Route::get('qualification-training', function () {
+    return view('pages.qualification-training');
+})->name('qualification.training');
