@@ -123,7 +123,9 @@ Route::middleware('auth')->group(function () {
             'classification-training' => ClassificationTrainingController::class,
         ]);
 
+
         Route::get('history-login', [HistoryLoginController::class, 'index'])->name('history-login.index');
+        Route::get('classification-trainings', [ClassificationTrainingController::class, 'index'])->name('classification-training.index');
         Route::name('qualifications.level.')->group(function () {
             Route::post('sub-qualifications/{qualification}', [QualificationLevelController::class, 'store'])->name('store');
             Route::put('sub-qualifications/{qualification_level}', [QualificationLevelController::class, 'update'])->name('update');
