@@ -168,7 +168,7 @@
                                                             class="form-control  @error('password_confirmation') is-invalid @enderror"
                                                             name="password_confirmation"
                                                             autocomplete="current-password_confirmation"
-                                                            placeholder="Masukan password_confirmation"
+                                                            placeholder="Masukan Ulang Password"
                                                             aria-label="Password Konfirmasi"
                                                             aria-describedby="password_confirmation-addon"
                                                             style="border-radius: 8px 0 0 8px;">
