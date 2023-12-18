@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /** 
+    /**
      * Run the migrations.
      */
     public function up(): void
@@ -17,7 +17,8 @@ return new class extends Migration
             $table->foreignUuid('training_method_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignUuid('fiscal_year_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignUuid('sub_classification_training_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignUuid('qualification_level_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignUuid('qualification_training_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignUuid('qualification_level_training_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('name');
             $table->string('organizer');
             $table->dateTime('start_at');
