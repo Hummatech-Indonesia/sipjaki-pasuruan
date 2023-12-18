@@ -14,9 +14,7 @@ return new class extends Migration
         Schema::create('sub_classification_trainings', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('classification_training_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->string('code');
             $table->string('name');
-            $table->text('description');
             $table->timestamps();
         });
     }
