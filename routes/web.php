@@ -30,6 +30,8 @@ use App\Http\Controllers\DinasController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\SubClassificationController;
 use App\Http\Controllers\QualificationLevelController;
+use App\Http\Controllers\QualificationLevelTrainingController;
+use App\Http\Controllers\QualificationTrainingController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\ServiceProviderController;
 use App\Http\Controllers\ServiceProviderProjectController;
@@ -120,7 +122,9 @@ Route::middleware('auth')->group(function () {
             'sections' => SectionController::class,
             'rules' => RuleController::class,
             'types' => TypeController::class,
-            'classification-training' => ClassificationTrainingController::class,
+            'classification-trainings' => ClassificationTrainingController::class,
+            'qualification-level-trainings' => QualificationLevelTrainingController::class,
+            'qualification-trainings' => QualificationTrainingController::class,
         ]);
 
 
