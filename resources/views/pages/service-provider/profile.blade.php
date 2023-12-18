@@ -36,12 +36,13 @@
                 <div class="card-body">
                     <div class="d-flex">
                         <div class="flex-grow-1">
-                            <div class="ms-2">
+                            <div class="ms-2 d-flex justify-content-between">
                                 <div class="btn btn-sm mb-3 text-dark rounded-3" style="background-color: #E4ECFF;">
                                     Data Badan Usaha
                                 </div>
-                                <p class="fw-bolder fs-4">MITRA BAHAGIA UTAMA BUMIAJI</p>
+                                <button data-bs-toggle="modal" data-bs-target="#modal-update-badan_usaha" class="btn btn-warning">Edit</button>
                             </div>
+                            <p class="fw-bolder fs-4">MITRA BAHAGIA UTAMA BUMIAJI</p>
                             <table cellpadding="5" style="border-collapse: collapse; width: 50%;" class="fs-6 fw-normal">
                                 <tbody>
                                     <tr>
@@ -533,5 +534,97 @@
 
             </div>
         </div>
+    </div>
+
+    {{-- modal --}}
+
+    <div class="modal fade" id="modal-update-badan_usaha" tabindex="-1" aria-labelledby="exampleModalLabel1">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content ">
+                <div class="modal-header d-flex align-items-center text-white" style="background-color: #1B3061">
+                    <h4 class="modal-title" id="exampleModalLabel1">
+                        Edit Sub Klasifikasi
+                    </h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        style="color: white;"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="form-update-badan_usaha" method="POST">
+                        @method('PUT')
+                        @csrf
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label id="name" for="recipient-name" class="control-label mb-2">Bentuk Badan Usaha</label>
+                                    <select name="tipe" class="form-select" id="">
+                                        <option value="cv">CV</option>
+                                        <option value="pt">PT</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label id="name" for="recipient-name" class="control-label mb-2">Jenis Badan Usaha</label>
+                                  <select name="tipe" class="form-select" id="">
+                                    <option value="">Konsultan</option>
+                                    <option value="">Penyelenggara</option>
+                                  </select>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label id="name" for="recipient-name" class="control-label mb-2">Kabupaten</label>
+                                    <input name="tipe" type="text" class="form-control" id="">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label id="name" for="recipient-name" class="control-label mb-2">Kode Pos</label>
+                                    <input name="tipe" type="number" class="form-control" id="">
+                            </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label id="name" for="recipient-name" class="control-label mb-2">Telepon</label>
+                                    <input name="tipe" type="number" class="form-control" id="">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label id="name" for="recipient-name" class="control-label mb-2">Fax</label>
+                                    <input name="tipe" type="number" class="form-control" id="">
+                            </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label id="name" for="recipient-name" class="control-label mb-2">Email</label>
+                                    <input name="tipe" type="email" class="form-control" id="">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label id="name" for="recipient-name" class="control-label mb-2">Website</label>
+                                    <input name="tipe" type="text" class="form-control" id="">
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <label for="" class="form-label">Alamat Badan Usaha</label>
+                            <textarea name="description" id="create-description" class="form-control" cols="30" rows="10"></textarea>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger text-white font-medium waves-effect"
+                        data-bs-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="submit" style="background-color: #1B3061" class="btn text-white btn-create">
+                        Edit
+                    </button>
+                </div>
+                </form>
+            </div>
+        </div>
+
     </div>
 @endsection
