@@ -1,5 +1,14 @@
 @extends('layouts.app')
 @section('content')
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: '{{ session('success') }}',
+            });
+        </script>
+    @endif
     <div class="">
         <div>
             <h2 class="">
@@ -11,7 +20,7 @@
     <div class="modal fade" id="samedata-modal" tabindex="-1" id="modeal-create" aria-labelledby="exampleModalLabel1">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <form action="{{ route('sub-qualification.store', ['qualification_training' => $id ]) }}" method="post">
+                <form action="{{ route('sub-qualification.store', ['qualification_training' => $id]) }}" method="post">
                     @csrf
                     @method('POST')
                     <div class="modal-header d-flex align-items-center text-white " style="background-color: #1B3061">

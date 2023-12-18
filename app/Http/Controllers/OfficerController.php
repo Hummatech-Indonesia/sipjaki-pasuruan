@@ -21,7 +21,7 @@ class OfficerController extends Controller
     public function index()
     {
         $officers = $this->officer->get();
-        return view('', ['officers' => $officers]);
+        return view('pages.service-provider.officer', ['officers' => $officers]);
     }
 
     /**
@@ -38,6 +38,8 @@ class OfficerController extends Controller
     public function store(OfficerRequest $request)
     {
         $this->officer->store($request->validated());
+        
+        return redirect()->back()->with('success', trans('alert.add_success'));
     }
 
     /**

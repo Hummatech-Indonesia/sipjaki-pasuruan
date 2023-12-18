@@ -13,6 +13,7 @@ use App\Http\Controllers\DinasController;
 use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\WorkerController;
 use App\Http\Controllers\LandingController;
+use App\Http\Controllers\OfficerController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\AccidentController;
@@ -209,6 +210,10 @@ Route::middleware(['role:dinas'])->group(function () {
     ]);
 });
 Route::middleware('role:service provider')->group(function () {
+    Route::resources([
+        'officers' => OfficerController::class,
+    ]);
+
     Route::get('service-provider-projects', [ServiceProviderProjectController::class, 'index']);
     Route::post('service-provider-projects/{project}', [ServiceProviderProjectController::class, 'store'])->name('service-provider-projects/');
     Route::put('service-provider-projects/{service_provider_project}', [ServiceProviderProjectController::class, 'update'])->name('service-provider-projects/');
