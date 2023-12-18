@@ -18,7 +18,7 @@ class CategoryImageRule implements Rule
      */
     public function passes($attribute, $value): bool
     {
-        return in_array($value, [UploadDiskEnum::STRUCTUREORGANITATION->value, UploadDiskEnum::JOBANDFUNCTION->value, UploadDiskEnum::STRATEGICPLAN->value, UploadDiskEnum::FAQ->value]);
+        return in_array($value, [UploadDiskEnum::STRUCTUREORGANITATION->value, UploadDiskEnum::JOBANDFUNCTION->value, UploadDiskEnum::STRATEGICPLAN->value, UploadDiskEnum::FAQ->value, UploadDiskEnum::VIDEO->value]);
     }
 
     /**
