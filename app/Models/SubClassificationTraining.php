@@ -12,7 +12,7 @@ class SubClassificationTraining extends Model implements HasClassificationTraini
     use HasFactory;
     protected $table = 'sub_classification_trainings';
     protected $primaryKey = 'id';
-    protected $fillable = ['id', 'classification_training_id', 'code', 'name', 'description'];
+    protected $fillable = ['id', 'classification_training_id', 'name'];
     protected $guarded = [];
     public $incrementing = false;
     public $keyType = 'char';
