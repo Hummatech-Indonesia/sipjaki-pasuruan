@@ -141,7 +141,7 @@
                                                             aria-describedby="password-addon"
                                                             style="border-radius: 8px 0 0 8px;">
                                                         <button class="btn btn-light " type="button"
-                                                            id="password-addon"><i
+                                                            id="password-addon2"><i
                                                                 class="mdi mdi-eye-outline"></i></button>
                                                         @error('password')
                                                             <span class="invalid-feedback" role="alert">
@@ -163,7 +163,7 @@
                                                             aria-describedby="password_confirmation-addon"
                                                             style="border-radius: 8px 0 0 8px;">
                                                         <button class="btn btn-light " type="button"
-                                                            id="password_confirmation-addon"><i
+                                                            id="password-addon"><i
                                                                 class="mdi mdi-eye-outline"></i></button>
                                                         @error('password_confirmation')
                                                             <span class="invalid-feedback" role="alert">
