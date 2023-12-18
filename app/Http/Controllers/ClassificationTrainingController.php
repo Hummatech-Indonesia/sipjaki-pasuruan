@@ -23,7 +23,8 @@ class ClassificationTrainingController extends Controller
     public function index()
     {
         $classificationTrainings = $this->classificationTraining->get();
-        return view('', ['classificationTrainings' => $classificationTrainings ]);
+        dd($classificationTrainings);
+        return view('pages.classification.training', ['classificationTrainings' => $classificationTrainings ]);
     }
 
     /**
