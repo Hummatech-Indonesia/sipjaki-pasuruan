@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
             FundSourceSeeder::class,
             ContractCategorySeeder::class,
             TrainingMethodSeeder::class,
-            ClassificationSeeder::class
+            ClassificationSeeder::class,
+            SubClassificationSeeder::class,
         ]);
     }
 }
