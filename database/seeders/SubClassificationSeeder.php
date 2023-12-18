@@ -30,8 +30,8 @@ class SubClassificationSeeder extends Seeder
             'Instalasi Mekanikal dan Elektrikal',
             'Jasa Pelaksanaan Lainnya',
             'Jasa Pelaksanaan Spesialis',
-            // 'Jasa Pelaksanaan Keterampilan',
-            // 'Jasa Konstruksi Terintegrasi',
+            'Jasa Pelaksanaan Keterampilan',
+            'Jasa Konstruksi Terintegrasi',
         ];
         $subclassifications = [
             [
@@ -567,20 +567,15 @@ class SubClassificationSeeder extends Seeder
                 'name' => [
                     'Pekerjaan Penyelidikan Lapangan',
                     'Pekerjaan Pembongkaran',
-                    'Pekerjaan Penyiapan
-                    dan Pematangan
-                    Tanah/Lokasi',
-                    'Pekerjaan Tanah,
-                    Galian dan Timbunan',
+                    'Pekerjaan Penyiapan dan Pematangan Tanah/Lokasi',
+                    'Pekerjaan Tanah, Galian dan Timbunan',
                     'Pekerjaan Persiapan Lapangan untuk Pertambangan',
                     'Pekerjaan Perancah',
                     'Pekerjaan Pondasi, Termasuk Pemancangannya',
                     'Pekerjaan Pengeboran Sumur Air Tanah Dalam.',
                     'Pekerjaan Atap dan Kedap Air (waterproofing)',
                     'Pekerjaan Beton',
-                    'Pekerjaan Baja dan
-                    Pemasangannya,
-                    Termasuk Pengelasan',
+                    'Pekerjaan Baja dan Pemasangannya, Termasuk Pengelasan',
                     'Pekerjaan Pemasangan Batu',
                     'Pekerjaan Konstruksi Khusus Lainnya',
                     'Pekerjaan Pengaspalan dengan Rangkaian Peralatan Khusus',
@@ -606,6 +601,71 @@ class SubClassificationSeeder extends Seeder
                     'Pekerjaan pemeliharaan bangunan gedung, tidak termasuk pekerjaan yang melakukan perubahan terhadap struktur bangunan.',
                 ],
             ],
+            [
+                'code' => [
+                    'KT001',
+                    'KT002',
+                    'KT003',
+                    'KT004',
+                    'KT005',
+                    'KT006',
+                    'KT007',
+                    'KT008',
+                    'KT009',
+                    'KT010',
+                    'KT011',
+                ],
+                'name' => [
+                    'Pekerjaan Kaca dan Pemasangan Kaca Jendela',
+                    'Pekerjaan Plesteran',
+                    'Pekerjaan Pengecatan',
+                    'Pekerjaan Pemasangan Keramik Lantai dan Dinding',
+                    'Pekerjaan Pemasangan Lantai Lain, Penutupan Dinding dan Pemasangan Wall paper',
+                    'Pekerjaan Kayu dan atau penyambungan Kayu dan Material Lain',
+                    'Pekerjaan Dekorasi dan Pemasangan Interior',
+                    'Pekerjaan pemasangan ornamen',
+                    'Pekerjaan Pemasangan Gipsum',
+                    'Pekerjaan Pemasangan plafon akustik (accoustic ceiling)',
+                    'Pemasangan curtain wall',
+                ],
+                'description' => [
+                    'Pekerjaan konstruksi khusus material kaca, cermin, dan produk-produk berbahan kaca, serta pekerjaan instalasi jendela kaca.',
+                    'Pekerjaan konstruksi khususdari plester interior dan exterior ataustucco dan pekerjaan dry wall yang berhubungan deingan instalasi dinding papan, yang biasanya adalah bahan gypsum.',
+                    'Pekerjaan konstruksi khusus pengecatan dan pekerjaan konstruksi yang berhubungan dengan interior dan exterior bangunan dan pekerjaan pengecatan dari struktur berat (rekayasa teknik). Tidak termasuk pengecatan atap bangunan',
+                    'Pekerjaan konstruksi khusus pemasangan dan pegesetan keramik, dinding beton, dinding potongan batu, serta lantai ubin.',
+                    'Pekerjaan konstruksi khusus pemasangan karpet, linoleum, ubin aspal, lantai elastis, parquet, dan lantai berbahan kayu keras lainnya.',
+                    'Pekerjaan konstruksi khusus yang berhubungan dengan pekerjaan pengrajin kayu, pembentukan bentuk kayu dan pemasanganlemari di lokasi konstruksi.',
+                    'Pekerjaan konstruksi khusus pemasangan terazzo, interior marbel, granit dan pekerjaan batu tulis.',
+                    'Pekerjaan konstruksi khusus untuk komponen logam lembaran fabrikasi khusus, pekerjaan dekorasi besi dan baja, serta pengerjaan ornament dan arsitektur logam',
+                    'Pekerjaan konstruksi khusus untuk komponen panel gypsum seperti pemasangan dinding partisi dalam bangunan gedung yang menggunakan panel gypsum, pemasangan plafon dalam bangunan gedung yang menggunakan panel gypsum.',
+                    'Pekerjaan konstruksi khusus untuk pemasangan plafon akustik pada ruangan di dalam bangunan gedung. Bahan penutup plafond akustik berbentuk panel yang diletakkan atau dijepit pada rangka metal yang bentuk grid (kotak-kotak).',
+                    'Pekerjaan konstruksi khusus untuk menutup sisi-sisi bagian luar gedung bertingkat. Bahan penutup bangunan merupakan bahan non struktural dan ringan, yang berfungsi sebagai pemisah antara bagian dalam dan luar gedung. Pemasangan curtain wall padaumumnya terdiri dari rangka allumunium dan bahan penutup berupa kaca, panel metal atau GRC (Glassfibre Reinforce Concrete)',
+                ],
+            ],
+            [
+                'code' => [
+                    'TI501',
+                    'TI502',
+                    'TI503',
+                    'TI504',
+                    'TI505',
+                ],
+                'name' => [
+                    'Jasa Terintegrasi Untuk Infrastruktrur Tranportasi',
+                    'Jasa Terintegrasi Untuk Konstruksi Sumber Daya Air, Penyaluran Air dan Pekerjaan Sanitasi',
+                    'Jasa Terintegrasi Untuk Konstruksi Manufaktur',
+                    'Jasa Terintegrasi Untuk Konstruksi Fasilitas Minyak dan Gas',
+                    'Jasa Terintegrasi Untuk Konstruksi Bangunan Gedung',
+                ],
+                'description' => [
+                    'Jasa konstruksi terintegrasi untuk konstruksi dari infrastruktur transportasi (turnkey projects). Termasuk didalamnya perencanaan dan studi sebelum investasi, pembuatan pre-elimary dan final desain, estimasi biaya, penjadwal konstruksi, inspeksi dan penerimaan dari kontrak termasuk jasa teknikal seperti seleksi dan pelatihan personiil dan operasional dan pembuatan manual pemiliharaan dan jasa teknikal lainnya yang disediakan untuk klient yang membentuk jasa perencanaan, pelaksanaan dan pengawasan utuh untuk proyek terima jadi termasuk didalamnya kegiatan yang dilakukan secara terintegrasi antara perencanaan, pengadaan, dan pelaksanaan terima jadi (engineering, procurement, construction).',
+                    'Jasa konstruksi terintegrasi untuk konstruksi dari infrastruktur keairan dan sanitasi. Termasuk didalamnya perencanaan dan studi sebelum investasi, pembuatan pre-elimary dan final desain, estimasi biaya, penjadwal konstruksi, inspeksi dan penerimaan dari kontrak termasuk jasa teknikal seperti seleksi dan pelatihan personiil dan operasional dan pembuatan manual pemiliharaan dan jasa teknikal lainnya yang disediakan untuk klient yang membentuk jasa perencanaan, pelaksanaan dan pengawasan utuh untuk proyek terima jadi termasuk didalamnya kegiatan yang dilakukan secara terintegrasi antara perencanaan, pengadaan, dan pelaksanaan terima jadi (engineering, procurement, construction).',
+                    'Jasa konstruksi terintegrasi untuk konstruksi dari fasilitas manufaktur. Termasuk didalamnya perencanaan dan studi sebelum investasi, pembuatan pre- elimary dan final desain, estimasi biaya, penjadwal konstruksi, inspeksi dan penerimaan dari kontrak termasuk jasa teknikal seperti seleksi dan pelatihan personiil dan operasional dan pembuatan manual pemiliharaan dan jasa teknikal lainnya yang disediakan untuk klient yang membentuk jasa perencanaan, pelaksanaan dan pengawasan utuh untuk proyek terima jadi termasuk didalamnya kegiatan yang dilakukan secara terintegrasi antara perencanaan, pengadaan, dan pelaksanaan terima jadi (engineering, procurement, construction).',
+                    'Jasa Konstruksi terintegrasi Untuk Konstruksi Fasilitas Minyak dan Gas. Termasuk didalamnya perencanaan dan studi sebelum investasi, pembuatan pre- elimary dan final desain, estimasi biaya, penjadwal konstruksi, inspeksi dan penerimaan dari kontrak termasuk jasa teknikal seperti seleksi dan pelatihan personiil dan operasional dan pembuatan manual pemiliharaan dan jasa teknikal lainnya yang disediakan untuk klient yang membentuk jasa perencanaan, pelaksanaan dan pengawasan utuh untuk proyek terima jadi termasuk didalamnya kegiatan yang dilakukan secara terintegrasi antara perencanaan, pengadaan, dan pelaksanaan terima jadi (engineering, procurement, construction).',
+                    'Jasa Konstruksi Terintegrasi Untuk Konstruksi Bangungan Gedung. Termasuk didalamnya perencanaan dan studi sebelum investasi, pembuatan pre-elimary dan final desain, estimasi biaya, penjadwal konstruksi, inspeksi dan penerimaan dari kontrak termasuk jasa teknikal seperti seleksi dan pelatihan personiil dan operasional dan pembuatan manual pemiliharaan dan jasa teknikal lainnya yang disediakan untuk klient yang membentuk jasa perencanaan, pelaksanaan dan pengawasan utuh untuk proyek terima jadi termasuk didalamnya kegiatan yang dilakukan secara terintegrasi antara perencanaan, pengadaan, dan pelaksanaan terima jadi (engineering, procurement, construction).',
+                ],
+            ],
+
         ];
 
         foreach ($classifications as $k => $classification) {
