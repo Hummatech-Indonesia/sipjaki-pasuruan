@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Base\Interfaces\HasDinas;
 use App\Base\Interfaces\HasFiscalYear;
 use App\Base\Interfaces\HasFundSource;
 use Illuminate\Database\Eloquent\Model;
@@ -10,11 +9,14 @@ use App\Base\Interfaces\HasTrainingMethod;
 use App\Base\Interfaces\HasTrainingMembers;
 use App\Base\Interfaces\HasSubClassification;
 use App\Base\Interfaces\HasQualificationLevel;
+use App\Base\Interfaces\HasQualificationLevelTraining;
+use App\Base\Interfaces\HasQualificationTraining;
+use App\Base\Interfaces\HasSubClassificationTraining;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Training extends Model implements HasFundSource,HasTrainingMethod,HasFiscalYear,HasSubClassification,HasQualificationLevel,HasTrainingMembers
+class Training extends Model implements HasFundSource, HasTrainingMethod, HasFiscalYear, HasSubClassificationTraining, HasQualificationTraining, HasQualificationLevelTraining, HasTrainingMembers
 {
     use HasFactory;
 
@@ -25,8 +27,9 @@ class Training extends Model implements HasFundSource,HasTrainingMethod,HasFisca
         'training_method_id',
         'fund_source_id',
         'fiscal_year_id',
-        'sub_classification_id',
-        'qualification_level_id',
+        'sub_classification_training_id',
+        'qualification_training_id',
+        'qualification_level_training_id',
         'name',
         'organizer',
         'start_at',
@@ -39,6 +42,16 @@ class Training extends Model implements HasFundSource,HasTrainingMethod,HasFisca
     public $incrementing = false;
     public $keyType = 'char';
 
+
+    /**
+     * qualificationTraining
+     *
+     * @return BelongsTo
+     */
+    public function qualificationTraining(): BelongsTo
+    {
+        return $this->belongsTo(Qualification::class);
+    }
 
     /**
      * Get the fundSource that owns the Training
@@ -66,7 +79,7 @@ class Training extends Model implements HasFundSource,HasTrainingMethod,HasFisca
      */
     public function fiscalYear(): BelongsTo
     {
-        return $this->belongsTo(FiscalYear::class); 
+        return $this->belongsTo(FiscalYear::class);
     }
 
     /**
@@ -74,9 +87,9 @@ class Training extends Model implements HasFundSource,HasTrainingMethod,HasFisca
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function subClassification(): BelongsTo
+    public function subClassificationTraining(): BelongsTo
     {
-        return $this->belongsTo(SubClassification::class);
+        return $this->belongsTo(SubClassificationTraining::class);
     }
 
 
@@ -85,9 +98,9 @@ class Training extends Model implements HasFundSource,HasTrainingMethod,HasFisca
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function qualificationLevel(): BelongsTo
+    public function qualificationLevelTraining(): BelongsTo
     {
-        return $this->belongsTo(QualificationLevel::class);
+        return $this->belongsTo(QualificationLevelTraining::class);
     }
 
     /**
@@ -99,5 +112,4 @@ class Training extends Model implements HasFundSource,HasTrainingMethod,HasFisca
     {
         return $this->hasMany(TrainingMember::class);
     }
-
 }

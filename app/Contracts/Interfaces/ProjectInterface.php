@@ -2,6 +2,7 @@
 
 namespace App\Contracts\Interfaces;
 
+use App\Contracts\Interfaces\Eloquent\CountInterface;
 use App\Contracts\Interfaces\Eloquent\CustomPaginationInterface;
 use App\Contracts\Interfaces\Eloquent\DeleteInterface;
 use App\Contracts\Interfaces\Eloquent\GetInterface;
@@ -11,7 +12,7 @@ use App\Contracts\Interfaces\Eloquent\UpdateInterface;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-interface ProjectInterface extends GetInterface, StoreInterface, CustomPaginationInterface, DeleteInterface, UpdateInterface, ShowInterface
+interface ProjectInterface extends CountInterface,GetInterface, StoreInterface, CustomPaginationInterface, DeleteInterface, UpdateInterface, ShowInterface
 {
     /**
      * Handle paginate data event from models.
@@ -61,4 +62,5 @@ interface ProjectInterface extends GetInterface, StoreInterface, CustomPaginatio
      * @return int
      */
     public function countAllProject(): int;
+    
 }

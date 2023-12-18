@@ -64,5 +64,17 @@ class DinasRepository extends BaseRepository implements DinasInterface
         return $this->model->query()
             ->get();
     }
+    
+    /**
+     * count
+     *
+     * @param  mixed $data
+     * @return int
+     */
+    public function count(?array $data): int
+    {
+        return $this->model->query()
+            ->count();
+    }
 
 }

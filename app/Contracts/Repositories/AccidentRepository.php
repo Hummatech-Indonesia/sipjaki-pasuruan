@@ -72,6 +72,16 @@ class AccidentRepository extends BaseRepository implements AccidentInterface
     {
         return $this->show($id)->delete();
     }
-
-
+    
+    /**
+     * count
+     *
+     * @param  mixed $data
+     * @return int
+     */
+    public function count(?array $data): int
+    {
+        return $this->model->query()
+            ->count();
+    }
 }
