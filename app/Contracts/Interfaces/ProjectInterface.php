@@ -57,10 +57,24 @@ interface ProjectInterface extends CountInterface,GetInterface, StoreInterface, 
     public function countProject(): int;
 
     /**
+     * countDinas
+     *
+     * @return int
+     */
+    public function countDinas(): int;
+
+    /**
      * countAllProject
      *
      * @return int
      */
     public function countAllProject(): int;
-    
+
+    /**
+     * countActiveProject
+     *
+     * @return int
+     */
+    public function countActiveProject(): int;
+
 }

@@ -4,6 +4,7 @@ use App\Http\Controllers\AccidentController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\VerificationController;
+use App\Http\Controllers\DinasController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ServiceProviderProjectController;
 use App\Http\Controllers\SubClassificationController;
@@ -72,6 +73,4 @@ Route::get('qualification-training', function () {
 Route::get('sub-qualification-training', function () {
     return view('pages.sub-qualification-training');
 })->name('sub.qualification.training');
-Route::get('all-agency', function () {
-    return view('pages.all-agency');
-})->name('all.agency');
+Route::get('all-agency' , [DinasController::class , 'all'])->name('all.agency');

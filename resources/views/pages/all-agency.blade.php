@@ -24,9 +24,6 @@
             </div>
         </form>
         <div>
-            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-create"
-                style="background-color: #1B3061; border-radius: 10px"><i class="fas fa-plus"
-                    style="margin-right:10px"></i>Tambah</button>
         </div>
     </div>
     <div class="modal fade" id="modal-create" tabindex="-1" id="modal-create" aria-labelledby="exampleModalLabel1">
@@ -114,14 +111,15 @@
                     <th class=" table-sipjaki" >Nama</th>
                     <th class=" table-sipjaki" >Email</th>
                     <th class=" table-sipjaki" >Penanggung jawab</th>
-                    <th class=" table-sipjaki" >Aksi</th>
+                    {{-- <th class=" table-sipjaki" >Aksi</th> --}}
                 </tr>
             </thead>
+            @forelse ($dinass as $index=>$dinas)     
             <tbody>
                 <tr>
                     <td class="">
                         <p class="mt-2">
-                            1
+                            {{ $index + 1 }}
                         </p>
                     </td>
                     <td class="">
@@ -133,110 +131,47 @@
                             </div>
                             <div class="">
                                 <p class="mt-2">
-                                    Abdul Kader
+                                    {{ $dinas->user->name }}
                                 </p>
                             </div>
                         </div>
                     </td>
                     <td class="">
                         <p class="mt-2">
-                            kadergantegrek@gmail.com
+                            {{ $dinas->user->email }}
                         </p>
                     </td>
                     <td class="">
                         <p class="mt-2">
-                            Kader
+                            {{ $dinas->person_responsible }}
                         </p>
                     </td>
-                    <td class="">
+                    {{-- <td class="">
                         <div class="d-flex justify-content-header gap-2">
                             <div class="">
                                 <button class="btn text-white btn-edit" 
                                     style="background-color: #1B3061; width: 100%;">
-                                    edit
+                                    Detail
                                 </button>
                             </div>
-                            <div class="">
-                                <button class="btn text-white btn-delete btn-danger"
-                                    style="width: 100%;">
-                                    hapus
-                                </button>
+                            
+                        </div>
+                    </td> --}}
+                </tr>
+            </tbody>
+                @empty
+                <tr>
+                    <td colspan="5" class="text-center">
+                        <div class="d-flex justify-content-center" style="min-height:16rem">
+                            <div class="my-auto">
+                                <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                <h4 class="text-center mt-4">Dinas Kosong!!</h4>
                             </div>
                         </div>
                     </td>
                 </tr>
-            </tbody>
+                @endforelse
         </table>
-    </div>
-    <div class="modal fade" id="modal-update" tabindex="-1" aria-labelledby="exampleModalLabel1">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <form method="POST" id="form-update">
-                    @csrf
-                    @method('PUT')
-                    <div class="modal-header d-flex align-items-center">
-                        <h4 class="modal-title" id="exampleModalLabel1">
-                            Edit Dinas
-                        </h4>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="mb-3">
-                                    <label id="name" for="recipient-name" class="control-label mb-2">Nama
-                                        Dinas</label>
-                                    <input type="text" class="form-control" id="update-name" name="name"
-                                        aria-describedby="name" placeholder="Masukan nama" />
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="mb-3">
-                                    <label id="name" for="recipient-name" class="control-label mb-2">Penanggung
-                                        Jawab</label>
-                                    <input type="text" class="form-control" id="update-person_responsible"
-                                        name="person_responsible" aria-describedby="name"
-                                        placeholder="Masukan penanggung jawab" />
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="mb-3">
-                                    <label id="phone_number" for="recipient-name" class="control-label mb-2">Nomor
-                                        Handphone</label>
-                                    <input type="number" class="form-control" id="update-phone_number"
-                                        name="phone_number" aria-describedby="name"
-                                        placeholder="Masukan nomor hp anda" />
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="mb-3">
-                                    <label id="email" for="recipient-name" class="control-label mb-2">Email</label>
-                                    <input type="email" class="form-control" id="update-email" name="email"
-                                        aria-describedby="name" placeholder="Masukan email" />
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="mb-3">
-                                    <label id="email" for="recipient-name"
-                                        class="control-label mb-2">Password</label>
-                                    <input type="password" class="form-control" id="update-password" name="password"
-                                        aria-describedby="name" placeholder="Masukan password" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger text-white font-medium waves-effect"
-                            data-bs-dismiss="modal">
-                            Close
-                        </button>
-                        <button type="submit" style="background-color: #1B3061" class="btn text-white btn-update">
-                            Edit
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
     </div>
     <x-delete-modal-component />
 @endsection
