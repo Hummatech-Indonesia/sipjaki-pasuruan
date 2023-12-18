@@ -35,12 +35,6 @@ class OfficerController extends Controller
     }
 
 
-    /**
-     * store
-     *
-     * @param  mixed $request
-     * @return void
-     */
     public function store(OfficerRequest $request)
     {
         $this->officer->store($request->validated());
@@ -62,13 +56,6 @@ class OfficerController extends Controller
         //
     }
 
-    /**
-     * update
-     *
-     * @param  mixed $request
-     * @param  mixed $officer
-     * @return void
-     */
     public function update(OfficerRequest $request, Officer $officer)
     {
         $this->officer->update($officer->id, $request->validated());
