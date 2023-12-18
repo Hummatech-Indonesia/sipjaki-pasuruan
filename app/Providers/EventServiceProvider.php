@@ -26,6 +26,7 @@ use App\Models\Section;
 use App\Models\ServiceProvider as ModelsServiceProvider;
 use App\Models\ServiceProviderProject;
 use App\Models\SubClassification;
+use App\Models\SubClassificationTraining;
 use App\Models\Training;
 use App\Models\TrainingMember;
 use App\Models\TrainingMethod;
@@ -56,6 +57,7 @@ use App\Observers\SectionObserver;
 use App\Observers\ServiceProviderObserver;
 use App\Observers\ServiceProviderProjectObserver;
 use App\Observers\SubClassificationObserver;
+use App\Observers\SubClassificationTrainingObserver;
 use App\Observers\TrainingMemberObserver;
 use App\Observers\TrainingMethodObserver;
 use App\Observers\TrainingObserver;
@@ -116,6 +118,7 @@ class EventServiceProvider extends ServiceProvider
         FoundingDeed::observe(FoundingDeedObserver::class);
         Verification::observe(VerificationObserver::class);
         AmendmentDeed::observe(AmendmendDeedObserver::class);
+        SubClassificationTraining::observe(SubClassificationTrainingObserver::class);
     }
 
     /**

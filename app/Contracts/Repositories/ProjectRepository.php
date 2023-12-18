@@ -2,11 +2,9 @@
 
 namespace App\Contracts\Repositories;
 
-use App\Contracts\Interfaces\LengthAwarePaginator as InterfacesLengthAwarePaginator;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Contracts\Interfaces\ProjectInterface;
-use App\Contracts\Interfaces\Request as InterfacesRequest;
 use App\Enums\StatusEnum;
 use Illuminate\Pagination\LengthAwarePaginator;
 

@@ -12,7 +12,7 @@ class SubClassification extends Model implements HasClassification
     use HasFactory;
     protected $table = 'sub_classifications';
     protected $primaryKey = 'id';
-    protected $fillable = ['id', 'classification_id', 'name'];
+    protected $fillable = ['id', 'classification_id', 'name', 'code', 'description'];
     protected $guarded = [];
     public $incrementing = false;
     public $keyType = 'char';
