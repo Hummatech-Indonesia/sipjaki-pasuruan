@@ -22,7 +22,7 @@
                         </div>
                     </div>
                     <div class="">
-                        <button class="btn btn-success">
+                        {{-- <button class="btn btn-success">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                                 fill="none">
                                 <path
@@ -34,7 +34,7 @@
                                     stroke-linejoin="round" />
                             </svg>
                             Export
-                        </button>
+                        </button> --}}
                     </div>
                 </div>
             </div>
