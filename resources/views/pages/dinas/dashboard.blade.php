@@ -41,7 +41,7 @@
                     <div class="d-flex">
                         <div class="flex-grow-1">
                             <p class="text-muted fw-medium">Jumlah Kecelakaan</p>
-                            <h4 style="color: #1B3061" class="mb-0">234</h4>
+                            <h4 style="color: #1B3061" class="mb-0">{{ $accident_count }}</h4>
                             <div>Tahun 2023</div>
                         </div>
 
@@ -95,7 +95,7 @@
                     <div class="d-flex">
                         <div class="flex-grow-1">
                             <p class="text-muted fw-medium">Jumlah Paket Pekerja</p>
-                            <h4 class="mb-0" style="color: #1B3061">88</h4>
+                            <h4 class="mb-0" style="color: #1B3061">{{ $project_count }}</h4>
                         </div>
 
                         <div class="flex-shrink-0 align-self-center">

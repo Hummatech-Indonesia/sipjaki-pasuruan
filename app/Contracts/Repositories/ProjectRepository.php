@@ -76,6 +76,18 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
     }
 
     /**
+     * countDinas
+     *
+     * @return int
+     */
+    public function countDinas(): int
+    {
+        return $this->model->query()
+            ->where('dinas_id', auth()->user()->dinas->id)
+            ->count();
+    }
+
+    /**
      * get
      *
      * @return mixed
@@ -188,7 +200,7 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
             ->where(['status' => 'active', 'dinas_id' => auth()->user()->dinas->id])
             ->get();
     }
-    
+
     /**
      * count
      *

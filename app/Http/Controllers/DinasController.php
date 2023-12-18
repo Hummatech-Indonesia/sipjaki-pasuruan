@@ -88,7 +88,8 @@ class DinasController extends Controller
         foreach ($projects as $project) {
             $accident_total += $project->accidents->count();
         }
-        return view('pages.dinas.dashboard');
-        // return ResponseHelper::success(['accident_count' => $accident_total, 'project' => $projects]);
+        $project_total = $this->project->countDinas();
+
+        return view('pages.dinas.dashboard',['accident_count' => $accident_total, 'project_count' => $project_total]);
     }
 }

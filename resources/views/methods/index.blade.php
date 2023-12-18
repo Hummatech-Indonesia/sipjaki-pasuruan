@@ -92,7 +92,7 @@
                     <tbody>
                         @forelse ($traingMethods as $data)
                             <tr>
-                                <th scope="row">1</th>
+                                <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $data->name }}</td>
                                 <td>
                                     <div class="d-flex justify-content-center gap-2">
