@@ -63,7 +63,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @forelse ($association->serviceProviders as $index=>$serviceProvider)
+                        @forelse ($association->serviceProviders as $index=>$serviceProvider)
                             <tr>
                                 <td>
                                     {{ $index + 1 }}
@@ -82,15 +82,27 @@
                                 </td>
                                 <td>
                                     <button class="btn text-white btn-detail" id="{{ $serviceProvider->id }}"
-                                        data-id="{{ $serviceProvider->id }}" data-name="{{ $serviceProvider->user->name }}" data-address="{{ $serviceProvider->user->address ? $serviceProvider->user->address : "-"}}" data-phone_number="{{ $serviceProvider->user->phone_number }}" data-email="{{ $serviceProvider->user->email }}" style="background-color: #1B3061">
+                                        data-id="{{ $serviceProvider->id }}" data-name="{{ $serviceProvider->user->name }}"
+                                        data-address="{{ $serviceProvider->user->address ? $serviceProvider->user->address : '-' }}"
+                                        data-phone_number="{{ $serviceProvider->user->phone_number }}"
+                                        data-email="{{ $serviceProvider->user->email }}" style="background-color: #1B3061">
                                         Detail
                                     </button>
                                 </td>
                             </tr>
-                            @empty
-                            tr
-                            @endforelse
-                        </tbody>
+                        @empty
+                            <tr>
+                                <td colspan="6" class="text-center">
+                                    <div class="d-flex justify-content-center" style="min-height:16rem">
+                                        <div class="my-auto">
+                                            <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                            <h4 class="text-center mt-4">Penyedia Jasa Kosong!!</h4>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforelse
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -210,11 +222,27 @@
 @endsection
 @section('script')
     <script>
-         $('.btn-detail').click(function() {
-            const data = getDataAttributes($(this).attr('id'))
-            handleDetail(data)
-            console.log(data);
-            $('#modal-detail').modal('show')
+        $('.btn-detail').click(function() {
+            id = $(this).data('id')
+            console.log(id);
+            get()
+            $('#modal-detail').modal('show');
+
+            function get() {
+                $.ajax({
+                    url: "service-provider-detail/" + id,
+                    type: 'GET',
+                    dataType: "JSON",
+                    success: function(response) {
+                        var name = response.data.user.name;
+                        var email = response.data.user.email;
+                        var phone_number = response.data.user.phone_number;
+                        $('#phone_number').text(phone_number)
+                        $('#email').text(email)
+                        $('.name').text(name)
+                    }
+                });
+            }
         })
     </script>
 @endsection
