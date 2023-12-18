@@ -52,7 +52,7 @@ class DinasController extends Controller
         $dinass = $this->dinas->customPaginate($request , 15);
         // dd($dinass);
         return view('pages.all-agency', compact('dinass'));
-    }
+        }
     /**
      * update
      *
