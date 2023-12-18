@@ -20,6 +20,8 @@ use App\Models\News;
 use App\Models\Project;
 use App\Models\Qualification;
 use App\Models\QualificationLevel;
+use App\Models\QualificationLevelTraining;
+use App\Models\QualificationTraining;
 use App\Models\RuleCategory;
 use App\Models\Rule;
 use App\Models\Section;
@@ -50,7 +52,9 @@ use App\Observers\ImageObserver;
 use App\Observers\NewsObserver;
 use App\Observers\ProjectObserver;
 use App\Observers\QualificationLevelObserver;
+use App\Observers\QualificationLevelTrainingObserver;
 use App\Observers\QualificationObserver;
+use App\Observers\QualificationTrainingObserver;
 use App\Observers\RuleCategoriesObserver;
 use App\Observers\RuleObserver;
 use App\Observers\SectionObserver;
@@ -119,6 +123,8 @@ class EventServiceProvider extends ServiceProvider
         Verification::observe(VerificationObserver::class);
         AmendmentDeed::observe(AmendmendDeedObserver::class);
         SubClassificationTraining::observe(SubClassificationTrainingObserver::class);
+        QualificationTraining::observe(QualificationTrainingObserver::class);
+        QualificationLevelTraining::observe(QualificationLevelTrainingObserver::class);
     }
 
     /**

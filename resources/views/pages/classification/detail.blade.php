@@ -40,13 +40,27 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div class="mb-3">
-                            <label id="name" for="recipient-name" class="control-label mb-2">Masukan
-                                Sub Klasifikasi</label>
-                            <input type="text" class="form-control" id="create-school_year" class="form-control"
-                                name="name" id="nametext" aria-describedby="name" placeholder="" />
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label id="name" for="recipient-name" class="control-label mb-2">Masukan
+                                        Sub Klasifikasi</label>
+                                    <input type="text" class="form-control" id="create-school_year" class="form-control"
+                                        name="name" id="nametext" aria-describedby="name" placeholder="" />
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label id="name" for="recipient-name" class="control-label mb-2">Masukan
+                                        Kode Klasifikasi</label>
+                                    <input type="text" class="form-control" id="create-code" class="form-control"
+                                        name="code" id="nametext" aria-describedby="name" placeholder="" />
+                                </div>
+                            </div>
                         </div>
-
+                        <div class="col-12">
+                            <textarea name="description" id="create-description" cols="30" rows="10"></textarea>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger text-white font-medium waves-effect"
@@ -66,7 +80,7 @@
         <div class="card-body">
             <div class="d-flex justify-content-between mb-3">
                 <div class="">
-                    <h4 class=" mt-2" style="font-weight:600">{{$classification->name}}</h4>
+                    <h4 class=" mt-2" style="font-weight:600">{{ $classification->name }}</h4>
                 </div>
                 <div class="">
                     <button class="btn me-2 btn-md btn-create text-white" data-bs-toggle="modal"
@@ -90,6 +104,8 @@
                         <tr>
                             <th class="text-white" style="background-color: #1B3061">No</th>
                             <th class="text-white" style="background-color: #1B3061">Sub Klasifikasi</th>
+                            <th class="text-white" style="background-color: #1B3061">Kode</th>
+                            <th class="text-white" style="background-color: #1B3061">Deskripsi</th>
                             <th class="text-white" style="background-color: #1B3061; text-align: center">Aksi</th>
                         </tr>
                     </thead>
@@ -101,7 +117,8 @@
                                 <td>
                                     <div class="d-flex justify-content-center gap-2">
                                         <div class="">
-                                            <button type="button" class="btn btn-warning waves-effect waves-light btn-edit"
+                                            <button type="button"
+                                                class="btn btn-warning waves-effect waves-light btn-edit"
                                                 id="btn-edit-{{ $subClassification->id }}"
                                                 data-id="{{ $subClassification->id }}"
                                                 data-name="{{ $subClassification->name }}">
@@ -145,7 +162,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="3" class="text-center">
+                                <td colspan="6" class="text-center">
                                     <div class="d-flex justify-content-center" style="min-height:16rem">
                                         <div class="my-auto">
                                             <img src="{{ asset('no-data.png') }}" width="300" height="300" />
@@ -175,11 +192,26 @@
                         @method('PUT')
                         @csrf
                         <input type="hidden" name="classification_id" value="{{ $classification->id }}">
-                        <div class="mb-3">
-                            <label id="name" for="recipient-name" class="control-label mb-2">Masukan
-                                Anggaran</label>
-                            <input type="text" class="form-control" id="update-name" class="form-control"
-                                name="name" aria-describedby="name" placeholder="Masukan Anggaran" />
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label id="name" for="recipient-name" class="control-label mb-2">Masukan
+                                        Sub Klasifikasi</label>
+                                    <input type="text" class="form-control" id="create-school_year" class="form-control"
+                                        name="name" id="nametext" aria-describedby="name" placeholder="" />
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label id="name" for="recipient-name" class="control-label mb-2">Masukan
+                                        Kode Klasifikasi</label>
+                                    <input type="text" class="form-control" id="create-code" class="form-control"
+                                        name="code" id="nametext" aria-describedby="name" placeholder="" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <textarea name="description" id="create-description" cols="30" rows="10"></textarea>
                         </div>
                 </div>
                 <div class="modal-footer">

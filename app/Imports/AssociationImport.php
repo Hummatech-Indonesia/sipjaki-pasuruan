@@ -3,12 +3,14 @@
 namespace App\Imports;
 
 use App\Helpers\ImportAssociationHelper;
+use App\Traits\AssociationTrait;
+use App\Traits\ValidationAssociationTrait;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
 
-class AssociationImport implements ToModel, WithHeadingRow
+class AssociationImport implements ToModel, WithHeadingRow, WithValidation
 {
     /**
      * @param Collection $collection
@@ -28,4 +30,6 @@ class AssociationImport implements ToModel, WithHeadingRow
             'phone_number_leader' => $row['nomor_hp_ketua'],
         ]);
     }
+
+    use ValidationAssociationTrait;
 }
