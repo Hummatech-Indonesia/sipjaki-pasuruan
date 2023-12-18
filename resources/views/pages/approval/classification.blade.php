@@ -43,7 +43,7 @@
                                 2023
                             </td>
                             <td class="text-center">
-                                <div class="d-flex justify-content-center gap-2">
+                                <div class="d-flex justify-content-centerp gap-2">
                                     <div class="">
                                         <button class="btn btn-danger">
                                             Tolak
