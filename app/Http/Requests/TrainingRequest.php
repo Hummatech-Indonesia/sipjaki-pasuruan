@@ -25,7 +25,10 @@ class TrainingRequest extends FormRequest
             'fiscal_year_id' => 'required|exists:fiscal_years,id',
             'fund_source_id' => 'required|exists:fund_sources,id',
             'training_method_id' => 'required|exists:training_methods,id',
-            'sub_classification_id' => 'required|exists:sub_classifications,id',
+
+            'sub_classification_training_id' => 'required|exists:sub_classification_trainings,id',
+            'qualification_training_id' => 'required|exists:qualification_trainings,id',
+            'qualification_level_training_id' => 'required|exists:qualification_level_trainings,id',
             'qualification_level_id' => 'required|exists:qualification_levels,id',
             'name' => 'required|max:255',
             'organizer' => 'required|max:255',
