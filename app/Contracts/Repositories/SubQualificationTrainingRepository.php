@@ -2,14 +2,14 @@
 
 namespace App\Contracts\Repositories;
 
-use App\Contracts\Interfaces\SubQualificationInterface;
-use App\Models\SubQualification;
+use App\Contracts\Interfaces\SubQualificationTrainingInterface;
+use App\Models\SubQualificationTraining;
 
-class SubQualificationRepository extends BaseRepository implements SubQualificationInterface
+class SubQualificationTrainingRepository extends BaseRepository implements SubQualificationTrainingInterface
 {
-    public function __construct(SubQualification $subQualification)
+    public function __construct(SubQualificationTraining $subQualificationTraining)
     {
-        $this->model = $subQualification;
+        $this->model = $subQualificationTraining;
     }
 
     /**
@@ -33,7 +33,7 @@ class SubQualificationRepository extends BaseRepository implements SubQualificat
     public function show(mixed $id): mixed
     {
         return $this->model->query()
-            ->where('qualification_id', $id)
+            ->where('qualification_training_id', $id)
             ->get();
     }
 

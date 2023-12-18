@@ -30,7 +30,7 @@ use App\Models\ServiceProvider as ModelsServiceProvider;
 use App\Models\ServiceProviderProject;
 use App\Models\SubClassification;
 use App\Models\SubClassificationTraining;
-use App\Models\SubQualification;
+use App\Models\SubQualificationTraining;
 use App\Models\Training;
 use App\Models\TrainingMember;
 use App\Models\TrainingMethod;
@@ -66,6 +66,7 @@ use App\Observers\ServiceProviderProjectObserver;
 use App\Observers\SubClassificationObserver;
 use App\Observers\SubClassificationTrainingObserver;
 use App\Observers\SubQualificationObserver;
+use App\Observers\SubQualificationTrainingObserver;
 use App\Observers\TrainingMemberObserver;
 use App\Observers\TrainingMethodObserver;
 use App\Observers\TrainingObserver;
@@ -125,8 +126,8 @@ class EventServiceProvider extends ServiceProvider
         SubClassificationTraining::observe(SubClassificationTrainingObserver::class);
         QualificationTraining::observe(QualificationTrainingObserver::class);
         QualificationLevelTraining::observe(QualificationLevelTrainingObserver::class);
-        SubQualification::observe(SubQualificationObserver::class);
         Officer::observe(OfficerObserver::class);
+        SubQualificationTraining::observe(SubQualificationTrainingObserver::class);
     }
 
     /**
