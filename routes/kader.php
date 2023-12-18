@@ -72,3 +72,6 @@ Route::get('qualification-training', function () {
 Route::get('sub-qualification-training', function () {
     return view('pages.sub-qualification-training');
 })->name('sub.qualification.training');
+Route::get('all-agency', function () {
+    return view('pages.all-agency');
+})->name('all.agency');

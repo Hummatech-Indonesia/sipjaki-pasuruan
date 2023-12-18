@@ -59,8 +59,8 @@
                             </span>
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="calendar.html" key="t-tui-calendar">Dinas</a></li>
-                            <li><a href="calendar-full.html" key="t-full-calendar">Penyedia Jasa</a></li>
+                            <li><a href="{{ route('all.agency') }}" key="t-tui-calendar">Dinas</a></li>
+                            <li><a href="{{ route('all.service.provider') }}" key="t-full-calendar">Penyedia Jasa</a></li>
                         </ul>
                     </li>
                     <li>
