@@ -14,4 +14,5 @@ enum UploadDiskEnum: string
     case PROFILE = 'profile';
     case SERVICEPROVIDERPROJECT = 'service_provider_project';
     case ORGANIZATIONFILE = 'organization_file';
+    case VIDEO = 'video';
 }

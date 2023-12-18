@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Rules\CategoryImageRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ImageRequest extends FormRequest
 {
@@ -16,7 +17,14 @@ class ImageRequest extends FormRequest
     {
         return [
             'categories' => ['required', new CategoryImageRule],
-            'photo' => 'required|mimes:png,jpg,jpeg'
+            'photo' => [
+                'required',
+                Rule::sometimes('mimes:png,jpg,jpeg', function ($input) {
+                    return in_array('video', $input->categories);
+                }, function ($input) {
+                    return in_array('video', $input->categories) ? 'mimes:mp4' : '';
+                }),
+            ],
         ];
     }
 

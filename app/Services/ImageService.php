@@ -2,11 +2,8 @@
 
 namespace App\Services;
 
-use App\Enums\UploadDiskEnum;
 use App\Http\Requests\ImageRequest;
-use App\Http\Requests\NewsRequest;
 use App\Models\Image;
-use App\Models\News;
 use App\Traits\UploadTrait;
 
 class ImageService
