@@ -65,7 +65,7 @@
                                         <div class="mb-3">
                                             <label for="basicpill-lastname-input">Nama</label>
                                             <input name="name" type="text" class="form-control"
-                                                id="basicpill-phoneno-input" placeholder="Enter Your Name.">
+                                                id="basicpill-phoneno-input" placeholder="Masukkan Nama">
                                             @error('name')
                                                 <p class="text-danger">
                                                     {{ $message }}
@@ -77,7 +77,7 @@
                                         <div class="mb-3">
                                             <label for="basicpill-lastname-input">Penyelenggara</label>
                                             <input name="organizer" type="text" class="form-control"
-                                                id="basicpill-phoneno-input" placeholder="Enter Your Name.">
+                                                id="basicpill-phoneno-input" placeholder="Masukkan Nama Penyelenggara">
                                             @error('organizer')
                                                 <p class="text-danger">
                                                     {{ $message }}
@@ -99,16 +99,16 @@
                                         <div class="mb-3">
                                             <label for="basicpill-phoneno-input">Kualifikasi</label>
                                             <select name="kualifikasi" class="form-select list-qualifications select2-create" style="width:100%"
-                                                id="list-qualifications">
+                                                id="list-qualifications" value="{{ old('kualifikasi') }}">
                                                 <option value="">Pilih Kualifikasi</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-lg-3">
                                         <div class="mb-3">
-                                            <label for="basicpill-email-input">Jenjang KKNI</label>
+                                            <label for="basicpill-email-input">Sub Kualifikasi Latihan</label>
                                             <select name="qualification_level_id" class="form-select select2-create"
-                                                style="width:100%" id="list-qualification-level">
+                                                style="width:100%" id="list-qualification-level" value="{{ old('qualification_level_id') }}">
                                             </select>
                                             @error('qulification_level_id')
                                                 <p class="text-danger">
@@ -120,8 +120,8 @@
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-email-input">Klasifikasi</label>
-                                            <select name="" class="form-select list-classifications select2-create" style="width:100%"
-                                                id="list-classifications">
+                                            <select name="klasifikasi" class="form-select list-classifications select2-create" style="width:100%"
+                                                id="list-classifications" value="{{ old('klasifikasi') }}">
                                                 <option value="">Pilih klasifikasi</option>
                                             </select>
                                         </div>
@@ -130,7 +130,7 @@
                                         <div class="mb-3">
                                             <label for="basicpill-email-input">Sub Klasifikasi</label>
                                             <select name="sub_classification_id" class="form-select sub-classifications select2-create"
-                                                style="width:100%" id="list-sub-classifications">
+                                                style="width:100%" id="list-sub-classifications" value="{{ old('sub_classification_id') }}">
                                             </select>
                                             @error('sub_classification_id')
                                                 <p class="text-danger">
@@ -173,8 +173,8 @@
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-email-input">Jam Pelajaran</label>
-                                            <input type="text" name="lesson_hour" class="form-control"
-                                                id="basicpill-phoneno-input" placeholder="Enter Your Name.">
+                                            <input type="number" name="lesson_hour" class="form-control"
+                                                id="basicpill-phoneno-input" placeholder="Masukkan Jam pelajaran">
                                             @error('lesson_hour')
                                                 <p class="text-danger">
                                                     {{ $message }}
@@ -215,8 +215,8 @@
                         </div>
                     </form>
                 </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
+            </div>
+        </div>
     </div>
     <div class="modal fade" id="modal-update" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
         aria-hidden="true">
