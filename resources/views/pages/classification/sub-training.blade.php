@@ -30,8 +30,11 @@
     <div class="modal fade" id="samedata-modal" tabindex="-1" id="modeal-create" aria-labelledby="exampleModalLabel1">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <form action="" method="POST">
+                <form
+                    action="{{ route('sub-clasification-training.store', ['classification_training' => $classification_training->id]) }}"
+                    method="POST">
                     @csrf
+                    @method('POST')
                     <div class="modal-header d-flex align-items-center text-white " style="background-color: #1B3061">
                         <h4 class="modal-title" id="exampleModalLabel1">
                             Tambah Sub Klasifikasi
@@ -40,28 +43,16 @@
                     </div>
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-12">
                                 <div class="mb-3">
+                                    <input type="hidden" name="classification_id"
+                                        value="{{ $classification_training->id }}">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Masukan
                                         Sub Klasifikasi</label>
                                     <input type="text" class="form-control" id="create-school_year" class="form-control"
                                         name="name" id="nametext" aria-describedby="name" placeholder="" />
                                 </div>
                             </div>
-                            <div class="col-6">
-                                <div class="mb-3">
-                                    <label id="name" for="recipient-name" class="control-label mb-2">Masukan
-                                        Kode Klasifikasi</label>
-                                    <input type="text" class="form-control" id="create-code" class="form-control"
-                                        name="code" id="nametext" aria-describedby="name" placeholder="" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <p>
-                                Deskripsi
-                            </p>
-                            <textarea name="description" id="create-description" class="form-control" cols="30" rows="10"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -82,7 +73,7 @@
         <div class="card-body">
             <div class="d-flex justify-content-between mb-3">
                 <div class="">
-                    <h4 class=" mt-2" style="font-weight:600"></h4>
+                    <h4 class=" mt-2" style="font-weight:600">{{ $classification_training->name }}</h4>
                 </div>
                 <div class="">
                     <button class="btn me-2 btn-md btn-create text-white" data-bs-toggle="modal"
@@ -106,21 +97,20 @@
                         <tr>
                             <th class="text-white" style="background-color: #1B3061">No</th>
                             <th class="text-white" style="background-color: #1B3061">Sub Klasifikasi</th>
-                            <th class="text-white" style="background-color: #1B3061">Kode</th>
-                            <th class="text-white" style="background-color: #1B3061">Deskripsi</th>
                             <th class="text-white" style="background-color: #1B3061; text-align: center">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @forelse ($subClassificationTrainings as $subClassificationTraining)
                             <tr>
-                                <th scope="row" class="fs-5">1</th>
-                                <td>Kader</td>
-                                <td>222</td>
-                                <td>Kader</td>
+                                <th scope="row" class="fs-5">{{ $loop->iteration }}</th>
+                                <td>{{ $subClassificationTraining->name }}</td>
                                 <td>
                                     <div class="d-flex justify-content-center gap-2">
                                         <div class="">
-                                            <button type="button"
+                                            <button data-name="{{ $subClassificationTraining->name }}"
+                                                data-id="{{ $subClassificationTraining->id }}"
+                                                id="btn-edit-{{ $subClassificationTraining->id }}" type="button"
                                                 class="btn btn-warning waves-effect waves-light btn-edit">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                     viewBox="0 0 24 24" fill="none">
@@ -145,7 +135,7 @@
                                             </button>
                                         </div>
                                         <div class="">
-                                            <button type="button"
+                                            <button type="button" data-id="{{ $subClassificationTraining->id }}"
                                                 class="btn btn-danger waves-effect waves-light btn-delete">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                     viewBox="0 0 20 20" fill="none">
@@ -158,7 +148,9 @@
                                     </div>
                                 </td>
                             </tr>
-                        
+                        @empty
+                        @endforelse
+
                     </tbody>
                 </table>
             </div>
@@ -179,40 +171,53 @@
                         @method('PUT')
                         @csrf
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-12">
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Masukan
                                         Sub Klasifikasi</label>
-                                    <input type="text" class="form-control" id="create-school_year" class="form-control"
-                                        name="name" id="nametext" aria-describedby="name" placeholder="" />
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="mb-3">
-                                    <label id="name" for="recipient-name" class="control-label mb-2">Masukan
-                                        Kode Klasifikasi</label>
-                                    <input type="text" class="form-control" id="create-code" class="form-control"
-                                        name="code" id="nametext" aria-describedby="name" placeholder="" />
+                                    <input type="text" class="form-control" id="create-school_year"
+                                        class="form-control" name="name" id="nametext" aria-describedby="name"
+                                        placeholder="" />
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12">
-                            <textarea name="description" id="create-description" cols="30" rows="10"></textarea>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger text-white font-medium waves-effect"
+                                data-bs-dismiss="modal">
+                                Close
+                            </button>
+                            <button type="submit" style="background-color: #1B3061" class="btn text-white btn-create">
+                                Edit
+                            </button>
                         </div>
+                    </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger text-white font-medium waves-effect"
-                        data-bs-dismiss="modal">
-                        Close
-                    </button>
-                    <button type="submit" style="background-color: #1B3061" class="btn text-white btn-create">
-                        Edit
-                    </button>
-                </div>
-                </form>
             </div>
         </div>
-
     </div>
-    <x-delete-modal-component />
-@endsection
+        <x-delete-modal-component />
+    @endsection
+    @section('script')
+        <script>
+            $('.btn-edit').click(function() {
+                const formData = getDataAttributes($(this).attr('id'))
+                var actionUrl =
+                    "{{ route('sub-clasification-training.update', ['sub_classification_training' => ':id']) }}";
+                actionUrl = actionUrl.replace(':id', formData['id']);
+                $('#form-update').attr('action', actionUrl);
+
+                setFormValues('form-update', formData)
+                $('#form-update').data('id', formData['id'])
+                $('#form-update').attr('action', );
+                $('#modal-update').modal('show')
+            })
+            $('.btn-delete').click(function() {
+                var id = $(this).data('id');
+                var actionUrl =
+                    "{{ route('sub-clasification-training.delete', ['sub_classification_training' => ':id']) }}";
+                actionUrl = actionUrl.replace(':id', id);
+                $('#form-delete').attr('action', actionUrl);
+                $('#modal-delete').modal('show');
+            })
+        </script>
+    @endsection

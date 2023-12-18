@@ -23,7 +23,6 @@ class ClassificationTrainingController extends Controller
     public function index()
     {
         $classificationTrainings = $this->classificationTraining->get();
-        dd($classificationTrainings);
         return view('pages.classification.training', ['classificationTrainings' => $classificationTrainings ]);
     }
 
@@ -55,7 +54,7 @@ class ClassificationTrainingController extends Controller
      */
     public function show(ClassificationTraining $classification_training)
     {
-        return view('', ['classificationTraining' => $classification_training]);
+        return view('pages.classification.sub-training', ['classificationTraining' => $classification_training]);
     }
 
     /**
