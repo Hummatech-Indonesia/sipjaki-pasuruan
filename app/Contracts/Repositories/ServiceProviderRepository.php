@@ -107,4 +107,10 @@ class ServiceProviderRepository extends BaseRepository implements ServiceProvide
             })
             ->fastPaginate($pagination);
     }
+
+    public function count(?array $data): int
+    {
+        return $this->model->query()
+            ->count();
+    }
 }
