@@ -95,12 +95,6 @@ Route::middleware('auth')->group(function () {
     Route::middleware('role:superadmin')->group(function () {
         Route::get('dashboard-superadmin', [SuperadminController::class, 'dashboard'])->name('dashboard-superadmin');
 
-        Route::get('dashboard-superadmin', function () {
-            return view('pages.dasboard');
-        })->name('dashboard-superadmin');
-
-        Route::get('dashboard-superadmin', [SuperadminController::class, 'dashboard'])->name('dashboard-superadmin');
-
         Route::resources([
             'contract-categories' => ContractCategoryController::class,
             'fund-sources' => FundSourceController::class,
@@ -134,9 +128,6 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('role:admin')->group(function () {
 
-        Route::get('dashboard-admin', function () {
-            return view('pages.admin.dashboard');
-        })->name('dashboard-admin');
         Route::get('dashboard-admin', [AdminController::class, 'dashboard'])->name('dashboard-admin');
 
         Route::resources([
