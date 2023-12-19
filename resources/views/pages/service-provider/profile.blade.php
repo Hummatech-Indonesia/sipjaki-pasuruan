@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('content')
-@php
-use Carbon\Carbon;
-@endphp
+    @php
+        use Carbon\Carbon;
+    @endphp
     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
         <div class="d-flex">
             <a class="nav-link active rounded-start" style="border: solid 1px #1B3061;" id="badan-usaha-tab"
@@ -44,7 +44,16 @@ use Carbon\Carbon;
                                     Data Badan Usaha
                                 </div>
                                 <button style="background-color: #E4ECFF;"
-                                    class="text-dark btn px-4 fw-bold btn-edit-badan-usaha" id="btn-edit-badan-usaha-{{ $serviceProvider->id }}" data-address="{{ $serviceProvider->address }}" data-email="{{ $serviceProvider->user->email }}" data-city="{{ $serviceProvider->city }}" data-postal_code="{{ $serviceProvider->postal_code }}" data-phone_number="{{ $serviceProvider->user->phone_number }}" data-website="{{ $serviceProvider->website }}" data-form_of_business_entity="{{ $serviceProvider->form_of_business_entity }}" data-type_of_business_entity="{{ $serviceProvider->type_of_business_entity }}">Edit</button>
+                                    class="text-dark btn px-4 fw-bold btn-edit-badan-usaha"
+                                    id="btn-edit-badan-usaha-{{ $serviceProvider->id }}"
+                                    data-address="{{ $serviceProvider->address }}"
+                                    data-email="{{ $serviceProvider->user->email }}"
+                                    data-city="{{ $serviceProvider->city }}"
+                                    data-postal_code="{{ $serviceProvider->postal_code }}"
+                                    data-phone_number="{{ $serviceProvider->user->phone_number }}"
+                                    data-website="{{ $serviceProvider->website }}"
+                                    data-form_of_business_entity="{{ $serviceProvider->form_of_business_entity }}"
+                                    data-type_of_business_entity="{{ $serviceProvider->type_of_business_entity }}">Edit</button>
                             </div>
                             <p class="fw-bolder fs-4">{{ $serviceProvider->user->name }}</p>
                             <table cellpadding="5" style="border-collapse: collapse; width: 50%;" class="fs-6 fw-normal">
@@ -167,29 +176,35 @@ use Carbon\Carbon;
                     </thead>
                     <tbody>
                         @forelse ($serviceProviderQualifications as $serviceProviderQualification)
-                        <tr align="center">
-                            <td colspan="1">{{ $loop->iteration }}</td>
-                            <td colspan="1">{{ $serviceProviderQualification->subClassification->name }}</td>
-                            <td colspan="1">{{ $serviceProviderQualification->subClassification->code }}</td>
-                            <td colspan="1">{{ $serviceProviderQualification->qualification->name }}</td>
-                            <td colspan="1">{{ $serviceProviderQualification->year }}</td>
-                            <td colspan="1">{{ $serviceProviderQualification->serviceProvider->association->name }}</td>
-                            <td colspan="1">{{ Carbon::parse($serviceProviderQualification->created_at)->locale('id_ID')->isoFormat('DD MMMM Y') }}</td>
-                            <td colspan="1">{{ Carbon::parse($project->first_print)->locale('id_ID')->isoFormat('DD MMMM Y') }}</td>
-                            <td colspan="1">{{ Carbon::parse($project->last_print)->locale('id_ID')->isoFormat('DD MMMM Y') }}</td>
-                            <td colspan="1"></td>
-                        </tr>
+                            <tr align="center">
+                                <td colspan="1">{{ $loop->iteration }}</td>
+                                <td colspan="1">{{ $serviceProviderQualification->subClassification->name }}</td>
+                                <td colspan="1">{{ $serviceProviderQualification->subClassification->code }}</td>
+                                <td colspan="1">{{ $serviceProviderQualification->qualification->name }}</td>
+                                <td colspan="1">{{ $serviceProviderQualification->year }}</td>
+                                <td colspan="1">{{ $serviceProviderQualification->serviceProvider->association->name }}
+                                </td>
+                                <td colspan="1">
+                                    {{ Carbon::parse($serviceProviderQualification->created_at)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                </td>
+                                <td colspan="1">
+                                    {{ Carbon::parse($project->first_print)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                </td>
+                                <td colspan="1">
+                                    {{ Carbon::parse($project->last_print)->locale('id_ID')->isoFormat('DD MMMM Y') }}</td>
+                                <td colspan="1"></td>
+                            </tr>
                         @empty
-                        <tr>
-                            <td colspan="10" class="text-center">
-                                <div class="d-flex justify-content-center" style="min-height:19rem">
-                                    <div class="my-auto">
-                                        <img src="{{ asset('no-data.png') }}" width="300" height="300" />
-                                        <h4 class="text-center mt-4">Kualifikasi dan Klasifikasi kosong!!</h4>
+                            <tr>
+                                <td colspan="10" class="text-center">
+                                    <div class="d-flex justify-content-center" style="min-height:19rem">
+                                        <div class="my-auto">
+                                            <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                            <h4 class="text-center mt-4">Kualifikasi dan Klasifikasi kosong!!</h4>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
                         @endforelse
                     </tbody>
                 </table>
@@ -382,19 +397,19 @@ use Carbon\Carbon;
                                 <div class="btn btn-sm mb-3 text-dark rounded-3" style="background-color: #E4ECFF;">
                                     Data Pengurus Badan Usaha
                                 </div>
-                                <p class="fw-bolder fs-4">MITRA BAHAGIA UTAMA BUMIAJI</p>
+                                <p class="fw-bolder fs-4">{{ $serviceProvider->user->name }}</p>
                             </div>
                             <table cellpadding="5" style="border-collapse: collapse; width: 40%;" class="fs-6 fw-normal">
                                 <tbody>
                                     <tr>
                                         <td>Alamat Badan Usaha</td>
                                         <td>:</td>
-                                        <td>Jl. G. Lokon No. 59</td>
+                                        <td>{{ $serviceProvider->address ? $serviceProvider->address : '-' }}</td>
                                     </tr>
                                     <tr>
                                         <td>Telepon</td>
                                         <td>:</td>
-                                        <td>0411 - 3584897987</td>
+                                        <td>{{ $serviceProvider->user->phone_number }}</td>
                                     </tr>
 
                                 </tbody>
@@ -428,14 +443,28 @@ use Carbon\Carbon;
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Tuafiq Arifin, SH</td>
-                            <td>Jl. Singa No 4</td>
-                            <td>Kota Malang</td>
-                            <td>Jawa Timur</td>
-                            <td>Jawa Timur</td>
-                        </tr>
+                        @forelse ($officers as $index => $officer)
+                            <tr>
+                                <td class="fs-6">{{ $index + 1 }}</td>
+                                <td class="fs-6">{{ $officer->name }}</td>
+                                <td class="fs-6">
+                                    {{ Carbon::parse($officer->birth_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}</td>
+                                <td class="fs-6">{{ $officer->address }}</td>
+                                <td class="fs-6">{{ $officer->position }}</td>
+                                <td class="fs-6">{{ $officer->education }}</td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="6" class="text-center">
+                                    <div class="d-flex justify-content-center" style="min-height:16rem">
+                                        <div class="my-auto">
+                                            <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                            <h4 class="text-center mt-4">Type Kosong!!</h4>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
@@ -449,19 +478,19 @@ use Carbon\Carbon;
                                 <div class="btn btn-sm mb-3 text-dark rounded-3" style="background-color: #E4ECFF;">
                                     Data Pengurus Badan Usaha
                                 </div>
-                                <p class="fw-bolder fs-4">MITRA BAHAGIA UTAMA BUMIAJI</p>
+                                <p class="fw-bolder fs-4">{{ $serviceProvider->user->name }}</p>
                             </div>
                             <table cellpadding="5" style="border-collapse: collapse; width: 40%;" class="fs-6 fw-normal">
                                 <tbody>
                                     <tr>
                                         <td>Alamat Badan Usaha</td>
                                         <td>:</td>
-                                        <td>Jl. G. Lokon No. 59</td>
+                                        <td>{{ $serviceProvider->address }}</td>
                                     </tr>
                                     <tr>
                                         <td>Telepon</td>
                                         <td>:</td>
-                                        <td>0411 - 3584897987</td>
+                                        <td>{{ $serviceProvider->user->phone_number }}</td>
                                     </tr>
 
                                 </tbody>
@@ -501,25 +530,57 @@ use Carbon\Carbon;
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Tuafiq Arifin, SH</td>
-                                    <td>Jl. Singa No 4</td>
-                                    <td>Kota Malang</td>
-                                    <td>Jawa Timur</td>
-                                    <td>1231457</td>
-                                    <td><button class="btn btn-sm rounded-3"
-                                            style="background-color: #1B3061;color:white;"><svg
-                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none">
-                                                <path d="M4.5 12.5C7.5 6 16.5 6 19.5 12.5" stroke="white" stroke-width="2"
-                                                    stroke-linecap="round" stroke-linejoin="round" />
-                                                <path
-                                                    d="M12 16C10.8954 16 10 15.1046 10 14C10 12.8954 10.8954 12 12 12C13.1046 12 14 12.8954 14 14C14 15.1046 13.1046 16 12 16Z"
-                                                    stroke="white" stroke-width="2" stroke-linecap="round"
-                                                    stroke-linejoin="round" />
-                                            </svg> Detail</button></td>
-                                </tr>
+                                @forelse ($workers as $worker)
+                                    <tr>
+                                        <td class="fs-6">{{ $loop->iteration }}</td>
+                                        <td class="fs-6">{{ $worker->name }}</td>
+                                        <td class="fs-6">
+                                            {{ \Carbon\Carbon::parse($worker->birth_date)->translatedFormat('d F Y') }}
+                                        </td>
+                                        <td class="fs-6">{{ $worker->education }}</td>
+                                        <td class="fs-6">{{ $worker->registration_number }}</td>
+                                        <td>{{ $worker->cerificate }}</td>
+                                        <td>
+                                            <div class="d-flex justify-content-header gap-3">
+                                                <div class="">
+                                                    <button id="btn-edit-{{ $worker->id }}"
+                                                        data-id="{{ $worker->id }}" data-name="{{ $worker->name }}"
+                                                        data-birth_date="{{ \Carbon\Carbon::parse($worker->birth_date)->translatedFormat('d F Y') }}"
+                                                        data-cerificate="{{ $worker->cerificate }}"
+                                                        data-education="{{ $worker->education }}"
+                                                        data-registration_number="{{ $worker->registration_number }}"
+                                                        type="button" data-bs-target="#modal-detail"
+                                                        data-bs-toggle="modal"
+                                                        class="btn btn-detail waves-effect waves-light text-white btn waves-effect d-flex flex-row gap-1 justify-content-evenly"
+                                                        style="background-color: #1B3061">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="19"
+                                                            height="19" viewBox="0 0 24 24" fill="none">
+                                                            <path d="M4.5 12.5C7.5 6 16.5 6 19.5 12.5" stroke="white"
+                                                                stroke-width="1.5" stroke-linecap="round"
+                                                                stroke-linejoin="round" />
+                                                            <path
+                                                                d="M12 16C10.8954 16 10 15.1046 10 14C10 12.8954 10.8954 12 12 12C13.1046 12 14 12.8954 14 14C14 15.1046 13.1046 16 12 16Z"
+                                                                stroke="white" stroke-width="1.5" stroke-linecap="round"
+                                                                stroke-linejoin="round" />
+                                                        </svg> Detail
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="7" class="text-center">
+                                            <div class="d-flex justify-content-center" style="min-height:19rem">
+                                                <div class="my-auto">
+                                                    <img src="{{ asset('no-data.png') }}" width="300"
+                                                        height="300" />
+                                                    <h4 class="text-center mt-4">Tenaga kerja kosong!!</h4>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>
@@ -627,7 +688,8 @@ use Carbon\Carbon;
 
                             <div class="col-6">
                                 <div class="mb-3">
-                                    <label id="name" for="recipient-name" class="control-label mb-2">Bentuk Badan Usaha</label>
+                                    <label id="name" for="recipient-name" class="control-label mb-2">Bentuk Badan
+                                        Usaha</label>
                                     <select name="form_of_business_entity" class="form-select" id="">
                                         <option value="">Pilih Bentuk Badan Usaha</option>
                                         <option value="pt">PT</option>
@@ -637,7 +699,8 @@ use Carbon\Carbon;
                             </div>
                             <div class="col-6">
                                 <div class="mb-3">
-                                    <label id="name" for="recipient-name" class="control-label mb-2">Jenis Badan Usaha</label>
+                                    <label id="name" for="recipient-name" class="control-label mb-2">Jenis Badan
+                                        Usaha</label>
                                     <select name="type_of_business_entity" class="form-select" id="">
                                         <option value="">Pilih Jenis Badan Usaha</option>
                                         <option value="consultant">Konsultan</option>
