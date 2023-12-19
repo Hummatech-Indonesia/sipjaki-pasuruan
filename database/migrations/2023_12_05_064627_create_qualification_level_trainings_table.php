@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('qualification_level_trainings', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->foreignUuid('qualification_training_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('name');
             $table->timestamps();
         });

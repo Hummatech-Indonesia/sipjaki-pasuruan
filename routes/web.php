@@ -41,6 +41,7 @@ use App\Http\Controllers\ServiceProviderProjectController;
 use App\Http\Controllers\SubQualificationTrainingController;
 use App\Http\Controllers\SubClassificationTrainingController;
 use App\Http\Controllers\QualificationLevelTrainingController;
+use App\Models\QualificationLevelTraining;
 
 /*
 |--------------------------------------------------------------------------
@@ -94,7 +95,7 @@ Route::get('/opd', function () {
 Route::get('json-classification-training', [ClassificationTrainingController::class, 'jsonClassificationTraining']);
 Route::get('json-sub-classification-training/{classification_training}', [SubClassificationTrainingController::class, 'jsonSubClassificationTraining']);
 Route::get('json-qualification-training', [QualificationTrainingController::class, 'jsonQualificationTraining']);
-Route::get('json-qualification-level-training', [QualificationLevelTrainingController::class, 'jsonQualificationLevelTraining']);
+Route::get('json-qualification-level-training/{qualification_training}', [QualificationLevelTrainingController::class, 'jsonQualificationLevelTraining']);
 
 Route::middleware('auth')->group(function () {
     Route::get('profile', function () {
@@ -131,10 +132,11 @@ Route::middleware('auth')->group(function () {
             'rules' => RuleController::class,
             'types' => TypeController::class,
             'associations'=> AssociationController::class,
-            'qualification-level-trainings' => QualificationLevelTrainingController::class,
             'qualification-trainings' => QualificationTrainingController::class,
             'classification-training'=> ClassificationTrainingController::class
         ]);
+        Route::resource('qualification-level-trainings', QualificationLevelTrainingController::class)->except('store');
+        Route::post('qualification-level-trainings/{qualification_training}', [QualificationLevelTrainingController::class, 'store']);
         Route::get('sub-clasification-training/{classification_training}',[SubClassificationTrainingController::class,'index'])->name('sub-trainings.detail');
         Route::post('sub-clasification-training/store/{classification_training}',[SubClassificationTrainingController::class,'store'])->name('sub-clasification-training.store');
         Route::put('sub-clasification-training/update/{sub_classification_training}',[SubClassificationTrainingController::class,'update'])->name('sub-clasification-training.update');

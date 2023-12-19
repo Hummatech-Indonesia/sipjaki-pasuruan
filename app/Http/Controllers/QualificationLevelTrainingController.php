@@ -7,6 +7,7 @@ use App\Helpers\ResponseHelper;
 use App\Http\Requests\QualificationLevelTrainingRequest;
 use App\Http\Resources\QualificationLevelTrainingResource;
 use App\Models\QualificationLevelTraining;
+use App\Models\QualificationTraining;
 use App\Traits\PaginationTrait;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -47,9 +48,11 @@ class QualificationLevelTrainingController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(QualificationLevelTrainingRequest $request)
+    public function store(QualificationTraining $qualification_training, QualificationLevelTrainingRequest $request)
     {
-        $this->qualificationLevelTraining->store($request->validated());
+        $data = $request->validated();
+        $data['qualification_training_id'] = $qualification_training->id;
+        $this->qualificationLevelTraining->store($data);
         if ($request->is('api/*')) {
             return ResponseHelper::success(null, trans('alert.add_success'));
         } else {
@@ -102,10 +105,11 @@ class QualificationLevelTrainingController extends Controller
     /**
      * jsonQualificationLevelTraining
      *
+     * @param  mixed $qualification_training
      * @return JsonResponse
      */
-    public function jsonQualificationLevelTraining(): JsonResponse
+    public function jsonQualificationLevelTraining(QualificationTraining $qualification_training): JsonResponse
     {
-        return ResponseHelper::success(QualificationLevelTrainingResource::collection($this->qualificationLevelTraining->get()));
+        return ResponseHelper::success(QualificationLevelTrainingResource::collection($this->qualificationLevelTraining->show($qualification_training->id)));
     }
 }
