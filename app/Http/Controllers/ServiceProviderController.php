@@ -42,7 +42,7 @@ class ServiceProviderController extends Controller
     {
         $workers = $this->worker->getByServiceProvider($request);
         $experiences = $this->project->getByServiceProvider($request);
-        $countOfficer = $this->officer->count([]);
+        $countOfficer = $this->officer->count(null);
         $countWorker = $this->worker->countWorker();
         $countExperience = $this->project->countProject();
         $countAllExperience = $this->project->countAllProject();
