@@ -95,7 +95,6 @@ Route::get('json-classification-training', [ClassificationTrainingController::cl
 Route::get('json-sub-classification-training/{classification_training}', [SubClassificationTrainingController::class, 'jsonSubClassificationTraining']);
 Route::get('json-qualification-training', [QualificationTrainingController::class, 'jsonQualificationTraining']);
 Route::get('json-qualification-level-training', [QualificationLevelTrainingController::class, 'jsonQualificationLevelTraining']);
-Route::get('json-sub-qualification-training/{qualification_training}', [SubQualificationTrainingController::class, 'jsonSubQualificationTraining']);
 
 Route::middleware('auth')->group(function () {
     Route::get('profile', function () {
@@ -144,7 +143,7 @@ Route::middleware('auth')->group(function () {
 
         Route::get('history-login', [HistoryLoginController::class, 'index'])->name('history-login.index');
         Route::get('classification-trainings', [ClassificationTrainingController::class, 'index'])->name('classification-training.index');
-        
+
         Route::name('qualifications.level.')->group(function () {
             Route::post('sub-qualifications/{qualification}', [QualificationLevelController::class, 'store'])->name('store');
             Route::put('sub-qualifications/{qualification_level}', [QualificationLevelController::class, 'update'])->name('update');
