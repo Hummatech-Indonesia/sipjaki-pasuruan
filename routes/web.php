@@ -95,7 +95,7 @@ Route::get('/opd', function () {
 Route::get('json-classification-training', [ClassificationTrainingController::class, 'jsonClassificationTraining']);
 Route::get('json-sub-classification-training/{classification_training}', [SubClassificationTrainingController::class, 'jsonSubClassificationTraining']);
 Route::get('list-qualification-training', [QualificationTrainingController::class, 'jsonQualificationTraining']);
-Route::get('qualification-level-training/{qualification_training}', [QualificationLevelTrainingController::class, 'jsonQualificationLevelTraining']);
+Route::get('json-qualification-level-training/{qualification_training}', [QualificationLevelTrainingController::class, 'jsonQualificationLevelTraining']);
 
 Route::middleware('auth')->group(function () {
     Route::get('profile', function () {
@@ -210,23 +210,23 @@ Route::middleware('auth')->group(function () {
         Route::resources([
             'officers' => OfficerController::class,
         ]);
-    
+
         Route::get('service-provider-profile', [ServiceProviderController::class, 'index'])->name('service-provider-profile');
         Route::put('update-business-entity', [ServiceProviderController::class, 'update'])->name('update-business-entity');
-    
+
         Route::get('service-provider-projects', [ServiceProviderProjectController::class, 'index']);
         Route::post('service-provider-projects/{project}', [ServiceProviderProjectController::class, 'store'])->name('service-provider-projects.store');
         Route::put('service-provider-projects/{service_provider_project}', [ServiceProviderProjectController::class, 'update'])->name('service-provider-projects.update');
         Route::delete('service-provider-projects/{service_provider_project}', [ServiceProviderProjectController::class, 'destroy'])->name('service-provider-projects.delete');
-    
+
         Route::get('dashboard-service-provider', [ServiceProviderController::class, 'dashboard'])->name('dashboard-service-provider');
         Route::resource('workers', WorkerController::class)->only('index', 'update', 'destroy');
         Route::delete('delete-workers', [WorkerController::class, 'deleteMultiple']);
         Route::post('workers/{service_provider}', [WorkerController::class, 'store']);
-    
+
         Route::post('import-workers', [WorkerController::class, 'import'])->name('import.workers');
         Route::get('export-workers', [WorkerController::class, 'export'])->name('export.workers');
-    
+
         Route::put('profile-service-providers', [ServiceProviderController::class, 'update']);
         Route::get('data-service-providers', [AssociationController::class, 'dataServiceProvider']);
 
