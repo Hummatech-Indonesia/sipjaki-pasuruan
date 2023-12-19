@@ -48,10 +48,11 @@ class ProjectController extends Controller
             return ResponseHelper::success($data, trans('alert.get_success'));
         } else {
 
-            $serviceProviders = $this->serviceProvider->get();
+            $consultants = $this->serviceProvider->getConsultant();
+            $executors = $this->serviceProvider->getExecutor();
             $fundSources = $this->fundSource->get();
             $contractCategories = $this->contractCategory->get();
-            return view('pages.dinas.work-package', compact('projects', 'serviceProviders', 'fundSources', 'contractCategories'));
+            return view('pages.dinas.work-package', compact('projects', 'consultants','executors', 'fundSources', 'contractCategories'));
         }
     }
 
