@@ -12,7 +12,7 @@
     <div class="d-flex justify-content-between mb-3">
         <div class="">
             <p class="fs-4 text-dark" style="font-weight: 600">
-                Pelatihan
+                Pelatihan Admin
             </p>
         </div>
         <div class="">

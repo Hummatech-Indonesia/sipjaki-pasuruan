@@ -1,5 +1,8 @@
 @extends('layouts.app-landing-page')
 @section('content')
+    @php
+        use Carbon\Carbon;
+    @endphp
     <style>
         .search-container {
             display: flex;
@@ -43,18 +46,18 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    @foreach($data as $item)
-                    <div class="d-flex justify-content-between mb-3">
-                        <div class="">
-                            {{$loop->iteration}}
+                    @foreach ($data as $item)
+                        <div class="d-flex justify-content-between mb-3">
+                            <div class="">
+                                {{ $loop->iteration }}
+                            </div>
+                            <div class="">
+                                {{ $item->user->name }}
+                            </div>
+                            <div class="">
+                                {{ $item->projects_count }}
+                            </div>
                         </div>
-                        <div class="">
-                            {{$item->user->name}}
-                        </div>
-                        <div class="">
-                            {{$item->projects_count}}
-                        </div>
-                    </div>
                     @endforeach
                 </div>
             </div>
@@ -75,7 +78,7 @@
                                     <th class="fw-medium"
                                         style="background-color: #1B3062; color: white; border-right: 1px solid #1B3061;">
                                         No</th>
-                                        <th class="fw-medium"
+                                    <th class="fw-medium"
                                         style="background-color: #1B3061; color: white; border-right: 1px solid #1B3061;">
                                         Nama Pekerjaan</th>
                                     <th class="fw-medium"
@@ -95,27 +98,32 @@
                             </thead>
                             <tbody>
                                 @forelse ($detailDinas->projects as $project)
-                                    <th scope="row" class="fs-5">{{$loop->iteration}}</th>
-                                    <td class="fs-5">{{$project->name}}</td>
-                                    <td class="fs-5">{{$project->fundSource->name}}</td>
-                                    <td class="fs-5">{{$project->project_value}}</td>
-                                    <td class="fs-5">{{$project->start_at->isoFormat('Do MMMM YYYY', 'ID')}}</td>
-                                    <td class="fs-5">{{$project->end_at->isoFormat('Do MMMM YYYY', 'ID')}}</td>
-                                    <td class="fs-5">{{$project->status}}</td>
+                                    <th scope="row" class="fs-5">{{ $loop->iteration }}</th>
+                                    <td class="fs-5">{{ $project->name }}</td>
+                                    <td class="fs-5">{{ $project->fundSource->name }}</td>
+                                    <td class="fs-5">{{ $project->project_value }}</td>
+                                    <td class="fs-5">
+                                        {{ Carbon::parse($project->start_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                    </td>
+                                    <td class="fs-5">
+                                        {{ Carbon::parse($project->end_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                    </td>
+                                    <td class="fs-5">{{ $project->status }}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('detail-project',['dinas' => $item->id]) }}" class="text-white btn" style="background-color: #1B3061">Detail</a>
+                                        <a href="{{ route('detail-project', ['dinas' => $item->id]) }}"
+                                            class="text-white btn" style="background-color: #1B3061">Detail</a>
                                     </td>
                                 @empty
-                                <tr>
-                                    <td colspan="7" class="text-center">
-                                        <div class="d-flex justify-content-center" style="min-height:16rem">
-                                            <div class="my-auto">
-                                                <img src="{{ asset('no-data.png') }}" width="300" height="300" />
-                                                <h4 class="text-center mt-4">Tidak Ada Paket!!</h4>
+                                    <tr>
+                                        <td colspan="7" class="text-center">
+                                            <div class="d-flex justify-content-center" style="min-height:16rem">
+                                                <div class="my-auto">
+                                                    <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                                    <h4 class="text-center mt-4">Tidak Ada Paket!!</h4>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                </tr>
+                                        </td>
+                                    </tr>
                                 @endforelse
                             </tbody>
                         </table>

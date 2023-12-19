@@ -1,5 +1,8 @@
 @extends('layouts.app')
 @section('content')
+    @php
+        use Carbon\Carbon;
+    @endphp
     @if (session('success'))
         <script>
             Swal.fire({
@@ -63,7 +66,8 @@
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Masukan
                                         Alamat</label>
-                                        <textarea class="form-control" name="address" id="" cols="15" rows="5" placeholder="Masukkan Alamat"></textarea>
+                                    <textarea class="form-control" name="address" id="" cols="15" rows="5"
+                                        placeholder="Masukkan Alamat"></textarea>
                                 </div>
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Masukan
@@ -83,7 +87,8 @@
                                     data-bs-dismiss="modal">
                                     Close
                                 </button>
-                                <button type="submit" style="background-color: #1B3061" class="btn text-white btn-create">
+                                <button type="submit" style="background-color: #1B3061"
+                                    class="btn text-white btn-create">
                                     Tambah
                                 </button>
                             </div>
@@ -116,7 +121,8 @@
                         <tr>
                             <td class="fs-5">{{ $index + 1 }}</td>
                             <td class="fs-5">{{ $officer->name }}</td>
-                            <td class="fs-5">{{ $officer->birth_date }}</td>
+                            <td class="fs-5">
+                                {{ Carbon::parse($officer->birth_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}</td>
                             <td class="fs-5">{{ $officer->address }}</td>
                             <td class="fs-5">{{ $officer->position }}</td>
                             <td class="fs-5">{{ $officer->education }}</td>
@@ -130,8 +136,8 @@
                                 <button type="button"
                                     class="btn waves-effect waves-light btn-delete d-flex flex-row gap-1 justify-content-between"
                                     style="width: 90px; background-color: #E05C39; color: white"
-                                    data-id="{{ $officer->id }}" data-bs-toggle="modal" data-bs-target="#modal-delete"><i
-                                        class="bx bx-bx bxs-trash fs-4"></i> Hapus</button>
+                                    data-id="{{ $officer->id }}" data-bs-toggle="modal"
+                                    data-bs-target="#modal-delete"><i class="bx bx-bx bxs-trash fs-4"></i> Hapus</button>
                             </td>
                         </tr>
                     @empty
@@ -169,8 +175,7 @@
                                 <label id="name" for="recipient-name" class="control-label mb-2">Masukan
                                     Pengurus</label>
                                 <input type="text" class="form-control" id="update-name" class="form-control"
-                                    name="name" aria-describedby="name"
-                                    placeholder="Masukkan Pengurus" />
+                                    name="name" aria-describedby="name" placeholder="Masukkan Pengurus" />
                             </div>
 
                         </div>
