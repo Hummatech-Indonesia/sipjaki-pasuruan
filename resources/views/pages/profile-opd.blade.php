@@ -28,13 +28,13 @@
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="formrow-inputState" class="form-label">Nama OPD</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" placeholder="Masukkan Nama">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="formrow-inputState" class="form-label">No Telephone OPD</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" placeholder="Masukkan No Telephone">
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -51,7 +51,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Alamat</label>
                                     <div>
-                                        <textarea rows="4" name="address" class="form-control" rows="3">{{ old('address') }}</textarea>
+                                        <textarea rows="4" name="address" class="form-control" rows="3" placeholder="Masukkan Alamat">{{ old('address') }}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -87,7 +87,7 @@
                                     <label class="form-label">NIP</label>
                                     <div>
                                         <input type="number"
-                                            class="form-control" placeholder="Masukkan Nama Penjabat" />
+                                            class="form-control" placeholder="Masukkan NIP" />
                                     </div>
                                 </div>
                             </div>
@@ -95,7 +95,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Jabatan</label>
                                     <div>
-                                        <input type="text" class="form-control" placeholder="Masukkan Eseleon" />
+                                        <input type="text" class="form-control" placeholder="Masukkan Jabatan" />
                                     </div>
                                 </div>
                             </div>
@@ -126,7 +126,7 @@
                                 <div class="col-6">
                                     <label for="" class="form-label">Password Sekarang</label>
                                     <div class="input-group auth-pass-inputgroup">
-                                        <input type="password" name="current_password"  class="form-control" placeholder="Masukkan password sekarang" aria-label="Password" aria-describedby="password-addon2" >
+                                        <input type="password" name="current_password"  class="form-control" placeholder="Masukkan password" aria-label="Password" aria-describedby="password-addon2" >
                                         <button class="btn btn-light " type="button" id="password-addon2"><i class="mdi mdi-eye-outline"></i></button>
                                     </div>
                                 </div>
@@ -135,14 +135,14 @@
                                 <div class="col">
                                     <label for="" class="form-label">Password Baru</label>
                                     <div class="input-group auth-pass-inputgroup">
-                                        <input type="password" name="password"  class="form-control" placeholder="Masukkan password sekarang" aria-label="Password" aria-describedby="password-addon3" >
+                                        <input type="password" name="password"  class="form-control" placeholder="Masukkan password Baru" aria-label="Password" aria-describedby="password-addon3" >
                                         <button class="btn btn-light " type="button" id="password-addon3"><i class="mdi mdi-eye-outline"></i></button>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <label for="" class="form-label">Konfirmasi Password</label>
                                     <div class="input-group auth-pass-inputgroup">
-                                        <input type="password" name="password_confirmation"  class="form-control" placeholder="Masukkan password sekarang" aria-label="Password" aria-describedby="password-addon" >
+                                        <input type="password" name="password_confirmation"  class="form-control" placeholder="Konfirmasi password" aria-label="Password" aria-describedby="password-addon" >
                                         <button class="btn btn-light " type="button" id="password-addon"><i class="mdi mdi-eye-outline"></i></button>
                                     </div>
                                 </div>
