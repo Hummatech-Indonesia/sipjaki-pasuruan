@@ -29,7 +29,7 @@ class ServiceProviderController extends Controller
         $this->user = $user;
         $this->serviceProvider = $serviceProvider;
         $this->serviceProviderQualification = $serviceProviderQualification;
-        $this->officerInterface = $officerInterface;
+        $this->officer = $officerInterface;
     }
 
     /**
@@ -42,6 +42,7 @@ class ServiceProviderController extends Controller
     {
         $workers = $this->worker->getByServiceProvider($request);
         $experiences = $this->project->getByServiceProvider($request);
+        $countOfficer = $this->officer->count([]);
         $countWorker = $this->worker->countWorker();
         $countExperience = $this->project->countProject();
         $countAllExperience = $this->project->countAllProject();
