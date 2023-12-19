@@ -30,7 +30,7 @@
                     <path fill-rule="evenodd" clip-rule="evenodd"
                         d="M4 12C4 11.4477 4.35817 11 4.8 11H19.2C19.6418 11 20 11.4477 20 12C20 12.5523 19.6418 13 19.2 13H4.8C4.35817 13 4 12.5523 4 12Z"
                         fill="white" />
-                </svg>Tambah Pekerjaan
+                </svg>Tambah
             </button>
         </div>
     </div>
@@ -39,7 +39,7 @@
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #1B3061">
-                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Tambah Pekerjaan</h5>
+                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Tambah </h5>
                     <button type="button" class="btn-close" style="background-color: white" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
@@ -51,7 +51,14 @@
                             <h3>informasi Umum</h3>
                             <section>
                                 <div class="row">
-                                    <div class="col-lg-12">
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label for="basicpill-year">Tahun</label>
+                                            <input type="number" class="form-control" name="year" id="basicpill-year"
+                                                placeholder="Masukan Tahun" value="{{ old('year') }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="basicpill-name">Nama Pekerjaan</label>
                                             <input type="text" class="form-control" name="name" id="basicpill-name"
@@ -61,13 +68,6 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label for="basicpill-year">Tahun</label>
-                                            <input type="number" class="form-control" name="year" id="basicpill-year"
-                                                placeholder="Masukan Tahun" value="{{ old('year') }}">
-                                        </div>
-                                    </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="basicpill-fund_source_id">Sumber Dana</label>
@@ -84,23 +84,9 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="basicpill-penyedia-jasa">Penyelenggara</label>
+                                            <label for="basicpill-penyedia-jasa">Penyedia Jasa</label>
                                             <select class="form-control select2-create" style="width:100%"
-                                                name="service_provider_id" id="basicpill-penyelenggara">
-                                                @foreach ($serviceProviders as $serviceProvider)
-                                                    <option value="{{ $serviceProvider->id }}"
-                                                        {{ old('service_provider_id') == $serviceProvider->id ? 'selected' : '' }}>
-                                                        {{ $serviceProvider->user->name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label for="basicpill-penyedia-jasa">Konsultan</label>
-                                            <select class="form-control select2-create" style="width:100%"
-                                                name="service_provider_id" id="basicpill-konsultan">
+                                                name="service_provider_id" id="basicpill-penyedia-jasa">
                                                 @foreach ($serviceProviders as $serviceProvider)
                                                     <option value="{{ $serviceProvider->id }}"
                                                         {{ old('service_provider_id') == $serviceProvider->id ? 'selected' : '' }}>
@@ -290,7 +276,7 @@
                                             data-physical_progress_start="{{ \Carbon\Carbon::parse($project->physical_progress_start)->format('Y-m-d') }}"
                                             data-project_value="{{ $project->project_value }}"
                                             data-fund_source_id="{{ $project->fund_source_id }}"
-                                            {{-- data-service_provider_id="{{ $project->service_provider_id }}" --}}
+                                            data-service_provider_id="{{ $project->service_provider_id }}"
                                             data-contract_category_id="{{ $project->contract_category_id }}"
                                             data-characteristic_project="{{ $project->characteristic_project }}">Edit</button>
                                     </div>
@@ -307,7 +293,7 @@
                                             data-physical_progress_start="{{ \Carbon\Carbon::parse($project->physical_progress_start)->format('Y-m-d') ?  \Carbon\Carbon::parse($project->physical_progress_start)->format('Y-m-d') : "-" }}"
                                             data-project_value="{{ $project->project_value }}"
                                             data-fund_source="{{ $project->fundSource->name }}"
-                                            {{-- data-service_provider_name="{{ $project->serviceProvider->name }}" --}}
+                                            data-service_provider_name="{{ $project->serviceProvider->name }}"
                                             data-contract_category_name="{{ $project->contractCategory->name }}"
                                             data-characteristic_project="{{ $project->characteristic_project }}">Detail</button>
                                     </div>
@@ -473,7 +459,7 @@
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #1B3061">
-                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Edit Pekerjaan</h5>
+                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Tambah </h5>
                     <button type="button" class="btn-close" style="background-color: white" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
@@ -486,23 +472,23 @@
                             <h3>informasi Umum</h3>
                             <section>
                                 <div class="row">
-                                    <div class="col-lg-12">
+                                    <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="update-year">Tahun</label>
                                             <input type="number" class="form-control" name="year" id="update-year"
                                                 placeholder="Masukan Tahun">
                                         </div>
                                     </div>
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label for="update-name">Nama Pekerjaan</label>
+                                            <input type="text" class="form-control" name="name" id="update-name"
+                                                placeholder="masukan nama pekerjaan">
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label for="basicpill-year">Tahun</label>
-                                            <input type="number" class="form-control" name="year" id="basicpill-year"
-                                                placeholder="Masukan Tahun" value="{{ old('year') }}">
-                                        </div>
-                                    </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="update-fund_source_id">Sumber Dana</label>
@@ -517,28 +503,12 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="basicpill-penyedia-jasa">Penyelenggara</label>
-                                            <select class="form-control select2-create" style="width:100%"
-                                                name="service_provider_id" id="basicpill-penyelenggara">
+                                            <label for="update-email-input">Penyedia Jasa</label>
+                                            <select class="form-control select2-update" style="width:100%"
+                                                name="service_provider_id" id="update-penyedia-jasa">
                                                 @foreach ($serviceProviders as $serviceProvider)
-                                                    <option value="{{ $serviceProvider->id }}"
-                                                        {{ old('service_provider_id') == $serviceProvider->id ? 'selected' : '' }}>
-                                                        {{ $serviceProvider->user->name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label for="basicpill-penyedia-jasa">Konsultan</label>
-                                            <select class="form-control select2-create" style="width:100%"
-                                                name="service_provider_id" id="basicpill-konsultan">
-                                                @foreach ($serviceProviders as $serviceProvider)
-                                                    <option value="{{ $serviceProvider->id }}"
-                                                        {{ old('service_provider_id') == $serviceProvider->id ? 'selected' : '' }}>
-                                                        {{ $serviceProvider->user->name }}
-                                                    </option>
+                                                    <option value="{{ $serviceProvider->id }}">
+                                                        {{ $serviceProvider->user->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
