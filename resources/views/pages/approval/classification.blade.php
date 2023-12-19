@@ -15,7 +15,7 @@
                         <tr>
                             <th class="text-center table-sipjaki">No</th>
                             <th class="text-center table-sipjaki">Nama</th>
-                            <th class="text-center table-sipjaki">Sub Bidak klasifikasi</th>
+                            <th class="text-center table-sipjaki">Pelatihan</th>
                             <th class="text-center table-sipjaki">Tanggal</th>
                             <th class="text-center table-sipjaki">Kualifikasi</th>
                             <th class="text-center table-sipjaki">Tahun</th>
