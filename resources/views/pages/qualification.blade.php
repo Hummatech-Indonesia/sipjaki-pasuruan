@@ -9,11 +9,11 @@
     });
 </script>
 @endif
-    <h2>Kerangka Kualifikasi Nasional Indonesia</h2>
+    <h2>Kualifikasi</h2>
     <div class="card p-3">
         <div>
             <h5 class="mb-3">
-                Berikut daftar Kerangka Nasional Indonesia
+                Berikut daftar Kualifikasi
             </h5>
         </div>
         <div class="d-flex justify-content-between mb-3">
@@ -39,13 +39,13 @@
                         @csrf
                         <div class="modal-header d-flex align-items-center">
                             <h4 class="modal-title" id="exampleModalLabel1">
-                                Tambah Kualifikasi Nasional Indonesia
+                                Tambah Kualifikasi
                             </h4>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="mb-3">
-                                <label id="name" for="recipient-name" class="control-label mb-2">Masukan KKNI</label>
+                                <label id="name" for="recipient-name" class="control-label mb-2">Masukan Kualifikasi</label>
                                 <input type="text" class="form-control" id="create-name" class="form-control"
                                     name="name" aria-describedby="name"
                                     placeholder="Masukkan Kualifikasi Nasional Indonesia" />
@@ -76,7 +76,6 @@
                     <tr>
                         <th style="background-color: #1B3061;color:#ffffff" >No</th>
                         <th style="background-color: #1B3061;color:#ffffff">Nama Kualifikasi</th>
-                        <th style="background-color: #1B3061;color:#ffffff">Jumlah Jenjang</th>
                         <th style="background-color: #1B3061;color:#ffffff; text-align: center">Aksi</th>
                     </tr>
                 </thead>
@@ -86,7 +85,6 @@
                             <td>{{ $index + 1 }}</td>
                             <td>{{ $qualification->name }}
                             </td>
-                            <td>{{ $qualification->qualification_levels_count }}</td>
                             <td class="d-flex flex-row gap-3 justify-content-center" style="border-bottom: 1px solid #fff">
                                 <a href="{{ route('qualifications.show', $qualification->id) }}" type="button" class="btn  waves-effect waves-light text-white"
                                     style="background-color: #1B3061">
@@ -98,7 +96,7 @@
                                             d="M12 16C10.8954 16 10 15.1046 10 14C10 12.8954 10.8954 12 12 12C13.1046 12 14 12.8954 14 14C14 15.1046 13.1046 16 12 16Z"
                                             stroke="white" stroke-width="1.5" stroke-linecap="round"
                                             stroke-linejoin="round" />
-                                    </svg> Jenjang
+                                    </svg> Sub Kualifikasi
                                 </a>
                                 <button type="button"
                                     class="btn waves-effect waves-light d-flex btn-edit flex-row gap-1 justify-content-evenly"
@@ -138,13 +136,13 @@
                         @method('PUT')
                         <div class="modal-header d-flex align-items-center">
                             <h4 class="modal-title" id="exampleModalLabel1">
-                                Edit Kualifikasi Nasional Indonesia
+                                Edit Kualifikasi
                             </h4>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="mb-3">
-                                <label id="name" for="recipient-name" class="control-label mb-2">Masukan KKNI</label>
+                                <label id="name" for="recipient-name" class="control-label mb-2">Masukan Kualifikasi</label>
                                 <input type="text" class="form-control" id="update-name" class="form-control"
                                     name="name" aria-describedby="name"
                                     placeholder="Masukkan Kualifikasi Nasional Indonesia" />

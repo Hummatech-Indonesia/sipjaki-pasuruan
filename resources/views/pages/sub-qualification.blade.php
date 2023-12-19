@@ -3,7 +3,7 @@
     <div class="">
         <div>
             <h2 class="">
-                Detail Jenjang Kualifikasi
+                Detail Kualifikasi
             </h2>
         </div>
     </div>
@@ -17,7 +17,7 @@
                     <input type="hidden" name="qualification_id" value="{{ $qualification->id }}">
                     <div class="modal-header d-flex align-items-center text-white " style="background-color: #1B3061">
                         <h4 class="modal-title" id="exampleModalLabel1">
-                            Tambah Jenjang Kualifikasi
+                            Tambah Sub Kualifikasi
                         </h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
@@ -48,7 +48,7 @@
             <div class="d-flex justify-content-between mb-3">
                 <div class="">
                     <h5>
-                        Berikut daftar Jenjang Kualifikasi - {{$qualification->name}}</h5>
+                        Berikut daftar Sub Kualifikasi - {{$qualification->name}}</h5>
                 </div>
                 <div class="">
                     <a href="{{route('qualifications.index')}}" class="btn me-2 btn-md btn-create text-white cursor-pointer" style="background-color: #1B3061">
@@ -59,7 +59,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                             <path fill="currentColor" d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z" />
                         </svg>
-                        Tambah Jenjang Kualifikasi
+                        Tambah Sub Kualifikasi
                     </button>
                 </div>
             </div>
@@ -68,7 +68,7 @@
                     <thead>
                         <tr>
                             <th class="text-white" style="background-color: #1B3061">No</th>
-                            <th class="text-white" style="background-color: #1B3061">Level Kualifikasi</th>
+                            <th class="text-white" style="background-color: #1B3061">Sub Kualifikasi</th>
                             <th class="text-white" style="background-color: #1B3061; text-align: center">Aksi</th>
                         </tr>
                     </thead>
@@ -146,7 +146,7 @@
             <div class="modal-content">
                 <div class="modal-header d-flex align-items-center text-white" style="background-color: #1B3061">
                     <h4 class="modal-title" id="exampleModalLabel1">
-                        Edit Metode Pelatihan
+                        Edit Metode Sub Kualifikasi
                     </h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                         style="color: white;"></button>
