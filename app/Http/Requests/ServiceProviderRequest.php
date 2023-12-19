@@ -22,6 +22,7 @@ class ServiceProviderRequest extends FormRequest
             'postal_code' => 'required|max:10',
             'province' => 'required|max:255',
             'website' => 'required',
+            'fax' => 'required',
             'form_of_business_entity' => ['required', new FormOfBusinessEntityRule],
             'type_of_business_entity' => ['required', new TypeOfBussinessEntityRule]
         ];
@@ -40,6 +41,7 @@ class ServiceProviderRequest extends FormRequest
             'province.required' => 'Provinsi harus diisi.',
             'province.max' => 'Provinsi tidak boleh lebih dari :max karakter.',
             'website.required' => 'Alamat website perusahaan harus diisi.',
+            'fax.required' => 'Fax wajib diisi',
             'form_of_business_entity.required' => 'Bentuk badan usaha harus diisi.',
             'type_of_business_entity.required' => 'Jenis badan usaha harus diisi.',
         ];
