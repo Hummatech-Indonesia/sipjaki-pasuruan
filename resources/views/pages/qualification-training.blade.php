@@ -9,11 +9,11 @@
             });
         </script>
     @endif
-    <h2>Kerangka Kualifikasi Nasional Indonesia</h2>
+    <h2>KKNI</h2>
     <div class="card p-3">
         <div>
             <h5 class="mb-3">
-                Berikut daftar Pelatihan Kerangka Nasional Indonesia
+                Berikut daftar KKNI
             </h5>
         </div>
         <div class="d-flex justify-content-between mb-3">
@@ -40,7 +40,7 @@
                         @csrf
                         <div class="modal-header d-flex align-items-center">
                             <h4 class="modal-title" id="exampleModalLabel1">
-                                Tambah Kualifikasi Nasional Indonesia
+                                Tambah KKNI
                             </h4>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>

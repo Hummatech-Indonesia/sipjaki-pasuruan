@@ -12,7 +12,7 @@
     <div class="">
         <div>
             <h2 class="">
-                Detail Jenjang Kualifikasi
+                Detail Jenjang KKNI
             </h2>
         </div>
     </div>
@@ -25,14 +25,14 @@
                     @method('POST')
                     <div class="modal-header d-flex align-items-center text-white " style="background-color: #1B3061">
                         <h4 class="modal-title" id="exampleModalLabel1">
-                            Tambah Jenjang Kualifikasi
+                            Tambah Jenjang KKNI
                         </h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="mb-3">
                             <label id="name" for="recipient-name" class="control-label mb-2">Masukan Jenjang
-                                Kualifikasi</label>
+                                KKNi</label>
                             <input type="text" class="form-control" id="create-school_year" class="form-control"
                                 name="name" id="nametext" aria-describedby="name" placeholder="" />
                         </div>
@@ -56,7 +56,7 @@
             <div class="d-flex justify-content-between mb-3">
                 <div class="">
                     <h5>
-                        Berikut daftar Jenjang Kualifikasi</h5>
+                        Berikut daftar Jenjang KKNI</h5>
                 </div>
                 <div class="">
                     <a href="{{ route('qualification-trainings.index') }}"
@@ -68,7 +68,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                             <path fill="currentColor" d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z" />
                         </svg>
-                        Tambah Jenjang Kualifikasi
+                        Tambah Jenjang KKNI
                     </button>
                 </div>
             </div>
@@ -117,7 +117,7 @@
                                     <div class="d-flex justify-content-center" style="min-height:16rem">
                                         <div class="my-auto">
                                             <img src="{{ asset('no-data.png') }}" width="300" height="300" />
-                                            <h4 class="text-center mt-4">Jenjang Kosong!!</h4>
+                                            <h4 class="text-center mt-4">Jenjang KKNI Kosong!!</h4>
                                         </div>
                                     </div>
                                 </td>
@@ -134,7 +134,7 @@
             <div class="modal-content">
                 <div class="modal-header d-flex align-items-center text-white" style="background-color: #1B3061">
                     <h4 class="modal-title" id="exampleModalLabel1">
-                        Edit Metode Pelatihan
+                        Edit Jenjang KKNI
                     </h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                         style="color: white;"></button>
