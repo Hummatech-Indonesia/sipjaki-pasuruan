@@ -65,6 +65,6 @@ class RuleService
      */
     public function downloadRule(mixed $file)
     {
-        return response()->download(asset('storage/' . $file));
+        return response()->download(storage_path('app/public/'.$file), basename($file));
     }
 }
