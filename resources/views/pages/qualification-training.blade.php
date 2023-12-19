@@ -87,7 +87,7 @@
                             <td>{{ $qualificationTraining->name }}
                             </td>
                             <td class="d-flex flex-row gap-3 justify-content-center" style="border-bottom: 1px solid #fff">
-                                <a href="{{ route('sub-qualification.index',['qualification_training' => $qualificationTraining]) }}" type="button" class="btn  waves-effect waves-light text-white"
+                                <a href="qualification-level-training/{{ $qualificationTraining->id }}" type="button" class="btn  waves-effect waves-light text-white"
                                     style="background-color: #1B3061">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19"
                                         viewBox="0 0 24 24" fill="none">

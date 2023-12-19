@@ -15,6 +15,7 @@ use App\Http\Resources\ProjectResource;
 use App\Contracts\Interfaces\ProjectInterface;
 use App\Contracts\Interfaces\ServiceProviderInterface;
 use App\Contracts\Interfaces\ServiceProviderProjectInterface;
+use App\Enums\TypeOfBusinessEntityEnum;
 use App\Http\Requests\UploadFileProjectRequest;
 use App\Services\ProjectService;
 
@@ -55,7 +56,7 @@ class ProjectController extends Controller
             $executors = $this->serviceProvider->getExecutor();
             $fundSources = $this->fundSource->get();
             $contractCategories = $this->contractCategory->get();
-            return view('pages.dinas.work-package', compact('projects', 'consultants','executors', 'fundSources', 'contractCategories'));
+            return view('pages.dinas.work-package', compact('projects', 'consultants', 'executors', 'fundSources', 'contractCategories'));
         }
     }
 
@@ -148,5 +149,37 @@ class ProjectController extends Controller
     {
         $this->project->update($project->id, $this->service->store($request, $project));
         return redirect()->back()->with('success', trans('alert.add_success'));
+    }
+
+    /**
+     * history
+     *
+     * @return View
+     */
+    public function history(): View
+    {
+        if (auth()->user()->serviceProvider->type == TypeOfBusinessEntityEnum::CONSULTANT) {
+            $projects = $this->project->historyConsultan();
+            return view('', ['projects' => $projects]);
+        } else {
+            $projects = $this->project->historyExecutor();
+            return view('', ['projects' => $projects]);
+        }
+    }
+
+    /**
+     * myProject
+     *
+     * @return View
+     */
+    public function myProject(): View
+    {
+        if (auth()->user()->serviceProvider->type == TypeOfBusinessEntityEnum::CONSULTANT) {
+            $projects = $this->project->projectConsultan();
+            return view('', ['projects' => $projects]);
+        } else {
+            $projects = $this->project->projectExecutor();
+            return view('', ['projects' => $projects]);
+        }
     }
 }

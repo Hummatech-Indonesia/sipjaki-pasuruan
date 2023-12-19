@@ -224,4 +224,54 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
             ->where('status', StatusEnum::ACTIVE->value)
             ->count();
     }
+
+    /**
+     * historyConsultan
+     *
+     * @return mixed
+     */
+    public function historyConsultan(): mixed
+    {
+        return $this->model->query()
+            ->where('date_finish' <= now()->format('Y-m-d H:i:s'))
+            ->where('consultant_id', auth()->user()->serviceProvider->id)
+            ->get();
+    }
+
+    /**
+     * historyExecutor
+     *
+     * @return mixed
+     */
+    public function historyExecutor(): mixed
+    {
+        return $this->model->query()
+            ->where('date_finish' <= now()->format('Y-m-d H:i:s'))
+            ->where('executor_id', auth()->user()->serviceProvider->id)
+            ->get();
+    }
+
+    /**
+     * projectConsultan
+     *
+     * @return mixed
+     */
+    public function projectConsultan(): mixed
+    {
+        return $this->model->query()
+            ->where('consultant_id', auth()->user()->serviceProvider->id)
+            ->get();
+    }
+
+    /**
+     * projectExecutor
+     *
+     * @return mixed
+     */
+    public function projectExecutor(): mixed
+    {
+        return $this->model->query()
+            ->where('executor_id', auth()->user()->serviceProvider->id)
+            ->get();
+    }
 }

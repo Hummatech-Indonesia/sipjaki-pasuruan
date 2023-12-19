@@ -23,3 +23,6 @@ Route::post('service-provider-qualifications', [ServiceProviderQualificationCont
 Route::put('service-provider-qualifications/{serviceProviderQualification}', [ServiceProviderQualificationController::class, 'update']);
 Route::patch('approve-service-provider-qualifications/{serviceProviderQualification}', [ServiceProviderQualificationController::class, 'approve']);
 Route::delete('service-provider-qualifications/{serviceProviderQualification}', [ServiceProviderQualificationController::class, 'delete']);
+
+Route::get('history-project', [ProjectController::class, 'history']);
+Route::get('my-project', [ProjectController::class, 'myProject']);
