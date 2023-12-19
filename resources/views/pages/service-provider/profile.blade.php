@@ -1011,7 +1011,7 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="basicpill-email-input">Klasifikasi</label>
-                            <select class="form-select list-classifications select2-update" style="width:100%"
+                            <select class="form-select list-classifications select2-create" style="width:100%"
                                 id="update-list-classifications">
                                 <option value="">Pilih Klalifikasi</option>
                             </select>
@@ -1019,7 +1019,7 @@
                         <div class="mb-3">
                             <label for="basicpill-email-input">Sub Klasifikasi</label>
                             <select name="sub_classification_id"
-                                class="form-select sub-classifications select2-update" style="width:100%"
+                                class="form-select sub-classifications select2-create" style="width:100%"
                                 id="update-list-sub-classifications">
                             </select>
                             @error('sub_classification_id')
@@ -1030,7 +1030,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="basicpill-phoneno-input">Kualifikasi</label>
-                            <select name="qualification_id" class="form-select list-qualifications select2-update"
+                            <select name="qualification_id" class="form-select list-qualifications select2-create"
                                 style="width:100%" id="update-list-qualifications">
                                 <option value="">Pilih Kualifikasi</option>
                             </select>
@@ -1060,6 +1060,15 @@
 @endsection
 @section('script')
     <script>
+        $(document).ready(function() {
+            $(".select2-create").select2({
+                dropdownParent: $("#modal-create")
+            });
+            $(".select2-update").select2({
+                dropdownParent: $("#modal-update")
+            });
+        });
+
         qualifications()
 
         function qualifications() {

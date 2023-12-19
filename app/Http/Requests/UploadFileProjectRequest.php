@@ -14,10 +14,10 @@ class UploadFileProjectRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'contract' => 'required|mimes:png,jpg,jpeg',
-            'administrative_minutes' => 'required|mimes:png,jpg,jpeg',
-            'report' => 'required|mimes:png,jpg,jpeg',
-            'minutes_of_disbursement' => 'required|mimes:png,jpg,jpeg',
+            'contract' => 'nullable|mimes:png,jpg,jpeg',
+            'administrative_minutes' => 'nullable|mimes:png,jpg,jpeg',
+            'report' => 'nullable|mimes:png,jpg,jpeg',
+            'minutes_of_disbursement' => 'nullable|mimes:png,jpg,jpeg',
         ];
     }
 }
