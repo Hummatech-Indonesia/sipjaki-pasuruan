@@ -40,9 +40,7 @@
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="formrow-inputState" class="form-label">Email OPD</label>
-                                    <select name="" class="form-select" id="">
-                                        <option value="">Pilih Email</option>
-                                    </select>
+                                    <input type="email" class="form-control" value="{{ auth()->user()->email }}" placeholder="Masukkan Email">
                                 </div>
                             </div>
                         </div>
@@ -64,9 +62,8 @@
                                 <div class="mb-3">
                                     <label class="form-label">Nama</label>
                                     <div>
-                                        <select name="" class="form-select" id="">
-                                            <option value="">Pilih Dinas</option>
-                                        </select>
+                                        <input type="name"
+                                            class="form-control" value="{{ auth()->user()->dinas->person_responsible }}" placeholder="Masukkan nama" />
                                     </div>
                                 </div>
                             </div>
@@ -74,9 +71,8 @@
                                 <div class="mb-3">
                                     <label class="form-label">No HP</label>
                                     <div>
-                                        <select name="" class="form-select" id="">
-                                            <option value="">Pilih No Dinas</option>
-                                        </select>
+                                        <input type="number"
+                                            class="form-control" value="{{ auth()->user()->phone_number}}" placeholder="Masukkan no Hp" />
                                     </div>
                                 </div>
                             </div>
