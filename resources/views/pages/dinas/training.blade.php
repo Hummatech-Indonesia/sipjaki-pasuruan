@@ -106,9 +106,9 @@
                                     </div>
                                     <div class="col-lg-3">
                                         <div class="mb-3">
-                                            <label for="basicpill-email-input">Sub Kualifikasi Latihan</label>
-                                            <select name="qualification_level_id" class="form-select select2-create"
-                                                style="width:100%" id="list-qualification-level" value="{{ old('qualification_level_id') }}">
+                                            <label for="basicpill-email-input">Jenjang KKNI</label>
+                                            <select name="qualification_level_training_id" class="form-select select2-create"
+                                                style="width:100%" id="list-qualification-level" value="{{ old('qualification_level_training_id') }}">
                                             </select>
                                             @error('qulification_level_id')
                                                 <p class="text-danger">
@@ -120,8 +120,8 @@
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-email-input">Klasifikasi</label>
-                                            <select name="klasifikasi" class="form-select list-classifications select2-create" style="width:100%"
-                                                id="list-classifications" value="{{ old('klasifikasi') }}">
+                                            <select name="qualification_training_id" class="form-select list-classifications select2-create" style="width:100%"
+                                                id="list-classifications" value="{{ old('qualification_training_id') }}">
                                                 <option value="">Pilih klasifikasi</option>
                                             </select>
                                         </div>
@@ -129,10 +129,10 @@
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-email-input">Sub Klasifikasi</label>
-                                            <select name="sub_classification_id" class="form-select sub-classifications select2-create"
-                                                style="width:100%" id="list-sub-classifications" value="{{ old('sub_classification_id') }}">
+                                            <select name="sub_classification_training_id" class="form-select sub-classifications select2-create"
+                                                style="width:100%" id="list-sub-classifications" value="{{ old('sub_classification_training_id') }}">
                                             </select>
-                                            @error('sub_classification_id')
+                                            @error('sub_classification_training_id')
                                                 <p class="text-danger">
                                                     {{ $message }}
                                                 </p>

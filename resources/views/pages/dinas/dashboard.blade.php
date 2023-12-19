@@ -70,7 +70,7 @@
                     <div class="d-flex">
                         <div class="flex-grow-1">
                             <p class="text-muted fw-medium">Jumlah Pekerjaan Aktif</p>
-                            <h4 class="mb-0" style="color: #1B3061">55</h4>
+                            <h4 class="mb-0" style="color: #1B3061">{{ $countActiveWorker }}</h4>
                         </div>
 
                         <div class="flex-shrink-0 align-self-center ">

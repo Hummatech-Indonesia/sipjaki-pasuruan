@@ -104,11 +104,11 @@ Route::middleware('auth')->group(function () {
     Route::patch('update-profile', [UserController::class, 'updateProfile'])->name('update.profile');
     Route::patch('update-password', [UserController::class, 'updatePassword'])->name('update.password');
 
-    Route::post('send-email', [ForgotPasswordController::class, 'sendEmail'])->name('send.email');
+    // Route::post('send-email', [ForgotPasswordController::class, 'sendEmail'])->name('send.email');
 
-    Route::patch('reset-passsword', [ResetPasswordController::class, 'reset'])->name('reset.password');
+    // Route::patch('reset-passsword', [ResetPasswordController::class, 'reset'])->name('reset.password');
 
-    Route::patch('verify-account/{user}', [VerificationController::class, 'verifyToken'])->name('verify.account');
+    // Route::patch('verify-account/{user}', [VerificationController::class, 'verifyToken'])->name('verify.account');
 
     Route::middleware('role:superadmin|admin')->group(function () {
         Route::get('all-service-provider', [ServiceProviderProjectController::class, 'allServiceProvider']);
@@ -130,7 +130,7 @@ Route::middleware('auth')->group(function () {
             'sections' => SectionController::class,
             'rules' => RuleController::class,
             'types' => TypeController::class,
-            'classification-trainings' => ClassificationTrainingController::class,
+            // 'classification-trainings' => ClassificationTrainingController::class,
             'qualification-level-trainings' => QualificationLevelTrainingController::class,
             'qualification-trainings' => QualificationTrainingController::class,
             'classification-training'=> ClassificationTrainingController::class
@@ -206,22 +206,26 @@ Route::get('download-all-service-provider-project/{project}', [ServiceProviderPr
 
 Route::middleware(['role:dinas'])->group(function () {
     // Route::resource('accident', AccidentController::class)->except('create', 'show');
-    Route::put('accident-update/{accident}', [AccidentController::class, 'update'])->name('accident.update');
-    Route::get('accident-show/{accident}', [AccidentController::class, 'show'])->name('accident.show');
-    Route::delete('accident-destroy/{accident}', [AccidentController::class, 'destroy'])->name('accident.destroy');
+    // Route::put('accident-update/{accident}', [AccidentController::class, 'update'])->name('accident.update');
+    // Route::get('accident-show/{accident}', [AccidentController::class, 'show'])->name('accident.show');
+    // Route::delete('accident-destroy/{accident}', [AccidentController::class, 'destroy'])->name('accident.destroy');
     Route::resources([
         'projects' => ProjectController::class,
     ]);
 });
+
 Route::middleware('role:service provider')->group(function () {
     Route::resources([
         'officers' => OfficerController::class,
     ]);
 
-    Route::get('service-provider-projects', [ServiceProviderProjectController::class, 'index']);
-    Route::post('service-provider-projects/{project}', [ServiceProviderProjectController::class, 'store'])->name('service-provider-projects/');
-    Route::put('service-provider-projects/{service_provider_project}', [ServiceProviderProjectController::class, 'update'])->name('service-provider-projects/');
-    Route::delete('service-provider-projects/{service_provider_project}', [ServiceProviderProjectController::class, 'destroy'])->name('/service-provider-projects/');
+    Route::get('service-provider-profile', [ServiceProviderController::class, 'index'])->name('service-provider-profile');
+    Route::put('update-business-entity', [ServiceProviderController::class, 'update'])->name('update-business-entity');
+
+    // Route::get('service-provider-projects', [ServiceProviderProjectController::class, 'index']);
+    // Route::post('service-provider-projects/{project}', [ServiceProviderProjectController::class, 'store'])->name('service-provider-projects/');
+    // Route::put('service-provider-projects/{service_provider_project}', [ServiceProviderProjectController::class, 'update'])->name('service-provider-projects/');
+    // Route::delete('service-provider-projects/{service_provider_project}', [ServiceProviderProjectController::class, 'destroy'])->name('/service-provider-projects/');
 
     Route::get('dashboard-service-provider', [ServiceProviderController::class, 'dashboard'])->name('dashboard-service-provider');
     Route::resource('workers', WorkerController::class)->only('index', 'update', 'destroy');
