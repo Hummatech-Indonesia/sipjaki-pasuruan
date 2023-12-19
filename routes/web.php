@@ -130,6 +130,7 @@ Route::middleware('auth')->group(function () {
             'sections' => SectionController::class,
             'rules' => RuleController::class,
             'types' => TypeController::class,
+            'associations'=> AssociationController::class,
             // 'classification-trainings' => ClassificationTrainingController::class,
             'qualification-level-trainings' => QualificationLevelTrainingController::class,
             'qualification-trainings' => QualificationTrainingController::class,

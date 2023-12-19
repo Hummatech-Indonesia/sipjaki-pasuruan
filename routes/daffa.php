@@ -25,7 +25,6 @@ Route::get('detail-asosiasi/{association}',[LandingController::class,'associatio
 Route::resources([
     'workers' => WorkerController::class,
     'rules' => RuleController::class,
-    'associations'=> AssociationController::class
 ]);
 
 

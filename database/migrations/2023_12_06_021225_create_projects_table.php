@@ -18,9 +18,10 @@ return new class extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('dinas_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignUuid('service_provider_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignUuid('fund_source_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignUuid('contract_category_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->char('consultant_id',36);
+            $table->char('executor_id',36);
             $table->string('name');
             $table->integer('project_value');
             $table->enum('characteristic_project',[CharacteristicProjectEnum::SINGLE->value,CharacteristicProjectEnum::MULTIPLE->value]);
