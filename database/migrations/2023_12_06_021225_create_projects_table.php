@@ -25,14 +25,9 @@ return new class extends Migration
             $table->string('name');
             $table->integer('project_value');
             $table->enum('characteristic_project', [CharacteristicProjectEnum::SINGLE->value, CharacteristicProjectEnum::MULTIPLE->value]);
-<<<<<<< Updated upstream
-            $table->integer('physical_progress');
-            $table->dateTime('physical_progress_start');
-            $table->dateTime('finance_progress_start');
-=======
+            $table->integer('physical_progress')->default(0);
             $table->dateTime('physical_progress_start')->nullable();
             $table->dateTime('finance_progress_start')->nullable();
->>>>>>> Stashed changes
             $table->integer('finance_progress')->default(0);
             $table->integer('year');
             $table->dateTime('start_at');
