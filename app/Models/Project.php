@@ -19,7 +19,7 @@ class Project extends Model implements HasDinas, HasExecutor,HasConsultant, HasF
     use HasFactory;
     protected $table = 'projects';
     protected $primaryKey = 'id';
-    protected $fillable = ['id', 'dinas_id', 'consultant_id','executor_id', 'fund_source_id', 'contract_category_id', 'name', 'project_value', 'characteristic_project', 'physical_progress_start', 'finance_progress_start', 'finance_progress', 'year', 'start_at', 'end_at', 'status'];
+    protected $fillable = ['id', 'dinas_id', 'consultant_id','executor_id', 'fund_source_id', 'contract_category_id', 'name', 'project_value', 'characteristic_project', 'physical_progress_start', 'finance_progress_start', 'finance_progress', 'year', 'start_at', 'end_at', 'status', 'contract', 'administrative_minutes', 'report', 'minutes_of_disbursement'];
     protected $guarded = [];
     public $incrementing = false;
     public $keyType = 'char';
