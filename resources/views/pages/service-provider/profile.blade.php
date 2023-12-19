@@ -207,11 +207,11 @@
                                     {{ Carbon::parse($serviceProviderQualification->created_at)->locale('id_ID')->isoFormat('DD MMMM Y') }}
                                 </td>
                                 <td colspan="1">
-                                    {{ $serviceProviderQualification->first_print ? Carbon::parse($serviceProviderQualification->first_print)->locale('id_ID')->isoFormat('DD MMMM Y') : '-' }}</td>
+                                    {{ $serviceProviderQualification->first_print? Carbon::parse($serviceProviderQualification->first_print)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}
+                                </td>
                                 <td colspan="1">
-                                    {{ $serviceProviderQualification->last_print ? Carbon::parse($serviceProviderQualification->last_print)->locale('id_ID')->isoFormat('DD MMMM Y') : '-' }}</td>
-                                <td colspan="1">
-                                    {{ $serviceProviderQualification->status }}</td>
+                                    {{ $serviceProviderQualification->last_print? Carbon::parse($serviceProviderQualification->last_print)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}
+                                </td>
                                 <td class="d-flex flex-row gap-3 justify-content-center">
                                     <button type="button"
                                         class="btn waves-effect waves-light d-flex btn-edit flex-row gap-1 justify-content-evenly"
@@ -324,10 +324,11 @@
                             <div class="d-flex justify-content-end">
                                 <div class="">
                                     <button data-bs-toggle="modal" data-bs-target="#modal-pengesahan"
-                                    style="background-color: #E4ECFF;"
-                                    class="text-dark btn px-4 fw-bold">Edit</button>
+                                        style="background-color: #E4ECFF;"
+                                        class="text-dark btn px-4 fw-bold">Edit</button>
                                 </div>
                             </div>
+
                             <table cellpadding="5" style="border-collapse: collapse; width: 40%;" class="fs-6 fw-normal">
                                 <tbody>
                                     <tr>
@@ -396,8 +397,8 @@
                             <div class="d-flex justify-content-end">
                                 <div class="">
                                     <button data-bs-toggle="modal" data-bs-target="#modal-akte"
-                                    style="background-color: #E4ECFF;"
-                                    class="text-dark btn px-4 fw-bold">Edit</button>
+                                        style="background-color: #E4ECFF;"
+                                        class="text-dark btn px-4 fw-bold">Edit</button>
                                 </div>
                             </div>
                             <table cellpadding="5" style="border-collapse: collapse; width: 40%;" class="fs-6 fw-normal">
@@ -664,52 +665,66 @@
             </div>
             <h4 class="mt-3 mb-3 fw-bold">Pengesahan</h4>
             <div class="table-responsive rounded-4">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr align="center">
-                            <th style="background-color: #1B3061; color: #ffffff; vertical-align: middle" colspan="1"
-                                rowspan="2">No</th>
-                            <th colspan="3" style="background-color: #1B3061; color: #ffffff;">Proyek</th>
-                            <th style="background-color: #1B3061; color: #ffffff; vertical-align: middle" colspan="1"
-                                rowspan="2">Pemberi Tugas</th>
-                            <th style="background-color: #1B3061; color: #ffffff; vertical-align: middle" colspan="1"
-                                rowspan="2">Sub Bidang Kualifikasi</th>
-                            <th colspan="3" style="background-color: #1B3061; color: #ffffff;">Nomor</th>
-                            <th colspan="4" style="background-color: #1B3061; color: #ffffff;">Tanggal</th>
-                        </tr>
-                        <tr align="center">
-                            <th style="background-color: #1B3061; color: #ffffff;">Tahun</th>
-                            <th style="background-color: #1B3061; color: #ffffff;">Nama</th>
-                            <th style="background-color: #1B3061; color: #ffffff;">Nama Rupiah (dalam Ribuan)</th>
-                            <th style="background-color: #1B3061; color: #ffffff;">Kontrak</th>
-                            <th style="background-color: #1B3061; color: #ffffff;">NKPK</th>
-                            <th style="background-color: #1B3061; color: #ffffff;">Berita Acara Serah Terima</th>
-                            <th style="background-color: #1B3061; color: #ffffff;">Berita Acara Serah Terima</th>
-                            <th style="background-color: #1B3061; color: #ffffff;">Kontrak</th>
-                            <th style="background-color: #1B3061; color: #ffffff;">Mulai</th>
-                            <th style="background-color: #1B3061; color: #ffffff;">Selesai</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr align="center">
-                            <td colspan="1">1</td>
-                            <td colspan="1">2023</td>
-                            <td colspan="1">Peningkatan Jalan Laston Paket VI Kab. Bulukumba</td>
-                            <td colspan="1">123132456478</td>
-                            <td colspan="1">S1</td>
-                            <td colspan="1">SI0084</td>
-                            <td colspan="1">1</td>
-                            <td colspan="1">06/SPK/Laston/PPK/DBM/III/2015</td>
-                            <td colspan="1">02/PHO/Laston-Dau/DBM/IX/2015</td>
-                            <td colspan="1">02/PHO/Laston-Dau/DBM/IX/2015</td>
-                            <td colspan="1">25 Juni 2023</td>
-                            <td colspan="1">25 Juni 2023</td>
-                            <td colspan="1">25 Juni 2023</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <td class="text-white" style="background-color: #1B3061">
+                                    No
+                                </td>
+                                <td class="text-white" style="background-color: #1B3061">
+                                    Tahun
+                                </td>
+                                <td class="text-white" style="background-color: #1B3061">
+                                    Nama
+                                </td>
+                                <td class="text-white" style="background-color: #1B3061">
+                                    Nilai Project
+                                </td>
+                                <td class="text-white" style="background-color: #1B3061">
+                                    Nama Dinas
+                                </td>
+                                <td class="text-white" style="background-color: #1B3061">
+                                    Sub Bidang Kualifikasi
+                                </td>
+                                <td class="text-white" style="background-color: #1B3061">
+                                    Kontrak
+                                </td>
+                                <td class="text-white" style="background-color: #1B3061">
+                                    NKPK
+                                </td>
+                                <td class="text-white" style="background-color: #1B3061">
+                                    Berita Serah Terima
+                                </td>
+                                <td class="text-white" style="background-color: #1B3061">
+                                    Kontrak
+                                </td>
+                                <td class="text-white" style="background-color: #1B3061">
+                                    Mulai
+                                </td>
+                                <td class="text-white" style="background-color: #1B3061">
+                                    Selesai
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>2023</td>
+                                <td>Peningkatan Jalan Laston Paket VI Kab. Bulukumba</td>
+                                <td>123132456478</td>
+                                <td>S1</td>
+                                <td>SI0084</td>
+                                <td>1</td>
+                                <td>06/SPK/Laston/PPK/DBM/III/2015</td>
+                                <td>02/PHO/Laston-Dau/DBM/IX/2015</td>
+                                <td>25 Juni 2023</td>
+                                <td>25 Juni 2023</td>
+                                <td>25 Juni 2023</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -914,7 +929,7 @@
         </div>
 
     </div>
-{{-- end modal  --}}
+    {{-- end modal  --}}
     {{-- modal  akte  --}}
 
     <div class="modal fade" id="modal-akte" tabindex="-1" aria-labelledby="exampleModalLabel1">
@@ -934,7 +949,7 @@
                         <div class="row mb-3">
                             <div class="col-6">
                                 <p class="mb-0 text-dark fs-6">
-                                    No Akte	
+                                    No Akte
                                 </p>
                                 <input type="number" class="form-control" placeholder="Masukkan Nomor">
                             </div>
@@ -999,16 +1014,15 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="basicpill-email-input">Klasifikasi</label>
-                            <select class="form-select list-classifications select2-update" style="width:100%"
+                            <select class="form-select list-classifications select2-create" style="width:100%"
                                 id="update-list-classifications">
                                 <option value="">Pilih Klalifikasi</option>
                             </select>
                         </div>
                         <div class="mb-3">
                             <label for="basicpill-email-input">Sub Klasifikasi</label>
-                            <select name="sub_classification_id"
-                                class="form-select sub-classifications select2-update" style="width:100%"
-                                id="update-list-sub-classifications">
+                            <select name="sub_classification_id" class="form-select sub-classifications select2-create"
+                                style="width:100%" id="update-list-sub-classifications">
                             </select>
                             @error('sub_classification_id')
                                 <p class="text-danger">
@@ -1018,7 +1032,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="basicpill-phoneno-input">Kualifikasi</label>
-                            <select name="qualification_id" class="form-select list-qualifications select2-update"
+                            <select name="qualification_id" class="form-select list-qualifications select2-create"
                                 style="width:100%" id="update-list-qualifications">
                                 <option value="">Pilih Kualifikasi</option>
                             </select>
@@ -1047,7 +1061,25 @@
     {{-- end --}}
 @endsection
 @section('script')
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: '{{ session('success') }}',
+            });
+        </script>
+    @endif
     <script>
+        $(document).ready(function() {
+            $(".select2-create").select2({
+                dropdownParent: $("#modal-create")
+            });
+            $(".select2-update").select2({
+                dropdownParent: $("#modal-update")
+            });
+        });
+
         qualifications()
 
         function qualifications() {
