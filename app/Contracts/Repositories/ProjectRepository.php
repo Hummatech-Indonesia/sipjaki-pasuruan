@@ -59,6 +59,9 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
             ->when($request->name, function ($query) use ($request) {
                 $query->where('name', 'LIKE', '%' . $request->name . '%');
             })
+            ->when($request->status, function ($query) use ($request) {
+                $query->where('status', $request->status);
+            })
             ->get();
     }
 
@@ -164,6 +167,9 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
             ->when($request->name, function ($query) use ($request) {
                 $query->where('name', 'LIKE', '%' . $request->name . '%');
             })
+            ->when($request->year, function ($query) use ($request) {
+                $query->whereYear('date', $request->year);
+            })
             ->when($request->status, function ($query) use ($request) {
                 $query->where('status', $request->status);
             })
@@ -184,7 +190,6 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
             ->when($request->name, function ($query) use ($request) {
                 $query->where('name', 'LIKE', '%' . $request->name . '%');
             })
-            // ->where('service_provider_id', auth()->user()->serviceProvider->id)
             ->fastPaginate($pagination);
     }
 
