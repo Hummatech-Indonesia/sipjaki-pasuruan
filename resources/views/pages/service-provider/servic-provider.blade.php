@@ -218,6 +218,7 @@
     </div>
 @endsection
 @section('script')
+
     <script>
         $('.btn-detail').click(function() {
             id = $(this).data('id')

@@ -206,9 +206,11 @@
                                     {{ Carbon::parse($serviceProviderQualification->created_at)->locale('id_ID')->isoFormat('DD MMMM Y') }}
                                 </td>
                                 <td colspan="1">
-                                    {{ $serviceProviderQualification->first_print ? Carbon::parse($serviceProviderQualification->first_print)->locale('id_ID')->isoFormat('DD MMMM Y') : '-' }}</td>
+                                    {{ $serviceProviderQualification->first_print? Carbon::parse($serviceProviderQualification->first_print)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}
+                                </td>
                                 <td colspan="1">
-                                    {{ $serviceProviderQualification->last_print ? Carbon::parse($serviceProviderQualification->last_print)->locale('id_ID')->isoFormat('DD MMMM Y') : '-' }}</td>
+                                    {{ $serviceProviderQualification->last_print? Carbon::parse($serviceProviderQualification->last_print)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}
+                                </td>
                                 <td class="d-flex flex-row gap-3 justify-content-center">
                                     <button type="button"
                                         class="btn waves-effect waves-light d-flex btn-edit flex-row gap-1 justify-content-evenly"
@@ -321,11 +323,11 @@
                             <div class="d-flex justify-content-end">
                                 <div class="">
                                     <button data-bs-toggle="modal" data-bs-target="#modal-pengesahan"
-                                    style="background-color: #E4ECFF;"
-                                    class="text-dark btn px-4 fw-bold">Edit</button>
+                                        style="background-color: #E4ECFF;"
+                                        class="text-dark btn px-4 fw-bold">Edit</button>
                                 </div>
                             </div>
-                            
+
                             <table cellpadding="5" style="border-collapse: collapse; width: 40%;" class="fs-6 fw-normal">
                                 <tbody>
                                     <tr>
@@ -394,8 +396,8 @@
                             <div class="d-flex justify-content-end">
                                 <div class="">
                                     <button data-bs-toggle="modal" data-bs-target="#modal-akte"
-                                    style="background-color: #E4ECFF;"
-                                    class="text-dark btn px-4 fw-bold">Edit</button>
+                                        style="background-color: #E4ECFF;"
+                                        class="text-dark btn px-4 fw-bold">Edit</button>
                                 </div>
                             </div>
                             <table cellpadding="5" style="border-collapse: collapse; width: 40%;" class="fs-6 fw-normal">
@@ -682,7 +684,7 @@
                                     Nama Dinas
                                 </td>
                                 <td class="text-white" style="background-color: #1B3061">
-                                    Sub Bidang Kualifikasi	
+                                    Sub Bidang Kualifikasi
                                 </td>
                                 <td class="text-white" style="background-color: #1B3061">
                                     Kontrak
@@ -706,18 +708,18 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td >1</td>
-                                <td >2023</td>
-                                <td >Peningkatan Jalan Laston Paket VI Kab. Bulukumba</td>
-                                <td >123132456478</td>
-                                <td >S1</td>
-                                <td >SI0084</td>
-                                <td >1</td>
-                                <td >06/SPK/Laston/PPK/DBM/III/2015</td>
-                                <td >02/PHO/Laston-Dau/DBM/IX/2015</td>
-                                <td >25 Juni 2023</td>
-                                <td >25 Juni 2023</td>
-                                <td >25 Juni 2023</td>
+                                <td>1</td>
+                                <td>2023</td>
+                                <td>Peningkatan Jalan Laston Paket VI Kab. Bulukumba</td>
+                                <td>123132456478</td>
+                                <td>S1</td>
+                                <td>SI0084</td>
+                                <td>1</td>
+                                <td>06/SPK/Laston/PPK/DBM/III/2015</td>
+                                <td>02/PHO/Laston-Dau/DBM/IX/2015</td>
+                                <td>25 Juni 2023</td>
+                                <td>25 Juni 2023</td>
+                                <td>25 Juni 2023</td>
                             </tr>
                         </tbody>
                     </table>
@@ -926,7 +928,7 @@
         </div>
 
     </div>
-{{-- end modal  --}}
+    {{-- end modal  --}}
     {{-- modal  akte  --}}
 
     <div class="modal fade" id="modal-akte" tabindex="-1" aria-labelledby="exampleModalLabel1">
@@ -946,7 +948,7 @@
                         <div class="row mb-3">
                             <div class="col-6">
                                 <p class="mb-0 text-dark fs-6">
-                                    No Akte	
+                                    No Akte
                                 </p>
                                 <input type="number" class="form-control" placeholder="Masukkan Nomor">
                             </div>
@@ -1018,9 +1020,8 @@
                         </div>
                         <div class="mb-3">
                             <label for="basicpill-email-input">Sub Klasifikasi</label>
-                            <select name="sub_classification_id"
-                                class="form-select sub-classifications select2-create" style="width:100%"
-                                id="update-list-sub-classifications">
+                            <select name="sub_classification_id" class="form-select sub-classifications select2-create"
+                                style="width:100%" id="update-list-sub-classifications">
                             </select>
                             @error('sub_classification_id')
                                 <p class="text-danger">
@@ -1059,6 +1060,15 @@
     {{-- end --}}
 @endsection
 @section('script')
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: '{{ session('success') }}',
+            });
+        </script>
+    @endif
     <script>
         $(document).ready(function() {
             $(".select2-create").select2({
