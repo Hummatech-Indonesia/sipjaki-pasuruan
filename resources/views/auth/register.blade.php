@@ -124,6 +124,7 @@
                                                     <label for="email" class="form-label"
                                                         style="font-weight: bold">{{ __('Asosiasi') }}</label>
                                                     <select name="association_id" class="form-select" id="">
+                                                        <option value="consultant">Pilih Asosiasi</option>
                                                         @foreach ($associations as $association)
                                                             <option value="{{ $association->id }}">
                                                                 {{ $association->name }}</option>

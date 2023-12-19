@@ -151,21 +151,16 @@ Route::middleware('auth')->group(function () {
             Route::put('sub-qualifications/{qualification_level}', [QualificationLevelController::class, 'update'])->name('update');
             Route::delete('sub-qualifications/{qualification_level}', [QualificationLevelController::class, 'store'])->name('destroy');
         });
-
         Route::name('sub-classfication.')->group(function () {
             Route::get('sub-classifications/{classification}', [SubClassificationController::class, 'showSubClassification'])->name('index');
             Route::post('sub-classifications/{classification}', [SubClassificationController::class, 'store'])->name('store');
             Route::put('sub-classifications/{sub_classification}', [SubClassificationController::class, 'update'])->name('update');
             Route::delete('sub-classifications/{sub_classification}', [SubClassificationController::class, 'destroy'])->name('destroy');
         });
-
         Route::post('import-associations', [AssociationController::class, 'import'])->name('import.assosiations');
     });
-
     Route::middleware('role:admin')->group(function () {
-
         Route::get('dashboard-admin', [AdminController::class, 'dashboard'])->name('dashboard-admin');
-
         Route::resources([
             'news' => NewsController::class,
             'faqs' => FaqController::class
