@@ -15,4 +15,8 @@ enum UploadDiskEnum: string
     case SERVICEPROVIDERPROJECT = 'service_provider_project';
     case ORGANIZATIONFILE = 'organization_file';
     case VIDEO = 'video';
+    case CONTRACT = 'contract';
+    case ADMINISTRATIVEMINUTE = 'administrative_minutes';
+    case REPORT = 'report';
+    case MINUTESOFDISBURSEMENT = 'minutes_of_disbursement';
 }

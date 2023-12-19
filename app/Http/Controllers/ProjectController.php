@@ -15,18 +15,21 @@ use App\Http\Resources\ProjectResource;
 use App\Contracts\Interfaces\ProjectInterface;
 use App\Contracts\Interfaces\ServiceProviderInterface;
 use App\Contracts\Interfaces\ServiceProviderProjectInterface;
+use App\Http\Requests\UploadFileProjectRequest;
+use App\Services\ProjectService;
 
 class ProjectController extends Controller
 {
-
+    private ProjectService $service;
     private ProjectInterface $project;
     private ServiceProviderInterface $serviceProvider;
     private FundSourceInterface $fundSource;
     private ContractCategoryInterface $contractCategory;
     private ServiceProviderProjectInterface $serviceProviderProject;
 
-    public function __construct(ProjectInterface $project, ServiceProviderInterface $serviceProvider, FundSourceInterface $fundSource, ContractCategoryInterface $contractCategory, ServiceProviderProjectInterface $serviceProviderProjectInterface)
+    public function __construct(ProjectInterface $project, ServiceProviderInterface $serviceProvider, FundSourceInterface $fundSource, ContractCategoryInterface $contractCategory, ServiceProviderProjectInterface $serviceProviderProjectInterface, ProjectService $service)
     {
+        $this->service = $service;
         $this->serviceProviderProject = $serviceProviderProjectInterface;
         $this->project = $project;
         $this->serviceProvider = $serviceProvider;
@@ -132,5 +135,18 @@ class ProjectController extends Controller
     public function listProjects(): JsonResponse
     {
         return ResponseHelper::success(ProjectResource::collection($this->project->get()));
+    }
+
+    /**
+     * uploadFileKonsultan
+     *
+     * @param  mixed $request
+     * @param  mixed $project
+     * @return void
+     */
+    public function uploadFileKonsultan(UploadFileProjectRequest $request, Project $project)
+    {
+        $this->project->update($project->id, $this->service->store($request, $project));
+        return redirect()->back()->with('success', trans('alert.add_success'));
     }
 }

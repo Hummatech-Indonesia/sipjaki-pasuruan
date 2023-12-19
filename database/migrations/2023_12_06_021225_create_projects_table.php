@@ -20,18 +20,22 @@ return new class extends Migration
             $table->foreignUuid('dinas_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignUuid('fund_source_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignUuid('contract_category_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->char('consultant_id',36);
-            $table->char('executor_id',36);
+            $table->char('consultant_id', 36);
+            $table->char('executor_id', 36);
             $table->string('name');
             $table->integer('project_value');
-            $table->enum('characteristic_project',[CharacteristicProjectEnum::SINGLE->value,CharacteristicProjectEnum::MULTIPLE->value]);
+            $table->enum('characteristic_project', [CharacteristicProjectEnum::SINGLE->value, CharacteristicProjectEnum::MULTIPLE->value]);
             $table->dateTime('physical_progress_start');
             $table->dateTime('finance_progress_start');
             $table->integer('finance_progress')->default(0);
             $table->integer('year');
             $table->dateTime('start_at');
             $table->dateTime('end_at');
-            $table->enum('status',[StatusEnum::ACTIVE->value,StatusEnum::NONACTIVE->value]);
+            $table->string('contract')->nullable();
+            $table->string('administrative_minutes')->nullable();
+            $table->string('report')->nullable();
+            $table->string('minutes_of_disbursement')->nullable();
+            $table->enum('status', [StatusEnum::ACTIVE->value, StatusEnum::NONACTIVE->value]);
             $table->timestamps();
         });
     }
