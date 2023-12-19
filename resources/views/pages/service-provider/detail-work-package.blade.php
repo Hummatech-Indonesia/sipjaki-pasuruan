@@ -207,12 +207,17 @@
 
                     </div>
                     @if (session('errors'))
-                        <div class="alert mt-3 alert-danger alert-dismissible fade show" role="alert">
-                            {!! session('errors') !!}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                aria-label="Close"></button>
-                        </div>
                     @endif
+                    @if ($errors->any())
+                        @foreach ($errors->all() as $error)
+                            <div class="alert mt-3 alert-danger alert-dismissible fade show" role="alert">
+                                {{ $error }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                        @endforeach
+                    @endif
+
                     <div class="table-responsive">
                         <table class="table mb-0">
 
@@ -259,7 +264,7 @@
                                                 </div>
                                                 <div class="">
                                                     <button class="btn btn-edit btn-sm btn-warning"
-                                                        id="{{ $serviceProviderProjec->id }}"
+                                                        id="btn-edit-{{ $serviceProviderProjec->id }}"
                                                         data-id="{{ $serviceProviderProjec->id }}"
                                                         data-progres="{{ $serviceProviderProjec->progres }}"
                                                         data-description="{{ $serviceProviderProjec->description }}"
@@ -509,7 +514,6 @@
         })
         $('.btn-edit').click(function() {
             const formData = getDataAttributes($(this).attr('id'))
-            console.log(formData);
             var actionUrl = `/service-provider-projects/${formData['id']}`;
             $('#form-update').attr('action', actionUrl);
             setFormValues('form-update', formData)

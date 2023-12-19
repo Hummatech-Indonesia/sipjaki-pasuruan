@@ -55,14 +55,14 @@
                                         <div class="mb-3">
                                             <label for="basicpill-year">Tahun</label>
                                             <input type="number" class="form-control" name="year" id="basicpill-year"
-                                                placeholder="Masukan Tahun">
+                                                placeholder="Masukan Tahun" value="{{ old('year') }}">
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="basicpill-name">Nama Pekerjaan</label>
                                             <input type="text" class="form-control" name="name" id="basicpill-name"
-                                                placeholder="masukan nama pekerjaan">
+                                                placeholder="masukan nama pekerjaan" value="{{ old('name') }}">
                                         </div>
                                     </div>
                                 </div>
@@ -74,7 +74,9 @@
                                             <select name="fund_source_id" class="form-control select2-create"
                                                 style="width:100%" id="basicpill-fund_source_id">
                                                 @foreach ($fundSources as $fundSource)
-                                                    <option value="{{ $fundSource->id }}">{{ $fundSource->name }}
+                                                    <option value="{{ $fundSource->id }}"
+                                                        {{ old('fund_source_id') == $fundSource->id ? 'selected' : '' }}>
+                                                        {{ $fundSource->name }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -82,12 +84,14 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="basicpill-email-input">Penyedia Jasa</label>
+                                            <label for="basicpill-penyedia-jasa">Penyedia Jasa</label>
                                             <select class="form-control select2-create" style="width:100%"
                                                 name="service_provider_id" id="basicpill-penyedia-jasa">
                                                 @foreach ($serviceProviders as $serviceProvider)
-                                                    <option value="{{ $serviceProvider->id }}">
-                                                        {{ $serviceProvider->user->name }}</option>
+                                                    <option value="{{ $serviceProvider->id }}"
+                                                        {{ old('service_provider_id') == $serviceProvider->id ? 'selected' : '' }}>
+                                                        {{ $serviceProvider->user->name }}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -103,31 +107,38 @@
                                         <div class="mb-3">
                                             <label for="basicpill-nilai_kontrak">Nilai Kontrak</label>
                                             <input type="number" class="form-control" name="project_value"
-                                                id="basicpill-nilai_kontrak" placeholder="Masukan nilai kontrak">
+                                                id="basicpill-nilai_kontrak" placeholder="Masukan nilai kontrak"
+                                                value="{{ old('project_value') }}">
                                         </div>
                                     </div>
-
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="basicpill-contract_category_id">Jenis kontrak</label>
-                                            <select name="contract_category_id" name=""
-                                                class="form-control select2-create" style="width:100%"
+                                            <select name="contract_category_id" class="form-control select2-create" style="width:100%"
                                                 id="basicpill-contract_category_id">
                                                 @foreach ($contractCategories as $contractCategory)
-                                                    <option value="{{ $contractCategory->id }}">
-                                                        {{ $contractCategory->name }}</option>
+                                                    <option value="{{ $contractCategory->id }}"
+                                                        {{ old('contract_category_id') == $contractCategory->id ? 'selected' : '' }}>
+                                                        {{ $contractCategory->name }}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                         </div>
-                                    </div>
+                                    </div>                                    
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="basicpill-cstno-input">karakteristik Kontrak</label>
-                                            <select name="characteristic_project" class="form-select" id="">
-                                                <option value="single">tahun tunggal</option>
-                                                <option value="multiple">tahun jamak</option>
+                                            <select name="characteristic_project" class="form-select">
+                                                <option value="single"
+                                                    {{ old('characteristic_project') == 'single' ? 'selected' : '' }}>
+                                                    tahun tunggal
+                                                </option>
+                                                <option value="multiple"
+                                                    {{ old('characteristic_project') == 'multiple' ? 'selected' : '' }}>
+                                                    tahun jamak
+                                                </option>
                                             </select>
                                         </div>
                                     </div>
@@ -135,33 +146,31 @@
                                         <div class="mb-3">
                                             <label>Status</label>
                                             <select name="status" class="form-select">
-                                                <option selected disabled>Pilih status</option>
-                                                <option value="active">Aktif</option>
-                                                <option value="nonactive">Nonaktif</option>
+                                                <option disabled>Pilih status</option>
+                                                <option value="active" {{ old('status') == 'active' ? 'selected' : '' }}>
+                                                    Aktif</option>
+                                                <option value="nonactive"
+                                                    {{ old('status') == 'nonactive' ? 'selected' : '' }}>Nonaktif</option>
                                             </select>
                                         </div>
                                     </div>
-
-
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="basicpill-start_at">Mulai</label>
                                             <input type="date" name="start_at" class="form-control"
-                                                id="basicpill-start_at" placeholder="Credit Card Number">
+                                                id="basicpill-start_at" value="{{ old('start_at') }}">
                                         </div>
                                     </div>
-
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="basicpill-card-verification-input">Selesai</label>
+                                            <label for="basicpill-end_at">Selesai</label>
                                             <input type="date" name="end_at" class="form-control"
-                                                id="basicpill-end_at" placeholder="Credit Verification Number">
+                                                id="basicpill-end_at" value="{{ old('end_at') }}">
                                         </div>
                                     </div>
                                 </div>
-
                             </section>
 
                             <!-- Bank Details -->
@@ -169,23 +178,22 @@
                             <section>
                                 <div>
                                     <div class="row">
-
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <label for="basicpill-physical_progress_start">Progress Fisik Pada</label>
                                                 <input type="date" name="physical_progress_start" class="form-control"
                                                     id="basicpill-physical_progress_start"
-                                                    placeholder="Masukan Progress Fisik">
+                                                    value="{{ old('physical_progress_start') }}">
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <label for="basicpill-servicetax-input">Progress Fisik(%)</label>
                                                 <input type="number" name="physical_progress" class="form-control"
-                                                    id="basicpill-servicetax-input" placeholder="Masukan progress">
+                                                    id="basicpill-servicetax-input" placeholder="Masukan progress"
+                                                    value="{{ old('physical_progress') }}">
                                             </div>
                                         </div>
-
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-6">
@@ -193,16 +201,17 @@
                                                 <label for="basicpill-physical_progress_start">Progress Keuangan
                                                     Pada</label>
                                                 <input type="date" class="form-control" name="finance_progress_start"
-                                                    id="basicpill-physical_progress_start" placeholder="">
+                                                    id="basicpill-physical_progress_start"
+                                                    value="{{ old('finance_progress_start') }}">
                                             </div>
                                         </div>
-
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <label for="basicpill-declaration-input">Progress Keuangan(%)</label>
                                                 <input type="number" name="finance_progress" class="form-control"
                                                     id="basicpill-Declaration-input"
-                                                    placeholder="Masukan progress keuangan">
+                                                    placeholder="Masukan progress keuangan"
+                                                    value="{{ old('finance_progress') }}">
                                             </div>
                                         </div>
                                     </div>
@@ -211,6 +220,7 @@
                         </div>
                     </form>
                 </div>
+
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div>
@@ -229,10 +239,10 @@
             <table class="table table-borderless" border="1">
                 <thead>
                     <tr>
-                        <th class="text-center table-sipjaki" >No</th>
-                        <th class="text-center table-sipjaki" >Tahun</th>
-                        <th class="text-center table-sipjaki" >Nama Pekerjaan</th>
-                        <th class="text-center table-sipjaki" >Aksi</th>
+                        <th class="text-center table-sipjaki">No</th>
+                        <th class="text-center table-sipjaki">Tahun</th>
+                        <th class="text-center table-sipjaki">Nama Pekerjaan</th>
+                        <th class="text-center table-sipjaki">Aksi</th>
                     </tr>
                 </thead>
                 @forelse ($projects as $index=>$project)
@@ -277,10 +287,10 @@
                                             data-year="{{ $project->year }}" data-status="{{ $project->status }}"
                                             data-start_at="{{ \Carbon\Carbon::parse($project->start_at)->format('Y-m-d') }}"
                                             data-end_at="{{ \Carbon\Carbon::parse($project->end_at)->format('Y-m-d') }}"
-                                            data-finance_progress="{{ $project->finance_progress }}"
-                                            data-finance_progress_start="{{ \Carbon\Carbon::parse($project->finance_progress_start)->format('Y-m-d') }}"
-                                            data-physical_progress="{{ $project->physical_progress }}"
-                                            data-physical_progress_start="{{ \Carbon\Carbon::parse($project->physical_progress_start)->format('Y-m-d') }}"
+                                            data-finance_progress="{{ $project->finance_progress ? $project->finance_progress." %" : "-" }}"
+                                            data-finance_progress_start="{{ \Carbon\Carbon::parse($project->finance_progress_start)->format('Y-m-d') ? Carbon\Carbon::parse($project->finance_progress_start)->format('Y-m-d') : "-"  }}"
+                                            data-physical_progress="{{ $project->physical_progress ? $project->physical_progress.' %' : '-' }}"
+                                            data-physical_progress_start="{{ \Carbon\Carbon::parse($project->physical_progress_start)->format('Y-m-d') ?  \Carbon\Carbon::parse($project->physical_progress_start)->format('Y-m-d') : "-" }}"
                                             data-project_value="{{ $project->project_value }}"
                                             data-fund_source="{{ $project->fundSource->name }}"
                                             data-service_provider_name="{{ $project->serviceProvider->name }}"
@@ -343,7 +353,7 @@
                                     </div>
                                     <div class="col-md-5">
                                         <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                id="detail-physical_progress"></span> %</p>
+                                                id="detail-physical_progress"></span></p>
                                     </div>
                                 </div>
                                 <div class="row mb-1">
@@ -352,7 +362,7 @@
                                     </div>
                                     <div class="col-md-5">
                                         <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                id="detail-finance_progress"></span> %</p>
+                                                id="detail-finance_progress"></span></p>
                                     </div>
                                 </div>
                                 <div class="row mb-1">
