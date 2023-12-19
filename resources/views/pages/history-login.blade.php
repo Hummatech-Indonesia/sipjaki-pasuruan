@@ -47,7 +47,7 @@
                 </div>
                 <div class="col">
                     <button class="btn btn-danger">
-                        Delete ALL
+                        Bersihkan History
                     </button>
                 </div>
             </div>
