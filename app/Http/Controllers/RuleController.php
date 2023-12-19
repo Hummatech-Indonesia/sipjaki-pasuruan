@@ -114,4 +114,15 @@ class RuleController extends Controller
             return redirect()->back()->with('success', trans('alert.delete_success'));
         }
     }
+
+    /**
+     * downloadRule
+     *
+     * @param  mixed $rule
+     * @return void
+     */
+    public function downloadRule(Rule $rule)
+    {
+        $this->service->downloadRule($rule->file);
+    }
 }

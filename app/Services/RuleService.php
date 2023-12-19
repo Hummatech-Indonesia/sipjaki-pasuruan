@@ -56,4 +56,15 @@ class RuleService
             'file' => $old_file,
         ];
     }
+
+    /**
+     * downloadRule
+     *
+     * @param  mixed $file
+     * @return void
+     */
+    public function downloadRule(mixed $file)
+    {
+        return response()->download(asset('storage/' . $file));
+    }
 }

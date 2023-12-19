@@ -77,6 +77,8 @@ Route::get('tugas-fungsi-DKSDK', function () {
 Auth::routes(['verify' => true]);
 // Route::middleware(['auth'])->group(function () {
 
+Route::get('download-rule/{rule}', [RuleController::class, 'downloadRule']);
+
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/kecelakaan', function () {
