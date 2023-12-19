@@ -37,6 +37,36 @@ class HistoryLoginRepository extends BaseRepository implements HistoryLoginInter
             ->create($data);
     }
 
+        /**
+     * show
+     *
+     * @param  mixed $id
+     * @return mixed
+     */
+    public function show(mixed $id): mixed
+    {
+        return $this->model->query()
+            ->findOrFail($id);
+    }
+
+    /**
+     * delete
+     *
+     * @param  mixed $id
+     * @return mixed
+     */
+    public function delete(mixed $id): mixed
+    {
+        return $this->show($id)->delete($id);
+    }
+    
+    /**
+     * customPaginate
+     *
+     * @param  mixed $request
+     * @param  mixed $pagination
+     * @return LengthAwarePaginator
+     */
     public function customPaginate(Request $request, int $pagination = 10): LengthAwarePaginator
     {
         return $this->model->query()
@@ -44,5 +74,12 @@ class HistoryLoginRepository extends BaseRepository implements HistoryLoginInter
                 $query->whereRelation('user','name','LIKE','%'.$request->name.'%');
             })
             ->fastPaginate($pagination);
+    }
+
+    public function clear() : mixed
+    {
+        return $this->model->query()
+            ->get()
+            ->delete();
     }
 }

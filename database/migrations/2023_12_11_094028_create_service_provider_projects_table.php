@@ -18,7 +18,8 @@ return new class extends Migration
             $table->integer('progres');
             $table->date('date_start');
             $table->date('date_finish');
-            $table->string('file');
+            $table->integer('week');
+            $table->string('file')->nullable();
             $table->text('description');
             $table->timestamps();
         });
