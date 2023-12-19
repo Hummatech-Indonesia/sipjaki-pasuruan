@@ -12,34 +12,43 @@
     <h2 class="mb-3">History Login</h2>
     <div class="card">
         <div class="card-body">
-            <div class="d-flex justify-content-header gap-3">
-                <form action="" class="d-flex gap-4">
-                    <div class="position-relative mb-3">
-                        <div class="input-group">
-                            <input type="text" name="name" value="{{ $name }}" class="form-control"
-                                placeholder="Search">
-                            <div class="input-group-append">
-                                <button class="btn text-white"
-                                    style="background-color: #1B3061; border-radius: 0 5px 5px 0;" type="submit">
-                                    <i class="fa fa-search"></i>
-                                </button>
+            <div class="row">
+                <div class="col-10">
+                    <div class="d-flex justify-content-header gap-3">
+                        <form action="" class="d-flex gap-4">
+                            <div class="position-relative mb-3">
+                                <div class="input-group">
+                                    <input type="text" name="name" value="{{ $name }}" class="form-control"
+                                        placeholder="Search">
+                                    <div class="input-group-append">
+                                        <button class="btn text-white"
+                                            style="background-color: #1B3061; border-radius: 0 5px 5px 0;" type="submit">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="">
+                            <div class="d-flex justify-content-header gap-2">
+                                <div class="input-daterange input-group" id="datepicker6" data-date-format="dd M, yyyy"
+                                    data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker6'>
+                                    <input type="text" class="form-control" name="start" placeholder="Start Date" />
+                                    <input type="text" class="form-control" name="end" placeholder="End Date" />
+                                </div>
+                                <div class="">
+                                    <button class="btn text-white" style="background-color: #1B3061">
+                                        Search
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </form>
-                <div class="">
-                    <div class="d-flex justify-content-header gap-2">
-                        <div class="input-daterange input-group" id="datepicker6" data-date-format="dd M, yyyy"
-                            data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker6'>
-                            <input type="text" class="form-control" name="start" placeholder="Start Date" />
-                            <input type="text" class="form-control" name="end" placeholder="End Date" />
-                        </div>
-                        <div class="">
-                            <button class="btn text-white" style="background-color: #1B3061">
-                                Search
-                            </button>
-                        </div>
-                    </div>
+                </div>
+                <div class="col">
+                    <button class="btn btn-danger">
+                        Delete ALL
+                    </button>
                 </div>
             </div>
             <div class="table-responsive">
@@ -50,6 +59,9 @@
                             <th class="table-sipjaki">Nama</th>
                             <th class="table-sipjaki">Waktu</th>
                             <th class="table-sipjaki">Alamat Ip</th>
+                            <th class="table-sipjaki">
+                                Aksi
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -66,6 +78,11 @@
                                 </td>
                                 <td>
                                     <p>{{ $history->ip_address }}</p>
+                                </td>
+                                <td>
+                                    <button class="btn btn-danger">
+                                        Hapus
+                                    </button>
                                 </td>
                             </tr>
                         @empty

@@ -325,6 +325,7 @@
                                     class="text-dark btn px-4 fw-bold">Edit</button>
                                 </div>
                             </div>
+                            
                             <table cellpadding="5" style="border-collapse: collapse; width: 40%;" class="fs-6 fw-normal">
                                 <tbody>
                                     <tr>
@@ -661,52 +662,66 @@
             </div>
             <h4 class="mt-3 mb-3 fw-bold">Pengesahan</h4>
             <div class="table-responsive rounded-4">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr align="center">
-                            <th style="background-color: #1B3061; color: #ffffff; vertical-align: middle" colspan="1"
-                                rowspan="2">No</th>
-                            <th colspan="3" style="background-color: #1B3061; color: #ffffff;">Proyek</th>
-                            <th style="background-color: #1B3061; color: #ffffff; vertical-align: middle" colspan="1"
-                                rowspan="2">Pemberi Tugas</th>
-                            <th style="background-color: #1B3061; color: #ffffff; vertical-align: middle" colspan="1"
-                                rowspan="2">Sub Bidang Kualifikasi</th>
-                            <th colspan="3" style="background-color: #1B3061; color: #ffffff;">Nomor</th>
-                            <th colspan="4" style="background-color: #1B3061; color: #ffffff;">Tanggal</th>
-                        </tr>
-                        <tr align="center">
-                            <th style="background-color: #1B3061; color: #ffffff;">Tahun</th>
-                            <th style="background-color: #1B3061; color: #ffffff;">Nama</th>
-                            <th style="background-color: #1B3061; color: #ffffff;">Nama Rupiah (dalam Ribuan)</th>
-                            <th style="background-color: #1B3061; color: #ffffff;">Kontrak</th>
-                            <th style="background-color: #1B3061; color: #ffffff;">NKPK</th>
-                            <th style="background-color: #1B3061; color: #ffffff;">Berita Acara Serah Terima</th>
-                            <th style="background-color: #1B3061; color: #ffffff;">Berita Acara Serah Terima</th>
-                            <th style="background-color: #1B3061; color: #ffffff;">Kontrak</th>
-                            <th style="background-color: #1B3061; color: #ffffff;">Mulai</th>
-                            <th style="background-color: #1B3061; color: #ffffff;">Selesai</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr align="center">
-                            <td colspan="1">1</td>
-                            <td colspan="1">2023</td>
-                            <td colspan="1">Peningkatan Jalan Laston Paket VI Kab. Bulukumba</td>
-                            <td colspan="1">123132456478</td>
-                            <td colspan="1">S1</td>
-                            <td colspan="1">SI0084</td>
-                            <td colspan="1">1</td>
-                            <td colspan="1">06/SPK/Laston/PPK/DBM/III/2015</td>
-                            <td colspan="1">02/PHO/Laston-Dau/DBM/IX/2015</td>
-                            <td colspan="1">02/PHO/Laston-Dau/DBM/IX/2015</td>
-                            <td colspan="1">25 Juni 2023</td>
-                            <td colspan="1">25 Juni 2023</td>
-                            <td colspan="1">25 Juni 2023</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <td class="text-white" style="background-color: #1B3061">
+                                    No
+                                </td>
+                                <td class="text-white" style="background-color: #1B3061">
+                                    Tahun
+                                </td>
+                                <td class="text-white" style="background-color: #1B3061">
+                                    Nama
+                                </td>
+                                <td class="text-white" style="background-color: #1B3061">
+                                    Nilai Project
+                                </td>
+                                <td class="text-white" style="background-color: #1B3061">
+                                    Nama Dinas
+                                </td>
+                                <td class="text-white" style="background-color: #1B3061">
+                                    Sub Bidang Kualifikasi	
+                                </td>
+                                <td class="text-white" style="background-color: #1B3061">
+                                    Kontrak
+                                </td>
+                                <td class="text-white" style="background-color: #1B3061">
+                                    NKPK
+                                </td>
+                                <td class="text-white" style="background-color: #1B3061">
+                                    Berita Serah Terima
+                                </td>
+                                <td class="text-white" style="background-color: #1B3061">
+                                    Kontrak
+                                </td>
+                                <td class="text-white" style="background-color: #1B3061">
+                                    Mulai
+                                </td>
+                                <td class="text-white" style="background-color: #1B3061">
+                                    Selesai
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td >1</td>
+                                <td >2023</td>
+                                <td >Peningkatan Jalan Laston Paket VI Kab. Bulukumba</td>
+                                <td >123132456478</td>
+                                <td >S1</td>
+                                <td >SI0084</td>
+                                <td >1</td>
+                                <td >06/SPK/Laston/PPK/DBM/III/2015</td>
+                                <td >02/PHO/Laston-Dau/DBM/IX/2015</td>
+                                <td >25 Juni 2023</td>
+                                <td >25 Juni 2023</td>
+                                <td >25 Juni 2023</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
