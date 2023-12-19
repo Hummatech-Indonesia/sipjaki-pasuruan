@@ -21,27 +21,25 @@ class TrainingController extends Controller
     {
         $this->training = $training;
     }
-    
+
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request) : View | JsonResponse
+    public function index(Request $request): View | JsonResponse
     {
-        
+
         $trainings = $this->training->customPaginate($request, 15);
-        
-        if( $request->is('api/*')){
+
+        if ($request->is('api/*')) {
             $data['paginate'] = $this->customPaginate($trainings->currentPage(), $trainings->lastPage());
             $data['data'] = TrainingResource::collection($trainings);
-            return ResponseHelper::success($data,trans('alert.get_success'));
-            
-        }else{
-            
-            return view('pages.dinas.training',compact('trainings'));
+            return ResponseHelper::success($data, trans('alert.get_success'));
+        } else {
 
+            return view('pages.dinas.training', compact('trainings'));
         }
     }
-    
+
     /**
      * Store a newly created resource in storage.
      */
@@ -50,38 +48,35 @@ class TrainingController extends Controller
         // dd($request->all());
         $this->training->store($request->validated());
 
-        if( $request->is('api/*')){
+        if ($request->is('api/*')) {
 
-            return ResponseHelper::success(null,trans('alert.add_success'));
-
-        }else{
-            return redirect()->back()->with('success',trans('alert.add_success'));
+            return ResponseHelper::success(null, trans('alert.add_success'));
+        } else {
+            return redirect()->back()->with('success', trans('alert.add_success'));
         }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Training $training) : JsonResponse
+    public function show(Training $training): JsonResponse
     {
-        return ResponseHelper::success(TrainingResource::make($training),trans('alert.get_success'));
+        return ResponseHelper::success(TrainingResource::make($training), trans('alert.get_success'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(TrainingRequest $request,Training $training) : RedirectResponse | JsonResponse
+    public function update(TrainingRequest $request, Training $training): RedirectResponse | JsonResponse
     {
         // dd($request->all());
-        $this->training->update($training->id,$request->all());
+        $this->training->update($training->id, $request->all());
 
-        if( $request->is('api/*')){
+        if ($request->is('api/*')) {
 
-            return ResponseHelper::success(null,trans('alert.update_success'));
-
-        }else{
-           return redirect()->back()->with('success',trans('alert.update_success'));
-
+            return ResponseHelper::success(null, trans('alert.update_success'));
+        } else {
+            return redirect()->back()->with('success', trans('alert.update_success'));
         }
     }
 
@@ -92,14 +87,12 @@ class TrainingController extends Controller
     {
         $this->training->delete($training->id);
 
-        if( $request->is('api/*')){
+        if ($request->is('api/*')) {
 
-            return ResponseHelper::success(null,trans('alert.delete_success'));
+            return ResponseHelper::success(null, trans('alert.delete_success'));
+        } else {
 
-        }else{
-
-            return redirect()->back()->with('success',trans('alert.delete_success'));
-
+            return redirect()->back()->with('success', trans('alert.delete_success'));
         }
     }
 }

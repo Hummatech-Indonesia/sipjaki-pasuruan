@@ -53,6 +53,7 @@ use App\Contracts\Interfaces\ServiceProviderQualificationInterface;
 use App\Contracts\Interfaces\SubClassificationTrainingInterface;
 use App\Contracts\Interfaces\SubQualificationTrainingInterface;
 use App\Contracts\Interfaces\TypeInterface;
+use App\Contracts\Interfaces\VerificationInterface;
 use App\Contracts\Interfaces\WorkerInterface;
 use App\Contracts\Repositories\AccidentRepository;
 use App\Contracts\Repositories\AssociationRepositoy;
@@ -74,6 +75,7 @@ use App\Contracts\Repositories\ServiceProviderRepository;
 use App\Contracts\Repositories\SubClassificationTrainingRepository;
 use App\Contracts\Repositories\SubQualificationTrainingRepository;
 use App\Contracts\Repositories\TypeRepository;
+use App\Contracts\Repositories\VerificationRepository;
 use App\Contracts\Repositories\WorkerRepository;
 
 class AppServiceProvider extends ServiceProvider
@@ -114,7 +116,8 @@ class AppServiceProvider extends ServiceProvider
         QualificationTrainingInterface::class => QualificationTrainingRepository::class,
         OfficerInterface::class => OfficerRepository::class,
         SubQualificationTrainingInterface::class => SubQualificationTrainingRepository::class,
-        ServiceProviderQualificationInterface::class => ServiceProviderQualificationRepository::class
+        ServiceProviderQualificationInterface::class => ServiceProviderQualificationRepository::class,
+        VerificationInterface::class => VerificationRepository::class
     ];
 
     /**

@@ -94,6 +94,7 @@ Route::get('/opd', function () {
 Route::get('json-classification-training', [ClassificationTrainingController::class, 'jsonClassificationTraining']);
 Route::get('json-sub-classification-training/{classification_training}', [SubClassificationTrainingController::class, 'jsonSubClassificationTraining']);
 Route::get('json-qualification-training', [QualificationTrainingController::class, 'jsonQualificationTraining']);
+Route::get('json-qualification-level-training', [QualificationLevelTrainingController::class, 'jsonQualificationLevelTraining']);
 Route::get('json-sub-qualification-training/{qualification_training}', [SubQualificationTrainingController::class, 'jsonSubQualificationTraining']);
 
 Route::middleware('auth')->group(function () {
@@ -224,9 +225,9 @@ Route::middleware('role:service provider')->group(function () {
     Route::put('update-business-entity', [ServiceProviderController::class, 'update'])->name('update-business-entity');
 
     Route::get('service-provider-projects', [ServiceProviderProjectController::class, 'index']);
-    Route::post('service-provider-projects/{project}', [ServiceProviderProjectController::class, 'store'])->name('service-provider-projects/');
-    Route::put('service-provider-projects/{service_provider_project}', [ServiceProviderProjectController::class, 'update'])->name('service-provider-projects/');
-    Route::delete('service-provider-projects/{service_provider_project}', [ServiceProviderProjectController::class, 'destroy'])->name('/service-provider-projects/');
+    Route::post('service-provider-projects/{project}', [ServiceProviderProjectController::class, 'store'])->name('service-provider-projects.store');
+    Route::put('service-provider-projects/{service_provider_project}', [ServiceProviderProjectController::class, 'update'])->name('service-provider-projects.update');
+    Route::delete('service-provider-projects/{service_provider_project}', [ServiceProviderProjectController::class, 'destroy'])->name('service-provider-projects.delete');
 
     Route::get('dashboard-service-provider', [ServiceProviderController::class, 'dashboard'])->name('dashboard-service-provider');
     Route::resource('workers', WorkerController::class)->only('index', 'update', 'destroy');

@@ -37,13 +37,21 @@
         <div class="tab-pane fade active show" id="badan-usaha" role="tabpanel" aria-labelledby="badan-usaha-tab">
             <div class="card rounded-4">
                 <div class="card-body">
+                    @if ($errors->any())
+                        @foreach ($errors->all() as $error)
+                            <div class="alert alert-danger">
+                                {{ $error }}
+                            </div>
+                        @endforeach
+                    @endif
                     <div class="d-flex">
                         <div class="flex-grow-1">
                             <div class="ms-2 d-flex justify-content-between">
                                 <div class="btn btn-sm mb-3 text-dark rounded-3" style="background-color: #E4ECFF;">
                                     Data Badan Usaha
                                 </div>
-                                <button style="background-color: #E4ECFF;"
+                                <button data-bs-toggle="modal" data-bs-target="#modal-update-badan-usaha"
+                                    style="background-color: #E4ECFF;"
                                     class="text-dark btn px-4 fw-bold btn-edit-badan-usaha"
                                     id="btn-edit-badan-usaha-{{ $serviceProvider->id }}"
                                     data-address="{{ $serviceProvider->address }}"
@@ -67,6 +75,11 @@
                                         <td>Kabupaten</td>
                                         <td>:</td>
                                         <td>{{ $serviceProvider->city ? $serviceProvider->city : '-' }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Provinsi</td>
+                                        <td>:</td>
+                                        <td>{{ $serviceProvider->province ? $serviceProvider->province : '-' }}</td>
                                     </tr>
                                     <tr>
                                         <td>Kode Pos</td>
@@ -97,13 +110,13 @@
                                     <tr>
                                         <td>Bentuk Badan Usaha</td>
                                         <td>:</td>
-                                        <td>{{ $serviceProvider->form_of_business_entity ? $serviceProvider->form_of_business_entity : '-' }}
+                                        <td>{{ $serviceProvider->form_of_business_entity ? $serviceProvider->form_of_business_entity == "pt" ? "PT" : "CV" : '-' }}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Jenis Badan Usaha</td>
                                         <td>:</td>
-                                        <td>{{ $serviceProvider->type_of_business_entity ? $serviceProvider->type_of_business_entity : '-' }}
+                                        <td>{{ $serviceProvider->type_of_business_entity ? $serviceProvider->type_of_business_entity == 'consultant' ? "Konsultan" : "Penyelrnggara" : '-' }}
                                         </td>
                                     </tr>
 
@@ -131,7 +144,7 @@
                                     <tr>
                                         <td>Alamat Badan Usaha</td>
                                         <td>:</td>
-                                        <td>{{ $serviceProvider->address ? $service->address : '-' }}</td>
+                                        <td>{{ $serviceProvider->address ? $serviceProvider->address : '-' }}</td>
                                     </tr>
                                     <tr>
                                         <td>Telepon</td>
@@ -289,87 +302,61 @@
                         <h5 class="card-header text-center border-bottom text-uppercase rounded-top-4 p-3"
                             style="background-color: #1B3061;color:white;">Pengesahan</h5>
                         <div class="card-body">
-                            <h5 class="text-dark" style="font-weight: 700">
-                                Materi Kehakiman dan HAM
-                            </h5>
-                            <div class="d-flex justify-content-header gap-5">
-                                <div class="">
-                                    <p class="text-dark" style="font-weight: 600">
-                                        Nomor
-                                    </p>
-                                </div>
-                                <div class="">
-                                    <p class="text-dark" style="font-weight: 600">
-                                        Nomor akte
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-header gap-5">
-                                <div class="">
-                                    <p class="text-dark" style="font-weight: 600">
-                                        Tanggal
-                                    </p>
-                                </div>
-                                <div class="">
-                                    <p class="text-dark" style="font-weight: 600">
-                                        22 Maret 2023
-                                    </p>
-                                </div>
-                            </div>
-                            <h5 class="text-dark mt-4" style="font-weight: 700">
-                                Pengadilan Negeri
-                            </h5>
-                            <div class="d-flex justify-content-header gap-5">
-                                <div class="">
-                                    <p class="text-dark" style="font-weight: 600">
-                                        Nomor
-                                    </p>
-                                </div>
-                                <div class="">
-                                    <p class="text-dark" style="font-weight: 600">
-                                        -
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-header gap-5">
-                                <div class="">
-                                    <p class="text-dark" style="font-weight: 600">
-                                        Tanggal
-                                    </p>
-                                </div>
-                                <div class="">
-                                    <p class="text-dark" style="font-weight: 600">
-                                        22 Maret 2023
-                                    </p>
-                                </div>
-                            </div>
-                            <h5 class="text-dark  mt-4" style="font-weight: 700">
-                                Lembar Negara
-                            </h5>
-                            <div class="d-flex justify-content-header gap-5">
-                                <div class="">
-                                    <p class="text-dark" style="font-weight: 600">
-                                        Nomor
-                                    </p>
-                                </div>
-                                <div class="">
-                                    <p class="text-dark" style="font-weight: 600">
-                                        Nomor akte
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-header gap-5">
-                                <div class="">
-                                    <p class="text-dark" style="font-weight: 600">
-                                        Tanggal
-                                    </p>
-                                </div>
-                                <div class="">
-                                    <p class="text-dark" style="font-weight: 600">
-                                        22 Maret 2023
-                                    </p>
-                                </div>
-                            </div>
+                            <table cellpadding="5" style="border-collapse: collapse; width: 40%;" class="fs-6 fw-normal">
+                                <tbody>
+                                    <tr>
+                                        <td colspan="5">
+                                            <h5 class="text-dark" style="font-weight: 700">
+                                                Materi Kehakiman dan HAM
+                                            </h5>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nomor</td>
+                                        <td>:</td>
+                                        <td>10</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tanggal</td>
+                                        <td>:</td>
+                                        <td>01 januari 2023</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="5">
+                                            <h5 class="text-dark mt-4" style="font-weight: 700">
+                                                Pengadilan Negeri
+                                            </h5>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nomor</td>
+                                        <td>:</td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tanggal</td>
+                                        <td>:</td>
+                                        <td>22 Maret 2023</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="5">
+                                            <h5 class="text-dark  mt-4" style="font-weight: 700">
+                                                Lembar Negara
+                                            </h5>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nomor</td>
+                                        <td>:</td>
+                                        <td>Jawa Timur</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tanggal</td>
+                                        <td>:</td>
+                                        <td>08 Januari</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -380,53 +367,35 @@
                         <h5 class="card-header text-center border-bottom text-uppercase rounded-top-4 p-3"
                             style="background-color: #1B3061;color:white;">Akte Perubahan</h5>
                         <div class="card-body">
-                            <div class="">
-                                <div class="row mb-1">
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark">No Akte :</p>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                id="detail-birth_date">10</span></p>
-                                    </div>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark">Nama Notaris :</p>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                id="detail-birth_date">Tuafiq Arifin, SH </span></p>
-                                    </div>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark">Alamat :</p>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                id="detail-birth_date">Jl. Singa No 4</span></p>
-                                    </div>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark">Kota / Kabupaten :</p>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                id="detail-birth_date">Kota Malang </span></p>
-                                    </div>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark"> Provinsi :</p>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                id="detail-birth_date">Jawa Timur</span></p>
-                                    </div>
-                                </div>
-                            </div>
+                            <table cellpadding="5" style="border-collapse: collapse; width: 40%;" class="fs-6 fw-normal">
+                                <tbody>
+                                    <tr>
+                                        <td>No Akte</td>
+                                        <td>:</td>
+                                        <td>10</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nama Notaris</td>
+                                        <td>:</td>
+                                        <td>Taufiq Arifin. SH</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alamat</td>
+                                        <td>:</td>
+                                        <td>JL Haji Puniti</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Kota / Kabupaten</td>
+                                        <td>:</td>
+                                        <td>Kota Malang</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Provinsi</td>
+                                        <td>:</td>
+                                        <td>Jawa Timur</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -725,19 +694,40 @@
                         style="color: white;"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="form-update-badan-usaha" method="POST">
+                    <form action="profile-service-providers" id="form-update-badan-usaha" method="POST">
                         @method('PUT')
                         @csrf
                         <div class="row">
-
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label id="name" for="recipient-name" class="control-label mb-2">Nama</label>
+                                    <input name="name" type="name" value="{{ $serviceProvider->user->name }}"
+                                        class="form-control" id="update-name">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label id="name" for="recipient-name" class="control-label mb-2">Email</label>
+                                    <input name="email" type="email" value="{{ $serviceProvider->user->email }}"
+                                        class="form-control" id="update-email">
+                                </div>
+                            </div>
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Bentuk Badan
                                         Usaha</label>
                                     <select name="form_of_business_entity" class="form-select" id="">
-                                        <option value="">Pilih Bentuk Badan Usaha</option>
-                                        <option value="pt">PT</option>
-                                        <option value="cv">CV</option>
+                                        @if ($serviceProvider->form_of_business_entity == 'pt')
+                                            <option value="pt" selected>PT</option>
+                                            <option value="cv">CV</option>
+                                        @elseif ($serviceProvider->form_of_business_entity == 'cv')
+                                            <option value="pt">PT</option>
+                                            <option value="cv" selected>CV</option>
+                                        @else
+                                            <option value="" selected disabled>Pilih Bentuk Badan Usaha</option>
+                                            <option value="pt">PT</option>
+                                            <option value="cv">CV</option>
+                                        @endif
                                     </select>
                                 </div>
                             </div>
@@ -746,9 +736,17 @@
                                     <label id="name" for="recipient-name" class="control-label mb-2">Jenis Badan
                                         Usaha</label>
                                     <select name="type_of_business_entity" class="form-select" id="">
-                                        <option value="">Pilih Jenis Badan Usaha</option>
-                                        <option value="consultant">Konsultan</option>
-                                        <option value="executor">Penyelenggara</option>
+                                        @if ($serviceProvider->type_of_business_entity == 'consultant')
+                                            <option value="consultant" selected>Konsultan</option>
+                                            <option value="executor">Penyelenggara</option>
+                                        @elseif ($serviceProvider->type_of_business_entity == 'executor')
+                                            <option value="consultant">Konsultan</option>
+                                            <option value="executor" selected>Penyelenggara</option>
+                                        @else
+                                            <option value="" selected disabled>Pilih Jenis Badan Usaha</option>
+                                            <option value="consultant">Konsultan</option>
+                                            <option value="executor">Penyelenggara</option>
+                                        @endif
                                     </select>
                                 </div>
                             </div>
@@ -756,44 +754,51 @@
                                 <div class="mb-3">
                                     <label id="city" for="recipient-name"
                                         class="control-label mb-2">Kabupaten</label>
-                                    <input name="city" type="text" class="form-control" id="">
+                                    <input name="city" value="{{ $serviceProvider->city }}" type="text"
+                                        class="form-control" id="">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label id="city" for="recipient-name"
+                                        class="control-label mb-2">Provinsi</label>
+                                    <input name="province" value="{{ $serviceProvider->province }}" type="text"
+                                        class="form-control" id="">
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Kode
                                         Pos</label>
-                                    <input name="postal_code" type="number" class="form-control" id="">
+                                    <input name="postal_code" type="number" class="form-control"
+                                        value="{{ $serviceProvider->postal_code }}" id="">
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Telepon</label>
-                                    <input name="phone_number" type="number" class="form-control" id="">
+                                    <input name="phone_number" value="{{ $serviceProvider->user->phone_number }}"
+                                        type="number" class="form-control" id="">
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Fax</label>
-                                    <input name="fax" type="number" class="form-control" id="">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="mb-3">
-                                    <label id="name" for="recipient-name" class="control-label mb-2">Email</label>
-                                    <input name="email" type="email" class="form-control" id="update-email">
+                                    <input name="fax" type="number" value="{{ $serviceProvider->fax }}"
+                                        class="form-control" id="">
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Website</label>
-                                    <input name="website" type="text" class="form-control" id="">
+                                    <input name="website" type="text" value="{{ $serviceProvider->website }}"
+                                        class="form-control" id="">
                                 </div>
                             </div>
                         </div>
                         <div class="col-12">
                             <label for="" class="form-label">Alamat Badan Usaha</label>
-                            <textarea name="address" id="update-address" class="form-control" cols="15" rows="5"></textarea>
+                            <textarea name="address" id="update-address" class="form-control" cols="15" rows="5">{{ $serviceProvider->address }}</textarea>
                         </div>
                 </div>
                 <div class="modal-footer">
@@ -812,16 +817,5 @@
     </div>
 @endsection
 @section('script')
-    <script>
-        $('.btn-edit-badan-usaha').click(function() {
-            const formData = getDataAttributes($(this).attr('id'))
-            var actionUrl = `update-business-entity`;
-            $('#form-update-badan-usaha').attr('action', actionUrl);
-
-            setFormValues('form-update-badan-usaha', formData)
-            $('#form-update-badan-usaha').data('id', formData['id'])
-            $('#form-update-badan-usaha').attr('action', );
-            $('#modal-update-badan-usaha').modal('show')
-        })
-    </script>
+    <script></script>
 @endsection
