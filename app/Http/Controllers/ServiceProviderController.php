@@ -46,7 +46,7 @@ class ServiceProviderController extends Controller
         $countWorker = $this->worker->countWorker();
         $countExperience = $this->project->countProject();
         $countAllExperience = $this->project->countAllProject();
-        return view('pages.service-provider.dashboard', ['experiences' => $experiences, 'workers' => $workers, 'countWorker' => $countWorker, 'countExperience' => $countExperience, 'countAllExperience' => $countAllExperience]);
+        return view('pages.service-provider.dashboard', ['experiences' => $experiences, 'workers' => $workers, 'countWorker' => $countWorker, 'countExperience' => $countExperience, 'countAllExperience' => $countAllExperience, 'countOfficer' => $countOfficer]);
     }
 
     /**
