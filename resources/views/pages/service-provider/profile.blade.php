@@ -175,7 +175,8 @@
                                 rowspan="2">Nomor Kode</th>
                             <th style="background-color: #1B3061;color:#ffffff; vertical-align: middle" colspan="1"
                                 rowspan="2">Kualifikasi</th>
-                            <th colspan="1" style="background-color: #1B3061;color:#ffffff;">Kemampuan Dasar</th>
+                            <th style="background-color: #1B3061;color:#ffffff;vertical-align: middle;width:150px;"
+                            rowspan="2" colspan="1">Tahun</th>
                             <th style="background-color: #1B3061;color:#ffffff;vertical-align: middle" rowspan="2"
                                 colspan="1">
                                 Asosiasi</th>
@@ -186,11 +187,11 @@
                             <th style="background-color: #1B3061;color:#ffffff;vertical-align: middle;width:150px;"
                                 rowspan="2" colspan="1">Tanggal Cetak Perubahan Terakhir</th>
                             <th style="background-color: #1B3061;color:#ffffff;vertical-align: middle;width:150px;"
+                                rowspan="2" colspan="1">Status</th>
+                            <th style="background-color: #1B3061;color:#ffffff;vertical-align: middle;width:150px;"
                                 rowspan="2" colspan="1">Aksi</th>
                         </tr>
-                        <tr align="center">
-                            <th style="background-color: #1B3061;color:#ffffff;">Tahun</th>
-                        </tr>
+                       
                     </thead>
                     <tbody>
                         @forelse ($serviceProviderQualifications as $serviceProviderQualification)
@@ -209,6 +210,8 @@
                                     {{ $serviceProviderQualification->first_print ? Carbon::parse($serviceProviderQualification->first_print)->locale('id_ID')->isoFormat('DD MMMM Y') : '-' }}</td>
                                 <td colspan="1">
                                     {{ $serviceProviderQualification->last_print ? Carbon::parse($serviceProviderQualification->last_print)->locale('id_ID')->isoFormat('DD MMMM Y') : '-' }}</td>
+                                <td colspan="1">
+                                    {{ $serviceProviderQualification->status }}</td>
                                 <td class="d-flex flex-row gap-3 justify-content-center">
                                     <button type="button"
                                         class="btn waves-effect waves-light d-flex btn-edit flex-row gap-1 justify-content-evenly"
@@ -225,7 +228,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="10" class="text-center">
+                                <td colspan="11" class="text-center">
                                     <div class="d-flex justify-content-center" style="min-height:19rem">
                                         <div class="my-auto">
                                             <img src="{{ asset('no-data.png') }}" width="300" height="300" />
