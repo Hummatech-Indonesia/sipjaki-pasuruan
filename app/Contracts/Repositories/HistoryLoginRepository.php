@@ -73,6 +73,12 @@ class HistoryLoginRepository extends BaseRepository implements HistoryLoginInter
             ->when($request->name,function($query) use($request){
                 $query->whereRelation('user','name','LIKE','%'.$request->name.'%');
             })
+            ->when($request->start_date, function ($query) use ($request) {
+                $query->where('created_at', '>=', $request->start_date);
+            })
+            ->when($request->end_date, function ($query) use ($request) {
+                $query->where('created_at', '<=', $request->end_date);
+            })
             ->fastPaginate($pagination);
     }
 
