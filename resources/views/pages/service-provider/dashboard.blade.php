@@ -36,7 +36,7 @@
         <h4 class="mb-sm-0 font-size-18">Dashboard</h4>
     </div>
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3">
             <div class="card mini-stats-wid">
                 <div class="card-body">
                     <div class="d-flex">
@@ -56,7 +56,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <div class="card mini-stats-wid">
                 <div class="card-body">
                     <div class="d-flex">
@@ -81,7 +81,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <div class="card mini-stats-wid">
                 <div class="card-body">
                     <div class="d-flex">
@@ -105,6 +105,26 @@
                                             d="M13.8913 25.1426C13.8932 24.6978 13.7715 24.2613 13.5398 23.8816C13.5073 23.8303 13.4899 23.7709 13.4897 23.7101C13.4894 23.6494 13.5063 23.5898 13.5383 23.5382C13.5704 23.4866 13.6163 23.4451 13.6709 23.4183C13.7254 23.3916 13.7864 23.3808 13.8468 23.3871H13.8538C13.9523 23.3977 14.4784 23.4738 15.2249 23.9273C15.7792 24.2637 17.3612 25.343 20.1151 28.0922C20.0858 29.0285 20.3852 29.9456 20.9612 30.6844L28.7226 23.4715C28.0352 22.8206 27.137 22.438 26.1913 22.3934C26.1825 22.3837 26.1743 22.3736 26.1667 22.3629L26.0905 22.282L23.2148 18.3164C22.8951 17.8823 22.6854 17.3771 22.6038 16.8442C22.5221 16.3113 22.5709 15.7666 22.746 15.2566C23.0098 14.4972 23.4896 13.8313 24.1265 13.3406C24.7933 12.8238 26.298 12.2016 27.5765 12.0961C28.172 12.0469 28.7716 12.084 29.3566 12.2063C29.6368 12.2739 29.913 12.3572 30.1839 12.4559C30.266 12.4865 30.3502 12.5112 30.4359 12.5297C30.8078 12.6121 31.1961 12.5792 31.5489 12.4355C31.9017 12.2917 32.2024 12.0438 32.4109 11.7249C32.6193 11.406 32.7257 11.0312 32.7158 10.6503C32.7058 10.2694 32.5801 9.90061 32.3554 9.59297C32.3249 9.55196 32.2007 9.38321 32.0167 9.15586C31.6734 8.7229 31.2973 8.31701 30.8917 7.9418C29.9366 7.0793 27.4616 5.625 24.212 5.625C22.3524 5.62364 20.51 5.98177 18.7862 6.67969C14.2898 8.49024 11.3483 10.9664 9.99601 12.2801L9.98546 12.2906C9.0755 13.1891 8.23298 14.1535 7.46476 15.1758C7.17433 15.5853 6.98553 16.0581 6.91397 16.5551C6.88054 16.7665 6.76937 16.9578 6.60224 17.0916C6.43511 17.2253 6.22407 17.2919 6.01046 17.2781C5.96827 17.2781 5.92491 17.2781 5.88272 17.2781C5.24388 17.2739 4.62927 17.5224 4.17296 17.9695L0.721786 21.334L0.684286 21.3715C0.250161 21.8225 0.00531667 22.4227 8.55723e-05 23.0487C-0.00514552 23.6747 0.229634 24.2789 0.656161 24.7371C0.678426 24.7605 0.69952 24.7828 0.722958 24.8051L6.28936 30.2344C6.74799 30.6837 7.36408 30.9361 8.00616 30.9375C8.64501 30.9418 9.25961 30.6932 9.71593 30.2461L13.1683 26.8723C13.3985 26.6471 13.5812 26.378 13.7054 26.0808C13.8296 25.7837 13.8928 25.4646 13.8913 25.1426Z"
                                             fill="white" />
                                     </svg>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card mini-stats-wid">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <div class="flex-grow-1">
+                            <p class="text-muted fw-medium">Jumlah Pengurus</p>
+                            <h4 class="mb-0" style="color: #1B3061">{{ $countOfficer }}</h4>
+                        </div>
+
+                        <div class="flex-shrink-0 align-self-center">
+                            <div class="avatar-sm rounded-circle mini-stat-icon">
+                                <span class="avatar-title rounded-circle">
+                                    <i class="fas fa-user-tie fa-2x"></i>
                                 </span>
                             </div>
                         </div>
@@ -137,7 +157,8 @@
                 <thead>
                     <tr>
                         <th style="background-color: #1B3061;color:#ffffff">No</th>
-                        <th style="background-color: #1B3061;color:#ffffff">Nama Pekerja</th>
+                        <th style="background-color: #1B3061;color:#ffffff">Nama Pekerjaan</th>
+                        <th style="background-color: #1B3061;color:#ffffff">Progres</th>
                         <th style="background-color: #1B3061;color:#ffffff">Tahun</th>
                         <th style="background-color: #1B3061;color:#ffffff">Status</th>
                     </tr>
@@ -147,6 +168,8 @@
                     <tr>
                         <td class="fs-5">{{ $loop->iteration }}</td>
                         <td class="fs-5">{{ $experience->name }}</td>
+                        <td><span class="fs-6 badge px-4 py-2" style="background-color: #E4ECFF;color:#1B3061;">{{ $experience->finance_progress }}%</span>
+                        </td>
                         <td class="fs-5">{{ $experience->year }}</td>
                         <td>
                             <span class="fs-6 badge px-4 py-2" style="background-color: {{ $experience->status == 'nonactive' ? '#FF0000' : '#E4ECFF' }}; color: {{ $experience->status == 'nonactive' ? '#FFFFFF' : '#1B3061' }}">
