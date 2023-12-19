@@ -190,7 +190,7 @@
                             <td class="text-center">{{ $association->phone_number }}</td>
                             <td class="text-center">{{ $association->leader }}</td>
                             <td class="" style="border-bottom: 1px solid #fff">
-                                <div class="d-flex justify-content-header gap-3">
+                                <div class="d-flex justify-content-center gap-3">
                                     <div class="">
                                         <button id="btn-edit-{{ $association->id }}" data-name="{{ $association->name }}"
                                             data-leader="{{ $association->leader }}"
