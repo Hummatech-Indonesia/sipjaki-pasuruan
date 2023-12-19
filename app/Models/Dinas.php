@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Dinas extends Model implements HasUser, HasProjects, HasSection
+class Dinas extends Model implements HasUser, HasProjects
 {
     use HasFactory;
     protected $table = 'dinas';
@@ -20,15 +20,6 @@ class Dinas extends Model implements HasUser, HasProjects, HasSection
     public $incrementing = false;
     public $keyType = 'char';
 
-    /**
-     * section
-     *
-     * @return BelongsTo
-     */
-    public function section(): BelongsTo
-    {
-        return $this->belongsTo(Section::class);
-    }
 
     /**
      * Get all of the projects for the Dinas
