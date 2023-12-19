@@ -101,7 +101,7 @@ class ProjectController extends Controller
      */
     public function update(ProjectRequest $request, Project $project): RedirectResponse | JsonResponse
     {
-        $this->project->update($project->id, $request->all());
+        $this->project->update($project->id, $request->validated());
 
         if ($request->is('api/*')) {
 
