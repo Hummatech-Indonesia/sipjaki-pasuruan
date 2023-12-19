@@ -192,24 +192,6 @@
                             <td class="" style="border-bottom: 1px solid #fff">
                                 <div class="d-flex justify-content-header gap-3">
                                     <div class="">
-                                        <a href="{{ route('associations.show', ['association' => $association->id]) }}">
-                                            <button type="button"
-                                                class="btn btn-edit waves-effect waves-light text-white btn waves-effect d-flex flex-row gap-1 justify-content-evenly"
-                                                style="background-color: #1B3061">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19"
-                                                    viewBox="0 0 24 24" fill="none">
-                                                    <path d="M4.5 12.5C7.5 6 16.5 6 19.5 12.5" stroke="white"
-                                                        stroke-width="1.5" stroke-linecap="round"
-                                                        stroke-linejoin="round" />
-                                                    <path
-                                                        d="M12 16C10.8954 16 10 15.1046 10 14C10 12.8954 10.8954 12 12 12C13.1046 12 14 12.8954 14 14C14 15.1046 13.1046 16 12 16Z"
-                                                        stroke="white" stroke-width="1.5" stroke-linecap="round"
-                                                        stroke-linejoin="round" />
-                                                </svg> Detail
-                                            </button>
-                                        </a>
-                                    </div>
-                                    <div class="">
                                         <button id="btn-edit-{{ $association->id }}" data-name="{{ $association->name }}"
                                             data-leader="{{ $association->leader }}"
                                             data-email="{{ $association->email }}"
@@ -358,72 +340,6 @@
             </div>
         </div>
     </div>
-    <div class="modal fade bs-example-modal-md" id="modal-detail" tabindex="-1" role="dialog"
-        aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-md">
-            <div class="modal-content">
-                <div class="modal-header" style="background-color: #1B3061">
-                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Detail Tenaga Kerja</h5>
-                    <button type="button" class="btn-close" style="background-color: white" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="card">
-                        <div class="card-body">
-                            <p class="mt-3 fs-5 text-dark mb-2" style="font-weight: 700">
-                                <span id="detail-name"></span>
-                            </p>
-                            <div class="">
-                                <div class="row mb-1">
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark">Tanggal Lahir :</p>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                id="detail-birth_date"></span></p>
-                                    </div>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark">Pendidikan :</p>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                id="detail-education"></span></p>
-                                    </div>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark">No. Registrasi :</p>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                id="detail-registration_number"></span></p>
-                                    </div>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark">Jenis Sertifikat :</p>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                id="detail-cerificate"></span></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger text-white font-medium waves-effect"
-                                data-bs-dismiss="modal">
-                                Close
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div>
-
     <div class="modal fade" tabindex="-1" id="import" aria-labelledby="exampleModalLabel1">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">

@@ -2,24 +2,24 @@
 
 namespace App\Models;
 
-use App\Base\Interfaces\HasAccidents;
+use App\Base\Interfaces\HasConsultant;
 use App\Models\ServiceProvider;
 use App\Base\Interfaces\HasDinas;
 use App\Base\Interfaces\HasFundSource;
 use Illuminate\Database\Eloquent\Model;
-use App\Base\Interfaces\HasServiceProvider;
 use App\Base\Interfaces\HasContractCategory;
+use App\Base\Interfaces\HasExecutor;
 use App\Base\Interfaces\HasServiceProviderProjects;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Project extends Model implements HasDinas, HasServiceProvider, HasFundSource, HasContractCategory, HasServiceProviderProjects
+class Project extends Model implements HasDinas, HasExecutor,HasConsultant, HasFundSource, HasContractCategory, HasServiceProviderProjects
 {
     use HasFactory;
     protected $table = 'projects';
     protected $primaryKey = 'id';
-    protected $fillable = ['id', 'dinas_id', 'service_provider_id', 'fund_source_id', 'contract_category_id', 'name', 'project_value', 'characteristic_project', 'physical_progress_start', 'finance_progress_start', 'finance_progress', 'year', 'start_at', 'end_at', 'status'];
+    protected $fillable = ['id', 'dinas_id', 'consultant_id','executor_id', 'fund_source_id', 'contract_category_id', 'name', 'project_value', 'characteristic_project', 'physical_progress_start', 'finance_progress_start', 'finance_progress', 'year', 'start_at', 'end_at', 'status'];
     protected $guarded = [];
     public $incrementing = false;
     public $keyType = 'char';
@@ -35,13 +35,23 @@ class Project extends Model implements HasDinas, HasServiceProvider, HasFundSour
     }
 
     /**
-     * serviceProvider
+     * Get the consultant that owns the Project
      *
-     * @return BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function serviceProvider(): BelongsTo
+    public function consultant(): BelongsTo
     {
-        return $this->belongsTo(ServiceProvider::class);
+        return $this->belongsTo(ServiceProvider::class, 'consultant_id');
+    }
+
+    /**
+     * Get the executor that owns the Project
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function executor(): BelongsTo
+    {
+        return $this->belongsTo(ServiceProvider::class,'executor_id');
     }
 
     /**

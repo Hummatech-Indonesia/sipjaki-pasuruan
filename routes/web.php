@@ -131,7 +131,7 @@ Route::middleware('auth')->group(function () {
             'sections' => SectionController::class,
             'rules' => RuleController::class,
             'types' => TypeController::class,
-            // 'classification-trainings' => ClassificationTrainingController::class,
+            'associations'=> AssociationController::class,
             'qualification-level-trainings' => QualificationLevelTrainingController::class,
             'qualification-trainings' => QualificationTrainingController::class,
             'classification-training'=> ClassificationTrainingController::class
@@ -141,13 +141,10 @@ Route::middleware('auth')->group(function () {
         Route::put('sub-clasification-training/update/{sub_classification_training}',[SubClassificationTrainingController::class,'update'])->name('sub-clasification-training.update');
         Route::delete('sub-clasification-training/delete/{sub_classification_training}',[SubClassificationTrainingController::class,'destroy'])->name('sub-clasification-training.delete');
 
-        Route::get('sub-qualification-training/{qualification_training}', [SubQualificationTrainingController::class,'index'])->name('sub-qualification.index');
-        Route::post('sub-qualification-training/store/{qualification_training}', [SubQualificationTrainingController::class,'store'])->name('sub-qualification.store');
-        Route::put('sub-qualification-training/update/{sub_qualification_training}', [SubQualificationTrainingController::class,'update'])->name('sub-qualification.update');
-        Route::delete('sub-qualification-training/destroy/{sub_qualification_training}', [SubQualificationTrainingController::class,'destroy'])->name('sub-qualification.destroy');
 
         Route::get('history-login', [HistoryLoginController::class, 'index'])->name('history-login.index');
         Route::get('classification-trainings', [ClassificationTrainingController::class, 'index'])->name('classification-training.index');
+        
         Route::name('qualifications.level.')->group(function () {
             Route::post('sub-qualifications/{qualification}', [QualificationLevelController::class, 'store'])->name('store');
             Route::put('sub-qualifications/{qualification_level}', [QualificationLevelController::class, 'update'])->name('update');

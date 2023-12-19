@@ -21,7 +21,8 @@ class RegisterRequest extends FormRequest
             'email' => ['required', 'email', 'max:255', Rule::unique('users', 'email')->ignore($this->user)],
             'password' => 'required|same:password_confirmation',
             'password_confirmation' => 'required',
-            'phone_number' => 'required'
+            'phone_number' => 'required',
+            'type_of_business_entity' => 'required'
         ];
     }
 }

@@ -22,7 +22,8 @@ class ProjectRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'service_provider_id' => 'required|exists:service_providers,id',
+            'executor_id' => 'required|exists:service_providers,id',
+            'consultant_id' => 'required|exists:service_providers,id',
             'fund_source_id' => 'required|exists:fund_sources,id',
             'contract_category_id' => 'required|exists:contract_categories,id',
             'name' => 'required|max:255',
@@ -46,8 +47,10 @@ class ProjectRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'service_provider_id.required' => 'Penyedia layanan harus diisi.',
-            'service_provider_id.exists' => 'Penyedia layanan tidak valid.',
+            'consultant_id.required' => 'Konsultan harus diisi.',
+            'consultant_id.exists' => 'Konsultan tidak valid.',
+            'executor_id.required' => 'Pelaksana harus diisi.',
+            'executor_id.exists' => 'Pelaksana tidak valid.',
             'fund_source_id.required' => 'Sumber dana harus diisi.',
             'fund_source_id.exists' => 'Sumber dana tidak valid.',
             'contract_category_id.required' => 'Kategori kontrak harus diisi.',

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('birth_date');
             $table->string('education');
             $table->string('registration_number');
-            $table->string('cerificate'); // ganti enum jenis jenis sertifikat
+            $table->string('cerificate'); 
             $table->timestamps();
         });
     }
