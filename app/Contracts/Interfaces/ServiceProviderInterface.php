@@ -12,5 +12,18 @@ use App\Contracts\Interfaces\Eloquent\StoreInterface;
 use App\Contracts\Interfaces\Eloquent\UpdateInterface;
 
 interface ServiceProviderInterface extends GetInterface,StoreInterface, CustomPaginationInterface, DeleteInterface, UpdateInterface, ShowInterface, SearchInterface,CountInterface
-{
+{    
+    /**
+     * getConsultant
+     *
+     * @return mixed
+     */
+    public function getConsultant() : mixed;
+    
+    /**
+     * getExecutor
+     *
+     * @return mixed
+     */
+    public function getExecutor() : mixed;
 }

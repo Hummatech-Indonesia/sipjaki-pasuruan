@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\ServiceProvider;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Contracts\Interfaces\ServiceProviderInterface;
+use App\Enums\TypeOfBusinessEntityEnum;
 
 class ServiceProviderRepository extends BaseRepository implements ServiceProviderInterface
 {
@@ -107,10 +108,40 @@ class ServiceProviderRepository extends BaseRepository implements ServiceProvide
             })
             ->fastPaginate($pagination);
     }
-
+    
+    /**
+     * count
+     *
+     * @param  mixed $data
+     * @return int
+     */
     public function count(?array $data): int
     {
         return $this->model->query()
             ->count();
+    }
+    
+    /**
+     * getConsultant
+     *
+     * @return mixed
+     */
+    public function getConsultant(): mixed
+    {
+        return $this->model->query()
+            ->where('type_of_business_entity',TypeOfBusinessEntityEnum::CONSULTANT->value)
+            ->get();
+    }
+    
+    /**
+     * getExecutor
+     *
+     * @return mixed
+     */
+    public function getExecutor(): mixed
+    {
+        return $this->model->query()
+            ->where('type_of_business_entity',TypeOfBusinessEntityEnum::EXECUTOR->value)
+            ->get();
     }
 }
