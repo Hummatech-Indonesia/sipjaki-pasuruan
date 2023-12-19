@@ -297,7 +297,7 @@
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-email-input">Jenjang KKNI</label>
-                                            <select name="qualification_level_id" class="form-select list-qualification-level select2-update"
+                                            <select name="qualification_level_training_id" class="form-select list-qualification-level select2-update"
                                                 style="width:100%" id="update-list-qualification-level">
                                             </select>
                                             @error('qulification_level_id')
@@ -310,7 +310,7 @@
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-email-input">Klasifikasi</label>
-                                            <select name="kualifikasi" class="form-select list-classifications select2-update" style="width:100%"
+                                            <select name="qualification_training_id" class="form-select list-classifications select2-update" style="width:100%"
                                                 id="update-list-classifications">
                                                 <option value="">Pilih Kualifikasi</option>
                                             </select>
@@ -319,10 +319,10 @@
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-email-input">Sub Klasifikasi</label>
-                                            <select name="sub_classification_id" class="form-select sub-classifications select2-update"
+                                            <select name="sub_classification_training_id" class="form-select sub-classifications select2-update"
                                                 style="width:100%" id="update-list-sub-classifications">
                                             </select>
-                                            @error('sub_classification_id')
+                                            @error('sub_classification_training_id')
                                                 <p class="text-danger">
                                                     {{ $message }}
                                                 </p>

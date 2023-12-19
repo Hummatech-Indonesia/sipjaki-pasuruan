@@ -53,4 +53,10 @@ class ServiceProviderController extends Controller
         $this->serviceProvider->update(auth()->user()->serviceProvider->id, $request->validated());
         return ResponseHelper::success(null, trans('alert.update_success'));
     }
+
+    public function index()
+    {
+        $serviceProviders = $this->serviceProvider->show(auth()->user()->id);
+        // return view()
+    }
 }

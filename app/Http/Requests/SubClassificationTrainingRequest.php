@@ -14,7 +14,7 @@ class SubClassificationTrainingRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required',
+            'name' => 'required|max:255',
         ];
     }
 
@@ -27,6 +27,7 @@ class SubClassificationTrainingRequest extends FormRequest
     {
         return [
             'name.required' => 'Nama wajib diisi',
+            'name.max' => 'Nama maksimal 255 Karakter'
         ];
     }
 }

@@ -26,4 +26,17 @@ class FaqRequest extends FormRequest
             'answer' => 'required'
         ];
     }
+
+    /**
+     * messages
+     *
+     * @return array
+     */
+    public function messages(): array
+    {
+        return [
+            'question.required' => 'Pertanyaan harus diisi.',
+            'answer.required' => 'Jawaban harus diisi.',
+        ];
+    }
 }

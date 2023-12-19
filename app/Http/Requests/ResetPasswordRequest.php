@@ -19,4 +19,20 @@ class ResetPasswordRequest extends FormRequest
             'password_confirmation' => 'required'
         ];
     }
+
+    /**
+     * messages
+     *
+     * @return array
+     */
+    public function messages(): array
+    {
+        return [
+            'token.required' => 'Token reset password harus diisi.',
+            'token.exists' => 'Token reset password tidak valid.',
+            'password.required' => 'Kata sandi baru harus diisi.',
+            'password.same' => 'Konfirmasi kata sandi tidak cocok dengan kata sandi baru.',
+            'password_confirmation.required' => 'Konfirmasi kata sandi harus diisi.',
+        ];
+    }
 }

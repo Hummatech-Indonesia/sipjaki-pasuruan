@@ -26,4 +26,27 @@ class TrainingMemberRequest extends FormRequest
             'education' => 'required',
         ];
     }
+
+    /**
+     * messages
+     *
+     * @return array
+     */
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Nama harus diisi.',
+            'name.max' => 'Nama tidak boleh lebih dari :max karakter.',
+            'position.required' => 'Posisi harus diisi.',
+            'position.max' => 'Posisi tidak boleh lebih dari :max karakter.',
+            'address.required' => 'Alamat harus diisi.',
+            'phone_number.required' => 'Nomor telepon harus diisi.',
+            'decree.required' => 'Surat keputusan harus diisi.',
+            'gender.required' => 'Jenis kelamin harus diisi.',
+            'file.required' => 'Berkas harus diunggah.',
+            'national_identity_number.required' => 'Nomor identitas nasional harus diisi.',
+            'national_identity_number.max' => 'Nomor identitas nasional tidak boleh lebih dari :max karakter.',
+            'education.required' => 'Pendidikan harus diisi.',
+        ];
+    }
 }
