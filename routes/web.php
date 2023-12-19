@@ -149,6 +149,8 @@ Route::middleware('auth')->group(function () {
 
 
         Route::get('history-login', [HistoryLoginController::class, 'index'])->name('history-login.index');
+        Route::delete('history-login/{history_login}',[HistoryLoginController::class,'destroy'])->name('history-login.destroy');
+        Route::delete('clear-history',[HistoryLoginController::class,'clear'])->name('history-login.clear');
         Route::get('classification-trainings', [ClassificationTrainingController::class, 'index'])->name('classification-training.index');
 
         Route::name('qualifications.level.')->group(function () {

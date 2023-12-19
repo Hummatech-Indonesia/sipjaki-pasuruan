@@ -85,7 +85,6 @@ class HistoryLoginRepository extends BaseRepository implements HistoryLoginInter
     public function clear() : mixed
     {
         return $this->model->query()
-            ->get()
             ->delete();
     }
 }
