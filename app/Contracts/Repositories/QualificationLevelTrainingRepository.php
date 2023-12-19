@@ -61,7 +61,8 @@ class QualificationLevelTrainingRepository extends BaseRepository implements Qua
      */
     public function delete(mixed $id): mixed
     {
-        return $this->show($id)
+        return $this->model->query()
+            ->findOrFail($id)
             ->delete();
     }
 
@@ -74,7 +75,8 @@ class QualificationLevelTrainingRepository extends BaseRepository implements Qua
      */
     public function update(mixed $id, array $data): mixed
     {
-        return $this->show($id)
+        return $this->model->query()
+            ->findOrFail($id)
             ->update($data);
     }
 
@@ -87,6 +89,7 @@ class QualificationLevelTrainingRepository extends BaseRepository implements Qua
     public function show(mixed $id): mixed
     {
         return $this->model->query()
-            ->findOrFail($id);
+            ->where('qualification_training_id', $id)
+            ->get();
     }
 }
