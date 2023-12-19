@@ -12,7 +12,7 @@ use App\Contracts\Interfaces\Eloquent\UpdateInterface;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-interface ProjectInterface extends CountInterface,GetInterface, StoreInterface, CustomPaginationInterface, DeleteInterface, UpdateInterface, ShowInterface
+interface ProjectInterface extends CountInterface, GetInterface, StoreInterface, CustomPaginationInterface, DeleteInterface, UpdateInterface, ShowInterface
 {
     /**
      * Handle paginate data event from models.
@@ -77,4 +77,32 @@ interface ProjectInterface extends CountInterface,GetInterface, StoreInterface, 
      */
     public function countActiveProject(): int;
 
+    /**
+     * history
+     *
+     * @return mixed
+     */
+    public function historyConsultan(): mixed;
+
+    /**
+     * projectConsultan
+     *
+     * @return mixed
+     */
+    public function projectConsultan(): mixed;
+
+    /**
+     * history
+     *
+     * @return mixed
+     */
+    public function historyExecutor(): mixed;
+
+
+    /**
+     * projectExecutor
+     *
+     * @return mixed
+     */
+    public function projectExecutor(): mixed;
 }
