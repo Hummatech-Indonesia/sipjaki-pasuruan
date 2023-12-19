@@ -8,9 +8,9 @@
             </div>
         @endforeach
     @endif
-    <h4 class="text-dark" style="font-weight: 600">
+    <h3 class="text-dark" style="font-weight: 600">
         Berita
-    </h4>
+    </h3>
     <div class="card">
         <div class="card-body">
             <p class="fs-5 text-dark" style="font-weight: 500">
