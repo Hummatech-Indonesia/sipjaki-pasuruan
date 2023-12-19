@@ -16,7 +16,6 @@ class ServiceProviderObserver
     public function creating(ServiceProvider $serviceProvider): void
     {
         $serviceProvider->id = Uuid::uuid();
-        $serviceProvider->service_provider_id = auth()->user()->serviceProvider->id;
     }
 
     /**
