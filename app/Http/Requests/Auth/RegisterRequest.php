@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Auth;
 
+use App\Rules\TypeOfBussinessEntityRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -22,7 +23,7 @@ class RegisterRequest extends FormRequest
             'password' => 'required|same:password_confirmation',
             'password_confirmation' => 'required',
             'phone_number' => 'required',
-            'type_of_business_entity' => 'required'
+            'type_of_business_entity' => ['required', new TypeOfBussinessEntityRule]
         ];
     }
 }
