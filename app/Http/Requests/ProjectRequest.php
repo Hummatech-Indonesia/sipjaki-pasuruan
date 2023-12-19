@@ -27,6 +27,7 @@ class ProjectRequest extends FormRequest
             'fund_source_id' => 'required|exists:fund_sources,id',
             'contract_category_id' => 'required|exists:contract_categories,id',
             'name' => 'required|max:255',
+            'physical_progress' => 'required|numeric|between:0,100',
             'project_value' => 'required|integer',
             'characteristic_project' => 'required',
             'physical_progress_start' => 'required|date',

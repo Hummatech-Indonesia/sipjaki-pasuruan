@@ -37,7 +37,7 @@ class ServiceProviderProjectService
             foreach ($serviceProviderProjects as $serviceProviderProject) {
                 $progres += $serviceProviderProject->progres;
             }
-            if ($data['progres']  + $progres > 100) {
+            if ($data['progres']  + $project->physical_progress + $progres > 100) {
                 return false;
             } else {
                 return $data;
@@ -66,7 +66,7 @@ class ServiceProviderProjectService
         foreach ($serviceProviderProjects as $serviceProviderProject) {
             $progres += $serviceProviderProject->progres;
         }
-        if ($data['progres']  + ($progres - $service_provider_project->progres) > 100) {
+        if ($data['progres']  + $service_provider_project->project->physical_progres + ($progres - $service_provider_project->progres) > 100) {
             return false;
         } else {
             return $data;
@@ -84,20 +84,18 @@ class ServiceProviderProjectService
         if ($data->isNotEmpty()) {
             $zip = new ZipArchive;
             $filename = Str::random() . ".zip";
-            if ($zip->open(storage_path('app/public/'.$filename), ZipArchive::CREATE) === TRUE) {
+            if ($zip->open(storage_path('app/public/' . $filename), ZipArchive::CREATE) === TRUE) {
                 foreach ($data as $value) {
                     if (Storage::exists($value->file)) {
-                        $zip->addFile(storage_path('app/public/'.$value->file), basename($value->file));
+                        $zip->addFile(storage_path('app/public/' . $value->file), basename($value->file));
                     }
                 }
                 $zip->close();
-                return response()->download(storage_path('app/public/'.$filename))->deleteFileAfterSend(true);
-            }
-            else {
+                return response()->download(storage_path('app/public/' . $filename))->deleteFileAfterSend(true);
+            } else {
                 return "Gagal membuat zip";
             }
-        }
-        else {
+        } else {
             return "Data kosong";
         }
     }
@@ -111,7 +109,7 @@ class ServiceProviderProjectService
     public function download(mixed $data)
     {
         if (Storage::exists($data)) {
-            return response()->download(storage_path('app/public/'.$data), basename($data));
+            return response()->download(storage_path('app/public/' . $data), basename($data));
         }
     }
 }

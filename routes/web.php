@@ -114,10 +114,13 @@ Route::middleware('auth')->group(function () {
 
     Route::patch('verify-account/{user}', [VerificationController::class, 'verifyToken'])->name('verify.account');
 
+
     Route::middleware('role:superadmin|admin')->group(function () {
         Route::get('all-service-provider', [ServiceProviderProjectController::class, 'allServiceProvider']);
         Route::get('service-provider-detail/{service_provider}', [ServiceProviderProjectController::class, 'projectDetail']);
     });
+
+
     Route::middleware('role:superadmin')->group(function () {
         Route::get('dashboard-superadmin', [SuperadminController::class, 'dashboard'])->name('dashboard-superadmin');
 
@@ -134,9 +137,9 @@ Route::middleware('auth')->group(function () {
             'sections' => SectionController::class,
             'rules' => RuleController::class,
             'types' => TypeController::class,
-            'associations'=> AssociationController::class,
+            'associations' => AssociationController::class,
             'qualification-trainings' => QualificationTrainingController::class,
-            'classification-training'=> ClassificationTrainingController::class
+            'classification-training' => ClassificationTrainingController::class
         ]);
         Route::resource('qualification-level-trainings', QualificationLevelTrainingController::class)->except('store');
         Route::get('qualification-level-training/{id}' , [QualificationLevelTrainingController::class ,'index']);
@@ -164,6 +167,7 @@ Route::middleware('auth')->group(function () {
         });
         Route::post('import-associations', [AssociationController::class, 'import'])->name('import.assosiations');
     });
+
     Route::middleware('role:admin')->group(function () {
         Route::get('dashboard-admin', [AdminController::class, 'dashboard'])->name('dashboard-admin');
         Route::resources([
@@ -188,78 +192,72 @@ Route::middleware('auth')->group(function () {
         Route::put('training-members/{training_member}', [TrainingMemberController::class, 'update']);
         Route::delete('training-members/{training_member}', [TrainingMemberController::class, 'destroy']);
         Route::post('import-training-members', [TrainingMemberController::class, 'import']);
+
+        Route::get('training', [TrainingController::class, 'index'])->name('training');
+        Route::post('training', [TrainingController::class, 'store'])->name('training.store');
+        Route::put('training.update/{training}', [TrainingController::class, 'update'])->name('training.update');
+        Route::delete('training.destroy/{training}', [TrainingController::class, 'destroy'])->name('training.destroy');
+
     });
 
     Route::middleware('role:dinas')->group(function () {
         Route::get('dashboard-dinas', [DinasController::class, 'dashboard'])->name('dashboard-dinas');
-
+        Route::get('profile-OPD', [DinasController::class, 'index']);
         Route::resource('accident', AccidentController::class)->except('create', 'edit');
         Route::resources([
             'projects' => ProjectController::class
         ]);
     });
-});
 
-Route::get('service-provider-project-detail/{service_provider_project}', [ServiceProviderProjectController::class, 'show']);
-Route::get('download-all-service-provider-project/{project}', [ServiceProviderProjectController::class, 'downloadServiceProviderProject']);
-
-Route::middleware(['role:dinas'])->group(function () {
-    // Route::resource('accident', AccidentController::class)->except('create', 'show');
-    Route::put('accident-update/{accident}', [AccidentController::class, 'update'])->name('accident.update');
-    Route::get('accident-show/{accident}', [AccidentController::class, 'show'])->name('accident.show');
-    Route::delete('accident-destroy/{accident}', [AccidentController::class, 'destroy'])->name('accident.destroy');
-    Route::resources([
-        'projects' => ProjectController::class,
-    ]);
-});
-
-Route::middleware('role:service provider')->group(function () {
-    Route::resources([
-        'officers' => OfficerController::class,
-    ]);
-
-    Route::get('service-provider-profile', [ServiceProviderController::class, 'index'])->name('service-provider-profile');
-    Route::put('update-business-entity', [ServiceProviderController::class, 'update'])->name('update-business-entity');
+    Route::middleware('role:service provider')->group(function () {
+        Route::resources([
+            'officers' => OfficerController::class,
+        ]);
     
-    Route::get('service-provider-projects', [ServiceProviderProjectController::class, 'index']);
-    Route::post('service-provider-projects/{project}', [ServiceProviderProjectController::class, 'store'])->name('service-provider-projects.store');
-    Route::put('service-provider-projects/{service_provider_project}', [ServiceProviderProjectController::class, 'update'])->name('service-provider-projects.update');
-    Route::delete('service-provider-projects/{service_provider_project}', [ServiceProviderProjectController::class, 'destroy'])->name('service-provider-projects.delete');
+        Route::get('service-provider-profile', [ServiceProviderController::class, 'index'])->name('service-provider-profile');
+        Route::put('update-business-entity', [ServiceProviderController::class, 'update'])->name('update-business-entity');
+    
+        Route::get('service-provider-projects', [ServiceProviderProjectController::class, 'index']);
+        Route::post('service-provider-projects/{project}', [ServiceProviderProjectController::class, 'store'])->name('service-provider-projects.store');
+        Route::put('service-provider-projects/{service_provider_project}', [ServiceProviderProjectController::class, 'update'])->name('service-provider-projects.update');
+        Route::delete('service-provider-projects/{service_provider_project}', [ServiceProviderProjectController::class, 'destroy'])->name('service-provider-projects.delete');
+    
+        Route::get('dashboard-service-provider', [ServiceProviderController::class, 'dashboard'])->name('dashboard-service-provider');
+        Route::resource('workers', WorkerController::class)->only('index', 'update', 'destroy');
+        Route::delete('delete-workers', [WorkerController::class, 'deleteMultiple']);
+        Route::post('workers/{service_provider}', [WorkerController::class, 'store']);
+    
+        Route::post('import-workers', [WorkerController::class, 'import'])->name('import.workers');
+        Route::get('export-workers', [WorkerController::class, 'export'])->name('export.workers');
+    
+        Route::put('profile-service-providers', [ServiceProviderController::class, 'update']);
+        Route::get('data-service-providers', [AssociationController::class, 'dataServiceProvider']);
 
-    Route::get('dashboard-service-provider', [ServiceProviderController::class, 'dashboard'])->name('dashboard-service-provider');
-    Route::resource('workers', WorkerController::class)->only('index', 'update', 'destroy');
-    Route::delete('delete-workers', [WorkerController::class, 'deleteMultiple']);
-    Route::post('workers/{service_provider}', [WorkerController::class, 'store']);
+        Route::get('work-package', [ServiceProviderProjectController::class, 'index'])->name('work.package');
+        Route::get('detail-project/{project}', [ProjectController::class, 'projectDetail']);
+        Route::get('service-provider-project-detail/{service_provider_project}', [ServiceProviderProjectController::class, 'show'])->name('service.provider.project.detail');
 
-    Route::post('import-workers', [WorkerController::class, 'import'])->name('import.workers');
-    Route::get('export-workers', [WorkerController::class, 'export'])->name('export.workers');
+        // download
+        Route::get('download-all-service-provider-project/{project}', [ServiceProviderProjectController::class, 'downloadServiceProviderProject'])->name('download.all.service.provider.project');
+        Route::get('download-service-provider-project/{service_provider_project}', [ServiceProviderProjectController::class, 'downloadFile'])->name('download.service-provider.project');
 
-    Route::put('profile-service-providers', [ServiceProviderController::class, 'update']);
-    Route::get('data-service-providers', [AssociationController::class, 'dataServiceProvider']);
+        Route::get('service-provider-project-detail/{service_provider_project}', [ServiceProviderProjectController::class, 'show']);
+        Route::get('all-service-provider', [ServiceProviderProjectController::class, 'allServiceProvider'])->name('all.service.provider');
+        Route::get('all-agency', [DinasController::class, 'all'])->name('all.agency');
+    });
 });
+
+
+
 
 
 //Reset Password
-Route::get('reset-password/{id}', [ResetPasswordController::class ,'index'])->name('reset.password');
+Route::get('reset-password/{id}', [ResetPasswordController::class, 'index'])->name('reset.password');
 Route::post('send-email-reset-passsword', [ForgotPasswordController::class, 'sendEmail'])->name('send.email.reset.passsword');
 Route::put('reset-passsword-user/{user}', [ResetPasswordController::class, 'reset'])->name('reset.passsword.user');
-Route::get('send-email', function () { return view('auth.send-email'); })->name('send.email');
-
-// accident
-Route::get('accident', [AccidentController::class ,'index'])->name('accident');
-Route::get('detail-accident-index', function () {return view('pages.dinas.detail-accident.index');})->name('detail.accident.index');
-
-// Training
-Route::get('training' , [TrainingController::class , 'index'])->name('training');
-Route::post('training', [TrainingController::class , 'store'])->name('training.store');
-Route::put('training.update/{training}', [TrainingController::class , 'update'])->name('training.update');
-Route::delete('training.destroy/{training}', [TrainingController::class , 'destroy'])->name('training.destroy');
-
-//Training Member
-Route::get('training-members/{training}', [TrainingMemberController::class, 'index']);
-Route::post('training-members/{training}', [TrainingMemberController::class, 'store'])->name('training.members');
-// Route::put('training-members/{training_member}', [TrainingMemberController::class, 'update'])->name('training-member-update/');
-// Route::delete('training-members/{training_member}', [TrainingMemberController::class, 'destroy'])->name('training-members/');
+Route::get('send-email', function () {
+    return view('auth.send-email');
+})->name('send.email');
 
 // verify token
 Route::get('/redirect-verify-account', [VerificationController::class, 'verifyAccount'])->name('redirect.verify.account');
@@ -267,36 +265,10 @@ Route::put('update-token/{user}', [VerificationController::class, 'updateToken']
 Route::put('verify-token/{user}', [VerificationController::class, 'verifyToken'])->name('verify.token/');
 Route::get('verify-account/{user}', [VerificationController::class, 'verifyacount'])->name('verify.account/');
 
-// sub classification
-Route::get('sub-qualification', function () { return view('pages.sub-qualification'); })->name('sub.qualification');
-
 // verifikasi account
-Route::get('verify.account/{id}' , [VerificationController::class ,'verifyacount'])->name('verify.account');
-// verifikasi account
+Route::get('verify.account/{id}', [VerificationController::class, 'verifyacount'])->name('verify.account');
 
-// pekerjaan
-Route::get('work-package', [ServiceProviderProjectController::class, 'index'])->name('work.package');
-Route::get('detail-project/{project}', [ProjectController::class, 'projectDetail']);
-Route::get('service-provider-project-detail/{service_provider_project}', [ServiceProviderProjectController::class,'show'])->name('service.provider.project.detail');
 
-// download
-Route::get('download-all-service-provider-project/{project}' , [ServiceProviderProjectController::class ,'downloadServiceProviderProject'])->name('download.all.service.provider.project');
-Route::get('download-service-provider-project/{service_provider_project}', [ServiceProviderProjectController::class, 'downloadFile'])->name('download.service-provider.project');
-
-// service provider
-Route::get('all-service-provider', [ServiceProviderProjectController::class, 'allServiceProvider'])->name('all.service.provider');
-
-// Clasification training
-Route::get('classification-training', function () {
-    return view('pages.classification.training');
-})->name('classification.training');
-Route::get('sub-classification-training', function () {
-    return view('pages.classification.sub-training');
-})->name('sub.classification.training');
-
-Route::get('all-agency' , [DinasController::class , 'all'])->name('all.agency');
-
-Route::get('profile-OPD', [DinasController::class, 'index']);
 require __DIR__ . '/aldy.php';
 require __DIR__ . '/arif.php';
 require __DIR__ . '/daffa.php';

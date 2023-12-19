@@ -14,12 +14,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Project extends Model implements HasDinas, HasExecutor,HasConsultant, HasFundSource, HasContractCategory, HasServiceProviderProjects
+class Project extends Model implements HasDinas, HasExecutor, HasConsultant, HasFundSource, HasContractCategory, HasServiceProviderProjects
 {
     use HasFactory;
     protected $table = 'projects';
     protected $primaryKey = 'id';
-    protected $fillable = ['id', 'dinas_id', 'consultant_id','executor_id', 'fund_source_id', 'contract_category_id', 'name', 'project_value', 'characteristic_project', 'physical_progress_start', 'finance_progress_start', 'finance_progress', 'year', 'start_at', 'end_at', 'status', 'contract', 'administrative_minutes', 'report', 'minutes_of_disbursement'];
+    protected $fillable = ['id', 'dinas_id', 'consultant_id', 'executor_id', 'physical_progress', 'fund_source_id', 'contract_category_id', 'name', 'project_value', 'characteristic_project', 'physical_progress_start', 'finance_progress_start', 'finance_progress', 'year', 'start_at', 'end_at', 'status', 'contract', 'administrative_minutes', 'report', 'minutes_of_disbursement'];
     protected $guarded = [];
     public $incrementing = false;
     public $keyType = 'char';
@@ -51,7 +51,7 @@ class Project extends Model implements HasDinas, HasExecutor,HasConsultant, HasF
      */
     public function executor(): BelongsTo
     {
-        return $this->belongsTo(ServiceProvider::class,'executor_id');
+        return $this->belongsTo(ServiceProvider::class, 'executor_id');
     }
 
     /**
