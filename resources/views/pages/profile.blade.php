@@ -86,7 +86,7 @@
                                         <label for="" class="form-label">Password Sekarang</label>
                                         <div class="input-group auth-pass-inputgroup">
                                             <input type="password" name="current_password" class="form-control"
-                                                placeholder="Masukkan password sekarang" aria-label="Password"
+                                                placeholder="Masukkan password" aria-label="Password"
                                                 aria-describedby="password-addon2">
                                             <button class="btn btn-light " type="button" id="password-addon2"><i
                                                     class="mdi mdi-eye-outline"></i></button>
@@ -98,7 +98,7 @@
                                         <label for="" class="form-label">Password Baru</label>
                                         <div class="input-group auth-pass-inputgroup">
                                             <input type="password" name="password" class="form-control"
-                                                placeholder="Masukkan password sekarang" aria-label="Password"
+                                                placeholder="Masukkan password Baru" aria-label="Password"
                                                 aria-describedby="password-addon3">
                                             <button class="btn btn-light " type="button" id="password-addon3"><i
                                                     class="mdi mdi-eye-outline"></i></button>
@@ -108,7 +108,7 @@
                                         <label for="" class="form-label">Konfirmasi Password</label>
                                         <div class="input-group auth-pass-inputgroup">
                                             <input type="password" name="password_confirmation" class="form-control"
-                                                placeholder="Masukkan password sekarang" aria-label="Password"
+                                                placeholder="Konfirmasi password" aria-label="Password"
                                                 aria-describedby="password-addon">
                                             <button class="btn btn-light " type="button" id="password-addon"><i
                                                     class="mdi mdi-eye-outline"></i></button>

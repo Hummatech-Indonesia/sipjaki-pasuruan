@@ -20,7 +20,6 @@ class DinasRequest extends FormRequest
             'name_opd' => 'required|max:255',
             'address' => 'required',
             'phone_number_opd' => 'numeric|required',
-            'person_responsible' => 'required|max:255',
             'position' => 'required',
             'civil_servant_identity_number' => 'required'
         ];
