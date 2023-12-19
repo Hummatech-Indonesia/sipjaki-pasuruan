@@ -302,87 +302,61 @@
                         <h5 class="card-header text-center border-bottom text-uppercase rounded-top-4 p-3"
                             style="background-color: #1B3061;color:white;">Pengesahan</h5>
                         <div class="card-body">
-                            <h5 class="text-dark" style="font-weight: 700">
-                                Materi Kehakiman dan HAM
-                            </h5>
-                            <div class="d-flex justify-content-header gap-5">
-                                <div class="">
-                                    <p class="text-dark" style="font-weight: 600">
-                                        Nomor
-                                    </p>
-                                </div>
-                                <div class="">
-                                    <p class="text-dark" style="font-weight: 600">
-                                        Nomor akte
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-header gap-5">
-                                <div class="">
-                                    <p class="text-dark" style="font-weight: 600">
-                                        Tanggal
-                                    </p>
-                                </div>
-                                <div class="">
-                                    <p class="text-dark" style="font-weight: 600">
-                                        22 Maret 2023
-                                    </p>
-                                </div>
-                            </div>
-                            <h5 class="text-dark mt-4" style="font-weight: 700">
-                                Pengadilan Negeri
-                            </h5>
-                            <div class="d-flex justify-content-header gap-5">
-                                <div class="">
-                                    <p class="text-dark" style="font-weight: 600">
-                                        Nomor
-                                    </p>
-                                </div>
-                                <div class="">
-                                    <p class="text-dark" style="font-weight: 600">
-                                        -
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-header gap-5">
-                                <div class="">
-                                    <p class="text-dark" style="font-weight: 600">
-                                        Tanggal
-                                    </p>
-                                </div>
-                                <div class="">
-                                    <p class="text-dark" style="font-weight: 600">
-                                        22 Maret 2023
-                                    </p>
-                                </div>
-                            </div>
-                            <h5 class="text-dark  mt-4" style="font-weight: 700">
-                                Lembar Negara
-                            </h5>
-                            <div class="d-flex justify-content-header gap-5">
-                                <div class="">
-                                    <p class="text-dark" style="font-weight: 600">
-                                        Nomor
-                                    </p>
-                                </div>
-                                <div class="">
-                                    <p class="text-dark" style="font-weight: 600">
-                                        Nomor akte
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-header gap-5">
-                                <div class="">
-                                    <p class="text-dark" style="font-weight: 600">
-                                        Tanggal
-                                    </p>
-                                </div>
-                                <div class="">
-                                    <p class="text-dark" style="font-weight: 600">
-                                        22 Maret 2023
-                                    </p>
-                                </div>
-                            </div>
+                            <table cellpadding="5" style="border-collapse: collapse; width: 40%;" class="fs-6 fw-normal">
+                                <tbody>
+                                    <tr>
+                                        <td colspan="5">
+                                            <h5 class="text-dark" style="font-weight: 700">
+                                                Materi Kehakiman dan HAM
+                                            </h5>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nomor</td>
+                                        <td>:</td>
+                                        <td>10</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tanggal</td>
+                                        <td>:</td>
+                                        <td>01 januari 2023</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="5">
+                                            <h5 class="text-dark mt-4" style="font-weight: 700">
+                                                Pengadilan Negeri
+                                            </h5>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nomor</td>
+                                        <td>:</td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tanggal</td>
+                                        <td>:</td>
+                                        <td>22 Maret 2023</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="5">
+                                            <h5 class="text-dark  mt-4" style="font-weight: 700">
+                                                Lembar Negara
+                                            </h5>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nomor</td>
+                                        <td>:</td>
+                                        <td>Jawa Timur</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tanggal</td>
+                                        <td>:</td>
+                                        <td>08 Januari</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -393,53 +367,35 @@
                         <h5 class="card-header text-center border-bottom text-uppercase rounded-top-4 p-3"
                             style="background-color: #1B3061;color:white;">Akte Perubahan</h5>
                         <div class="card-body">
-                            <div class="">
-                                <div class="row mb-1">
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark">No Akte :</p>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                id="detail-birth_date">10</span></p>
-                                    </div>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark">Nama Notaris :</p>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                id="detail-birth_date">Tuafiq Arifin, SH </span></p>
-                                    </div>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark">Alamat :</p>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                id="detail-birth_date">Jl. Singa No 4</span></p>
-                                    </div>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark">Kota / Kabupaten :</p>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                id="detail-birth_date">Kota Malang </span></p>
-                                    </div>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark"> Provinsi :</p>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                id="detail-birth_date">Jawa Timur</span></p>
-                                    </div>
-                                </div>
-                            </div>
+                            <table cellpadding="5" style="border-collapse: collapse; width: 40%;" class="fs-6 fw-normal">
+                                <tbody>
+                                    <tr>
+                                        <td>No Akte</td>
+                                        <td>:</td>
+                                        <td>10</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nama Notaris</td>
+                                        <td>:</td>
+                                        <td>Taufiq Arifin. SH</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alamat</td>
+                                        <td>:</td>
+                                        <td>JL Haji Puniti</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Kota / Kabupaten</td>
+                                        <td>:</td>
+                                        <td>Kota Malang</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Provinsi</td>
+                                        <td>:</td>
+                                        <td>Jawa Timur</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

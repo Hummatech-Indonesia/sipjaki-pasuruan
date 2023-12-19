@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
 @section('content')
     @if (session('success'))
         <script>
@@ -9,14 +10,13 @@
             });
         </script>
     @endif
-    <div class="">
+    <div>
         <div>
             <h2 class="">
                 Detail Jenjang KKNI
             </h2>
         </div>
     </div>
-    {{-- modal --}}
     <div class="modal fade" id="samedata-modal" tabindex="-1" id="modeal-create" aria-labelledby="exampleModalLabel1">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -50,7 +50,6 @@
             </div>
         </div>
     </div>
-
     <div class="card">
         <div class="card-body">
             <div class="d-flex justify-content-between mb-3">
@@ -128,7 +127,6 @@
             </div>
         </div>
     </div>
-
     <div class="modal fade" id="modal-update" tabindex="-1" aria-labelledby="exampleModalLabel1">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -166,6 +164,7 @@
     </div>
     <x-delete-modal-component />
 @endsection
+
 @section('script')
     <script>
         $('.btn-edit').click(function() {
