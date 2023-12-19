@@ -16,10 +16,13 @@ Route::get('export-associations', [AssociationController::class, 'export']);
 Route::get('verification', [VerificationController::class, 'index']);
 Route::post('verification', [VerificationController::class, 'store']);
 
-Route::put('upload-file-consultan/{project}', [ProjectController::class, 'uploadFileKonsultan']);
+Route::put('upload-file-consultan/{project}', [ProjectController::class, 'uploadFileKonsultan'])->name('upload-file-consultan.update');
 
 Route::get('service-provider-qualifications', [ServiceProviderQualificationController::class, 'index'])->name('service.provider.qualifications');
 Route::post('service-provider-qualifications', [ServiceProviderQualificationController::class, 'store'])->name('service.provider.qualifications.store');
 Route::put('service-provider-qualifications/{serviceProviderQualification}', [ServiceProviderQualificationController::class, 'update']);
 Route::patch('approve-service-provider-qualifications/{serviceProviderQualification}', [ServiceProviderQualificationController::class, 'approve']);
 Route::delete('service-provider-qualifications/{serviceProviderQualification}', [ServiceProviderQualificationController::class, 'delete']);
+
+Route::get('history-project', [ProjectController::class, 'history']);
+Route::get('my-project', [ProjectController::class, 'myProject']);

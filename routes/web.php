@@ -29,7 +29,6 @@ use App\Http\Controllers\TrainingMemberController;
 use App\Http\Controllers\TrainingMethodController;
 use App\Http\Controllers\ServiceProviderController;
 use App\Http\Controllers\ContractCategoryController;
-use App\Http\Controllers\SubQualificationController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\SubClassificationController;
 use App\Http\Controllers\Auth\ResetPasswordController;
@@ -38,11 +37,9 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\QualificationTrainingController;
 use App\Http\Controllers\ClassificationTrainingController;
 use App\Http\Controllers\ServiceProviderProjectController;
-use App\Http\Controllers\SubQualificationTrainingController;
 use App\Http\Controllers\SubClassificationTrainingController;
 use App\Http\Controllers\QualificationLevelTrainingController;
 use App\Http\Controllers\TrainingController;
-use App\Models\QualificationLevelTraining;
 
 /*
 |--------------------------------------------------------------------------

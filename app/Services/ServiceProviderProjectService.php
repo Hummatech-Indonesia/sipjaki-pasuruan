@@ -30,7 +30,7 @@ class ServiceProviderProjectService
         $data = $request->validated();
         $progres = 0;
         $data['project_id'] = $project->id;
-        $data['file'] = $this->upload(UploadDiskEnum::SERVICEPROVIDERPROJECT->value, $request->file('file'));
+        if($data['file']) $data['file'] = $this->upload(UploadDiskEnum::SERVICEPROVIDERPROJECT->value, $request->file('file'));
         if ($serviceProviderProjects->first() == null) {
             return $data;
         } else {
