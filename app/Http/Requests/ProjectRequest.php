@@ -37,4 +37,39 @@ class ProjectRequest extends FormRequest
             'status' => 'required'
         ];
     }
+
+    /**
+     * messages
+     *
+     * @return array
+     */
+    public function messages(): array
+    {
+        return [
+            'service_provider_id.required' => 'Penyedia layanan harus diisi.',
+            'service_provider_id.exists' => 'Penyedia layanan tidak valid.',
+            'fund_source_id.required' => 'Sumber dana harus diisi.',
+            'fund_source_id.exists' => 'Sumber dana tidak valid.',
+            'contract_category_id.required' => 'Kategori kontrak harus diisi.',
+            'contract_category_id.exists' => 'Kategori kontrak tidak valid.',
+            'name.required' => 'Nama proyek harus diisi.',
+            'name.max' => 'Nama proyek tidak boleh lebih dari :max karakter.',
+            'project_value.required' => 'Nilai proyek harus diisi.',
+            'project_value.integer' => 'Nilai proyek harus berupa angka.',
+            'characteristic_project.required' => 'Karakteristik proyek harus diisi.',
+            'physical_progress_start.required' => 'Tanggal awal progres fisik harus diisi.',
+            'physical_progress_start.date' => 'Format tanggal awal progres fisik tidak valid.',
+            'finance_progress_start.required' => 'Tanggal awal progres keuangan harus diisi.',
+            'finance_progress_start.date' => 'Format tanggal awal progres keuangan tidak valid.',
+            'finance_progress.required' => 'Progres keuangan harus diisi.',
+            'year.min' => 'Tahun harus terdiri dari minimal :min karakter.',
+            'year.max' => 'Tahun tidak boleh lebih dari :max karakter.',
+            'start_at.required' => 'Tanggal mulai harus diisi.',
+            'start_at.before' => 'Tanggal mulai harus sebelum tanggal selesai.',
+            'start_at.date' => 'Format tanggal mulai tidak valid.',
+            'end_at.required' => 'Tanggal selesai harus diisi.',
+            'end_at.date' => 'Format tanggal selesai tidak valid.',
+            'status.required' => 'Status proyek harus diisi.',
+        ];
+    }
 }
