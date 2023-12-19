@@ -1,5 +1,8 @@
 @extends('layouts.app')
 @section('content')
+    @php
+        use Carbon\Carbon;
+    @endphp
     <style>
         td {
             vertical-align: top;
@@ -29,7 +32,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="btn btn-sm mb-2 text-dark rounded-3 year-detail" style="background-color: #E4ECFF;">
-                                
+
                             </div>
                             <p class="mt-1 fs-5 text-dark mb-2" style="font-weight: 700">
                                 <span id="detail-name " class="name-detail"></span>
@@ -40,8 +43,8 @@
                                         <p class="mb-2 text-dark">Progress (%) :</p>
                                     </div>
                                     <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                id="detail-birth_date" class="progres-detail"></span></p>
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-birth_date"
+                                                class="progres-detail"></span></p>
                                     </div>
                                 </div>
                                 <div class="row mb-1">
@@ -49,8 +52,8 @@
                                         <p class="mb-2 text-dark">Tanggal Mulai :</p>
                                     </div>
                                     <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                id="detail-education" class="date_start-detail"></span></p>
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-education"
+                                                class="date_start-detail"></span></p>
                                     </div>
                                 </div>
                                 <div class="row mb-1">
@@ -67,8 +70,8 @@
                                         <p class="mb-2 text-dark">Deskripsi :</p>
                                     </div>
                                     <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                id="detail-cerificate" class="description-detail"></span></p>
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-cerificate"
+                                                class="description-detail"></span></p>
                                     </div>
                                 </div>
                             </div>
@@ -96,7 +99,8 @@
                                     <tr>
                                         <td>Nilai Kontrak</td>
                                         <td>:</td>
-                                        <td>{{ $project->project_value }}</td>
+                                        <td>{{ 'Rp ' . number_format($project->project_value, 0, ',', '.') }}</td>
+
                                     </tr>
                                     <tr>
                                         <td>Progres Fisik</td>
@@ -116,12 +120,14 @@
                                     <tr>
                                         <td>Mulai</td>
                                         <td>:</td>
-                                        <td>{{ $project->start_at }}</td>
+                                        <td>{{ Carbon::parse($project->start_at)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Selesai</td>
                                         <td>:</td>
-                                        <td>{{ $project->end_at }}</td>
+                                        <td>{{ Carbon::parse($project->end_at)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Keuangan Bulanan</td>
@@ -187,8 +193,8 @@
                             </a>
                             <div data-bs-toggle="modal" data-bs-target="#modal-create" class="btn  rounded-3"
                                 style="background-color:#1B3061; color:white;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
-                                    fill="none">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                    viewBox="0 0 24 24" fill="none">
                                     <path fill-rule="evenodd" clip-rule="evenodd"
                                         d="M12 4C12.5523 4 13 4.35817 13 4.8V19.2C13 19.6418 12.5523 20 12 20C11.4477 20 11 19.6418 11 19.2V4.8C11 4.35817 11.4477 4 12 4Z"
                                         fill="white" />
@@ -201,11 +207,12 @@
 
                     </div>
                     @if (session('errors'))
-                    <div class="alert mt-3 alert-danger alert-dismissible fade show" role="alert">
-                        {!! session('errors') !!}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                @endif
+                        <div class="alert mt-3 alert-danger alert-dismissible fade show" role="alert">
+                            {!! session('errors') !!}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                aria-label="Close"></button>
+                        </div>
+                    @endif
                     <div class="table-responsive">
                         <table class="table mb-0">
 
@@ -226,14 +233,17 @@
                                 @forelse ($serviceProviderProject as $index=>$serviceProviderProjec)
                                     <tr>
                                         <td>{{ $index + 1 }}</td>
-                                        <td>{{ $serviceProviderProjec->date_start }}</td>
-                                        <td>{{ $serviceProviderProjec->date_finish }}</td>
+                                        <td>{{ Carbon::parse($serviceProviderProjec->date_start)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                        </td>
+                                        <td>{{ Carbon::parse($serviceProviderProjec->date_finish)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                        </td>
                                         <td>{{ $serviceProviderProjec->description }}</td>
                                         <td>{{ $serviceProviderProjec->progres }}% Progress</td>
                                         <td>
                                             <div class="d-flex justify-content-header gap-2">
                                                 <div class="">
-                                                    <button type="button" id="{{ $serviceProviderProjec->id }}" data-id="{{ $serviceProviderProjec->id }}"
+                                                    <button type="button" id="{{ $serviceProviderProjec->id }}"
+                                                        data-id="{{ $serviceProviderProjec->id }}"
                                                         class="btn btn-sm btn-detail" style="background-color: #1B3061;">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="20"
                                                             height="20" viewBox="0 0 24 24" fill="none">
@@ -335,7 +345,7 @@
                 <div style="background-color: #1B3061;">
                     <h5 class="modal-title text-white text-center m-3 fs-4">Tambah Progress</h5>
                 </div>
-                <form action="/service-provider-projects/{{ $project->id }}" method="post"
+                <form action="{{ route('service-provider-projects.store', ['project' => $project->id]) }}" method="post"
                     enctype="multipart/form-data">
                     @csrf
                     @method('POST')
@@ -344,7 +354,8 @@
                             <div class="col-lg-3">
                                 <div class="mb-3 ajax-select mt-3 mt-lg-0">
                                     <label class="form-label">Tanggal Mulai</label>
-                                    <input type="date" class="form-control" value="{{ old('date_start') }}" name="date_start" id="">
+                                    <input type="date" class="form-control" value="{{ old('date_start') }}"
+                                        name="date_start" id="">
 
                                 </div>
                             </div>
@@ -352,21 +363,24 @@
                             <div class="col-lg-3">
                                 <div class="mb-3 ajax-select mt-3 mt-lg-0">
                                     <label class="form-label">Tanggal Akhir</label>
-                                    <input type="date" class="form-control" value="{{ old('date_finish') }}" name="date_finish" id="">
+                                    <input type="date" class="form-control" value="{{ old('date_finish') }}"
+                                        name="date_finish" id="">
                                 </div>
                             </div>
 
                             <div class="col-lg-3">
                                 <div class="mb-3 ajax-select mt-3 mt-lg-0">
                                     <label class="form-label">Progres (%)</label>
-                                    <input type="text" class="form-control" value="{{ old('progres') }}" name="progres" id="">
+                                    <input type="text" class="form-control" value="{{ old('progres') }}"
+                                        name="progres" id="">
                                 </div>
                             </div>
 
                             <div class="col-lg-3">
                                 <div class="mb-3 ajax-select mt-3 mt-lg-0">
                                     <label class="form-label">File Pendukung</label>
-                                    <input class="form-control" type="file" value="{{ old('file') }}" name="file" id="">
+                                    <input class="form-control" type="file" value="{{ old('file') }}"
+                                        name="file" id="">
                                 </div>
                             </div>
                         </div>
@@ -403,30 +417,32 @@
                             <div class="col-lg-3">
                                 <div class="mb-3 ajax-select mt-3 mt-lg-0">
                                     <label class="form-label">Tanggal Mulai</label>
-                                    <input type="date" class="form-control" value="{{ old('date_start') }}" name="date_start" id="update-date_start">
-
+                                    <input type="date" class="form-control" value="{{ old('date_start') }}"
+                                        name="date_start" id="update-date_start">
                                 </div>
                             </div>
 
                             <div class="col-lg-3">
                                 <div class="mb-3 ajax-select mt-3 mt-lg-0">
                                     <label class="form-label">Tanggal Akhir</label>
-                                    <input type="date" class="form-control" value="{{ old('date_finish') }}" name="date_finish"
-                                        id="update-date_finish">
+                                    <input type="date" class="form-control" value="{{ old('date_finish') }}"
+                                        name="date_finish" id="update-date_finish">
                                 </div>
                             </div>
 
                             <div class="col-lg-3">
                                 <div class="mb-3 ajax-select mt-3 mt-lg-0">
                                     <label class="form-label">Progres (%)</label>
-                                    <input type="text" class="form-control" name="progres" value="{{ old('progres') }}" id="update-progres">
+                                    <input type="text" class="form-control" name="progres"
+                                        value="{{ old('progres') }}" id="update-progres">
                                 </div>
                             </div>
 
                             <div class="col-lg-3">
                                 <div class="mb-3 ajax-select mt-3 mt-lg-0">
                                     <label class="form-label">File Pendukung</label>
-                                    <input class="form-control" type="file" name="file" value="{{ old('file') }}" id="update-file">
+                                    <input class="form-control" type="file" name="file"
+                                        value="{{ old('file') }}" id="update-file">
                                 </div>
                             </div>
                         </div>
@@ -441,7 +457,7 @@
                             <button type="button" class="btn btn-danger btn-md me-2" data-bs-dismiss="modal"
                                 aria-label="Close">Batal</button>
                             <button type="submit" style="background-color: #1B3061; color:white;"
-                                class="btn btn-md">Tambah</button>
+                                class="btn btn-md">Edit</button>
 
                         </div>
                     </div>
@@ -471,7 +487,8 @@
         })
         $('.btn-detail').click(function() {
             id = $(this).data('id')
-            get()            
+            get()
+
             function get() {
                 $.ajax({
                     url: "/service-provider-project-detail/" + id,
@@ -484,7 +501,7 @@
                         $('.date_start-detail').text(response.data.date_start)
                         $('.date_finish-detail').text(response.data.date_finish)
                         $('.description-detail').text(response.data.description)
-                        $('.file-detail').attr('href' ,response.data.file)
+                        $('.file-detail').attr('href', response.data.file)
                     }
                 });
             }

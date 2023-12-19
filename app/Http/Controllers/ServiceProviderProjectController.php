@@ -136,9 +136,9 @@ class ServiceProviderProjectController extends Controller
         $this->service->remove($service_provider_project->file);
         $this->serviceProviderProject->delete($service_provider_project->id);
         if ($request->is('api/*')) {
-            return ResponseHelper::success(null, trans('alert.update_success'));
+            return ResponseHelper::success(null, trans('alert.delete_success'));
         }else{
-            return redirect()->back()->with('success', trans('alert.update_success'));
+            return redirect()->back()->with('success', trans('alert.delete_success'));
         }
     }
 
