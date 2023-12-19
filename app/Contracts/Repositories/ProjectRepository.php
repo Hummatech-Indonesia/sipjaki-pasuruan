@@ -51,7 +51,7 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
     public function getByServiceProvider(Request $request): mixed
     {
         return $this->model->query()
-            ->where('service_provider_id', auth()->user()->serviceProvider->id)
+            // ->where('service_provider_id', auth()->user()->serviceProvider->id)
             ->where('status', StatusEnum::ACTIVE->value)
             ->when($request->year, function ($query) use ($request) {
                 $query->where('year', $request->year);
