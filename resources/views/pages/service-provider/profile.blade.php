@@ -426,19 +426,19 @@ use Carbon\Carbon;
                                 <div class="btn btn-sm mb-3 text-dark rounded-3" style="background-color: #E4ECFF;">
                                     Data Pengurus Badan Usaha
                                 </div>
-                                <p class="fw-bolder fs-4">MITRA BAHAGIA UTAMA BUMIAJI</p>
+                                <p class="fw-bolder fs-4">{{ $serviceProvider->user->name }}</p>
                             </div>
                             <table cellpadding="5" style="border-collapse: collapse; width: 40%;" class="fs-6 fw-normal">
                                 <tbody>
                                     <tr>
                                         <td>Alamat Badan Usaha</td>
                                         <td>:</td>
-                                        <td>Jl. G. Lokon No. 59</td>
+                                        <td>{{ $serviceProvider->address ? $serviceProvider->address : '-' }}</td>
                                     </tr>
                                     <tr>
                                         <td>Telepon</td>
                                         <td>:</td>
-                                        <td>0411 - 3584897987</td>
+                                        <td>{{ $serviceProvider->user->phone_number }}</td>
                                     </tr>
 
                                 </tbody>
@@ -472,14 +472,28 @@ use Carbon\Carbon;
                         </tr>
                     </thead>
                     <tbody>
+                        @forelse ($officers as $index => $officer)
                         <tr>
-                            <td>1</td>
-                            <td>Tuafiq Arifin, SH</td>
-                            <td>Jl. Singa No 4</td>
-                            <td>Kota Malang</td>
-                            <td>Jawa Timur</td>
-                            <td>Jawa Timur</td>
+                            <td class="fs-6">{{ $index + 1 }}</td>
+                            <td class="fs-6">{{ $officer->name }}</td>
+                            <td class="fs-6">
+                                {{ Carbon::parse($officer->birth_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}</td>
+                            <td class="fs-6">{{ $officer->address }}</td>
+                            <td class="fs-6">{{ $officer->position }}</td>
+                            <td class="fs-6">{{ $officer->education }}</td>
                         </tr>
+                    @empty
+                        <tr>
+                            <td colspan="6" class="text-center">
+                                <div class="d-flex justify-content-center" style="min-height:16rem">
+                                    <div class="my-auto">
+                                        <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                        <h4 class="text-center mt-4">Type Kosong!!</h4>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforelse
                     </tbody>
                 </table>
             </div>
