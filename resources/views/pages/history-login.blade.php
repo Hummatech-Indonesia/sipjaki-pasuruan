@@ -12,18 +12,36 @@
     <h2 class="mb-3">History Login</h2>
     <div class="card">
         <div class="card-body">
-            <form action="" class="d-flex gap-4">
-                <div class="position-relative mb-3 col-lg-3">
-                    <div class="input-group">
-                        <input type="text" name="name" value="{{$name}}" class="form-control" placeholder="Search">
-                        <div class="input-group-append">
-                            <button class="btn text-white" style="background-color: #1B3061; border-radius: 0 5px 5px 0;" type="submit">
-                                <i class="fa fa-search"></i>
+            <div class="d-flex justify-content-header gap-3">
+                <form action="" class="d-flex gap-4">
+                    <div class="position-relative mb-3">
+                        <div class="input-group">
+                            <input type="text" name="name" value="{{ $name }}" class="form-control"
+                                placeholder="Search">
+                            <div class="input-group-append">
+                                <button class="btn text-white"
+                                    style="background-color: #1B3061; border-radius: 0 5px 5px 0;" type="submit">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="">
+                    <div class="d-flex justify-content-header gap-2">
+                        <div class="input-daterange input-group" id="datepicker6" data-date-format="dd M, yyyy"
+                            data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker6'>
+                            <input type="text" class="form-control" name="start" placeholder="Start Date" />
+                            <input type="text" class="form-control" name="end" placeholder="End Date" />
+                        </div>
+                        <div class="">
+                            <button class="btn text-white" style="background-color: #1B3061">
+                                Search
                             </button>
                         </div>
                     </div>
-                </div> 
-            </form>
+                </div>
+            </div>
             <div class="table-responsive">
                 <table class="table">
                     <thead>
@@ -36,27 +54,28 @@
                     </thead>
                     <tbody>
                         @forelse ($histories as $history)
-                        <tr>
-                            <td>
-                                <p>{{$loop->iteration}}</p>
-                            </td>
-                            <td>
-                                <p>{{$history->user->name}}</p>
-                            </td>
-                            <td>
-                                <p>{{$history->created_at->isoFormat('Do MMMM YYYY HH:mm', 'ID')}}</p>
-                            </td>
-                            <td>
-                                <p>{{$history->ip_address}}</p>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td>
+                                    <p>{{ $loop->iteration }}</p>
+                                </td>
+                                <td>
+                                    <p>{{ $history->user->name }}</p>
+                                </td>
+                                <td>
+                                    <p>{{ $history->created_at->isoFormat('Do MMMM YYYY HH:mm', 'ID') }}</p>
+                                </td>
+                                <td>
+                                    <p>{{ $history->ip_address }}</p>
+                                </td>
+                            </tr>
                         @empty
                             <tr>
                                 <td colspan="4" class="text-center">
                                     <div class="d-flex justify-content-center" style="min-height:16rem">
                                         <div class="my-auto">
                                             <img src="{{ asset('no-data.png') }}" width="300" height="300" />
-                                            <h4 class="text-center mt-4">History Login {{$name ? 'Tidak Ditemukan!' : 'Kosong!'}}!!</h4>
+                                            <h4 class="text-center mt-4">History Login
+                                                {{ $name ? 'Tidak Ditemukan!' : 'Kosong!' }}!!</h4>
                                         </div>
                                     </div>
                                 </td>
@@ -64,7 +83,7 @@
                         @endforelse
                     </tbody>
                 </table>
-                {{$histories->links('pagination::bootstrap-5')}}
+                {{ $histories->links('pagination::bootstrap-5') }}
             </div>
         </div>
     </div>

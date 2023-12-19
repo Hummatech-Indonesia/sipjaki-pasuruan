@@ -318,6 +318,13 @@
                         <h5 class="card-header text-center border-bottom text-uppercase rounded-top-4 p-3"
                             style="background-color: #1B3061;color:white;">Pengesahan</h5>
                         <div class="card-body">
+                            <div class="d-flex justify-content-end">
+                                <div class="">
+                                    <button data-bs-toggle="modal" data-bs-target="#modal-pengesahan"
+                                    style="background-color: #E4ECFF;"
+                                    class="text-dark btn px-4 fw-bold">Edit</button>
+                                </div>
+                            </div>
                             <table cellpadding="5" style="border-collapse: collapse; width: 40%;" class="fs-6 fw-normal">
                                 <tbody>
                                     <tr>
@@ -383,6 +390,13 @@
                         <h5 class="card-header text-center border-bottom text-uppercase rounded-top-4 p-3"
                             style="background-color: #1B3061;color:white;">Akte Perubahan</h5>
                         <div class="card-body">
+                            <div class="d-flex justify-content-end">
+                                <div class="">
+                                    <button data-bs-toggle="modal" data-bs-target="#modal-akte"
+                                    style="background-color: #E4ECFF;"
+                                    class="text-dark btn px-4 fw-bold">Edit</button>
+                                </div>
+                            </div>
                             <table cellpadding="5" style="border-collapse: collapse; width: 40%;" class="fs-6 fw-normal">
                                 <tbody>
                                     <tr>
@@ -834,6 +848,138 @@
 
     {{-- end --}}
 
+    {{-- modal pengesahan administrasi  --}}
+    <div class="modal fade" id="modal-pengesahan" tabindex="-1" aria-labelledby="exampleModalLabel1">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content ">
+                <div class="modal-header d-flex align-items-center text-white" style="background-color: #1B3061">
+                    <h4 class="modal-title" id="exampleModalLabel1">
+                        Edit Pengesahan
+                    </h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        style="color: white;"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="#" id="form-update-badan-usaha" method="POST">
+                        @method('PUT')
+                        @csrf
+                        <p class="fs-5 text-dark mb-1" style="font-weight: 700">
+                            Materi Kehakiman dan HAM
+                        </p>
+                        <div class="row mb-4">
+                            <div class="col-6">
+                                <input type="number" class="form-control" placeholder="Masukkan Nomor">
+                            </div>
+                            <div class="col-6">
+                                <input type="date" class="form-control" placeholder="Masukkan Nomor">
+                            </div>
+                        </div>
+                        <p class="fs-5 text-dark mb-1" style="font-weight: 700">
+                            Pengadilan Negeri
+                        </p>
+                        <div class="row mb-4">
+                            <div class="col-6">
+                                <input type="number" class="form-control" placeholder="Masukkan Nomor">
+                            </div>
+                            <div class="col-6">
+                                <input type="date" class="form-control" placeholder="Masukkan Nomor">
+                            </div>
+                        </div>
+                        <p class="fs-5 text-dark mb-0" style="font-weight: 700">
+                            Lembar Negara
+                        </p>
+                        <div class="row">
+                            <div class="col-6">
+                                <input type="number" class="form-control" placeholder="Masukkan Nomor">
+                            </div>
+                            <div class="col-6">
+                                <input type="date" class="form-control" placeholder="Masukkan Nomor">
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger text-white font-medium waves-effect"
+                        data-bs-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="submit" style="background-color: #1B3061" class="btn text-white btn-create">
+                        Edit
+                    </button>
+                </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+{{-- end modal  --}}
+    {{-- modal  akte  --}}
+
+    <div class="modal fade" id="modal-akte" tabindex="-1" aria-labelledby="exampleModalLabel1">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content ">
+                <div class="modal-header d-flex align-items-center text-white" style="background-color: #1B3061">
+                    <h4 class="modal-title" id="exampleModalLabel1">
+                        Edit Akte Pengesahan
+                    </h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        style="color: white;"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="#" id="form-update-badan-usaha" method="POST">
+                        @method('PUT')
+                        @csrf
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <p class="mb-0 text-dark fs-6">
+                                    No Akte	
+                                </p>
+                                <input type="number" class="form-control" placeholder="Masukkan Nomor">
+                            </div>
+                            <div class="col-6">
+                                <p class="mb-0 text-dark fs-6">
+                                    Nama Notaris
+                                </p>
+                                <input type="text" class="form-control" placeholder="Masukkan Nama Notaris">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <p class="mb-0 text-dark fs-6">
+                                    Kota / Kabupaten
+                                </p>
+                                <input type="text" class="form-control" placeholder="Masukkan Nomor">
+                            </div>
+                            <div class="col-6">
+                                <p class="mb-0 text-dark fs-6">
+                                    Provinsi
+                                </p>
+                                <input type="text" class="form-control" placeholder="Masukkan Nomor">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p class="mb-0 text-dark fs-6">
+                                    Alamat
+                                </p>
+                                <textarea name="" id="" class="form-control"></textarea>
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger text-white font-medium waves-effect"
+                        data-bs-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="submit" style="background-color: #1B3061" class="btn text-white btn-create">
+                        Edit
+                    </button>
+                </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    {{-- end modal  --}}
     {{-- modal kualifikasi dan Klasifikasi --}}
     <div class="modal fade" id="modal-create" tabindex="-1" id="modal-create" aria-labelledby="exampleModalLabel1">
         <div class="modal-dialog" role="document">
