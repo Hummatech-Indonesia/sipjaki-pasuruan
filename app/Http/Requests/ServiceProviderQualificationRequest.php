@@ -15,7 +15,6 @@ class ServiceProviderQualificationRequest extends FormRequest
     {
         return [
             'sub_classification_id' => 'required|exists:sub_classifications,id',
-            'service_provider_id' => 'required|exists:service_providers,id',
             'qualification_id' => 'required|exists:qualifications,id',
             'year' => 'required|max:4',
         ];
@@ -26,8 +25,6 @@ class ServiceProviderQualificationRequest extends FormRequest
         return [
             'sub_classification_id.required' => 'Sub Klasikafikasi wajib diisi',
             'sub_classification_id.exists' => 'Sub Klasikafikasi tidak valid',
-            'service_provider_id.required' => 'Penyedia Jasa wajib diisi',
-            'service_provider_id.exists' => 'Penyedia Jasa tidak valid',
             'qualification_id.required' => 'Kualifikasi wajib diisi',
             'qualification_id.exists' => 'Kualifikasi tidak valid',
             'year.required' => 'Tahun wajib diisi',
