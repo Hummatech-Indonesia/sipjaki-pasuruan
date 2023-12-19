@@ -42,7 +42,6 @@
                         <div class="flex-grow-1">
                             <p class="text-muted fw-medium">Jumlah Kecelakaan</p>
                             <h4 style="color: #1B3061" class="mb-0">{{ $accident_count }}</h4>
-                            <div>Tahun 2023</div>
                         </div>
 
                         <div class="flex-shrink-0 align-self-center">
@@ -152,15 +151,31 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @forelse ($projects as $project)
                     <tr>
-                        <td class="fs-5">1</td>
-                        <td class="fs-5">Arsitektur</td>
-                        <td class="fs-5">2023</td>
-                        <td><span class="fs-6 badge px-4 py-2" style="background-color: #E4ECFF;color:#1B3061;">60%</span>
+                        <td class="fs-5">{{ $loop->iteration }}</td>
+                        <td class="fs-5">{{ $project->name }}</td>
+                        <td class="fs-5">{{ $project->year }}</td>
+                        <td><span class="fs-6 badge px-4 py-2" style="background-color: #E4ECFF;color:#1B3061;">{{ $project->finance_progress }}%</span>
                         </td>
-                        <td><span class="fs-6 badge px-4 py-2" style="background-color: #E4ECFF;color:#1B3061;">Aktif</span>
+                        <td>
+                            <span class="fs-6 badge px-4 py-2" style="background-color: {{ $project->status == 'nonactive' ? '#FF0000' : '#E4ECFF' }}; color: {{ $project->status == 'nonactive' ? '#FFFFFF' : '#1B3061' }}">
+                                {{ $project->status }}
+                            </span>
                         </td>
                     </tr>
+                    @empty
+                    <tr>
+                        <td colspan="5" class="text-center">
+                            <div class="d-flex justify-content-center" style="min-height:16rem">
+                                <div class="my-auto">
+                                    <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                    <h4 class="text-center mt-4">Dinas Kosong!!</h4>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
