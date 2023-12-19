@@ -8,6 +8,7 @@ use App\Base\Interfaces\HasOneFoundingDeed;
 use App\Base\Interfaces\HasOneVerification;
 use App\Base\Interfaces\HasUser;
 use App\Base\Interfaces\HasProjects;
+use App\Enums\TypeOfBusinessEntityEnum;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -41,7 +42,12 @@ class ServiceProvider extends Model implements HasUser, HasProjects, HasAssociat
      */
     public function projects(): HasMany
     {
-        return $this->hasMany(Project::class);
+        if($this->type_of_business_entity == TypeOfBusinessEntityEnum::CONSULTANT->value){
+            $foreignColumn = 'consultant_id';
+        }else{
+            $foreignColumn = 'executor_id';
+        }
+        return $this->hasMany(Project::class,$foreignColumn);
     }
 
     /**
