@@ -30,7 +30,6 @@ use App\Contracts\Interfaces\RuleCategoriesInterface;
 use App\Contracts\Interfaces\TrainingMemberInterface;
 use App\Contracts\Interfaces\TrainingMethodInterface;
 use App\Contracts\Interfaces\ContractCategoryInterface;
-use App\Contracts\Interfaces\DinasFieldInterface;
 use App\Contracts\Interfaces\DinasInterface;
 use App\Contracts\Interfaces\FaqInterface;
 use App\Contracts\Interfaces\HistoryLoginInterface;
@@ -51,7 +50,6 @@ use App\Contracts\Interfaces\ServiceProviderInterface;
 use App\Contracts\Interfaces\ServiceProviderProjectInterface;
 use App\Contracts\Interfaces\ServiceProviderQualificationInterface;
 use App\Contracts\Interfaces\SubClassificationTrainingInterface;
-use App\Contracts\Interfaces\SubQualificationTrainingInterface;
 use App\Contracts\Interfaces\TypeInterface;
 use App\Contracts\Interfaces\VerificationInterface;
 use App\Contracts\Interfaces\WorkerInterface;
@@ -59,7 +57,6 @@ use App\Contracts\Repositories\AccidentRepository;
 use App\Contracts\Repositories\AssociationRepositoy;
 use App\Contracts\Repositories\ClassificationTrainingRepository;
 use App\Contracts\Repositories\ContractCategoryRepository;
-use App\Contracts\Repositories\DinasFieldRepository;
 use App\Contracts\Repositories\DinasRepository;
 use App\Contracts\Repositories\FaqRepository;
 use App\Contracts\Repositories\HistoryLoginRepository;
@@ -73,7 +70,6 @@ use App\Contracts\Repositories\ServiceProviderProjectRepository;
 use App\Contracts\Repositories\ServiceProviderQualificationRepository;
 use App\Contracts\Repositories\ServiceProviderRepository;
 use App\Contracts\Repositories\SubClassificationTrainingRepository;
-use App\Contracts\Repositories\SubQualificationTrainingRepository;
 use App\Contracts\Repositories\TypeRepository;
 use App\Contracts\Repositories\VerificationRepository;
 use App\Contracts\Repositories\WorkerRepository;
@@ -108,14 +104,12 @@ class AppServiceProvider extends ServiceProvider
         ServiceProviderProjectInterface::class => ServiceProviderProjectRepository::class,
         SectionInterface::class => SectionRepository::class,
         TypeInterface::class => TypeRepository::class,
-        DinasFieldInterface::class => DinasFieldRepository::class,
         FaqInterface::class => FaqRepository::class,
         ClassificationTrainingInterface::class => ClassificationTrainingRepository::class,
         SubClassificationTrainingInterface::class => SubClassificationTrainingRepository::class,
         QualificationLevelTrainingInterface::class => QualificationLevelTrainingRepository::class,
         QualificationTrainingInterface::class => QualificationTrainingRepository::class,
         OfficerInterface::class => OfficerRepository::class,
-        SubQualificationTrainingInterface::class => SubQualificationTrainingRepository::class,
         ServiceProviderQualificationInterface::class => ServiceProviderQualificationRepository::class,
         VerificationInterface::class => VerificationRepository::class
     ];
