@@ -110,13 +110,13 @@
                                     <tr>
                                         <td>Bentuk Badan Usaha</td>
                                         <td>:</td>
-                                        <td>{{ $serviceProvider->form_of_business_entity ? $serviceProvider->form_of_business_entity == "pt" ? "PT" : "CV" : '-' }}
+                                        <td>{{ $serviceProvider->form_of_business_entity ? ($serviceProvider->form_of_business_entity == 'pt' ? 'PT' : 'CV') : '-' }}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Jenis Badan Usaha</td>
                                         <td>:</td>
-                                        <td>{{ $serviceProvider->type_of_business_entity ? $serviceProvider->type_of_business_entity == 'consultant' ? "Konsultan" : "Penyelrnggara" : '-' }}
+                                        <td>{{ $serviceProvider->type_of_business_entity ? ($serviceProvider->type_of_business_entity == 'consultant' ? 'Konsultan' : 'Penyelrnggara') : '-' }}
                                         </td>
                                     </tr>
 
@@ -157,6 +157,11 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="d-flex justify-content-end mb-2">
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-create"
+                    style="background-color: #1B3061; border-radius: 10px"><i class="fas fa-plus"
+                        style="margin-right:10px"></i>Tambah</button>
             </div>
             <div class="table-responsive rounded-4">
                 <table class="table table-bordered" border="1">
@@ -201,11 +206,22 @@
                                     {{ Carbon::parse($serviceProviderQualification->created_at)->locale('id_ID')->isoFormat('DD MMMM Y') }}
                                 </td>
                                 <td colspan="1">
-                                    {{ Carbon::parse($project->first_print)->locale('id_ID')->isoFormat('DD MMMM Y') }}
-                                </td>
+                                    {{ $serviceProviderQualification->first_print ? Carbon::parse($serviceProviderQualification->first_print)->locale('id_ID')->isoFormat('DD MMMM Y') : '-' }}</td>
                                 <td colspan="1">
-                                    {{ Carbon::parse($project->last_print)->locale('id_ID')->isoFormat('DD MMMM Y') }}</td>
-                                <td colspan="1"></td>
+                                    {{ $serviceProviderQualification->last_print ? Carbon::parse($serviceProviderQualification->last_print)->locale('id_ID')->isoFormat('DD MMMM Y') : '-' }}</td>
+                                <td class="d-flex flex-row gap-3 justify-content-center">
+                                    <button type="button"
+                                        class="btn waves-effect waves-light d-flex btn-edit flex-row gap-1 justify-content-evenly"
+                                        style="width: 90px; background-color: #FFC928; color: white"><i
+                                            class="bx bx-bx bxs-edit fs-4"></i>
+                                        <span>Edit</span></button>
+                                    <button type="button"
+                                        class="btn waves-effect waves-light btn-delete d-flex flex-row gap-1 justify-content-between"
+                                        style="width: 90px; background-color: #E05C39; color: white"
+                                        data-bs-toggle="modal" data-bs-target="#modal-delete"><i
+                                            class="bx bx-bx bxs-trash fs-4"></i>
+                                        Hapus</button>
+                                </td>
                             </tr>
                         @empty
                             <tr>
@@ -472,7 +488,7 @@
                                     <div class="d-flex justify-content-center" style="min-height:16rem">
                                         <div class="my-auto">
                                             <img src="{{ asset('no-data.png') }}" width="300" height="300" />
-                                            <h4 class="text-center mt-4">Type Kosong!!</h4>
+                                            <h4 class="text-center mt-4">Tidak Ada Pengurus!!</h4>
                                         </div>
                                     </div>
                                 </td>
@@ -588,7 +604,7 @@
                                                 <div class="my-auto">
                                                     <img src="{{ asset('no-data.png') }}" width="300"
                                                         height="300" />
-                                                    <h4 class="text-center mt-4">Tenaga kerja kosong!!</h4>
+                                                    <h4 class="text-center mt-4">Tidak Ada Tenaga Kerja!!</h4>
                                                 </div>
                                             </div>
                                         </td>
@@ -681,14 +697,14 @@
         </div>
     </div>
 
-    {{-- modal --}}
+    {{-- modal badan usaha --}}
 
     <div class="modal fade" id="modal-update-badan-usaha" tabindex="-1" aria-labelledby="exampleModalLabel1">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content ">
                 <div class="modal-header d-flex align-items-center text-white" style="background-color: #1B3061">
                     <h4 class="modal-title" id="exampleModalLabel1">
-                        Edit Sub Klasifikasi
+                        Edit Data Badan Usaha
                     </h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                         style="color: white;"></button>
@@ -815,7 +831,160 @@
         </div>
 
     </div>
+
+    {{-- end --}}
+
+    {{-- modal kualifikasi dan Klasifikasi --}}
+    <div class="modal fade" id="modal-create" tabindex="-1" id="modal-create" aria-labelledby="exampleModalLabel1">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form id="form-create" action="{{ route('service.provider.qualifications.store') }}" method="POST">
+                    @csrf
+                    @method('POST')
+                    <div class="modal-header d-flex align-items-center">
+                        <h4 class="modal-title" id="exampleModalLabel1">
+                            Tambah Kualifikasi dan Klasifikasi
+                        </h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="basicpill-email-input">Klasifikasi</label>
+                            <select class="form-select list-classifications select2-update" style="width:100%"
+                                id="update-list-classifications">
+                                <option value="">Pilih Klalifikasi</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="basicpill-email-input">Sub Klasifikasi</label>
+                            <select name="sub_classification_id"
+                                class="form-select sub-classifications select2-update" style="width:100%"
+                                id="update-list-sub-classifications">
+                            </select>
+                            @error('sub_classification_id')
+                                <p class="text-danger">
+                                    {{ $message }}
+                                </p>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="basicpill-phoneno-input">Kualifikasi</label>
+                            <select name="qualification_id" class="form-select list-qualifications select2-update"
+                                style="width:100%" id="update-list-qualifications">
+                                <option value="">Pilih Kualifikasi</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label id="name" for="recipient-name" class="control-label mb-2">Masukan
+                                Tahun</label>
+                            <input type="text" class="form-control" id="create-year" class="form-control"
+                                name="year" aria-describedby="name" placeholder="Masukkan Tahun" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger text-white font-medium waves-effect"
+                            data-bs-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="submit" style="background-color: #1B3061" class="btn text-white btn-create">
+                            Tambah
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {{-- end --}}
 @endsection
 @section('script')
-    <script></script>
+    <script>
+        qualifications()
+
+        function qualifications() {
+            $.ajax({
+                url: "{{ route('list-qualifications') }}",
+                type: 'GET',
+                dataType: "JSON",
+                success: function(response) {
+                    $.each(response.data, function(index, item) {
+                        var option = `<option value="${item.id}">${item.name}</option>`
+                        $('#list-qualifications').append(option);
+                        $('#update-list-qualifications').append(option);
+                    });
+                    $('#list-qualifications').change(function() {
+                        var selectedClassificationId = $(this).val();
+                        $('#list-qualification-level')
+                        $('#update-list-qualification-level')
+                            .empty();
+
+                        if (selectedClassificationId !== '') {
+                            listqualificationlevel(
+                                selectedClassificationId
+                            );
+                        }
+                    });
+                    $('#update-list-qualifications').change(function() {
+                        var selectedClassificationId = $(this).val();
+                        $('#list-qualification-level')
+                        $('#update-list-qualification-level')
+                            .empty();
+                        if (selectedClassificationId !== '') {
+                            listqualificationlevel(
+                                selectedClassificationId
+                            );
+                        }
+                    });
+                }
+            });
+        }
+
+        get();
+
+        function get() {
+            $.ajax({
+                url: "{{ route('list-classifications') }}",
+                type: 'GET',
+                dataType: "JSON",
+                success: function(response) {
+                    $.each(response.data, function(index, item) {
+                        var option = `<option value="${item.id}">${item.name}</option>`
+                        $('#update-list-classifications').append(option);
+                        $('#list-classifications').append(option);
+                    });
+                    $('#list-classifications').change(function() {
+                        var selectedClassificationId = $(this).val();
+                        if (selectedClassificationId !== '') {
+                            subclassifications(
+                                selectedClassificationId
+                            );
+                        }
+                    });
+                    $('#update-list-classifications').change(function() {
+                        var selectedClassificationId = $(this).val();
+                        if (selectedClassificationId !== '') {
+                            subclassifications(
+                                selectedClassificationId
+                            );
+                        }
+                    });
+                }
+            });
+        }
+
+        function subclassifications(classificationId) {
+            $.ajax({
+                url: "list-sub-classifications/" + classificationId,
+                type: 'GET',
+                dataType: "JSON",
+                success: function(response) {
+                    $.each(response.data, function(index, item) {
+                        var option = `<option value="${item.id}">${item.name}</option>`
+                        $('#list-sub-classifications').append(option);
+                        $('#update-list-sub-classifications').append(option);
+                    });
+                }
+            });
+        }
+    </script>
 @endsection

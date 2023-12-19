@@ -58,8 +58,7 @@ class ServiceProviderController extends Controller
     {
         $this->user->update(auth()->user()->id, $request->validated());
         $this->serviceProvider->update(auth()->user()->serviceProvider->id, $request->validated());
-        return redirect()->back()->with('success', trans('alert.add_success'));
-        return ResponseHelper::success(null, trans('alert.update_success'));
+        return redirect()->back()->with('success', trans('alert.update_success'));
 
     }
 

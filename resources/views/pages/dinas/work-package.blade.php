@@ -291,6 +291,8 @@
                                             data-fund_source_id="{{ $project->fund_source_id }}"
                                             data-service_provider_id="{{ $project->service_provider_id }}"
                                             data-contract_category_id="{{ $project->contract_category_id }}"
+                                            data-consultant_id="{{ $project->consultant_id }}"
+                                            data-executor_id="{{ $project->executor_id }}"
                                             data-characteristic_project="{{ $project->characteristic_project }}">Edit</button>
                                     </div>
                                     <div class="d-flex justify-content-center mb-2">
@@ -305,7 +307,8 @@
                                             data-physical_progress="{{ $project->physical_progress ? $project->physical_progress . ' %' : '-' }}"
                                             data-physical_progress_start="{{ \Carbon\Carbon::parse($project->physical_progress_start)->format('Y-m-d') ? \Carbon\Carbon::parse($project->physical_progress_start)->format('Y-m-d') : '-' }}"
                                             data-project_value="{{ $project->project_value }}"
-                                            data-fund_source="{{ $project->fundSource->name }}" {{-- data-service_provider_name="{{ $project->serviceProvider->name }}" --}}
+                                            data-fund_source="{{ $project->fundSource->name }}" data-konsultan="{{ $project->consultant->user->name }}"
+                                            data-executor="{{ $project->executor->user->name }}"
                                             data-contract_category_name="{{ $project->contractCategory->name }}"
                                             data-characteristic_project="{{ $project->characteristic_project }}">Detail</button>
                                     </div>
@@ -388,11 +391,20 @@
                                 </div>
                                 <div class="row mb-1">
                                     <div class="col-md-5">
-                                        <p class="mb-2 text-dark">Penyedia jasa :</p>
+                                        <p class="mb-2 text-dark">Konsultan :</p>
                                     </div>
                                     <div class="col-md-5">
                                         <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                id="detail-service_provider_name"></span></p>
+                                                id="detail-konsultan"></span></p>
+                                    </div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark">Penyelenggara :</p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
+                                                id="detail-executor"></span></p>
                                     </div>
                                 </div>
                                 <div class="row mb-1">
@@ -705,7 +717,7 @@
             $('#modal-detail').modal('show')
         })
         $('.btn-edit').click(function() {
-            const formData = getDataAttributes($(this).attr('id'))
+            const formData = getDataAttributes($(this).attr('id'))            
             var actionUrl = `projects/${formData['id']}`;
             $('#form-update').attr('action', actionUrl);
 
