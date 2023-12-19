@@ -14,7 +14,7 @@ class DinasRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required',
+            'person_responsible' => 'required|max:255',
             'phone_number' => 'required|max:255',
             'email' => 'required|email|max:255',
             'name_opd' => 'required|max:255',
