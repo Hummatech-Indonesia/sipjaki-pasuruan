@@ -29,13 +29,13 @@ class ServiceProviderQualificationController extends Controller
     public function index(Request $request)
     {
         $serviceProviderQualifications = $this->serviceProviderQualification->customPaginate($request, 10);
-        // if ($request->is('api/*')) {
+        if ($request->is('api/*')) {
         $data['paginate'] = $this->customPaginate($serviceProviderQualifications->currentPage(), $serviceProviderQualifications->lastPage());
         $data['data'] = ServiceProviderQualificationResource::collection($serviceProviderQualifications);
         return ResponseHelper::success($data);
-        // } else {
-        //     return view('pages.admin.news', ['serviceProviderQualifications' => $serviceProviderQualifications]);
-        // }
+        } else {
+            return view('pages.approval.qualification', ['serviceProviderQualifications' => $serviceProviderQualifications]);
+        }
     }
 
     /**
