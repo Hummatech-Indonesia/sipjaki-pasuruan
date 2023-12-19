@@ -30,7 +30,7 @@
                     <path fill-rule="evenodd" clip-rule="evenodd"
                         d="M4 12C4 11.4477 4.35817 11 4.8 11H19.2C19.6418 11 20 11.4477 20 12C20 12.5523 19.6418 13 19.2 13H4.8C4.35817 13 4 12.5523 4 12Z"
                         fill="white" />
-                </svg>Tambah Pelatihan
+                </svg>Tambah 
             </button>
         </div>
     </div>
@@ -39,7 +39,7 @@
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #1B3061">
-                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Tambah Pelatihan</h5>
+                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Tambah </h5>
                     <button type="button" class="btn-close" style="background-color: white" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
@@ -322,7 +322,7 @@
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #1B3061">
-                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Tambah Pelatihan</h5>
+                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Detail</h5>
                     <button type="button" class="btn-close" style="background-color: white" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
@@ -459,7 +459,7 @@
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #1B3061">
-                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Tambah Pelatihan</h5>
+                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Tambah </h5>
                     <button type="button" class="btn-close" style="background-color: white" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
