@@ -1,5 +1,8 @@
 @extends('layouts.app')
 @section('content')
+    @php
+        use Carbon\Carbon;
+    @endphp
     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
         <div class="d-flex">
             <a class="nav-link active rounded-start" style="border: solid 1px #1B3061;" id="badan-usaha-tab"
@@ -40,30 +43,41 @@
                                 <div class="btn btn-sm mb-3 text-dark rounded-3" style="background-color: #E4ECFF;">
                                     Data Badan Usaha
                                 </div>
-                                <button style="background-color: #E4ECFF;" data-bs-toggle="modal" data-bs-target="#modal-update-badan_usaha" class="text-dark btn px-4 fw-bold">Edit</button>
+                                <button style="background-color: #E4ECFF;"
+                                    class="text-dark btn px-4 fw-bold btn-edit-badan-usaha"
+                                    id="btn-edit-badan-usaha-{{ $serviceProvider->id }}"
+                                    data-address="{{ $serviceProvider->address }}"
+                                    data-email="{{ $serviceProvider->user->email }}"
+                                    data-city="{{ $serviceProvider->city }}"
+                                    data-postal_code="{{ $serviceProvider->postal_code }}"
+                                    data-phone_number="{{ $serviceProvider->user->phone_number }}"
+                                    data-website="{{ $serviceProvider->website }}"
+                                    data-form_of_business_entity="{{ $serviceProvider->form_of_business_entity }}"
+                                    data-type_of_business_entity="{{ $serviceProvider->type_of_business_entity }}">Edit</button>
                             </div>
-                            <p class="fw-bolder fs-4">MITRA BAHAGIA UTAMA BUMIAJI</p>
+                            <p class="fw-bolder fs-4">{{ $serviceProvider->user->name }}</p>
                             <table cellpadding="5" style="border-collapse: collapse; width: 50%;" class="fs-6 fw-normal">
                                 <tbody>
                                     <tr>
                                         <td>Alamat Badan Usaha</td>
                                         <td>:</td>
-                                        <td>Jl. G. Lokon No. 59</td>
+                                        <td>{{ $serviceProvider->address ? $serviceProvider->address : '-' }}</td>
                                     </tr>
                                     <tr>
                                         <td>Kabupaten</td>
                                         <td>:</td>
-                                        <td>Kota Malang</td>
+                                        <td>{{ $serviceProvider->city ? $serviceProvider->city : '-' }}</td>
                                     </tr>
                                     <tr>
                                         <td>Kode Pos</td>
                                         <td>:</td>
-                                        <td>-</td>
+                                        <td>{{ $serviceProvider->postal_code ? $serviceProvider->postal_code : '-' }}</td>
                                     </tr>
                                     <tr>
                                         <td>Telepon</td>
                                         <td>:</td>
-                                        <td>0411 - 3584897987</td>
+                                        <td>{{ $serviceProvider->user->phone_number ? $serviceProvider->user->phone_number : '-' }}
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Fax</td>
@@ -73,22 +87,24 @@
                                     <tr>
                                         <td>Email</td>
                                         <td>:</td>
-                                        <td>mitrabahagia@yhooo.com</td>
+                                        <td>{{ $serviceProvider->user->email ? $serviceProvider->user->email : '-' }}</td>
                                     </tr>
                                     <tr>
                                         <td>Website</td>
                                         <td>:</td>
-                                        <td>-</td>
+                                        <td>{{ $serviceProvider->website ? $serviceProvider->website : '-' }}</td>
                                     </tr>
                                     <tr>
                                         <td>Bentuk Badan Usaha</td>
                                         <td>:</td>
-                                        <td>PT</td>
+                                        <td>{{ $serviceProvider->form_of_business_entity ? $serviceProvider->form_of_business_entity : '-' }}
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Jenis Badan Usaha</td>
                                         <td>:</td>
-                                        <td>Pelaksanaan</td>
+                                        <td>{{ $serviceProvider->type_of_business_entity ? $serviceProvider->type_of_business_entity : '-' }}
+                                        </td>
                                     </tr>
 
                                 </tbody>
@@ -108,19 +124,19 @@
                                 <div class="btn btn-sm mb-3 text-dark rounded-3" style="background-color: #E4ECFF;">
                                     Data Kualifikasi / Klasifikasi Badan Usaha
                                 </div>
-                                <p class="fw-bolder fs-4">MITRA BAHAGIA UTAMA BUMIAJI</p>
+                                <p class="fw-bolder fs-4">{{ $serviceProvider->user->name }}</p>
                             </div>
                             <table cellpadding="5" style="border-collapse: collapse; width: 40%;" class="fs-6 fw-normal">
                                 <tbody>
                                     <tr>
                                         <td>Alamat Badan Usaha</td>
                                         <td>:</td>
-                                        <td>Jl. G. Lokon No. 59</td>
+                                        <td>{{ $serviceProvider->address ? $service->address : '-' }}</td>
                                     </tr>
                                     <tr>
                                         <td>Telepon</td>
                                         <td>:</td>
-                                        <td>0411 - 3584897987</td>
+                                        <td>{{ $serviceProvider->user->phone_number }}</td>
                                     </tr>
 
                                 </tbody>
@@ -135,11 +151,15 @@
                         <tr align="center">
                             <th style="background-color: #1B3061;color:#ffffff; vertical-align: middle" rowspan="2">No
                             </th>
-                            <th style="background-color: #1B3061;color:#ffffff; vertical-align: middle" colspan="1" rowspan="2">Sub Bidang Klasifikasi/Layanan</th>
-                            <th style="background-color: #1B3061;color:#ffffff; vertical-align: middle" colspan="1" rowspan="2">Nomor Kode</th>
-                            <th style="background-color: #1B3061;color:#ffffff; vertical-align: middle" colspan="1" rowspan="2">Kualifikasi</th>
+                            <th style="background-color: #1B3061;color:#ffffff; vertical-align: middle" colspan="1"
+                                rowspan="2">Sub Bidang Klasifikasi/Layanan</th>
+                            <th style="background-color: #1B3061;color:#ffffff; vertical-align: middle" colspan="1"
+                                rowspan="2">Nomor Kode</th>
+                            <th style="background-color: #1B3061;color:#ffffff; vertical-align: middle" colspan="1"
+                                rowspan="2">Kualifikasi</th>
                             <th colspan="1" style="background-color: #1B3061;color:#ffffff;">Kemampuan Dasar</th>
-                            <th style="background-color: #1B3061;color:#ffffff;vertical-align: middle" rowspan="2" colspan="1">
+                            <th style="background-color: #1B3061;color:#ffffff;vertical-align: middle" rowspan="2"
+                                colspan="1">
                                 Asosiasi</th>
                             <th style="background-color: #1B3061;color:#ffffff;vertical-align: middle;width:150px;"
                                 rowspan="2" colspan="1">Tanggal Permohonan</th>
@@ -147,23 +167,45 @@
                                 rowspan="2" colspan="1">Tanggal Cetak Pertama</th>
                             <th style="background-color: #1B3061;color:#ffffff;vertical-align: middle;width:150px;"
                                 rowspan="2" colspan="1">Tanggal Cetak Perubahan Terakhir</th>
+                            <th style="background-color: #1B3061;color:#ffffff;vertical-align: middle;width:150px;"
+                                rowspan="2" colspan="1">Aksi</th>
                         </tr>
                         <tr align="center">
                             <th style="background-color: #1B3061;color:#ffffff;">Tahun</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr align="center">
-                            <td colspan="1">1</td>
-                            <td colspan="1">Jasa Pelaksanaa Untuk Konstruksi Saluran Air</td>
-                            <td colspan="1">SI001</td>
-                            <td colspan="1">M2</td>
-                            <td colspan="1">2023</td>
-                            <td colspan="1">GAPENSI</td>
-                            <td colspan="1">2021-10-21</td>
-                            <td colspan="1">2021-10-21</td>
-                            <td colspan="1">2021-10-21</td>
-                        </tr>
+                        @forelse ($serviceProviderQualifications as $serviceProviderQualification)
+                            <tr align="center">
+                                <td colspan="1">{{ $loop->iteration }}</td>
+                                <td colspan="1">{{ $serviceProviderQualification->subClassification->name }}</td>
+                                <td colspan="1">{{ $serviceProviderQualification->subClassification->code }}</td>
+                                <td colspan="1">{{ $serviceProviderQualification->qualification->name }}</td>
+                                <td colspan="1">{{ $serviceProviderQualification->year }}</td>
+                                <td colspan="1">{{ $serviceProviderQualification->serviceProvider->association->name }}
+                                </td>
+                                <td colspan="1">
+                                    {{ Carbon::parse($serviceProviderQualification->created_at)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                </td>
+                                <td colspan="1">
+                                    {{ Carbon::parse($project->first_print)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                </td>
+                                <td colspan="1">
+                                    {{ Carbon::parse($project->last_print)->locale('id_ID')->isoFormat('DD MMMM Y') }}</td>
+                                <td colspan="1"></td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="10" class="text-center">
+                                    <div class="d-flex justify-content-center" style="min-height:19rem">
+                                        <div class="my-auto">
+                                            <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                            <h4 class="text-center mt-4">Kualifikasi dan Klasifikasi kosong!!</h4>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
@@ -242,7 +284,8 @@
             <div class="row">
                 <div class="col-6">
                     <h4 class="mt-3 mb-3 fw-bold">Pengesahan</h4>
-                    <div class="card rounded-bottom-4" style="border: 1px solid black;border-radius: 20px 20px 20px 20px;">
+                    <div class="card rounded-bottom-4"
+                        style="border: 1px solid black;border-radius: 20px 20px 20px 20px;">
                         <h5 class="card-header text-center border-bottom text-uppercase rounded-top-4 p-3"
                             style="background-color: #1B3061;color:white;">Pengesahan</h5>
                         <div class="card-body">
@@ -291,7 +334,7 @@
                             <div class="d-flex justify-content-header gap-5">
                                 <div class="">
                                     <p class="text-dark" style="font-weight: 600">
-                                        Tanggal	
+                                        Tanggal
                                     </p>
                                 </div>
                                 <div class="">
@@ -318,7 +361,7 @@
                             <div class="d-flex justify-content-header gap-5">
                                 <div class="">
                                     <p class="text-dark" style="font-weight: 600">
-                                        Tanggal	
+                                        Tanggal
                                     </p>
                                 </div>
                                 <div class="">
@@ -332,7 +375,8 @@
                 </div>
                 <div class="col-6">
                     <h4 class="mt-3 mb-3 fw-bold">Akte Perubahan</h4>
-                    <div class="card rounded-bottom-4" style="border: 1px solid black;border-radius: 20px 20px 20px 20px;">
+                    <div class="card rounded-bottom-4"
+                        style="border: 1px solid black;border-radius: 20px 20px 20px 20px;">
                         <h5 class="card-header text-center border-bottom text-uppercase rounded-top-4 p-3"
                             style="background-color: #1B3061;color:white;">Akte Perubahan</h5>
                         <div class="card-body">
@@ -348,11 +392,11 @@
                                 </div>
                                 <div class="row mb-1">
                                     <div class="col-md-5">
-                                        <p class="mb-2 text-dark">Nama Notaris	 :</p>
+                                        <p class="mb-2 text-dark">Nama Notaris :</p>
                                     </div>
                                     <div class="col-md-5">
                                         <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                id="detail-birth_date">Tuafiq Arifin, SH	</span></p>
+                                                id="detail-birth_date">Tuafiq Arifin, SH </span></p>
                                     </div>
                                 </div>
                                 <div class="row mb-1">
@@ -366,11 +410,11 @@
                                 </div>
                                 <div class="row mb-1">
                                     <div class="col-md-5">
-                                        <p class="mb-2 text-dark">Kota / Kabupaten	 :</p>
+                                        <p class="mb-2 text-dark">Kota / Kabupaten :</p>
                                     </div>
                                     <div class="col-md-5">
                                         <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                id="detail-birth_date">Kota Malang	</span></p>
+                                                id="detail-birth_date">Kota Malang </span></p>
                                     </div>
                                 </div>
                                 <div class="row mb-1">
@@ -397,19 +441,19 @@
                                 <div class="btn btn-sm mb-3 text-dark rounded-3" style="background-color: #E4ECFF;">
                                     Data Pengurus Badan Usaha
                                 </div>
-                                <p class="fw-bolder fs-4">MITRA BAHAGIA UTAMA BUMIAJI</p>
+                                <p class="fw-bolder fs-4">{{ $serviceProvider->user->name }}</p>
                             </div>
                             <table cellpadding="5" style="border-collapse: collapse; width: 40%;" class="fs-6 fw-normal">
                                 <tbody>
                                     <tr>
                                         <td>Alamat Badan Usaha</td>
                                         <td>:</td>
-                                        <td>Jl. G. Lokon No. 59</td>
+                                        <td>{{ $serviceProvider->address ? $serviceProvider->address : '-' }}</td>
                                     </tr>
                                     <tr>
                                         <td>Telepon</td>
                                         <td>:</td>
-                                        <td>0411 - 3584897987</td>
+                                        <td>{{ $serviceProvider->user->phone_number }}</td>
                                     </tr>
 
                                 </tbody>
@@ -443,14 +487,28 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Tuafiq Arifin, SH</td>
-                            <td>Jl. Singa No 4</td>
-                            <td>Kota Malang</td>
-                            <td>Jawa Timur</td>
-                            <td>Jawa Timur</td>
-                        </tr>
+                        @forelse ($officers as $index => $officer)
+                            <tr>
+                                <td class="fs-6">{{ $index + 1 }}</td>
+                                <td class="fs-6">{{ $officer->name }}</td>
+                                <td class="fs-6">
+                                    {{ Carbon::parse($officer->birth_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}</td>
+                                <td class="fs-6">{{ $officer->address }}</td>
+                                <td class="fs-6">{{ $officer->position }}</td>
+                                <td class="fs-6">{{ $officer->education }}</td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="6" class="text-center">
+                                    <div class="d-flex justify-content-center" style="min-height:16rem">
+                                        <div class="my-auto">
+                                            <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                            <h4 class="text-center mt-4">Type Kosong!!</h4>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
@@ -464,19 +522,19 @@
                                 <div class="btn btn-sm mb-3 text-dark rounded-3" style="background-color: #E4ECFF;">
                                     Data Pengurus Badan Usaha
                                 </div>
-                                <p class="fw-bolder fs-4">MITRA BAHAGIA UTAMA BUMIAJI</p>
+                                <p class="fw-bolder fs-4">{{ $serviceProvider->user->name }}</p>
                             </div>
                             <table cellpadding="5" style="border-collapse: collapse; width: 40%;" class="fs-6 fw-normal">
                                 <tbody>
                                     <tr>
                                         <td>Alamat Badan Usaha</td>
                                         <td>:</td>
-                                        <td>Jl. G. Lokon No. 59</td>
+                                        <td>{{ $serviceProvider->address }}</td>
                                     </tr>
                                     <tr>
                                         <td>Telepon</td>
                                         <td>:</td>
-                                        <td>0411 - 3584897987</td>
+                                        <td>{{ $serviceProvider->user->phone_number }}</td>
                                     </tr>
 
                                 </tbody>
@@ -516,25 +574,57 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Tuafiq Arifin, SH</td>
-                                    <td>Jl. Singa No 4</td>
-                                    <td>Kota Malang</td>
-                                    <td>Jawa Timur</td>
-                                    <td>1231457</td>
-                                    <td><button class="btn btn-sm rounded-3"
-                                            style="background-color: #1B3061;color:white;"><svg
-                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none">
-                                                <path d="M4.5 12.5C7.5 6 16.5 6 19.5 12.5" stroke="white" stroke-width="2"
-                                                    stroke-linecap="round" stroke-linejoin="round" />
-                                                <path
-                                                    d="M12 16C10.8954 16 10 15.1046 10 14C10 12.8954 10.8954 12 12 12C13.1046 12 14 12.8954 14 14C14 15.1046 13.1046 16 12 16Z"
-                                                    stroke="white" stroke-width="2" stroke-linecap="round"
-                                                    stroke-linejoin="round" />
-                                            </svg> Detail</button></td>
-                                </tr>
+                                @forelse ($workers as $worker)
+                                    <tr>
+                                        <td class="fs-6">{{ $loop->iteration }}</td>
+                                        <td class="fs-6">{{ $worker->name }}</td>
+                                        <td class="fs-6">
+                                            {{ \Carbon\Carbon::parse($worker->birth_date)->translatedFormat('d F Y') }}
+                                        </td>
+                                        <td class="fs-6">{{ $worker->education }}</td>
+                                        <td class="fs-6">{{ $worker->registration_number }}</td>
+                                        <td>{{ $worker->cerificate }}</td>
+                                        <td>
+                                            <div class="d-flex justify-content-header gap-3">
+                                                <div class="">
+                                                    <button id="btn-edit-{{ $worker->id }}"
+                                                        data-id="{{ $worker->id }}" data-name="{{ $worker->name }}"
+                                                        data-birth_date="{{ \Carbon\Carbon::parse($worker->birth_date)->translatedFormat('d F Y') }}"
+                                                        data-cerificate="{{ $worker->cerificate }}"
+                                                        data-education="{{ $worker->education }}"
+                                                        data-registration_number="{{ $worker->registration_number }}"
+                                                        type="button" data-bs-target="#modal-detail"
+                                                        data-bs-toggle="modal"
+                                                        class="btn btn-detail waves-effect waves-light text-white btn waves-effect d-flex flex-row gap-1 justify-content-evenly"
+                                                        style="background-color: #1B3061">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="19"
+                                                            height="19" viewBox="0 0 24 24" fill="none">
+                                                            <path d="M4.5 12.5C7.5 6 16.5 6 19.5 12.5" stroke="white"
+                                                                stroke-width="1.5" stroke-linecap="round"
+                                                                stroke-linejoin="round" />
+                                                            <path
+                                                                d="M12 16C10.8954 16 10 15.1046 10 14C10 12.8954 10.8954 12 12 12C13.1046 12 14 12.8954 14 14C14 15.1046 13.1046 16 12 16Z"
+                                                                stroke="white" stroke-width="1.5" stroke-linecap="round"
+                                                                stroke-linejoin="round" />
+                                                        </svg> Detail
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="7" class="text-center">
+                                            <div class="d-flex justify-content-center" style="min-height:19rem">
+                                                <div class="my-auto">
+                                                    <img src="{{ asset('no-data.png') }}" width="300"
+                                                        height="300" />
+                                                    <h4 class="text-center mt-4">Tenaga kerja kosong!!</h4>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>
@@ -575,10 +665,13 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr align="center">
-                            <th style="background-color: #1B3061; color: #ffffff; vertical-align: middle" colspan="1" rowspan="2">No</th>
+                            <th style="background-color: #1B3061; color: #ffffff; vertical-align: middle" colspan="1"
+                                rowspan="2">No</th>
                             <th colspan="3" style="background-color: #1B3061; color: #ffffff;">Proyek</th>
-                            <th style="background-color: #1B3061; color: #ffffff; vertical-align: middle" colspan="1" rowspan="2">Pemberi Tugas</th>
-                            <th style="background-color: #1B3061; color: #ffffff; vertical-align: middle" colspan="1" rowspan="2">Sub Bidang Kualifikasi</th>
+                            <th style="background-color: #1B3061; color: #ffffff; vertical-align: middle" colspan="1"
+                                rowspan="2">Pemberi Tugas</th>
+                            <th style="background-color: #1B3061; color: #ffffff; vertical-align: middle" colspan="1"
+                                rowspan="2">Sub Bidang Kualifikasi</th>
                             <th colspan="3" style="background-color: #1B3061; color: #ffffff;">Nomor</th>
                             <th colspan="4" style="background-color: #1B3061; color: #ffffff;">Tanggal</th>
                         </tr>
@@ -621,7 +714,7 @@
 
     {{-- modal --}}
 
-    <div class="modal fade" id="modal-update-badan_usaha" tabindex="-1" aria-labelledby="exampleModalLabel1">
+    <div class="modal fade" id="modal-update-badan-usaha" tabindex="-1" aria-labelledby="exampleModalLabel1">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content ">
                 <div class="modal-header d-flex align-items-center text-white" style="background-color: #1B3061">
@@ -632,68 +725,75 @@
                         style="color: white;"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="form-update-badan_usaha" method="POST">
+                    <form id="form-update-badan-usaha" method="POST">
                         @method('PUT')
                         @csrf
                         <div class="row">
+
                             <div class="col-6">
                                 <div class="mb-3">
-                                    <label id="name" for="recipient-name" class="control-label mb-2">Bentuk Badan Usaha</label>
-                                    <select name="tipe" class="form-select" id="">
-                                        <option value="cv">CV</option>
+                                    <label id="name" for="recipient-name" class="control-label mb-2">Bentuk Badan
+                                        Usaha</label>
+                                    <select name="form_of_business_entity" class="form-select" id="">
+                                        <option value="">Pilih Bentuk Badan Usaha</option>
                                         <option value="pt">PT</option>
+                                        <option value="cv">CV</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="mb-3">
-                                    <label id="name" for="recipient-name" class="control-label mb-2">Jenis Badan Usaha</label>
-                                  <select name="tipe" class="form-select" id="">
-                                    <option value="">Konsultan</option>
-                                    <option value="">Penyelenggara</option>
-                                  </select>
+                                    <label id="name" for="recipient-name" class="control-label mb-2">Jenis Badan
+                                        Usaha</label>
+                                    <select name="type_of_business_entity" class="form-select" id="">
+                                        <option value="">Pilih Jenis Badan Usaha</option>
+                                        <option value="consultant">Konsultan</option>
+                                        <option value="executor">Penyelenggara</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="mb-3">
-                                    <label id="name" for="recipient-name" class="control-label mb-2">Kabupaten</label>
-                                    <input name="tipe" type="text" class="form-control" id="">
+                                    <label id="city" for="recipient-name"
+                                        class="control-label mb-2">Kabupaten</label>
+                                    <input name="city" type="text" class="form-control" id="">
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="mb-3">
-                                    <label id="name" for="recipient-name" class="control-label mb-2">Kode Pos</label>
-                                    <input name="tipe" type="number" class="form-control" id="">
-                            </div>
+                                    <label id="name" for="recipient-name" class="control-label mb-2">Kode
+                                        Pos</label>
+                                    <input name="postal_code" type="number" class="form-control" id="">
+                                </div>
                             </div>
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Telepon</label>
-                                    <input name="tipe" type="number" class="form-control" id="">
+                                    <input name="phone_number" type="number" class="form-control" id="">
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Fax</label>
-                                    <input name="tipe" type="number" class="form-control" id="">
-                            </div>
+                                    <input name="fax" type="number" class="form-control" id="">
+                                </div>
                             </div>
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Email</label>
-                                    <input name="tipe" type="email" class="form-control" id="">
+                                    <input name="email" type="email" class="form-control" id="update-email">
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Website</label>
-                                    <input name="tipe" type="text" class="form-control" id="">
-                            </div>
+                                    <input name="website" type="text" class="form-control" id="">
+                                </div>
                             </div>
                         </div>
                         <div class="col-12">
                             <label for="" class="form-label">Alamat Badan Usaha</label>
-                            <textarea name="description" id="create-description" class="form-control" cols="15" rows="5"></textarea>
+                            <textarea name="address" id="update-address" class="form-control" cols="15" rows="5"></textarea>
                         </div>
                 </div>
                 <div class="modal-footer">
@@ -710,4 +810,18 @@
         </div>
 
     </div>
+@endsection
+@section('script')
+    <script>
+        $('.btn-edit-badan-usaha').click(function() {
+            const formData = getDataAttributes($(this).attr('id'))
+            var actionUrl = `update-business-entity`;
+            $('#form-update-badan-usaha').attr('action', actionUrl);
+
+            setFormValues('form-update-badan-usaha', formData)
+            $('#form-update-badan-usaha').data('id', formData['id'])
+            $('#form-update-badan-usaha').attr('action', );
+            $('#modal-update-badan-usaha').modal('show')
+        })
+    </script>
 @endsection

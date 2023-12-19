@@ -6,10 +6,6 @@ Route::get('detail-berita', function () {
     return view('detail-berita');
 })->name('detail-berita');
 
-Route::get('service-provider-profile', function (){
-    return view('pages.service-provider.profile');
-})->name('service-provider-profile');
-
 // Route::get('work-package', function(){
 //     return view('pages.service-provider.work-package');
 // })->name('work-package');

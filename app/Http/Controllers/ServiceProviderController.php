@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+use App\Helpers\ResponseHelper;
+use Illuminate\Contracts\View\View;
+use App\Contracts\Interfaces\UserInterface;
+use App\Contracts\Interfaces\WorkerInterface;
+use App\Http\Requests\ServiceProviderRequest;
+use App\Contracts\Interfaces\OfficerInterface;
 use App\Contracts\Interfaces\ProjectInterface;
 use App\Contracts\Interfaces\ServiceProviderInterface;
-use App\Contracts\Interfaces\UserInterface;
-use App\Helpers\ResponseHelper;
-use App\Http\Requests\ServiceProviderRequest;
-use App\Contracts\Interfaces\WorkerInterface;
-use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
+use App\Contracts\Interfaces\ServiceProviderQualificationInterface;
 
 class ServiceProviderController extends Controller
 {
@@ -17,12 +19,17 @@ class ServiceProviderController extends Controller
     private WorkerInterface $worker;
     private ProjectInterface $project;
     private ServiceProviderInterface $serviceProvider;
-    public function __construct(UserInterface $user, ServiceProviderInterface $serviceProvider, ProjectInterface $projectInterface, WorkerInterface $workerInterface)
+    private ServiceProviderQualificationInterface $serviceProviderQualification;
+    private OfficerInterface $officer;
+
+    public function __construct(UserInterface $user, ServiceProviderInterface $serviceProvider, ProjectInterface $projectInterface, WorkerInterface $workerInterface,ServiceProviderQualificationInterface $serviceProviderQualification, OfficerInterface $officerInterface)
     {
         $this->worker = $workerInterface;
         $this->project = $projectInterface;
         $this->user = $user;
         $this->serviceProvider = $serviceProvider;
+        $this->serviceProviderQualification = $serviceProviderQualification;
+        $this->officerInterface = $officerInterface;
     }
 
     /**
@@ -49,14 +56,25 @@ class ServiceProviderController extends Controller
      */
     public function update(ServiceProviderRequest $request)
     {
+        dd($request);
         $this->user->update(auth()->user()->id, $request->validated());
         $this->serviceProvider->update(auth()->user()->serviceProvider->id, $request->validated());
         return ResponseHelper::success(null, trans('alert.update_success'));
     }
 
-    public function index()
+    /**
+     * Index
+     *
+     * @param  mixed $request
+     * @return View
+     */
+    public function index(Request $request) : View
     {
-        $serviceProviders = $this->serviceProvider->show(auth()->user()->id);
-        // return view()
+        $serviceProviders = $this->serviceProvider->show(auth()->user()->serviceProvider->id);
+        $serviceProviderQualifications = $this->serviceProviderQualification->customPaginate($request, 10);
+        $officers = $this->officerInterface->get();
+        $workers = $this->worker->get();
+
+        return view('pages.service-provider.profile', ['serviceProvider' => $serviceProviders, 'serviceProviderQualifications' => $serviceProviderQualifications, 'officers' => $officers,'workers' => $workers]);
     }
 }

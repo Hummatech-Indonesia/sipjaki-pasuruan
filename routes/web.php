@@ -130,7 +130,7 @@ Route::middleware('auth')->group(function () {
             'sections' => SectionController::class,
             'rules' => RuleController::class,
             'types' => TypeController::class,
-            'classification-trainings' => ClassificationTrainingController::class,
+            // 'classification-trainings' => ClassificationTrainingController::class,
             'qualification-level-trainings' => QualificationLevelTrainingController::class,
             'qualification-trainings' => QualificationTrainingController::class,
             'classification-training'=> ClassificationTrainingController::class
@@ -213,10 +213,14 @@ Route::middleware(['role:dinas'])->group(function () {
         'projects' => ProjectController::class,
     ]);
 });
+
 Route::middleware('role:service provider')->group(function () {
     Route::resources([
         'officers' => OfficerController::class,
     ]);
+
+    Route::get('service-provider-profile', [ServiceProviderController::class, 'index'])->name('service-provider-profile');
+    Route::put('update-business-entity', [ServiceProviderController::class, 'update'])->name('update-business-entity');
 
     Route::get('service-provider-projects', [ServiceProviderProjectController::class, 'index']);
     Route::post('service-provider-projects/{project}', [ServiceProviderProjectController::class, 'store'])->name('service-provider-projects/');
