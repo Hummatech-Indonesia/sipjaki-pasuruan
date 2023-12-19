@@ -47,7 +47,7 @@
         @endforeach
     @endif
     <div class="d-flex justify-content-between mb-3">
-        <h2>Upload Video</h2>
+        <h2>Video Halaman Beranda Landing Page</h2>
     </div>
     <div class="card">
         <div class="card-body">
@@ -83,27 +83,27 @@
         </script>
     @endif
     <script>
-        // preview 
+        // preview
         const fileInput = document.getElementById('fileInput');
         const previewDiv = document.getElementById('preview');
         const defaultVideoSrc = "{{ asset('storage/video/video.mp4') }}";
-    
+
         // Set video source to default on page load
         window.addEventListener('DOMContentLoaded', function() {
             previewDiv.innerHTML =
                 `<video id="previewVideo" src="${defaultVideoSrc}" style="width: 100%; height: 100%; object-fit: cover;" controls></video>`;
         });
-    
+
         fileInput.addEventListener('change', function(e) {
             const file = e.target.files[0];
-    
+
             if (file) {
                 const fileReader = new FileReader();
-    
+
                 fileReader.onload = function(event) {
                     const fileType = file.type;
                     const fileUrl = event.target.result;
-    
+
                     if (fileType.startsWith('image/')) {
                         previewDiv.innerHTML =
                             `<img src="${fileUrl}" style="width: 100%; height: 100%; object-fit: cover;">`;
@@ -114,7 +114,7 @@
                         previewDiv.innerHTML = 'File tidak didukung';
                     }
                 };
-    
+
                 fileReader.readAsDataURL(file);
             } else {
                 previewDiv.innerHTML =
