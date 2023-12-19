@@ -103,11 +103,10 @@
                         <th scope="col" class="table-sipjaki text-center">Nomor</th>
                         <th scope="col" class="table-sipjaki text-center">Tahun</th>
                         <th scope="col" class="table-sipjaki text-center">Judul</th>
-                        <th scope="col" class="text-white text-center"
-                            style="background-color: #1B3061; border-radius:0px 5px 5px 0px; color: #ffffff; border-color: #1B3061; border-width: 0px;">
+                        <th scope="col" class="table-sipjaki text-center">
                             Aksi
                         </th>
-                        <th scope="col" class="table-sipjaki text-center">File</th>
+                        <th scope="col" class="table-sipjaki text-center" style="border-radius:0px 5px 0px 0px;">File</th>
                     </tr>
                 </thead>
                 <tbody>
