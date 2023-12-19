@@ -33,7 +33,6 @@ interface ProjectInterface extends CountInterface, GetInterface, StoreInterface,
      */
     public function getAllProject(Request $request): mixed;
 
-
     /**
      * getbyId
      *

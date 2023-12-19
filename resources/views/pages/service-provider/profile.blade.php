@@ -578,7 +578,7 @@
                         <div class="flex-grow-1">
                             <div class="ms-2">
                                 <div class="btn btn-sm mb-3 text-dark rounded-3" style="background-color: #E4ECFF;">
-                                    Data Pengurus Badan Usaha
+                                    Data Tenaga Kerja Badan Usaha
                                 </div>
                                 <p class="fw-bolder fs-4">{{ $serviceProvider->user->name }}</p>
                             </div>
@@ -795,21 +795,21 @@
                         <div class="flex-grow-1">
                             <div class="ms-2">
                                 <div class="btn btn-sm mb-3 text-dark rounded-3" style="background-color: #E4ECFF;">
-                                    Data Pengurus Badan Usaha
+                                    Data Pengalaman Badan Usaha
                                 </div>
-                                <p class="fw-bolder fs-4">MITRA BAHAGIA UTAMA BUMIAJI</p>
+                                <p class="fw-bolder fs-4">{{$serviceProvider->user->name}}</p>
                             </div>
                             <table cellpadding="5" style="border-collapse: collapse; width: 40%;" class="fs-6 fw-normal">
                                 <tbody>
                                     <tr>
                                         <td>Alamat Badan Usaha</td>
                                         <td>:</td>
-                                        <td>Jl. G. Lokon No. 59</td>
+                                        <td>{{$serviceProvider->address ? $serviceProvider->address : '-'}}</td>
                                     </tr>
                                     <tr>
                                         <td>Telepon</td>
                                         <td>:</td>
-                                        <td>0411 - 3584897987</td>
+                                        <td>{{$serviceProvider->user->phone_number ? $serviceProvider->user->phone_number : '-'}}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -817,7 +817,7 @@
                     </div>
                 </div>
             </div>
-            <h4 class="mt-3 mb-3 fw-bold">Pengesahan</h4>
+            <h4 class="mt-3 mb-3 fw-bold">Pengalaman</h4>
             <div class="table-responsive rounded-4">
                 <div class="table-responsive">
                     <table class="table">
@@ -827,28 +827,16 @@
                                     No
                                 </td>
                                 <td class="text-white" style="background-color: #1B3061">
-                                    Tahun
+                                    Nama
                                 </td>
                                 <td class="text-white" style="background-color: #1B3061">
-                                    Nama
+                                    Tahun
                                 </td>
                                 <td class="text-white" style="background-color: #1B3061">
                                     Nilai Project
                                 </td>
                                 <td class="text-white" style="background-color: #1B3061">
-                                    Nama Dinas
-                                </td>
-                                <td class="text-white" style="background-color: #1B3061">
-                                    Sub Bidang Kualifikasi
-                                </td>
-                                <td class="text-white" style="background-color: #1B3061">
-                                    Kontrak
-                                </td>
-                                <td class="text-white" style="background-color: #1B3061">
-                                    NKPK
-                                </td>
-                                <td class="text-white" style="background-color: #1B3061">
-                                    Berita Serah Terima
+                                    Pemberi Tugas
                                 </td>
                                 <td class="text-white" style="background-color: #1B3061">
                                     Kontrak
@@ -862,20 +850,31 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @forelse ($serviceProvider->projects()->where('end_date','<',now()) as $project)
                             <tr>
-                                <td>1</td>
-                                <td>2023</td>
-                                <td>Peningkatan Jalan Laston Paket VI Kab. Bulukumba</td>
-                                <td>123132456478</td>
-                                <td>S1</td>
-                                <td>SI0084</td>
-                                <td>1</td>
-                                <td>06/SPK/Laston/PPK/DBM/III/2015</td>
-                                <td>02/PHO/Laston-Dau/DBM/IX/2015</td>
-                                <td>25 Juni 2023</td>
-                                <td>25 Juni 2023</td>
-                                <td>25 Juni 2023</td>
+                                <td>{{$loop->iteration}}</td>
+                                <td>{{$project->name}}</td>
+                                <td>{{$project->year}}</td>
+                                <td>{{$project->project_value}}</td>
+                                <td>{{$project->dinas->user->name}}</td>
+                                <td>{{$project->contractCategory->name}}</td>
+                                <td>{{Carbon::parse($project->start_date)->locale('id_ID')->isoFormat('DD MMMM Y')}}</td>
+                                <td>{{Carbon::parse($project->end_date)->locale('id_ID')->isoFormat('DD MMMM Y')}}</td>
                             </tr>
+                            @empty
+                            <tr>
+                                <td colspan="8" class="text-center">
+                                    <div class="d-flex justify-content-center" style="min-height:19rem">
+                                        <div class="my-auto">
+                                            <img src="{{ asset('no-data.png') }}" width="300"
+                                                height="300" />
+                                            <h4 class="text-center mt-4">Belum Ada Pengalaman!!</h4>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforelse
+                            
                         </tbody>
                     </table>
                 </div>
