@@ -63,7 +63,9 @@ class ServiceProviderQualificationController extends Controller
      */
     public function update(ServiceProviderQualificationRequest $request, ServiceProviderQualification $serviceProviderQualification)
     {
-        $this->serviceProviderQualification->update($serviceProviderQualification->id, $request->validated());
+        $request->validated();
+        $data['status'] = 0;
+        $this->serviceProviderQualification->update($serviceProviderQualification->id, $data);
         if ($request->is('api/*')) {
             return ResponseHelper::success(null, trans('alert.add_success'));
         } else {
