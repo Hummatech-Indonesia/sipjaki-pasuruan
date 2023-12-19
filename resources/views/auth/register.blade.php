@@ -141,7 +141,7 @@
                                                         style="font-weight: bold">{{ __('Tipe') }}</label>
                                                     <select name="type_of_business_entity" class="form-select" id="">
                                                         <option value="consultant">Konsultan</option>
-                                                        <option value="participant">Peserta</option>
+                                                        <option value="executor">Penyelenggara</option>
                                                     </select>
                                                     @error('type_of_business_entity')
                                                             <span class="invalid-feedback" role="alert">
