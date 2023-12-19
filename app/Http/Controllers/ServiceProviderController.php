@@ -73,7 +73,8 @@ class ServiceProviderController extends Controller
         $serviceProviders = $this->serviceProvider->show(auth()->user()->serviceProvider->id);
         $serviceProviderQualifications = $this->serviceProviderQualification->customPaginate($request, 10);
         $officers = $this->officerInterface->get();
+        $workers = $this->worker->get();
 
-        return view('pages.service-provider.profile', ['serviceProvider' => $serviceProviders, 'serviceProviderQualifications' => $serviceProviderQualifications, 'officers' => $officers]);
+        return view('pages.service-provider.profile', ['serviceProvider' => $serviceProviders, 'serviceProviderQualifications' => $serviceProviderQualifications, 'officers' => $officers,'workers' => $workers]);
     }
 }
