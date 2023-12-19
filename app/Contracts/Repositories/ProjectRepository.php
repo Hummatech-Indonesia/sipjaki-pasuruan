@@ -38,7 +38,7 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
     public function countAllProject(): int
     {
         return $this->model->query()
-            ->where('service_provider_id', auth()->user()->serviceProvider ? auth()->user()->serviceProvider->id : auth()->user()->dinas->id)
+            // ->where('service_provider_id', auth()->user()->serviceProvider ? auth()->user()->serviceProvider->id : auth()->user()->dinas->id)
             ->count();
     }
 
@@ -51,7 +51,7 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
     public function getByServiceProvider(Request $request): mixed
     {
         return $this->model->query()
-            ->where('service_provider_id', auth()->user()->serviceProvider->id)
+            // ->where('service_provider_id', auth()->user()->serviceProvider->id)
             ->where('status', StatusEnum::ACTIVE->value)
             ->when($request->year, function ($query) use ($request) {
                 $query->where('year', $request->year);
@@ -70,7 +70,7 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
     public function countProject(): int
     {
         return $this->model->query()
-            ->where('service_provider_id', auth()->user()->serviceProvider->id)
+            // ->where('service_provider_id', auth()->user()->serviceProvider->id)
             ->where('status', StatusEnum::ACTIVE->value)
             ->count();
     }
@@ -184,7 +184,7 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
             ->when($request->name, function ($query) use ($request) {
                 $query->where('name', 'LIKE', '%' . $request->name . '%');
             })
-            ->where('service_provider_id', auth()->user()->serviceProvider->id)
+            // ->where('service_provider_id', auth()->user()->serviceProvider->id)
             ->fastPaginate($pagination);
     }
 

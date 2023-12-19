@@ -86,7 +86,7 @@
                                                         name="name" placeholder="Masukan Badan Usaha"
                                                         value="{{ old('username') }}" autocomplete="email" autofocus
                                                         style="border-radius: 8px">
-                                                    @error('email')
+                                                    @error('name')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
                                                         </span>
@@ -129,15 +129,25 @@
                                                                 {{ $association->name }}</option>
                                                         @endforeach
                                                     </select>
+                                                    @error('association_id')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
                                                 </div>
 
                                                 <div class="mb-3 col-md-6 col-12">
                                                     <label for="phone" class="form-label"
                                                         style="font-weight: bold">{{ __('Tipe') }}</label>
-                                                    <select name="type" class="form-select" id="">
+                                                    <select name="type_of_business_entity" class="form-select" id="">
                                                         <option value="consultant">Konsultan</option>
                                                         <option value="participant">Peserta</option>
                                                     </select>
+                                                    @error('type_of_business_entity')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
                                                 </div>
 
                                                 <div class="mb-3 col-md-6 col-12">

@@ -93,6 +93,6 @@ class DinasController extends Controller
         $project_total = $this->project->countDinas();
         $countActiveWorker = $this->project->countAllProject();
 
-        return view('pages.dinas.dashboard', ['accident_count' => $accident_total, 'project_count' => $project_total, 'countActiveWorker' => $countActiveWorker]);
+        return view('pages.dinas.dashboard', ['accident_count' => $accident_total, 'project_count' => $project_total, 'countActiveWorker' => $countActiveWorker, 'projects' => $projects]);
     }
 }
