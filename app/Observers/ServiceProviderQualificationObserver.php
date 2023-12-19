@@ -13,5 +13,6 @@ class ServiceProviderQualificationObserver
     public function creating(ServiceProviderQualification $serviceProviderQualification): void
     {
         $serviceProviderQualification->id = Uuid::uuid();
+        $serviceProviderQualification->service_provider_id = auth()->user()->serviceProvider->id;
     }
 }
