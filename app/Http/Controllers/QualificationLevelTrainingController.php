@@ -6,7 +6,6 @@ use App\Contracts\Interfaces\QualificationLevelTrainingInterface;
 use App\Helpers\ResponseHelper;
 use App\Http\Requests\QualificationLevelTrainingRequest;
 use App\Http\Resources\QualificationLevelTrainingResource;
-use App\Models\QualificationLevel;
 use App\Models\QualificationLevelTraining;
 use App\Traits\PaginationTrait;
 use Illuminate\Http\JsonResponse;
