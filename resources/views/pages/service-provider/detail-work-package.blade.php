@@ -139,7 +139,7 @@
                                         <td>:</td>
                                         <td>{{ $project->fundSource->name }}</td>
                                     </tr>
-                                    <tr>
+                                    {{-- <tr>
                                         <td>Penggunaan Jasa</td>
                                         <td>:</td>
                                         <td colspan="2" style="vertical-align: top;">
@@ -149,7 +149,7 @@
                                         <td>Penyedia Nama</td>
                                         <td>:</td>
                                         <td>{{ $project->dinas->user_id }}</td>
-                                    </tr>
+                                    </tr> --}}
                                     <tr>
                                         <td>Jenis Kontrak</td>
                                         <td>:</td>
