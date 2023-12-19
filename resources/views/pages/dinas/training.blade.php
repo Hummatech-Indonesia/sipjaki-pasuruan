@@ -312,7 +312,7 @@
                                             <label for="basicpill-email-input">Klasifikasi</label>
                                             <select name="qualification_training_id" class="form-select list-classifications select2-update" style="width:100%"
                                                 id="update-list-classifications">
-                                                <option value="">Pilih Kualifikasi</option>
+                                                <option value="">Pilih Klalifikasi</option>
                                             </select>
                                         </div>
                                     </div>

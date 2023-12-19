@@ -119,13 +119,13 @@
                 <tbody>
                     @forelse ($officers as $index => $officer)
                         <tr>
-                            <td class="fs-5">{{ $index + 1 }}</td>
-                            <td class="fs-5">{{ $officer->name }}</td>
-                            <td class="fs-5">
+                            <td class="fs-6">{{ $index + 1 }}</td>
+                            <td class="fs-6">{{ $officer->name }}</td>
+                            <td class="fs-6">
                                 {{ Carbon::parse($officer->birth_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}</td>
-                            <td class="fs-5">{{ $officer->address }}</td>
-                            <td class="fs-5">{{ $officer->position }}</td>
-                            <td class="fs-5">{{ $officer->education }}</td>
+                            <td class="fs-6">{{ $officer->address }}</td>
+                            <td class="fs-6">{{ $officer->position }}</td>
+                            <td class="fs-6">{{ $officer->education }}</td>
                             <td class="d-flex flex-row gap-3 justify-content-center">
                                 <button type="button"
                                     class="btn waves-effect waves-light d-flex btn-edit flex-row gap-1 justify-content-evenly"

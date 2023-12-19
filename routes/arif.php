@@ -19,7 +19,7 @@ Route::post('verification', [VerificationController::class, 'store']);
 Route::put('upload-file-consultan/{project}', [ProjectController::class, 'uploadFileKonsultan']);
 
 Route::get('service-provider-qualifications', [ServiceProviderQualificationController::class, 'index'])->name('service.provider.qualifications');
-Route::post('service-provider-qualifications', [ServiceProviderQualificationController::class, 'store']);
+Route::post('service-provider-qualifications', [ServiceProviderQualificationController::class, 'store'])->name('service.provider.qualifications.store');
 Route::put('service-provider-qualifications/{serviceProviderQualification}', [ServiceProviderQualificationController::class, 'update']);
 Route::patch('approve-service-provider-qualifications/{serviceProviderQualification}', [ServiceProviderQualificationController::class, 'approve']);
 Route::delete('service-provider-qualifications/{serviceProviderQualification}', [ServiceProviderQualificationController::class, 'delete']);
