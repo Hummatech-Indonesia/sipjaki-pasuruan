@@ -45,7 +45,9 @@ class UserController extends Controller
             $data['data'] = UserResource::collection($users);
             return ResponseHelper::success($data);
         } else {
-            return view('pages.agency', ['users' => $users]);
+            $name = $request->name;
+
+            return view('pages.agency', ['users' => $users,'name'=>$name]);
         }
     }
 

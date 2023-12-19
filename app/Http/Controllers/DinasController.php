@@ -44,6 +44,7 @@ class DinasController extends Controller
     public function all(Request $request)
     {
         $dinass = $this->dinas->customPaginate($request, 15);
+        
         // dd($dinass);
         return view('pages.all-agency', compact('dinass'));
     }

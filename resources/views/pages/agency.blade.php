@@ -13,7 +13,7 @@
     <div class="d-flex justify-content-between mb-3">
         <form action="" class="">
             <div class="input-group">
-                <input name="name" type="text" class="form-control"
+                <input name="name" type="text" value="{{$name}}" class="form-control"
                     placeholder="Search">
                 <div class="input-group-append">
                     <button class="btn text-white" style="background-color: #1B3061; border-radius: 0 5px 5px 0;"
