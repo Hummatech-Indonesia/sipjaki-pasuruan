@@ -20,7 +20,7 @@
     <div class="modal fade" id="samedata-modal" tabindex="-1" id="modeal-create" aria-labelledby="exampleModalLabel1">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <form action="{{ route('sub-qualification.store', ['qualification_training' => $id]) }}" method="post">
+                <form action="/qualification-level-trainings/{{ $Id }}" method="post">
                     @csrf
                     @method('POST')
                     <div class="modal-header d-flex align-items-center text-white " style="background-color: #1B3061">
@@ -81,10 +81,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($subQualificationTrainings as $subQualificationTraining)
+                        @forelse ($qualificationLevelTrainings as $qualificationLevelTraining)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $subQualificationTraining->name }}
+                                <td>{{ $qualificationLevelTraining->name }}
                                 </td>
                                 <td>
                                     <div class="d-flex justify-content-center gap-2">
@@ -92,9 +92,9 @@
                                             <button type="button"
                                                 class="btn waves-effect waves-light d-flex btn-edit flex-row gap-1 justify-content-evenly"
                                                 style="width: 90px; background-color: #FFC928; color: white"
-                                                id="btn-edit-{{ $subQualificationTraining->id }}"
-                                                data-id="{{ $subQualificationTraining->id }}"
-                                                data-name="{{ $subQualificationTraining->name }}"><i
+                                                id="btn-edit-{{ $qualificationLevelTraining->id }}"
+                                                data-id="{{ $qualificationLevelTraining->id }}"
+                                                data-name="{{ $qualificationLevelTraining->name }}"><i
                                                     class="bx bx-bx bxs-edit fs-4"></i>
                                                 <span>Edit</span>
                                             </button>
@@ -103,7 +103,7 @@
                                             <button type="button"
                                                 class="btn waves-effect waves-light d-flex flex-row gap-1 justify-content-between btn-delete"
                                                 style="width: 90px; background-color: #E05C39; color: white"
-                                                data-id="{{ $subQualificationTraining->id }}" data-bs-toggle="modal"
+                                                data-id="{{ $qualificationLevelTraining->id }}" data-bs-toggle="modal"
                                                 data-bs-target="#modal-delete"><i class="bx bx-bx bxs-trash fs-4"></i> Hapus
                                             </button>
                                         </div>
@@ -169,7 +169,7 @@
     <script>
         $('.btn-edit').click(function() {
             const formData = getDataAttributes($(this).attr('id'))
-            var actionUrl = `update/${formData['id']}`;
+            var actionUrl = `/qualification-level-trainings/${formData['id']}`;
             $('#form-update').attr('action', actionUrl);
 
             setFormValues('form-update', formData)

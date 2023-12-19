@@ -97,8 +97,8 @@ Route::get('/opd', function () {
 
 Route::get('json-classification-training', [ClassificationTrainingController::class, 'jsonClassificationTraining']);
 Route::get('json-sub-classification-training/{classification_training}', [SubClassificationTrainingController::class, 'jsonSubClassificationTraining']);
-Route::get('json-qualification-training', [QualificationTrainingController::class, 'jsonQualificationTraining']);
-Route::get('json-qualification-level-training/{qualification_training}', [QualificationLevelTrainingController::class, 'jsonQualificationLevelTraining']);
+Route::get('list-qualification-training', [QualificationTrainingController::class, 'jsonQualificationTraining']);
+Route::get('qualification-level-training/{qualification_training}', [QualificationLevelTrainingController::class, 'jsonQualificationLevelTraining']);
 
 Route::middleware('auth')->group(function () {
     Route::get('profile', function () {
@@ -142,11 +142,13 @@ Route::middleware('auth')->group(function () {
             'classification-training' => ClassificationTrainingController::class
         ]);
         Route::resource('qualification-level-trainings', QualificationLevelTrainingController::class)->except('store');
+        Route::get('qualification-level-training/{id}' , [QualificationLevelTrainingController::class ,'index']);
         Route::post('qualification-level-trainings/{qualification_training}', [QualificationLevelTrainingController::class, 'store']);
-        Route::get('sub-clasification-training/{classification_training}', [SubClassificationTrainingController::class, 'index'])->name('sub-trainings.detail');
-        Route::post('sub-clasification-training/store/{classification_training}', [SubClassificationTrainingController::class, 'store'])->name('sub-clasification-training.store');
-        Route::put('sub-clasification-training/update/{sub_classification_training}', [SubClassificationTrainingController::class, 'update'])->name('sub-clasification-training.update');
-        Route::delete('sub-clasification-training/delete/{sub_classification_training}', [SubClassificationTrainingController::class, 'destroy'])->name('sub-clasification-training.delete');
+        Route::put('qualification-level-trainings/{qualification_training}', [QualificationLevelTrainingController::class, 'update']);
+        Route::get('sub-clasification-training/{classification_training}',[SubClassificationTrainingController::class,'index'])->name('sub-trainings.detail');
+        Route::post('sub-clasification-training/store/{classification_training}',[SubClassificationTrainingController::class,'store'])->name('sub-clasification-training.store');
+        Route::put('sub-clasification-training/update/{sub_classification_training}',[SubClassificationTrainingController::class,'update'])->name('sub-clasification-training.update');
+        Route::delete('sub-clasification-training/delete/{sub_classification_training}',[SubClassificationTrainingController::class,'destroy'])->name('sub-clasification-training.delete');
 
 
         Route::get('history-login', [HistoryLoginController::class, 'index'])->name('history-login.index');

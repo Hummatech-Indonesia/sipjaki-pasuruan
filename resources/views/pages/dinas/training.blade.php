@@ -88,7 +88,8 @@
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-lastname-input">Sumber Dana</label>
-                                            <select name="fund_source_id" class="form-select  founds-source" id="" value="{{ old('fund_source_id') }}">
+                                            <select name="fund_source_id" class="form-select  founds-source" id=""
+                                                value="{{ old('fund_source_id') }}">
 
                                             </select>
                                         </div>
@@ -97,20 +98,28 @@
                                 <div class="row">
                                     <div class="col-lg-3">
                                         <div class="mb-3">
-                                            <label for="basicpill-phoneno-input">Kualifikasi</label>
-                                            <select name="kualifikasi" class="form-select list-qualifications select2-create" style="width:100%"
-                                                id="list-qualifications" value="{{ old('kualifikasi') }}">
+                                            <label for="basicpill-phoneno-input">Kualifikasi Pelatihan</label>
+                                            <select name="qualification_training_id"
+                                                class="form-select list-qualifications select2-create" style="width:100%"
+                                                id="list-qualifications" value="{{ old('qualification_training_id') }}">
                                                 <option value="">Pilih Kualifikasi</option>
                                             </select>
+                                            @error('qualification_training_id')
+                                                <p class="text-danger">
+                                                    {{ $message }}
+                                                </p>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-lg-3">
                                         <div class="mb-3">
-                                            <label for="basicpill-email-input">Jenjang KKNI</label>
-                                            <select name="qualification_level_training_id" class="form-select select2-create"
-                                                style="width:100%" id="list-qualification-level" value="{{ old('qualification_level_training_id') }}">
+                                            <label for="basicpill-email-input">Tingkat Pelatihan</label>
+                                            <select name="qualification_level_training_id"
+                                                class="form-select select2-create" style="width:100%"
+                                                id="list-qualification-level"
+                                                value="{{ old('qualification_level_training_id') }}">
                                             </select>
-                                            @error('qulification_level_id')
+                                            @error('qualification_level_training_id')
                                                 <p class="text-danger">
                                                     {{ $message }}
                                                 </p>
@@ -120,8 +129,9 @@
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-email-input">Klasifikasi</label>
-                                            <select name="qualification_training_id" class="form-select list-classifications select2-create" style="width:100%"
-                                                id="list-classifications" value="{{ old('qualification_training_id') }}">
+                                            <select name="" class="form-select list-classifications select2-create"
+                                                style="width:100%" id="list-classifications"
+                                                value="{{ old('qualification_training_id') }}">
                                                 <option value="">Pilih klasifikasi</option>
                                             </select>
                                         </div>
@@ -129,8 +139,10 @@
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-email-input">Sub Klasifikasi</label>
-                                            <select name="sub_classification_training_id" class="form-select sub-classifications select2-create"
-                                                style="width:100%" id="list-sub-classifications" value="{{ old('sub_classification_training_id') }}">
+                                            <select name="sub_classification_training_id"
+                                                class="form-select sub-classifications select2-create" style="width:100%"
+                                                id="list-sub-classifications"
+                                                value="{{ old('sub_classification_training_id') }}">
                                             </select>
                                             @error('sub_classification_training_id')
                                                 <p class="text-danger">
@@ -277,8 +289,8 @@
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-lastname-input">Sumber Dana</label>
-                                            <select name="fund_source_id" class="form-select founds-source" value="{{ old('fund_source_id') }}"
-                                                id="">
+                                            <select name="fund_source_id" class="form-select founds-source"
+                                                value="{{ old('fund_source_id') }}" id="">
 
                                             </select>
                                         </div>
@@ -288,19 +300,26 @@
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-phoneno-input">Kualifikasi</label>
-                                            <select name="qualifications" class="form-select list-qualifications select2-update" style="width:100%"
-                                                id="update-list-qualifications" >
+                                            <select name="qualification_training_id"
+                                                class="form-select list-qualifications select2-update" style="width:100%"
+                                                id="update-list-qualifications">
                                                 <option value="">Pilih Kualifikasi</option>
                                             </select>
+                                            @error('qualification_training_id')
+                                                <p class="text-danger">
+                                                    {{ $message }}
+                                                </p>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-email-input">Jenjang KKNI</label>
-                                            <select name="qualification_level_training_id" class="form-select list-qualification-level select2-update"
+                                            <select name="qualification_level_training_id"
+                                                class="form-select list-qualification-level select2-update"
                                                 style="width:100%" id="update-list-qualification-level">
                                             </select>
-                                            @error('qulification_level_id')
+                                            @error('qualification_level_training_id')
                                                 <p class="text-danger">
                                                     {{ $message }}
                                                 </p>
@@ -310,7 +329,8 @@
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-email-input">Klasifikasi</label>
-                                            <select name="qualification_training_id" class="form-select list-classifications select2-update" style="width:100%"
+                                            <select name="klasifikasi"
+                                                class="form-select list-classifications select2-update" style="width:100%"
                                                 id="update-list-classifications">
                                                 <option value="">Pilih Klalifikasi</option>
                                             </select>
@@ -319,8 +339,9 @@
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-email-input">Sub Klasifikasi</label>
-                                            <select name="sub_classification_training_id" class="form-select sub-classifications select2-update"
-                                                style="width:100%" id="update-list-sub-classifications">
+                                            <select name="sub_classification_training_id"
+                                                class="form-select sub-classifications select2-update" style="width:100%"
+                                                id="update-list-sub-classifications">
                                             </select>
                                             @error('sub_classification_training_id')
                                                 <p class="text-danger">
@@ -410,89 +431,87 @@
         </div><!-- /.modal-dialog -->
     </div>
     @if ($errors->any())
-    @foreach ($errors->all() as $error)
-        <div class="alert alert-danger alert-dismissible mt-3 fade show" role="alert">
-            {{ $error }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endforeach
-@endif
-<div class="table-responsive">
-    <table class="table table-borderless" border="1">
-        <thead>
-            <tr>
-                <th class="text-center table-sipjaki" >No</th>
-                <th class="text-center table-sipjaki" >Nama</th>
-                <th class="text-center table-sipjaki" >Tahun</th>
-                <th class="text-center table-sipjaki" >Keterangan</th>
-                <th class="text-center table-sipjaki" >Aksi</th>
-            </tr>
-        </thead>
-        @forelse ($trainings as $index=>$training)
-        <tbody>
-            <tr>
-                <td class="text-center">
-                    {{ $index + 1 }}
-                </td>
-                <td class="text-center">
-                    {{ $training->name }}
-                </td>
-                <td class="text-center">
-                    {{ $training->fiscalYear->name }}
-                </td>
-                <td class="text-center">
-                    {{ $training->description }}
-                </td>
-                <td class="text-center">
-                    <div class="d-flex justify-content-center gap-3">
-                        <div class="">
-                            <button class="btn btn-danger btn-delete" data-id="{{ $training->id }}">
-                                Hapus
-                            </button>
+        @foreach ($errors->all() as $error)
+            <div class="alert alert-danger alert-dismissible mt-3 fade show" role="alert">
+                {{ $error }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endforeach
+    @endif
+    <div class="table-responsive">
+        <table class="table table-borderless" border="1">
+            <thead>
+                <tr>
+                    <th class="text-center table-sipjaki">No</th>
+                    <th class="text-center table-sipjaki">Nama</th>
+                    <th class="text-center table-sipjaki">Tahun</th>
+                    <th class="text-center table-sipjaki">Keterangan</th>
+                    <th class="text-center table-sipjaki">Aksi</th>
+                </tr>
+            </thead>
+            @forelse ($trainings as $index=>$training)
+                <tbody>
+                    <tr>
+                        <td class="text-center">
+                            {{ $index + 1 }}
+                        </td>
+                        <td class="text-center">
+                            {{ $training->name }}
+                        </td>
+                        <td class="text-center">
+                            {{ $training->fiscalYear->name }}
+                        </td>
+                        <td class="text-center">
+                            {{ $training->description }}
+                        </td>
+                        <td class="text-center">
+                            <div class="d-flex justify-content-center gap-3">
+                                <div class="">
+                                    <button class="btn btn-danger btn-delete" data-id="{{ $training->id }}">
+                                        Hapus
+                                    </button>
+                                </div>
+                                <div class="">
+                                    <button class="btn btn-warning btn-edit" id="btn-edit-{{ $training->id }}"
+                                        data-fund_source_id="{{ $training->fund_source_id }}"
+                                        data-fiscal_year_id="{{ $training->fiscal_year_id }}"
+                                        data-id="{{ $training->id }}" data-name="{{ $training->name }}"
+                                        data-lesson_hour="{{ $training->lesson_hour }}"
+                                        data-organizer="{{ $training->organizer }}"
+                                        data-start_at="{{ \Carbon\Carbon::parse($training->start_at)->format('Y-m-d') }}"
+                                        data-end_time="{{ \Carbon\Carbon::parse($training->end_time)->format('Y-m-d') }}"
+                                        data-sub_classification_id="{{ $training->sub_classification_id }}"
+                                        data-training_method_id="{{ $training->training_method_id }}"
+                                        data-qualification_training_id="{{ $training->qualification_training_id }}"
+                                        data-location="{{ $training->location }}"
+                                        data-description="{{ $training->description }}">
+                                        Edit
+                                    </button>
+                                </div>
+                                <div class="">
+                                    <a href="training-members/{{ $training->id }}" class="btn text-white"
+                                        style="background-color: #1B3061">
+                                        Detail
+                                    </a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            @empty
+                <tr>
+                    <td colspan="5" class="text-center">
+                        <div class="d-flex justify-content-center" style="min-height:16rem">
+                            <div class="my-auto">
+                                <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                <h4 class="text-center mt-4">Pelatihan Masih Kosong!!</h4>
+                            </div>
                         </div>
-                        <div class="">
-                            <button class="btn btn-warning btn-edit" id="btn-edit-{{ $training->id }}"
-                                data-fund_source_id="{{ $training->fund_source_id }}"
-                                data-fiscal_year_id="{{ $training->fiscal_year_id }}"
-                                data-id="{{ $training->id }}" data-name="{{ $training->name }}"
-                                data-lesson_hour="{{ $training->lesson_hour }}"
-                                data-organizer="{{ $training->organizer }}"
-                                data-start_at="{{ \Carbon\Carbon::parse($training->start_at)->format('Y-m-d') }}"
-                                data-end_time="{{ \Carbon\Carbon::parse($training->end_time)->format('Y-m-d') }}"
-                                data-sub_classification_id="{{ $training->sub_classification_id }}"
-                                data-training_method_id="{{ $training->training_method_id }}"
-                                data-location="{{ $training->location }}"
-                                data-kualifikasi="{{ $training->subClassification->classification->id }}"
-                                data-qualifications="{{ $training->qualificationLevel->qualification->id }}"
-                                data-qualification_level_id="{{ $training->qualification_level_id }}"
-                                data-description="{{ $training->description }}">
-                                Edit
-                            </button>
-                        </div>
-                        <div class="">
-                            <a href="training-members/{{ $training->id }}" class="btn text-white"
-                                style="background-color: #1B3061">
-                                Detail
-                            </a>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-        @empty
-        <tr>
-            <td colspan="5" class="text-center">
-                <div class="d-flex justify-content-center" style="min-height:16rem">
-                    <div class="my-auto">
-                        <img src="{{ asset('no-data.png') }}" width="300" height="300" />
-                        <h4 class="text-center mt-4">Pelatihan Masih Kosong!!</h4>
-                    </div>
-                </div>
-            </td>
-        </tr>
-    @endforelse
-    </table>
-</div>
+                    </td>
+                </tr>
+            @endforelse
+        </table>
+    </div>
     <x-delete-modal-component />
 @endsection
 @section('script')
@@ -526,7 +545,7 @@
 
         function get() {
             $.ajax({
-                url: "{{ route('list-classifications') }}",
+                url: "json-classification-training",
                 type: 'GET',
                 dataType: "JSON",
                 success: function(response) {
@@ -575,7 +594,7 @@
 
         function subclassifications(classificationId) {
             $.ajax({
-                url: "list-sub-classifications/" + classificationId,
+                url: "json-sub-classification-training/" + classificationId,
                 type: 'GET',
                 dataType: "JSON",
                 success: function(response) {
@@ -601,7 +620,6 @@
                         $('#update-list-training-method').append(option);
                     });
 
-                    // Mengatur nilai fiscal_year_id pada elemen select2
                     $('#update-list-training-method').val(fiscalYearId).trigger('change');
                 }
             });
@@ -611,12 +629,13 @@
 
         function qualifications() {
             $.ajax({
-                url: "{{ route('list-qualifications') }}",
+                url: "list-qualification-training",
                 type: 'GET',
                 dataType: "JSON",
                 success: function(response) {
                     $.each(response.data, function(index, item) {
                         var option = `<option value="${item.id}">${item.name}</option>`
+
                         $('#list-qualifications').append(option);
                         $('#update-list-qualifications').append(option);
                     });
@@ -625,7 +644,6 @@
                         $('#list-qualification-level')
                         $('#update-list-qualification-level')
                             .empty();
-
                         if (selectedClassificationId !== '') {
                             listqualificationlevel(
                                 selectedClassificationId
@@ -649,7 +667,7 @@
 
         function listqualificationlevel(classificationId) {
             $.ajax({
-                url: "list-qualification-level/" + classificationId,
+                url: "qualification-level-training/" + classificationId,
                 type: 'GET',
                 dataType: "JSON",
                 success: function(response) {
