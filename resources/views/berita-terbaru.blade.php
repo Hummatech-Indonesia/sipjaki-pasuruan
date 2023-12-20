@@ -1,5 +1,10 @@
 @extends('layouts.app-landing-page')
 @section('content')
+<style>
+    .blog-content .post-meta li a:hover {
+            color: #FFC928;
+        }
+</style>
     <div class="tabs-wrapper">
         <div class="section-title text-center">
             <h2 style="border-radius: 16px;

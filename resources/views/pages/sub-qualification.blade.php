@@ -45,7 +45,12 @@
 
     <div class="card">
         <div class="card-body">
-            <div class="d-flex justify-content-between mb-3">
+                @if ($errors->has('name'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ $errors->first('name') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
                 <div class="">
                     <h5>
                         Berikut daftar Sub Kualifikasi - {{$qualification->name}}</h5>

@@ -18419,10 +18419,6 @@ Download Two
     text-transform: uppercase;
 }
 
-.blog-content .post-meta li a:hover {
-    color: #fa7070;
-}
-
 .blog-content .entry-title {
     font-size: 20px;
     font-weight: 600;
