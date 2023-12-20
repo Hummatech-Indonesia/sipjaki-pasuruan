@@ -27,7 +27,7 @@
 </head>
 
 <body>
-   
+
     <div class="account-pages my-5 pt-sm-5">
         <div class="container">
             <div class="d-flex justify-content-center mb-5">
@@ -79,7 +79,10 @@
                                     <div class="mb-3">
                                         <label for="useremail" class="form-label">Email</label>
                                         <input type="email" name="email" class="form-control" id="useremail"
-                                            placeholder="Enter email">
+                                            placeholder="Enter email" value="{{ old('email') }}">
+                                            @if ($errors->has('email'))
+                                                {{ $errors->first('email') }}
+                                            @endif
                                     </div>
                                     <div class="mt-4 d-flex justify-content-end">
                                         <button type="submit" class="btn text-white" style="background-color: #1B3061">
