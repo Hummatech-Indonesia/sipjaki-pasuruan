@@ -188,8 +188,8 @@ Route::middleware('auth')->group(function () {
         Route::post('videos', [ImagesController::class, 'storeVideo'])->name('video.store');
 
         Route::get('training-members/{training}', [TrainingMemberController::class, 'index']);
-        Route::post('training-members/{training}', [TrainingMemberController::class, 'store']);
-        Route::put('training-members/{training_member}', [TrainingMemberController::class, 'update']);
+        Route::post('training-members/{training}', [TrainingMemberController::class, 'store'])->name('training.members');
+        Route::put('training-member-update/{training_member}', [TrainingMemberController::class, 'update'])->name('training.members');
         Route::delete('training-members/{training_member}', [TrainingMemberController::class, 'destroy']);
         Route::post('import-training-members', [TrainingMemberController::class, 'import']);
 
