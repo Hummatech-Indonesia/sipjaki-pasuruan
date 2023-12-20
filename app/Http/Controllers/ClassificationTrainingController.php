@@ -25,8 +25,15 @@ class ClassificationTrainingController extends Controller
      */
     public function index(Request $request)
     {
-        $classificationTrainings = $this->classificationTraining->search($request);
-        return view('pages.classification.training', ['classificationTrainings' => $classificationTrainings ]);
+        $classificationTrainings = $this->classificationTraining->customPaginate($request, 15);
+        $classificationTrainings->appends(['name'=>$request->name]);
+        if ($request->is('api/*')) {
+            $data['paginate'] = $this->customPaginate($classificationTrainings->currentPage(), $classificationTrainings->lastPage());
+            $data['data'] = ClassificationTrainingResource::collection($classificationTrainings);
+            return ResponseHelper::success($data);
+        } else {
+            return view('pages.classification.training', ['classificationTrainings' => $classificationTrainings ]);
+        }
     }
 
     /**

@@ -27,6 +27,7 @@ class QualificationTrainingController extends Controller
     public function index(Request $request)
     {
         $qualificationTrainings = $this->qualificationTraining->customPaginate($request, 10);
+        $qualificationTrainings->appends(['name' => $request->name]);
         if ($request->is('api/*')) {
         $data['paginate'] = $this->customPaginate($qualificationTrainings->currentPage(), $qualificationTrainings->lastPage());
         $data['data'] = QualificationTrainingResource::collection($qualificationTrainings);

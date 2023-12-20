@@ -73,13 +73,22 @@ class TrainingMemberRepository extends BaseRepository implements TrainingMemberI
     {
         return $this->model->query()
             ->where('training_id', $request->training_id)
+            ->when($request->name, function ($query) use ($request) {
+                $query->where('name', 'LIKE', '%' . $request->name . '%');
+            })
             ->fastPaginate($pagination);
     }
 
+    /**
+     * multipleDelete
+     *
+     * @param  mixed $data
+     * @return mixed
+     */
     public function multipleDelete(array $data): mixed
     {
         return $this->model->query()
-            ->whereIn('id',$data)
+            ->whereIn('id', $data)
             ->delete();
     }
 }

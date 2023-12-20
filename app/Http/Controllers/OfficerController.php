@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Interfaces\OfficerInterface;
+use App\Helpers\ResponseHelper;
 use App\Http\Requests\OfficerRequest;
+use App\Http\Resources\OfficerResource;
 use App\Models\Officer;
 use Illuminate\Http\Request;
 
@@ -21,8 +23,15 @@ class OfficerController extends Controller
      */
     public function index(Request $request)
     {
-        $officers = $this->officer->search($request);
-        return view('pages.service-provider.officer', ['officers' => $officers]);
+        $officers = $this->officer->customPaginate($request, 15);
+        $officers->appends(['name'=> $request->name]);
+        if ($request->is('api/*')) {
+            $data['paginate'] = $this->customPaginate($officers->currentPage(), $officers->lastPage());
+            $data['data'] = OfficerResource::collection($officers);
+            return ResponseHelper::success($data);
+        } else {
+            return view('pages.service-provider.officer', ['officers' => $officers]);
+        }
     }
 
     /**

@@ -26,7 +26,7 @@ class FaqController extends Controller
     public function index(Request $request) : View | JsonResponse
     {
         $faqs = $this->faq->customPaginate($request,10);
-
+        $faqs->appends(['name' => $request->name]);
         if( $request->is('api/*')){
 
             // $data['paginate'] = $this->customPaginate($fiscalYears->currentPage(), $fiscalYears->lastPage());

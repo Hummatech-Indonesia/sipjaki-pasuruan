@@ -28,6 +28,7 @@ class FiscalYearController extends Controller
     {
 
         $fiscalYears = $this->fiscalYear->customPaginate($request, 15);
+        $fiscalYears->appends(['name' => $request->name]);
         if( $request->is('api/*')){
 
             $data['paginate'] = $this->customPaginate($fiscalYears->currentPage(), $fiscalYears->lastPage());
