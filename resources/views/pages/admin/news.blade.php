@@ -11,7 +11,7 @@
             <form action="" class="">
                 <div class="input-group">
                     <input name="title" type="text" class="form-control"
-                        placeholder="Search">
+                        placeholder="Search" value="{{ request()->title }}">
                     <div class="input-group-append">
                         <button class="btn text-white" style="background-color: #1B3061; border-radius: 0 5px 5px 0;"
                             type="submit">
@@ -100,7 +100,7 @@
                         <tr>
                             <td scope="row" class="fs-5">{{ $index + 1 }}</td>
                             <td class="fs-5">{{ $news->title }}</td>
-                            <td class="fs-5">{{ \Carbon\Carbon::parse($news->created_at)->format('d-m-Y') }}</td>
+                            <td class="fs-5">{{ \Carbon\Carbon::parse($news->created_at)->locale('id_ID')->isoFormat('DD MMMM Y') }}</td>
                             <td class="d-flex flex-row gap-3 justify-content-center">
                                 <button type="button"
                                     class="btn waves-effect waves-light d-flex btn-edit flex-row gap-1 justify-content-evenly"

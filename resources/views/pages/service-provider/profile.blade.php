@@ -187,7 +187,7 @@
                             <th style="background-color: #1B3061;color:#ffffff;vertical-align: middle;width:150px;"
                                 rowspan="2" colspan="1">Aksi</th>
                         </tr>
-                       
+
                     </thead>
                     <tbody>
                         @forelse ($serviceProviderQualifications as $serviceProviderQualification)
@@ -296,7 +296,7 @@
                 </table>
             </div>
         </div>
-        
+
         <div class="tab-pane fade" id="administrasi" role="tabpanel" aria-labelledby="administrasi-tab">
             <div class="card rounded-4">
                 <div class="card-body">
@@ -874,7 +874,7 @@
                                 </td>
                             </tr>
                             @endforelse
-                            
+
                         </tbody>
                     </table>
                 </div>
@@ -955,7 +955,7 @@
                                 <div class="mb-3">
                                     <label id="city" for="recipient-name"
                                         class="control-label mb-2">Kabupaten</label>
-                                    <input name="city" value="{{ $serviceProvider->city }}" type="text"
+                                    <input name="city" value="{{ $serviceProvider->city ?? old('city') }}" type="text"
                                         class="form-control" id="">
                                 </div>
                             </div>
@@ -963,7 +963,7 @@
                                 <div class="mb-3">
                                     <label id="city" for="recipient-name"
                                         class="control-label mb-2">Provinsi</label>
-                                    <input name="province" value="{{ $serviceProvider->province }}" type="text"
+                                    <input name="province" value="{{ $serviceProvider->province ?? old('province') }}" type="text"
                                         class="form-control" id="">
                                 </div>
                             </div>
@@ -972,7 +972,7 @@
                                     <label id="name" for="recipient-name" class="control-label mb-2">Kode
                                         Pos</label>
                                     <input name="postal_code" type="number" class="form-control"
-                                        value="{{ $serviceProvider->postal_code }}" id="">
+                                        value="{{ $serviceProvider->postal_code ?? old('postal_code') }}" id="">
                                 </div>
                             </div>
                             <div class="col-6">
@@ -985,21 +985,21 @@
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Fax</label>
-                                    <input name="fax" type="number" value="{{ $serviceProvider->fax }}"
+                                    <input name="fax" type="number" value="{{ $serviceProvider->fax ?? old('fax') }}"
                                         class="form-control" id="">
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Website</label>
-                                    <input name="website" type="text" value="{{ $serviceProvider->website }}"
+                                    <input name="website" type="text" value="{{ $serviceProvider->website ?? old('website') }}"
                                         class="form-control" id="">
                                 </div>
                             </div>
                         </div>
                         <div class="col-12">
                             <label for="" class="form-label">Alamat Badan Usaha</label>
-                            <textarea name="address" id="update-address" class="form-control" cols="15" rows="5">{{ $serviceProvider->address }}</textarea>
+                            <textarea name="address" id="update-address" class="form-control" cols="15" rows="5">{{ $serviceProvider->address ?? old('address') }}</textarea>
                         </div>
                 </div>
                 <div class="modal-footer">
@@ -1370,7 +1370,7 @@
             $('#modal-detail-qualification').modal('show')
         })
         $('.modal-edit-qualification').click(function() {
-            const formData = getDataAttributes($(this).attr('id'))            
+            const formData = getDataAttributes($(this).attr('id'))
             var actionUrl = `projects/${formData['id']}`;
             $('#form-edit-qualification').attr('action', actionUrl);
 

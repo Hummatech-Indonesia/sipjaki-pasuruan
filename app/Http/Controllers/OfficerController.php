@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Contracts\Interfaces\OfficerInterface;
 use App\Http\Requests\OfficerRequest;
 use App\Models\Officer;
+use Illuminate\Http\Request;
 
 class OfficerController extends Controller
 {
@@ -18,9 +19,9 @@ class OfficerController extends Controller
      *
      * @return void
      */
-    public function index()
+    public function index(Request $request)
     {
-        $officers = $this->officer->get();
+        $officers = $this->officer->search($request);
         return view('pages.service-provider.officer', ['officers' => $officers]);
     }
 
@@ -38,7 +39,7 @@ class OfficerController extends Controller
     public function store(OfficerRequest $request)
     {
         $this->officer->store($request->validated());
-        
+
         return redirect()->back()->with('success', trans('alert.add_success'));
     }
 

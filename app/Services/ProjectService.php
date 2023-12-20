@@ -21,17 +21,6 @@ class ProjectService
     public function store(UploadFileProjectRequest $request, Project $project): array
     {
         $data = $request->validated();
-        $old_contract = $project->contract;
-        if ($data['contract']) {
-            if ($old_contract) {
-                if ($request->hasFile('contract')) {
-                    $this->remove($old_contract);
-                    $old_contract = $this->upload(UploadDiskEnum::CONTRACT->value, $request->file('contract'));
-                }
-            } else {
-                $old_contract = $this->upload(UploadDiskEnum::CONTRACT->value, $request->file('contract'));
-            }
-        }
 
         $old_administrative_minutes = $project->administrative_minutes;
         if ($data['administrative_minutes']) {
@@ -42,6 +31,18 @@ class ProjectService
                 }
             } else {
                 $old_administrative_minutes = $this->upload(UploadDiskEnum::ADMINISTRATIVEMINUTE->value, $request->file('administrative_minutes'));
+            }
+        }
+
+        $old_contract = $project->contract;
+        if ($data['contract']) {
+            if ($old_contract) {
+                if ($request->hasFile('contract')) {
+                    $this->remove($old_contract);
+                    $old_contract = $this->upload(UploadDiskEnum::CONTRACT->value, $request->file('contract'));
+                }
+            } else {
+                $old_contract = $this->upload(UploadDiskEnum::CONTRACT->value, $request->file('contract'));
             }
         }
 
