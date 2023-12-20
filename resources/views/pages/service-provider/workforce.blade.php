@@ -182,15 +182,17 @@
         <div class="d-flex justify-content-between">
             <div class="d-flex">
                 <div class="col-lg-5">
-                    <div class="input-group">
-                        <input type="text" name="name" value="{{ request()->name }}" class="form-control" placeholder="Search">
-                        <div class="input-group-append">
-                            <button class="btn text-white" style="background-color: #1B3061; border-radius: 0 5px 5px 0;"
-                                type="submit">
-                                <i class="fa fa-search"></i>
-                            </button>
+                    <form action="" class="">
+                        <div class="input-group">
+                            <input type="text" name="name" value="{{ request()->name }}" class="form-control" placeholder="Search">
+                            <div class="input-group-append">
+                                <button class="btn text-white" style="background-color: #1B3061; border-radius: 0 5px 5px 0;"
+                                    type="submit">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
                 <button class="btn ms-1 text-white rounded" style="background-color:#1B3061" onclick="selectAll()">
                     Pilih Semua
