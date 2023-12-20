@@ -113,9 +113,29 @@ class VerificationController extends Controller
             }
         }
     }
+
+    /**
+     * verifyacount
+     *
+     * @param  mixed $id
+     * @return void
+     */
     public function verifyacount($id)
     {
-        $Id = $id ;
-        return view('auth.verify-account' ,compact('Id'));
+        $Id = $id;
+        return view('auth.verify-account', compact('Id'));
+    }
+
+    /**
+     * sendResend
+     *
+     * @param  mixed $user
+     * @return void
+     */
+    public function sendResend(User $user)
+    {
+        $token = strtoupper(Str::random(5));
+        Mail::to($user->email)->send(new RegistrationMail(['email' => $user->email, 'user' => $user->name, 'token' => $token, 'id' => $user->id]));
+        return redirect()->back()->with('success', 'Berhasil mengirim ulang token verifikasi');
     }
 }

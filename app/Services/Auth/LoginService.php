@@ -55,7 +55,7 @@ class LoginService
             if ($request->is('api/*')) {
                 return ResponseHelper::error(null, trans('auth.login_failed'), Response::HTTP_FORBIDDEN);
             } else {
-                return redirect()->back()->withErrors(trans('auth.login_failed'));
+                return redirect()->back()->withErrors(trans('auth.login_failed'))->withInput();
             }
         }
     }

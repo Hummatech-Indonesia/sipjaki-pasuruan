@@ -141,19 +141,19 @@ Route::middleware('auth')->group(function () {
         Route::put('classification-training/{classification_training}', [ClassificationTrainingController::class, 'update']);
         Route::delete('classification-training/{classification_training}', [ClassificationTrainingController::class, 'destroy']);
         Route::resource('qualification-level-trainings', QualificationLevelTrainingController::class)->except('store');
-        Route::get('qualification-level-training/{id}' , [QualificationLevelTrainingController::class ,'index']);
+        Route::get('qualification-level-training/{id}', [QualificationLevelTrainingController::class, 'index']);
         Route::post('qualification-level-trainings/{qualification_training}', [QualificationLevelTrainingController::class, 'store']);
         Route::put('qualification-level-trainings/{qualification_level_training}', [QualificationLevelTrainingController::class, 'update']);
         Route::delete('qualification-level-trainings/{qualification_level_training}', [QualificationLevelTrainingController::class, 'destroy']);
-        Route::get('sub-clasification-training/{classification_training}',[SubClassificationTrainingController::class,'index'])->name('sub-trainings.detail');
-        Route::post('sub-clasification-training/store/{classification_training}',[SubClassificationTrainingController::class,'store'])->name('sub-clasification-training.store');
-        Route::put('sub-clasification-training/update/{sub_classification_training}',[SubClassificationTrainingController::class,'update'])->name('sub-clasification-training.update');
-        Route::delete('sub-clasification-training/delete/{sub_classification_training}',[SubClassificationTrainingController::class,'destroy'])->name('sub-clasification-training.delete');
+        Route::get('sub-clasification-training/{classification_training}', [SubClassificationTrainingController::class, 'index'])->name('sub-trainings.detail');
+        Route::post('sub-clasification-training/store/{classification_training}', [SubClassificationTrainingController::class, 'store'])->name('sub-clasification-training.store');
+        Route::put('sub-clasification-training/update/{sub_classification_training}', [SubClassificationTrainingController::class, 'update'])->name('sub-clasification-training.update');
+        Route::delete('sub-clasification-training/delete/{sub_classification_training}', [SubClassificationTrainingController::class, 'destroy'])->name('sub-clasification-training.delete');
 
 
         Route::get('history-login', [HistoryLoginController::class, 'index'])->name('history-login.index');
-        Route::delete('history-login/{history_login}',[HistoryLoginController::class,'destroy'])->name('history-login.destroy');
-        Route::delete('clear-history',[HistoryLoginController::class,'clear'])->name('history-login.clear');
+        Route::delete('history-login/{history_login}', [HistoryLoginController::class, 'destroy'])->name('history-login.destroy');
+        Route::delete('clear-history', [HistoryLoginController::class, 'clear'])->name('history-login.clear');
         Route::get('classification-trainings', [ClassificationTrainingController::class, 'index'])->name('classification-training.index');
 
         Route::name('qualifications.level.')->group(function () {
@@ -200,7 +200,6 @@ Route::middleware('auth')->group(function () {
         Route::post('training', [TrainingController::class, 'store'])->name('training.store');
         Route::put('training.update/{training}', [TrainingController::class, 'update'])->name('training.update');
         Route::delete('training.destroy/{training}', [TrainingController::class, 'destroy'])->name('training.destroy');
-
     });
 
     Route::middleware('role:dinas')->group(function () {
@@ -252,10 +251,6 @@ Route::middleware('role:admin|superadmin')->group(function () {
     Route::get('all-agency', [DinasController::class, 'all'])->name('all.agency');
 });
 
-
-
-
-
 //Reset Password
 Route::get('reset-password/{id}', [ResetPasswordController::class, 'index'])->name('reset.password');
 Route::post('send-email-reset-passsword', [ForgotPasswordController::class, 'sendEmail'])->name('send.email.reset.passsword');
@@ -269,6 +264,7 @@ Route::get('/redirect-verify-account', [VerificationController::class, 'verifyAc
 Route::put('update-token/{user}', [VerificationController::class, 'updateToken']);
 Route::put('verify-token/{user}', [VerificationController::class, 'verifyToken'])->name('verify.token/');
 Route::get('verify-account/{user}', [VerificationController::class, 'verifyacount'])->name('verify.account/');
+Route::post('resend-email-verification/{user}', [VerificationController::class, 'sendResend']);
 
 // verifikasi account
 Route::get('verify.account/{id}', [VerificationController::class, 'verifyacount'])->name('verify.account');

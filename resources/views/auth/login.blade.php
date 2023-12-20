@@ -115,7 +115,7 @@
                                                         href="{{ route('register') }}">Register</a></span></a> </p>
                                         </div>
                                     </div>
-                                </div> 
+                                </div>
                             </div>
                         </div>
                     </div>

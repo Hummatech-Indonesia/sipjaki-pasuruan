@@ -34,13 +34,18 @@ class UserRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'Nama wajib diisi',
-            'name.max' => 'Nama maksimal 255 karakter',
-            'phone_number.required' => 'Nomor HP wajib diisi',
-            'phone_number.max' => 'Nomor HP maksimal 255 karakter',
-            'person_responsible' => 'Penanggung jawab wajib diisi',
-            'password.required' => 'Penanggung jawab wajib diisi',
-            'password.max' => 'Penanggung jawab maksimal 255 karakter',
+            'name.required' => 'Kolom nama wajib diisi.',
+            'name.max' => 'Kolom nama tidak boleh lebih dari :max karakter.',
+            'email.required' => 'Kolom email wajib diisi.',
+            'email.email' => 'Format email tidak valid.',
+            'email.max' => 'Kolom email tidak boleh lebih dari :max karakter.',
+            'email.unique' => 'Email sudah digunakan oleh pengguna lain.',
+            'phone_number.required' => 'Kolom nomor telepon wajib diisi.',
+            'phone_number.max' => 'Kolom nomor telepon tidak boleh lebih dari :max karakter.',
+            'person_responsible.required' => 'Kolom person responsible wajib diisi.',
+            'person_responsible.max' => 'Kolom person responsible tidak boleh lebih dari :max karakter.',
+            'password.required' => 'Kolom password wajib diisi.',
+            'password.max' => 'Password tidak boleh lebih dari :max karakter.',
         ];
     }
 }
