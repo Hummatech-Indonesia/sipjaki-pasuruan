@@ -162,8 +162,10 @@
                             <div class="fw-bold mt-3">Berita</div>
                         </div>
                         <div class="flex-shrink-0 mt-2">
-                            <button class="btn btn-md rounded-3"
-                                style="background-color: #1B3061;color:white;width:100px;">Lihat</button>
+                            <a href="{{ route('news.index') }}">
+                                <button class="btn btn-md rounded-3"
+                                    style="background-color: #1B3061;color:white;width:100px;">Lihat</button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -182,8 +184,10 @@
                             <div class="fw-bold mt-3">Input Gambar</div>
                         </div>
                         <div class="flex-shrink-0 mt-2">
-                            <button class="btn btn-md rounded-3"
-                                style="background-color: #1B3061;color:white;width:100px;">Lihat</button>
+                            <a href="{{ route('images.index') }}">
+                                <button class="btn btn-md rounded-3"
+                                    style="background-color: #1B3061;color:white;width:100px;">Lihat</button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -202,8 +206,10 @@
                             <div class="fw-bold mt-3">Dinas</div>
                         </div>
                         <div class="flex-shrink-0 mt-2">
-                            <button class="btn btn-md rounded-3"
-                                style="background-color: #1B3061;color:white;width:100px;">Lihat</button>
+                            <a href="{{ route('agencies.index') }}">
+                                <button class="btn btn-md rounded-3"
+                                    style="background-color: #1B3061;color:white;width:100px;">Lihat</button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -224,8 +230,10 @@
                             <div class="fw-bold mt-3">Peraturan</div>
                         </div>
                         <div class="flex-shrink-0 mt-2">
-                            <button class="btn btn-md rounded-3"
-                                style="background-color: #1B3061;color:white;width:100px;">Lihat</button>
+                            <a href="{{ route('rules.index') }}">
+                                <button class="btn btn-md rounded-3"
+                                    style="background-color: #1B3061;color:white;width:100px;">Lihat</button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -249,8 +257,10 @@
                             <div class="fw-bold mt-3">FAQ</div>
                         </div>
                         <div class="flex-shrink-0 mt-2">
-                            <button class="btn btn-md rounded-3"
-                                style="background-color: #1B3061;color:white;width:100px;">Lihat</button>
+                            <a href="{{ route('faqs.index') }}">
+                                <button class="btn btn-md rounded-3"
+                                    style="background-color: #1B3061;color:white;width:100px;">Lihat</button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -300,8 +310,10 @@
                             <div class="fw-bold mt-3">Pelatihan</div>
                         </div>
                         <div class="flex-shrink-0 mt-2">
+                           <a href="{{ route('training') }}">
                             <button class="btn btn-md rounded-3"
-                                style="background-color: #1B3061;color:white;width:100px;">Lihat</button>
+                            style="background-color: #1B3061;color:white;width:100px;">Lihat</button>
+                        </a>
                         </div>
                     </div>
                 </div>
@@ -318,7 +330,8 @@
         </h5>
         <form action="" class="d-flex">
             <div class="position-relative search-container me-2">
-                <input type="search" class="form-control py-2 ps-5" name="name" id="search-name" placeholder="Search" value="{{ request()->name }}">
+                <input type="search" class="form-control py-2 ps-5" name="name" id="search-name"
+                    placeholder="Search" value="{{ request()->name }}">
                 <i class="bx bx-search-alt search-icon"></i>
             </div>
             <div class="py-3">
@@ -341,22 +354,22 @@
                 <tbody>
                     @forelse ($activeProjects as $activeProject)
                         <tr>
-                            <td class="fs-5">{{$loop->iteration}}</td>
-                            <td class="fs-5">{{$activeProject->name}}</td>
-                            <td class="fs-5">{{$activeProject->dinas->user->name}}</td>
-                            <td class="fs-5">{{$activeProject->project_value}}</td>
+                            <td class="fs-5">{{ $loop->iteration }}</td>
+                            <td class="fs-5">{{ $activeProject->name }}</td>
+                            <td class="fs-5">{{ $activeProject->dinas->user->name }}</td>
+                            <td class="fs-5">{{ $activeProject->project_value }}</td>
                         </tr>
                     @empty
-                    <tr>
-                        <td colspan="4" class="text-center">
-                            <div class="d-flex justify-content-center" style="min-height:16rem">
-                                <div class="my-auto">
-                                    <img src="{{ asset('no-data.png') }}" width="300" height="300" />
-                                    <h4 class="text-center mt-4">Pekerjaan Kosong!!</h4>
+                        <tr>
+                            <td colspan="4" class="text-center">
+                                <div class="d-flex justify-content-center" style="min-height:16rem">
+                                    <div class="my-auto">
+                                        <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                        <h4 class="text-center mt-4">Pekerjaan Kosong!!</h4>
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
                     @endforelse
                 </tbody>
             </table>
