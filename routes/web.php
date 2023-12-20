@@ -241,9 +241,11 @@ Route::middleware('auth')->group(function () {
         Route::get('download-service-provider-project/{service_provider_project}', [ServiceProviderProjectController::class, 'downloadFile'])->name('download.service-provider.project');
 
         Route::get('service-provider-project-detail/{service_provider_project}', [ServiceProviderProjectController::class, 'show']);
-        Route::get('all-service-provider', [ServiceProviderProjectController::class, 'allServiceProvider'])->name('all.service.provider');
-        Route::get('all-agency', [DinasController::class, 'all'])->name('all.agency');
     });
+});
+Route::middleware('role:admin|superadmin')->group(function () {
+    Route::get('all-service-provider', [ServiceProviderProjectController::class, 'allServiceProvider'])->name('all.service.provider');
+    Route::get('all-agency', [DinasController::class, 'all'])->name('all.agency');
 });
 
 
