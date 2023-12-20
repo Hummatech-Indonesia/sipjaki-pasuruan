@@ -69,9 +69,7 @@
                                 </div>
                                 <div class="d-flex mt-4 justify-content-end">
                                     <div>
-                                        <div class="btn btn-outline-danger waves-effect waves-light rounded-3 me-1">
-                                            Kembali
-                                        </div>
+                                        
                                         <button type="submit" class="btn btn-md rounded-3"
                                             style="background-color: #1B3061;color:white;">
                                             Simpan
@@ -138,9 +136,7 @@
                                 </div>
                                 <div class="d-flex mt-4 justify-content-end">
                                     <div>
-                                        <div class="btn btn-outline-danger waves-effect waves-light rounded-3 me-1">
-                                            Batal
-                                        </div>
+                                        
                                         <button type="submit" class="btn btn-md rounded-3"
                                             style="background-color: #1B3061;color:white;">
                                             Ganti Password

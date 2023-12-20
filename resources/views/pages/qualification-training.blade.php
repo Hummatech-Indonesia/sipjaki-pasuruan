@@ -171,7 +171,7 @@
     <script>
         $('.btn-edit').click(function() {
             const formData = getDataAttributes($(this).attr('id'))
-            var actionUrl = `sub-qualification-training/${formData['id']}`;
+            var actionUrl = `qualification-trainings/${formData['id']}`;
             $('#form-update').attr('action', actionUrl);
 
             setFormValues('form-update', formData)
@@ -181,7 +181,7 @@
         })
         $('.btn-delete').click(function() {
             id = $(this).data('id')
-            var actionUrl = `sub-qualification-training/${id}`;
+            var actionUrl = `qualification-trainings/${id}`;
             $('#form-delete').attr('action', actionUrl);
             $('#modal-delete').modal('show')
         })

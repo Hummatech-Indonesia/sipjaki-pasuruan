@@ -22,7 +22,7 @@ class FaqRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'question' => 'required',
+            'question' => 'required|max:255',
             'answer' => 'required'
         ];
     }
@@ -36,6 +36,7 @@ class FaqRequest extends FormRequest
     {
         return [
             'question.required' => 'Pertanyaan harus diisi.',
+            'question.max' => 'Pertanyaan maksimal :max karakter.',
             'answer.required' => 'Jawaban harus diisi.',
         ];
     }

@@ -51,7 +51,7 @@
     </div>
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('images.store') }}" enctype="multipart/form-data" method="POST">
+            <form action="{{ route('video.store') }}" enctype="multipart/form-data" method="POST">
                 @csrf
                 @method('POST')
                 <img src="" id="img-beranda" height="200" alt="">
@@ -66,7 +66,7 @@
                     </div>
                     <button class="btn btn-primary col-2 " data-bs-toggle="modal" data-bs-target="#modal-create"
                         style="background-color: #1B3061; border-radius: 10px"><i class="fas fa-plus"
-                            style="margin-right:10px"></i>Tambah</button>
+                            style="margin-right:10px"></i>Simpan</button>
                 </div>
             </form>
         </div>

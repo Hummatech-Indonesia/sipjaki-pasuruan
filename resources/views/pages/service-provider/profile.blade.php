@@ -235,7 +235,7 @@
                                                     data-sub_classification_id="{{ $serviceProviderQualification->sub_classification_id }}"
                                                     data-classification="{{ $serviceProviderQualification->subClassification->classification_id }}"
                                                     data-year="{{ $serviceProviderQualification->year }}"
-                                                    class="btn waves-effect waves-light modal-edit-qualification d-flex btn-edit flex-row gap-1 justify-content-evenly"
+                                                    class="btn waves-effect waves-light btn-edit-qualification d-flex flex-row gap-1 justify-content-evenly"
                                                     style="width: 90px; background-color: #FFC928; color: white"><i
                                                         class="bx bx-bx bxs-edit fs-4"></i>
                                                     <span>Edit</span></button>
@@ -273,7 +273,7 @@
                                                     data-sub_classification_id="{{ $serviceProviderQualification->sub_classification_id }}"
                                                     data-classification="{{ $serviceProviderQualification->subClassification->classification_id }}"
                                                     data-year="{{ $serviceProviderQualification->year }}"
-                                                    class="btn waves-effect waves-light modal-edit-qualification d-flex btn-edit flex-row gap-1 justify-content-evenly"
+                                                    class="btn waves-effect waves-light btn-edit-qualification d-flex btn-edit flex-row gap-1 justify-content-evenly"
                                                     style="width: 90px; background-color: #FFC928; color: white"><i
                                                         class="bx bx-bx bxs-edit fs-4"></i>
                                                     <span>Edit</span></button>
@@ -303,7 +303,7 @@
                                                     data-sub_classification_id="{{ $serviceProviderQualification->sub_classification_id }}"
                                                     data-classification="{{ $serviceProviderQualification->subClassification->classification_id }}"
                                                     data-year="{{ $serviceProviderQualification->year }}"
-                                                    class="btn waves-effect waves-light modal-edit-qualification d-flex btn-edit flex-row gap-1 justify-content-evenly"
+                                                    class="btn waves-effect waves-light btn-edit-qualification d-flex btn-edit flex-row gap-1 justify-content-evenly"
                                                     style="width: 90px; background-color: #FFC928; color: white"><i
                                                         class="bx bx-bx bxs-edit fs-4"></i>
                                                     <span>Edit</span></button>
@@ -1303,7 +1303,7 @@
                             Close
                         </button>
                         <button type="submit" style="background-color: #1B3061" class="btn text-white btn-create">
-                            Tambah
+                            Edit
                         </button>
                     </div>
                 </form>
@@ -1404,9 +1404,9 @@
             console.log(data);
             $('#modal-detail-qualification').modal('show')
         })
-        $('.modal-edit-qualification').click(function() {
+        $('.btn-edit-qualification').click(function() {
             const formData = getDataAttributes($(this).attr('id'))
-            var actionUrl = `service.provider.qualifications.update/${formData['id']}`;
+            var actionUrl = `service-provider-qualifications/${formData['id']}`;
             $('#form-edit-qualification').attr('action', actionUrl);
 
             setFormValues('form-edit-qualification', formData)

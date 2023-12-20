@@ -59,6 +59,7 @@
                             </div>
                         </div>
                         <div class="col-12">
+                            <label for="">Deskripsi</label>
                             <textarea class="form-control" name="description" id="create-description" cols="30" rows="10"></textarea>
                         </div>
                     </div>
@@ -123,7 +124,9 @@
                                                 class="btn btn-warning waves-effect waves-light btn-edit"
                                                 id="btn-edit-{{ $subClassification->id }}"
                                                 data-id="{{ $subClassification->id }}"
-                                                data-name="{{ $subClassification->name }}">
+                                                data-name="{{ $subClassification->name }}"
+                                                data-description="{{ $subClassification->description }}"
+                                                data-code="{{ $subClassification->code }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                     viewBox="0 0 24 24" fill="none">
                                                     <g clip-path="url(#clip0_26_1791)">
@@ -213,6 +216,7 @@
                             </div>
                         </div>
                         <div class="col-12">
+                            <label for="">Deskripsi</label>
                             <textarea class="form-control" name="description" id="create-description" cols="30" rows="10"></textarea>
                         </div>
                 </div>

@@ -15,7 +15,7 @@ class ClassificationTrainingRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required',
+            'name' => 'required|max:255',
         ];
     }
 
@@ -28,6 +28,7 @@ class ClassificationTrainingRequest extends FormRequest
     {
         return [
             'name.required' => 'Nama wajib diisi',
+            'name.max' => 'Nama maksimal :max karakter',
         ];
     }
 }
