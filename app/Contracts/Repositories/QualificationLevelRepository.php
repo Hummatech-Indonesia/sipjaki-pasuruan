@@ -35,7 +35,7 @@ class QualificationLevelRepository extends BaseRepository implements Qualificati
     public function show(mixed $id): mixed
     {
         return $this->model->query()
-            ->findOrFail($id)->with('qualificationLevels')->get();
+            ->findOrFail($id);
     }
 
     /**

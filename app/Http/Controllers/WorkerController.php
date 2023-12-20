@@ -35,12 +35,17 @@ class WorkerController extends Controller
      */
     public function index(Request $request): JsonResponse|View
     {
-         $workers = $this->worker->search($request);
-         if ($request->is('api/*')) {
-         return ResponseHelper::success(WorkerResource::collection($workers));
-         } else {
-             return view('pages.service-provider.workforce', ['workers' => $workers]);
-         }
+         $workers = $this->worker->customPaginate($request, 15);
+         $workers->appends(['name' => $request->name]);
+         if( $request->is('api/*')){
+
+            $data['paginate'] = $this->customPaginate($workers->currentPage(), $workers->lastPage());
+            $data['data'] = WorkerResource::collection($workers);
+            return ResponseHelper::success($data,trans('alert.get_success'));
+
+        }else{
+            return view('pages.service-provider.workforce', ['workers' => $workers]);
+        }
     }
 
     /**
