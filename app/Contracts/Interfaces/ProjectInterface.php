@@ -38,7 +38,7 @@ interface ProjectInterface extends CountInterface, GetInterface, StoreInterface,
      *
      * @return mixed
      */
-    public function getbyId(): mixed;
+    public function getbyId(Request $request): mixed;
 
     /**
      * getByServiceProvider

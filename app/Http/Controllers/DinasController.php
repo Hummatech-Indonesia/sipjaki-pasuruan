@@ -89,10 +89,10 @@ class DinasController extends Controller
      *
      * @return JsonResponse
      */
-    public function dashboard(): JsonResponse|View
+    public function dashboard(Request $request): JsonResponse|View
     {
         $accident_total = 0;
-        $projects = $this->project->getbyId();
+        $projects = $this->project->getbyId($request);
         foreach ($projects as $project) {
             $accident_total += $project->accidents->count();
         }
