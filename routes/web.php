@@ -39,6 +39,8 @@ use App\Http\Controllers\ServiceProviderProjectController;
 use App\Http\Controllers\SubClassificationTrainingController;
 use App\Http\Controllers\QualificationLevelTrainingController;
 use App\Http\Controllers\TrainingController;
+use App\Http\Controllers\ServiceProvider\VerificationController as ServiceProviderVerificationController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -214,6 +216,7 @@ Route::middleware('auth')->group(function () {
     Route::middleware('role:service provider')->group(function () {
         Route::resources([
             'officers' => OfficerController::class,
+            'verification-service-provider'=>ServiceProviderVerificationController::class
         ]);
 
         Route::get('service-provider-profile', [ServiceProviderController::class, 'index'])->name('service-provider-profile');
