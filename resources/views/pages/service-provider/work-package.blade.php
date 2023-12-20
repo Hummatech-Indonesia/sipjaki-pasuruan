@@ -37,14 +37,14 @@
                         </td>
                     </tr>
                 </thead>
-                @forelse ($serviceProviderProjects as $serviceProviderProject)
+                @forelse ($serviceProviderProjects as $index=>$serviceProviderProject)
                     @php
                         $totalProgres = $serviceProviderProject->serviceProviderProjects->pluck('progres')->sum();
                     @endphp
                     <tbody>
                         <tr>
                             <td>
-
+                                {{ $index + 1 }}
                             </td>
                             <td>
                                 {{ $serviceProviderProject->name }}
