@@ -17,7 +17,7 @@
         <div class="d-flex justify-content-between align-items-center mb-3">
             <form action="" class=" col-lg-3">
                 <div class="input-group">
-                    <input name="name" value="{{$name}}" type="text" class="form-control" placeholder="Search">
+                    <input name="name" value="{{request()->name}}" type="text" class="form-control" placeholder="Search">
                     <div class="input-group-append">
                         <button class="btn text-white" style="background-color: #1B3061; border-radius: 0 5px 5px 0;" type="submit">
                             <i class="fa fa-search"></i>
@@ -107,7 +107,7 @@
                                 <div class="d-flex justify-content-center" style="min-height:16rem">
                                     <div class="my-auto">
                                         <img src="{{ asset('no-data.png') }}" width="300" height="300" />
-                                        <h4 class="text-center mt-4">Tahun Anggaran {{$name ? 'Tidak Ditemukan'  : 'Kosong'}}!!</h4>
+                                        <h4 class="text-center mt-4">Tahun Anggaran {{request()->name ? 'Tidak Ditemukan'  : 'Kosong'}}!!</h4>
                                     </div>
                                 </div>
                             </td>
