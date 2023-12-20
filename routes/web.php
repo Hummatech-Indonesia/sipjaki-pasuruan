@@ -15,7 +15,6 @@ use App\Http\Controllers\WorkerController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\OfficerController;
 use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\SectionController;
 use App\Http\Controllers\AccidentController;
 use App\Http\Controllers\FiscalYearController;
 use App\Http\Controllers\FundSourceController;
