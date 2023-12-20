@@ -629,7 +629,7 @@
                                         <td>-</td>
                                     </tr>
                                     @endif
-                                   
+
                                 </tbody>
                             </table>
                         </div>
@@ -693,7 +693,7 @@
                                 <textarea name="address" id="" class="form-control">{{ $foundingDeeps->address }}</textarea>
                             </div>
                         </div>
-                        
+
                            @else
                            <div class="row mb-3">
                             <div class="col-6">
@@ -911,7 +911,7 @@
                                         <td>
                                             <div class="d-flex justify-content-header gap-3">
                                                 <div class="">
-                                                    <button id="btn-edit-{{ $worker->id }}"
+                                                    <button id="btn-detail-{{ $worker->id }}"
                                                         data-id="{{ $worker->id }}" data-name="{{ $worker->name }}"
                                                         data-birth_date="{{ \Carbon\Carbon::parse($worker->birth_date)->translatedFormat('d F Y') }}"
                                                         data-cerificate="{{ $worker->cerificate }}"
@@ -919,7 +919,7 @@
                                                         data-registration_number="{{ $worker->registration_number }}"
                                                         type="button" data-bs-target="#modal-detail"
                                                         data-bs-toggle="modal"
-                                                        class="btn btn-detail waves-effect waves-light text-white btn waves-effect d-flex flex-row gap-1 justify-content-evenly"
+                                                        class="btn btn-detail-tenaga-kerja waves-effect waves-light text-white btn waves-effect d-flex flex-row gap-1 justify-content-evenly"
                                                         style="background-color: #1B3061">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="19"
                                                             height="19" viewBox="0 0 24 24" fill="none">
@@ -1388,7 +1388,7 @@
                                 <input type="date" value="" name="state_institution_date" class="form-control" placeholder="Masukkan Nomor">
                             </div>
                         </div>
-                        
+
                         @endif
                 </div>
                 <div class="modal-footer">
@@ -1502,9 +1502,9 @@
                                 <textarea name="address" id="" class="form-control"></textarea>
                             </div>
                         </div>
-                        
+
                         @endif
-                       
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger text-white font-medium waves-effect"
@@ -1638,6 +1638,80 @@
             </div>
         </div>
     </div>
+    <div class="modal fade bs-example-modal-md" id="modal-detail-tenaga-kerja" tabindex="-1" role="dialog"
+        aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #1B3061">
+                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Detail Tenaga Kerja</h5>
+                    <button type="button" class="btn-close" style="background-color: white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="mt-3 fs-5 text-dark mb-2" style="font-weight: 700">
+                                <span id="detail-name"></span>
+                            </p>
+                            <div class="">
+                                <div class="row mb-1">
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark">Nama :</p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
+                                                id="detail-name"></span></p>
+                                    </div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark">Tanggal Lahir :</p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
+                                                id="detail-birth_date"></span></p>
+                                    </div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark">Pendidikan :</p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
+                                                id="detail-education"></span></p>
+                                    </div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark">No. Registrasi :</p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
+                                                id="detail-registration_number"></span></p>
+                                    </div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark">Jenis Sertifikat :</p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
+                                                id="detail-cerificate"></span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger text-white font-medium waves-effect"
+                                data-bs-dismiss="modal">
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
     <x-delete-modal-component />
     {{-- end --}}
 @endsection
@@ -1679,60 +1753,65 @@
         }
         get();
 
-function get() {
-  $.ajax({
-    url: "{{ route('list-classifications') }}",
-    type: 'GET',
-    dataType: "JSON",
-    success: function(response) {
-      $('#update-list-classifications').empty();
-      $('#list-classifications').empty();
+        function get() {
+        $.ajax({
+            url: "{{ route('list-classifications') }}",
+            type: 'GET',
+            dataType: "JSON",
+            success: function(response) {
+            $('#update-list-classifications').empty();
+            $('#list-classifications').empty();
 
-      $.each(response.data, function(index, item) {
-        var option = `<option value="${item.id}">${item.name}</option>`;
-        $('#update-list-classifications').append(option);
-        $('#list-classifications').append(option);
-      });
+            $.each(response.data, function(index, item) {
+                var option = `<option value="${item.id}">${item.name}</option>`;
+                $('#update-list-classifications').append(option);
+                $('#list-classifications').append(option);
+            });
 
-      $('#list-classifications').change(function() {
-        var selectedClassificationId = $(this).val();
-        $('#list-sub-classifications').empty(); // Menghapus opsi sebelum menambahkan yang baru
-        if (selectedClassificationId !== '') {
-          subclassifications(selectedClassificationId, '#list-sub-classifications');
+            $('#list-classifications').change(function() {
+                var selectedClassificationId = $(this).val();
+                $('#list-sub-classifications').empty(); // Menghapus opsi sebelum menambahkan yang baru
+                if (selectedClassificationId !== '') {
+                subclassifications(selectedClassificationId, '#list-sub-classifications');
+                }
+            });
+
+            $('#update-list-classifications').change(function() {
+                var selectedClassificationId = $(this).val();
+                $('#update-list-sub-classifications').empty(); // Menghapus opsi sebelum menambahkan yang baru
+                if (selectedClassificationId !== '') {
+                subclassifications(selectedClassificationId, '#update-list-sub-classifications');
+                }
+            });
+            }
+        });
         }
-      });
 
-      $('#update-list-classifications').change(function() {
-        var selectedClassificationId = $(this).val();
-        $('#update-list-sub-classifications').empty(); // Menghapus opsi sebelum menambahkan yang baru
-        if (selectedClassificationId !== '') {
-          subclassifications(selectedClassificationId, '#update-list-sub-classifications');
+        function subclassifications(classificationId, targetElement) {
+        $.ajax({
+            url: "list-sub-classifications/" + classificationId,
+            type: 'GET',
+            dataType: "JSON",
+            success: function(response) {
+            $(targetElement).empty();
+
+            $.each(response.data, function(index, item) {
+                var option = `<option value="${item.id}">${item.name}</option>`;
+                $(targetElement).append(option);
+            });
+            }
+        });
         }
-      });
-    }
-  });
-}
 
-function subclassifications(classificationId, targetElement) {
-  $.ajax({
-    url: "list-sub-classifications/" + classificationId,
-    type: 'GET',
-    dataType: "JSON",
-    success: function(response) {
-      $(targetElement).empty();
-
-      $.each(response.data, function(index, item) {
-        var option = `<option value="${item.id}">${item.name}</option>`;
-        $(targetElement).append(option);
-      });
-    }
-  });
-}
+        $('.btn-detail-tenaga-kerja').click(function() {
+            const data = getDataAttributes($(this).attr('id'))
+            handleDetail(data)
+            $('#modal-detail-tenaga-kerja').modal('show')
+        })
 
         $('.modal-detail-qualification').click(function() {
             const data = getDataAttributes($(this).attr('id'))
             handleDetail(data)
-            console.log(data);
             $('#modal-detail-qualification').modal('show')
         })
         $('.btn-edit-qualification').click(function() {
