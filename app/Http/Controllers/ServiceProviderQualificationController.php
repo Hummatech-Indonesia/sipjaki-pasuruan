@@ -130,7 +130,6 @@ class ServiceProviderQualificationController extends Controller
         return redirect()->back()->with('success', 'Berhasil Menolak Permohonan');
     }
 
-
     /**
      * active
      *
