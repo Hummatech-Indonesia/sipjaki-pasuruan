@@ -233,8 +233,8 @@
                                                     data-qualification_id="{{ $serviceProviderQualification->qualification_id }}"
                                                     data-id="{{ $serviceProviderQualification->id }}"
                                                     data-sub_classification_id="{{ $serviceProviderQualification->sub_classification_id }}"
+                                                    data-classification="{{ $serviceProviderQualification->subClassification->classification_id }}"
                                                     data-year="{{ $serviceProviderQualification->year }}"
-                                                    data-classification_id="{{ $serviceProviderQualification->subClassification->classification->id }}"
                                                     class="btn waves-effect waves-light modal-edit-qualification d-flex btn-edit flex-row gap-1 justify-content-evenly"
                                                     style="width: 90px; background-color: #FFC928; color: white"><i
                                                         class="bx bx-bx bxs-edit fs-4"></i>
@@ -271,8 +271,8 @@
                                                     data-qualification_id="{{ $serviceProviderQualification->qualification_id }}"
                                                     data-id="{{ $serviceProviderQualification->id }}"
                                                     data-sub_classification_id="{{ $serviceProviderQualification->sub_classification_id }}"
+                                                    data-classification="{{ $serviceProviderQualification->subClassification->classification_id }}"
                                                     data-year="{{ $serviceProviderQualification->year }}"
-                                                    data-classification_id="{{ $serviceProviderQualification->subClassification->classification->id }}"
                                                     class="btn waves-effect waves-light modal-edit-qualification d-flex btn-edit flex-row gap-1 justify-content-evenly"
                                                     style="width: 90px; background-color: #FFC928; color: white"><i
                                                         class="bx bx-bx bxs-edit fs-4"></i>
@@ -301,8 +301,8 @@
                                                     data-qualification_id="{{ $serviceProviderQualification->qualification_id }}"
                                                     data-id="{{ $serviceProviderQualification->id }}"
                                                     data-sub_classification_id="{{ $serviceProviderQualification->sub_classification_id }}"
+                                                    data-classification="{{ $serviceProviderQualification->subClassification->classification_id }}"
                                                     data-year="{{ $serviceProviderQualification->year }}"
-                                                    data-classification_id="{{ $serviceProviderQualification->subClassification->classification->id }}"
                                                     class="btn waves-effect waves-light modal-edit-qualification d-flex btn-edit flex-row gap-1 justify-content-evenly"
                                                     style="width: 90px; background-color: #FFC928; color: white"><i
                                                         class="bx bx-bx bxs-edit fs-4"></i>
