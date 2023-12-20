@@ -43,7 +43,7 @@
                         <div class="row">
                             <div class="col-6">
                                 <div class="mb-3">
-                                    <label id="name" for="recipient-name" class="control-label mb-2">Masukan
+                                    <label id="name" for="recipient-name" class="form-control control-label mb-2">Masukan
                                         Sub Klasifikasi</label>
                                     <input type="text" class="form-control" id="create-school_year" class="form-control"
                                         name="name" id="nametext" aria-describedby="name" placeholder="" />
@@ -51,7 +51,7 @@
                             </div>
                             <div class="col-6">
                                 <div class="mb-3">
-                                    <label id="name" for="recipient-name" class="control-label mb-2">Masukan
+                                    <label id="name" for="recipient-name" class="form-control control-label mb-2">Masukan
                                         Kode Klasifikasi</label>
                                     <input type="text" class="form-control" id="create-code" class="form-control"
                                         name="code" id="nametext" aria-describedby="name" placeholder="" />
@@ -59,7 +59,7 @@
                             </div>
                         </div>
                         <div class="col-12">
-                            <textarea name="description" id="create-description" cols="30" rows="10"></textarea>
+                            <textarea class="form-control" name="description" id="create-description" cols="30" rows="10"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -114,6 +114,8 @@
                             <tr>
                                 <th scope="row" class="fs-5">{{ $loop->iteration }}</th>
                                 <td>{{ $subClassification->name }}</td>
+                                <td>{{ $subClassification->code }}</td>
+                                <td>{{ $subClassification->description }}</td>
                                 <td>
                                     <div class="d-flex justify-content-center gap-2">
                                         <div class="">
