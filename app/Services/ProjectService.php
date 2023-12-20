@@ -73,7 +73,7 @@ class ProjectService
             'report' => $old_report,
             'minutes_of_disbursement' => $old_minutes_of_disbursement,
             'administrative_minutes' => $old_administrative_minutes,
-            'old_contract' => $old_contract
+            'contract' => $old_contract
         ];
     }
 }

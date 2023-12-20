@@ -97,7 +97,8 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
      */
     public function get(): mixed
     {
-        return $this->model->query()->whereRelation('dinas', 'dinas_id', auth()->user()->dinas->id)
+        return $this->model->query()
+            ->whereRelation('dinas', 'dinas_id', auth()->user()->dinas->id)
             ->with('serviceProviderProjects')
             ->get();
     }
@@ -199,10 +200,13 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
      *
      * @return mixed
      */
-    public function getbyId(): mixed
+    public function getbyId(Request $request): mixed
     {
         return $this->model->query()
             ->where(['status' => 'active', 'dinas_id' => auth()->user()->dinas->id])
+            ->when($request->name, function ($query) use ($request) {
+                $query->where('name', 'LIKE', '%'.$request->name.'%');
+            })
             ->get();
     }
 
@@ -279,5 +283,5 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
             ->where('executor_id', auth()->user()->serviceProvider->id)
             ->get();
     }
-    
+
 }

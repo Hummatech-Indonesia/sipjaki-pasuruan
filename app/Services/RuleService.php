@@ -63,8 +63,8 @@ class RuleService
      * @param  mixed $file
      * @return void
      */
-    public function downloadRule(mixed $file)
+    public function downloadRule(mixed $data)
     {
-        return response()->download(storage_path('app/public/'.$file), basename($file));
+        return response()->download(storage_path('app/public/'.$data->file), $data->title);
     }
 }

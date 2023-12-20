@@ -29,8 +29,8 @@ class VideoRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'video.required' => 'Foto wajib diisi',
-            'video.mimes' => 'Foto yang anda inputkan harus berupa berekstensi PNG, JPG Ataupun JPEG'
+            'photo.required' => 'Foto wajib diisi',
+            'photo.mimes' => 'Foto yang anda inputkan harus berupa berekstensi PNG, JPG Ataupun JPEG'
         ];
     }
 }
