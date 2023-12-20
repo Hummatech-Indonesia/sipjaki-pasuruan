@@ -2,12 +2,12 @@
 
 namespace App\Contracts\Repositories;
 
-use App\Contracts\Interfaces\FoundingDeepInterface;
+use App\Contracts\Interfaces\AmendmentDeepInterface;
 use App\Models\AmendmentDeed;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-class AmendmentDeepRepository extends BaseRepository implements FoundingDeepInterface
+class AmendmentDeepRepository extends BaseRepository implements AmendmentDeepInterface
 {
     public function __construct(AmendmentDeed $amendmentDeed)
     {
