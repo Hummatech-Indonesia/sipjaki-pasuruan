@@ -6,7 +6,6 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\RuleController;
 use App\Http\Controllers\ServiceProvider\AmendmentDeepController;
 use App\Http\Controllers\ServiceProvider\FoundingDeepController;
-use App\Http\Controllers\ServiceProvider\VerificationController as ServiceProviderVerificationController;
 use App\Http\Controllers\TrainingMemberController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkerController;
@@ -30,7 +29,6 @@ Route::resources([
     'rules' => RuleController::class,
     'founding-deed'=>FoundingDeepController::class,
     'amendment-deed'=>AmendmentDeepController::class,
-    'verification-service-provider'=>ServiceProviderVerificationController::class
 ]);
 
 
