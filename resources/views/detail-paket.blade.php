@@ -106,7 +106,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($detailDinas->projects as $project)
+                                @forelse ($projects as $project)
                                     <th scope="row" class="fs-5">{{ $loop->iteration }}</th>
                                     <td class="fs-5">{{ $project->name }}</td>
                                     <td class="fs-5">{{ $project->fundSource->name }}</td>

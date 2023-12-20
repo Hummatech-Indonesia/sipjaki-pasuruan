@@ -104,4 +104,11 @@ interface ProjectInterface extends CountInterface, GetInterface, StoreInterface,
      * @return mixed
      */
     public function projectExecutor(): mixed;
+
+    /**
+     * getByDinas
+     *
+     * @return mixed
+     */
+    public function getByDinas(mixed $id): mixed;
 }

@@ -15,20 +15,23 @@ use App\Contracts\Interfaces\RuleInterface;
 use App\Contracts\Interfaces\DinasInterface;
 use App\Contracts\Interfaces\TrainingInterface;
 use App\Contracts\Interfaces\AssociationInterface;
+use App\Contracts\Interfaces\ProjectInterface;
 use App\Contracts\Interfaces\ServiceProviderInterface;
 
 class LandingController extends Controller
 {
 
     private DinasInterface $dinas;
+    private ProjectInterface $project;
     private NewsInterface $news;
     private TrainingInterface $training;
     private RuleInterface $rule;
     private FaqInterface $faq;
     private ServiceProviderInterface $serviceProvider;
 
-    public function __construct(FaqInterface $faq, DinasInterface $dinas, NewsInterface $news, TrainingInterface $training, RuleInterface $rule, ServiceProviderInterface $serviceProvider)
+    public function __construct(FaqInterface $faq, DinasInterface $dinas, NewsInterface $news, TrainingInterface $training, RuleInterface $rule, ServiceProviderInterface $serviceProvider, ProjectInterface $project)
     {
+        $this->project = $project;
         $this->dinas = $dinas;
         $this->news = $news;
         $this->training = $training;
@@ -58,10 +61,10 @@ class LandingController extends Controller
     {
         $data = $this->dinas->search($request);
 
-        $detailDinas = $this->dinas->show($dinas->id);
+        $detailDinas = $this->project->getByDinas($dinas->id);
         $name = $request->name;
 
-        return view('detail-paket', compact('data', 'detailDinas','name'));
+        return view('detail-paket', compact('data', 'detailDinas', 'name'));
     }
 
     /**
@@ -113,14 +116,14 @@ class LandingController extends Controller
 
         $trainings = $this->training->customPaginate($request, 30);
         $name = $request->name;
-        return view('pelatihan', compact('trainings','name'));
+        return view('pelatihan', compact('trainings', 'name'));
     }
 
     public function rules(Request $request): View
     {
         $rules = $this->rule->customPaginate($request, 10);
         $name = $request->title;
-        return view('peraturan', compact('rules','name'));
+        return view('peraturan', compact('rules', 'name'));
     }
 
     public function faq(): View

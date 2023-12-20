@@ -205,7 +205,7 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
         return $this->model->query()
             ->where(['status' => 'active', 'dinas_id' => auth()->user()->dinas->id])
             ->when($request->name, function ($query) use ($request) {
-                $query->where('name', 'LIKE', '%'.$request->name.'%');
+                $query->where('name', 'LIKE', '%' . $request->name . '%');
             })
             ->get();
     }
@@ -284,4 +284,16 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
             ->get();
     }
 
+    /**
+     * getByDinas
+     *
+     * @param  mixed $id
+     * @return mixed
+     */
+    public function getByDinas(mixed $id): mixed
+    {
+        return $this->model->query()
+            ->where('dinas_id', $id)
+            ->get();
+    }
 }
