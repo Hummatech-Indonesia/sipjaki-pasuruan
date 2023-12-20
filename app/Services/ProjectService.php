@@ -51,10 +51,10 @@ class ProjectService
             if ($old_report) {
                 if ($request->hasFile('report')) {
                     $this->remove($old_report);
-                    $old_report = $this->upload(UploadDiskEnum::REPORT->value, $request->file('administrative_minutes'));
+                    $old_report = $this->upload(UploadDiskEnum::REPORT->value, $request->file('report'));
                 }
             } else {
-                $old_report = $this->upload(UploadDiskEnum::REPORT->value, $request->file('administrative_minutes'));
+                $old_report = $this->upload(UploadDiskEnum::REPORT->value, $request->file('report'));
             }
         }
 
