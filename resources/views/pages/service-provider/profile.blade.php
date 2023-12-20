@@ -225,7 +225,7 @@
                                                     data-Asosiasi="{{ $serviceProviderQualification->serviceProvider->association->name }}"
                                                     data-Tanggal_Permohonan=" {{ $serviceProviderQualification->first_print? Carbon::parse($serviceProviderQualification->first_print)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}"
                                                     data-Tanggal_Cetak_Pertama=" {{ $serviceProviderQualification->first_print? Carbon::parse($serviceProviderQualification->first_print)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}"
-                                                    data-Tanggal_Cetak_Perubahan_Terakhir=" {{ $serviceProviderQualification->last_print? Carbon::parse($serviceProviderQualification->last_print)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}">Detail</button>
+                                                    data-Tanggal_Cetak_Perubahan_Terakhir=" {{ $serviceProviderQualification->last_print? Carbon::parse($serviceProviderQualification->last_print)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}" data-reject="{{ $serviceProviderQualification->resend ? $serviceProviderQualification->resend : '-'  }}">Detail</button>
                                             </div>
                                             <div>
                                                 <button type="button"
@@ -293,7 +293,7 @@
                                                     data-Asosiasi="{{ $serviceProviderQualification->serviceProvider->association->name }}"
                                                     data-Tanggal_Permohonan=" {{ $serviceProviderQualification->first_print? Carbon::parse($serviceProviderQualification->first_print)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}"
                                                     data-Tanggal_Cetak_Pertama=" {{ $serviceProviderQualification->first_print? Carbon::parse($serviceProviderQualification->first_print)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}"
-                                                    data-Tanggal_Cetak_Perubahan_Terakhir=" {{ $serviceProviderQualification->last_print? Carbon::parse($serviceProviderQualification->last_print)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}">Detail</button>
+                                                    data-Tanggal_Cetak_Perubahan_Terakhir=" {{ $serviceProviderQualification->last_print? Carbon::parse($serviceProviderQualification->last_print)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}" data-reject="{{ $serviceProviderQualification->resend ? $serviceProviderQualification->resend : '-'  }}">Detail</button>
                                             </div>
                                             <div>
                                                 <button type="button"
