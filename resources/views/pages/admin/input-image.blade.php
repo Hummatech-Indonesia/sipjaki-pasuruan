@@ -39,13 +39,23 @@
                                 </p>
                             </td>
                             <td>
-                                <img src="{{ asset('storage/structure_organitation/structure_organitation.jpg') }}"
-                                    width="200px" height="200px" style="object-fit: cover" alt="">
+                                @php
+                                $imageSrc = 'storage/structure_organitation/structure_organitation.jpg';
+                                $imagePath = public_path($imageSrc);
+                                $defaultImageSrc = 'no-data.png';
+                            @endphp
+                            
+                            @if(file_exists($imagePath))
+                                <img src="{{ asset($imageSrc) }}" width="200px" height="200px" style="object-fit: cover" alt="">
+                            @else
+                                <img src="{{ asset($defaultImageSrc) }}" width="200px" height="200px" style="object-fit: cover"  alt="No Data">
+                            @endif
                             </td>
                             <td>
                                 <div class="d-flex justify-content-header gap-2">
                                     <div class="">
-                                        <button class="btn btn-detail text-white" data-bs-toggle="modal" data-bs-target="#detail-struktur" style="background-color: #1B3061">
+                                        <button class="btn btn-detail text-white" data-bs-toggle="modal"
+                                            data-bs-target="#detail-struktur" style="background-color: #1B3061">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                 viewBox="0 0 24 24" fill="none">
                                                 <path d="M4.5 12.5C7.5 6 16.5 6 19.5 12.5" stroke="white" stroke-width="2"
@@ -92,13 +102,23 @@
                                 </p>
                             </td>
                             <td>
-                                <img src="{{ asset('storage/strategic_plan/strategic_plan.jpg') }}" width="200px"
-                                    height="200px" style="object-fit: cover" alt="">
+                                @php
+                                $imageSrc = 'storage/strategic_plan/strategic_plan.jpg';
+                                $imagePath = public_path($imageSrc);
+                                $defaultImageSrc = 'no-data.png';
+                            @endphp
+                            
+                            @if(file_exists($imagePath))
+                                <img src="{{ asset($imageSrc) }}" width="200px" height="200px" style="object-fit: cover" alt="">
+                            @else
+                                <img src="{{ asset($defaultImageSrc) }}" width="200px" height="200px" style="object-fit: cover"  alt="No Data">
+                            @endif
                             </td>
                             <td>
                                 <div class="d-flex justify-content-header gap-2">
                                     <div class="">
-                                        <button class="btn btn-detail text-white" data-bs-toggle="modal" data-bs-target="#detail-rencana" style="background-color: #1B3061">
+                                        <button class="btn btn-detail text-white" data-bs-toggle="modal"
+                                            data-bs-target="#detail-rencana" style="background-color: #1B3061">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                 viewBox="0 0 24 24" fill="none">
                                                 <path d="M4.5 12.5C7.5 6 16.5 6 19.5 12.5" stroke="white" stroke-width="2"
@@ -145,8 +165,17 @@
                                 </p>
                             </td>
                             <td>
-                                <img src="{{ asset('storage/job_and_function/job_and_function.jpg') }}" width="200px"
-                                    height="200px" style="object-fit: cover" alt="">
+                                @php
+                                $imageSrc = 'storage/job_and_function/job_and_function.jpg';
+                                $imagePath = public_path($imageSrc);
+                                $defaultImageSrc = 'no-data.png';
+                            @endphp
+                            
+                            @if(file_exists($imagePath))
+                                <img src="{{ asset($imageSrc) }}" width="200px" height="200px" style="object-fit: cover" alt="">
+                            @else
+                                <img src="{{ asset($defaultImageSrc) }}" width="200px" height="200px" style="object-fit: cover"  alt="No Data">
+                            @endif
                             </td>
                             <td>
                                 <div class="d-flex justify-content-header gap-2">
@@ -290,8 +319,8 @@
                     <p class="fs-5" style="font-weight: 700">
                         Gambar
                     </p>
-                    <img src="{{ asset('storage/strategic_plan/strategic_plan.jpg') }}" class="w-100"
-                        alt="" srcset="">
+                    <img src="{{ asset('storage/strategic_plan/strategic_plan.jpg') }}" class="w-100" alt=""
+                        srcset="">
                 </div>
                 <div class="modal-footer">
                     <div class="d-flex justify-content-end">

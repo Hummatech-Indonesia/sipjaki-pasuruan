@@ -5,6 +5,7 @@ namespace App\Contracts\Repositories;
 use App\Contracts\Interfaces\OfficerInterface;
 use App\Models\Officer;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class OfficerRepository extends BaseRepository implements OfficerInterface
 {
@@ -25,6 +26,22 @@ class OfficerRepository extends BaseRepository implements OfficerInterface
                 $query->where('name', 'LIKE', '%'. $request->name .'%');
             })
             ->get();
+    }
+
+    /**
+     * customPaginate
+     *
+     * @param  mixed $request
+     * @param  mixed $pagination
+     * @return LengthAwarePaginator
+     */
+    public function customPaginate(Request $request, int $pagination = 10): LengthAwarePaginator
+    {
+        return $this->model->query()
+            ->when($request->name, function ($query) use ($request) {
+                $query->where('name', 'LIKE', '%'. $request->name .'%');
+            })
+            ->fastPaginate($pagination);
     }
     /**
      * get
