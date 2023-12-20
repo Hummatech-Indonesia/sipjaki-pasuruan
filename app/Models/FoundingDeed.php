@@ -12,7 +12,7 @@ class FoundingDeed extends Model implements HasServiceProvider
     use HasFactory;
     protected $table = 'founding_deeds';
     protected $primaryKey = 'id';
-    protected $fillable = ['id', 'service_provider_id', 'deed_number', 'notary_name', 'address', 'city', 'deed_date'];
+    protected $fillable = ['id', 'service_provider_id','province','deed_number', 'notary_name', 'address', 'city', 'deed_date'];
     protected $guarded = [];
     public $incrementing = false;
     public $keyType = 'char';

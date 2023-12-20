@@ -42,6 +42,7 @@ class TrainingMemberController extends Controller
     {
         $request->merge(['training_id' => $training->id]);
         $trainingMembers = $this->trainingMember->customPaginate($request, 10);
+        $trainingMembers->appends(['name' => $request->name]);
 
         if ($request->is('api/*')) {
             $data['paginate'] = $this->customPaginate($trainingMembers->currentPage(), $trainingMembers->lastPage());
