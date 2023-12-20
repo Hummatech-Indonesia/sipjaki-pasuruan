@@ -280,7 +280,7 @@
                                     <div class="">
                                         <button id="btn-edit-{{ $worker->id }}" data-id="{{ $worker->id }}"
                                             data-name="{{ $worker->name }}"
-                                            data-birth_date="{{ \Carbon\Carbon::parse($worker->birth_date)->translatedFormat('d F Y') }}"
+                                            data-birth_date="{{$worker->birth_date }}"
                                             data-cerificate="{{ $worker->cerificate }}"
                                             data-education="{{ $worker->education }}"
                                             data-registration_number="{{ $worker->registration_number }}" type="button"
@@ -337,6 +337,7 @@
                     @endforelse
                 </tbody>
             </table>
+            {{ $workers->links('pagination::bootstrap-5') }}
         </div>
     </div>
     <div class="modal fade" tabindex="-1" id="modal-update" aria-labelledby="exampleModalLabel1">
@@ -347,7 +348,7 @@
                     @method('PUT')
                     <div class="modal-header d-flex align-items-center">
                         <h4 class="modal-title" id="exampleModalLabel1">
-                            Tambah Tenaga Kerja
+                            Edit Tenaga Kerja
                         </h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
@@ -405,7 +406,7 @@
                             Close
                         </button>
                         <button type="submit" style="background-color: #1B3061" class="btn text-white btn-create">
-                            Tambah
+                            Edit
                         </button>
                     </div>
                 </form>
