@@ -27,7 +27,7 @@ class ContractCategoryRequest extends FormRequest
     {
         return [
             'name.required' => 'Nama wajib diisi',
-            'name.max' => 'Nama maksimal 255 karakter'
+            'name.max' => 'Nama maksimal :max karakter'
         ];
     }
 }

@@ -21,4 +21,24 @@ class AmendmentDeepRequest extends FormRequest
             'province' => 'required|max:255'
         ];
     }
+
+    /**
+     * messages
+     *
+     * @return void
+     */
+    public function messages()
+    {
+        return [
+            'deed_number.required' => 'Nomor perbuatan harus diisi.',
+            'deed_number.max' => 'Nomor perbuatan tidak boleh melebihi 255 karakter.',
+            'notary_name.required' => 'Nama notaris harus diisi.',
+            'notary_name.max' => 'Nama notaris tidak boleh melebihi 255 karakter.',
+            'address.required' => 'Alamat harus diisi.',
+            'city.required' => 'Kota harus diisi.',
+            'city.max' => 'Kota tidak boleh melebihi 255 karakter.',
+            'province.required' => 'Provinsi harus diisi.',
+            'province.max' => 'Provinsi tidak boleh melebihi 255 karakter.',
+        ];
+    }
 }
