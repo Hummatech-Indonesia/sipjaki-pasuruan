@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\AssociationController;
-use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\RuleController;
@@ -30,7 +29,6 @@ Route::resources([
     'rules' => RuleController::class,
     'founding-deed'=>FoundingDeepController::class,
     'amendment-deed'=>AmendmentDeepController::class,
-    'verification-service-provider'=>VerificationController::class
 ]);
 
 
