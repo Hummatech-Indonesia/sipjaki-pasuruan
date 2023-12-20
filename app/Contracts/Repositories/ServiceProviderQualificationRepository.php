@@ -88,4 +88,16 @@ class ServiceProviderQualificationRepository extends BaseRepository implements S
             ->where('status', ServiceProviderQualificationEnum::ACTIVE->value)
             ->get();
     }
+    
+    /**
+     * getPending
+     *
+     * @return mixed
+     */
+    public function getPending(): mixed
+    {
+        return $this->model->query()
+            ->where('status', ServiceProviderQualificationEnum::PENDING->value)
+            ->get();
+    }
 }
