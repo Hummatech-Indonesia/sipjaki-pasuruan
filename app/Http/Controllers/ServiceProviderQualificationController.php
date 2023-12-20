@@ -10,6 +10,8 @@ use App\Http\Requests\ServiceProviderQualificationRequest;
 use App\Http\Resources\ServiceProviderQualificationResource;
 use App\Models\ServiceProviderQualification;
 use App\Traits\PaginationTrait;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class ServiceProviderQualificationController extends Controller
@@ -123,7 +125,20 @@ class ServiceProviderQualificationController extends Controller
     public function reject(RejectSericeProviderQualificationRequest $request, ServiceProviderQualification $serviceProviderQualification)
     {
         $data = $request->validated();
-        $data['status'] = ServiceProviderQualificationEnum::REJECT;
+        $data['status'] = ServiceProviderQualificationEnum::REJECT->value;
         $this->serviceProviderQualification->update($serviceProviderQualification->id, $data);
+        return redirect()->back()->with('success', 'Berhasil Menolak Permohonan');
+    }
+
+
+    /**
+     * active
+     *
+     * @return View
+     */
+    public function active(): View|JsonResponse
+    {
+        $serviceProviderQualificationActive = $this->serviceProviderQualification->getActive();
+        return view('', ['serviceProviderQualificationActive' => $serviceProviderQualificationActive]);
     }
 }

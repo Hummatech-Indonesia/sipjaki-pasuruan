@@ -10,4 +10,10 @@ use App\Contracts\Interfaces\Eloquent\UpdateInterface;
 
 interface ServiceProviderQualificationInterface extends StoreInterface, CustomPaginationInterface, DeleteInterface, UpdateInterface, ShowInterface
 {
+    /**
+     * getActive
+     *
+     * @return mixed
+     */
+    public function getActive(): mixed;
 }

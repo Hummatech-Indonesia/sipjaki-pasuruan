@@ -3,6 +3,7 @@
 namespace App\Contracts\Repositories;
 
 use App\Contracts\Interfaces\ServiceProviderQualificationInterface;
+use App\Enums\ServiceProviderQualificationEnum;
 use App\Models\ServiceProviderQualification;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -74,5 +75,17 @@ class ServiceProviderQualificationRepository extends BaseRepository implements S
     {
         return $this->model->query()
             ->findOrFail($id);
+    }
+
+    /**
+     * getActive
+     *
+     * @return mixed
+     */
+    public function getActive(): mixed
+    {
+        return $this->model->query()
+            ->where('status', ServiceProviderQualificationEnum::ACTIVE->value)
+            ->get();
     }
 }
