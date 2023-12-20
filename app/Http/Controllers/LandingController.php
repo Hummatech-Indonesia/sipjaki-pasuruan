@@ -34,7 +34,7 @@ class LandingController extends Controller
         $this->training = $training;
         $this->rule = $rule;
         $this->faq = $faq;
-        $this->$serviceProvider = $serviceProvider;
+        $this->serviceProvider = $serviceProvider;
     }
     /**
      * project
