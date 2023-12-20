@@ -243,7 +243,7 @@ Route::middleware('auth')->group(function () {
         Route::get('data-service-providers', [AssociationController::class, 'dataServiceProvider']);
 
         Route::get('work-package', [ServiceProviderProjectController::class, 'index'])->name('work.package');
-        Route::get('detail-project/{project}', [ProjectController::class, 'projectDetail']);
+        Route::get('detail-project/{project}', [ProjectController::class, 'projectDetail'])->name('detail-project');
         Route::get('service-provider-project-detail/{service_provider_project}', [ServiceProviderProjectController::class, 'show'])->name('service.provider.project.detail');
 
         // download
