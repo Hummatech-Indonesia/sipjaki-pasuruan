@@ -37,7 +37,7 @@ class AdminController extends Controller
      */
     public function dashboard(Request $request): View
     {
-        
+
         $request->merge([
             'status' => StatusEnum::ACTIVE->value
         ]);
@@ -47,6 +47,7 @@ class AdminController extends Controller
         $project = $this->project->count(null);
         $accident = $this->accident->count(null);
         $activeProjects = $this->project->customPaginate($request, 15);
+        $activeProjects->appends(['name' => $request->name]);
 
         return view('pages.admin.dashboard', ['dinas' => $dinas, 'serviceProvider' => $serviceProvider, 'project' => $project, 'accident' => $accident, 'serviceProvider' => $serviceProvider, 'activeProjects' => $activeProjects]);
     }

@@ -30,6 +30,7 @@ class AssociationController extends Controller
     public function index(Request $request): JsonResponse|View
     {
         $associations = $this->association->customPaginate($request, 10);
+        $associations->appends(['name' => $request->name]);
         if ($request->is('api/*')) {
             $data['paginate'] = $this->customPaginate($associations->currentPage(), $associations->lastPage());
             $data['data'] = AssociationResource::collection($associations);

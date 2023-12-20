@@ -27,6 +27,7 @@ class ClassificationController extends Controller
     public function index(Request $request) : View | JsonResponse
     {
         $classifications = $this->classification->customPaginate($request, 10);
+        $classifications->appends(['name' => $request->name]);
         if ($request->is('api/*')) {
             $data['paginate'] = $this->customPaginate($classifications->currentPage(), $classifications->lastPage());
             $data['data'] = ClassificationResource::collection($classifications);
