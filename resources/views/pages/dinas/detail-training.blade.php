@@ -140,8 +140,7 @@
                 <div class="d-flex justify-content-header gap-3">
                     <div class="">
                         <div class="position-relative mb-3 ">
-                            <input type="search" class="form-control search-chat py-2 ps-5" id="search-name"
-                                placeholder="Search">
+                            <input type="search" class="form-control search-chat py-2 ps-5" placeholder="Search" name="name" value="{{ $name }}">
                             <i
                                 class="bx bx-search-alt-2
                         position-absolute top-50 translate-middle-y fs-6 text-dark ms-3"></i>
@@ -184,7 +183,7 @@
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header" style="background-color: #1B3061">
-                            <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Tambah Pelatihan</h5>
+                            <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Edit Peserta Pelatihan</h5>
                             <button type="button" class="btn-close" style="background-color: white"
                                 data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
@@ -201,7 +200,7 @@
                                                 <div class="mb-3">
                                                     <label for="basicpill-firstname-input">Nama</label>
                                                     <input name="name" type="text" class="form-control"
-                                                        id="basicpill-phoneno-input" placeholder="Enter Your Name.">
+                                                        id="basicpill-phoneno-input" placeholder="Masukkan Nama">
                                                     @error('name')
                                                         <p class="text-danger">
                                                             {{ $message }}
@@ -211,9 +210,9 @@
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="mb-3">
-                                                    <label for="basicpill-lastname-input">Position</label>
+                                                    <label for="basicpill-lastname-input">Jabatan</label>
                                                     <input name="position" type="text" class="form-control"
-                                                        id="basicpill-phoneno-input" placeholder="Enter Your Name.">
+                                                        id="basicpill-phoneno-input" placeholder="Masukkan Jabatan">
                                                     @error('position')
                                                         <p class="text-danger">
                                                             {{ $message }}
@@ -225,7 +224,7 @@
                                                 <div class="mb-3">
                                                     <label for="basicpill-lastname-input">No Telephone</label>
                                                     <input name="phone_number" type="text" class="form-control"
-                                                        id="basicpill-phoneno-input" placeholder="Enter Your Name.">
+                                                        id="basicpill-phoneno-input" placeholder="Masukkan No Telephone">
                                                     @error('phone_number')
                                                         <p class="text-danger">
                                                             {{ $message }}
@@ -253,7 +252,7 @@
                                                 <div class="mb-3">
                                                     <label for="basicpill-email-input">Surat Keputusan</label>
                                                     <input name="decree" type="text" class="form-control"
-                                                        id="basicpill-phoneno-input" placeholder="Enter Your Name.">
+                                                        id="basicpill-phoneno-input" placeholder="Masukkan Surat Keputusan">
                                                     @error('decree')
                                                         <p class="text-danger">
                                                             {{ $message }}
@@ -284,7 +283,7 @@
                                                 <div class="mb-3">
                                                     <label for="basicpill-email-input">Pendidikan</label>
                                                     <input name="education" type="text" class="form-control"
-                                                        id="basicpill-phoneno-input" placeholder="Enter Your education.">
+                                                        id="basicpill-phoneno-input" placeholder="Masukkan Pendidikan">
                                                     @error('education')
                                                         <p class="text-danger">
                                                             {{ $message }}
@@ -294,10 +293,10 @@
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="mb-3">
-                                                    <label for="basicpill-phoneno-input">nomor identitas Nasional</label>
+                                                    <label for="basicpill-phoneno-input">NIK</label>
                                                     <input name="national_identity_number" type="number"
                                                         class="form-control" id="basicpill-phoneno-input"
-                                                        placeholder="Enter Your national_identity_number.">
+                                                        placeholder="MAsukkan NIK">
                                                     @error('national_identity_number')
                                                         <p class="text-danger">
                                                             {{ $message }}
@@ -308,7 +307,7 @@
                                             <div class="col-lg-12">
                                                 <div class="mb-3">
                                                     <label for="basicpill-email-input">Alamat</label>
-                                                    <textarea name="address" id="" cols="30" rows="5" class="form-control"></textarea>
+                                                    <textarea name="address" placeholder="Masukkan Alamat" id="" cols="30" rows="5" class="form-control"></textarea>
                                                     @error('address')
                                                         <p class="text-danger">
                                                             {{ $message }}
@@ -331,12 +330,12 @@
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header" style="background-color: #1B3061">
-                            <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Tambah Pelatihan</h5>
+                            <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Tambah Peserta Pelatihan</h5>
                             <button type="button" class="btn-close" style="background-color: white"
                                 data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('training.members', $training->id) }}" id="form-create"
+                            <form action="{{ route('training.members.store', $training->id) }}" id="form-create"
                                 method="post" enctype="multipart/form-data">
                                 @csrf
                                 @method('POST')
@@ -349,7 +348,7 @@
                                                 <div class="mb-3">
                                                     <label for="basicpill-firstname-input">Nama</label>
                                                     <input name="name" type="text" class="form-control"
-                                                        id="basicpill-phoneno-input" placeholder="Enter Your Name.">
+                                                        id="basicpill-phoneno-input" placeholder="Masukkan Nama">
                                                     @error('name')
                                                         <p class="text-danger">
                                                             {{ $message }}
@@ -359,9 +358,9 @@
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="mb-3">
-                                                    <label for="basicpill-lastname-input">Position</label>
+                                                    <label for="basicpill-lastname-input">Jabatan</label>
                                                     <input name="position" type="text" class="form-control"
-                                                        id="basicpill-phoneno-input" placeholder="Enter Your Name.">
+                                                        id="basicpill-phoneno-input" placeholder="Masukkan Jabatan">
                                                     @error('position')
                                                         <p class="text-danger">
                                                             {{ $message }}
@@ -373,7 +372,7 @@
                                                 <div class="mb-3">
                                                     <label for="basicpill-lastname-input">No Telephone</label>
                                                     <input name="phone_number" type="text" class="form-control"
-                                                        id="basicpill-phoneno-input" placeholder="Enter Your Name.">
+                                                        id="basicpill-phoneno-input" placeholder="Masukkan No Telephone">
                                                     @error('phone_number')
                                                         <p class="text-danger">
                                                             {{ $message }}
@@ -399,7 +398,7 @@
                                                 <div class="mb-3">
                                                     <label for="basicpill-email-input">Surat Keputusan</label>
                                                     <input name="decree" type="text" class="form-control"
-                                                        id="basicpill-phoneno-input" placeholder="Enter Your Name.">
+                                                        id="basicpill-phoneno-input" placeholder="Masukkan Surat Keputusan">
                                                     @error('decree')
                                                         <p class="text-danger">
                                                             {{ $message }}
@@ -430,7 +429,7 @@
                                                 <div class="mb-3">
                                                     <label for="basicpill-email-input">Pendidikan</label>
                                                     <input name="education" type="text" class="form-control"
-                                                        id="basicpill-phoneno-input" placeholder="Enter Your education.">
+                                                        id="basicpill-phoneno-input" placeholder="Masukkan Pendidikan">
                                                     @error('education')
                                                         <p class="text-danger">
                                                             {{ $message }}
@@ -440,10 +439,10 @@
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="mb-3">
-                                                    <label for="basicpill-phoneno-input">nomor identitas Nasional</label>
+                                                    <label for="basicpill-phoneno-input">NIK</label>
                                                     <input name="national_identity_number" type="number"
                                                         class="form-control" id="basicpill-phoneno-input"
-                                                        placeholder="Enter Your national_identity_number.">
+                                                        placeholder="Masukkan NIK">
                                                     @error('national_identity_number')
                                                         <p class="text-danger">
                                                             {{ $message }}
@@ -454,7 +453,7 @@
                                             <div class="col-lg-12">
                                                 <div class="mb-3">
                                                     <label for="basicpill-email-input">Alamat</label>
-                                                    <textarea name="address" id="" cols="30" rows="5" class="form-control"></textarea>
+                                                    <textarea name="address" placeholder="Masukkan Alamat" id="" cols="30" rows="5" class="form-control"></textarea>
                                                     @error('address')
                                                         <p class="text-danger">
                                                             {{ $message }}
@@ -617,6 +616,7 @@
                         @endforelse
                     </tbody>
                 </table>
+                {{ $trainingMembers->links('pagination::bootstrap-5') }}
             </div>
         </div>
     </div>

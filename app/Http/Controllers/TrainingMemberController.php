@@ -48,7 +48,8 @@ class TrainingMemberController extends Controller
             $data['data'] = TrainingMemberResource::collection($trainingMembers);
             return ResponseHelper::success($data);
         } else {
-            return view('pages.dinas.detail-training', compact('trainingMembers', 'training'));
+            $name = $request->name;
+            return view('pages.dinas.detail-training', compact('trainingMembers', 'training','name'));
         }
     }
 
