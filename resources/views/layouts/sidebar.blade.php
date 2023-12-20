@@ -107,7 +107,7 @@
                             </span>
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="{{ route('service.provider.qualifications') }}" key="t-tui-calendar">Kualifikasi</a></li>
+                            <li><a href="{{ route('service.provider.qualification.pending') }}" key="t-tui-calendar">Kualifikasi</a></li>
                         </ul>
                     </li>
                     <li>

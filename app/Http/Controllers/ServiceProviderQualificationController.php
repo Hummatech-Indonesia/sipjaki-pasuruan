@@ -38,7 +38,7 @@ class ServiceProviderQualificationController extends Controller
             $data['data'] = ServiceProviderQualificationResource::collection($serviceProviderQualifications);
             return ResponseHelper::success($data);
         } else {
-            return view('pages.approval.qualification', ['serviceProviderQualifications' => $serviceProviderQualifications]);
+            return view('', ['serviceProviderQualifications' => $serviceProviderQualifications]);
         }
     }
 
@@ -139,5 +139,16 @@ class ServiceProviderQualificationController extends Controller
     {
         $serviceProviderQualificationActive = $this->serviceProviderQualification->getActive();
         return view('', ['serviceProviderQualificationActive' => $serviceProviderQualificationActive]);
+    }
+
+    /**
+     * pending
+     *
+     * @return View
+     */
+    public function pending(): View|JsonResponse
+    {
+        $serviceProviderQualificationPending = $this->serviceProviderQualification->getPending();
+        return view('pages.approval.qualification', ['serviceProviderQualificationPending' => $serviceProviderQualificationPending]);
     }
 }

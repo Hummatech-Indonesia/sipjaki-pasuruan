@@ -21,17 +21,6 @@ class ProjectService
     public function store(UploadFileProjectRequest $request, Project $project): array
     {
         $data = $request->validated();
-        $old_contract = $project->contract;
-        if ($data['contract']) {
-            if ($old_contract) {
-                if ($request->hasFile('contract')) {
-                    $this->remove($old_contract);
-                    $old_contract = $this->upload(UploadDiskEnum::CONTRACT->value, $request->file('contract'));
-                }
-            } else {
-                $old_contract = $this->upload(UploadDiskEnum::CONTRACT->value, $request->file('contract'));
-            }
-        }
 
         $old_administrative_minutes = $project->administrative_minutes;
         if ($data['administrative_minutes']) {
@@ -42,6 +31,18 @@ class ProjectService
                 }
             } else {
                 $old_administrative_minutes = $this->upload(UploadDiskEnum::ADMINISTRATIVEMINUTE->value, $request->file('administrative_minutes'));
+            }
+        }
+
+        $old_contract = $project->contract;
+        if ($data['contract']) {
+            if ($old_contract) {
+                if ($request->hasFile('contract')) {
+                    $this->remove($old_contract);
+                    $old_contract = $this->upload(UploadDiskEnum::CONTRACT->value, $request->file('contract'));
+                }
+            } else {
+                $old_contract = $this->upload(UploadDiskEnum::CONTRACT->value, $request->file('contract'));
             }
         }
 
@@ -56,16 +57,16 @@ class ProjectService
                 $old_report = $this->upload(UploadDiskEnum::REPORT->value, $request->file('administrative_minutes'));
             }
         }
-        $old_minutes_of_disbursement = $project->minutes_of_disbursement;
 
+        $old_minutes_of_disbursement = $project->minutes_of_disbursement;
         if ($data['minutes_of_disbursement']) {
-            if ($old_administrative_minutes) {
+            if ($old_minutes_of_disbursement) {
                 if ($request->hasFile('minutes_of_disbursement')) {
                     $this->remove($old_minutes_of_disbursement);
-                    $old_minutes_of_disbursement = $this->upload(UploadDiskEnum::MINUTESOFDISBURSEMENT->value, $request->file('administrative_minutes'));
+                    $old_minutes_of_disbursement = $this->upload(UploadDiskEnum::MINUTESOFDISBURSEMENT->value, $request->file('minutes_of_disbursement'));
                 }
             } else {
-                $old_minutes_of_disbursement = $this->upload(UploadDiskEnum::MINUTESOFDISBURSEMENT->value, $request->file('administrative_minutes'));
+                $old_minutes_of_disbursement = $this->upload(UploadDiskEnum::MINUTESOFDISBURSEMENT->value, $request->file('minutes_of_disbursement'));
             }
         }
         return [

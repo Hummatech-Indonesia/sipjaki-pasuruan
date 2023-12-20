@@ -159,7 +159,7 @@
                 </div>
             </div>
             <div class="d-flex justify-content-end mb-2">
-                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-create"
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-create-qualification"
                     style="background-color: #1B3061; border-radius: 10px"><i class="fas fa-plus"
                         style="margin-right:10px"></i>Tambah</button>
             </div>
@@ -176,7 +176,7 @@
                             <th style="background-color: #1B3061;color:#ffffff; vertical-align: middle" colspan="1"
                                 rowspan="2">Kualifikasi</th>
                             <th style="background-color: #1B3061;color:#ffffff;vertical-align: middle;width:150px;"
-                            rowspan="2" colspan="1">Tahun</th>
+                                rowspan="2" colspan="1">Tahun</th>
                             <th style="background-color: #1B3061;color:#ffffff;vertical-align: middle" rowspan="2"
                                 colspan="1">
                                 Asosiasi</th>
@@ -203,81 +203,121 @@
                                     {{ Carbon::parse($serviceProviderQualification->created_at)->locale('id_ID')->isoFormat('DD MMMM Y') }}
                                 </td>
                                 <td colspan="1">
-                                  {{ $serviceProviderQualification->status }}
+                                    @if ($serviceProviderQualification->status == 'pending')
+                                        <span class="badge text-bg-warning fs-6">Pending</span>
+                                    @elseif ($serviceProviderQualification->status == 'reject')
+                                        <span class="badge text-bg-danger fs-6">Reject</span>
+                                    @else
+                                        <span class="badge text-bg-success fs-6">Active</span>
+                                    @endif
                                 </td>
-                                <td class="d-flex flex-row gap-3 justify-content-center">
-                                   @if ($serviceProviderQualification->status == "pending")
-                                   <div>
-                                    <button style="min-width: 90px;width:100%;background-color: #1B3061"
-                                    class="btn text-white modal-detail-qualification " id="btn-detail-{{ $serviceProviderQualification->id }}" data-update-list-classifications="{{  $serviceProviderQualification->subClassification->name }}"
-                                    data-code="{{ $serviceProviderQualification->subClassification->code }}" data-Kualifikasi="{{ $serviceProviderQualification->qualification->name }}" data-tahun="{{ $serviceProviderQualification->year }}" data-Asosiasi="{{ $serviceProviderQualification->serviceProvider->association->name }}" data-Tanggal_Permohonan=" {{ $serviceProviderQualification->first_print? Carbon::parse($serviceProviderQualification->first_print)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}" data-Tanggal_Cetak_Pertama=" {{ $serviceProviderQualification->first_print? Carbon::parse($serviceProviderQualification->first_print)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}" data-Tanggal_Cetak_Perubahan_Terakhir=" {{ $serviceProviderQualification->last_print? Carbon::parse($serviceProviderQualification->last_print)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}">Detail</button>
-                                </div>
-                                <div>
-                                    <button type="button"
-                                    id="btn-edit-{{ $serviceProviderQualification->id }}"
-                                    data-qualification_id="{{ $serviceProviderQualification->qualification_id }}"
-                                    data-id="{{ $serviceProviderQualification->id }}"
-                                    data-sub_classification_id="{{ $serviceProviderQualification->sub_classification_id }}"
-                                    data-year="{{ $serviceProviderQualification->year }}"
-                                    data-classification_id="{{ $serviceProviderQualification->subClassification->classification->id }}"
-                                        class="btn waves-effect waves-light modal-edit-qualification d-flex btn-edit flex-row gap-1 justify-content-evenly"
-                                        style="width: 90px; background-color: #FFC928; color: white"><i
-                                            class="bx bx-bx bxs-edit fs-4"></i>
-                                        <span>Edit</span></button>
-                                </div>
-                                <button type="button"
-                                    class="btn waves-effect waves-light btn-delete d-flex flex-row gap-1 justify-content-between"
-                                    style="width: 90px; background-color: #E05C39; color: white"
-                                    data-bs-toggle="modal" data-bs-target="#modal-delete"><i
-                                        class="bx bx-bx bxs-trash fs-4"></i>
-                                    Hapus
-                                </button>
-                                   @elseif ($serviceProviderQualification->status == "active")
-                                   <div>
-                                    <button style="min-width: 90px;width:100%;background-color: #1B3061"
-                                    class="btn text-white modal-detail-qualification " id="btn-detail-{{ $serviceProviderQualification->id }}" data-update-list-classifications="{{  $serviceProviderQualification->subClassification->name }}"
-                                    data-code="{{ $serviceProviderQualification->subClassification->code }}" data-Kualifikasi="{{ $serviceProviderQualification->qualification->name }}" data-tahun="{{ $serviceProviderQualification->year }}" data-Asosiasi="{{ $serviceProviderQualification->serviceProvider->association->name }}" data-Tanggal_Permohonan=" {{ $serviceProviderQualification->first_print? Carbon::parse($serviceProviderQualification->first_print)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}" data-Tanggal_Cetak_Pertama=" {{ $serviceProviderQualification->first_print? Carbon::parse($serviceProviderQualification->first_print)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}" data-Tanggal_Cetak_Perubahan_Terakhir=" {{ $serviceProviderQualification->last_print? Carbon::parse($serviceProviderQualification->last_print)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}">Detail</button>
-                                </div>
-                                <div>
-                                    <button type="button"
-                                    id="btn-edit-{{ $serviceProviderQualification->id }}"
-                                    data-qualification_id="{{ $serviceProviderQualification->qualification_id }}"
-                                    data-id="{{ $serviceProviderQualification->id }}"
-                                    data-sub_classification_id="{{ $serviceProviderQualification->sub_classification_id }}"
-                                    data-year="{{ $serviceProviderQualification->year }}"
-                                    data-classification_id="{{ $serviceProviderQualification->subClassification->classification->id }}"
-                                        class="btn waves-effect waves-light modal-edit-qualification d-flex btn-edit flex-row gap-1 justify-content-evenly"
-                                        style="width: 90px; background-color: #FFC928; color: white"><i
-                                            class="bx bx-bx bxs-edit fs-4"></i>
-                                        <span>Edit</span></button>
-                                </div>
-                                @elseif ($serviceProviderQualification->status == "reject")
-                                <div>
-                                    <button style="min-width: 90px;width:100%;background-color: #1B3061"
-                                    class="btn text-white modal-detail-qualification " id="btn-detail-{{ $serviceProviderQualification->id }}" data-update-list-classifications="{{  $serviceProviderQualification->subClassification->name }}"
-                                    data-code="{{ $serviceProviderQualification->subClassification->code }}" data-Kualifikasi="{{ $serviceProviderQualification->qualification->name }}" data-tahun="{{ $serviceProviderQualification->year }}" data-Asosiasi="{{ $serviceProviderQualification->serviceProvider->association->name }}" data-Tanggal_Permohonan=" {{ $serviceProviderQualification->first_print? Carbon::parse($serviceProviderQualification->first_print)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}" data-Tanggal_Cetak_Pertama=" {{ $serviceProviderQualification->first_print? Carbon::parse($serviceProviderQualification->first_print)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}" data-Tanggal_Cetak_Perubahan_Terakhir=" {{ $serviceProviderQualification->last_print? Carbon::parse($serviceProviderQualification->last_print)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}">Detail</button>
-                                </div>
-                                <div>
-                                    <button type="button"
-                                    id="btn-edit-{{ $serviceProviderQualification->id }}"
-                                    data-qualification_id="{{ $serviceProviderQualification->qualification_id }}"
-                                    data-id="{{ $serviceProviderQualification->id }}"
-                                    data-sub_classification_id="{{ $serviceProviderQualification->sub_classification_id }}"
-                                    data-year="{{ $serviceProviderQualification->year }}"
-                                    data-classification_id="{{ $serviceProviderQualification->subClassification->classification->id }}"
-                                        class="btn waves-effect waves-light modal-edit-qualification d-flex btn-edit flex-row gap-1 justify-content-evenly"
-                                        style="width: 90px; background-color: #FFC928; color: white"><i
-                                            class="bx bx-bx bxs-edit fs-4"></i>
-                                        <span>Edit</span></button>
-                                </div>
-                                <button type="button"
-                                    class="btn waves-effect waves-light btn-delete d-flex flex-row gap-1 justify-content-between"
-                                    style="width: 90px; background-color: #E05C39; color: white"
-                                    data-bs-toggle="modal" data-bs-target="#modal-delete"><i
-                                        class="bx bx-bx bxs-trash fs-4"></i>
-                                    Hapus
-                                </button>
-                                   @endif
+                                <td colspan="1">
+                                    @if ($serviceProviderQualification->status == 'pending')
+                                        <div class="d-flex justify-content-center gap-3">
+                                            <div>
+                                                <button style="min-width: 90px;width:100%;background-color: #1B3061"
+                                                    class="btn text-white modal-detail-qualification "
+                                                    id="btn-detail-{{ $serviceProviderQualification->id }}"
+                                                    data-update-list-classifications="{{ $serviceProviderQualification->subClassification->name }}"
+                                                    data-code="{{ $serviceProviderQualification->subClassification->code }}"
+                                                    data-Kualifikasi="{{ $serviceProviderQualification->qualification->name }}"
+                                                    data-tahun="{{ $serviceProviderQualification->year }}"
+                                                    data-Asosiasi="{{ $serviceProviderQualification->serviceProvider->association->name }}"
+                                                    data-Tanggal_Permohonan=" {{ $serviceProviderQualification->first_print? Carbon::parse($serviceProviderQualification->first_print)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}"
+                                                    data-Tanggal_Cetak_Pertama=" {{ $serviceProviderQualification->first_print? Carbon::parse($serviceProviderQualification->first_print)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}"
+                                                    data-Tanggal_Cetak_Perubahan_Terakhir=" {{ $serviceProviderQualification->last_print? Carbon::parse($serviceProviderQualification->last_print)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}">Detail</button>
+                                            </div>
+                                            <div>
+                                                <button type="button"
+                                                    id="btn-edit-{{ $serviceProviderQualification->id }}"
+                                                    data-qualification_id="{{ $serviceProviderQualification->qualification_id }}"
+                                                    data-id="{{ $serviceProviderQualification->id }}"
+                                                    data-sub_classification_id="{{ $serviceProviderQualification->sub_classification_id }}"
+                                                    data-year="{{ $serviceProviderQualification->year }}"
+                                                    data-classification_id="{{ $serviceProviderQualification->subClassification->classification->id }}"
+                                                    class="btn waves-effect waves-light modal-edit-qualification d-flex btn-edit flex-row gap-1 justify-content-evenly"
+                                                    style="width: 90px; background-color: #FFC928; color: white"><i
+                                                        class="bx bx-bx bxs-edit fs-4"></i>
+                                                    <span>Edit</span></button>
+                                            </div>
+                                            <div>
+                                                <button type="button" data-id="{{ $serviceProviderQualification->id }}"
+                                                    class="btn waves-effect waves-light btn-delete-qualification d-flex flex-row gap-1 justify-content-between"
+                                                    style="width: 90px; background-color: #E05C39; color: white"
+                                                    data-bs-toggle="modal" data-bs-target="#modal-delete"><i
+                                                        class="bx bx-bx bxs-trash fs-4"></i>
+                                                    Hapus
+                                                </button>
+                                            </div>
+                                        </div>
+                                    @elseif ($serviceProviderQualification->status == 'active')
+                                        <div class="d-flex justify-content-center gap-3">
+                                            <div>
+                                                <button style="min-width: 90px;width:100%;background-color: #1B3061"
+                                                    class="btn text-white modal-detail-qualification "
+                                                    id="btn-detail-{{ $serviceProviderQualification->id }}"
+                                                    data-update-list-classifications="{{ $serviceProviderQualification->subClassification->name }}"
+                                                    data-code="{{ $serviceProviderQualification->subClassification->code }}"
+                                                    data-Kualifikasi="{{ $serviceProviderQualification->qualification->name }}"
+                                                    data-tahun="{{ $serviceProviderQualification->year }}"
+                                                    data-Asosiasi="{{ $serviceProviderQualification->serviceProvider->association->name }}"
+                                                    data-Tanggal_Permohonan=" {{ $serviceProviderQualification->first_print? Carbon::parse($serviceProviderQualification->first_print)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}"
+                                                    data-Tanggal_Cetak_Pertama=" {{ $serviceProviderQualification->first_print? Carbon::parse($serviceProviderQualification->first_print)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}"
+                                                    data-Tanggal_Cetak_Perubahan_Terakhir=" {{ $serviceProviderQualification->last_print? Carbon::parse($serviceProviderQualification->last_print)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}">Detail</button>
+                                            </div>
+                                            <div>
+                                                <button type="button"
+                                                    id="btn-edit-{{ $serviceProviderQualification->id }}"
+                                                    data-qualification_id="{{ $serviceProviderQualification->qualification_id }}"
+                                                    data-id="{{ $serviceProviderQualification->id }}"
+                                                    data-sub_classification_id="{{ $serviceProviderQualification->sub_classification_id }}"
+                                                    data-year="{{ $serviceProviderQualification->year }}"
+                                                    data-classification_id="{{ $serviceProviderQualification->subClassification->classification->id }}"
+                                                    class="btn waves-effect waves-light modal-edit-qualification d-flex btn-edit flex-row gap-1 justify-content-evenly"
+                                                    style="width: 90px; background-color: #FFC928; color: white"><i
+                                                        class="bx bx-bx bxs-edit fs-4"></i>
+                                                    <span>Edit</span></button>
+                                            </div>
+                                        </div>
+                                    @elseif ($serviceProviderQualification->status == 'reject')
+                                        <div class="d-flex justify-content-center gap-3">
+                                            <div>
+                                                <button style="min-width: 90px;width:100%;background-color: #1B3061"
+                                                    class="btn text-white modal-detail-qualification "
+                                                    id="btn-detail-{{ $serviceProviderQualification->id }}"
+                                                    data-update-list-classifications="{{ $serviceProviderQualification->subClassification->name }}"
+                                                    data-code="{{ $serviceProviderQualification->subClassification->code }}"
+                                                    data-Kualifikasi="{{ $serviceProviderQualification->qualification->name }}"
+                                                    data-tahun="{{ $serviceProviderQualification->year }}"
+                                                    data-Asosiasi="{{ $serviceProviderQualification->serviceProvider->association->name }}"
+                                                    data-Tanggal_Permohonan=" {{ $serviceProviderQualification->first_print? Carbon::parse($serviceProviderQualification->first_print)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}"
+                                                    data-Tanggal_Cetak_Pertama=" {{ $serviceProviderQualification->first_print? Carbon::parse($serviceProviderQualification->first_print)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}"
+                                                    data-Tanggal_Cetak_Perubahan_Terakhir=" {{ $serviceProviderQualification->last_print? Carbon::parse($serviceProviderQualification->last_print)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}">Detail</button>
+                                            </div>
+                                            <div>
+                                                <button type="button"
+                                                    id="btn-edit-{{ $serviceProviderQualification->id }}"
+                                                    data-qualification_id="{{ $serviceProviderQualification->qualification_id }}"
+                                                    data-id="{{ $serviceProviderQualification->id }}"
+                                                    data-sub_classification_id="{{ $serviceProviderQualification->sub_classification_id }}"
+                                                    data-year="{{ $serviceProviderQualification->year }}"
+                                                    data-classification_id="{{ $serviceProviderQualification->subClassification->classification->id }}"
+                                                    class="btn waves-effect waves-light modal-edit-qualification d-flex btn-edit flex-row gap-1 justify-content-evenly"
+                                                    style="width: 90px; background-color: #FFC928; color: white"><i
+                                                        class="bx bx-bx bxs-edit fs-4"></i>
+                                                    <span>Edit</span></button>
+                                            </div>
+                                            <div>
+                                                <button type="button"
+                                                    class="btn waves-effect waves-light btn-delete-qualification d-flex flex-row gap-1 justify-content-between"
+                                                    style="width: 90px; background-color: #E05C39; color: white"
+                                                    data-bs-toggle="modal" data-bs-target="#modal-delete"><i
+                                                        class="bx bx-bx bxs-trash fs-4"></i>
+                                                    Hapus
+                                                </button>
+                                            </div>
+                                        </div>
+                                    @endif
                                 </td>
                             </tr>
                         @empty
@@ -384,7 +424,7 @@
                                 </div>
                             </div>
 
-                            <table cellpadding="5" style="border-collapse: collapse; width: 40%;" class="fs-6 fw-normal">
+                            <table cellpadding="5" style="border-collapse: collapse; width: 60%;" class="fs-6 fw-normal">
                                 <tbody>
                                     <tr>
                                         <td colspan="5">
@@ -456,7 +496,7 @@
                                         class="text-dark btn px-4 fw-bold">Edit</button>
                                 </div>
                             </div>
-                            <table cellpadding="5" style="border-collapse: collapse; width: 40%;" class="fs-6 fw-normal">
+                            <table cellpadding="5" style="border-collapse: collapse; width: 60%;" class="fs-6 fw-normal">
                                 <tbody>
                                     <tr>
                                         <td>No Akte</td>
@@ -689,17 +729,15 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="modal-detail-qualification" tabindex="-1" id="modal-create" aria-labelledby="exampleModalLabel1">
+        <div class="modal fade" id="modal-detail-qualification" tabindex="-1" aria-labelledby="exampleModalLabel1">
             <div class="modal-dialog modal-md" role="document">
                 <div class="modal-content">
-                    <form id="form-create" action="{{ route('service.provider.qualifications.store') }}" method="POST">
-                        @csrf
-                        @method('POST')
                         <div class="modal-header d-flex align-items-center">
                             <h4 class="modal-title" id="exampleModalLabel1">
-                                Tambah Kualifikasi dan Klasifikasi
+                                Detail Kualifikasi dan Klasifikasi
                             </h4>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="card">
@@ -780,11 +818,7 @@
                                 data-bs-dismiss="modal">
                                 Close
                             </button>
-                            <button type="submit" style="background-color: #1B3061" class="btn text-white btn-create">
-                                Tambah
-                            </button>
                         </div>
-                    </form>
                 </div>
             </div>
         </div>
@@ -1152,7 +1186,7 @@
     </div>
     {{-- end modal  --}}
     {{-- modal kualifikasi dan Klasifikasi --}}
-    <div class="modal fade" id="modal-create" tabindex="-1" id="modal-create" aria-labelledby="exampleModalLabel1">
+    <div class="modal fade" id="modal-create-qualification" tabindex="-1" aria-labelledby="exampleModalLabel1">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <form id="form-create" action="{{ route('service.provider.qualifications.store') }}" method="POST">
@@ -1168,14 +1202,14 @@
                         <div class="mb-3">
                             <label for="basicpill-email-input">Klasifikasi</label>
                             <select class="form-select list-classifications select2-create" style="width:100%"
-                                id="update-list-classifications">
+                                id="list-classifications">
                                 <option value="">Pilih Klalifikasi</option>
                             </select>
                         </div>
                         <div class="mb-3">
                             <label for="basicpill-email-input">Sub Klasifikasi</label>
                             <select name="sub_classification_id" class="form-select sub-classifications select2-create"
-                                style="width:100%" id="update-list-sub-classifications">
+                                style="width:100%" id="list-sub-classifications">
                             </select>
                             @error('sub_classification_id')
                                 <p class="text-danger">
@@ -1186,7 +1220,7 @@
                         <div class="mb-3">
                             <label for="basicpill-phoneno-input">Kualifikasi</label>
                             <select name="qualification_id" class="form-select list-qualifications select2-create"
-                                style="width:100%" id="update-list-qualifications">
+                                style="width:100%" id="list-qualifications">
                                 <option value="">Pilih Kualifikasi</option>
                             </select>
                         </div>
@@ -1225,14 +1259,14 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="basicpill-email-input">Klasifikasi</label>
-                            <select class="form-select list-classifications select2-create" name="classification" style="width:100%"
-                                id="update-list-classifications">
+                            <select class="form-select list-classifications select2-update" name="classification"
+                                style="width:100%" id="update-list-classifications">
                                 <option value="">Pilih Klalifikasi</option>
                             </select>
                         </div>
                         <div class="mb-3">
                             <label for="basicpill-email-input">Sub Klasifikasi</label>
-                            <select name="sub_classification_id" class="form-select sub-classifications select2-create"
+                            <select name="sub_classification_id" class="form-select sub-classifications select2-update"
                                 style="width:100%" id="update-list-sub-classifications">
                             </select>
                             @error('sub_classification_id')
@@ -1243,7 +1277,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="basicpill-phoneno-input">Kualifikasi</label>
-                            <select name="qualification_id" class="form-select list-qualifications select2-create"
+                            <select name="qualification_id" class="form-select list-qualifications select2-update"
                                 style="width:100%" id="update-list-qualifications">
                                 <option value="">Pilih Kualifikasi</option>
                             </select>
@@ -1268,7 +1302,7 @@
             </div>
         </div>
     </div>
-
+    <x-delete-modal-component />
     {{-- end --}}
 @endsection
 @section('script')
@@ -1284,10 +1318,10 @@
     <script>
         $(document).ready(function() {
             $(".select2-create").select2({
-                dropdownParent: $("#modal-create")
+                dropdownParent: $("#modal-create-qualification")
             });
             $(".select2-update").select2({
-                dropdownParent: $("#modal-update")
+                dropdownParent: $("#modal-edit-qualification")
             });
         });
 
@@ -1303,29 +1337,6 @@
                         var option = `<option value="${item.id}">${item.name}</option>`
                         $('#list-qualifications').append(option);
                         $('#update-list-qualifications').append(option);
-                    });
-                    $('#list-qualifications').change(function() {
-                        var selectedClassificationId = $(this).val();
-                        $('#list-qualification-level')
-                        $('#update-list-qualification-level')
-                            .empty();
-
-                        if (selectedClassificationId !== '') {
-                            listqualificationlevel(
-                                selectedClassificationId
-                            );
-                        }
-                    });
-                    $('#update-list-qualifications').change(function() {
-                        var selectedClassificationId = $(this).val();
-                        $('#list-qualification-level')
-                        $('#update-list-qualification-level')
-                            .empty();
-                        if (selectedClassificationId !== '') {
-                            listqualificationlevel(
-                                selectedClassificationId
-                            );
-                        }
                     });
                 }
             });
@@ -1363,22 +1374,6 @@
                 }
             });
         }
-        $('.modal-detail-qualification').click(function() {
-            const data = getDataAttributes($(this).attr('id'))
-            handleDetail(data)
-            console.log(data);
-            $('#modal-detail-qualification').modal('show')
-        })
-        $('.modal-edit-qualification').click(function() {
-            const formData = getDataAttributes($(this).attr('id'))
-            var actionUrl = `projects/${formData['id']}`;
-            $('#form-edit-qualification').attr('action', actionUrl);
-
-            setFormValues('form-edit-qualification', formData)
-            $('#form-edit-qualification').data('id', formData['id'])
-            $('#form-edit-qualification').attr('action', );
-            $('#modal-edit-qualification').modal('show')
-        })
 
         function subclassifications(classificationId) {
             $.ajax({
@@ -1394,5 +1389,29 @@
                 }
             });
         }
+
+        $('.modal-detail-qualification').click(function() {
+            const data = getDataAttributes($(this).attr('id'))
+            handleDetail(data)
+            console.log(data);
+            $('#modal-detail-qualification').modal('show')
+        })
+        $('.modal-edit-qualification').click(function() {
+            const formData = getDataAttributes($(this).attr('id'))
+            var actionUrl = `service.provider.qualifications.update/${formData['id']}`;
+            $('#form-edit-qualification').attr('action', actionUrl);
+
+            setFormValues('form-edit-qualification', formData)
+            $('#form-edit-qualification').data('id', formData['id'])
+            $('#form-edit-qualification').attr('action', );
+            $('#modal-edit-qualification').modal('show')
+        })
+        $('.btn-delete-qualification').click(function() {
+            id = $(this).data('id')
+            var actionUrl = `service-provider-qualifications/${id}`;
+            $('#form-delete').attr('action', actionUrl);
+            $('#modal-delete').modal('show')
+        })
+
     </script>
 @endsection
