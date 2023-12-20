@@ -51,35 +51,39 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <div class="mb-3">
-                                    <label id="name" for="recipient-name" class="control-label mb-2">Masukan
-                                        Pengurus</label>
-                                    <input type="text" class="form-control" id="create-name" class="form-control"
-                                        name="name" aria-describedby="name" placeholder="Masukkan Pengurus" value="{{old('name')}}" />
+                                <div class="row mb-3">
+                                    <div class="col-6">
+                                        <label id="name" for="recipient-name" class="control-label mb-2">Masukan
+                                            Pengurus</label>
+                                        <input type="text" class="form-control" id="create-name" class="form-control"
+                                            name="name" aria-describedby="name" placeholder="Masukkan Pengurus" value="{{old('name')}}" />
+                                    </div>
+                                    <div class="col-6">
+                                        <label id="name" for="recipient-name" class="control-label mb-2">Masukan
+                                            Tanggal Lahir</label>
+                                        <input type="date" class="form-control" id="create-name" class="form-control"
+                                            name="birth_date" aria-describedby="name" value="{{old('birth_date')}}" placeholder="Masukkan Tanggal Lahir" />
+                                    </div>
                                 </div>
-                                <div class="mb-3">
-                                    <label id="name" for="recipient-name" class="control-label mb-2">Masukan
-                                        Tanggal Lahir</label>
-                                    <input type="date" class="form-control" id="create-name" class="form-control"
-                                        name="birth_date" aria-describedby="name" value="{{old('birth_date')}}" placeholder="Masukkan Tanggal Lahir" />
+                                <div class="row mb-3">
+                                    <div class="col-6">
+                                        <label id="name" for="recipient-name" class="control-label mb-2">Masukan
+                                            Jabatan</label>
+                                        <input type="text" class="form-control" id="create-name" class="form-control"
+                                            name="position" aria-describedby="name" value="{{old('position')}}" placeholder="Masukkan Jabatan" />
+                                    </div>
+                                    <div class="col-6">
+                                        <label id="name" for="recipient-name" class="control-label mb-2">Masukan
+                                            Pendidikan</label>
+                                        <input type="text" class="form-control" id="create-name" class="form-control"
+                                            name="education" aria-describedby="name" value="{{old('education')}}" placeholder="Masukkan Pendidikan" />
+                                    </div>
                                 </div>
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Masukan
                                         Alamat</label>
                                     <textarea class="form-control" name="address" id="" cols="15" rows="5"
                                         placeholder="Masukkan Alamat">{{old('address')}}</textarea>
-                                </div>
-                                <div class="mb-3">
-                                    <label id="name" for="recipient-name" class="control-label mb-2">Masukan
-                                        Jabatan</label>
-                                    <input type="text" class="form-control" id="create-name" class="form-control"
-                                        name="position" aria-describedby="name" value="{{old('position')}}" placeholder="Masukkan Jabatan" />
-                                </div>
-                                <div class="mb-3">
-                                    <label id="name" for="recipient-name" class="control-label mb-2">Masukan
-                                        Pendidikan</label>
-                                    <input type="text" class="form-control" id="create-name" class="form-control"
-                                        name="education" aria-describedby="name" value="{{old('education')}}" placeholder="Masukkan Pendidikan" />
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -155,7 +159,7 @@
                                     class="btn waves-effect waves-light d-flex btn-edit flex-row gap-1 justify-content-evenly"
                                     style="width: 90px; background-color: #FFC928; color: white"
                                     id="btn-edit-{{ $officer->id }}" data-id="{{ $officer->id }}"
-                                    data-name="{{ $officer->name }}"><i class="bx bx-bx bxs-edit fs-4"></i>
+                                    data-name="{{ $officer->name }}" data-brith_date="{{ $officer->birth_date }}" data-addres="{{ $officer->address }}" data-position="{{ $officer->position }}" data-education="{{ $officer->education }}"><i class="bx bx-bx bxs-edit fs-4"></i>
                                     <span>Edit</span></button>
                                 <button type="button"
                                     class="btn waves-effect waves-light btn-delete d-flex flex-row gap-1 justify-content-between"
@@ -178,7 +182,7 @@
                     @endforelse
                 </tbody>
             </table>
-            {{-- {{ $officers->links('pagination::bootstrap-5') }} --}}
+            {{ $officers->links('pagination::bootstrap-5') }}
         </div>
 
         <div class="modal fade" id="modal-update" tabindex="-1" aria-labelledby="exampleModalLabel1">
@@ -195,13 +199,41 @@
                                 aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <label id="name" for="recipient-name" class="control-label mb-2">Masukan
+                                        Pengurus</label>
+                                    <input type="text" class="form-control" id="update-name" class="form-control"
+                                        name="name" aria-describedby="name" placeholder="Masukkan Pengurus" />
+                                </div>
+                                <div class="col-6">
+                                    <label id="name" for="recipient-name" class="control-label mb-2">Masukan
+                                        Tanggal Lahir</label>
+                                    <input type="date" class="form-control" id="create-name" class="form-control"
+                                        name="birth_date" aria-describedby="name" value="{{old('birth_date')}}" placeholder="Masukkan Tanggal Lahir" />
+
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <label id="name" for="recipient-name" class="control-label mb-2">Masukan
+                                        Jabatan</label>
+                                    <input type="text" class="form-control" id="create-name" class="form-control"
+                                        name="position" aria-describedby="name" value="{{old('position')}}" placeholder="Masukkan Jabatan" />
+                                </div>
+                                <div class="col-6">
+                                    <label id="name" for="recipient-name" class="control-label mb-2">Masukan
+                                        Pendidikan</label>
+                                    <input type="text" class="form-control" id="create-name" class="form-control"
+                                        name="education" aria-describedby="name" value="{{old('education')}}" placeholder="Masukkan Pendidikan" />
+                                </div>
+                            </div>
                             <div class="mb-3">
                                 <label id="name" for="recipient-name" class="control-label mb-2">Masukan
-                                    Pengurus</label>
-                                <input type="text" class="form-control" id="update-name" class="form-control"
-                                    name="name" aria-describedby="name" placeholder="Masukkan Pengurus" />
+                                    Alamat</label>
+                                <textarea class="form-control" name="address" id="" cols="15" rows="5"
+                                    placeholder="Masukkan Alamat">{{old('address')}}</textarea>
                             </div>
-
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger text-white font-medium waves-effect"
