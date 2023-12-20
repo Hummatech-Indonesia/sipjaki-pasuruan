@@ -156,10 +156,13 @@ class ServiceProviderRepository extends BaseRepository implements ServiceProvide
      * @param  mixed $id
      * @return mixed
      */
-    public function getByAssosiasi(mixed $id): mixed
+    public function getByAssosiasi(mixed $id, Request $request): mixed
     {
         return $this->model->query()
             ->where('association_id', $id)
+            ->when($request->name, function ($query) use ($request) {
+                $query->whereRelation('user', 'name', 'LIKE', '%' . $request->name . '%');
+            })
             ->get();
     }
 }

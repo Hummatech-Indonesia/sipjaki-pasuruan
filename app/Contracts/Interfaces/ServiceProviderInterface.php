@@ -10,6 +10,7 @@ use App\Contracts\Interfaces\Eloquent\SearchInterface;
 use App\Contracts\Interfaces\Eloquent\ShowInterface;
 use App\Contracts\Interfaces\Eloquent\StoreInterface;
 use App\Contracts\Interfaces\Eloquent\UpdateInterface;
+use Illuminate\Http\Request;
 
 interface ServiceProviderInterface extends GetInterface, StoreInterface, CustomPaginationInterface, DeleteInterface, UpdateInterface, ShowInterface, SearchInterface, CountInterface
 {
@@ -34,5 +35,5 @@ interface ServiceProviderInterface extends GetInterface, StoreInterface, CustomP
      * @param  mixed $id
      * @return mixed
      */
-    public function getByAssosiasi(mixed $id): mixed;
+    public function getByAssosiasi(mixed $id, Request $request): mixed;
 }
