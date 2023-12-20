@@ -149,4 +149,17 @@ class ServiceProviderRepository extends BaseRepository implements ServiceProvide
             ->where('type_of_business_entity', TypeOfBusinessEntityEnum::EXECUTOR->value)
             ->get();
     }
+
+    /**
+     * getByAssosiasi
+     *
+     * @param  mixed $id
+     * @return mixed
+     */
+    public function getByAssosiasi(mixed $id): mixed
+    {
+        return $this->model->query()
+            ->where('association_id', $id)
+            ->get();
+    }
 }
