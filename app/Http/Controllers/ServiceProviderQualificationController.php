@@ -140,4 +140,15 @@ class ServiceProviderQualificationController extends Controller
         $serviceProviderQualificationActive = $this->serviceProviderQualification->getActive();
         return view('', ['serviceProviderQualificationActive' => $serviceProviderQualificationActive]);
     }
+
+    /**
+     * pending
+     *
+     * @return View
+     */
+    public function pending(): View|JsonResponse
+    {
+        $serviceProviderQualificationPending = $this->serviceProviderQualification->getPending();
+        return view('', ['serviceProviderQualificationPending' => $serviceProviderQualificationPending]);
+    }
 }

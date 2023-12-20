@@ -16,4 +16,11 @@ interface ServiceProviderQualificationInterface extends StoreInterface, CustomPa
      * @return mixed
      */
     public function getActive(): mixed;
+    
+    /**
+     * getActive
+     *
+     * @return mixed
+     */
+    public function getPending(): mixed;
 }
