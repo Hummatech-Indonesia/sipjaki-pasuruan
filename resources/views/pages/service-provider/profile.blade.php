@@ -1140,21 +1140,21 @@
                         style="color: white;"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="#" id="form-update-badan-usaha" method="POST">
-                        @method('PUT')
+                    <form action="{{ route('amendment-deed.store') }}" id="form-update-badan-usaha" method="POST">
+                        @method('POST')
                         @csrf
                         <div class="row mb-3">
                             <div class="col-6">
                                 <p class="mb-0 text-dark fs-6">
                                     No Akte
                                 </p>
-                                <input type="number" class="form-control" placeholder="Masukkan Nomor">
+                                <input type="number" name="deed_number" class="form-control" placeholder="Masukkan Nomor">
                             </div>
                             <div class="col-6">
                                 <p class="mb-0 text-dark fs-6">
                                     Nama Notaris
                                 </p>
-                                <input type="text" class="form-control" placeholder="Masukkan Nama Notaris">
+                                <input type="text" name="notary_name" class="form-control" placeholder="Masukkan Nama Notaris">
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -1162,13 +1162,13 @@
                                 <p class="mb-0 text-dark fs-6">
                                     Kota / Kabupaten
                                 </p>
-                                <input type="text" class="form-control" placeholder="Masukkan Nomor">
+                                <input type="text" name="city" class="form-control" placeholder="Masukkan Nomor">
                             </div>
                             <div class="col-6">
                                 <p class="mb-0 text-dark fs-6">
                                     Provinsi
                                 </p>
-                                <input type="text" class="form-control" placeholder="Masukkan Nomor">
+                                <input name="province" type="text" class="form-control" placeholder="Masukkan Nomor">
                             </div>
                         </div>
                         <div class="row">
@@ -1176,7 +1176,7 @@
                                 <p class="mb-0 text-dark fs-6">
                                     Alamat
                                 </p>
-                                <textarea name="" id="" class="form-control"></textarea>
+                                <textarea name="address" id="" class="form-control"></textarea>
                             </div>
                         </div>
                 </div>
