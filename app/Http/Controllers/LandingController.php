@@ -45,7 +45,8 @@ class LandingController extends Controller
     public function project(Request $request): View
     {
         $dinas = $this->dinas->search($request);
-        return view('paket-pekerjaan', compact('dinas'));
+        $name = $request->name;
+        return view('paket-pekerjaan', compact('dinas', 'name'));
     }
 
     /**
