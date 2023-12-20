@@ -27,7 +27,7 @@ class ContractCategoryController extends Controller
     {
 
         $contractCategories = $this->contractCategory->customPaginate($request, 15);
-        
+        $contractCategories->appends(['name' => $request->name]);
         if( $request->is('api/*')){
 
             $data['paginate'] = $this->customPaginate($contractCategories->currentPage(), $contractCategories->lastPage());
