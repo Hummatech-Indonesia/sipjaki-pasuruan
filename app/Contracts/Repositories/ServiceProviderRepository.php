@@ -21,7 +21,7 @@ class ServiceProviderRepository extends BaseRepository implements ServiceProvide
      *
      * @return mixed
      */
-    public function get() : mixed
+    public function get(): mixed
     {
         return $this->model->query()
             ->with('user', 'association')
@@ -39,7 +39,7 @@ class ServiceProviderRepository extends BaseRepository implements ServiceProvide
         return $this->model->query()
             ->with('user', 'association')
             ->when($request->service_provider, function ($query) use ($request) {
-                $query->whereRelation('user', 'name', 'LIKE', '%'. $request->service_provider .'%');
+                $query->whereRelation('user', 'name', 'LIKE', '%' . $request->service_provider . '%');
             })
             ->get();
     }
@@ -103,11 +103,11 @@ class ServiceProviderRepository extends BaseRepository implements ServiceProvide
     {
         return $this->model->query()
             // ->with('fiscalYear')
-            ->when($request->name,function($query) use ($request){
-                $query->where('name','LIKE','%'.$request->name.'%');
+            ->when($request->name, function ($query) use ($request) {
+                $query->where('name', 'LIKE', '%' . $request->name . '%');
             })
             ->when($request->service_provider, function ($query) use ($request) {
-                $query->whereRelation('user', 'name', 'LIKE', '%'. $request->service_provider .'%');
+                $query->whereRelation('user', 'name', 'LIKE', '%' . $request->service_provider . '%');
             })
             ->fastPaginate($pagination);
     }
@@ -132,7 +132,8 @@ class ServiceProviderRepository extends BaseRepository implements ServiceProvide
     public function getConsultant(): mixed
     {
         return $this->model->query()
-            ->where('type_of_business_entity',TypeOfBusinessEntityEnum::CONSULTANT->value)
+            ->whereRelation('user', 'email_verified_at', '!=', null)
+            ->where('type_of_business_entity', TypeOfBusinessEntityEnum::CONSULTANT->value)
             ->get();
     }
 
@@ -144,7 +145,8 @@ class ServiceProviderRepository extends BaseRepository implements ServiceProvide
     public function getExecutor(): mixed
     {
         return $this->model->query()
-            ->where('type_of_business_entity',TypeOfBusinessEntityEnum::EXECUTOR->value)
+            ->whereRelation('user', 'email_verified_at', '!=', null)
+            ->where('type_of_business_entity', TypeOfBusinessEntityEnum::EXECUTOR->value)
             ->get();
     }
 }
