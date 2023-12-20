@@ -72,23 +72,23 @@
                     <tr>
                         <td class="text-dark" style="font-weight: bold;">Kualifikasi:</td>
                         <td class="text-dark" style="font-weight: 600;"><span
-                                id="detail-physical_progress"></span>{{ $training->qualificationLevel->qualification->name }}
+                                id="detail-physical_progress"></span>{{ $training->qualificationTraining->name }}
                         </td>
                     </tr>
                     <tr>
                         <td class="text-dark" style="font-weight: bold;">Jenjang KKNI:</td>
                         <td class="text-dark" style="font-weight: 600;"><span
-                                id="detail-finance_progress">{{ $training->qualificationLevel->name }}</span></td>
+                                id="detail-finance_progress">{{ $training->qualificationTraining->name }}</span></td>
                     </tr>
                     <tr>
                         <td class="text-dark" style="font-weight: bold;">Klasifikasi:</td>
                         <td class="text-dark" style="font-weight: 600;"><span
-                                id="detail-status">{{ $training->subClassification->classification->name }}</span></td>
+                                id="detail-status">{{ $training->subClassificationTraining->classificationTraining->name }}</span></td>
                     </tr>
                     <tr>
                         <td class="text-dark" style="font-weight: bold;">Sub Klasifikasi:</td>
                         <td class="text-dark" style="font-weight: 600;"><span
-                                id="detail-service_provider_name">{{ $training->subClassification->name }}</span></td>
+                                id="detail-service_provider_name">{{ $training->subClassificationTraining->name }}</span></td>
                     </tr>
                     <tr>
                         <td class="text-dark" style="font-weight: bold;">Waktu Pelaksanaan:</td>
@@ -191,7 +191,7 @@
                         <div class="card-body">
                             <form action="" id="form-update" method="post" enctype="multipart/form-data">
                                 @csrf
-                                @method('POST')
+                                @method('PUT')
                                 <div id="basic-update">
                                     <!-- Seller Details -->
                                     <h3>Data 1</h3>
@@ -238,9 +238,9 @@
                                             <div class="col-lg-4">
                                                 <div class="mb-3">
                                                     <label for="basicpill-phoneno-input">Jenis kelamin</label> <br>
-                                                    <input type="checkbox" name="gender" id="update-gender-male"
+                                                    <input type="radio" name="gender" id="update-gender-male"
                                                         value="male">&nbsp;Laki-Laki
-                                                    <input type="checkbox" name="gender" id="update-gender-female"
+                                                    <input type="radio" name="gender" id="update-gender-female"
                                                         value="female">&nbsp;Perempuan
                                                     @error('gender')
                                                         <p class="text-danger">
@@ -472,6 +472,16 @@
                 </div><!-- /.modal-dialog -->
             </div>
             {{-- end --}}
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+    
             <div class="table-responsive">
                 <table class="table">
                     <thead>

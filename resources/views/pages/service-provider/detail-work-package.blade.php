@@ -130,11 +130,6 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Keuangan Bulanan</td>
-                                        <td>:</td>
-                                        <td>2022-08</td>
-                                    </tr>
-                                    <tr>
                                         <td>Sumber Dana</td>
                                         <td>:</td>
                                         <td>{{ $project->fundSource->name }}</td>
@@ -212,14 +207,14 @@
                     @endif
                     @if ($errors->any())
                         @foreach ($errors->all() as $error)
-                            <div class="alert mt-3 alert-danger alert-dismissible fade show" role="alert">
-                                {{ $error }}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                    aria-label="Close"></button>
-                            </div>
+                        <div class="alert mt-3 alert-danger alert-dismissible fade show" role="alert">
+                            {{ $error }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                            aria-label="Close"></button>
+                        </div>
                         @endforeach
-                    @endif
-
+                        @endif
+                    
                     <div class="table-responsive">
                         <table class="table mb-0">
 
