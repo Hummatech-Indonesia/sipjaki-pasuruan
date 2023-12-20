@@ -138,14 +138,16 @@
             </h4>
             <div class="d-flex justify-content-between">
                 <div class="d-flex justify-content-header gap-3">
-                    <div class="">
-                        <div class="position-relative mb-3 ">
-                            <input type="search" class="form-control search-chat py-2 ps-5" placeholder="Search" name="name" value="{{ $name }}">
-                            <i
-                                class="bx bx-search-alt-2
-                        position-absolute top-50 translate-middle-y fs-6 text-dark ms-3"></i>
+                    <form action="" class="">
+                        <div class="">
+                            <div class="position-relative mb-3 ">
+                                <input type="search" class="form-control search-chat py-2 ps-5" placeholder="Search" name="name" value="{{ $name }}">
+                                <i
+                                    class="bx bx-search-alt-2
+                            position-absolute top-50 translate-middle-y fs-6 text-dark ms-3"></i>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                     <div class="">
                         <button id="checkAll" onclick="selectAll()" class="btn text-white" style="background-color: #1B3061">
                             Select All
