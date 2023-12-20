@@ -65,12 +65,21 @@
         <div class="col-8">
             <div class="card">
                 <div class="card-body">
-                    <div class="d-flex d-row align-items-center mb-3">
-                        <div class="position-relative col-lg-4 search-container">
-                            <input type="search" class="py-2 ps-5" id="search-name" placeholder="Search">
-                            <i class="bx bx-search-alt search-icon"></i>
+                    <form>
+                        <div class="d-flex justify-content-header gap-2">
+                            <div class="d-flex d-row align-items-center mb-3">
+                                <div class="position-relative  search-container">
+                                    <input type="search" value="{{ $name }}" class="py-2 ps-5" id="search-name" name="name" placeholder="Search">
+                                    <i class="bx bx-search-alt search-icon"></i>
+                                </div>
+                            </div>
+                            <div class="">
+                                <button type="submit" class="text-white btn" style="background-color: #1B3061">
+                                    Search
+                                </button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                     <div class="table-responsive">
                         <table class="table table-borderless mb-0" border="1">
                             <thead class="table-light">

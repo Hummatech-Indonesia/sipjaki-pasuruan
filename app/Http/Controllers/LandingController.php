@@ -59,8 +59,9 @@ class LandingController extends Controller
         $data = $this->dinas->search($request);
 
         $detailDinas = $this->dinas->show($dinas->id);
+        $name = $request->name;
 
-        return view('detail-paket', compact('data', 'detailDinas'));
+        return view('detail-paket', compact('data', 'detailDinas','name'));
     }
 
     /**
