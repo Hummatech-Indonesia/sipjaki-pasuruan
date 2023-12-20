@@ -29,7 +29,7 @@ class ServiceProviderController extends Controller
         $this->user = $user;
         $this->serviceProvider = $serviceProvider;
         $this->serviceProviderQualification = $serviceProviderQualification;
-        $this->officerInterface = $officerInterface;
+        $this->officer = $officerInterface;
     }
 
     /**
@@ -42,10 +42,11 @@ class ServiceProviderController extends Controller
     {
         $workers = $this->worker->getByServiceProvider($request);
         $experiences = $this->project->getByServiceProvider($request);
+        $countOfficer = $this->officer->count(null);
         $countWorker = $this->worker->countWorker();
         $countExperience = $this->project->countProject();
         $countAllExperience = $this->project->countAllProject();
-        return view('pages.service-provider.dashboard', ['experiences' => $experiences, 'workers' => $workers, 'countWorker' => $countWorker, 'countExperience' => $countExperience, 'countAllExperience' => $countAllExperience]);
+        return view('pages.service-provider.dashboard', ['experiences' => $experiences, 'workers' => $workers, 'countWorker' => $countWorker, 'countExperience' => $countExperience, 'countAllExperience' => $countAllExperience, 'countOfficer' => $countOfficer]);
     }
 
     /**
@@ -72,7 +73,7 @@ class ServiceProviderController extends Controller
     {
         $serviceProviders = $this->serviceProvider->show(auth()->user()->serviceProvider->id);
         $serviceProviderQualifications = $this->serviceProviderQualification->customPaginate($request, 10);
-        $officers = $this->officerInterface->get();
+        $officers = $this->officer->get();
         $workers = $this->worker->get();
 
         return view('pages.service-provider.profile', ['serviceProvider' => $serviceProviders, 'serviceProviderQualifications' => $serviceProviderQualifications, 'officers' => $officers,'workers' => $workers]);

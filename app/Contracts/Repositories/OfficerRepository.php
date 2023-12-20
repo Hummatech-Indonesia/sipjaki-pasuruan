@@ -60,4 +60,16 @@ class OfficerRepository extends BaseRepository implements OfficerInterface
             ->findOrFail($id)
             ->delete();
     }
+
+    /**
+     * count
+     *
+     * @param  mixed $data
+     * @return int
+     */
+    public function count(?array $data): int
+    {
+        return $this->model->query()
+            ->count();
+    }
 }

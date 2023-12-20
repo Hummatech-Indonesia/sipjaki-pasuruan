@@ -175,22 +175,19 @@
                                 rowspan="2">Nomor Kode</th>
                             <th style="background-color: #1B3061;color:#ffffff; vertical-align: middle" colspan="1"
                                 rowspan="2">Kualifikasi</th>
-                            <th colspan="1" style="background-color: #1B3061;color:#ffffff;">Kemampuan Dasar</th>
+                            <th style="background-color: #1B3061;color:#ffffff;vertical-align: middle;width:150px;"
+                            rowspan="2" colspan="1">Tahun</th>
                             <th style="background-color: #1B3061;color:#ffffff;vertical-align: middle" rowspan="2"
                                 colspan="1">
                                 Asosiasi</th>
                             <th style="background-color: #1B3061;color:#ffffff;vertical-align: middle;width:150px;"
                                 rowspan="2" colspan="1">Tanggal Permohonan</th>
                             <th style="background-color: #1B3061;color:#ffffff;vertical-align: middle;width:150px;"
-                                rowspan="2" colspan="1">Tanggal Cetak Pertama</th>
-                            <th style="background-color: #1B3061;color:#ffffff;vertical-align: middle;width:150px;"
-                                rowspan="2" colspan="1">Tanggal Cetak Perubahan Terakhir</th>
+                                rowspan="2" colspan="1">Status</th>
                             <th style="background-color: #1B3061;color:#ffffff;vertical-align: middle;width:150px;"
                                 rowspan="2" colspan="1">Aksi</th>
                         </tr>
-                        <tr align="center">
-                            <th style="background-color: #1B3061;color:#ffffff;">Tahun</th>
-                        </tr>
+                       
                     </thead>
                     <tbody>
                         @forelse ($serviceProviderQualifications as $serviceProviderQualification)
@@ -206,28 +203,86 @@
                                     {{ Carbon::parse($serviceProviderQualification->created_at)->locale('id_ID')->isoFormat('DD MMMM Y') }}
                                 </td>
                                 <td colspan="1">
-                                    {{ $serviceProviderQualification->first_print? Carbon::parse($serviceProviderQualification->first_print)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}
-                                </td>
-                                <td colspan="1">
-                                    {{ $serviceProviderQualification->last_print? Carbon::parse($serviceProviderQualification->last_print)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}
+                                  {{ $serviceProviderQualification->status }}
                                 </td>
                                 <td class="d-flex flex-row gap-3 justify-content-center">
+                                   @if ($serviceProviderQualification->status == "pending")
+                                   <div>
+                                    <button style="min-width: 90px;width:100%;background-color: #1B3061"
+                                    class="btn text-white modal-detail-qualification " id="btn-detail-{{ $serviceProviderQualification->id }}" data-update-list-classifications="{{  $serviceProviderQualification->subClassification->name }}"
+                                    data-code="{{ $serviceProviderQualification->subClassification->code }}" data-Kualifikasi="{{ $serviceProviderQualification->qualification->name }}" data-tahun="{{ $serviceProviderQualification->year }}" data-Asosiasi="{{ $serviceProviderQualification->serviceProvider->association->name }}" data-Tanggal_Permohonan=" {{ $serviceProviderQualification->first_print? Carbon::parse($serviceProviderQualification->first_print)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}" data-Tanggal_Cetak_Pertama=" {{ $serviceProviderQualification->first_print? Carbon::parse($serviceProviderQualification->first_print)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}" data-Tanggal_Cetak_Perubahan_Terakhir=" {{ $serviceProviderQualification->last_print? Carbon::parse($serviceProviderQualification->last_print)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}">Detail</button>
+                                </div>
+                                <div>
                                     <button type="button"
-                                        class="btn waves-effect waves-light d-flex btn-edit flex-row gap-1 justify-content-evenly"
+                                    id="btn-edit-{{ $serviceProviderQualification->id }}"
+                                    data-qualification_id="{{ $serviceProviderQualification->qualification_id }}"
+                                    data-id="{{ $serviceProviderQualification->id }}"
+                                    data-sub_classification_id="{{ $serviceProviderQualification->sub_classification_id }}"
+                                    data-year="{{ $serviceProviderQualification->year }}"
+                                    data-classification_id="{{ $serviceProviderQualification->subClassification->classification->id }}"
+                                        class="btn waves-effect waves-light modal-edit-qualification d-flex btn-edit flex-row gap-1 justify-content-evenly"
                                         style="width: 90px; background-color: #FFC928; color: white"><i
                                             class="bx bx-bx bxs-edit fs-4"></i>
                                         <span>Edit</span></button>
+                                </div>
+                                <button type="button"
+                                    class="btn waves-effect waves-light btn-delete d-flex flex-row gap-1 justify-content-between"
+                                    style="width: 90px; background-color: #E05C39; color: white"
+                                    data-bs-toggle="modal" data-bs-target="#modal-delete"><i
+                                        class="bx bx-bx bxs-trash fs-4"></i>
+                                    Hapus
+                                </button>
+                                   @elseif ($serviceProviderQualification->status == "active")
+                                   <div>
+                                    <button style="min-width: 90px;width:100%;background-color: #1B3061"
+                                    class="btn text-white modal-detail-qualification " id="btn-detail-{{ $serviceProviderQualification->id }}" data-update-list-classifications="{{  $serviceProviderQualification->subClassification->name }}"
+                                    data-code="{{ $serviceProviderQualification->subClassification->code }}" data-Kualifikasi="{{ $serviceProviderQualification->qualification->name }}" data-tahun="{{ $serviceProviderQualification->year }}" data-Asosiasi="{{ $serviceProviderQualification->serviceProvider->association->name }}" data-Tanggal_Permohonan=" {{ $serviceProviderQualification->first_print? Carbon::parse($serviceProviderQualification->first_print)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}" data-Tanggal_Cetak_Pertama=" {{ $serviceProviderQualification->first_print? Carbon::parse($serviceProviderQualification->first_print)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}" data-Tanggal_Cetak_Perubahan_Terakhir=" {{ $serviceProviderQualification->last_print? Carbon::parse($serviceProviderQualification->last_print)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}">Detail</button>
+                                </div>
+                                <div>
                                     <button type="button"
-                                        class="btn waves-effect waves-light btn-delete d-flex flex-row gap-1 justify-content-between"
-                                        style="width: 90px; background-color: #E05C39; color: white"
-                                        data-bs-toggle="modal" data-bs-target="#modal-delete"><i
-                                            class="bx bx-bx bxs-trash fs-4"></i>
-                                        Hapus</button>
+                                    id="btn-edit-{{ $serviceProviderQualification->id }}"
+                                    data-qualification_id="{{ $serviceProviderQualification->qualification_id }}"
+                                    data-id="{{ $serviceProviderQualification->id }}"
+                                    data-sub_classification_id="{{ $serviceProviderQualification->sub_classification_id }}"
+                                    data-year="{{ $serviceProviderQualification->year }}"
+                                    data-classification_id="{{ $serviceProviderQualification->subClassification->classification->id }}"
+                                        class="btn waves-effect waves-light modal-edit-qualification d-flex btn-edit flex-row gap-1 justify-content-evenly"
+                                        style="width: 90px; background-color: #FFC928; color: white"><i
+                                            class="bx bx-bx bxs-edit fs-4"></i>
+                                        <span>Edit</span></button>
+                                </div>
+                                @elseif ($serviceProviderQualification->status == "reject")
+                                <div>
+                                    <button style="min-width: 90px;width:100%;background-color: #1B3061"
+                                    class="btn text-white modal-detail-qualification " id="btn-detail-{{ $serviceProviderQualification->id }}" data-update-list-classifications="{{  $serviceProviderQualification->subClassification->name }}"
+                                    data-code="{{ $serviceProviderQualification->subClassification->code }}" data-Kualifikasi="{{ $serviceProviderQualification->qualification->name }}" data-tahun="{{ $serviceProviderQualification->year }}" data-Asosiasi="{{ $serviceProviderQualification->serviceProvider->association->name }}" data-Tanggal_Permohonan=" {{ $serviceProviderQualification->first_print? Carbon::parse($serviceProviderQualification->first_print)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}" data-Tanggal_Cetak_Pertama=" {{ $serviceProviderQualification->first_print? Carbon::parse($serviceProviderQualification->first_print)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}" data-Tanggal_Cetak_Perubahan_Terakhir=" {{ $serviceProviderQualification->last_print? Carbon::parse($serviceProviderQualification->last_print)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}">Detail</button>
+                                </div>
+                                <div>
+                                    <button type="button"
+                                    id="btn-edit-{{ $serviceProviderQualification->id }}"
+                                    data-qualification_id="{{ $serviceProviderQualification->qualification_id }}"
+                                    data-id="{{ $serviceProviderQualification->id }}"
+                                    data-sub_classification_id="{{ $serviceProviderQualification->sub_classification_id }}"
+                                    data-year="{{ $serviceProviderQualification->year }}"
+                                    data-classification_id="{{ $serviceProviderQualification->subClassification->classification->id }}"
+                                        class="btn waves-effect waves-light modal-edit-qualification d-flex btn-edit flex-row gap-1 justify-content-evenly"
+                                        style="width: 90px; background-color: #FFC928; color: white"><i
+                                            class="bx bx-bx bxs-edit fs-4"></i>
+                                        <span>Edit</span></button>
+                                </div>
+                                <button type="button"
+                                    class="btn waves-effect waves-light btn-delete d-flex flex-row gap-1 justify-content-between"
+                                    style="width: 90px; background-color: #E05C39; color: white"
+                                    data-bs-toggle="modal" data-bs-target="#modal-delete"><i
+                                        class="bx bx-bx bxs-trash fs-4"></i>
+                                    Hapus
+                                </button>
+                                   @endif
                                 </td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="10" class="text-center">
+                                <td colspan="11" class="text-center">
                                     <div class="d-flex justify-content-center" style="min-height:19rem">
                                         <div class="my-auto">
                                             <img src="{{ asset('no-data.png') }}" width="300" height="300" />
@@ -241,6 +296,7 @@
                 </table>
             </div>
         </div>
+        
         <div class="tab-pane fade" id="administrasi" role="tabpanel" aria-labelledby="administrasi-tab">
             <div class="card rounded-4">
                 <div class="card-body">
@@ -522,7 +578,7 @@
                         <div class="flex-grow-1">
                             <div class="ms-2">
                                 <div class="btn btn-sm mb-3 text-dark rounded-3" style="background-color: #E4ECFF;">
-                                    Data Pengurus Badan Usaha
+                                    Data Tenaga Kerja Badan Usaha
                                 </div>
                                 <p class="fw-bolder fs-4">{{ $serviceProvider->user->name }}</p>
                             </div>
@@ -633,6 +689,105 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="modal-detail-qualification" tabindex="-1" id="modal-create" aria-labelledby="exampleModalLabel1">
+            <div class="modal-dialog modal-md" role="document">
+                <div class="modal-content">
+                    <form id="form-create" action="{{ route('service.provider.qualifications.store') }}" method="POST">
+                        @csrf
+                        @method('POST')
+                        <div class="modal-header d-flex align-items-center">
+                            <h4 class="modal-title" id="exampleModalLabel1">
+                                Tambah Kualifikasi dan Klasifikasi
+                            </h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="card">
+                                <div class="card-body">
+                                    <p class="mt-3 fs-5 text-dark mb-2" style="font-weight: 700">
+                                        <span id="detail-name"></span>
+                                    </p>
+                                    <div class="">
+                                        <div class="row mb-1">
+                                            <div class="col-md-5">
+                                                <p class="mb-2 text-dark">Nomor Kode :</p>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <p class="mb-2 text-dark" style="font-weight:600;"><span
+                                                        id="detail-code"></span></p>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-1">
+                                            <div class="col-md-5">
+                                                <p class="mb-2 text-dark">Kualifikasi :</p>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <p class="mb-2 text-dark" style="font-weight:600;"><span
+                                                        id="detail-kualifikasi"></span></p>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-1">
+                                            <div class="col-md-5">
+                                                <p class="mb-2 text-dark">Tahun :</p>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <p class="mb-2 text-dark" style="font-weight:600;"><span
+                                                        id="detail-tahun"></span></p>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-1">
+                                            <div class="col-md-5">
+                                                <p class="mb-2 text-dark">Asosiasi :</p>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <p class="mb-2 text-dark" style="font-weight:600;"><span
+                                                        id="detail-asosiasi"></span></p>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-1">
+                                            <div class="col-md-5">
+                                                <p class="mb-2 text-dark">Tanggal Permohonan :</p>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <p class="mb-2 text-dark" style="font-weight:600;"><span
+                                                        id="detail-tanggal_permohonan"></span></p>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-1">
+                                            <div class="col-md-5">
+                                                <p class="mb-2 text-dark">Mulai :</p>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <p class="mb-2 text-dark" style="font-weight:600;"><span
+                                                        id="detail-tanggal_cetak_pertama"></span></p>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-1">
+                                            <div class="col-md-5">
+                                                <p class="mb-2 text-dark">Tanggal Cetak Perubahan Terakhir :</p>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <p class="mb-2 text-dark" style="font-weight:600;"><span
+                                                        id="detail-tanggal_cetak_perubahan_terakhir"></span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger text-white font-medium waves-effect"
+                                data-bs-dismiss="modal">
+                                Close
+                            </button>
+                            <button type="submit" style="background-color: #1B3061" class="btn text-white btn-create">
+                                Tambah
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
         <div class="tab-pane fade" id="pengalaman" role="tabpanel" aria-labelledby="pengalaman-tab">
             <div class="card rounded-4">
                 <div class="card-body">
@@ -640,21 +795,21 @@
                         <div class="flex-grow-1">
                             <div class="ms-2">
                                 <div class="btn btn-sm mb-3 text-dark rounded-3" style="background-color: #E4ECFF;">
-                                    Data Pengurus Badan Usaha
+                                    Data Pengalaman Badan Usaha
                                 </div>
-                                <p class="fw-bolder fs-4">MITRA BAHAGIA UTAMA BUMIAJI</p>
+                                <p class="fw-bolder fs-4">{{$serviceProvider->user->name}}</p>
                             </div>
                             <table cellpadding="5" style="border-collapse: collapse; width: 40%;" class="fs-6 fw-normal">
                                 <tbody>
                                     <tr>
                                         <td>Alamat Badan Usaha</td>
                                         <td>:</td>
-                                        <td>Jl. G. Lokon No. 59</td>
+                                        <td>{{$serviceProvider->address ? $serviceProvider->address : '-'}}</td>
                                     </tr>
                                     <tr>
                                         <td>Telepon</td>
                                         <td>:</td>
-                                        <td>0411 - 3584897987</td>
+                                        <td>{{$serviceProvider->user->phone_number ? $serviceProvider->user->phone_number : '-'}}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -662,7 +817,7 @@
                     </div>
                 </div>
             </div>
-            <h4 class="mt-3 mb-3 fw-bold">Pengesahan</h4>
+            <h4 class="mt-3 mb-3 fw-bold">Pengalaman</h4>
             <div class="table-responsive rounded-4">
                 <div class="table-responsive">
                     <table class="table">
@@ -672,28 +827,16 @@
                                     No
                                 </td>
                                 <td class="text-white" style="background-color: #1B3061">
-                                    Tahun
+                                    Nama
                                 </td>
                                 <td class="text-white" style="background-color: #1B3061">
-                                    Nama
+                                    Tahun
                                 </td>
                                 <td class="text-white" style="background-color: #1B3061">
                                     Nilai Project
                                 </td>
                                 <td class="text-white" style="background-color: #1B3061">
-                                    Nama Dinas
-                                </td>
-                                <td class="text-white" style="background-color: #1B3061">
-                                    Sub Bidang Kualifikasi
-                                </td>
-                                <td class="text-white" style="background-color: #1B3061">
-                                    Kontrak
-                                </td>
-                                <td class="text-white" style="background-color: #1B3061">
-                                    NKPK
-                                </td>
-                                <td class="text-white" style="background-color: #1B3061">
-                                    Berita Serah Terima
+                                    Pemberi Tugas
                                 </td>
                                 <td class="text-white" style="background-color: #1B3061">
                                     Kontrak
@@ -707,20 +850,31 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @forelse ($serviceProvider->projects()->where('end_date','<',now()) as $project)
                             <tr>
-                                <td>1</td>
-                                <td>2023</td>
-                                <td>Peningkatan Jalan Laston Paket VI Kab. Bulukumba</td>
-                                <td>123132456478</td>
-                                <td>S1</td>
-                                <td>SI0084</td>
-                                <td>1</td>
-                                <td>06/SPK/Laston/PPK/DBM/III/2015</td>
-                                <td>02/PHO/Laston-Dau/DBM/IX/2015</td>
-                                <td>25 Juni 2023</td>
-                                <td>25 Juni 2023</td>
-                                <td>25 Juni 2023</td>
+                                <td>{{$loop->iteration}}</td>
+                                <td>{{$project->name}}</td>
+                                <td>{{$project->year}}</td>
+                                <td>{{$project->project_value}}</td>
+                                <td>{{$project->dinas->user->name}}</td>
+                                <td>{{$project->contractCategory->name}}</td>
+                                <td>{{Carbon::parse($project->start_date)->locale('id_ID')->isoFormat('DD MMMM Y')}}</td>
+                                <td>{{Carbon::parse($project->end_date)->locale('id_ID')->isoFormat('DD MMMM Y')}}</td>
                             </tr>
+                            @empty
+                            <tr>
+                                <td colspan="8" class="text-center">
+                                    <div class="d-flex justify-content-center" style="min-height:19rem">
+                                        <div class="my-auto">
+                                            <img src="{{ asset('no-data.png') }}" width="300"
+                                                height="300" />
+                                            <h4 class="text-center mt-4">Belum Ada Pengalaman!!</h4>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforelse
+                            
                         </tbody>
                     </table>
                 </div>
@@ -1056,6 +1210,64 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="modal-edit-qualification" tabindex="-1" aria-labelledby="exampleModalLabel1">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form id="form-edit-qualification" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <div class="modal-header d-flex align-items-center">
+                        <h4 class="modal-title" id="exampleModalLabel1">
+                            Edit Kualifikasi dan Klasifikasi
+                        </h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="basicpill-email-input">Klasifikasi</label>
+                            <select class="form-select list-classifications select2-create" name="classification" style="width:100%"
+                                id="update-list-classifications">
+                                <option value="">Pilih Klalifikasi</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="basicpill-email-input">Sub Klasifikasi</label>
+                            <select name="sub_classification_id" class="form-select sub-classifications select2-create"
+                                style="width:100%" id="update-list-sub-classifications">
+                            </select>
+                            @error('sub_classification_id')
+                                <p class="text-danger">
+                                    {{ $message }}
+                                </p>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="basicpill-phoneno-input">Kualifikasi</label>
+                            <select name="qualification_id" class="form-select list-qualifications select2-create"
+                                style="width:100%" id="update-list-qualifications">
+                                <option value="">Pilih Kualifikasi</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label id="name" for="recipient-name" class="control-label mb-2">Masukan
+                                Tahun</label>
+                            <input type="text" class="form-control" id="create-year" class="form-control"
+                                name="year" aria-describedby="name" placeholder="Masukkan Tahun" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger text-white font-medium waves-effect"
+                            data-bs-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="submit" style="background-color: #1B3061" class="btn text-white btn-create">
+                            Tambah
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     {{-- end --}}
 @endsection
@@ -1151,6 +1363,22 @@
                 }
             });
         }
+        $('.modal-detail-qualification').click(function() {
+            const data = getDataAttributes($(this).attr('id'))
+            handleDetail(data)
+            console.log(data);
+            $('#modal-detail-qualification').modal('show')
+        })
+        $('.modal-edit-qualification').click(function() {
+            const formData = getDataAttributes($(this).attr('id'))            
+            var actionUrl = `projects/${formData['id']}`;
+            $('#form-edit-qualification').attr('action', actionUrl);
+
+            setFormValues('form-edit-qualification', formData)
+            $('#form-edit-qualification').data('id', formData['id'])
+            $('#form-edit-qualification').attr('action', );
+            $('#modal-edit-qualification').modal('show')
+        })
 
         function subclassifications(classificationId) {
             $.ajax({

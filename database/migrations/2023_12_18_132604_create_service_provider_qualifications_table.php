@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\ServiceProviderQualificationEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,7 +18,8 @@ return new class extends Migration
             $table->foreignUuid('service_provider_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignUuid('qualification_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->char('year', 4);
-            $table->boolean('status')->default(0);
+            $table->enum('status', [ServiceProviderQualificationEnum::PENDING->value, ServiceProviderQualificationEnum::ACTIVE->value, ServiceProviderQualificationEnum::REJECT->value]);
+            $table->string('resend')->nullable();
             $table->dateTime('first_print')->nullable();
             $table->dateTime('last_print')->nullable();
             $table->timestamps();

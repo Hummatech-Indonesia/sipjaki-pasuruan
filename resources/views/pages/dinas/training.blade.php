@@ -667,7 +667,7 @@
 
         function listqualificationlevel(classificationId) {
             $.ajax({
-                url: "qualification-level-training/" + classificationId,
+                url: "json-qualification-level-training/" + classificationId,
                 type: 'GET',
                 dataType: "JSON",
                 success: function(response) {

@@ -37,14 +37,12 @@ class DinasController extends Controller
     public function index()
     {
         $dinas = auth()->user()->dinas;
-        return view('pages.profile-opd', [
-            'dinas' => $dinas
-        ]);
+        return view('pages.profile-opd', ['dinas' => $dinas]);
     }
     public function all(Request $request)
     {
         $dinass = $this->dinas->customPaginate($request, 15);
-        
+
         // dd($dinass);
         return view('pages.all-agency', compact('dinass'));
     }

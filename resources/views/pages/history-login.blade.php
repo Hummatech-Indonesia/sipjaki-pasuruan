@@ -29,26 +29,28 @@
                                 </div>
                             </div>
                         </form>
-                        <div class="">
+                        <form action="" class="">
                             <div class="d-flex justify-content-header gap-2">
                                 <div class="input-daterange input-group" id="datepicker6" data-date-format="dd M, yyyy"
                                     data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker6'>
-                                    <input type="text" class="form-control" name="start" placeholder="Start Date" />
-                                    <input type="text" class="form-control" name="end" placeholder="End Date" />
+                                    <input type="text" value="{{$startDate}}" class="form-control" name="start_date" placeholder="Tanggal Mulai" />
+                                    <input type="text" value="{{$endDate}}" class="form-control" name="end_date" placeholder="Tanggal Berakhir" />
                                 </div>
                                 <div class="">
-                                    <button class="btn text-white" style="background-color: #1B3061">
+                                    <button type="submit" class="btn text-white" style="background-color: #1B3061">
                                         Search
                                     </button>
                                 </div>
                             </div>
-                        </div>
+                        </form>
+                        <form action="{{route('history-login.clear')}}" method="POST" class="col">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">
+                                Clear
+                            </button>
+                        </form>
                     </div>
-                </div>
-                <div class="col">
-                    <button class="btn btn-danger">
-                        Bersihkan History
-                    </button>
                 </div>
             </div>
             <div class="table-responsive">
@@ -80,7 +82,7 @@
                                     <p>{{ $history->ip_address }}</p>
                                 </td>
                                 <td>
-                                    <button class="btn btn-danger">
+                                    <button class="btn btn-danger btn-delete" data-id="{{$history->id}}">
                                         Hapus
                                     </button>
                                 </td>
@@ -106,3 +108,15 @@
     </div>
     <x-delete-modal-component />
 @endsection
+
+@section('script')
+    <script>
+        $('.btn-delete').click(function() {
+            id = $(this).data('id')
+            var actionUrl = `history-login/${id}`;
+            $('#form-delete').attr('action', actionUrl);
+            $('#modal-delete').modal('show')
+        })
+    </script>
+@endsection
+
