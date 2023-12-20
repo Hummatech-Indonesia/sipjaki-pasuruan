@@ -35,7 +35,7 @@ class WorkerController extends Controller
      */
     public function index(Request $request): JsonResponse|View
     {
-         $workers = $this->worker->get();
+         $workers = $this->worker->search($request);
          if ($request->is('api/*')) {
          return ResponseHelper::success(WorkerResource::collection($workers));
          } else {
