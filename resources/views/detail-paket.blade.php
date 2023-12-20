@@ -94,8 +94,6 @@
                                         style="background-color: #1B3061; color: white; text-align: center">Selesai</th>
                                     <th class="fw-medium"
                                         style="background-color: #1B3061; color: white; text-align: center">Status</th>
-                                    <th class="fw-medium"
-                                        style="background-color: #1B3061; color: white; text-align: center">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -111,10 +109,10 @@
                                         {{ Carbon::parse($project->end_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}
                                     </td>
                                     <td class="fs-5">{{ $project->status }}</td>
-                                    <td class="text-center">
+                                    {{-- <td class="text-center">
                                         <a href="{{ route('detail-project', ['project' => $item->id]) }}"
                                             class="text-white btn" style="background-color: #1B3061">Detail</a>
-                                    </td>
+                                    </td> --}}
                                 @empty
                                     <tr>
                                         <td colspan="7" class="text-center">
