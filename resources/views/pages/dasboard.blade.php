@@ -364,7 +364,7 @@
                             <div class="fw-bold mt-3">Dinas</div>
                         </div>
                         <div class="flex-shrink-0 mt-2">
-                            <a href="" class="btn btn-md rounded-3"
+                            <a href="{{ route('all.agency') }}" class="btn btn-md rounded-3"
                                 style="background-color: #1B3061;color:white;width:100px;">Lihat</a>
                         </div>
                     </div>
