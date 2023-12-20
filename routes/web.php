@@ -81,9 +81,7 @@ Route::get('download-rule/{rule}', [RuleController::class, 'downloadRule']);
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::get('/kecelakaan', function () {
-    return view('kecelakaan');
-})->name('kecelakaan');
+Route::get('/kecelakaan', [DinasController::class, 'accidentLandingPage'])->name('kecelakaan');
 
 Route::get('bantuan', [LandingController::class, 'faq'])->name('bantuan');
 
@@ -243,7 +241,7 @@ Route::middleware('auth')->group(function () {
         Route::get('data-service-providers', [AssociationController::class, 'dataServiceProvider']);
 
         Route::get('work-package', [ServiceProviderProjectController::class, 'index'])->name('work.package');
-        Route::get('detail-project/{project}', [ProjectController::class, 'projectDetail']);
+        Route::get('detail-project/{project}', [ProjectController::class, 'projectDetail'])->name('detail-project');
         Route::get('service-provider-project-detail/{service_provider_project}', [ServiceProviderProjectController::class, 'show'])->name('service.provider.project.detail');
 
         // download

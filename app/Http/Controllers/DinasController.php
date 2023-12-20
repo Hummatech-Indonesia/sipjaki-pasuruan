@@ -101,4 +101,16 @@ class DinasController extends Controller
 
         return view('pages.dinas.dashboard', ['accident_count' => $accident_total, 'project_count' => $project_total, 'countActiveWorker' => $countActiveWorker, 'projects' => $projects]);
     }
+
+    public function accidentLandingPage(Request $request): View
+    {
+        $data = $this->dinas->countAccidentByDinas($request);
+        foreach ($data as $projects) {
+            foreach ($projects->projects as $project) {
+                $projects->total_accident = $project->accidents->count();
+            }
+        }
+        dd($data);
+        return view('kecelakaan', ['total' => $data]);
+    }
 }
