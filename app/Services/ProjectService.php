@@ -56,16 +56,16 @@ class ProjectService
                 $old_report = $this->upload(UploadDiskEnum::REPORT->value, $request->file('administrative_minutes'));
             }
         }
-        $old_minutes_of_disbursement = $project->minutes_of_disbursement;
 
+        $old_minutes_of_disbursement = $project->minutes_of_disbursement;
         if ($data['minutes_of_disbursement']) {
-            if ($old_administrative_minutes) {
+            if ($old_minutes_of_disbursement) {
                 if ($request->hasFile('minutes_of_disbursement')) {
                     $this->remove($old_minutes_of_disbursement);
-                    $old_minutes_of_disbursement = $this->upload(UploadDiskEnum::MINUTESOFDISBURSEMENT->value, $request->file('administrative_minutes'));
+                    $old_minutes_of_disbursement = $this->upload(UploadDiskEnum::MINUTESOFDISBURSEMENT->value, $request->file('minutes_of_disbursement'));
                 }
             } else {
-                $old_minutes_of_disbursement = $this->upload(UploadDiskEnum::MINUTESOFDISBURSEMENT->value, $request->file('administrative_minutes'));
+                $old_minutes_of_disbursement = $this->upload(UploadDiskEnum::MINUTESOFDISBURSEMENT->value, $request->file('minutes_of_disbursement'));
             }
         }
         return [
