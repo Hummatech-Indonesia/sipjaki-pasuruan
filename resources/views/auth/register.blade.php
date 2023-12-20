@@ -84,7 +84,7 @@
                                                     <input id="username" type="text"
                                                         class="form-control @error('username') is-invalid @enderror"
                                                         name="name" placeholder="Masukan Badan Usaha"
-                                                        value="{{ old('username') }}" autocomplete="email" autofocus
+                                                        value="{{ old('name') }}" autocomplete="email" autofocus
                                                         style="border-radius: 8px">
                                                     @error('name')
                                                         <span class="invalid-feedback" role="alert">
@@ -112,7 +112,7 @@
                                                     <input id="phone" type="number"
                                                         class="form-control @error('phone') is-invalid @enderror"
                                                         name="phone_number" placeholder="Masukan phone"
-                                                        value="{{ old('phone') }}" autocomplete="phone" autofocus
+                                                        value="{{ old('phone_number') }}" autocomplete="phone" autofocus
                                                         style="border-radius: 8px">
                                                     @error('phone')
                                                         <span class="invalid-feedback" role="alert">
@@ -126,7 +126,7 @@
                                                     <select name="association_id" class="form-select" id="">
                                                         <option value="consultant">Pilih Asosiasi</option>
                                                         @foreach ($associations as $association)
-                                                            <option value="{{ $association->id }}">
+                                                            <option value="{{ $association->id }}" {{ $association->id == old('association_id') ? "selected" : "" }}>
                                                                 {{ $association->name }}</option>
                                                         @endforeach
                                                     </select>
@@ -141,8 +141,8 @@
                                                     <label for="phone" class="form-label"
                                                         style="font-weight: bold">{{ __('Tipe') }}</label>
                                                     <select name="type_of_business_entity" class="form-select" id="">
-                                                        <option value="consultant">Konsultan</option>
-                                                        <option value="executor">Penyelenggara</option>
+                                                        <option value="consultant" {{ "consultant" == old('type_of_business_entity') ? "selected" : "" }}>Konsultan</option>
+                                                        <option value="executor" {{ "executor" == old('type_of_business_entity') ? "selected" : "" }}>Penyelenggara</option>
                                                     </select>
                                                     @error('type_of_business_entity')
                                                             <span class="invalid-feedback" role="alert">
