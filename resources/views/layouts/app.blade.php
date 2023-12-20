@@ -63,7 +63,6 @@
     <script src="{{ asset('assets/libs/summernote/summernote.js') }}"></script>
     <script src="{{ asset('assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
 
-
     <script src="{{ asset('assets/js/app.js') }}"></script>
     <script src="{{ asset('assets/libs/jquery-steps/build/jquery.steps.min.js') }}"></script>
 

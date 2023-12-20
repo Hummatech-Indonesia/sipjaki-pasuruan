@@ -4,6 +4,8 @@ namespace App\Contracts\Repositories;
 
 use App\Contracts\Interfaces\ClassificationTrainingInterface;
 use App\Models\ClassificationTraining;
+use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class ClassificationTrainingRepository extends BaseRepository implements ClassificationTrainingInterface
 {
@@ -21,6 +23,37 @@ class ClassificationTrainingRepository extends BaseRepository implements Classif
     public function get(): mixed
     {
         return $this->model->query()
+            ->get();
+    }
+
+    /**
+     * customPaginate
+     *
+     * @param  mixed $request
+     * @param  mixed $pagination
+     * @return LengthAwarePaginator
+     */
+    public function customPaginate(Request $request, int $pagination = 10): LengthAwarePaginator
+    {
+        return $this->model->query()
+            ->when($request->name, function ($query) use ($request) {
+                $query->where('name', 'LIKE', '%'. $request->name .'%');
+            })
+            ->fastPaginate($pagination);
+    }
+
+    /**
+     * search
+     *
+     * @param  mixed $request
+     * @return mixed
+     */
+    public function search(Request $request): mixed
+    {
+        return $this->model->query()
+            ->when($request->name, function ($query) use ($request) {
+                $query->where('name', 'LIKE', '%'. $request->name .'%');
+            })
             ->get();
     }
 

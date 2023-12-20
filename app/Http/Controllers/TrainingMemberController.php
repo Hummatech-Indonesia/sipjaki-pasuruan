@@ -17,6 +17,7 @@ use App\Http\Requests\TrainingMemberRequest;
 use App\Http\Resources\TrainingMemberResource;
 use App\Http\Requests\DeleteTrainingMemberRequest;
 use App\Contracts\Interfaces\TrainingMemberInterface;
+use App\Http\Requests\TrainingMemberUpdateRequest;
 
 class TrainingMemberController extends Controller
 {
@@ -75,7 +76,7 @@ class TrainingMemberController extends Controller
      * @param  mixed $trainingMember
      * @return void
      */
-    public function update(TrainingMemberRequest $request, TrainingMember $training_member)
+    public function update(TrainingMemberUpdateRequest $request, TrainingMember $training_member)
     {
         $this->trainingMember->update($training_member->id, $this->service->update($request, $training_member));
         if ($request->is('api/*')) {

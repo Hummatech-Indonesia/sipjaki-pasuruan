@@ -26,6 +26,7 @@ class RuleCategoryController extends Controller
     public function index(Request $request)
     {
         $ruleCategories = $this->ruleCategory->customPaginate($request, 10);
+        $ruleCategories->appends(['name' => $request->name]);
         if ($request->is('api/*')) {
             $data['paginate'] = $this->customPaginate($ruleCategories->currentPage(), $ruleCategories->lastPage());
             $data['data'] = RuleCategoriesResource::collection($ruleCategories);

@@ -39,9 +39,17 @@ class DinasController extends Controller
         $dinas = auth()->user()->dinas;
         return view('pages.profile-opd', ['dinas' => $dinas]);
     }
+
+    /**
+     * all
+     *
+     * @param  mixed $request
+     * @return void
+     */
     public function all(Request $request)
     {
         $dinass = $this->dinas->customPaginate($request, 15);
+        $dinass->appends(['name' => $request->name]);
 
         // dd($dinass);
         return view('pages.all-agency', compact('dinass'));

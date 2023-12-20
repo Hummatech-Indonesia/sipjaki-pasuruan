@@ -27,6 +27,7 @@ class TrainingMethodController extends Controller
     public function index(Request $request)
     {
         $traingMethods = $this->traingMethod->customPaginate($request, 10);
+        $traingMethods->appends(['name' => $request->name]);
         if ($request->is('api/*')) {
             $data['paginate'] = $this->customPaginate($traingMethods->currentPage(), $traingMethods->lastPage());
             $data['data'] = TrainingMethodResource::collection($traingMethods);

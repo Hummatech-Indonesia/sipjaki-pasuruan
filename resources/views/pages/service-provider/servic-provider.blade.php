@@ -11,15 +11,17 @@
             <div class="d-flex justify-content-between">
                 <div class="d-flex justify-content-header gap-3">
                     <div class="">
-                        <div class="input-group">
-                            <input name="name" type="text" class="form-control" placeholder="Search">
-                            <div class="input-group-append">
-                                <button class="btn text-white"
-                                    style="background-color: #1B3061; border-radius: 0 5px 5px 0;" type="submit">
-                                    <i class="fa fa-search"></i>
-                                </button>
+                        <form action="" class="">
+                            <div class="input-group">
+                                <input name="service_provider" type="text" class="form-control" placeholder="Search" value="{{ request()->service_provider }}">
+                                <div class="input-group-append">
+                                    <button class="btn text-white"
+                                        style="background-color: #1B3061; border-radius: 0 5px 5px 0;" type="submit">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                     <div class="">
                         {{-- <button class="btn btn-success">

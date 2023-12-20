@@ -102,13 +102,16 @@ class ServiceProviderRepository extends BaseRepository implements ServiceProvide
     public function customPaginate(Request $request, int $pagination = 10): LengthAwarePaginator
     {
         return $this->model->query()
-            ->with('fiscalYear')
+            // ->with('fiscalYear')
             ->when($request->name,function($query) use ($request){
                 $query->where('name','LIKE','%'.$request->name.'%');
             })
+            ->when($request->service_provider, function ($query) use ($request) {
+                $query->whereRelation('user', 'name', 'LIKE', '%'. $request->service_provider .'%');
+            })
             ->fastPaginate($pagination);
     }
-    
+
     /**
      * count
      *
@@ -120,7 +123,7 @@ class ServiceProviderRepository extends BaseRepository implements ServiceProvide
         return $this->model->query()
             ->count();
     }
-    
+
     /**
      * getConsultant
      *
@@ -132,7 +135,7 @@ class ServiceProviderRepository extends BaseRepository implements ServiceProvide
             ->where('type_of_business_entity',TypeOfBusinessEntityEnum::CONSULTANT->value)
             ->get();
     }
-    
+
     /**
      * getExecutor
      *

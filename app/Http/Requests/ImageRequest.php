@@ -17,9 +17,7 @@ class ImageRequest extends FormRequest
     {
         return [
             'categories' => ['required', new CategoryImageRule],
-            'photo' => [
-                'required|mimes:png,jpg,jpeg',
-            ],
+            'photo' => 'required|mimes:png,jpg,jpeg',
         ];
     }
 
