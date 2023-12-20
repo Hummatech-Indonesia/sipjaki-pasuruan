@@ -23,7 +23,7 @@ class ProjectService
         $data = $request->validated();
 
         $old_administrative_minutes = $project->administrative_minutes;
-        if ($data['administrative_minutes']) {
+        if (isset($data['administrative_minutes'])) {
             if ($old_administrative_minutes) {
                 if ($request->hasFile('administrative_minutes')) {
                     $this->remove($old_administrative_minutes);
@@ -35,7 +35,7 @@ class ProjectService
         }
 
         $old_contract = $project->contract;
-        if ($data['contract']) {
+        if (isset($data['contract'])) {
             if ($old_contract) {
                 if ($request->hasFile('contract')) {
                     $this->remove($old_contract);
@@ -47,7 +47,7 @@ class ProjectService
         }
 
         $old_report = $project->report;
-        if ($data['report']) {
+        if (isset($data['report'])) {
             if ($old_report) {
                 if ($request->hasFile('report')) {
                     $this->remove($old_report);
@@ -59,7 +59,7 @@ class ProjectService
         }
 
         $old_minutes_of_disbursement = $project->minutes_of_disbursement;
-        if ($data['minutes_of_disbursement']) {
+        if (isset($data['minutes_of_disbursement'])) {
             if ($old_minutes_of_disbursement) {
                 if ($request->hasFile('minutes_of_disbursement')) {
                     $this->remove($old_minutes_of_disbursement);
