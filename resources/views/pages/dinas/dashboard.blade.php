@@ -129,7 +129,7 @@
         </h5>
         <form action="" class="d-flex">
             <div class="position-relative search-container me-2">
-                <input type="search" class="form-control py-2 ps-5" id="search-name" placeholder="Search">
+                <input type="search" class="form-control py-2 ps-5" id="search-name" placeholder="Search" name="name" value="{{ request()->name }}">
                 <i class="bx bx-search-alt search-icon"></i>
             </div>
             <div class="py-3">
