@@ -15,11 +15,11 @@ class WorkerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required',
-            'birth_date' => 'required',
-            'education' => 'required',
-            'registration_number' => 'required',
-            'cerificate' => 'required'
+            'name' => 'required|max:255',
+            'birth_date' => 'required|date|before:today',
+            'education' => 'required|max:255',
+            'registration_number' => 'required|max:255',
+            'cerificate' => 'required|max:255'
         ];
     }
 
@@ -32,10 +32,16 @@ class WorkerRequest extends FormRequest
     {
         return [
             'name.required' => 'Nama diperlukan.',
+            'name.max' => 'Nama tidak boleh lebih dari :max karakter',
             'birth_date.required' => 'Tanggal lahir diperlukan.',
+            'birth_date.date' => 'Tanggal lahir harus valid.',
+            'birth_date.before' => 'Tanggal lahir tidak boleh lebih atau sama dengan sekarang.',
+            'education.max' => 'Pendidikan tidak boleh lebih dari :max karakter',
             'education.required' => 'Pendidikan diperlukan.',
             'registration_number.required' => 'Nomor registrasi diperlukan.',
-            'cerificate.required' => 'Sertifikat diperlukan.'
+            'registration_number.max' => 'Nomor registrasi maksimal :max karakter.',
+            'cerificate.required' => 'Sertifikat diperlukan.',
+            'cerificate.max' => 'Sertifikat maksimal :max karakter.'
         ];
 
     }

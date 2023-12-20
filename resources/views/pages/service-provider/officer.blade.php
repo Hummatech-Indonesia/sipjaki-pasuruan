@@ -55,31 +55,31 @@
                                     <label id="name" for="recipient-name" class="control-label mb-2">Masukan
                                         Pengurus</label>
                                     <input type="text" class="form-control" id="create-name" class="form-control"
-                                        name="name" aria-describedby="name" placeholder="Masukkan Pengurus" />
+                                        name="name" aria-describedby="name" placeholder="Masukkan Pengurus" value="{{old('name')}}" />
                                 </div>
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Masukan
                                         Tanggal Lahir</label>
                                     <input type="date" class="form-control" id="create-name" class="form-control"
-                                        name="birth_date" aria-describedby="name" placeholder="Masukkan Tanggal Lahir" />
+                                        name="birth_date" aria-describedby="name" value="{{old('birth_date')}}" placeholder="Masukkan Tanggal Lahir" />
                                 </div>
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Masukan
                                         Alamat</label>
                                     <textarea class="form-control" name="address" id="" cols="15" rows="5"
-                                        placeholder="Masukkan Alamat"></textarea>
+                                        placeholder="Masukkan Alamat">{{old('address')}}</textarea>
                                 </div>
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Masukan
                                         Jabatan</label>
                                     <input type="text" class="form-control" id="create-name" class="form-control"
-                                        name="position" aria-describedby="name" placeholder="Masukkan Jabatan" />
+                                        name="position" aria-describedby="name" value="{{old('position')}}" placeholder="Masukkan Jabatan" />
                                 </div>
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Masukan
                                         Pendidikan</label>
                                     <input type="text" class="form-control" id="create-name" class="form-control"
-                                        name="education" aria-describedby="name" placeholder="Masukkan Pendidikan" />
+                                        name="education" aria-describedby="name" value="{{old('education')}}" placeholder="Masukkan Pendidikan" />
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -100,6 +100,30 @@
         @if ($errors->has('name'))
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 {{ $errors->first('name') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+        @if ($errors->has('birth_date'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ $errors->first('birth_date') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+        @if ($errors->has('address'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ $errors->first('address') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+        @if ($errors->has('position'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ $errors->first('position') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+        @if ($errors->has('education'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ $errors->first('education') }}
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif

@@ -15,10 +15,10 @@ class OfficerRequest extends FormRequest
     {
         return [
             'name' => 'required|max:150',
-            'birth_date' => 'required|date',
+            'birth_date' => 'required|date|before:today',
             'address' => 'required',
-            'position' => 'required',
-            'education' => 'required',
+            'position' => 'required|max:255',
+            'education' => 'required|max:255',
         ];
     }
 
@@ -31,12 +31,16 @@ class OfficerRequest extends FormRequest
     {
         return [
             'name.required' => 'nama wajib diisi',
+            'name.max' => 'Nama tidak boleh lebih dari :max karakter',
             'address.required' => 'alamat wajib diisi',
             'position.required' => 'posisi wajib diisi',
+            'position.max' => 'Posisi tidak boleh lebih dari :max karakter',
             'education.required' => 'pendidikan wajib diisi',
+            'education.max' => 'Pendidikan tidak boleh lebih dari :max karakter',
             'name.max' => 'Nama maksimal 150',
             'birth_date.date' => 'Tanggal harus valid',
             'birth_date.required' => 'Tanggal wajib di isi',
+            'birth_date.before' => 'Tanggal lahir harus kurang dari sekarang',
         ];
     }
 }
