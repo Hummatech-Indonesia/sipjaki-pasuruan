@@ -109,11 +109,11 @@ class AssociationController extends Controller
         $associations = $this->association->customPaginate($request, 10);
         $data['paginate'] = $this->customPaginate($associations->currentPage(), $associations->lastPage());
         $data['data'] = AssociationResource::collection($associations);
-        $associations->appends(['name' => $request->name]);
+        $name = $request->name;
         if ($request->is('api/*')) {
             return ResponseHelper::success($associations);
         } else {
-            return view('asosiasi', ['associations' => $associations]);
+            return view('asosiasi', ['associations' => $associations,'name'=>$name]);
         };
     }
 

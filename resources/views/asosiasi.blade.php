@@ -34,7 +34,7 @@
                         <div class="d-flex justify-content-header gap-2">
                             <div class="d-flex d-row align-items-center mb-3">
                                 <div class="position-relative  search-container">
-                                    <input type="search" class="py-2 ps-5" id="search-name" name="name" placeholder="Search">
+                                    <input type="search" class="py-2 ps-5" value="{{ $name }}" id="search-name" name="name" placeholder="Search">
                                     <i class="bx bx-search-alt search-icon"></i>
                                 </div>
                             </div>
