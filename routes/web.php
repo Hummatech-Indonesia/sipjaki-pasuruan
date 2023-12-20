@@ -81,9 +81,7 @@ Route::get('download-rule/{rule}', [RuleController::class, 'downloadRule']);
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::get('/kecelakaan', function () {
-    return view('kecelakaan');
-})->name('kecelakaan');
+Route::get('/kecelakaan', [DinasController::class, 'accidentLandingPage'])->name('kecelakaan');
 
 Route::get('bantuan', [LandingController::class, 'faq'])->name('bantuan');
 
