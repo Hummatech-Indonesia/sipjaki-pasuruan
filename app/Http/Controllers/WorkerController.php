@@ -35,15 +35,13 @@ class WorkerController extends Controller
      */
     public function index(Request $request): JsonResponse|View
     {
-         $workers = $this->worker->customPaginate($request, 10);
-         $workers->appends(['name' => $request->name]);
-         if( $request->is('api/*')){
-
+        $workers = $this->worker->customPaginate($request, 10);
+        $workers->appends(['name' => $request->name]);
+        if ($request->is('api/*')) {
             $data['paginate'] = $this->customPaginate($workers->currentPage(), $workers->lastPage());
             $data['data'] = WorkerResource::collection($workers);
-            return ResponseHelper::success($data,trans('alert.get_success'));
-
-        }else{
+            return ResponseHelper::success($data, trans('alert.get_success'));
+        } else {
             return view('pages.service-provider.workforce', ['workers' => $workers]);
         }
     }
@@ -71,10 +69,10 @@ class WorkerController extends Controller
         $data['service_provider_id'] = $service_provider->id;
         $this->worker->store($data);
         if ($request->is('api/*')) {
-        return ResponseHelper::success(null, trans('alert.add_success'));
-         } else {
-             return redirect()->back()->with('success', trans('alert.delete_success'));
-         }
+            return ResponseHelper::success(null, trans('alert.add_success'));
+        } else {
+            return redirect()->back()->with('success', trans('alert.delete_success'));
+        }
     }
 
     /**
@@ -104,7 +102,7 @@ class WorkerController extends Controller
     {
         $this->worker->update($worker->id, $request->validated());
         if ($request->is('api/*')) {
-        return ResponseHelper::success(null, trans('alert.update_success'));
+            return ResponseHelper::success(null, trans('alert.update_success'));
         } else {
             return redirect()->back()->with('success', trans('alert.update_success'));
         }
@@ -120,7 +118,7 @@ class WorkerController extends Controller
     {
         $this->worker->delete($worker->id);
         if ($request->is('api/*')) {
-        return ResponseHelper::success(null, trans('alert.delete_success'));
+            return ResponseHelper::success(null, trans('alert.delete_success'));
         } else {
             return redirect()->back()->with('success', trans('alert.delete_success'));
         }
@@ -149,7 +147,11 @@ class WorkerController extends Controller
         $data = $request->validated();
         Excel::import(new WorkerImport, $data['import']);
 
-        return ResponseHelper::success(null, trans('alert.add_success'));
+        if ($request->is('api/*')) {
+            return ResponseHelper::success(null, trans('alert.add_success'));
+        } else {
+            return redirect()->back()->with('success', trans('alert.add_success'));
+        }
     }
 
     /**
