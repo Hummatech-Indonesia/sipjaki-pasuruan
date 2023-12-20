@@ -4,6 +4,7 @@ namespace App\Contracts\Repositories;
 
 use App\Contracts\Interfaces\ClassificationTrainingInterface;
 use App\Models\ClassificationTraining;
+use Illuminate\Http\Request;
 
 class ClassificationTrainingRepository extends BaseRepository implements ClassificationTrainingInterface
 {
@@ -21,6 +22,21 @@ class ClassificationTrainingRepository extends BaseRepository implements Classif
     public function get(): mixed
     {
         return $this->model->query()
+            ->get();
+    }
+
+    /**
+     * search
+     *
+     * @param  mixed $request
+     * @return mixed
+     */
+    public function search(Request $request): mixed
+    {
+        return $this->model->query()
+            ->when($request->name, function ($query) use ($request) {
+                $query->where('name', 'LIKE', '%'. $request->name .'%');
+            })
             ->get();
     }
 

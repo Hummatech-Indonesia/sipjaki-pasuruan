@@ -145,7 +145,7 @@
         <div class="d-flex justify-content-between align-items-center mb-3">
             <form action="" class=" col-lg-3">
                 <div class="input-group">
-                    <input type="text" name="name" class="form-control" placeholder="Search">
+                    <input type="text" name="name" class="form-control" placeholder="Search" value="{{ request()->name }}">
                     <div class="input-group-append">
                         <button class="btn text-white" style="background-color: #1B3061; border-radius: 0 5px 5px 0;"
                             type="submit">
