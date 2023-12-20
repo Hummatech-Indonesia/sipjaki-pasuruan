@@ -51,7 +51,7 @@
     </div>
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('images.store') }}" enctype="multipart/form-data" method="POST">
+            <form action="{{ route('video.store') }}" enctype="multipart/form-data" method="POST">
                 @csrf
                 @method('POST')
                 <img src="" id="img-beranda" height="200" alt="">
