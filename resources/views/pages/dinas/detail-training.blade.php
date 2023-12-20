@@ -78,7 +78,7 @@
                     <tr>
                         <td class="text-dark" style="font-weight: bold;">Jenjang KKNI:</td>
                         <td class="text-dark" style="font-weight: 600;"><span
-                                id="detail-finance_progress">{{ $training->qualificationTraining->name }}</span></td>
+                                id="detail-finance_progress">{{ $training->qualificationLevelTraining->name }}</span></td>
                     </tr>
                     <tr>
                         <td class="text-dark" style="font-weight: bold;">Klasifikasi:</td>
@@ -118,7 +118,7 @@
                                 id="detail-fund_source">{{ $training->fundSource->name }}</span></td>
                     </tr>
                     <tr>
-                        <td class="text-dark" style="font-weight: bold;">Loaksi:</td>
+                        <td class="text-dark" style="font-weight: bold;">Lokasi:</td>
                         <td class="text-dark" style="font-weight: 600;"><span
                                 id="detail-contract_category_name">{{ $training->location }}</span></td>
                     </tr>
@@ -481,7 +481,7 @@
                 </ul>
             </div>
         @endif
-    
+
             <div class="table-responsive">
                 <table class="table">
                     <thead>
