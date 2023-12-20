@@ -63,7 +63,7 @@ class SubClassificationTrainingController extends Controller
      * @param  mixed $sub_classification_training
      * @return void
      */
-    public function update(SubClassificationRequest $request, SubClassificationTraining $sub_classification_training)
+    public function update(SubClassificationTrainingRequest $request, SubClassificationTraining $sub_classification_training)
     {
         $this->subClassificationTraining->update($sub_classification_training->id, $request->validated());
         return redirect()->back()->with('success', trans('alert.update_success'));
