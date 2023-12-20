@@ -106,8 +106,9 @@ class DinasController extends Controller
     {
         $data = $this->dinas->countAccidentByDinas($request);
         foreach ($data as $projects) {
+            $projects->total_accident = 0;
             foreach ($projects->projects as $project) {
-                $projects->total_accident = $project->accidents->count();
+                $projects->total_accident += $project->accidents->count();
             }
         }
         return view('kecelakaan', ['total' => $data]);
