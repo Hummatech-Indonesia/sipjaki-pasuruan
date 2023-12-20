@@ -60,7 +60,7 @@
                                         Waktu Pelaksanaan</th>
                                     <th class="fw-medium"
                                         style="background-color: #1B3061; color: white; border-right: 1px solid #1B3061;">
-                                        Peserta</th>
+                                        Jumlah Peserta</th>
                                     <th class="fw-medium"
                                         style="background-color: #1B3061; color: white; border-right: 1px solid #1B3061;">
                                         Lokasi</th>
@@ -78,7 +78,7 @@
                                     <td>jenis</td>
                                     <td>tingkat</td>
                                     <td>{{\Carbon\Carbon::parse($training->start_at)->isoFormat('Do MMMM YYYY HH:mm', 'ID')}}</td>
-                                    <td>{{$training->trainingMembers_count}}</td>
+                                    <td>{{count($training->trainingMembers)}}</td>
                                     <td>BKPSDM
                                         Provinsi
                                         Bali</td>
