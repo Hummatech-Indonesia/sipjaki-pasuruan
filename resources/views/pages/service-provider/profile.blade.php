@@ -384,7 +384,7 @@
                     <table cellpadding="5" style="border-collapse: collapse; width: 40%;" class="fs-6 fw-normal">
                         <tbody>
                             <tr>
-                                <td>No</td>
+                                <td>No Akte</td>
                                 <td>:</td>
                                 <td>{{ $foundingDeeps->deed_number ?? '-' }}</td>
                             </tr>
@@ -912,7 +912,7 @@
                                             <div class="d-flex justify-content-header gap-3">
                                                 <div class="">
                                                     <button id="btn-detail-{{ $worker->id }}"
-                                                        data-id="{{ $worker->id }}" data-name="{{ $worker->name }}"
+                                                        data-id="{{ $worker->id }}" data-name-worker="{{ $worker->name }}"
                                                         data-birth_date="{{ \Carbon\Carbon::parse($worker->birth_date)->translatedFormat('d F Y') }}"
                                                         data-cerificate="{{ $worker->cerificate }}"
                                                         data-education="{{ $worker->education }}"
@@ -1651,18 +1651,9 @@
                     <div class="card">
                         <div class="card-body">
                             <p class="mt-3 fs-5 text-dark mb-2" style="font-weight: 700">
-                                <span id="detail-name"></span>
+                                <span id="detail-name-worker"></span>
                             </p>
                             <div class="">
-                                <div class="row mb-1">
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark">Nama :</p>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                id="detail-name"></span></p>
-                                    </div>
-                                </div>
                                 <div class="row mb-1">
                                     <div class="col-md-5">
                                         <p class="mb-2 text-dark">Tanggal Lahir :</p>
