@@ -373,37 +373,43 @@
                 <h5 class="card-header text-center border-bottom text-uppercase rounded-top-4 p-3"
                     style="background-color: #1B3061;color:white;">Akte Pendiri</h5>
                 <div class="card-body">
+                    <div class="d-flex justify-content-end">
+                        <div class="">
+                            <button data-bs-toggle="modal" data-bs-target="#modal-akte-pendiri"
+                                style="background-color: #E4ECFF;" class="text-dark btn px-4 fw-bold">Edit</button>
+                        </div>
+                    </div>
                     <table cellpadding="5" style="border-collapse: collapse; width: 40%;" class="fs-6 fw-normal">
                         <tbody>
                             <tr>
                                 <td>No</td>
                                 <td>:</td>
-                                <td>10</td>
+                                <td>{{ $foundingDeeps->deed_number }}</td>
                             </tr>
                             <tr>
                                 <td>Nama Notaris</td>
                                 <td>:</td>
-                                <td>Taufiq Arifin. SH</td>
+                                <td>{{ $foundingDeeps->notary_name }}</td>
                             </tr>
                             <tr>
                                 <td>Alamat</td>
                                 <td>:</td>
-                                <td>JL Haji Puniti</td>
+                                <td>{{ $foundingDeeps->address }}</td>
                             </tr>
                             <tr>
                                 <td>Kota / Kabupaten</td>
                                 <td>:</td>
-                                <td>Kota Malang</td>
+                                <td>{{ $foundingDeeps->city }}</td>
                             </tr>
                             <tr>
                                 <td>Provinsi</td>
                                 <td>:</td>
-                                <td>Jawa Timur</td>
+                                <td>{{ $foundingDeeps->province }}</td>
                             </tr>
                             <tr>
                                 <td>Tanggal Akte</td>
                                 <td>:</td>
-                                <td>08 Januari</td>
+                                <td>{{ Carbon::parse($foundingDeeps->deed_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -436,12 +442,13 @@
                                     <tr>
                                         <td>Nomor</td>
                                         <td>:</td>
-                                        <td>{{ $verifications->judiciary_number }}</td>
+                                        <td>{{ $verifications->judiciary_number ? $amendmentDeeps->address : '-' }}</td>
                                     </tr>
                                     <tr>
                                         <td>Tanggal</td>
                                         <td>:</td>
-                                        <td>{{ Carbon::parse($verifications->judicary_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}</td>
+                                        <td>{{ Carbon::parse($verifications->judicary_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td colspan="5">
@@ -453,12 +460,14 @@
                                     <tr>
                                         <td>Nomor</td>
                                         <td>:</td>
-                                        <td>{{ $verifications->district_court_number }}</td>
+                                        <td>{{ $verifications->district_court_number ? $verifications->district_court_number : '-' }}
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Tanggal</td>
                                         <td>:</td>
-                                        <td>{{ Carbon::parse($verifications->district_court_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}</td>
+                                        <td>{{ Carbon::parse($verifications->district_court_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td colspan="5">
@@ -470,12 +479,14 @@
                                     <tr>
                                         <td>Nomor</td>
                                         <td>:</td>
-                                        <td>{{ $verifications->state_institution_number }}</td>
+                                        <td>{{ $verifications->state_institution_number ? $verifications->state_institution_number : '-' }}
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Tanggal</td>
                                         <td>:</td>
-                                        <td>{{ Carbon::parse($verifications->state_institution_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}</td>
+                                        <td>{{ Carbon::parse($verifications->state_institution_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -501,27 +512,27 @@
                                     <tr>
                                         <td>No Akte</td>
                                         <td>:</td>
-                                        <td>{{ $amendmentDeeps->deed_number }}</td>
+                                        <td>{{ $amendmentDeeps->deed_number ? $amendmentDeeps->deed_number : '-' }}</td>
                                     </tr>
                                     <tr>
                                         <td>Nama Notaris</td>
                                         <td>:</td>
-                                        <td>{{ $amendmentDeeps->notary_name }}</td>
+                                        <td>{{ $amendmentDeeps->notary_name ? $amendmentDeeps->notary_name : '-' }}</td>
                                     </tr>
                                     <tr>
                                         <td>Alamat</td>
                                         <td>:</td>
-                                        <td>{{ $amendmentDeeps->address }}</td>
+                                        <td>{{ $amendmentDeeps->address ? $amendmentDeeps->address : '-' }}</td>
                                     </tr>
                                     <tr>
                                         <td>Kota / Kabupaten</td>
                                         <td>:</td>
-                                        <td>{{ $amendmentDeeps->city }}</td>
+                                        <td>{{ $amendmentDeeps->city ? $amendmentDeeps->city : '-' }}</td>
                                     </tr>
                                     <tr>
                                         <td>Provinsi</td>
                                         <td>:</td>
-                                        <td>{{ $amendmentDeeps->province }}</td>
+                                        <td>{{ $amendmentDeeps->province ? $amendmentDeeps->province : '-' }}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -529,6 +540,80 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="modal fade" id="modal-akte-pendiri" tabindex="-1" aria-labelledby="exampleModalLabel1">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content ">
+                    <div class="modal-header d-flex align-items-center text-white" style="background-color: #1B3061">
+                        <h4 class="modal-title" id="exampleModalLabel1">
+                            Edit AKTE PENDIRI
+                        </h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                            style="color: white;"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{ route('founding-deed.store') }}" id="form-update-badan-usaha" method="POST">
+                            @method('POST')
+                            @csrf
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <p class="mb-0 text-dark fs-6">
+                                        No Akte
+                                    </p>
+                                    <input type="number" name="deed_number" class="form-control"
+                                        placeholder="Masukkan Nomor">
+                                </div>
+                                <div class="col-6">
+                                    <p class="mb-0 text-dark fs-6">
+                                        Nama Notaris
+                                    </p>
+                                    <input type="text" name="notary_name" class="form-control"
+                                        placeholder="Masukkan Nama Notaris">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <p class="mb-0 text-dark fs-6">
+                                        Kota / Kabupaten
+                                    </p>
+                                    <input type="text" name="city" class="form-control"
+                                        placeholder="Masukkan Nomor">
+                                </div>
+                                <div class="col-6">
+                                    <p class="mb-0 text-dark fs-6">
+                                        Provinsi
+                                    </p>
+                                    <input name="province" type="text" class="form-control"
+                                        placeholder="Masukkan Nomor">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div>
+                                    <label for="" class="form-label">Tanggal Akte</label>
+                                    <input type="date" name="deed_date" class="form-control" id="">
+                                </div>
+                                <div class="col">
+                                    <p class="mb-0 text-dark fs-6">
+                                        Alamat
+                                    </p>
+                                    <textarea name="address" id="" class="form-control"></textarea>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger text-white font-medium waves-effect"
+                            data-bs-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="submit" style="background-color: #1B3061" class="btn text-white btn-create">
+                            Edit
+                        </button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+
         </div>
         <div class="tab-pane fade" id="pengurus" role="tabpanel" aria-labelledby="pengurus-tab">
             <div class="card rounded-4">
@@ -732,102 +817,101 @@
         <div class="modal fade" id="modal-detail-qualification" tabindex="-1" aria-labelledby="exampleModalLabel1">
             <div class="modal-dialog modal-md" role="document">
                 <div class="modal-content">
-                        <div class="modal-header d-flex align-items-center">
-                            <h4 class="modal-title" id="exampleModalLabel1">
-                                Detail Kualifikasi dan Klasifikasi
-                            </h4>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="card">
-                                <div class="card-body">
-                                    <p class="mt-3 fs-5 text-dark mb-2" style="font-weight: 700">
-                                        <span id="detail-name"></span>
-                                    </p>
-                                    <div class="">
-                                        <div class="row mb-1">
-                                            <div class="col-md-5">
-                                                <p class="mb-2 text-dark">Nomor Kode :</p>
-                                            </div>
-                                            <div class="col-md-5">
-                                                <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                        id="detail-code"></span></p>
-                                            </div>
+                    <div class="modal-header d-flex align-items-center">
+                        <h4 class="modal-title" id="exampleModalLabel1">
+                            Detail Kualifikasi dan Klasifikasi
+                        </h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card">
+                            <div class="card-body">
+                                <p class="mt-3 fs-5 text-dark mb-2" style="font-weight: 700">
+                                    <span id="detail-name"></span>
+                                </p>
+                                <div class="">
+                                    <div class="row mb-1">
+                                        <div class="col-md-5">
+                                            <p class="mb-2 text-dark">Nomor Kode :</p>
                                         </div>
-                                        <div class="row mb-1">
-                                            <div class="col-md-5">
-                                                <p class="mb-2 text-dark">Kualifikasi :</p>
-                                            </div>
-                                            <div class="col-md-5">
-                                                <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                        id="detail-kualifikasi"></span></p>
-                                            </div>
+                                        <div class="col-md-5">
+                                            <p class="mb-2 text-dark" style="font-weight:600;"><span
+                                                    id="detail-code"></span></p>
                                         </div>
-                                        <div class="row mb-1">
-                                            <div class="col-md-5">
-                                                <p class="mb-2 text-dark">Tahun :</p>
-                                            </div>
-                                            <div class="col-md-5">
-                                                <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                        id="detail-tahun"></span></p>
-                                            </div>
+                                    </div>
+                                    <div class="row mb-1">
+                                        <div class="col-md-5">
+                                            <p class="mb-2 text-dark">Kualifikasi :</p>
                                         </div>
-                                        <div class="row mb-1">
-                                            <div class="col-md-5">
-                                                <p class="mb-2 text-dark">Asosiasi :</p>
-                                            </div>
-                                            <div class="col-md-5">
-                                                <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                        id="detail-asosiasi"></span></p>
-                                            </div>
+                                        <div class="col-md-5">
+                                            <p class="mb-2 text-dark" style="font-weight:600;"><span
+                                                    id="detail-kualifikasi"></span></p>
                                         </div>
-                                        <div class="row mb-1">
-                                            <div class="col-md-5">
-                                                <p class="mb-2 text-dark">Tanggal Permohonan :</p>
-                                            </div>
-                                            <div class="col-md-5">
-                                                <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                        id="detail-tanggal_permohonan"></span></p>
-                                            </div>
+                                    </div>
+                                    <div class="row mb-1">
+                                        <div class="col-md-5">
+                                            <p class="mb-2 text-dark">Tahun :</p>
                                         </div>
-                                        <div class="row mb-1">
-                                            <div class="col-md-5">
-                                                <p class="mb-2 text-dark">Mulai :</p>
-                                            </div>
-                                            <div class="col-md-5">
-                                                <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                        id="detail-tanggal_cetak_pertama"></span></p>
-                                            </div>
+                                        <div class="col-md-5">
+                                            <p class="mb-2 text-dark" style="font-weight:600;"><span
+                                                    id="detail-tahun"></span></p>
                                         </div>
-                                        <div class="row mb-1">
-                                            <div class="col-md-5">
-                                                <p class="mb-2 text-dark">Tanggal Cetak Perubahan Terakhir :</p>
-                                            </div>
-                                            <div class="col-md-5">
-                                                <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                        id="detail-tanggal_cetak_perubahan_terakhir"></span></p>
-                                            </div>
+                                    </div>
+                                    <div class="row mb-1">
+                                        <div class="col-md-5">
+                                            <p class="mb-2 text-dark">Asosiasi :</p>
                                         </div>
-                                        <div class="row mb-1">
-                                            <div class="col-md-5">
-                                                <p class="mb-2 text-dark">Alasan Penolakan :</p>
-                                            </div>
-                                            <div class="col-md-5">
-                                                <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                        id="detail-reject"></span></p>
-                                            </div>
+                                        <div class="col-md-5">
+                                            <p class="mb-2 text-dark" style="font-weight:600;"><span
+                                                    id="detail-asosiasi"></span></p>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-1">
+                                        <div class="col-md-5">
+                                            <p class="mb-2 text-dark">Tanggal Permohonan :</p>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <p class="mb-2 text-dark" style="font-weight:600;"><span
+                                                    id="detail-tanggal_permohonan"></span></p>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-1">
+                                        <div class="col-md-5">
+                                            <p class="mb-2 text-dark">Mulai :</p>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <p class="mb-2 text-dark" style="font-weight:600;"><span
+                                                    id="detail-tanggal_cetak_pertama"></span></p>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-1">
+                                        <div class="col-md-5">
+                                            <p class="mb-2 text-dark">Tanggal Cetak Perubahan Terakhir :</p>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <p class="mb-2 text-dark" style="font-weight:600;"><span
+                                                    id="detail-tanggal_cetak_perubahan_terakhir"></span></p>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-1">
+                                        <div class="col-md-5">
+                                            <p class="mb-2 text-dark">Alasan Penolakan :</p>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <p class="mb-2 text-dark" style="font-weight:600;"><span
+                                                    id="detail-reject"></span></p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger text-white font-medium waves-effect"
-                                data-bs-dismiss="modal">
-                                Close
-                            </button>
-                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger text-white font-medium waves-effect"
+                            data-bs-dismiss="modal">
+                            Close
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -840,19 +924,20 @@
                                 <div class="btn btn-sm mb-3 text-dark rounded-3" style="background-color: #E4ECFF;">
                                     Data Pengalaman Badan Usaha
                                 </div>
-                                <p class="fw-bolder fs-4">{{$serviceProvider->user->name}}</p>
+                                <p class="fw-bolder fs-4">{{ $serviceProvider->user->name }}</p>
                             </div>
                             <table cellpadding="5" style="border-collapse: collapse; width: 40%;" class="fs-6 fw-normal">
                                 <tbody>
                                     <tr>
                                         <td>Alamat Badan Usaha</td>
                                         <td>:</td>
-                                        <td>{{$serviceProvider->address ? $serviceProvider->address : '-'}}</td>
+                                        <td>{{ $serviceProvider->address ? $serviceProvider->address : '-' }}</td>
                                     </tr>
                                     <tr>
                                         <td>Telepon</td>
                                         <td>:</td>
-                                        <td>{{$serviceProvider->user->phone_number ? $serviceProvider->user->phone_number : '-'}}</td>
+                                        <td>{{ $serviceProvider->user->phone_number ? $serviceProvider->user->phone_number : '-' }}
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -894,28 +979,29 @@
                         </thead>
                         <tbody>
                             @forelse ($serviceProvider->projects()->where('end_date','<',now()) as $project)
-                            <tr>
-                                <td>{{$loop->iteration}}</td>
-                                <td>{{$project->name}}</td>
-                                <td>{{$project->year}}</td>
-                                <td>{{$project->project_value}}</td>
-                                <td>{{$project->dinas->user->name}}</td>
-                                <td>{{$project->contractCategory->name}}</td>
-                                <td>{{Carbon::parse($project->start_date)->locale('id_ID')->isoFormat('DD MMMM Y')}}</td>
-                                <td>{{Carbon::parse($project->end_date)->locale('id_ID')->isoFormat('DD MMMM Y')}}</td>
-                            </tr>
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $project->name }}</td>
+                                    <td>{{ $project->year }}</td>
+                                    <td>{{ $project->project_value }}</td>
+                                    <td>{{ $project->dinas->user->name }}</td>
+                                    <td>{{ $project->contractCategory->name }}</td>
+                                    <td>{{ Carbon::parse($project->start_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                    </td>
+                                    <td>{{ Carbon::parse($project->end_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                    </td>
+                                </tr>
                             @empty
-                            <tr>
-                                <td colspan="8" class="text-center">
-                                    <div class="d-flex justify-content-center" style="min-height:19rem">
-                                        <div class="my-auto">
-                                            <img src="{{ asset('no-data.png') }}" width="300"
-                                                height="300" />
-                                            <h4 class="text-center mt-4">Belum Ada Pengalaman!!</h4>
+                                <tr>
+                                    <td colspan="8" class="text-center">
+                                        <div class="d-flex justify-content-center" style="min-height:19rem">
+                                            <div class="my-auto">
+                                                <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                                <h4 class="text-center mt-4">Belum Ada Pengalaman!!</h4>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
                             @endforelse
 
                         </tbody>
@@ -998,16 +1084,16 @@
                                 <div class="mb-3">
                                     <label id="city" for="recipient-name"
                                         class="control-label mb-2">Kabupaten</label>
-                                    <input name="city" value="{{ $serviceProvider->city ?? old('city') }}" type="text"
-                                        class="form-control" id="">
+                                    <input name="city" value="{{ $serviceProvider->city ?? old('city') }}"
+                                        type="text" class="form-control" id="">
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label id="city" for="recipient-name"
                                         class="control-label mb-2">Provinsi</label>
-                                    <input name="province" value="{{ $serviceProvider->province ?? old('province') }}" type="text"
-                                        class="form-control" id="">
+                                    <input name="province" value="{{ $serviceProvider->province ?? old('province') }}"
+                                        type="text" class="form-control" id="">
                                 </div>
                             </div>
                             <div class="col-6">
@@ -1015,7 +1101,8 @@
                                     <label id="name" for="recipient-name" class="control-label mb-2">Kode
                                         Pos</label>
                                     <input name="postal_code" type="number" class="form-control"
-                                        value="{{ $serviceProvider->postal_code ?? old('postal_code') }}" id="">
+                                        value="{{ $serviceProvider->postal_code ?? old('postal_code') }}"
+                                        id="">
                                 </div>
                             </div>
                             <div class="col-6">
@@ -1028,15 +1115,17 @@
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Fax</label>
-                                    <input name="fax" type="number" value="{{ $serviceProvider->fax ?? old('fax') }}"
-                                        class="form-control" id="">
+                                    <input name="fax" type="number"
+                                        value="{{ $serviceProvider->fax ?? old('fax') }}" class="form-control"
+                                        id="">
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Website</label>
-                                    <input name="website" type="text" value="{{ $serviceProvider->website ?? old('website') }}"
-                                        class="form-control" id="">
+                                    <input name="website" type="text"
+                                        value="{{ $serviceProvider->website ?? old('website') }}" class="form-control"
+                                        id="">
                                 </div>
                             </div>
                         </div>
@@ -1074,7 +1163,8 @@
                         style="color: white;"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('verification-service-provider.store') }}" id="form-update-badan-usaha" method="POST">
+                    <form action="{{ route('verification-service-provider.store') }}" id="form-update-badan-usaha"
+                        method="POST">
                         @method('POST')
                         @csrf
                         <p class="fs-5 text-dark mb-1" style="font-weight: 700">
@@ -1082,10 +1172,14 @@
                         </p>
                         <div class="row mb-4">
                             <div class="col-6">
-                                <input type="number" value="{{ $verifications->judiciary_number }}" name="judiciary_number" class="form-control" placeholder="Masukkan Nomor">
+                                <input type="number"
+                                    value="{{ $verifications->judiciary_number ? $amendmentDeeps->address : '-' }}"
+                                    name="judiciary_number" class="form-control" placeholder="Masukkan Nomor">
                             </div>
                             <div class="col-6">
-                                <input type="date" name="judiciary_date" class="form-control" value="{{ $verifications->judiciary_date}}" placeholder="Masukkan Nomor">
+                                <input type="date" name="judicary_date" class="form-control"
+                                    value="{{ $verifications->judicary_date ? $verifications->judicary_date : '-' }}"
+                                    placeholder="Masukkan Nomor">
                             </div>
                         </div>
                         <p class="fs-5 text-dark mb-1" style="font-weight: 700">
@@ -1093,10 +1187,14 @@
                         </p>
                         <div class="row mb-4">
                             <div class="col-6">
-                                <input type="number"value="{{ $verifications->district_court_number}}"  name="district_court_number" class="form-control" placeholder="Masukkan Nomor">
+                                <input
+                                    type="number"value="{{ $verifications->district_court_number ? $verifications->district_court_number : '-' }}"
+                                    name="district_court_number" class="form-control" placeholder="Masukkan Nomor">
                             </div>
                             <div class="col-6">
-                                <input type="date"value="{{ $verifications->district_court_date}}" name="district_court_date" class="form-control" placeholder="Masukkan Nomor">
+                                <input
+                                    type="date"value="{{ $verifications->district_court_date ? $verifications->district_court_date : '-' }}"
+                                    name="district_court_date" class="form-control" placeholder="Masukkan Nomor">
                             </div>
                         </div>
                         <p class="fs-5 text-dark mb-0" style="font-weight: 700">
@@ -1104,10 +1202,14 @@
                         </p>
                         <div class="row">
                             <div class="col-6">
-                                <input type="number" value="{{ $verifications->state_institution_number}}" name="state_institution_number" class="form-control" placeholder="Masukkan Nomor">
+                                <input type="number"
+                                    value="{{ $verifications->state_institution_number ? $verifications->state_institution_number : '-' }}"
+                                    name="state_institution_number" class="form-control" placeholder="Masukkan Nomor">
                             </div>
                             <div class="col-6">
-                                <input type="date" value="{{ $verifications->state_institution_date}}" name="state_institution_date" class="form-control" placeholder="Masukkan Nomor">
+                                <input type="date"
+                                    value="{{ $verifications->state_institution_date ? $verifications->state_institution_date : '-' }}"
+                                    name="state_institution_date" class="form-control" placeholder="Masukkan Nomor">
                             </div>
                         </div>
                 </div>
@@ -1146,13 +1248,17 @@
                                 <p class="mb-0 text-dark fs-6">
                                     No Akte
                                 </p>
-                                <input type="number" value="{{ $amendmentDeeps->deed_number }}" name="deed_number" class="form-control" placeholder="Masukkan Nomor">
+                                <input type="number"
+                                    value="{{ $amendmentDeeps->deed_number ? $amendmentDeeps->deed_number : '' }}"
+                                    name="deed_number" class="form-control" placeholder="Masukkan Nomor">
                             </div>
                             <div class="col-6">
                                 <p class="mb-0 text-dark fs-6">
                                     Nama Notaris
                                 </p>
-                                <input type="text" value="{{ $amendmentDeeps->notary_name }}" name="notary_name" class="form-control" placeholder="Masukkan Nama Notaris">
+                                <input type="text"
+                                    value="{{ $amendmentDeeps->notary_name ? $amendmentDeeps->notary_name : '-' }}"
+                                    name="notary_name" class="form-control" placeholder="Masukkan Nama Notaris">
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -1160,13 +1266,16 @@
                                 <p class="mb-0 text-dark fs-6">
                                     Kota / Kabupaten
                                 </p>
-                                <input type="text" name="{{ $amendmentDeeps->city }}" name="city" class="form-control" placeholder="Masukkan Nomor">
+                                <input type="text" name="{{ $amendmentDeeps->city ? $amendmentDeeps->city : '-' }}"
+                                    name="city" class="form-control" placeholder="Masukkan Nomor">
                             </div>
                             <div class="col-6">
                                 <p class="mb-0 text-dark fs-6">
                                     Provinsi
                                 </p>
-                                <input name="province" type="text" value="{{ $amendmentDeeps->province }}" class="form-control" placeholder="Masukkan Nomor">
+                                <input name="province" type="text"
+                                    value="{{ $amendmentDeeps->province ? $amendmentDeeps->province : '-' }}"
+                                    class="form-control" placeholder="Masukkan Nomor">
                             </div>
                         </div>
                         <div class="row">
@@ -1174,7 +1283,7 @@
                                 <p class="mb-0 text-dark fs-6">
                                     Alamat
                                 </p>
-                                <textarea name="address" id="" class="form-control">{{ $amendmentDeeps->address }}</textarea>
+                                <textarea name="address" id="" class="form-control">{{ $amendmentDeeps->address ? $amendmentDeeps->address : '-' }}</textarea>
                             </div>
                         </div>
                 </div>
@@ -1420,6 +1529,5 @@
             $('#form-delete').attr('action', actionUrl);
             $('#modal-delete').modal('show')
         })
-
     </script>
 @endsection
