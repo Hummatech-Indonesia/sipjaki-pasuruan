@@ -143,9 +143,9 @@ Route::middleware('auth')->group(function () {
         Route::post('qualification-level-trainings/{qualification_training}', [QualificationLevelTrainingController::class, 'store']);
         Route::put('qualification-level-trainings/{qualification_training}', [QualificationLevelTrainingController::class, 'update']);
         Route::get('sub-clasification-training/{classification_training}',[SubClassificationTrainingController::class,'index'])->name('sub-trainings.detail');
-        Route::post('sub-clasification-training/store/{classification_training}',[SubClassificationTrainingController::class,'store'])->name('sub-clasification-training.store');
-        Route::put('sub-clasification-training/update/{sub_classification_training}',[SubClassificationTrainingController::class,'update'])->name('sub-clasification-training.update');
-        Route::delete('sub-clasification-training/delete/{sub_classification_training}',[SubClassificationTrainingController::class,'destroy'])->name('sub-clasification-training.delete');
+        Route::post('sub-clasification-training/{classification_training}',[SubClassificationTrainingController::class,'store'])->name('sub-clasification-training.store');
+        Route::put('sub-clasification-training/{sub_classification_training}',[SubClassificationTrainingController::class,'update'])->name('sub-clasification-training.update');
+        Route::delete('sub-clasification-training/{sub_classification_training}',[SubClassificationTrainingController::class,'destroy'])->name('sub-clasification-training.delete');
 
 
         Route::get('history-login', [HistoryLoginController::class, 'index'])->name('history-login.index');
