@@ -20,19 +20,19 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <td class="text-white" style="background-color: #1B3061">
+                        <td class="text-white text-center" style="background-color: #1B3061">
                             No
                         </td>
-                        <td class="text-white" style="background-color: #1B3061">
+                        <td class="text-white text-center" style="background-color: #1B3061">
                             Nama
                         </td>
-                        <td class="text-white" style="background-color: #1B3061">
+                        <td class="text-white text-center" style="background-color: #1B3061">
                             Tahun
                         </td>
-                        <td class="text-white" style="background-color: #1B3061">
+                        <td class="text-white text-center" style="background-color: #1B3061">
                             Progres
                         </td>
-                        <td class="text-white" style="background-color: #1B3061">
+                        <td class="text-white text-center" style="background-color: #1B3061">
                             Aksi
                         </td>
                     </tr>
@@ -43,23 +43,25 @@
                     @endphp
                     <tbody>
                         <tr>
-                            <td>
+                            <td class="text-center">
                                 {{ $index + 1 }}
                             </td>
-                            <td>
+                            <td class="text-center">
                                 {{ $serviceProviderProject->name }}
                             </td>
-                            <td>
+                            <td class="text-center">
                                 {{ $serviceProviderProject->year }}
                             </td>
-                            <td>
+                            <td class="text-center">
                                 {{ $totalProgres }}%
                             </td>
-                            <td>
-                                <a href="detail-project/{{ $serviceProviderProject->id }}"
-                                    class="btn btn-primary btn-md rounded-4  " style="background-color: #1B3061;">
-                                    Lihat Progress
-                                </a>
+                            <td class="text-center">
+                                <div class="d-flex justify-content-center">
+                                    <a href="detail-project/{{ $serviceProviderProject->id }}"
+                                        class="btn btn-primary btn-md rounded-4  " style="background-color: #1B3061;">
+                                        Lihat Progress
+                                    </a>
+                                </div>
                             </td>
                         </tr>
                     </tbody>
