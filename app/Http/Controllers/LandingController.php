@@ -136,11 +136,11 @@ class LandingController extends Controller
      */
     public function associationDetail(Association $association, Request $request): JsonResponse|View
     {
-        $association = $this->serviceProvider->getByAssosiasi($association->id);
+        $serviceProviders = $this->serviceProvider->getByAssosiasi($association->id, $request);
         if ($request->is('api/*')) {
-            return ResponseHelper::success($association);
+            return ResponseHelper::success($serviceProviders);
         } else {
-            return view('detail-asosiasi', ['association' => $association]);
+            return view('detail-asosiasi', ['serviceProviders' => $serviceProviders]);
         }
     }
 }

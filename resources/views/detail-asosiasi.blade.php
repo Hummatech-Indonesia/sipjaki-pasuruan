@@ -64,7 +64,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($association->serviceProviders as $index=>$serviceProvider)
+                                @forelse ($serviceProviders as $index=>$serviceProvider)
                                     <tr>
                                         <td>
                                             {{ $index + 1 }}
