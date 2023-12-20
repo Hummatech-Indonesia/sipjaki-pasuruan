@@ -289,6 +289,7 @@
                                                     data-code="{{ $serviceProviderQualification->subClassification->code }}"
                                                     data-Kualifikasi="{{ $serviceProviderQualification->qualification->name }}"
                                                     data-tahun="{{ $serviceProviderQualification->year }}"
+                                                    data-reject="{{ $serviceProviderQualification->resend }}"
                                                     data-Asosiasi="{{ $serviceProviderQualification->serviceProvider->association->name }}"
                                                     data-Tanggal_Permohonan=" {{ $serviceProviderQualification->first_print? Carbon::parse($serviceProviderQualification->first_print)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}"
                                                     data-Tanggal_Cetak_Pertama=" {{ $serviceProviderQualification->first_print? Carbon::parse($serviceProviderQualification->first_print)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}"
@@ -807,6 +808,15 @@
                                             <div class="col-md-5">
                                                 <p class="mb-2 text-dark" style="font-weight:600;"><span
                                                         id="detail-tanggal_cetak_perubahan_terakhir"></span></p>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-1">
+                                            <div class="col-md-5">
+                                                <p class="mb-2 text-dark">Alasan Penolakan :</p>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <p class="mb-2 text-dark" style="font-weight:600;"><span
+                                                        id="detail-reject"></span></p>
                                             </div>
                                         </div>
                                     </div>

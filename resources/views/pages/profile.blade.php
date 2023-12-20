@@ -27,11 +27,21 @@
                                         <label for="" class="form-label">Nama</label>
                                         <input type="text" class="form-control" name="name"
                                             value="{{ auth()->user()->name }}" id="">
+                                            @error('name')
+                                                <p class="text-danger">
+                                                    {{ $message }}
+                                                </p>
+                                            @enderror
                                     </div>
                                     <div class="col">
                                         <label for="" class="form-label">Email</label>
                                         <input type="text" value="{{ auth()->user()->email }}" class="form-control"
                                             name="email" id="">
+                                            @error('email')
+                                                <p class="text-danger">
+                                                    {{ $message }}
+                                                </p>
+                                            @enderror
                                     </div>
 
                                 </div>
@@ -40,11 +50,21 @@
                                         <label for="" class="form-label">No Telepon</label>
                                         <input type="number" value="{{ auth()->user()->phone_number }}"
                                             class="form-control" name="phone_number" id="">
+                                            @error('phone_number')
+                                                <p class="text-danger">
+                                                    {{ $message }}
+                                                </p>
+                                            @enderror
                                     </div>
                                     <div class="col">
-                                        <label for="" class="form-label">Sk</label>
+                                        <label for="" class="form-label">Sk (Opsional)</label>
                                         <input type="text" class="form-control" value="{{ auth()->user()->decree }}"
                                             name="decree" id="">
+                                            @error('decree')
+                                                <p class="text-danger">
+                                                    {{ $message }}
+                                                </p>
+                                            @enderror
                                     </div>
                                 </div>
                                 <div class="d-flex mt-4 justify-content-end">
