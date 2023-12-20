@@ -47,17 +47,21 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="d-flex d-row justify-content-between align-items-center mb-3">
-                        <div class="position-relative col-lg-3 search-container">
-                            <input type="search" class="py-2 ps-5" id="search-name" placeholder="Search">
-                            <i class="bx bx-search-alt search-icon"></i>
+                    <form>
+                        <div class="d-flex justify-content-header gap-2">
+                            <div class="d-flex d-row align-items-center mb-3">
+                                <div class="position-relative  search-container">
+                                    <input type="search" class="py-2 ps-5" id="search-name" name="title" placeholder="Search">
+                                    <i class="bx bx-search-alt search-icon"></i>
+                                </div>
+                            </div>
+                            <div class="">
+                                <button type="submit" class="text-white btn" style="background-color: #1B3061">
+                                    Search
+                                </button>
+                            </div>
                         </div>
-                        <select id="formrow-inputState" style="margin-right: 10px;" class="form-select col-lg-3">
-                            <option disabled="" selected="">Menampilkan Data</option>
-                            <option>A++</option>
-                            <option>B++</option>
-                        </select>
-                    </div>
+                    </form>
                     <div class="table-responsive">
                         <table class="table table-borderless mb-0" border="1">
                             <thead class="table-light">
@@ -92,7 +96,7 @@
                                         <td>{{ $rule->title }}</td>
                                         <td>
                                             <div class="d-flex align-items-center">
-                                                <a href="{{ asset('storage/' . $rule->file) }}">
+                                                <a href="download-rule/{{ $rule->id  }}">
                                                     <button type="submit" class="btn btn-detail waves-effect waves-light text-white btn waves-effect d-flex flex-row gap-1 justify-content-evenly"
                                                         style="background-color:#2CA67A;">
                                                         <svg xmlns="http://www.w3.org/2000/svg" height="15"

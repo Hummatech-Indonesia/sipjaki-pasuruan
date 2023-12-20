@@ -38,19 +38,6 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="d-flex justify-content-header gap-2">
-                        <div class="d-flex d-row align-items-center mb-3">
-                            <div class="position-relative search-container">
-                                <input type="search" class="py-2 ps-5" id="search-name" placeholder="Search">
-                                <i class="bx bx-search-alt search-icon"></i>
-                            </div>
-                        </div>
-                        <div class="">
-                            <button class="text-white btn" style="background-color: #1B3061">
-                                Search
-                            </button>
-                        </div>
-                    </div>
                     <div class="table-responsive">
                         <table class="table table-borderless mb-0" border="1">
                             <thead class="table-light">
