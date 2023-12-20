@@ -110,7 +110,7 @@
                                     </td>
                                     <td class="fs-5">{{ $project->status }}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('detail-project', ['dinas' => $item->id]) }}"
+                                        <a href="{{ route('detail-project', ['project' => $item->id]) }}"
                                             class="text-white btn" style="background-color: #1B3061">Detail</a>
                                     </td>
                                 @empty
