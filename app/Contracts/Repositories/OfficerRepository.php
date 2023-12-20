@@ -4,6 +4,7 @@ namespace App\Contracts\Repositories;
 
 use App\Contracts\Interfaces\OfficerInterface;
 use App\Models\Officer;
+use Illuminate\Http\Request;
 
 class OfficerRepository extends BaseRepository implements OfficerInterface
 {
@@ -11,6 +12,20 @@ class OfficerRepository extends BaseRepository implements OfficerInterface
         $this->model = $officer;
     }
 
+    /**
+     * search
+     *
+     * @param  mixed $request
+     * @return mixed
+     */
+    public function search(Request $request): mixed
+    {
+        return $this->model->query()
+            ->when($request->name, function ($query) use ($request) {
+                $query->where('name', 'LIKE', '%'. $request->name .'%');
+            })
+            ->get();
+    }
     /**
      * get
      *
