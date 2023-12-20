@@ -27,9 +27,8 @@ class QualificationController extends Controller
     {
 
         $qualifications = $this->qualification->customPaginate($request, 15);
-
+        $qualifications->appends(['name' => $request->name]);
         if( $request->is('api/*')){
-
             $data['paginate'] = $this->customPaginate($qualifications->currentPage(), $qualifications->lastPage());
             $data['data'] = QualificationResource::collection($qualifications);
             return ResponseHelper::success($data,trans('alert.get_success'));
