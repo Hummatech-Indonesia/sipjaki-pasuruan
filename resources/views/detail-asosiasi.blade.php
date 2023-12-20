@@ -28,6 +28,13 @@
         </div>
     </div>
     <div class="row justify-content-center">
+        <div class="d-flex justify-content-end mb-3">
+            <div class="">
+                <a href="/asosiasi" class="text-white btn" style="background-color: #1B3061">
+                    Kembali
+                </a>
+            </div>
+        </div>
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
