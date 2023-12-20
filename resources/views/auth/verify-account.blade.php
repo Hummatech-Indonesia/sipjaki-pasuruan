@@ -41,7 +41,7 @@
                             <div>
                                 <a href="javascript:void(0)">
                                     <div class="avatar-md profile-user-wid">
-                                        <span class="avatar-title rounded-circle" width= style="background-color: #1B3061">
+                                        <span class="avatar-title rounded-circle" width=style="background-color: #1B3061">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60"
                                                 viewBox="0 0 63 63" fill="currentColor">
                                                 <path
@@ -76,16 +76,30 @@
                                     <div class="mb-3">
                                         <label for="useremail" class="form-label">Token</label>
                                         <div class="email-input">
+                                            <!-- Input pertama -->
                                             <input type="text" class="text-center form-control" id="email-part1"
-                                                maxlength="1" oninput="updateTokenValue()">
+                                                maxlength="1"
+                                                oninput="updateTokenValue(); goToNextInput(this, 'email-part2');">
+
+                                            <!-- Input kedua -->
                                             <input type="text" class="text-center form-control" id="email-part2"
-                                                maxlength="1" oninput="updateTokenValue()">
+                                                maxlength="1"
+                                                oninput="updateTokenValue(); goToNextInput(this, 'email-part3');">
+
+                                            <!-- Input ketiga -->
                                             <input type="text" class="text-center form-control" id="email-part3"
-                                                maxlength="1" oninput="updateTokenValue()">
+                                                maxlength="1"
+                                                oninput="updateTokenValue(); goToNextInput(this, 'email-part4');">
+
+                                            <!-- Input keempat -->
                                             <input type="text" class="text-center form-control" id="email-part4"
-                                                maxlength="1" oninput="updateTokenValue()">
+                                                maxlength="1"
+                                                oninput="updateTokenValue(); goToNextInput(this, 'email-part5');">
+
+                                            <!-- Input kelima -->
                                             <input type="text" class="text-center form-control" id="email-part5"
-                                                maxlength="1" oninput="updateTokenValue()">
+                                                maxlength="1"
+                                                oninput="updateTokenValue(); goToNextInput(this, '');">
                                         </div>
                                         <input type="hidden" name="token" id="token">
                                     </div>
@@ -116,10 +130,26 @@
             document.getElementById('token').value = token;
         }
 
+
+
+
         function combineInputValues(event) {
             event.preventDefault();
             // Lakukan proses pengiriman form atau manipulasi data sesuai kebutuhan Anda
             document.forms[0].submit();
+        }
+
+        function goToNextInput(currentInput, nextInputId) {
+            var maxLength = parseInt(currentInput.getAttribute('maxlength'));
+            var currentLength = currentInput.value.length;
+
+            if (currentLength === maxLength) {
+                var nextInput = document.getElementById(nextInputId);
+
+                if (nextInput) {
+                    nextInput.focus();
+                }
+            }
         }
     </script>
 @endsection
