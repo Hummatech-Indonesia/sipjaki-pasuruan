@@ -12,7 +12,7 @@ class AmendmentDeed extends Model implements HasServiceProvider
     use HasFactory;
     protected $table = 'amendment_deeds';
     protected $primaryKey = 'id';
-    protected $fillable = ['id', 'service_provider_id', 'deed_number', 'notary_name', 'address', 'city'];
+    protected $fillable = ['id', 'service_provider_id','province','deed_number', 'notary_name', 'address', 'city'];
     protected $guarded = [];
     public $incrementing = false;
     public $keyType = 'char';

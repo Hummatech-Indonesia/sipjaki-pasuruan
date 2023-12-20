@@ -83,9 +83,9 @@ class ServiceProviderController extends Controller
         $serviceProviderQualifications = $this->serviceProviderQualification->customPaginate($request, 10);
         $officers = $this->officer->get();
         $workers = $this->worker->get();
-        $verifications = $this->verification->get();
-        $amendmentDeeps = $this->amendmentDeep->get();
-        $foundingDeeps = $this->foundingDeep->get();
+        $verifications = auth()->user()->serviceProvider->verification;
+        $amendmentDeeps = auth()->user()->serviceProvider->amendmentDeed;
+        $foundingDeeps = auth()->user()->serviceProvider->foundingDeed;
         return view('pages.service-provider.profile', ['serviceProvider' => $serviceProviders, 'serviceProviderQualifications' => $serviceProviderQualifications, 'officers' => $officers, 'workers' => $workers, 'verifications' => $verifications, 'amendmentDeeps' => $amendmentDeeps, 'foundingDeeps' => $foundingDeeps]);
     }
 }
