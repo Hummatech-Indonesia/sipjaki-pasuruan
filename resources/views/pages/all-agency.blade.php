@@ -14,7 +14,7 @@
         <form action="" class="">
             <div class="input-group">
                 <input name="name" type="text" class="form-control"
-                    placeholder="Search">
+                    placeholder="Search" value="{{ request()->name }}">
                 <div class="input-group-append">
                     <button class="btn text-white" style="background-color: #1B3061; border-radius: 0 5px 5px 0;"
                         type="submit">
@@ -114,7 +114,7 @@
                     {{-- <th class=" table-sipjaki" >Aksi</th> --}}
                 </tr>
             </thead>
-            @forelse ($dinass as $index=>$dinas)     
+            @forelse ($dinass as $index=>$dinas)
             <tbody>
                 <tr>
                     <td class="">
@@ -149,12 +149,12 @@
                     {{-- <td class="">
                         <div class="d-flex justify-content-header gap-2">
                             <div class="">
-                                <button class="btn text-white btn-edit" 
+                                <button class="btn text-white btn-edit"
                                     style="background-color: #1B3061; width: 100%;">
                                     Detail
                                 </button>
                             </div>
-                            
+
                         </div>
                     </td> --}}
                 </tr>

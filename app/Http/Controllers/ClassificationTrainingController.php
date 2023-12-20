@@ -23,9 +23,9 @@ class ClassificationTrainingController extends Controller
      *
      * @return void
      */
-    public function index()
+    public function index(Request $request)
     {
-        $classificationTrainings = $this->classificationTraining->get();
+        $classificationTrainings = $this->classificationTraining->search($request);
         return view('pages.classification.training', ['classificationTrainings' => $classificationTrainings ]);
     }
 

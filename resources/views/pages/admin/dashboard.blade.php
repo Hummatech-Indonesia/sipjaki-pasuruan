@@ -318,7 +318,7 @@
         </h5>
         <form action="" class="d-flex">
             <div class="position-relative search-container me-2">
-                <input type="search" class="form-control py-2 ps-5" id="search-name" placeholder="Search">
+                <input type="search" class="form-control py-2 ps-5" name="name" id="search-name" placeholder="Search" value="{{ request()->name }}">
                 <i class="bx bx-search-alt search-icon"></i>
             </div>
             <div class="py-3">
@@ -339,7 +339,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($activeProjects as $activeProject)   
+                    @forelse ($activeProjects as $activeProject)
                         <tr>
                             <td class="fs-5">{{$loop->iteration}}</td>
                             <td class="fs-5">{{$activeProject->name}}</td>
