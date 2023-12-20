@@ -35,7 +35,7 @@ class WorkerController extends Controller
      */
     public function index(Request $request): JsonResponse|View
     {
-         $workers = $this->worker->customPaginate($request, 15);
+         $workers = $this->worker->customPaginate($request, 10);
          $workers->appends(['name' => $request->name]);
          if( $request->is('api/*')){
 
