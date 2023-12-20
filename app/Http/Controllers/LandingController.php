@@ -15,6 +15,7 @@ use App\Contracts\Interfaces\RuleInterface;
 use App\Contracts\Interfaces\DinasInterface;
 use App\Contracts\Interfaces\TrainingInterface;
 use App\Contracts\Interfaces\AssociationInterface;
+use App\Contracts\Interfaces\ServiceProviderInterface;
 
 class LandingController extends Controller
 {
@@ -24,16 +25,16 @@ class LandingController extends Controller
     private TrainingInterface $training;
     private RuleInterface $rule;
     private FaqInterface $faq;
-    private AssociationInterface $association;
+    private ServiceProviderInterface $serviceProvider;
 
-    public function __construct(FaqInterface $faq,DinasInterface $dinas, NewsInterface $news, TrainingInterface $training,RuleInterface $rule,AssociationInterface $association) 
+    public function __construct(FaqInterface $faq, DinasInterface $dinas, NewsInterface $news, TrainingInterface $training, RuleInterface $rule, ServiceProviderInterface $serviceProvider)
     {
         $this->dinas = $dinas;
         $this->news = $news;
         $this->training = $training;
         $this->rule = $rule;
         $this->faq = $faq;
-        $this->association = $association;
+        $this->serviceProvider = $serviceProvider;
     }
     /**
      * project
@@ -46,19 +47,19 @@ class LandingController extends Controller
         $dinas = $this->dinas->search($request);
         return view('paket-pekerjaan', compact('dinas'));
     }
-    
+
     /**
      * projectDetail
      *
      * @return View
      */
-    public function projectDetail(Request $request,Dinas $dinas): View
+    public function projectDetail(Request $request, Dinas $dinas): View
     {
         $data = $this->dinas->search($request);
 
         $detailDinas = $this->dinas->show($dinas->id);
 
-        return view('detail-paket',compact('data','detailDinas'));
+        return view('detail-paket', compact('data', 'detailDinas'));
     }
 
     /**
@@ -72,19 +73,19 @@ class LandingController extends Controller
         $news = $this->news->customPaginate($request, 10);
         return view('welcome', ['news' => $news]);
     }
-    
+
     /**
      * latestNews
      *
      * @param  mixed $request
      * @return view
      */
-    public function latestNews(Request $request) : view 
+    public function latestNews(Request $request): view
     {
         $news = $this->news->customPaginate($request, 10);
         return view('berita-terbaru', ['news' => $news]);
     }
-    
+
     /**
      * show
      *
@@ -92,12 +93,11 @@ class LandingController extends Controller
      * @param  mixed $request
      * @return View
      */
-    public function show(News $news,Request $request) : View 
+    public function show(News $news, Request $request): View
     {
         $data = $this->news->show($news->id);
         $dataNews = $this->news->customPaginate($request, 10);
         return view('detail-berita', compact('data', 'dataNews'));
-
     }
 
     /**
@@ -114,26 +114,33 @@ class LandingController extends Controller
         return view('pelatihan', compact('trainings'));
     }
 
-    public function rules(Request $request) : View 
+    public function rules(Request $request): View
     {
-        $rules = $this->rule->customPaginate($request,10);
-        return view('peraturan',compact('rules'));
+        $rules = $this->rule->customPaginate($request, 10);
+        return view('peraturan', compact('rules'));
     }
 
-    public function faq() : View 
+    public function faq(): View
     {
         $faqs = $this->faq->get();
 
-        return view('faq',compact('faqs'));
+        return view('faq', compact('faqs'));
     }
 
+    /**
+     * associationDetail
+     *
+     * @param  mixed $association
+     * @param  mixed $request
+     * @return JsonResponse
+     */
     public function associationDetail(Association $association, Request $request): JsonResponse|View
     {
-
+        $serviceProviders = $this->serviceProvider->getByAssosiasi($association->id, $request);
         if ($request->is('api/*')) {
-            return ResponseHelper::success($association);
+            return ResponseHelper::success($serviceProviders);
         } else {
-            return view('detail-asosiasi', ['association' => $association]);
+            return view('detail-asosiasi', ['serviceProviders' => $serviceProviders]);
         }
     }
 }

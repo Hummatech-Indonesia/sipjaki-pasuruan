@@ -24,7 +24,7 @@ class DinasRepository extends BaseRepository implements DinasInterface
     {
         return $this->model->query()
             ->when($request->name, function ($query) use ($request) {
-                $query->where('name_opd', 'LIKE', '%' . $request->name . '%');
+                $query->whereRelation('user', 'name', 'LIKE', '%' . $request->name . '%');
             })
             ->withCount('projects')
             ->with('user', 'projects')
@@ -78,7 +78,7 @@ class DinasRepository extends BaseRepository implements DinasInterface
             ->count();
     }
 
-        /**
+    /**
      * customPaginate
      *
      * @param  mixed $request
@@ -88,8 +88,8 @@ class DinasRepository extends BaseRepository implements DinasInterface
     public function customPaginate(Request $request, int $pagination = 10): LengthAwarePaginator
     {
         return $this->model->query()
-            ->when($request->name,function($query) use ($request){
-                $query->where('name_opd','LIKE','%'.$request->name.'%');
+            ->when($request->name, function ($query) use ($request) {
+                $query->where('name_opd', 'LIKE', '%' . $request->name . '%');
             })
             ->fastPaginate($pagination);
     }
