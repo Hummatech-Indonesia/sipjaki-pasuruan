@@ -1319,8 +1319,8 @@
                                     name="judiciary_number" class="form-control" placeholder="Masukkan Nomor">
                             </div>
                             <div class="col-6">
-                                <input type="date" name="judicary_date" class="form-control"
-                                    value="{{ $verifications->judicary_date ? $verifications->judicary_date : '-' }}"
+                                <input type="date" name="judiciary_date" class="form-control"
+                                    value="{{ $verifications->judiciary_date ? $verifications->judiciary_date : '-' }}"
                                     placeholder="Masukkan Nomor">
                             </div>
                         </div>
@@ -1363,7 +1363,7 @@
                                 <input type="number" value="" name="judiciary_number" class="form-control" placeholder="Masukkan Nomor">
                             </div>
                             <div class="col-6">
-                                <input type="date" name="judicary_date" class="form-control" value="" placeholder="Masukkan Nomor">
+                                <input type="date" name="judiciary_date" class="form-control" value="" placeholder="Masukkan Nomor">
                             </div>
                         </div>
                         <p class="fs-5 text-dark mb-1" style="font-weight: 700">
