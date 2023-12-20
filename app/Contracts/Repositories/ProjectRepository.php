@@ -97,7 +97,8 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
      */
     public function get(): mixed
     {
-        return $this->model->query()->whereRelation('dinas', 'dinas_id', auth()->user()->dinas->id)
+        return $this->model->query()
+            ->whereRelation('dinas', 'dinas_id', auth()->user()->dinas->id)
             ->with('serviceProviderProjects')
             ->get();
     }
