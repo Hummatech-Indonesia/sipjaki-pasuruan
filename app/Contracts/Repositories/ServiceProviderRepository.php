@@ -108,7 +108,7 @@ class ServiceProviderRepository extends BaseRepository implements ServiceProvide
             })
             ->fastPaginate($pagination);
     }
-    
+
     /**
      * count
      *
@@ -120,7 +120,7 @@ class ServiceProviderRepository extends BaseRepository implements ServiceProvide
         return $this->model->query()
             ->count();
     }
-    
+
     /**
      * getConsultant
      *
@@ -132,7 +132,7 @@ class ServiceProviderRepository extends BaseRepository implements ServiceProvide
             ->where('type_of_business_entity',TypeOfBusinessEntityEnum::CONSULTANT->value)
             ->get();
     }
-    
+
     /**
      * getExecutor
      *

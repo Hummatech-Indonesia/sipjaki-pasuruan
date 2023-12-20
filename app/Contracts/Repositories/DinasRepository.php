@@ -24,7 +24,7 @@ class DinasRepository extends BaseRepository implements DinasInterface
     {
         return $this->model->query()
             ->when($request->name, function ($query) use ($request) {
-                $query->where('name', 'LIKE', '%' . $request->name . '%');
+                $query->where('name_opd', 'LIKE', '%' . $request->name . '%');
             })
             ->withCount('projects')
             ->with('user', 'projects')
@@ -65,7 +65,7 @@ class DinasRepository extends BaseRepository implements DinasInterface
         return $this->model->query()
             ->get();
     }
-    
+
     /**
      * count
      *
@@ -89,7 +89,7 @@ class DinasRepository extends BaseRepository implements DinasInterface
     {
         return $this->model->query()
             ->when($request->name,function($query) use ($request){
-                $query->where('name','LIKE','%'.$request->name.'%');
+                $query->where('name_opd','LIKE','%'.$request->name.'%');
             })
             ->fastPaginate($pagination);
     }
