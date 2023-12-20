@@ -16,7 +16,7 @@ class VideoRequest extends FormRequest
     {
         return [
             'categories' => ['required', new CategoryImageRule],
-            'video' =>
+            'photo' =>
             'required|mimes:mp4',
         ];
     }
