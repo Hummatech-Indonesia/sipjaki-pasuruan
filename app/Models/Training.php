@@ -50,7 +50,7 @@ class Training extends Model implements HasFundSource, HasTrainingMethod, HasFis
      */
     public function qualificationTraining(): BelongsTo
     {
-        return $this->belongsTo(Qualification::class);
+        return $this->belongsTo(QualificationTraining::class);
     }
 
     /**
