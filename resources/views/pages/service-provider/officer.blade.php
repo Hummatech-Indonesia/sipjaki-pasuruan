@@ -159,7 +159,7 @@
                                     class="btn waves-effect waves-light d-flex btn-edit flex-row gap-1 justify-content-evenly"
                                     style="width: 90px; background-color: #FFC928; color: white"
                                     id="btn-edit-{{ $officer->id }}" data-id="{{ $officer->id }}"
-                                    data-name="{{ $officer->name }}" data-brith_date="{{ $officer->birth_date }}" data-addres="{{ $officer->address }}" data-position="{{ $officer->position }}" data-education="{{ $officer->education }}"><i class="bx bx-bx bxs-edit fs-4"></i>
+                                    data-name="{{ $officer->name }}" data-birth_date="{{ $officer->birth_date }}" data-address="{{ $officer->address }}" data-position="{{ $officer->position }}" data-education="{{ $officer->education }}"><i class="bx bx-bx bxs-edit fs-4"></i>
                                     <span>Edit</span></button>
                                 <button type="button"
                                     class="btn waves-effect waves-light btn-delete d-flex flex-row gap-1 justify-content-between"
