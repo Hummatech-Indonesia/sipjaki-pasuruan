@@ -264,7 +264,7 @@ Route::get('/redirect-verify-account', [VerificationController::class, 'verifyAc
 Route::put('update-token/{user}', [VerificationController::class, 'updateToken']);
 Route::put('verify-token/{user}', [VerificationController::class, 'verifyToken'])->name('verify.token/');
 Route::get('verify-account/{user}', [VerificationController::class, 'verifyacount'])->name('verify.account/');
-Route::post('send-resend/{user}', [VerificationController::class, 'sendResend']);
+Route::post('resend-email-verification/{user}', [VerificationController::class, 'sendResend']);
 
 // verifikasi account
 Route::get('verify.account/{id}', [VerificationController::class, 'verifyacount'])->name('verify.account');
