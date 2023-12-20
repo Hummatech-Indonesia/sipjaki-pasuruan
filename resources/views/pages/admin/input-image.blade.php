@@ -9,12 +9,12 @@
         @endforeach
     @endif
     <h3 class="text-dark" style="font-weight: 600">
-        Berita
+        Gambar
     </h3>
     <div class="card">
         <div class="card-body">
             <p class="fs-5 text-dark" style="font-weight: 500">
-                Daftar Berita
+                Daftar Gambar
             </p>
             <div class="table-responsive">
                 <table class="table">
