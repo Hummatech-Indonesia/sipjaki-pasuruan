@@ -48,6 +48,7 @@
     @endif
     <div class="d-flex justify-content-between mb-3">
         <h2>Video Halaman Beranda Landing Page</h2>
+        
     </div>
     <div class="card">
         <div class="card-body">
