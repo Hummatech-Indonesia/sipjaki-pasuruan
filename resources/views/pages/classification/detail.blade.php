@@ -59,7 +59,7 @@
                             </div>
                         </div>
                         <div class="col-12">
-                            <textarea name="description" id="create-description" cols="30" rows="10"></textarea>
+                            <textarea class="form-control" name="description" id="create-description" cols="30" rows="10"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -114,6 +114,8 @@
                             <tr>
                                 <th scope="row" class="fs-5">{{ $loop->iteration }}</th>
                                 <td>{{ $subClassification->name }}</td>
+                                <td>{{ $subClassification->code }}</td>
+                                <td>{{ $subClassification->description }}</td>
                                 <td>
                                     <div class="d-flex justify-content-center gap-2">
                                         <div class="">
@@ -211,7 +213,7 @@
                             </div>
                         </div>
                         <div class="col-12">
-                            <textarea name="description" id="create-description" cols="30" rows="10"></textarea>
+                            <textarea class="form-control" name="description" id="create-description" cols="30" rows="10"></textarea>
                         </div>
                 </div>
                 <div class="modal-footer">

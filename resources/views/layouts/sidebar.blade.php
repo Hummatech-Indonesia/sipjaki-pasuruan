@@ -42,7 +42,7 @@
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
                             <li><a href="{{ route('qualification-trainings.index') }}" key="t-tui-calendar">Kualifikasi</a></li>
-                            <li><a href="{{ route('classification-training.index') }}" key="t-full-calendar">Klasifikasi Pelatihan</a></li>
+                            <li><a href="{{ route('classification-training.index') }}" key="t-full-calendar">Klasifikasi</a></li>
                             <li><a href="{{ route('training-methods.index') }}" key="t-full-calendar">Metode Pelatihan</a></li>
                         </ul>
                     </li>
