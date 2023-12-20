@@ -111,14 +111,15 @@ class LandingController extends Controller
     {
 
         $trainings = $this->training->customPaginate($request, 30);
-
-        return view('pelatihan', compact('trainings'));
+        $name = $request->name;
+        return view('pelatihan', compact('trainings','name'));
     }
 
     public function rules(Request $request): View
     {
         $rules = $this->rule->customPaginate($request, 10);
-        return view('peraturan', compact('rules'));
+        $name = $request->title;
+        return view('peraturan', compact('rules','name'));
     }
 
     public function faq(): View
