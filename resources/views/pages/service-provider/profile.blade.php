@@ -436,12 +436,12 @@
                                     <tr>
                                         <td>Nomor</td>
                                         <td>:</td>
-                                        <td>{{ $verifications[0]->judiciary_number }}</td>
+                                        <td>{{ $verifications->judiciary_number }}</td>
                                     </tr>
                                     <tr>
                                         <td>Tanggal</td>
                                         <td>:</td>
-                                        <td>{{ Carbon::parse($verifications[0]->judicary_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}</td>
+                                        <td>{{ Carbon::parse($verifications->judicary_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}</td>
                                     </tr>
                                     <tr>
                                         <td colspan="5">
@@ -453,12 +453,12 @@
                                     <tr>
                                         <td>Nomor</td>
                                         <td>:</td>
-                                        <td>{{ $verifications[0]->district_court_number }}</td>
+                                        <td>{{ $verifications->district_court_number }}</td>
                                     </tr>
                                     <tr>
                                         <td>Tanggal</td>
                                         <td>:</td>
-                                        <td>{{ Carbon::parse($verifications[0]->district_court_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}</td>
+                                        <td>{{ Carbon::parse($verifications->district_court_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}</td>
                                     </tr>
                                     <tr>
                                         <td colspan="5">
@@ -470,12 +470,12 @@
                                     <tr>
                                         <td>Nomor</td>
                                         <td>:</td>
-                                        <td>{{ $verifications[0]->state_institution_number }}</td>
+                                        <td>{{ $verifications->state_institution_number }}</td>
                                     </tr>
                                     <tr>
                                         <td>Tanggal</td>
                                         <td>:</td>
-                                        <td>{{ Carbon::parse($verifications[0]->state_institution_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}</td>
+                                        <td>{{ Carbon::parse($verifications->state_institution_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -501,27 +501,27 @@
                                     <tr>
                                         <td>No Akte</td>
                                         <td>:</td>
-                                        <td>{{ $amendmentDeeps[0]->deed_number }}</td>
+                                        <td>{{ $amendmentDeeps->deed_number }}</td>
                                     </tr>
                                     <tr>
                                         <td>Nama Notaris</td>
                                         <td>:</td>
-                                        <td>{{ $amendmentDeeps[0]->notary_name }}</td>
+                                        <td>{{ $amendmentDeeps->notary_name }}</td>
                                     </tr>
                                     <tr>
                                         <td>Alamat</td>
                                         <td>:</td>
-                                        <td>{{ $amendmentDeeps[0]->address }}</td>
+                                        <td>{{ $amendmentDeeps->address }}</td>
                                     </tr>
                                     <tr>
                                         <td>Kota / Kabupaten</td>
                                         <td>:</td>
-                                        <td>{{ $amendmentDeeps[0]->city }}</td>
+                                        <td>{{ $amendmentDeeps->city }}</td>
                                     </tr>
                                     <tr>
                                         <td>Provinsi</td>
                                         <td>:</td>
-                                        <td>{{ $amendmentDeeps[0]->province }}</td>
+                                        <td>{{ $amendmentDeeps->province }}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -1082,10 +1082,10 @@
                         </p>
                         <div class="row mb-4">
                             <div class="col-6">
-                                <input type="number" value="{{ $verifications[0]->judiciary_number }}" name="judiciary_number" class="form-control" placeholder="Masukkan Nomor">
+                                <input type="number" value="{{ $verifications->judiciary_number }}" name="judiciary_number" class="form-control" placeholder="Masukkan Nomor">
                             </div>
                             <div class="col-6">
-                                <input type="date" name="judiciary_date" class="form-control" value="{{ $verifications[0]->judiciary_date}}" placeholder="Masukkan Nomor">
+                                <input type="date" name="judiciary_date" class="form-control" value="{{ $verifications->judiciary_date}}" placeholder="Masukkan Nomor">
                             </div>
                         </div>
                         <p class="fs-5 text-dark mb-1" style="font-weight: 700">
@@ -1093,10 +1093,10 @@
                         </p>
                         <div class="row mb-4">
                             <div class="col-6">
-                                <input type="number"value="{{ $verifications[0]->district_court_number}}"  name="district_court_number" class="form-control" placeholder="Masukkan Nomor">
+                                <input type="number"value="{{ $verifications->district_court_number}}"  name="district_court_number" class="form-control" placeholder="Masukkan Nomor">
                             </div>
                             <div class="col-6">
-                                <input type="date"value="{{ $verifications[0]->district_court_date}}" name="district_court_date" class="form-control" placeholder="Masukkan Nomor">
+                                <input type="date"value="{{ $verifications->district_court_date}}" name="district_court_date" class="form-control" placeholder="Masukkan Nomor">
                             </div>
                         </div>
                         <p class="fs-5 text-dark mb-0" style="font-weight: 700">
@@ -1104,10 +1104,10 @@
                         </p>
                         <div class="row">
                             <div class="col-6">
-                                <input type="number" value="{{ $verifications[0]->state_institution_number}}" name="state_institution_number" class="form-control" placeholder="Masukkan Nomor">
+                                <input type="number" value="{{ $verifications->state_institution_number}}" name="state_institution_number" class="form-control" placeholder="Masukkan Nomor">
                             </div>
                             <div class="col-6">
-                                <input type="date" value="{{ $verifications[0]->state_institution_date}}" name="state_institution_date" class="form-control" placeholder="Masukkan Nomor">
+                                <input type="date" value="{{ $verifications->state_institution_date}}" name="state_institution_date" class="form-control" placeholder="Masukkan Nomor">
                             </div>
                         </div>
                 </div>
@@ -1146,13 +1146,13 @@
                                 <p class="mb-0 text-dark fs-6">
                                     No Akte
                                 </p>
-                                <input type="number" value="{{ $amendmentDeeps[0]->deed_number }}" name="deed_number" class="form-control" placeholder="Masukkan Nomor">
+                                <input type="number" value="{{ $amendmentDeeps->deed_number }}" name="deed_number" class="form-control" placeholder="Masukkan Nomor">
                             </div>
                             <div class="col-6">
                                 <p class="mb-0 text-dark fs-6">
                                     Nama Notaris
                                 </p>
-                                <input type="text" value="{{ $amendmentDeeps[0]->notary_name }}" name="notary_name" class="form-control" placeholder="Masukkan Nama Notaris">
+                                <input type="text" value="{{ $amendmentDeeps->notary_name }}" name="notary_name" class="form-control" placeholder="Masukkan Nama Notaris">
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -1160,13 +1160,13 @@
                                 <p class="mb-0 text-dark fs-6">
                                     Kota / Kabupaten
                                 </p>
-                                <input type="text" name="{{ $amendmentDeeps[0]->city }}" name="city" class="form-control" placeholder="Masukkan Nomor">
+                                <input type="text" name="{{ $amendmentDeeps->city }}" name="city" class="form-control" placeholder="Masukkan Nomor">
                             </div>
                             <div class="col-6">
                                 <p class="mb-0 text-dark fs-6">
                                     Provinsi
                                 </p>
-                                <input name="province" type="text" value="{{ $amendmentDeeps[0]->province }}" class="form-control" placeholder="Masukkan Nomor">
+                                <input name="province" type="text" value="{{ $amendmentDeeps->province }}" class="form-control" placeholder="Masukkan Nomor">
                             </div>
                         </div>
                         <div class="row">
@@ -1174,7 +1174,7 @@
                                 <p class="mb-0 text-dark fs-6">
                                     Alamat
                                 </p>
-                                <textarea name="address" id="" class="form-control">{{ $amendmentDeeps[0]->address }}</textarea>
+                                <textarea name="address" id="" class="form-control">{{ $amendmentDeeps->address }}</textarea>
                             </div>
                         </div>
                 </div>
