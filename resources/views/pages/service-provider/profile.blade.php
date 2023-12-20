@@ -682,7 +682,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div>
+                            <div class="mb-3">
                                 <label for="" class="form-label">Tanggal Akte</label>
                                 <input type="date" name="deed_date" class="form-control" id="" value="{{ $foundingDeeps->deed_date }}">
                             </div>
