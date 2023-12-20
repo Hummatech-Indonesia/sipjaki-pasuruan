@@ -280,7 +280,7 @@
                                     <div class="">
                                         <button id="btn-edit-{{ $worker->id }}" data-id="{{ $worker->id }}"
                                             data-name="{{ $worker->name }}"
-                                            data-birth_date="{{ \Carbon\Carbon::parse($worker->birth_date)->translatedFormat('d F Y') }}"
+                                            data-birth_date="{{$worker->birth_date }}"
                                             data-cerificate="{{ $worker->cerificate }}"
                                             data-education="{{ $worker->education }}"
                                             data-registration_number="{{ $worker->registration_number }}" type="button"
