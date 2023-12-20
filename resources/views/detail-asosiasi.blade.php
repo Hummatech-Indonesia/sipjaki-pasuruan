@@ -15,9 +15,9 @@
 }
 
 </style>
-<link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+<link href="{{ asset('assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
-    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- App Css-->
     <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
     <div class="tabs-wrapper">
@@ -31,10 +31,17 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="d-flex d-row align-items-center mb-3">
-                        <div class="position-relative col-lg-3 search-container">
-                            <input type="search" class="py-2 ps-5" id="search-name" placeholder="Search">
-                            <i class="bx bx-search-alt search-icon"></i>
+                    <div class="d-flex justify-content-header gap-2">
+                        <div class="d-flex d-row align-items-center mb-3">
+                            <div class="position-relative search-container">
+                                <input type="search" class="py-2 ps-5" id="search-name" placeholder="Search">
+                                <i class="bx bx-search-alt search-icon"></i>
+                            </div>
+                        </div>
+                        <div class="">
+                            <button class="text-white btn" style="background-color: #1B3061">
+                                Search
+                            </button>
                         </div>
                     </div>
                     <div class="table-responsive">
