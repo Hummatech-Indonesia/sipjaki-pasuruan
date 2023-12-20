@@ -94,6 +94,8 @@
                                         style="background-color: #1B3061; color: white; text-align: center">Selesai</th>
                                     <th class="fw-medium"
                                         style="background-color: #1B3061; color: white; text-align: center">Status</th>
+                                    <th class="fw-medium"
+                                        style="background-color: #1B3061; color: white; text-align: center">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
