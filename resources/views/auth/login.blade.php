@@ -91,7 +91,7 @@
                                                     <input type="password"
                                                         class="form-control  @error('password') is-invalid @enderror"
                                                         name="password" required autocomplete="current-password"
-                                                        placeholder="Masukakn Password" aria-label="Password"
+                                                        placeholder="Masukan Password" aria-label="Password"
                                                         aria-describedby="password-addon"
                                                         style="border-radius: 8px 0 0 8px;">
                                                     <button class="btn btn-light " type="button" id="password-addon"><i
