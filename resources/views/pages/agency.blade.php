@@ -47,7 +47,7 @@
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Nama Dinas</label>
                                     <input type="text" class="form-control" id="create-name" class="form-control"
-                                        name="name" id="nametext" aria-describedby="name" placeholder="Masukan nama" />
+                                        name="name" id="nametext" aria-describedby="name" placeholder="Masukan nama" value="{{old('name')}}"/>
                                 </div>
                             </div>
                             <div class="col-6">
@@ -56,7 +56,7 @@
                                         Jawab</label>
                                     <input type="text" class="form-control" id="create-person_responsible"
                                         class="form-control" name="person_responsible" id="nametext"
-                                        aria-describedby="name" placeholder="Masukan penanggung jawab" />
+                                        aria-describedby="name" placeholder="Masukan penanggung jawab" value="{{old('person_responsible')}}"/>
                                 </div>
                             </div>
                             <div class="col-4">
@@ -64,7 +64,7 @@
                                     <label id="phone_number" for="recipient-name" class="control-label mb-2">Nomor
                                         Handphone</label>
                                     <input type="number" class="form-control" id="create-phone_number" class="form-control"
-                                        name="phone_number" id="nametext" aria-describedby="name"
+                                        name="phone_number" id="nametext" aria-describedby="name" value="{{old('phone_number')}}"
                                         placeholder="Masukan nomor hp anda" />
                                 </div>
                             </div>
@@ -72,7 +72,7 @@
                                 <div class="mb-3">
                                     <label id="email" for="recipient-name" class="control-label mb-2">Email</label>
                                     <input type="email" class="form-control" id="create-email" class="form-control"
-                                        name="email" aria-describedby="name" placeholder="Masukan email" />
+                                        name="email" aria-describedby="name" placeholder="Masukan email"  value="{{old('email')}}"/>
                                 </div>
                             </div>
                             <div class="col-4">
