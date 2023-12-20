@@ -60,9 +60,4 @@
     </div>
     <!-- /.row -->
 
-    <ul class="post-navigation">
-        <li class="active">1</li>
-        <li><a href="#">2</a></li>
-        <li class="next"><a href="#"><i class="ei ei-arrow_carrot-right"></i></a></li>
-    </ul>
 @endsection
