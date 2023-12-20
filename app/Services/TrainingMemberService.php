@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Enums\UploadDiskEnum;
 use App\Http\Requests\TrainingMemberRequest;
+use App\Http\Requests\TrainingMemberUpdateRequest;
 use App\Models\Training;
 use App\Models\TrainingMember;
 use App\Traits\UploadTrait;
@@ -34,7 +35,7 @@ class TrainingMemberService
      * @param  mixed $trainingMember
      * @return array
      */
-    public function update(TrainingMemberRequest $request, TrainingMember $trainingMember): array
+    public function update(TrainingMemberUpdateRequest $request, TrainingMember $trainingMember): array
     {
         $data = $request->validated();
         $old_file = $trainingMember->file;
