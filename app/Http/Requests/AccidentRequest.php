@@ -15,7 +15,7 @@ class AccidentRequest extends FormRequest
     {
         return [
             'project_id' => 'required|exists:projects,id',
-            'location' => 'required',
+            'location' => 'required|max:255',
             'time' => 'required|date',
             'description' => 'required',
             'loss' => 'required',
@@ -34,6 +34,7 @@ class AccidentRequest extends FormRequest
             'project_id.required' => 'Kolom project harus diisi.',
             'project_id.exists' => 'Project yang dipilih tidak valid.',
             'location.required' => 'Kolom lokasi harus diisi.',
+            'location.max' => 'Kolom lokasi maksimal :max karakter.',
             'time.required' => 'Kolom waktu harus diisi.',
             'time.date' => 'Format waktu tidak valid.',
             'description.required' => 'Kolom deskripsi harus diisi.',

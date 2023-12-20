@@ -14,7 +14,7 @@ class ClassificationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required'
+            'name' => 'required|max:255'
         ];
     }
 
@@ -26,7 +26,8 @@ class ClassificationRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'Nama klasifikasi wajib diisi'
+            'name.required' => 'Nama klasifikasi wajib diisi',
+            'name.max' => 'Nama klasifikasi maksimal :max karakter',
         ];
     }
 }
