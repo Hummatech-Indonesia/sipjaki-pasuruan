@@ -37,7 +37,7 @@
                                     No</th>
                                 <th class="fw-medium"
                                     style="background-color: #1B3061; color: white; border-right: 1px solid #1B3061;">
-                                    Nama</th>
+                                    Nama Dinas</th>
                                 <th class="fw-medium" style="background-color: #1B3061; color: white; text-align: center">
                                     Jumlah Kecelakaan</th>
                             </thead>
