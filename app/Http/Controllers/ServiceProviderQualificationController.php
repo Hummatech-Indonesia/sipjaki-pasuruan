@@ -71,9 +71,9 @@ class ServiceProviderQualificationController extends Controller
         $data['status'] = ServiceProviderQualificationEnum::PENDING->value;
         $this->serviceProviderQualification->update($serviceProviderQualification->id, $data);
         if ($request->is('api/*')) {
-            return ResponseHelper::success(null, trans('alert.add_success'));
+            return ResponseHelper::success(null, trans('alert.update_success'));
         } else {
-            return redirect()->back()->with('success', trans('alert.add_success'));
+            return redirect()->back()->with('success', trans('alert.update_success'));
         }
     }
 

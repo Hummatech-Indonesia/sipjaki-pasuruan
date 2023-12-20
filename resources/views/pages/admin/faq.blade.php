@@ -216,7 +216,7 @@
                         </div>
                         <div class="">
                             <button class="btn text-white" style="background-color: #1B3061">
-                                Tambah
+                                Edit
                             </button>
                         </div>
                     </div>
