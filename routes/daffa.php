@@ -1,12 +1,12 @@
 <?php
 
 use App\Http\Controllers\AssociationController;
-use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\RuleController;
 use App\Http\Controllers\ServiceProvider\AmendmentDeepController;
 use App\Http\Controllers\ServiceProvider\FoundingDeepController;
+use App\Http\Controllers\ServiceProvider\VerificationController as ServiceProviderVerificationController;
 use App\Http\Controllers\TrainingMemberController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkerController;
@@ -30,7 +30,7 @@ Route::resources([
     'rules' => RuleController::class,
     'founding-deed'=>FoundingDeepController::class,
     'amendment-deed'=>AmendmentDeepController::class,
-    'verification-service-provider'=>VerificationController::class
+    'verification-service-provider'=>ServiceProviderVerificationController::class
 ]);
 
 
