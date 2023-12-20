@@ -1677,54 +1677,57 @@
                 }
             });
         }
-
         get();
 
-        function get() {
-            $.ajax({
-                url: "{{ route('list-classifications') }}",
-                type: 'GET',
-                dataType: "JSON",
-                success: function(response) {
-                    $.each(response.data, function(index, item) {
-                        var option = `<option value="${item.id}">${item.name}</option>`
-                        $('#update-list-classifications').append(option);
-                        $('#list-classifications').append(option);
-                    });
-                    $('#list-classifications').change(function() {
-                        var selectedClassificationId = $(this).val();
-                        if (selectedClassificationId !== '') {
-                            subclassifications(
-                                selectedClassificationId
-                            );
-                        }
-                    });
-                    $('#update-list-classifications').change(function() {
-                        var selectedClassificationId = $(this).val();
-                        if (selectedClassificationId !== '') {
-                            subclassifications(
-                                selectedClassificationId
-                            );
-                        }
-                    });
-                }
-            });
-        }
+function get() {
+  $.ajax({
+    url: "{{ route('list-classifications') }}",
+    type: 'GET',
+    dataType: "JSON",
+    success: function(response) {
+      $('#update-list-classifications').empty();
+      $('#list-classifications').empty();
 
-        function subclassifications(classificationId) {
-            $.ajax({
-                url: "list-sub-classifications/" + classificationId,
-                type: 'GET',
-                dataType: "JSON",
-                success: function(response) {
-                    $.each(response.data, function(index, item) {
-                        var option = `<option value="${item.id}">${item.name}</option>`
-                        $('#list-sub-classifications').append(option);
-                        $('#update-list-sub-classifications').append(option);
-                    });
-                }
-            });
+      $.each(response.data, function(index, item) {
+        var option = `<option value="${item.id}">${item.name}</option>`;
+        $('#update-list-classifications').append(option);
+        $('#list-classifications').append(option);
+      });
+
+      $('#list-classifications').change(function() {
+        var selectedClassificationId = $(this).val();
+        $('#list-sub-classifications').empty(); // Menghapus opsi sebelum menambahkan yang baru
+        if (selectedClassificationId !== '') {
+          subclassifications(selectedClassificationId, '#list-sub-classifications');
         }
+      });
+
+      $('#update-list-classifications').change(function() {
+        var selectedClassificationId = $(this).val();
+        $('#update-list-sub-classifications').empty(); // Menghapus opsi sebelum menambahkan yang baru
+        if (selectedClassificationId !== '') {
+          subclassifications(selectedClassificationId, '#update-list-sub-classifications');
+        }
+      });
+    }
+  });
+}
+
+function subclassifications(classificationId, targetElement) {
+  $.ajax({
+    url: "list-sub-classifications/" + classificationId,
+    type: 'GET',
+    dataType: "JSON",
+    success: function(response) {
+      $(targetElement).empty();
+
+      $.each(response.data, function(index, item) {
+        var option = `<option value="${item.id}">${item.name}</option>`;
+        $(targetElement).append(option);
+      });
+    }
+  });
+}
 
         $('.modal-detail-qualification').click(function() {
             const data = getDataAttributes($(this).attr('id'))
