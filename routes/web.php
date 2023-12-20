@@ -138,7 +138,7 @@ Route::middleware('auth')->group(function () {
         ]);
 
         Route::get('classification-training', [ClassificationTrainingController::class, 'index']);
-        Route::post('classification-training', [ClassificationTrainingController::class, 'store']);
+        Route::post('classification-training', [ClassificationTrainingController::class, 'store'])->name('classification-training.store');
         Route::put('classification-training/{classification_training}', [ClassificationTrainingController::class, 'update']);
         Route::delete('classification-training/{classification_training}', [ClassificationTrainingController::class, 'destroy']);
         Route::resource('qualification-level-trainings', QualificationLevelTrainingController::class)->except('store');

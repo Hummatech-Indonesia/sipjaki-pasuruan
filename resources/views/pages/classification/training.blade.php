@@ -52,13 +52,50 @@
         </div>
     </div>
     {{-- end modal --}}
+    {{-- modal --}}
+    <div class="modal fade" id="modal-update" tabindex="-1" id="modeal-update" aria-labelledby="exampleModalLabel1">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form id="form-update" method="post">
+                    @csrf
+                    @method('PUT')
+                    <div class="modal-header d-flex align-items-center text-white " style="background-color: #1B3061">
+                        <h4 class="modal-title" id="exampleModalLabel1">
+                            Tambah Klasifikasi Pelatihan
+                        </h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label id="name" for="recipient-name" class="control-label mb-2">Masukan
+                                Klasifikasi Pelatihan</label>
+                            <input type="text" class="form-control" id="create-school_year" class="form-control"
+                                name="name" id="nametext" aria-describedby="name" placeholder="" />
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger text-white font-medium waves-effect"
+                            data-bs-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="submit" class="btn btn-success btn-create">
+                            Tambah
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {{-- end modal --}}
     <div class="card">
         <div class="card-body">
             <h4 class="card-title mt-2 mb-3">Berikut Daftar-daftar klasifikasi Pelatihan</h4>
             <div class="d-flex justify-content-between mb-3">
                 <form class=" col-lg-3">
                     <div class="input-group">
-                        <input name="name" type="text" class="form-control" placeholder="Search" value="{{ request()->name }}">
+                        <input name="name" type="text" class="form-control" placeholder="Search"
+                            value="{{ request()->name }}">
                         <div class="input-group-append">
                             <button class="btn text-white" style="background-color: #1B3061; border-radius: 0 5px 5px 0;"
                                 type="submit">
@@ -98,13 +135,14 @@
                                     <div class="d-flex justify-content-center gap-2">
                                         <div class="">
                                             <a href="{{ route('sub-trainings.detail', ['classification_training' => $classificationTraining->id]) }}
-                                                " type="button"
-                                                class="btn  waves-effect waves-light text-white"
+                                                "
+                                                type="button" class="btn  waves-effect waves-light text-white"
                                                 style="background-color: #1B3061">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19"
                                                     viewBox="0 0 24 24" fill="none">
                                                     <path d="M4.5 12.5C7.5 6 16.5 6 19.5 12.5" stroke="white"
-                                                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                        stroke-width="1.5" stroke-linecap="round"
+                                                        stroke-linejoin="round" />
                                                     <path
                                                         d="M12 16C10.8954 16 10 15.1046 10 14C10 12.8954 10.8954 12 12 12C13.1046 12 14 12.8954 14 14C14 15.1046 13.1046 16 12 16Z"
                                                         stroke="white" stroke-width="1.5" stroke-linecap="round"
@@ -114,9 +152,9 @@
                                         </div>
                                         <div class="">
                                             <button data-id="{{ $classificationTraining->id }}"
-                                                id="btn-edit-{{ $classificationTraining->name }}"
+                                                id="{{ $classificationTraining->id }}"
                                                 data-name="{{ $classificationTraining->name }}" type="button"
-                                                class="btn btn-edit btn-warning waves-effect waves-light btn-edit">
+                                                class="btn btn-edit btn-warning waves-effect waves-light">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                     viewBox="0 0 24 24" fill="none">
                                                     <g clip-path="url(#clip0_26_1791)">
@@ -172,4 +210,23 @@
         </div>
     </div>
     <x-delete-modal-component />
+@endsection
+@section('script')
+    <script>
+        $('.btn-edit').click(function() {
+            const formData = getDataAttributes($(this).attr('id'))
+            var actionUrl = `classification-training/${formData['id']}`;
+            $('#form-update').attr('action', actionUrl);
+            setFormValues('form-update', formData)
+            $('#form-update').data('id', formData['id'])
+            $('#form-update').attr('action', );
+            $('#modal-update').modal('show')
+        })
+        $('.btn-delete').click(function() {
+            var id = $(this).data('id');
+            var actionUrl = `classification-training/${id}`;
+            $('#form-delete').attr('action', actionUrl);
+            $('#modal-delete').modal('show');
+        })
+    </script>
 @endsection
