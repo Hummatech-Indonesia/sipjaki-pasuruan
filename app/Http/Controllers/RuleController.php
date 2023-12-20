@@ -123,6 +123,6 @@ class RuleController extends Controller
      */
     public function downloadRule(Rule $rule)
     {
-        return $this->service->downloadRule($rule->file);
+        return $this->service->downloadRule($rule);
     }
 }
