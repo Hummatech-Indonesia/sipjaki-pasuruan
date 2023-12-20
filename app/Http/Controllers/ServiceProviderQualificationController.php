@@ -151,4 +151,15 @@ class ServiceProviderQualificationController extends Controller
         $serviceProviderQualificationPending = $this->serviceProviderQualification->getPending();
         return view('pages.approval.qualification', ['serviceProviderQualificationPending' => $serviceProviderQualificationPending]);
     }
+
+    /**
+     * getReject
+     *
+     * @return View
+     */
+    public function getReject(): View|JsonResponse
+    {
+        $serviceProviderQualificationReject = $this->serviceProviderQualification->getReject();
+        return view('', ['serviceProviderQualificationReject' => $serviceProviderQualificationReject]);
+    }
 }

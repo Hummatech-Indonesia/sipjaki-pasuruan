@@ -88,7 +88,7 @@ class ServiceProviderQualificationRepository extends BaseRepository implements S
             ->where('status', ServiceProviderQualificationEnum::ACTIVE->value)
             ->get();
     }
-    
+
     /**
      * getPending
      *
@@ -98,6 +98,19 @@ class ServiceProviderQualificationRepository extends BaseRepository implements S
     {
         return $this->model->query()
             ->where('status', ServiceProviderQualificationEnum::PENDING->value)
+            ->get();
+    }
+
+    /**
+     * getReject
+     *
+     * @return mixed
+     */
+    public function getReject(): mixed
+    {
+        return $this->model->query()
+            ->where('service_provider_id', auth()->user()->serviceProvider->id)
+            ->where('status', ServiceProviderQualificationEnum::REJECT->value)
             ->get();
     }
 }
