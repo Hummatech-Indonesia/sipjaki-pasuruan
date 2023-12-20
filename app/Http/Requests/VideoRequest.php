@@ -4,9 +4,8 @@ namespace App\Http\Requests;
 
 use App\Rules\CategoryImageRule;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class ImageRequest extends FormRequest
+class VideoRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -17,8 +16,8 @@ class ImageRequest extends FormRequest
     {
         return [
             'categories' => ['required', new CategoryImageRule],
-            'photo' => [
-                'required|mimes:png,jpg,jpeg',
+            'video' => [
+                'required|mimes:mp4',
             ],
         ];
     }
@@ -31,9 +30,8 @@ class ImageRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'categories.required' => 'Kategori wajib diisi',
-            'photo.required' => 'Foto wajib diisi',
-            'photo.mimes' => 'Foto yang anda inputkan harus berupa berekstensi PNG, JPG Ataupun JPEG'
+            'video.required' => 'Foto wajib diisi',
+            'video.mimes' => 'Foto yang anda inputkan harus berupa berekstensi PNG, JPG Ataupun JPEG'
         ];
     }
 }

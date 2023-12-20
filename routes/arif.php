@@ -28,4 +28,3 @@ Route::delete('service-provider-qualifications/{serviceProviderQualification}', 
 
 Route::get('history-project', [ProjectController::class, 'history']);
 Route::get('my-project', [ProjectController::class, 'myProject']);
-
