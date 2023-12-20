@@ -77,7 +77,7 @@
                                     <td>{{$training->organizer}}</td>
                                     <td>jenis</td>
                                     <td>tingkat</td>
-                                    <td>{{$training->start_atisoFormat('Do MMMM YYYY HH:mm', 'ID')}}</td>
+                                    <td>{{\Carbon\Carbon::parse($training->start_at)->isoFormat('Do MMMM YYYY HH:mm', 'ID')}}</td>
                                     <td>{{$training->trainingMembers_count}}</td>
                                     <td>BKPSDM
                                         Provinsi

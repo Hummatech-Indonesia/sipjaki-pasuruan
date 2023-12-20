@@ -71,6 +71,7 @@ class OfficerController extends Controller
     public function update(OfficerRequest $request, Officer $officer)
     {
         $this->officer->update($officer->id, $request->validated());
+        return redirect()->back()->with('success', trans('alert.update_success'));
     }
 
     /**
@@ -82,5 +83,6 @@ class OfficerController extends Controller
     public function destroy(Officer $officer)
     {
         $this->officer->delete($officer->id);
+        return redirect()->back()->with('success', trans('alert.delete_success'));
     }
 }
