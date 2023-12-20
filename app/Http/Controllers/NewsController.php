@@ -30,6 +30,7 @@ class NewsController extends Controller
     public function index(Request $request)
     {
         $news = $this->news->customPaginate($request, 10);
+        $news->appends(['title' => $request->title]);
         if ($request->is('api/*')) {
             $data['paginate'] = $this->customPaginate($news->currentPage(), $news->lastPage());
             $data['data'] = NewsResource::collection($news);

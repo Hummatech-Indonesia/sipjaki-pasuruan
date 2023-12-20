@@ -40,6 +40,7 @@ class UserController extends Controller
     public function index(Request $request): JsonResponse | View
     {
         $users = $this->user->customPaginate($request, 10);
+        $users->appends(['name' => $request->name]);
         if ($request->is('api/*')) {
             $data['paginate'] = $this->customPaginate($users->currentPage(), $users->lastPage());
             $data['data'] = UserResource::collection($users);
