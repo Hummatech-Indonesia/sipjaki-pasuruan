@@ -159,7 +159,7 @@
                                                 </svg></button>
                                         </div>
                                         <div class="">
-                                            <button class="btn text-white" style="background-color: #E05C39">
+                                            <button class="btn btn-delete text-white" data-id="{{ $faq->id }}" style="background-color: #E05C39">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
                                                     viewBox="0 0 20 20" fill="none">
                                                     <path fill-rule="evenodd" clip-rule="evenodd"
@@ -263,6 +263,8 @@
             </div>
         </div><!-- /.modal-content -->
     </div>
+    <x-delete-modal-component />
+
 @endsection
 @section('script')
     @if (session('success'))
@@ -291,7 +293,9 @@
         })
         $('.btn-delete').click(function() {
             id = $(this).data('id')
-            var actionUrl = `contract-categories/${id}`;
+            var actionUrl =
+            "{{ route('faqs.destroy', ['faq' => ':id']) }}";
+            actionUrl = actionUrl.replace(':id', id);
             $('#form-delete').attr('action', actionUrl);
             $('#modal-delete').modal('show')
         })
