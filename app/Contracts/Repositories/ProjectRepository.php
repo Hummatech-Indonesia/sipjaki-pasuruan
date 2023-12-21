@@ -6,6 +6,7 @@ use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Contracts\Interfaces\ProjectInterface;
 use App\Enums\StatusEnum;
+use App\Enums\TypeOfBusinessEntityEnum;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class ProjectRepository extends BaseRepository implements ProjectInterface
@@ -51,7 +52,7 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
     public function getByServiceProvider(Request $request): mixed
     {
         return $this->model->query()
-            // ->where('service_provider_id', auth()->user()->serviceProvider->id)
+            ->where(auth()->user()->serviceProvider->type_of_business_entity == TypeOfBusinessEntityEnum::CONSULTANT->value ? 'consultant_id' : 'executor_id', auth()->user()->serviceProvider->id)
             ->where('status', StatusEnum::ACTIVE->value)
             ->when($request->year, function ($query) use ($request) {
                 $query->where('year', $request->year);
