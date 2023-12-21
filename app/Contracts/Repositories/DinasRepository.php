@@ -28,6 +28,8 @@ class DinasRepository extends BaseRepository implements DinasInterface
                 $query->with(['accidents' => function ($subquery) use ($request) {
                     $subquery->when($request->year, function ($subsubquery) use ($request) {
                         $subsubquery->whereYear('time', $request->year);
+                    }, function ($query) {
+                        $query->whereYear('time', now()->format('Y'));
                     });
                 }]);
             })
