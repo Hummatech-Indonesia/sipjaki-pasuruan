@@ -48,7 +48,7 @@
                                             {{ $loop->iteration }}
                                         </td>
                                         <td>
-                                            {{ $data->user->name }}
+                                            {{ $data->user->name ?? "" }}
                                         </td>
                                         <td class="text-center">{{ $data->total_accident }}</td>
                                     </tr>
