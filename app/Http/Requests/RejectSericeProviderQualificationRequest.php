@@ -17,4 +17,18 @@ class RejectSericeProviderQualificationRequest extends FormRequest
             'resend' => 'required|max:255'
         ];
     }
+
+    /**
+     * messages
+     *
+     * @return array
+     */
+    public function messages(): array
+    {
+        return [
+            'email.required' => 'Kolom email wajib diisi.',
+            'email.email' => 'Format email tidak valid.',
+            'password.required' => 'Kolom password wajib diisi.',
+        ];
+    }
 }
