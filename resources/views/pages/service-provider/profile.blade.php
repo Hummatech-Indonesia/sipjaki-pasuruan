@@ -349,7 +349,7 @@
                                 <div class="btn btn-sm mb-3 text-dark rounded-3" style="background-color: #E4ECFF;">
                                     Data Administrasi
                                 </div>
-                                <p class="fw-bolder fs-4">MITRA BAHAGIA UTAMA BUMIAJI</p>
+                                <p class="fw-bolder fs-4">{{ $serviceProvider->user->name }}</p>
                             </div>
                             <table cellpadding="5" style="border-collapse: collapse; width: 40%;" class="fs-6 fw-normal">
                                 <tbody>
