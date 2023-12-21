@@ -147,7 +147,7 @@
                 <thead>
                     <tr>
                         <th style="background-color: #1B3061;color:#ffffff">No</th>
-                        <th style="background-color: #1B3061;color:#ffffff">Nama Pekerja</th>
+                        <th style="background-color: #1B3061;color:#ffffff">Nama Pekerjaan</th>
                         <th style="background-color: #1B3061;color:#ffffff">Tahun</th>
                         <th style="background-color: #1B3061;color:#ffffff">Progres</th>
                         <th style="background-color: #1B3061;color:#ffffff">Status</th>
