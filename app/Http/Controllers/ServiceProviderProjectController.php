@@ -204,6 +204,6 @@ class ServiceProviderProjectController extends Controller
         $verifications = $service_provider->verification;
         $amendmentDeeps = $service_provider->amendmentDeed;
         $foundingDeeps = $service_provider->foundingDeed;
-        return view('', ['serviceProvider' => $serviceProviders, 'serviceProviderQualifications' => $serviceProviderQualifications, 'officers' => $officers, 'workers' => $workers, 'verifications' => $verifications, 'amendmentDeeps' => $amendmentDeeps, 'foundingDeeps' => $foundingDeeps]);
+        return view('pages.service-provider.detail', ['serviceProvider' => $serviceProviders, 'serviceProviderQualifications' => $serviceProviderQualifications, 'officers' => $officers, 'workers' => $workers, 'verifications' => $verifications, 'amendmentDeeps' => $amendmentDeeps, 'foundingDeeps' => $foundingDeeps]);
     }
 }
