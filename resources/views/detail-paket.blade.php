@@ -29,40 +29,13 @@
                 Pekerjaan</h2>
         </div>
     </div>
+    <div class="d-flex justify-content-end mb-3">
+        <a href="{{ route('paket.pekerjaan') }}">
+            <button class="btn btn-warning">Kembali</button>
+        </a>
+    </div>
     <div class="row">
-        <div class="col-3">
-            <div class="card">
-                <div class="card-header text-white mb-0" style="background-color: #1B3061">
-                    <div class="d-flex justify-content-between">
-                        <div class="">
-                            No
-                        </div>
-                        <div class="">
-                            Dinas
-                        </div>
-                        <div class="">
-                            Jumlah
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    @foreach ($data as $item)
-                        <div class="d-flex justify-content-between mb-3">
-                            <div class="">
-                                {{ $loop->iteration }}
-                            </div>
-                            <div class="">
-                                {{ $item->user->name }}
-                            </div>
-                            <div class="">
-                                {{ $item->projects_count }}
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-        <div class="col-8">
+        <div class="col-12">
             <div class="card">
                 <div class="card-body">
                     <form>
@@ -106,7 +79,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($projects as $project)
+                                @forelse ($detailDinas as $project)
+                                <tr>
+
                                     <th scope="row" class="fs-5">{{ $loop->iteration }}</th>
                                     <td class="fs-5">{{ $project->name }}</td>
                                     <td class="fs-5">{{ $project->fundSource->name }}</td>
@@ -117,12 +92,13 @@
                                     <td class="fs-5">
                                         {{ Carbon::parse($project->end_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}
                                     </td>
-                                    <td class="fs-5">{{ $project->status }}</td>
+                                    <td class="fs-5">{{ $project->status == "active" ? "Aktif":"Non Aktif"}}</td>
                                     {{-- <td class="text-center">
                                         <a href="{{ route('detail-project', ['project' => $item->id]) }}"
                                             class="text-white btn" style="background-color: #1B3061">Detail</a>
-                                    </td> --}}
-                                @empty
+                                        </td> --}}
+                                    </tr>
+                                        @empty
                                     <tr>
                                         <td colspan="7" class="text-center">
                                             <div class="d-flex justify-content-center" style="min-height:16rem">
