@@ -65,7 +65,7 @@
                                         <div class="mb-3">
                                             <label for="basicpill-lastname-input">Nama</label>
                                             <input name="name" type="text" class="form-control"
-                                                id="basicpill-phoneno-input" placeholder="Masukkan Nama">
+                                                id="basicpill-phoneno-input" placeholder="Masukkan Nama" value="{{ old('name') }}">
                                             @error('name')
                                                 <p class="text-danger">
                                                     {{ $message }}
@@ -77,7 +77,7 @@
                                         <div class="mb-3">
                                             <label for="basicpill-lastname-input">Penyelenggara</label>
                                             <input name="organizer" type="text" class="form-control"
-                                                id="basicpill-phoneno-input" placeholder="Masukkan Nama Penyelenggara">
+                                                id="basicpill-phoneno-input" placeholder="Masukkan Nama Penyelenggara" value="{{ old('organizer') }}">
                                             @error('organizer')
                                                 <p class="text-danger">
                                                     {{ $message }}
@@ -90,7 +90,6 @@
                                             <label for="basicpill-lastname-input">Sumber Dana</label>
                                             <select name="fund_source_id" class="form-select  founds-source" id=""
                                                 value="{{ old('fund_source_id') }}">
-
                                             </select>
                                         </div>
                                     </div>
@@ -162,7 +161,7 @@
                                         <div class="mb-3">
                                             <label for="basicpill-phoneno-input">Waktu Pelaksanaan</label>
                                             <input name="start_at" type="date" class="form-control"
-                                                id="basicpill-phoneno-input" placeholder="Enter Your Name.">
+                                                id="basicpill-phoneno-input" placeholder="Enter Your Name." value="{{ old('start_at') }}">
                                             @error('start_at')
                                                 <p class="text-danger">
                                                     {{ $message }}
@@ -174,7 +173,7 @@
                                         <div class="mb-3">
                                             <label for="basicpill-email-input">Selesai Pelaksanaan</label>
                                             <input name="end_time" type="date" class="form-control"
-                                                id="basicpill-phoneno-input" placeholder="Enter Your Name.">
+                                                id="basicpill-phoneno-input" placeholder="Enter Your Name." value="{{ old('end_time') }}">
                                             @error('end_time')
                                                 <p class="text-danger">
                                                     {{ $message }}
@@ -186,7 +185,7 @@
                                         <div class="mb-3">
                                             <label for="basicpill-email-input">Jam Pelajaran</label>
                                             <input type="number" name="lesson_hour" class="form-control"
-                                                id="basicpill-phoneno-input" placeholder="Masukkan Jam pelajaran">
+                                                id="basicpill-phoneno-input" placeholder="Masukkan Jam pelajaran" value="{{ old('lesson_hour') }}">
                                             @error('lesson_hour')
                                                 <p class="text-danger">
                                                     {{ $message }}
@@ -206,7 +205,7 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <label for="basicpill-lastname-input">Lokasi</label>
-                                        <textarea name="location" id="" class="form-control"></textarea>
+                                        <textarea name="location" id="" class="form-control">{{ old('location') }}</textarea>
                                         @error('location')
                                             <p class="text-danger">
                                                 {{ $message }}
@@ -215,7 +214,7 @@
                                     </div>
                                     <div class="col-6">
                                         <label for="basicpill-lastname-input">Keterangan</label>
-                                        <textarea name="description" id="" class="form-control"></textarea>
+                                        <textarea name="description" id="" class="form-control">{{ old('description') }}</textarea>
                                         @error('description')
                                             <p class="text-danger">
                                                 {{ $message }}
