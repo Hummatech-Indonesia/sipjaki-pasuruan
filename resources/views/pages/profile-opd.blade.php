@@ -28,13 +28,13 @@
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="formrow-inputState" class="form-label">Nama OPD</label>
-                                    <input type="text" name="name_opd" value="{{ $dinas->name_opd ? $dinas->name_opd : '' }}" class="form-control" placeholder="Masukkan Nama">
+                                    <input type="text" name="name_opd" value="{{ old('name_opd', $dinas->name_opd ? $dinas->name_opd : '' ) }}" class="form-control" placeholder="Masukkan Nama">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="formrow-inputState" class="form-label">No Telephone OPD</label>
-                                    <input type="number" name="phone_number_opd" value="{{ $dinas->phone_number_opd ? $dinas->phone_number_opd : '' }}" class="form-control" placeholder="Masukkan No Telephone">
+                                    <input type="number" name="phone_number_opd" value="{{ old('phone_number_opd', $dinas->phone_number_opd ? $dinas->phone_number_opd : '' ) }}" class="form-control" placeholder="Masukkan No Telephone">
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -82,7 +82,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">NIP</label>
                                     <div>
-                                        <input type="number" value="{{ $dinas->civil_servant_identity_number }}" name="civil_servant_identity_number"
+                                        <input type="number" value="{{ old('civil_servant_identity_number', $dinas->civil_servant_identity_number ? $dinas->civil_servant_identity_number : '' ) }}" name="civil_servant_identity_number"
                                             class="form-control" placeholder="Masukkan NIP" />
                                     </div>
                                 </div>
@@ -91,7 +91,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Jabatan</label>
                                     <div>
-                                        <input type="text" value="{{ $dinas->position ? $dinas->position : '' }}" name="position" class="form-control" placeholder="Masukkan Jabatan" />
+                                        <input type="text" value="{{ old('position', $dinas->position ? $dinas->position : '' ) }}" name="position" class="form-control" placeholder="Masukkan Jabatan" />
                                     </div>
                                 </div>
                             </div>
