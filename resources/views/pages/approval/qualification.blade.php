@@ -177,7 +177,7 @@
                         </div>
                     </div>
                     <div class="tab-content mt-3" id="v-pills-tabContent">
-                        <div class="tab-pane fade active show" id="badan-usaha" role="tabpanel"
+                        <div class="tab-pane fade show active" id="badan-usaha" role="tabpanel"
                             aria-labelledby="badan-usaha-tab">
                             <p class="fw-bolder fs-4" id="detail-name"></p>
                             <table cellpadding="6" style="border-collapse: collapse;" class="fs-6 fw-normal">
@@ -205,8 +205,7 @@
                                     <tr>
                                         <td>Telepon</td>
                                         <td>:</td>
-                                        <td id="detail-phone_number">
-                                        </td>
+                                        <td id="detail-phone_number"></td>
                                     </tr>
                                     <tr>
                                         <td>Fax</td>
@@ -226,58 +225,54 @@
                                     <tr>
                                         <td>Bentuk Badan Usaha</td>
                                         <td>:</td>
-                                        <td id="detail-form_of_business_entity">
-                                        </td>
+                                        <td id="detail-form_of_business_entity"></td>
                                     </tr>
                                     <tr>
                                         <td>Jenis Badan Usaha</td>
                                         <td>:</td>
-                                        <td id="detail-type_of_business_entity">
-                                        </td>
+                                        <td id="detail-type_of_business_entity"></td>
                                     </tr>
-
                                 </tbody>
                             </table>
                         </div>
-                    </div>
-                    <div class="tab-pane fade" id="kualifikasi-klasifikasi" role="tabpanel"
-                        aria-labelledby="kualifikasi-klasifikasi-tab">
-                        <p class="fw-bolder fs-4" id="detail-name"></p>
-                        <table cellpadding="6" style="border-collapse: collapse;" class="fs-6 fw-normal">
-                            <tbody>
-                                <tr>
-                                    <td>Sub Bidang Klasifikasi/Layanan</td>
-                                    <td>:</td>
-                                    <td id="detail-sub_classification"></td>
-                                </tr>
-                                <tr>
-                                    <td>Nomor Kode</td>
-                                    <td>:</td>
-                                    <td id="detail-code"></td>
-                                </tr>
-                                <tr>
-                                    <td>Kualifikasi</td>
-                                    <td>:</td>
-                                    <td id="detail-qualification"></td>
-                                </tr>
-                                <tr>
-                                    <td>Tahun</td>
-                                    <td>:</td>
-                                    <td id="detail-year"></td>
-                                </tr>
-                                <tr>
-                                    <td>Asosiasi</td>
-                                    <td>:</td>
-                                    <td id="detail-association"></td>
-                                </tr>
-                                <tr>
-                                    <td>Tanggal Permohonan</td>
-                                    <td>:</td>
-                                    <td id="detail-created_at"></td>
-                                </tr>
-
-                            </tbody>
-                        </table>
+                        <div class="tab-pane fade" id="kualifikasi-klasifikasi" role="tabpanel"
+                            aria-labelledby="kualifikasi-klasifikasi-tab">
+                            <p class="fw-bolder fs-4" id="detail-name"></p>
+                            <table cellpadding="6" style="border-collapse: collapse;" class="fs-6 fw-normal">
+                                <tbody>
+                                    <tr>
+                                        <td>Sub Bidang Klasifikasi/Layanan</td>
+                                        <td>:</td>
+                                        <td id="detail-sub_classification"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nomor Kode</td>
+                                        <td>:</td>
+                                        <td id="detail-code"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Kualifikasi</td>
+                                        <td>:</td>
+                                        <td id="detail-qualification"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tahun</td>
+                                        <td>:</td>
+                                        <td id="detail-year"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Asosiasi</td>
+                                        <td>:</td>
+                                        <td id="detail-association"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tanggal Permohonan</td>
+                                        <td>:</td>
+                                        <td id="detail-created_at"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
