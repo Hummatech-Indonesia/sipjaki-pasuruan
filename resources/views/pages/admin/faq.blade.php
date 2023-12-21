@@ -131,7 +131,7 @@
                                                         d="M12 16C10.8954 16 10 15.1046 10 14C10 12.8954 10.8954 12 12 12C13.1046 12 14 12.8954 14 14C14 15.1046 13.1046 16 12 16Z"
                                                         stroke="white" stroke-width="2" stroke-linecap="round"
                                                         stroke-linejoin="round" />
-                                                </svg></button>
+                                                </svg> Detail</button>
                                         </div>
                                         <div class="">
                                             <button class="btn btn-edit text-white" data-question="{{ $faq->question }}"
@@ -156,7 +156,7 @@
                                                             <rect width="24" height="24" fill="white" />
                                                         </clipPath>
                                                     </defs>
-                                                </svg></button>
+                                                </svg> Edit</button>
                                         </div>
                                         <div class="">
                                             <button class="btn btn-delete text-white" data-id="{{ $faq->id }}" style="background-color: #E05C39">
@@ -165,7 +165,7 @@
                                                     <path fill-rule="evenodd" clip-rule="evenodd"
                                                         d="M9 2C8.62123 2 8.27497 2.214 8.10557 2.55279L7.38197 4H4C3.44772 4 3 4.44772 3 5C3 5.55228 3.44772 6 4 6L4 16C4 17.1046 4.89543 18 6 18H14C15.1046 18 16 17.1046 16 16V6C16.5523 6 17 5.55228 17 5C17 4.44772 16.5523 4 16 4H12.618L11.8944 2.55279C11.725 2.214 11.3788 2 11 2H9ZM7 8C7 7.44772 7.44772 7 8 7C8.55228 7 9 7.44772 9 8V14C9 14.5523 8.55228 15 8 15C7.44772 15 7 14.5523 7 14V8ZM12 7C11.4477 7 11 7.44772 11 8V14C11 14.5523 11.4477 15 12 15C12.5523 15 13 14.5523 13 14V8C13 7.44772 12.5523 7 12 7Z"
                                                         fill="white" />
-                                                </svg>
+                                                </svg> Hapus
                                             </button>
                                         </div>
                                     </div>
@@ -234,31 +234,20 @@
                         aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="">
-                                <div class="row mb-1">
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark">Pertanyaan :</p>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                id="detail-question"></span></p>
-                                    </div>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark">Jawaban :</p>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                id="detail-answer"></span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <table cellpadding="6" style="border-collapse: collapse;width:80%;" class="fs-6 fw-normal">
+                        <tbody>
+                            <tr>
+                                <td class="fw-bold">Pertanyaan</td>
+                                <td>:</td>
+                                <td id="detail-question"></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">Jawaban</td>
+                                <td>:</td>
+                                <td id="detail-answer"></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div><!-- /.modal-content -->
