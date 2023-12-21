@@ -55,13 +55,14 @@ use App\Http\Controllers\ServiceProvider\VerificationController as ServiceProvid
 |
  */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
 
-Route::get('peraturan', function () {
-    return view('peraturan');
-})->name('peraturan');
+Route::get('/',[LandingController::class,'news'])->name('landing-page');
+
+Route::get('peraturan',[LandingController::class,'rules'])->name('rules.landing');
+Route::get('berita/{news}',[LandingController::class,'show'])->name('berita');
+
+Route::get('asosiasi',[AssociationController::class,'dataServiceProvider'])->name('association.landing');
+Route::get('detail-asosiasi/{association}',[LandingController::class,'associationDetail'])->name('association-detail.landing');
 
 Route::get('struktur-organisasi-DKSDK', function () {
     return view('struktur-organisasi');
@@ -80,6 +81,7 @@ Auth::routes(['verify' => true]);
 Route::get('download-rule/{rule}', [RuleController::class, 'downloadRule']);
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('berita-terbaru',[LandingController::class,'latestNews'])->name('berita-terbaru');
 
 Route::get('/kecelakaan', [DinasController::class, 'accidentLandingPage'])->name('kecelakaan');
 
@@ -197,6 +199,8 @@ Route::middleware('auth')->group(function () {
         Route::put('training-member-update/{training_member}', [TrainingMemberController::class, 'update'])->name('training.members');
         Route::delete('training-members/{training_member}', [TrainingMemberController::class, 'destroy']);
         Route::post('import-training-members', [TrainingMemberController::class, 'import']);
+        Route::delete('delete-training-members',[ TrainingMemberController::class, 'multipleDelete'])->name('delete-member');
+
 
         Route::get('training', [TrainingController::class, 'index'])->name('training');
         Route::post('training', [TrainingController::class, 'store'])->name('training.store');
@@ -256,7 +260,6 @@ Route::middleware('role:admin|superadmin')->group(function () {
     Route::get('all-agency', [DinasController::class, 'all'])->name('all.agency');
     Route::get('service-provider-consultants', [ServiceProviderController::class, 'consultant']);
     Route::get('service-provider-executors', [ServiceProviderController::class, 'executor']);
-
 });
 
 //Reset Password
