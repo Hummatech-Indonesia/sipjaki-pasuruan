@@ -85,7 +85,7 @@
                                     <th scope="row" class="fs-5">{{ $loop->iteration }}</th>
                                     <td class="fs-5">{{ $project->name }}</td>
                                     <td class="fs-5">{{ $project->fundSource->name }}</td>
-                                    <td class="fs-5">{{ $project->project_value }}</td>
+                                    <td class="fs-5">{{ 'Rp ' . number_format($project->project_value, 0, ',', '.') }}</td>
                                     <td class="fs-5">
                                         {{ Carbon::parse($project->start_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}
                                     </td>
