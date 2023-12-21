@@ -274,7 +274,7 @@
                                 {{ \Carbon\Carbon::parse($worker->birth_date)->translatedFormat('d F Y') }}</td>
                             <td class="text-center">{{ $worker->education }}</td>
                             <td class="text-center">{{ $worker->registration_number }}</td>
-                            <td>{{ $worker->cerificate }}</td>
+                            <td class="text-center">{{ $worker->cerificate }}</td>
                             <td class="" style="border-bottom: 1px solid #fff">
                                 <div class="d-flex justify-content-header gap-3">
                                     <div class="">
