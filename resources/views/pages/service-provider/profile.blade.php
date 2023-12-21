@@ -95,7 +95,7 @@
                                     <tr>
                                         <td>Fax</td>
                                         <td>:</td>
-                                        <td>0411 - 3584897987</td>
+                                        <td>{{ $serviceProvider->fax ? $serviceProvider->fax : '-' }}</td>
                                     </tr>
                                     <tr>
                                         <td>Email</td>
@@ -116,7 +116,7 @@
                                     <tr>
                                         <td>Jenis Badan Usaha</td>
                                         <td>:</td>
-                                        <td>{{ $serviceProvider->type_of_business_entity ? ($serviceProvider->type_of_business_entity == 'consultant' ? 'Konsultan' : 'Penyelrnggara') : '-' }}
+                                        <td>{{ $serviceProvider->type_of_business_entity ? ($serviceProvider->type_of_business_entity == 'consultant' ? 'Konsultan' : 'Penyelenggara') : '-' }}
                                         </td>
                                     </tr>
 
