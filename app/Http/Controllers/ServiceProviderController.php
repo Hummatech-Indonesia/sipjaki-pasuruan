@@ -15,6 +15,9 @@ use App\Contracts\Interfaces\ProjectInterface;
 use App\Contracts\Interfaces\ServiceProviderInterface;
 use App\Contracts\Interfaces\ServiceProviderQualificationInterface;
 use App\Contracts\Interfaces\VerificationInterface;
+use App\Http\Requests\UpdatePasswordRequest;
+use App\Http\Requests\UpdatePasswordServiceProviderRequest;
+use App\Models\ServiceProvider;
 
 class ServiceProviderController extends Controller
 {
@@ -27,9 +30,11 @@ class ServiceProviderController extends Controller
     private VerificationInterface $verification;
     private FoundingDeepInterface $foundingDeep;
     private AmendmentDeepInterface $amendmentDeep;
+    private UserInterface $userI;
 
-    public function __construct(UserInterface $user, ServiceProviderInterface $serviceProvider, ProjectInterface $projectInterface, WorkerInterface $workerInterface, ServiceProviderQualificationInterface $serviceProviderQualification, OfficerInterface $officerInterface, VerificationInterface $verification, FoundingDeepInterface $foundingDeep, AmendmentDeepInterface $amendmentDeep)
+    public function __construct(UserInterface $user, ServiceProviderInterface $serviceProvider, ProjectInterface $projectInterface, WorkerInterface $workerInterface, ServiceProviderQualificationInterface $serviceProviderQualification, OfficerInterface $officerInterface, VerificationInterface $verification, FoundingDeepInterface $foundingDeep, AmendmentDeepInterface $amendmentDeep, UserInterface $userInterface)
     {
+        $this->userI = $userInterface;
         $this->foundingDeep = $foundingDeep;
         $this->verification = $verification;
         $this->worker = $workerInterface;
@@ -87,5 +92,19 @@ class ServiceProviderController extends Controller
         $amendmentDeeps = auth()->user()->serviceProvider->amendmentDeed;
         $foundingDeeps = auth()->user()->serviceProvider->foundingDeed;
         return view('pages.service-provider.profile', ['serviceProvider' => $serviceProviders, 'serviceProviderQualifications' => $serviceProviderQualifications, 'officers' => $officers, 'workers' => $workers, 'verifications' => $verifications, 'amendmentDeeps' => $amendmentDeeps, 'foundingDeeps' => $foundingDeeps]);
+    }
+
+    /**
+     * updatePassword
+     *
+     * @param  mixed $service_provider
+     * @param  mixed $request
+     * @return void
+     */
+    public function updatePassword(ServiceProvider $service_provider, UpdatePasswordServiceProviderRequest $request)
+    {
+        $data = $request->validated();
+        $this->userI->update($service_provider->user_id, ['password' => bcrypt($data['password'])]);
+        return redirect()->back()->with('success', trans('alert.update_success'));
     }
 }
