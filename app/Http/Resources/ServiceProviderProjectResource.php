@@ -22,6 +22,7 @@ class ServiceProviderProjectResource extends JsonResource
             'date_finish' => $this->date_finish,
             'file' => asset('storage/' . $this->file),
             'description' => $this->description,
+            'week' => $this->week,
             'progres' => $this->progres,
         ];
     }
