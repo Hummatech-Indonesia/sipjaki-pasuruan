@@ -19,7 +19,7 @@ class RuleRequest extends FormRequest
             'year' => 'required|integer',
             'title' => 'required|max:255',
             'code' => 'required|max:255',
-            'file' => ($this->rule != null) ? 'mimes:pdf,xlsx,docx' : 'required|mimes:pdf,xlsx,docx'
+            'file' => ($this->rule != null) ? ['nullable','mimes:pdf,xlsx,docx'] : ['required','mimes:pdf,xlsx,docx']
         ];
     }
 
