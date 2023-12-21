@@ -3,6 +3,16 @@
     @php
         use Carbon\Carbon;
     @endphp
+    <div class="d-flex justify-content-between mb-4">
+        <div class="">
+            <h5>
+                Detail Penyedia Jasa
+            </h5>
+        </div>
+        <div class="">
+            <a href="/all-service-provider" class="text-white btn" style="background-color: #1B3061">Kembali</a>
+        </div>
+    </div>
     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
         <div class="d-flex">
             <a class="nav-link active rounded-start" style="border: solid 1px #1B3061;" id="badan-usaha-tab"
