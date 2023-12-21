@@ -58,7 +58,7 @@ class RuleService
     }
 
     /**
-     * downloadRule
+     * download rule
      *
      * @param  mixed $file
      * @return void

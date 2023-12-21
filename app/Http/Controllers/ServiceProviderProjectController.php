@@ -15,6 +15,7 @@ use App\Models\ServiceProvider;
 use App\Models\ServiceProviderProject;
 use App\Services\ServiceProviderProjectService;
 use App\Traits\PaginationTrait;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -181,11 +182,11 @@ class ServiceProviderProjectController extends Controller
     /**
      * projectDetail
      *
-     * @param  mixed $project
-     * @return JsonResponse
+     * @param  mixed $service_provider
+     * @return View
      */
-    public function projectDetail(ServiceProvider $service_provider): JsonResponse
+    public function projectDetail(ServiceProvider $service_provider): View
     {
-        return ResponseHelper::success(ServiceProviderResource::make($service_provider));
+        return view('', ['service_provider' => $service_provider]);
     }
 }
