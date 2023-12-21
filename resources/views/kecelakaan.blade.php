@@ -53,6 +53,16 @@
                                         <td class="text-center">{{ $item->total_accident }}</td>
                                     </tr>
                                 @empty
+                                <tr>
+                                    <td colspan="4" class="text-center">
+                                        <div class="d-flex justify-content-center" style="min-height:16rem">
+                                            <div class="my-auto">
+                                                <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                                <h4 class="text-center mt-4">Belum Ada Dinas Ditambahkan!!</h4>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
                                 @endforelse
                             </tbody>
                         </table>
