@@ -92,6 +92,8 @@ class DinasController extends Controller
     public function dashboard(Request $request): JsonResponse|View
     {
         $accident_total = 0;
+        $name = $request->name;
+        $year = $request->year;
         $projects = $this->project->getbyId($request);
         foreach ($projects as $project) {
             $accident_total += $project->accidents->count();
@@ -99,7 +101,7 @@ class DinasController extends Controller
         $project_total = $this->project->countDinas();
         $countActiveWorker = $this->project->countAllProject();
 
-        return view('pages.dinas.dashboard', ['accident_count' => $accident_total, 'project_count' => $project_total, 'countActiveWorker' => $countActiveWorker, 'projects' => $projects]);
+        return view('pages.dinas.dashboard', ['accident_count' => $accident_total, 'project_count' => $project_total, 'countActiveWorker' => $countActiveWorker, 'projects' => $projects ,'year'=>$year,'name'=>$name]);
     }
 
     public function accidentLandingPage(Request $request): View
