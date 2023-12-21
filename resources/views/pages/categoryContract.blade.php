@@ -146,7 +146,7 @@
                             Close
                         </button>
                         <button type="submit" style="background-color: #1B3061" class="btn text-white btn-create">
-                            Tambah
+                            Edit
                         </button>
                     </div>
                     </form>

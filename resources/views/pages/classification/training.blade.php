@@ -61,7 +61,7 @@
                     @method('PUT')
                     <div class="modal-header d-flex align-items-center text-white " style="background-color: #1B3061">
                         <h4 class="modal-title" id="exampleModalLabel1">
-                            Tambah Klasifikasi Pelatihan
+                            Edit Klasifikasi Pelatihan
                         </h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
@@ -80,7 +80,7 @@
                             Close
                         </button>
                         <button type="submit" class="btn btn-success btn-create">
-                            Tambah
+                            Edit
                         </button>
                     </div>
                 </form>
