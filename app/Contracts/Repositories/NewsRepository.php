@@ -102,6 +102,7 @@ class NewsRepository extends BaseRepository implements NewsInterface
             ->when($request->title,function($query) use ($request){
                 $query->where('title','LIKE','%'.$request->title.'%');
             })
+            ->orderByDesc('created_at')
             ->fastPaginate($pagination);
     }
 }

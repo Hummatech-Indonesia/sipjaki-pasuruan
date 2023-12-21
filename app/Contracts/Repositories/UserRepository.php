@@ -76,6 +76,7 @@ class UserRepository extends BaseRepository implements UserInterface
             ->when($request->name, function ($query) use ($request) {
                 $query->whereRelation('dinas', 'name', 'LIKE', '%' . $request->name . '%');
             })
+            ->orderByDesc('created_at')
             ->fastPaginate($pagination);
     }
 

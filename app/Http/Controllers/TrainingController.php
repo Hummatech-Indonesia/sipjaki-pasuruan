@@ -29,7 +29,7 @@ class TrainingController extends Controller
     {
 
         $trainings = $this->training->customPaginate($request, 15);
-        
+        $trainings->appends(['name' => $request->name]);
         if ($request->is('api/*')) {
             $data['paginate'] = $this->customPaginate($trainings->currentPage(), $trainings->lastPage());
             $data['data'] = TrainingResource::collection($trainings);
