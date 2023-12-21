@@ -1,5 +1,8 @@
 @extends('layouts.app')
 @section('content')
+    @php
+        use Carbon\Carbon;
+    @endphp
     <div class="d-flex justify-content-between mb-3">
         <div class="">
             <p class="fs-4 text-dark" style="font-weight: 600">
@@ -16,7 +19,6 @@
                             <th class="text-center table-sipjaki">No</th>
                             <th class="text-center table-sipjaki">Nama</th>
                             <th class="text-center table-sipjaki">Tanggal</th>
-                            <th class="text-center table-sipjaki">Sub Klasifikasi</th>
                             <th class="text-center table-sipjaki">Kualifikasi</th>
                             <th class="text-center table-sipjaki">Tahun</th>
                             <th class="text-center table-sipjaki">Aksi</th>
@@ -34,9 +36,6 @@
                                 <td class="text-center">
                                     {{ $serviceProviderQualificationPendin->created_at->format('j F Y') }} </td>
                                 <td class="text-center">
-                                    {{ $serviceProviderQualificationPendin->subClassification->name }}
-                                </td>
-                                <td class="text-center">
                                     {{ $serviceProviderQualificationPendin->qualification->name }}
                                 </td>
                                 <td class="text-center">
@@ -48,7 +47,23 @@
                                             <button type="button"
                                                 id="btn-detail-{{ $serviceProviderQualificationPendin->id }}"
                                                 data-id="{{ $serviceProviderQualificationPendin->id }}"
-                                                data-name="{{ $serviceProviderQualificationPendin->serviceProvider->user->name }}" data-address="{{ $serviceProviderQualificationPendin->serviceProvider->address ? $serviceProviderQualificationPendin->serviceProvider->address : '-' }}" data-city="{{ $serviceProviderQualificationPendin->serviceProvider->city ? $serviceProviderQualificationPendin->serviceProvider->city : '-' }}" data-province="{{ $serviceProviderQualificationPendin->serviceProvider->province ? $serviceProviderQualificationPendin->serviceProvider->province : '-' }}" data-postal_code="{{ $serviceProviderQualificationPendin->serviceProvider->postal_code ? $serviceProviderQualificationPendin->serviceProvider->postal_code : '-' }}" data-phone_number="{{ $serviceProviderQualificationPendin->serviceProvider->user->phone_number }}" data-fax="{{ $serviceProviderQualificationPendin->serviceProvider->fax ? $serviceProviderQualificationPendin->serviceProvider->fax : '-' }}" data-email="{{ $serviceProviderQualificationPendin->serviceProvider->user->email }}" data-website="{{ $serviceProviderQualificationPendin->serviceProvider->website ? $serviceProviderQualificationPendin->serviceProvider->website : '-' }}" data-form_of_business_entity="{{ $serviceProviderQualificationPendin->serviceProvider->form_of_business_entity ? ($serviceProviderQualificationPendin->serviceProvider->form_of_business_entity == 'pt' ? 'PT' : 'CV') : '-' }}" data-type_of_business_entity="{{ $serviceProviderQualificationPendin->serviceProvider->type_of_business_entity ? ($serviceProviderQualificationPendin->serviceProvider->type_of_business_entity == 'consultant' ? 'Konsultan' : 'Penyelenggara') : '-' }}"
+                                                data-name="{{ $serviceProviderQualificationPendin->serviceProvider->user->name }}"
+                                                data-address="{{ $serviceProviderQualificationPendin->serviceProvider->address ? $serviceProviderQualificationPendin->serviceProvider->address : '-' }}"
+                                                data-city="{{ $serviceProviderQualificationPendin->serviceProvider->city ? $serviceProviderQualificationPendin->serviceProvider->city : '-' }}"
+                                                data-province="{{ $serviceProviderQualificationPendin->serviceProvider->province ? $serviceProviderQualificationPendin->serviceProvider->province : '-' }}"
+                                                data-postal_code="{{ $serviceProviderQualificationPendin->serviceProvider->postal_code ? $serviceProviderQualificationPendin->serviceProvider->postal_code : '-' }}"
+                                                data-phone_number="{{ $serviceProviderQualificationPendin->serviceProvider->user->phone_number }}"
+                                                data-fax="{{ $serviceProviderQualificationPendin->serviceProvider->fax ? $serviceProviderQualificationPendin->serviceProvider->fax : '-' }}"
+                                                data-email="{{ $serviceProviderQualificationPendin->serviceProvider->user->email }}"
+                                                data-website="{{ $serviceProviderQualificationPendin->serviceProvider->website ? $serviceProviderQualificationPendin->serviceProvider->website : '-' }}"
+                                                data-form_of_business_entity="{{ $serviceProviderQualificationPendin->serviceProvider->form_of_business_entity ? ($serviceProviderQualificationPendin->serviceProvider->form_of_business_entity == 'pt' ? 'PT' : 'CV') : '-' }}"
+                                                data-type_of_business_entity="{{ $serviceProviderQualificationPendin->serviceProvider->type_of_business_entity ? ($serviceProviderQualificationPendin->serviceProvider->type_of_business_entity == 'consultant' ? 'Konsultan' : 'Penyelenggara') : '-' }}"
+                                                data-sub_classification="{{ $serviceProviderQualificationPendin->subClassification->name }}"
+                                                data-code="{{ $serviceProviderQualificationPendin->subClassification->code }}"
+                                                data-qualification="{{ $serviceProviderQualificationPendin->qualification->name }}"
+                                                data-year="{{ $serviceProviderQualificationPendin->year }}"
+                                                data-association="{{ $serviceProviderQualificationPendin->serviceProvider->association->name }}"
+                                                data-created_at="{{ Carbon::parse($serviceProviderQualificationPendin->created_at)->locale('id_ID')->isoFormat('DD MMMM Y') }}"
                                                 class="btn btn-warning btn-detail">
                                                 Detail
                                             </button>
@@ -161,62 +176,104 @@
                             </a>
                         </div>
                     </div>
-                    <div class="flex-grow-1 mt-3">
+                    <div class="tab-content mt-3" id="v-pills-tabContent">
+                        <div class="tab-pane fade active show" id="badan-usaha" role="tabpanel"
+                            aria-labelledby="badan-usaha-tab">
+                            <p class="fw-bolder fs-4" id="detail-name"></p>
+                            <table cellpadding="6" style="border-collapse: collapse;" class="fs-6 fw-normal">
+                                <tbody>
+                                    <tr>
+                                        <td>Alamat Badan Usaha</td>
+                                        <td>:</td>
+                                        <td id="detail-address"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Kabupaten</td>
+                                        <td>:</td>
+                                        <td id="detail-city"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Provinsi</td>
+                                        <td>:</td>
+                                        <td id="detail-province"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Kode Pos</td>
+                                        <td>:</td>
+                                        <td id="detail-postal_code"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Telepon</td>
+                                        <td>:</td>
+                                        <td id="detail-phone_number">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fax</td>
+                                        <td>:</td>
+                                        <td id="detail-fax"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Email</td>
+                                        <td>:</td>
+                                        <td id="detail-email"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Website</td>
+                                        <td>:</td>
+                                        <td id="detail-website"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bentuk Badan Usaha</td>
+                                        <td>:</td>
+                                        <td id="detail-form_of_business_entity">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jenis Badan Usaha</td>
+                                        <td>:</td>
+                                        <td id="detail-type_of_business_entity">
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="kualifikasi-klasifikasi" role="tabpanel"
+                        aria-labelledby="kualifikasi-klasifikasi-tab">
                         <p class="fw-bolder fs-4" id="detail-name"></p>
                         <table cellpadding="6" style="border-collapse: collapse;" class="fs-6 fw-normal">
                             <tbody>
                                 <tr>
-                                    <td>Alamat Badan Usaha</td>
+                                    <td>Sub Bidang Klasifikasi/Layanan</td>
                                     <td>:</td>
-                                    <td id="detail-address"></td>
+                                    <td id="detail-sub_classification"></td>
                                 </tr>
                                 <tr>
-                                    <td>Kabupaten</td>
+                                    <td>Nomor Kode</td>
                                     <td>:</td>
-                                    <td id="detail-city"></td>
+                                    <td id="detail-code"></td>
                                 </tr>
                                 <tr>
-                                    <td>Provinsi</td>
+                                    <td>Kualifikasi</td>
                                     <td>:</td>
-                                    <td id="detail-province"></td>
+                                    <td id="detail-qualification"></td>
                                 </tr>
                                 <tr>
-                                    <td>Kode Pos</td>
+                                    <td>Tahun</td>
                                     <td>:</td>
-                                    <td id="detail-postal_code"></td>
+                                    <td id="detail-year"></td>
                                 </tr>
                                 <tr>
-                                    <td>Telepon</td>
+                                    <td>Asosiasi</td>
                                     <td>:</td>
-                                    <td id="detail-phone_number">
-                                    </td>
+                                    <td id="detail-association"></td>
                                 </tr>
                                 <tr>
-                                    <td>Fax</td>
+                                    <td>Tanggal Permohonan</td>
                                     <td>:</td>
-                                    <td id="detail-fax"></td>
-                                </tr>
-                                <tr>
-                                    <td>Email</td>
-                                    <td>:</td>
-                                    <td id="detail-email"></td>
-                                </tr>
-                                <tr>
-                                    <td>Website</td>
-                                    <td>:</td>
-                                    <td id="detail-website"></td>
-                                </tr>
-                                <tr>
-                                    <td>Bentuk Badan Usaha</td>
-                                    <td>:</td>
-                                    <td id="detail-form_of_business_entity">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Jenis Badan Usaha</td>
-                                    <td>:</td>
-                                    <td id="detail-type_of_business_entity">
-                                    </td>
+                                    <td id="detail-created_at"></td>
                                 </tr>
 
                             </tbody>
