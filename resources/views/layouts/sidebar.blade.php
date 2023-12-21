@@ -62,7 +62,7 @@
                                 <a href="javascript: void(0);" class="has-arrow" key="t-level-1-2">Penyedia Jasa</a>
                                 <ul class="sub-menu" aria-expanded="true">
                                     <li><a href="/service-provider-consultants" key="t-level-2-1">konsultan </a></li>
-                                    <li><a href="/service-provider-executors" key="t-level-2-2">Pelaksana</a></li>
+                                    <li><a href="/service-provider-executors" key="t-level-2-2">Penyelenggara</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -130,7 +130,7 @@
                                 <a href="javascript: void(0);" class="has-arrow" key="t-level-1-2">Penyedia Jasa</a>
                                 <ul class="sub-menu" aria-expanded="true">
                                     <li><a href="/service-provider-consultants" key="t-level-2-1">konsultan </a></li>
-                                    <li><a href="/service-provider-executors" key="t-level-2-2">Pelaksana</a></li>
+                                    <li><a href="/service-provider-executors" key="t-level-2-2">Penyelenggara</a></li>
                                 </ul>
                             </li>
                         </ul>
