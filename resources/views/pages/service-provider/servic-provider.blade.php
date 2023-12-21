@@ -84,10 +84,9 @@
 
                                 </td>
                                 <td>
-                                    <button class="btn text-white btn-detail" id="{{ $serviceProvider->id }}"
-                                        data-id="{{ $serviceProvider->id }}" style="background-color: #1B3061">
+                                    <a href="service-provider-detail/{{ $serviceProvider->id }}" class="btn text-white"  style="background-color: #1B3061">
                                         Detail
-                                    </button>
+                                    </a>
                                 </td>
                             </tr>
                         </tbody>
