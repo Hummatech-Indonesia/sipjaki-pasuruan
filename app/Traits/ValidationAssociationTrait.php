@@ -15,10 +15,10 @@ trait ValidationAssociationTrait
     public function rules(): array
     {
         return [
-            'nama' => 'required|max:255',
-            'email' => 'required|max:255|email|unique',
+            'nama' => 'required|max:255|unique:associations,name',
+            'email' => 'required|max:255|email|unique:associations,email',
             'alamat' => 'required',
-            'email_ketua_asosiasi' => 'required|max:255|email|unique',
+            'email_ketua_asosiasi' => 'required|max:255|email|unique:associations,email_leader',
             'kota' => 'required',
             'kode_pos' => 'required',
             'nomor_hp' => 'required|numeric',
