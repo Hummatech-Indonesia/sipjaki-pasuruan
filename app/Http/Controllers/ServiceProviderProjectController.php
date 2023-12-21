@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Interfaces\OfficerInterface;
 use App\Contracts\Interfaces\ProjectInterface;
 use App\Contracts\Interfaces\ServiceProviderInterface;
 use App\Contracts\Interfaces\ServiceProviderProjectInterface;
+use App\Contracts\Interfaces\ServiceProviderQualificationInterface;
+use App\Contracts\Interfaces\WorkerInterface;
 use App\Helpers\ResponseHelper;
 use App\Http\Requests\ServiceProviderProjectRequest;
 use App\Http\Resources\ProjectResource;
@@ -26,8 +29,14 @@ class ServiceProviderProjectController extends Controller
     private ServiceProviderProjectService $service;
     private ServiceProviderInterface $serviceProvider;
     private ServiceProviderProjectInterface $serviceProviderProject;
-    public function __construct(ServiceProviderInterface $serviceProviderInterface, ServiceProviderProjectInterface $serviceProviderProject, ProjectInterface $project, ServiceProviderProjectService $service)
+    private OfficerInterface $officer;
+    private WorkerInterface $worker;
+    private ServiceProviderQualificationInterface $serviceProviderQualification;
+    public function __construct(ServiceProviderInterface $serviceProviderInterface, ServiceProviderProjectInterface $serviceProviderProject, ProjectInterface $project, ServiceProviderProjectService $service, WorkerInterface $workerInterface, OfficerInterface $officerInterface, ServiceProviderQualificationInterface $serviceProviderQualificationInterface)
     {
+        $this->serviceProviderQualification = $serviceProviderQualificationInterface;
+        $this->officer = $officerInterface;
+        $this->worker = $workerInterface;
         $this->serviceProvider = $serviceProviderInterface;
         $this->service = $service;
         $this->serviceProviderProject = $serviceProviderProject;
@@ -183,10 +192,18 @@ class ServiceProviderProjectController extends Controller
      * projectDetail
      *
      * @param  mixed $service_provider
+     * @param  mixed $request
      * @return View
      */
-    public function projectDetail(ServiceProvider $service_provider): View
+    public function projectDetail(ServiceProvider $service_provider, Request $request): View
     {
-        return view('', ['service_provider' => $service_provider]);
+        $serviceProviders = $this->serviceProvider->show($service_provider->id);
+        $serviceProviderQualifications = $this->serviceProviderQualification->customPaginate($request, 10);
+        $officers = $this->officer->get();
+        $workers = $this->worker->get();
+        $verifications = $service_provider->verification;
+        $amendmentDeeps = $service_provider->amendmentDeed;
+        $foundingDeeps = $service_provider->foundingDeed;
+        return view('', ['serviceProvider' => $serviceProviders, 'serviceProviderQualifications' => $serviceProviderQualifications, 'officers' => $officers, 'workers' => $workers, 'verifications' => $verifications, 'amendmentDeeps' => $amendmentDeeps, 'foundingDeeps' => $foundingDeeps]);
     }
 }
