@@ -290,9 +290,12 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
      * @param  mixed $id
      * @return mixed
      */
-    public function getByDinas(mixed $id): mixed
+    public function getByDinas(mixed $id, Request $request): mixed
     {
         return $this->model->query()
+            ->when($request->name, function ($query) use ($request) {
+                $query->where('name', 'LIKE', '%' . $request->name . '%');
+            })
             ->where('dinas_id', $id)
             ->get();
     }

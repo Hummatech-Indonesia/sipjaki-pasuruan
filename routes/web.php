@@ -116,12 +116,12 @@ Route::middleware('auth')->group(function () {
     Route::middleware('role:superadmin|admin')->group(function () {
         Route::get('all-service-provider', [ServiceProviderProjectController::class, 'allServiceProvider']);
         Route::get('service-provider-detail/{service_provider}', [ServiceProviderProjectController::class, 'projectDetail']);
+        Route::patch('update-password-service-provider/{service_provider}', [ServiceProviderController::class, 'updatePassword']);
     });
 
 
     Route::middleware('role:superadmin')->group(function () {
         Route::get('dashboard-superadmin', [SuperadminController::class, 'dashboard'])->name('dashboard-superadmin');
-
         Route::resources([
             'contract-categories' => ContractCategoryController::class,
             'fund-sources' => FundSourceController::class,
