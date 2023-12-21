@@ -137,9 +137,11 @@ class WorkerRepository extends BaseRepository implements WorkerInterface
     public function customPaginate(Request $request, int $pagination = 10): LengthAwarePaginator
     {
         return $this->model->query()
+            ->where('service_provider_id', auth()->user()->serviceProvider->id)
             ->when($request->name, function ($query) use ($request) {
                 $query->where('name', 'LIKE', '%' . $request->name . '%');
             })
+
             ->fastPaginate($pagination);
     }
 }

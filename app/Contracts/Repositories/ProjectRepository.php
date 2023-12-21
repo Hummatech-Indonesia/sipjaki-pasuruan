@@ -39,7 +39,9 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
     public function countAllProject(): int
     {
         return $this->model->query()
-            // ->where(auth()->user()->serviceProvider->type_of_business_entity == TypeOfBusinessEntityEnum::CONSULTANT->value ? 'consultant_id' : 'executor_id', auth()->user()->serviceProvider->id)
+            ->when(auth()->user()->serviceProvider != null, function ($query) {
+                $query->where(auth()->user()->serviceProvider->type_of_business_entity == TypeOfBusinessEntityEnum::CONSULTANT->value ? 'consultant_id' : 'executor_id', auth()->user()->serviceProvider->id);
+            })
             ->count();
     }
 
@@ -71,7 +73,9 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
     public function countProject(): int
     {
         return $this->model->query()
-            // ->where('service_provider_id', auth()->user()->serviceProvider->id)
+            ->when(auth()->user()->serviceProvider, function ($query) {
+                $query->where(auth()->user()->serviceProvider->type_of_business_entity == TypeOfBusinessEntityEnum::CONSULTANT->value ? 'consultant_id' : 'executor_id', auth()->user()->serviceProvider->id);
+            })
             ->where('status', StatusEnum::ACTIVE->value)
             ->count();
     }
@@ -186,7 +190,7 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
     {
         return $this->model->query()
             ->with('serviceProviderProjects')
-            ->where('consultant_id', auth()->user()->serviceProvider->id)
+            ->where(auth()->user()->serviceProvider->type_of_business_entity == TypeOfBusinessEntityEnum::CONSULTANT->value ? 'consultant_id' : 'executor_id', auth()->user()->serviceProvider->id)
             ->when($request->name, function ($query) use ($request) {
                 $query->where('name', 'LIKE', '%' . $request->name . '%');
             })
