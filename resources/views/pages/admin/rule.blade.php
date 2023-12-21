@@ -1,6 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: '{{ session('success') }}',
+            });
+        </script>
+    @endif
     <h4 class="mb-3 font-size-18">Peraturan</h4>
     <div class="modal fade" tabindex="-1" id="modal-create" aria-labelledby="exampleModalLabel1">
         <div class="modal-dialog modal-lg" role="document">
@@ -226,8 +235,8 @@
                                     <label id="name" for="recipient-name" class="control-label mb-2">File</label>
                                     <input type="file" class="form-control" id="update-name" name="file"
                                         aria-describedby="name" placeholder="Masukkan Pendidikan" />
-                                        <p class="text-danger mt-1">
-                                            File harus memiliki ekstensi .pdf, .xlsx, atau .docx </p>
+                                    <p class="text-danger mt-1">
+                                        File harus memiliki ekstensi .pdf, .xlsx, atau .docx </p>
                                 </div>
                             </div>
                             <div class="col-6">
@@ -261,7 +270,7 @@
     </div>
     <div class="modal fade bs-example-modal-md" id="modal-detail" tabindex="-1" role="dialog"
         aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
+        <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #1B3061">
                     <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Detail</h5>
@@ -269,42 +278,28 @@
                         aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="card">
-                        <div class="card-body">
-                            <p class="mt-3 fs-5 text-dark text-center mb-3" style="font-weight: 700">
-                                <span id="detail-title"></span>
-                            </p>
-                            <div class="">
-                                <div class="row mb-1">
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark">Kategori :</p>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                id="detail-category">UUD</span></p>
-                                    </div>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark">Nomor :</p>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-code"></span>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark">Tahun :</p>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-year"></span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <p class="mt-3 fs-5 text-dark text-center mb-3" style="font-weight: 700">
+                        <span id="detail-title"></span>
+                    </p>
+                    <table cellpadding="6" style="border-collapse: collapse;width:80%;" class="fs-6 fw-normal">
+                        <tbody>
+                            <tr>
+                                <td class="fw-bold" >Kategori</td>
+                                <td>:</td>
+                                <td id="detail-rule_category_name"></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">Nomor</td>
+                                <td>:</td>
+                                <td id="detail-code"></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">Tahun</td>
+                                <td>:</td>
+                                <td id="detail-year"></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div><!-- /.modal-content -->
