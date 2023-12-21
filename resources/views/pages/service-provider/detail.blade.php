@@ -10,7 +10,7 @@
             </h4>
         </div>
         <div class="">
-            <a href="/all-service-provider" class="text-white btn" style="background-color: #1B3061">Kembali</a>
+            <button onclick="window.history.back()" class="text-white btn" style="background-color: #1B3061">Kembali</button>
         </div>
     </div>
     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
@@ -118,10 +118,9 @@
                                     <tr>
                                         <td>Jenis Badan Usaha</td>
                                         <td>:</td>
-                                        <td>{{ $serviceProvider->type_of_business_entity ? ($serviceProvider->type_of_business_entity == 'consultant' ? 'Konsultan' : 'Penyelrnggara') : '-' }}
+                                        <td>{{ $serviceProvider->type_of_business_entity ? ($serviceProvider->type_of_business_entity == 'consultant' ? 'Konsultan' : 'Penyelenggara') : '-' }}
                                         </td>
                                     </tr>
-
                                 </tbody>
                             </table>
                         </div>

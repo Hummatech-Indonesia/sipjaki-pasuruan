@@ -116,9 +116,9 @@ class ServiceProviderController extends Controller
      */
     public function consultant(Request $request): View
     {
-        $request->merge(['type_of_business_entity' => TypeOfBusinessEntityEnum::CONSULTANT]);
+        $request->merge(['type_of_business_entity' => TypeOfBusinessEntityEnum::CONSULTANT->value]);
         $serviceProviders = $this->serviceProvider->search($request);
-        return view('', ['serviceProviders' => $serviceProviders]);
+        return view('pages.dinas.konsultan', ['serviceProviders' => $serviceProviders]);
     }
 
     /**
@@ -129,8 +129,8 @@ class ServiceProviderController extends Controller
      */
     public function executor(Request $request): View
     {
-        $request->merge(['type_of_business_entity' => TypeOfBusinessEntityEnum::EXECUTOR]);
+        $request->merge(['type_of_business_entity' => TypeOfBusinessEntityEnum::EXECUTOR->value]);
         $serviceProviders = $this->serviceProvider->search($request);
-        return view('', ['serviceProviders' => $serviceProviders]);
+        return view('pages.dinas.penyelenggara', ['serviceProviders' => $serviceProviders]);
     }
 }

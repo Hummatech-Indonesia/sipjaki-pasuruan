@@ -1,12 +1,12 @@
 @extends('layouts.app')
 @section('content')
     <h4 style="font-weight:800" class="text-dark mb-4">
-        Penyedia Jasa
+        Penyedia Jasa Konsultan
     </h4>
     <div class="card">
         <div class="card-body">
             <p class="fs-5 " style="font-weight: 600">
-                Berikut daftar Penyedia Jasa
+                Berikut daftar Penyedia Jasa Konsultan
             </p>
             <div class="d-flex justify-content-between">
                 <div class="d-flex justify-content-header gap-3">
@@ -84,10 +84,9 @@
 
                                 </td>
                                 <td>
-                                    <button class="btn text-white btn-detail" id="{{ $serviceProvider->id }}"
-                                        data-id="{{ $serviceProvider->id }}" style="background-color: #1B3061">
+                                    <a href="service-provider-detail/{{ $serviceProvider->id }}" class="btn text-white"  style="background-color: #1B3061">
                                         Detail
-                                    </button>
+                                    </a>
                                 </td>
                             </tr>
                         </tbody>
