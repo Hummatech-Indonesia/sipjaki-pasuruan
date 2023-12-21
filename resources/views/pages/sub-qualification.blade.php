@@ -198,6 +198,11 @@
 
 @section('script')
     <script>
+         $('#jasa').addClass('mm-active')
+        $('#jasa-link').addClass('mm-active')
+        $('#jasa .sub-menu').addClass('mm-show');
+         $('#kualifikasi-jasa').addClass('mm-active')
+        $('#kualifikasi-link-jasa').addClass('active')
         $('.btn-edit').click(function() {
             const formData = getDataAttributes($(this).attr('id'))
             var actionUrl = `/sub-qualifications/${formData['id']}`;

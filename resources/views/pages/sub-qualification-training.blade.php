@@ -18,11 +18,13 @@
         </div>
         <div class="mb-3">
             <a href="{{ route('qualification-trainings.index') }}"
-                        class="btn me-2 btn-md btn-warning text-white cursor-pointer">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 16" fill="none">
-                            <path d="M0.292893 7.29289C-0.0976314 7.68342 -0.0976315 8.31658 0.292892 8.7071L6.65685 15.0711C7.04738 15.4616 7.68054 15.4616 8.07107 15.0711C8.46159 14.6805 8.46159 14.0474 8.07107 13.6569L2.41421 8L8.07107 2.34314C8.46159 1.95262 8.46159 1.31946 8.07107 0.928931C7.68054 0.538406 7.04738 0.538406 6.65686 0.928931L0.292893 7.29289ZM24 7L1 7L1 9L24 9L24 7Z" fill="white"></path>
-                        </svg> Kembali
-                    </a>
+                class="btn me-2 btn-md btn-warning text-white cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 16" fill="none">
+                    <path
+                        d="M0.292893 7.29289C-0.0976314 7.68342 -0.0976315 8.31658 0.292892 8.7071L6.65685 15.0711C7.04738 15.4616 7.68054 15.4616 8.07107 15.0711C8.46159 14.6805 8.46159 14.0474 8.07107 13.6569L2.41421 8L8.07107 2.34314C8.46159 1.95262 8.46159 1.31946 8.07107 0.928931C7.68054 0.538406 7.04738 0.538406 6.65686 0.928931L0.292893 7.29289ZM24 7L1 7L1 9L24 9L24 7Z"
+                        fill="white"></path>
+                </svg> Kembali
+            </a>
         </div>
     </div>
     <div class="modal fade" id="samedata-modal" tabindex="-1" id="modeal-create" aria-labelledby="exampleModalLabel1">
@@ -59,11 +61,11 @@
         </div>
     </div>
     @if ($errors->has('name'))
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                {{ $errors->first('name') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @endif
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ $errors->first('name') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
     <div class="card">
         <div class="card-body">
             <div class="d-flex justify-content-between mb-3">
@@ -177,6 +179,11 @@
 
 @section('script')
     <script>
+        $('#training').addClass('mm-active')
+        $('#training-link').addClass('mm-active')
+        $('#training .sub-menu').addClass('mm-show');
+        $('#kualifikasi-training').addClass('mm-active')
+        $('#kualifikasi-link-training').addClass('active')
         $('.btn-edit').click(function() {
             const formData = getDataAttributes($(this).attr('id'))
             var actionUrl = `/qualification-level-trainings/${formData['id']}`;

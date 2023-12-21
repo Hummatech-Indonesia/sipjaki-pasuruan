@@ -149,16 +149,16 @@
                                 </td>
                             </tr>
                         @empty
-                        <tr>
-                            <td colspan="3" class="text-center">
-                                <div class="d-flex justify-content-center" style="min-height:16rem">
-                                    <div class="my-auto">
-                                        <img src="{{ asset('no-data.png') }}" width="300" height="300" />
-                                        <h4 class="text-center mt-4">Sub Klasifikasi Kosong!!</h4>
+                            <tr>
+                                <td colspan="3" class="text-center">
+                                    <div class="d-flex justify-content-center" style="min-height:16rem">
+                                        <div class="my-auto">
+                                            <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                            <h4 class="text-center mt-4">Sub Klasifikasi Kosong!!</h4>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
                         @endforelse
 
                     </tbody>
@@ -205,29 +205,34 @@
             </div>
         </div>
     </div>
-        <x-delete-modal-component />
-    @endsection
-    @section('script')
-        <script>
-            $('.btn-edit').click(function() {
-                const formData = getDataAttributes($(this).attr('id'))
-                var actionUrl =
-                    "{{ route('sub-clasification-training.update', ['sub_classification_training' => ':id']) }}";
-                actionUrl = actionUrl.replace(':id', formData['id']);
-                $('#form-update').attr('action', actionUrl);
+    <x-delete-modal-component />
+@endsection
+@section('script')
+    <script>
+        $('#training').addClass('mm-active')
+        $('#training-link').addClass('mm-active')
+        $('#training .sub-menu').addClass('mm-show');
+        $('#klasifikasi-training').addClass('mm-active')
+        $('#klasifikasi-link-training').addClass('active')
+        $('.btn-edit').click(function() {
+            const formData = getDataAttributes($(this).attr('id'))
+            var actionUrl =
+                "{{ route('sub-clasification-training.update', ['sub_classification_training' => ':id']) }}";
+            actionUrl = actionUrl.replace(':id', formData['id']);
+            $('#form-update').attr('action', actionUrl);
 
-                setFormValues('form-update', formData)
-                $('#form-update').data('id', formData['id'])
-                $('#form-update').attr('action', );
-                $('#modal-update').modal('show')
-            })
-            $('.btn-delete').click(function() {
-                var id = $(this).data('id');
-                var actionUrl =
-                    "{{ route('sub-clasification-training.delete', ['sub_classification_training' => ':id']) }}";
-                actionUrl = actionUrl.replace(':id', id);
-                $('#form-delete').attr('action', actionUrl);
-                $('#modal-delete').modal('show');
-            })
-        </script>
-    @endsection
+            setFormValues('form-update', formData)
+            $('#form-update').data('id', formData['id'])
+            $('#form-update').attr('action', );
+            $('#modal-update').modal('show')
+        })
+        $('.btn-delete').click(function() {
+            var id = $(this).data('id');
+            var actionUrl =
+                "{{ route('sub-clasification-training.delete', ['sub_classification_training' => ':id']) }}";
+            actionUrl = actionUrl.replace(':id', id);
+            $('#form-delete').attr('action', actionUrl);
+            $('#modal-delete').modal('show');
+        })
+    </script>
+@endsection

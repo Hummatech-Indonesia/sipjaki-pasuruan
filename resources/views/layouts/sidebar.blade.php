@@ -10,8 +10,8 @@
                             <span key="t-file-manager">Dashboard</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="javascript: void(0);" class="has-arrow waves-effect">
+                    <li id="jasa">
+                        <a href="javascript: void(0);" id="jasa-link" class="has-arrow waves-effect">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 42 42"
                                 fill="currentColor">
                                 <path
@@ -21,16 +21,16 @@
                             <span key="t-dashboards" class="px-2">Penyedia jasa
                             </span>
                         </a>
-                        <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="{{ route('qualifications.index') }}" key="t-tui-calendar">Kualifikasi</a></li>
-                            <li><a href="{{ route('classifications.index') }}" key="t-full-calendar">Klasifikasi</a></li>
+                        <ul class="sub-menu">
+                            <li id="kualifikasi-jasa"><a href="{{ route('qualifications.index') }}" id="kualifikasi-link-jasa" key="t-tui-calendar">Kualifikasi</a></li>
+                            <li id="klasisikasi-jasa"><a href="{{ route('classifications.index') }}" id="klasifikasi-link-jasa" key="t-full-calendar">Klasifikasi</a></li>
                             <li><a href="{{ route('contract-categories.index') }}" key="t-full-calendar">Kategori Kontrak</a></li>
                             <li><a href="{{ route('associations.index') }}" key="t-full-calendar">Assosiasi</a></li>
                         </ul>
                     </li>
 
-                    <li>
-                        <a href="javascript: void(0);" class="has-arrow waves-effect">
+                    <li id="training">
+                        <a href="javascript: void(0);" id="training-link" class="has-arrow waves-effect">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 42 42"
                                 fill="currentColor">
                                 <path
@@ -41,8 +41,8 @@
                             </span>
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="{{ route('qualification-trainings.index') }}" key="t-tui-calendar">Kualifikasi</a></li>
-                            <li><a href="{{ route('classification-training.index') }}" key="t-full-calendar">Klasifikasi</a></li>
+                            <li id="kualifikasi-training"><a href="{{ route('qualification-trainings.index') }}"  id="kualifikasi-link-training" key="t-tui-calendar">Kualifikasi</a></li>
+                            <li id="klasifikasi-training"><a href="{{ route('classification-training.index') }}" key="t-full-calendar" id="klasifikasi-link-training">Klasifikasi</a></li>
                             <li><a href="{{ route('training-methods.index') }}" key="t-full-calendar">Metode Pelatihan</a></li>
                         </ul>
                     </li>

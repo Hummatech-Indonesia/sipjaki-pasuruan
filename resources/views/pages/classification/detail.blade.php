@@ -202,8 +202,9 @@
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Masukan
                                         Sub Klasifikasi</label>
-                                    <input type="text" class="form-control" id="create-school_year" class="form-control"
-                                        name="name" id="nametext" aria-describedby="name" placeholder="" />
+                                    <input type="text" class="form-control" id="create-school_year"
+                                        class="form-control" name="name" id="nametext" aria-describedby="name"
+                                        placeholder="" />
                                 </div>
                             </div>
                             <div class="col-6">
@@ -238,6 +239,11 @@
 @endsection
 @section('script')
     <script>
+        $('#jasa').addClass('mm-active')
+        $('#jasa-link').addClass('mm-active')
+        $('#jasa .sub-menu').addClass('mm-show');
+        $('#klasifikasi-jasa').addClass('mm-active')
+        $('#klasifikasi-link-jasa').addClass('active')
         $('.btn-edit').click(function() {
             const formData = getDataAttributes($(this).attr('id'))
             console.log();
