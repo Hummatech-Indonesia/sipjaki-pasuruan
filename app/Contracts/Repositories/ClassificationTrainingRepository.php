@@ -23,6 +23,7 @@ class ClassificationTrainingRepository extends BaseRepository implements Classif
     public function get(): mixed
     {
         return $this->model->query()
+            ->orderByDesc('created_at')
             ->get();
     }
 
@@ -36,6 +37,7 @@ class ClassificationTrainingRepository extends BaseRepository implements Classif
     public function customPaginate(Request $request, int $pagination = 10): LengthAwarePaginator
     {
         return $this->model->query()
+            ->orderByDesc('created_at')
             ->when($request->name, function ($query) use ($request) {
                 $query->where('name', 'LIKE', '%'. $request->name .'%');
             })
@@ -51,6 +53,7 @@ class ClassificationTrainingRepository extends BaseRepository implements Classif
     public function search(Request $request): mixed
     {
         return $this->model->query()
+            ->orderByDesc('created_at')
             ->when($request->name, function ($query) use ($request) {
                 $query->where('name', 'LIKE', '%'. $request->name .'%');
             })

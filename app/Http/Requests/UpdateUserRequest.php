@@ -33,6 +33,10 @@ class UpdateUserRequest extends FormRequest
         return [
             'name.required' => 'Nama wajib diisi',
             'name.max' => 'Nama maksimal 255 karakter',
+            'email.required' => 'Email tidak boleh kosong',
+            'email.email' => 'Email harus valid',
+            'email.max' => 'Email maksimal :max karakter',
+            'email.unique' => 'Email sudah digunakan',
             'phone_number.required' => 'Nomor HP wajib diisi',
             'phone_number.max' => 'Nomor HP maksimal 255 karakter',
             'person_responsible' => 'Penanggung jawab wajib diisi',

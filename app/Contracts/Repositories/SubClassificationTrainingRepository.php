@@ -34,6 +34,7 @@ class SubClassificationTrainingRepository extends BaseRepository implements SubC
     {
         return $this->model->query()
             ->where('classification_training_id',  $id)
+            ->orderByDesc('created_at')
             ->get();
     }
 

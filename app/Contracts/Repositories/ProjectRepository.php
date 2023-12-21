@@ -188,6 +188,7 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
     {
         return $this->model->query()
             ->with('serviceProviderProjects')
+            ->where('consultant_id', auth()->user()->serviceProvider->id)
             ->when($request->name, function ($query) use ($request) {
                 $query->where('name', 'LIKE', '%' . $request->name . '%');
             })
