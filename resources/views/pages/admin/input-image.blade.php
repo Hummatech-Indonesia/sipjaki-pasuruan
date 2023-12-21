@@ -254,7 +254,7 @@
                     <div class="d-flex justify-content-end">
                         <div class="d-flex justify-content-header gap-2">
                             <div class="">
-                                <button data-bs-dismiss="modal" class="btn btn-danger">Tutup</button>
+                                <button data-bs-dismiss="modal" class="btn btn-danger" type="button">Tutup</button>
                             </div>
                         </div>
                     </div>
@@ -284,7 +284,7 @@
                     <div class="d-flex justify-content-end">
                         <div class="d-flex justify-content-header gap-2">
                             <div class="">
-                                <button data-bs-dismiss="modal" class="btn btn-danger">Tutup</button>
+                                <button data-bs-dismiss="modal" class="btn btn-danger" type="button">Tutup</button>
                             </div>
                             <div class="">
                                 <button class="btn text-white " style="background-color: #1B3061">
@@ -326,7 +326,7 @@
                     <div class="d-flex justify-content-end">
                         <div class="d-flex justify-content-header gap-2">
                             <div class="">
-                                <button data-bs-dismiss="modal" class="btn btn-danger">Tutup</button>
+                                <button data-bs-dismiss="modal" class="btn btn-danger" type="button">Tutup</button>
                             </div>
                         </div>
                     </div>
@@ -356,7 +356,7 @@
                         <div class="d-flex justify-content-end">
                             <div class="d-flex justify-content-header gap-2">
                                 <div class="">
-                                    <button data-bs-dismiss="modal" class="btn btn-danger">Tutup</button>
+                                    <button data-bs-dismiss="modal" class="btn btn-danger" type="button">Tutup</button>
                                 </div>
                                 <div class="">
                                     <button class="btn text-white " style="background-color: #1B3061">
@@ -394,7 +394,7 @@
                         <div class="d-flex justify-content-end">
                             <div class="d-flex justify-content-header gap-2">
                                 <div class="">
-                                    <button data-bs-dismiss="modal" class="btn btn-danger">Tutup</button>
+                                    <button data-bs-dismiss="modal" class="btn btn-danger" type="button">Tutup</button>
                                 </div>
                                 <div class="">
                                     <button class="btn text-white " style="background-color: #1B3061">
@@ -434,7 +434,7 @@
                     <div class="d-flex justify-content-end">
                         <div class="d-flex justify-content-header gap-2">
                             <div class="">
-                                <button data-bs-dismiss="modal" class="btn btn-danger">Tutup</button>
+                                <button data-bs-dismiss="modal" class="btn btn-danger" type="button">Tutup</button>
                             </div>
                         </div>
                     </div>
