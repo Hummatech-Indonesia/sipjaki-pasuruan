@@ -208,6 +208,7 @@ Route::middleware('auth')->group(function () {
         Route::get('dashboard-dinas', [DinasController::class, 'dashboard'])->name('dashboard-dinas');
         Route::get('profile-OPD', [DinasController::class, 'index']);
         Route::resource('accident', AccidentController::class)->except('create', 'edit');
+        Route::delete('accident-destroy/{accident}' , [AccidentController::class,'destroy']);
         Route::get('accident-show/{accident}', [AccidentController::class, 'show']);
         Route::resources([
             'projects' => ProjectController::class

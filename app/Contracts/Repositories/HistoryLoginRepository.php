@@ -59,7 +59,7 @@ class HistoryLoginRepository extends BaseRepository implements HistoryLoginInter
     {
         return $this->show($id)->delete($id);
     }
-    
+
     /**
      * customPaginate
      *
@@ -79,6 +79,7 @@ class HistoryLoginRepository extends BaseRepository implements HistoryLoginInter
             ->when($request->end_date, function ($query) use ($request) {
                 $query->where('created_at', '<=', $request->end_date);
             })
+            ->orderByDesc('created_at')
             ->fastPaginate($pagination);
     }
 

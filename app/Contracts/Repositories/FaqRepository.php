@@ -28,6 +28,7 @@ class FaqRepository extends BaseRepository implements FaqInterface
             })
             ->withCount('projects')
             ->with('user', 'projects')
+            ->orderByDesc('created_at')
             ->get();
     }
 
@@ -63,6 +64,7 @@ class FaqRepository extends BaseRepository implements FaqInterface
     public function get(): mixed
     {
         return $this->model->query()
+            ->orderByDesc('created_at')
             ->get();
     }
 
@@ -79,6 +81,7 @@ class FaqRepository extends BaseRepository implements FaqInterface
             ->when($request->name,function($query) use ($request){
                 $query->where('question','LIKE','%'.$request->name.'%');
             })
+            ->orderByDesc('created_at')
             ->fastPaginate($pagination);
     }
 

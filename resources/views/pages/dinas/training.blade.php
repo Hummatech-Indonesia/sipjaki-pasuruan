@@ -478,6 +478,8 @@
                                         data-id="{{ $training->id }}" data-name="{{ $training->name }}"
                                         data-lesson_hour="{{ $training->lesson_hour }}"
                                         data-organizer="{{ $training->organizer }}"
+                                        data-sub_classification_training_id="{{ $training->subClassificationTraining->id }}"
+                                        data-klasifikasi="{{ $training->subClassificationTraining->classificationTraining->id }}"
                                         data-start_at="{{ \Carbon\Carbon::parse($training->start_at)->format('Y-m-d') }}"
                                         data-end_time="{{ \Carbon\Carbon::parse($training->end_time)->format('Y-m-d') }}"
                                         data-sub_classification_id="{{ $training->sub_classification_id }}"

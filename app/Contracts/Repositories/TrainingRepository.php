@@ -77,6 +77,7 @@ class TrainingRepository extends BaseRepository implements TrainingInterface
                 $query->where('name','LIKE','%'.$request->name.'%');
             })
             ->withCount('trainingMembers')
+            ->orderByDesc('created_at')
             ->fastPaginate($pagination);
     }
 }
