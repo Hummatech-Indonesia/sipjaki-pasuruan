@@ -88,9 +88,9 @@ class FaqController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Faq $fiscalYear, Request $request)
+    public function destroy(Faq $faq, Request $request)
     {
-        $this->faq->delete($fiscalYear->id);
+        $this->faq->delete($faq->id);
 
         if( $request->is('api/*')){
 
