@@ -42,15 +42,15 @@
                                     Jumlah Kecelakaan</th>
                             </thead>
                             <tbody>
-                                @forelse ($total as $data)
+                                @forelse ($data as $item)
                                     <tr>
                                         <td>
                                             {{ $loop->iteration }}
                                         </td>
                                         <td>
-                                            {{ $data->user->name ?? "" }}
+                                            {{ $item->user->name }}
                                         </td>
-                                        <td class="text-center">{{ $data->total_accident }}</td>
+                                        <td class="text-center">{{ $item->total_accident }}</td>
                                     </tr>
                                 @empty
                                 @endforelse
