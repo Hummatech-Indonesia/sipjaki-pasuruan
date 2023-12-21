@@ -1,5 +1,14 @@
 @extends('layouts.app')
 @section('content')
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: '{{ session('success') }}',
+            });
+        </script>
+    @endif
     <div class="row justify-content-center">
         <div>
             <h2 class="">Sumber Dana</h2>
