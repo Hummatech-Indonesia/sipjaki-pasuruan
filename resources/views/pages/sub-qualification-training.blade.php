@@ -179,7 +179,7 @@
         })
         $('.btn-delete').click(function() {
             id = $(this).data('id')
-            var actionUrl = `destroy/${id}`;
+            var actionUrl = `/qualification-level-trainings/${id}`;
             $('#form-delete').attr('action', actionUrl);
             $('#modal-delete').modal('show')
         })

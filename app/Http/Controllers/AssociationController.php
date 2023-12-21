@@ -88,7 +88,7 @@ class AssociationController extends Controller
      *
      * @return Returntype
      */
-    public function delete(Association $association, Request $request)
+    public function destroy(Association $association, Request $request)
     {
         $this->association->delete($association->id);
         if ($request->is('api/*')) {
@@ -127,11 +127,11 @@ class AssociationController extends Controller
     {
         $data = $request->validated();
         Excel::import(new AssociationImport, $data['import']);
-        // if ($request->is('api/*')) {
+        if ($request->is('api/*')) {
         return ResponseHelper::success(null, trans('alert.add_success'));
-        // } else {
-        //     return redirect()->back()->with('success', trans('alert.add_success'));
-        // }
+        } else {
+            return redirect()->back()->with('success', trans('alert.add_success'));
+        }
     }
 
     public function export()
