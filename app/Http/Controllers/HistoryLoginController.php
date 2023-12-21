@@ -30,7 +30,7 @@ class HistoryLoginController extends Controller
     {
 
         $histories = $this->historyLogin->customPaginate($request, 15);
-        $histories->appends(['name' => $request->name]);
+        $histories->appends(['name' => $request->name, 'start_date' => $request->start_date, 'end_date' => $request->end_date]);
         if ($request->is('api/*')) {
             return ResponseHelper::success(HistoryLoginResource::collection($histories));
         } else {

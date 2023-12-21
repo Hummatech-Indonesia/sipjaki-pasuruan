@@ -4,6 +4,7 @@ namespace App\Contracts\Repositories;
 
 use App\Contracts\Interfaces\HistoryLoginInterface;
 use App\Models\HistoryLogin;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -74,10 +75,12 @@ class HistoryLoginRepository extends BaseRepository implements HistoryLoginInter
                 $query->whereRelation('user','name','LIKE','%'.$request->name.'%');
             })
             ->when($request->start_date, function ($query) use ($request) {
-                $query->where('created_at', '>=', $request->start_date);
+                $formatedDate = Carbon::parse($request->start_date)->format('Y-m-d') . ' 00:00:00';
+                $query->where('created_at', '>=', $formatedDate);
             })
             ->when($request->end_date, function ($query) use ($request) {
-                $query->where('created_at', '<=', $request->end_date);
+                $formatedDate = Carbon::parse($request->end_date)->format('Y-m-d') . ' 00:00:00';
+                $query->where('created_at', '<=', $formatedDate);
             })
             ->orderByDesc('created_at')
             ->fastPaginate($pagination);
