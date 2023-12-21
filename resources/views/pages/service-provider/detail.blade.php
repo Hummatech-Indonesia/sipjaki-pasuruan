@@ -3,7 +3,7 @@
     @php
         use Carbon\Carbon;
     @endphp
-    <div class="d-flex justify-content-between">
+    <div class="d-flex justify-content-between mb-2">
         <div class="">
             <h5>
                 Detail Penyedia Jasa
