@@ -197,7 +197,7 @@
     <div class="modal fade" tabindex="-1" id="modal-update" aria-labelledby="exampleModalLabel1">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <form id="form-update" method="POST">
+                <form id="form-update" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="modal-header d-flex align-items-center">
