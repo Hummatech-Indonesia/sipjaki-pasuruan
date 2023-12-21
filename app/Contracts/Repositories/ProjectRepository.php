@@ -59,9 +59,6 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
             ->when($request->name, function ($query) use ($request) {
                 $query->where('name', 'LIKE', '%' . $request->name . '%');
             })
-            ->when($request->year, function ($query) use ($request) {
-                $query->whereYear('date', $request->year);
-            })
             ->get();
     }
 
@@ -169,7 +166,7 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
                 $query->where('name', 'LIKE', '%' . $request->name . '%');
             })
             ->when($request->year, function ($query) use ($request) {
-                $query->whereYear('date', $request->year);
+                $query->whereYear('year', $request->year);
             })
             ->when($request->status, function ($query) use ($request) {
                 $query->where('status', $request->status);
