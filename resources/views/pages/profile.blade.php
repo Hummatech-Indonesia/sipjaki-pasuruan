@@ -24,7 +24,7 @@
                             <div class="col-lg-10">
                                 <div class="row">
                                     <div class="col">
-                                        <label for="" class="form-label">Nama</label>
+                                        <label for="" class="form-label">Nama.*</label>
                                         <input type="text" class="form-control" name="name"
                                             value="{{ auth()->user()->name }}" id="">
                                             @error('name')
@@ -34,7 +34,7 @@
                                             @enderror
                                     </div>
                                     <div class="col">
-                                        <label for="" class="form-label">Email</label>
+                                        <label for="" class="form-label">Email.*</label>
                                         <input type="text" value="{{ auth()->user()->email }}" class="form-control"
                                             name="email" id="">
                                             @error('email')
@@ -47,7 +47,7 @@
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col">
-                                        <label for="" class="form-label">No Telepon</label>
+                                        <label for="" class="form-label">No Telepon.*</label>
                                         <input type="number" value="{{ auth()->user()->phone_number }}"
                                             class="form-control" name="phone_number" id="">
                                             @error('phone_number')
