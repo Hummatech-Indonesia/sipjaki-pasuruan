@@ -251,8 +251,8 @@
                             <span key="t-file-manager">Dashboard</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ route('work.package') }}" class="waves-effect">
+                    <li id="paket-pekerjaan">
+                        <a href="{{ route('work.package') }}" id="paket-link" class="waves-effect">
                             <i class="bx bx-briefcase"></i>
                             <span key="t-file-manager">Paket Pekerjaan</span>
                         </a>

@@ -579,6 +579,8 @@
     @endif
 
     <script>
+        $('#paket-pekerjaan').addClass('mm-active')
+        $('#paket-link').addClass('active')
         $('.btn-delete').click(function() {
             id = $(this).data('id')
             var actionUrl = `/service-provider-projects/${id}`;

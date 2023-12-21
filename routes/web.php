@@ -236,8 +236,8 @@ Route::middleware('auth')->group(function () {
         Route::delete('service-provider-projects/{service_provider_project}', [ServiceProviderProjectController::class, 'destroy'])->name('service-provider-projects.delete');
 
         Route::get('dashboard-service-provider', [ServiceProviderController::class, 'dashboard'])->name('dashboard-service-provider');
-        Route::resource('workers', WorkerController::class)->only('index', 'update', 'destroy');
-        Route::delete('delete-workers', [WorkerController::class, 'deleteMultiple']);
+        Route::resource('workers', WorkerController::class)->only('index', 'update', 'destroy','store');
+        Route::delete('delete-workers', [WorkerController::class, 'deleteMultiple'])->name('delete-workers');
         Route::post('workers/{service_provider}', [WorkerController::class, 'store']);
 
         Route::post('import-workers', [WorkerController::class, 'import'])->name('import.workers');
