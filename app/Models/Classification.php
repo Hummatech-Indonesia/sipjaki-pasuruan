@@ -10,7 +10,7 @@ class Classification extends Model
     use HasFactory;
     protected $table = 'classifications';
     protected $primaryKey = 'id';
-    protected $fillable = ['id', 'name'];
+    protected $fillable = ['id', 'name', 'file'];
     protected $guarded = [];
     public $incrementing = false;
     public $keyType = 'char';

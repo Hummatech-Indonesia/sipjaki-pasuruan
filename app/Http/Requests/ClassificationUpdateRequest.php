@@ -4,9 +4,8 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class QualificationRequest extends FormRequest
+class ClassificationUpdateRequest extends FormRequest
 {
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -16,7 +15,7 @@ class QualificationRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'file' => 'required|mimes:png,jpg,jpeg'
+            'file' => 'nullable|mimes:png,jpg,jpeg'
         ];
     }
 
@@ -30,7 +29,6 @@ class QualificationRequest extends FormRequest
         return [
             'name.required' => 'Nama wajib diisi',
             'name.max' => 'Nama maksimal 255 karakter',
-            'file.required' => 'File wajib diisi',
             'file.mimes' => 'File yang diizinkan harus bertipe PNG, JPG, dan JPEG'
         ];
     }

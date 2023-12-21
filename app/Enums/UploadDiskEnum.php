@@ -19,4 +19,6 @@ enum UploadDiskEnum: string
     case ADMINISTRATIVEMINUTE = 'administrative_minutes';
     case REPORT = 'report';
     case MINUTESOFDISBURSEMENT = 'minutes_of_disbursement';
+    case QUALIFICATION = 'qualification';
+    case CLASSIFICATION = 'classification';
 }
