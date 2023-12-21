@@ -43,7 +43,7 @@ class RuleService
     public function update(RuleRequest $request, Rule $rule): array
     {
         $data = $request->validated();
-        $old_file = $rules->file;
+        $old_file = $rule->file;
         if ($request->hasFile('file')) {
             $this->remove($old_file);
             $old_file = $this->upload(UploadDiskEnum::RULE->value, $request->file('file'));
