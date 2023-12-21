@@ -88,7 +88,7 @@ class AssociationController extends Controller
      *
      * @return Returntype
      */
-    public function delete(Association $association, Request $request)
+    public function destroy(Association $association, Request $request)
     {
         $this->association->delete($association->id);
         if ($request->is('api/*')) {
