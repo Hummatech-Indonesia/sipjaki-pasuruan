@@ -5,9 +5,9 @@
     @endphp
     <div class="d-flex justify-content-between mb-4">
         <div class="">
-            <h5>
+            <h4 style="font-weight:800" class="text-dark mb-4">
                 Detail Penyedia Jasa
-            </h5>
+            </h4>
         </div>
         <div class="">
             <a href="/all-service-provider" class="text-white btn" style="background-color: #1B3061">Kembali</a>
