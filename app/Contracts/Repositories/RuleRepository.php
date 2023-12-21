@@ -75,6 +75,7 @@ class RuleRepository extends BaseRepository implements RuleInterface
             ->when($request->title,function($query) use ($request){
                 $query->where('title','LIKE','%'.$request->title.'%');
             })
+            ->orderByDesc('created_at')
             ->fastPaginate($pagination);
     }
 }
