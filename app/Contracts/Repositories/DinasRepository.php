@@ -23,6 +23,7 @@ class DinasRepository extends BaseRepository implements DinasInterface
     public function countAccidentByDinas(Request $request): mixed
     {
         return $this->model->query()
+            ->with('user')
             ->with('projects', function ($query) use ($request) {
                 $query->with(['accidents' => function ($subquery) use ($request) {
                     $subquery->when($request->year, function ($subsubquery) use ($request) {

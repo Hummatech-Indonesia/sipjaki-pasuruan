@@ -49,7 +49,8 @@ class SuperadminController extends Controller
         $accident = $this->accident->count(null);
         $activeProjects = $this->project->customPaginate($request,15);
         $activeProjects->appends(['name' => $request->name]);
+        $year = $request->year;
 
-        return view('pages.dasboard',compact('dinas','serviceProvider','project','accident','activeProjects'));
+        return view('pages.dasboard',compact('dinas','serviceProvider','project','accident','activeProjects','year'));
     }
 }

@@ -15,7 +15,7 @@ class Dinas extends Model implements HasUser, HasProjects
     use HasFactory;
     protected $table = 'dinas';
     protected $primaryKey = 'id';
-    protected $fillable = ['id', 'name_opd', 'phone_number_opd', 'person_responsible', 'position', 'civil_servant_identity_number', 'address'];
+    protected $fillable = ['id', 'name_opd', 'phone_number_opd', 'user_id', 'person_responsible', 'position', 'civil_servant_identity_number', 'address'];
     protected $guarded = [];
     public $incrementing = false;
     public $keyType = 'char';

@@ -113,6 +113,6 @@ class DinasController extends Controller
                 $projects->total_accident += $project->accidents->count();
             }
         }
-        return view('kecelakaan', ['total' => $data]);
+        return view('kecelakaan', ['data' => $data]);
     }
 }
