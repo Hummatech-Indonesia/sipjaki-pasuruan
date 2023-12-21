@@ -134,7 +134,6 @@ Route::middleware('auth')->group(function () {
             'classifications' => ClassificationController::class,
             'news' => NewsController::class,
             'training-methods' => TrainingMethodController::class,
-            'rules' => RuleController::class,
             'types' => TypeController::class,
             'associations' => AssociationController::class,
             'qualification-trainings' => QualificationTrainingController::class,
@@ -175,6 +174,7 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::middleware('role:admin')->group(function () {
+        Route::resource('rules', RuleController::class);
         Route::get('dashboard-admin', [AdminController::class, 'dashboard'])->name('dashboard-admin');
         Route::resources([
             'news' => NewsController::class,

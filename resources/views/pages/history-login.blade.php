@@ -18,7 +18,7 @@
                         <form action="" class="d-flex gap-4">
                             <div class="position-relative mb-3">
                                 <div class="input-group">
-                                    <input type="text" name="name" value="{{ $name }}" class="form-control"
+                                    <input type="text" name="name" value="{{ request()->name }}" class="form-control"
                                         placeholder="Search">
                                     <div class="input-group-append">
                                         <button class="btn text-white"
@@ -33,8 +33,8 @@
                             <div class="d-flex justify-content-header gap-2">
                                 <div class="input-daterange input-group" id="datepicker6" data-date-format="dd M, yyyy"
                                     data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker6'>
-                                    <input type="text" value="{{$startDate}}" class="form-control" name="start_date" placeholder="Tanggal Mulai" />
-                                    <input type="text" value="{{$endDate}}" class="form-control" name="end_date" placeholder="Tanggal Berakhir" />
+                                    <input type="text" value="{{request()->start_date}}" class="form-control" name="start_date" placeholder="Tanggal Mulai" />
+                                    <input type="text" value="{{request()->end_date}}" class="form-control" name="end_date" placeholder="Tanggal Berakhir" />
                                 </div>
                                 <div class="">
                                     <button type="submit" class="btn text-white" style="background-color: #1B3061">
