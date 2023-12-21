@@ -41,6 +41,9 @@ class ServiceProviderRepository extends BaseRepository implements ServiceProvide
             ->when($request->service_provider, function ($query) use ($request) {
                 $query->whereRelation('user', 'name', 'LIKE', '%' . $request->service_provider . '%');
             })
+            ->when($request->type_of_business_entity, function ($query) use ($request) {
+                $query->where('type_of_business_entity_of_business_entity', $request->type);
+            })
             ->get();
     }
 

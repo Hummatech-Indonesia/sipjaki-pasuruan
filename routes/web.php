@@ -121,6 +121,9 @@ Route::middleware('auth')->group(function () {
 
 
     Route::middleware('role:superadmin')->group(function () {
+        Route::get('service-provider-consultants', [ServiceProviderController::class, 'consultant']);
+        Route::get('service-provider-executors', [ServiceProviderController::class, 'executor']);
+
         Route::get('dashboard-superadmin', [SuperadminController::class, 'dashboard'])->name('dashboard-superadmin');
         Route::resources([
             'contract-categories' => ContractCategoryController::class,

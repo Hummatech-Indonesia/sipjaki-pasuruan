@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Contracts\Interfaces\AmendmentDeepInterface;
 use App\Contracts\Interfaces\FoundingDeepInterface;
 use Illuminate\Http\Request;
-use App\Helpers\ResponseHelper;
 use Illuminate\Contracts\View\View;
 use App\Contracts\Interfaces\UserInterface;
 use App\Contracts\Interfaces\WorkerInterface;
@@ -15,9 +14,9 @@ use App\Contracts\Interfaces\ProjectInterface;
 use App\Contracts\Interfaces\ServiceProviderInterface;
 use App\Contracts\Interfaces\ServiceProviderQualificationInterface;
 use App\Contracts\Interfaces\VerificationInterface;
-use App\Http\Requests\UpdatePasswordRequest;
 use App\Http\Requests\UpdatePasswordServiceProviderRequest;
 use App\Models\ServiceProvider;
+use App\Enums\TypeOfBusinessEntityEnum;
 
 class ServiceProviderController extends Controller
 {
@@ -107,5 +106,31 @@ class ServiceProviderController extends Controller
         $data = $request->validated();
         $this->userI->update($service_provider->user_id, ['password' => bcrypt($data['password'])]);
         return redirect()->back()->with('success', trans('alert.update_success'));
+    }
+
+    /**
+     * consultant
+     *
+     * @param  mixed $request
+     * @return View
+     */
+    public function consultant(Request $request): View
+    {
+        $request->merge(['type_of_business_entity' => TypeOfBusinessEntityEnum::CONSULTANT]);
+        $serviceProviders = $this->serviceProvider->search($request);
+        return view('', ['serviceProviders' => $serviceProviders]);
+    }
+
+    /**
+     * consultant
+     *
+     * @param  mixed $request
+     * @return View
+     */
+    public function executor(Request $request): View
+    {
+        $request->merge(['type_of_business_entity' => TypeOfBusinessEntityEnum::EXECUTOR]);
+        $serviceProviders = $this->serviceProvider->search($request);
+        return view('', ['serviceProviders' => $serviceProviders]);
     }
 }
