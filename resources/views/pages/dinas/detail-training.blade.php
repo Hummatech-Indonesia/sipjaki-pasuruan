@@ -599,6 +599,7 @@
 @endsection
 @section('script')
     <script>
+        
         $('.btn-delete').click(function() {
             id = $(this).data('id')
             var actionUrl = `/training-members/${id}`;
