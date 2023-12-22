@@ -21,8 +21,7 @@ class Worker extends Model implements HasServiceProvider
         'name',
         'birth_date',
         'education',
-        'registration_number',
-        'cerificate',
+        'phone_number',
     ];
     protected $guarded = [];
 
