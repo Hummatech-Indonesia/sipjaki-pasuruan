@@ -9,7 +9,19 @@
             });
         </script>
     @endif
-    <h4 class="mb-3 font-size-18">Sertifikat</h4>
+    <div class="d-flex justify-content-between">
+        <h4 class="mb-3 font-size-18">Sertifikat</h4>
+        <div class="">
+            <a href="{{ route('workers.index') }}"
+                class="btn me-2 btn-md btn-warning text-white cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 16" fill="none">
+                    <path
+                        d="M0.292893 7.29289C-0.0976314 7.68342 -0.0976315 8.31658 0.292892 8.7071L6.65685 15.0711C7.04738 15.4616 7.68054 15.4616 8.07107 15.0711C8.46159 14.6805 8.46159 14.0474 8.07107 13.6569L2.41421 8L8.07107 2.34314C8.46159 1.95262 8.46159 1.31946 8.07107 0.928931C7.68054 0.538406 7.04738 0.538406 6.65686 0.928931L0.292893 7.29289ZM24 7L1 7L1 9L24 9L24 7Z"
+                        fill="white"></path>
+                </svg> Kembali
+            </a>
+        </div>
+    </div>
     <div class="mt-4 rounded p-4" style="background-color: #fff;box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);">
         <h6 class="mb-3 font-size-14">Berikut Daftar Sertifikat {{ $worker->name }}</h6>
         <div class="d-flex justify-content-between">
@@ -86,7 +98,7 @@
                                     style="width: 90px; background-color: #E05C39; color: white"
                                     data-id="{{ $workerCertificate->id }}" data-bs-toggle="modal"
                                     data-bs-target="#modal-delete"><i class="bx bx-bx bxs-trash fs-4"></i> Hapus</button>
-                                    <a class="btn btn-md btn-success" href=""><i class="bx bxs-download bx-xs"></i></a>
+                                    <a class="btn btn-md btn-success" href="{{ route('worker-certificate-download', ['worker_certificate' => $workerCertificate->id]) }}"><i class="bx bxs-download bx-xs"></i></a>
                             </td>
                         </tr>
                     @empty
