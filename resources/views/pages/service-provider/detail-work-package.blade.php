@@ -183,7 +183,7 @@
                         <div>
                             <div data-bs-toggle="modal" data-bs-target="#modal-create" class="btn  rounded-3"
                                 style="background-color:#1B3061; color:white;">
-                                @if (Auth::user()->serviceProvider->type_of_business_entity == 'executor')
+                                @if (Auth::user()->serviceProvider->type_of_business_entity == 'consultant')
                                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
                                         viewBox="0 0 24 24" fill="none">
                                         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -228,7 +228,7 @@
                         <table class="table mb-0">
 
                             <thead>
-                                @if (Auth::user()->serviceProvider->type_of_business_entity == 'executor')
+                                @if (Auth::user()->serviceProvider->type_of_business_entity == 'consultant')
                                     <tr>
                                         <th>No</th>
                                         <th>Tanggal Mulai</th>
@@ -250,7 +250,7 @@
 
                             </thead>
                             <tbody>
-                                @if (Auth::user()->serviceProvider->type_of_business_entity == 'executor')
+                                @if (Auth::user()->serviceProvider->type_of_business_entity == 'consultant')
                                     @forelse ($serviceProviderProject as $index=>$serviceProviderProjec)
                                         <tr>
                                             <td>{{ $index + 1 }}</td>
@@ -392,7 +392,7 @@
                 <div style="background-color: #1B3061;">
                     <h5 class="modal-title text-white text-center m-3 fs-4">Tambah Progress</h5>
                 </div>
-                @if (Auth::user()->serviceProvider->type_of_business_entity == 'executor')
+                @if (Auth::user()->serviceProvider->type_of_business_entity == 'consultant')
                     <form action="{{ route('service-provider-projects.store', ['project' => $project->id]) }}"
                         method="post" enctype="multipart/form-data">
                         @method('POST')
@@ -405,7 +405,7 @@
                 @csrf
                 <div class="modal-body">
                     <div class="row">
-                        @if (Auth::user()->serviceProvider->type_of_business_entity == 'executor')
+                        @if (Auth::user()->serviceProvider->type_of_business_entity == 'consultant')
                             <div class="col-lg-3">
                                 <div class="mb-3 ajax-select mt-3 mt-lg-0">
                                     <label class="form-label">Tanggal Mulai</label>
