@@ -75,6 +75,17 @@ class ServiceProviderController extends Controller
     }
 
     /**
+     * show
+     *
+     * @param  mixed $service_provider
+     * @return View
+     */
+    public function show(ServiceProvider $service_provider): View
+    {
+        return view('', ['serviceProvider' => $service_provider]);
+    }
+
+    /**
      * Index
      *
      * @param  mixed $request
