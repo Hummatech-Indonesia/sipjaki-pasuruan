@@ -68,10 +68,10 @@
                                     </a>
                                 </div>
                                 <div class="d-flex justify-content-center">
-                                    <button
+                                    <a href="detail-consultan"
                                         class="btn btn-primary btn-md" style="background-color: #1B3061;">
                                         Detail
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
                         </td>
