@@ -80,4 +80,15 @@ class WorkerCertificateController extends Controller
         $this->workerCertificate->delete($worker_certificate->id);
         return redirect()->back()->with('success', trans('alert.delete_success'));
     }
+
+    /**
+     * downloadCertificate
+     *
+     * @param  mixed $worker_certificate
+     * @return void
+     */
+    public function downloadCertificate(WorkerCertificate $worker_certificate)
+    {
+        return $this->service->downloadCertificate($worker_certificate);
+    }
 }

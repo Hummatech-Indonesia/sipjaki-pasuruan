@@ -80,7 +80,7 @@ class ServiceProviderController extends Controller
      * @param  mixed $service_provider
      * @return View
      */
-    public function show(ServiceProvider $service_provider): View
+    public function show(ServiceProvider $service_provider,Request $request): View
     {
         $serviceProviders = $this->serviceProvider->show($service_provider->id);
         $serviceProviderQualifications = $this->serviceProviderQualification->customPaginate($request, 10);
@@ -89,7 +89,14 @@ class ServiceProviderController extends Controller
         $verifications = $service_provider->verification;
         $amendmentDeeps = $service_provider->amendmentDeed;
         $foundingDeeps = $service_provider->foundingDeed;
-        return view('', ['serviceProvider' => $service_provider]);
+        return view('pages.service-provider.detail', [
+            'serviceProviders' => $serviceProviders,
+            'serviceProviderQualifications'=>$serviceProviderQualifications,
+            'officers'=>$officers,
+            'workers'=>$workers,
+            'verifications'=>$verifications,
+            'amendmentDeeps'=>$amendmentDeeps,
+            'foundingDeeps'=>$foundingDeeps]);
     }
 
     /**

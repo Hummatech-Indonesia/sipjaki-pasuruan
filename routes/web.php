@@ -224,6 +224,7 @@ Route::middleware('auth')->group(function () {
         Route::post('worker-certificate/{worker}', [WorkerCertificateController::class, 'store'])->name('worker-certificate.store');
         Route::put('worker-certificate/{worker_certificate}', [WorkerCertificateController::class, 'update']);
         Route::delete('worker-certificate/{worker_certificate}', [WorkerCertificateController::class, 'destroy']);
+        Route::get('worker-certificate-download/{worker_certificate}', [WorkerCertificateController::class, 'downloadCertificate']);
 
         Route::get('service-provider-profile', [ServiceProviderController::class, 'index'])->name('service-provider-profile');
         Route::put('update-business-entity', [ServiceProviderController::class, 'update'])->name('update-business-entity');
@@ -255,7 +256,7 @@ Route::middleware('auth')->group(function () {
 });
 Route::middleware('role:admin|superadmin')->group(function () {
     Route::get('all-service-provider', [ServiceProviderProjectController::class, 'allServiceProvider']);
-    Route::get('detail-service-provider/{service_provider}', [ServiceProviderController::class, 'show']);
+    Route::get('detail-service-provider/{service_provider}', [ServiceProviderController::class, 'show'])->name('detail.service.provider');
     Route::get('service-provider-detail/{service_provider}', [ServiceProviderProjectController::class, 'projectDetail']);
     Route::patch('update-password-service-provider/{service_provider}', [ServiceProviderController::class, 'updatePassword']);
     Route::get('all-service-provider', [ServiceProviderProjectController::class, 'allServiceProvider'])->name('all.service.provider');
