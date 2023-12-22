@@ -87,10 +87,15 @@
                                 <div class="row mb-3">
                                     <div class="col-6">
                                         <label id="name" for="recipient-name" class="control-label mb-2">Masukan
-                                            Pekerjaan</label>
-                                        <input type="text" class="form-control" id="create-name" class="form-control"
-                                            name="job" aria-describedby="name" value="{{ old('job') }}"
-                                            placeholder="Masukkan Pekerjaan" />
+                                            Kewarganegaraan</label>
+                                        <select name="citizenship" class="form-select">
+                                            <option value="wni" {{ old('citizenship') == 'wni' ? 'selected' : '' }}>
+                                                WNI
+                                            </option>
+                                            <option value="wna" {{ old('citizenship') == 'wna' ? 'selected' : '' }}>
+                                                WNA
+                                            </option>
+                                        </select>
                                     </div>
                                     <div class="col-6">
                                         <label id="name" for="recipient-name" class="control-label mb-2">Masukan
@@ -128,13 +133,23 @@
                                     </div>
                                     <div class="col-6">
                                         <label id="name" for="recipient-name" class="control-label mb-2">Masukan
-                                            Kewarganegaraan</label>
-                                        <select name="citizenship" class="form-select">
-                                            <option value="wni" {{ old('citizenship') == 'wni' ? 'selected' : '' }}>
-                                                WNI
+                                            Status Kawin</label>
+                                        <select name="marital_status" class="form-select">
+                                            <option value="single"
+                                                {{ old('marital_status') == 'single' ? 'selected' : '' }}>
+                                                Belum Kawin
                                             </option>
-                                            <option value="wna" {{ old('citizenship') == 'wna' ? 'selected' : '' }}>
-                                                WNA
+                                            <option value="marry"
+                                                {{ old('marital_status') == 'marry' ? 'selected' : '' }}>
+                                                Sudah Kawin
+                                            </option>
+                                            <option value="divorced"
+                                                {{ old('marital_status') == 'divorced' ? 'selected' : '' }}>
+                                                Cerai Hidup
+                                            </option>
+                                            <option value="death_divorce"
+                                                {{ old('marital_status') == 'death_divorce' ? 'selected' : '' }}>
+                                                Cerai Mati
                                             </option>
                                         </select>
                                     </div>
@@ -158,34 +173,12 @@
                                             </label>
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col">
                                         <label id="name" for="recipient-name" class="control-label mb-2">Masukan
-                                            Status Kawin</label>
-                                        <select name="marital_status" class="form-select">
-                                            <option value="single"
-                                                {{ old('marital_status') == 'single' ? 'selected' : '' }}>
-                                                Belum Kawin
-                                            </option>
-                                            <option value="marry"
-                                                {{ old('marital_status') == 'marry' ? 'selected' : '' }}>
-                                                Sudah Kawin
-                                            </option>
-                                            <option value="divorced"
-                                                {{ old('marital_status') == 'divorced' ? 'selected' : '' }}>
-                                                Cerai Hidup
-                                            </option>
-                                            <option value="death_divorce"
-                                                {{ old('marital_status') == 'death_divorce' ? 'selected' : '' }}>
-                                                Cerai Mati
-                                            </option>
-                                        </select>
+                                            Alamat</label>
+                                        <textarea class="form-control" name="address" id="" cols="15" rows="5"
+                                            placeholder="Masukkan Alamat">{{ old('address') }}</textarea>
                                     </div>
-                                </div>
-                                <div class="mb-3">
-                                    <label id="name" for="recipient-name" class="control-label mb-2">Masukan
-                                        Alamat</label>
-                                    <textarea class="form-control" name="address" id="" cols="15" rows="5"
-                                        placeholder="Masukkan Alamat">{{ old('address') }}</textarea>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -285,7 +278,6 @@
                                                     ? 'Cerai Mati'
                                                     : ''))) }}"
                                     data-citizenship="{{ $officer->citizenship == 'wni' ? 'WNI' : 'WNA' }}"
-                                    data-job="{{ $officer->job }}"
                                     data-national_identity_number="{{ $officer->national_identity_number }}"
                                     id="btn-detail-{{ $officer->id }}" data-id="{{ $officer->id }}"
                                     class="btn btn-detail text-white" style="background-color: #1B3061"><svg
@@ -310,7 +302,6 @@
                                     data-gender="{{ $officer->gender }}"
                                     data-marital_status="{{ $officer->marital_status}}"
                                     data-citizenship="{{ $officer->citizenship }}"
-                                    data-job="{{ $officer->job }}"
                                     data-national_identity_number="{{ $officer->national_identity_number }}"><i class="bx bx-bx bxs-edit fs-4"></i>
                                     <span>Edit</span></button>
                                 <button type="button"
@@ -386,10 +377,15 @@
                             <div class="row mb-3">
                                 <div class="col-6">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Masukan
-                                        Pekerjaan</label>
-                                    <input type="text" class="form-control" id="create-name" class="form-control"
-                                        name="job" aria-describedby="name" value="{{ old('job') }}"
-                                        placeholder="Masukkan Pekerjaan" />
+                                        Kewarganegaraan</label>
+                                    <select name="citizenship" class="form-select">
+                                        <option value="wni" {{ old('citizenship') == 'wni' ? 'selected' : '' }}>
+                                            WNI
+                                        </option>
+                                        <option value="wna" {{ old('citizenship') == 'wna' ? 'selected' : '' }}>
+                                            WNA
+                                        </option>
+                                    </select>
                                 </div>
                                 <div class="col-6">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Masukan
@@ -427,13 +423,23 @@
                                 </div>
                                 <div class="col-6">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Masukan
-                                        Kewarganegaraan</label>
-                                    <select name="citizenship" class="form-select">
-                                        <option value="wni" {{ old('citizenship') == 'wni' ? 'selected' : '' }}>
-                                            WNI
+                                        Status Kawin</label>
+                                    <select name="marital_status" class="form-select">
+                                        <option value="single"
+                                            {{ old('marital_status') == 'single' ? 'selected' : '' }}>
+                                            Belum Kawin
                                         </option>
-                                        <option value="wna" {{ old('citizenship') == 'wna' ? 'selected' : '' }}>
-                                            WNA
+                                        <option value="marry"
+                                            {{ old('marital_status') == 'marry' ? 'selected' : '' }}>
+                                            Sudah Kawin
+                                        </option>
+                                        <option value="divorced"
+                                            {{ old('marital_status') == 'divorced' ? 'selected' : '' }}>
+                                            Cerai Hidup
+                                        </option>
+                                        <option value="death_divorce"
+                                            {{ old('marital_status') == 'death_divorce' ? 'selected' : '' }}>
+                                            Cerai Mati
                                         </option>
                                     </select>
                                 </div>
@@ -457,34 +463,12 @@
                                         </label>
                                     </div>
                                 </div>
-                                <div class="col-6">
+                                <div class="col">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Masukan
-                                        Status Kawin</label>
-                                    <select name="marital_status" class="form-select">
-                                        <option value="single"
-                                            {{ old('marital_status') == 'single' ? 'selected' : '' }}>
-                                            Belum Kawin
-                                        </option>
-                                        <option value="marry"
-                                            {{ old('marital_status') == 'marry' ? 'selected' : '' }}>
-                                            Sudah Kawin
-                                        </option>
-                                        <option value="divorced"
-                                            {{ old('marital_status') == 'divorced' ? 'selected' : '' }}>
-                                            Cerai Hidup
-                                        </option>
-                                        <option value="death_divorce"
-                                            {{ old('marital_status') == 'death_divorce' ? 'selected' : '' }}>
-                                            Cerai Mati
-                                        </option>
-                                    </select>
+                                        Alamat</label>
+                                    <textarea class="form-control" name="address" id="" cols="15" rows="5"
+                                        placeholder="Masukkan Alamat">{{ old('address') }}</textarea>
                                 </div>
-                            </div>
-                            <div class="mb-3">
-                                <label id="name" for="recipient-name" class="control-label mb-2">Masukan
-                                    Alamat</label>
-                                <textarea class="form-control" name="address" id="" cols="15" rows="5"
-                                    placeholder="Masukkan Alamat">{{ old('address') }}</textarea>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -547,11 +531,6 @@
                                 <td class="fw-bold">Jabatan</td>
                                 <td>:</td>
                                 <td id="detail-position"></td>
-                            </tr>
-                            <tr>
-                                <td class="fw-bold">Pekerjaan</td>
-                                <td>:</td>
-                                <td id="detail-job"></td>
                             </tr>
                             <tr>
                                 <td class="fw-bold">Pendidikan</td>
