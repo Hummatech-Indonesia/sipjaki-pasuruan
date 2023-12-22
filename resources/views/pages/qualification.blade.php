@@ -92,9 +92,9 @@
                             <td>{{ $index + 1 }}</td>
                             <td>{{ $qualification->name }}
                             </td>
-                            <td>
+                            {{-- <td>
                                 <img src="{{ asset('storage/'.$qualification->file) }}" width="100px" height="100px" alt="" srcset="">
-                            </td>
+                            </td> --}}
                             <td class="d-flex flex-row gap-3 justify-content-center" style="border-bottom: 1px solid #fff">
                                 <a href="{{ route('qualifications.show', $qualification->id) }}" type="button" class="btn  waves-effect waves-light text-white"
                                     style="background-color: #1B3061">
