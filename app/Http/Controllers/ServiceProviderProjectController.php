@@ -56,7 +56,8 @@ class ServiceProviderProjectController extends Controller
             $data['data'] = ProjectResource::collection($serviceProviderProjects);
             return ResponseHelper::success($data);
         } else {
-            return view('pages.service-provider.work-package', ['serviceProviderProjects' => $serviceProviderProjects]);
+            $year = $request->year;
+            return view('pages.service-provider.work-package', ['serviceProviderProjects' => $serviceProviderProjects, 'year' => $year]);
         }
     }
 
