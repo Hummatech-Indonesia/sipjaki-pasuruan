@@ -70,7 +70,7 @@ class ServiceProviderQualificationController extends Controller
      */
     public function update(ServiceProviderQualificationRequest $request, ServiceProviderQualification $serviceProviderQualification)
     {
-        $data = $request->validated();
+        $data = $this->service->update($serviceProviderQualification, $request);
         $data['status'] = ServiceProviderQualificationEnum::PENDING->value;
         $this->serviceProviderQualification->update($serviceProviderQualification->id, $data);
         if ($request->is('api/*')) {
