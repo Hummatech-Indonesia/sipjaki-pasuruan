@@ -16,7 +16,7 @@ class QualificationRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'file' => 'required|mimes:png,jpg,jpeg'
+            'file' => 'required|mimes:pdf'
         ];
     }
 
@@ -31,7 +31,7 @@ class QualificationRequest extends FormRequest
             'name.required' => 'Nama wajib diisi',
             'name.max' => 'Nama maksimal 255 karakter',
             'file.required' => 'File wajib diisi',
-            'file.mimes' => 'File yang diizinkan harus bertipe PNG, JPG, dan JPEG'
+            'file.mimes' => 'File yang diizinkan harus bertipe PDF'
         ];
     }
 }
