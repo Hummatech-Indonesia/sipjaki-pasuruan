@@ -224,6 +224,7 @@ Route::middleware('auth')->group(function () {
         Route::post('worker-certificate/{worker}', [WorkerCertificateController::class, 'store'])->name('worker-certificate.store');
         Route::put('worker-certificate/{worker_certificate}', [WorkerCertificateController::class, 'update']);
         Route::delete('worker-certificate/{worker_certificate}', [WorkerCertificateController::class, 'destroy']);
+        Route::get('worker-certificate-download/{worker_certificate}', [WorkerCertificateController::class, 'downloadCertificate']);
 
         Route::get('service-provider-profile', [ServiceProviderController::class, 'index'])->name('service-provider-profile');
         Route::put('update-business-entity', [ServiceProviderController::class, 'update'])->name('update-business-entity');
