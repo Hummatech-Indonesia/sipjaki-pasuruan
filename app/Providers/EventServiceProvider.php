@@ -44,6 +44,7 @@ use App\Observers\AssociationObserver;
 use App\Observers\ClassificationObserver;
 use App\Observers\ClassificationTrainingObserver;
 use App\Observers\ConstultantProjectObserver;
+use App\Observers\ConsultantProjectObserver;
 use App\Observers\ContractCategoryObserver;
 use App\Observers\DinasObserver;
 use App\Observers\ExecutorProjectObserver;
@@ -129,8 +130,8 @@ class EventServiceProvider extends ServiceProvider
         Officer::observe(OfficerObserver::class);
         ServiceProviderQualification::observe(ServiceProviderQualificationObserver::class);
         WorkerCertificate::observe(WorkerCertificateObserver::class);
-        ConsultantProject::observe(ConstultantProjectObserver::class);
         ExecutorProject::observe(ExecutorProjectObserver::class);
+        ConsultantProject::observe(ConsultantProjectObserver::class);
     }
 
     /**

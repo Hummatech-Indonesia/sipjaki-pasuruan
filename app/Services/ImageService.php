@@ -55,7 +55,7 @@ class ImageService
 
                 Storage::put($storage . '/' . $filepath, $imageData);
 
-                $new_src = Storage::url($storage . '/' . $filepath);
+                $new_src = asset($storage . '/' . $filepath);
                 $img->removeAttribute('src');
                 $img->setAttribute('src', $new_src);
                 $img->setAttribute('class', 'img-responsive');
