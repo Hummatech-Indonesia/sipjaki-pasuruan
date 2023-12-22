@@ -59,6 +59,13 @@
                             <table cellpadding="5" style="border-collapse: collapse; width: 50%;" class="fs-6 fw-normal">
                                 <tbody>
                                     <tr>
+                                        <td>
+                                            Direktur
+                                        </td>
+                                        <td>:</td>
+                                        <td>{{ $serviceProvider->directur ? $serviceProvider->directur : '-' }}</td>
+                                    </tr>
+                                    <tr>
                                         <td>Alamat Badan Usaha</td>
                                         <td>:</td>
                                         <td>{{ $serviceProvider->address ? $serviceProvider->address : '-' }}</td>
@@ -109,6 +116,24 @@
                                         <td>Jenis Badan Usaha</td>
                                         <td>:</td>
                                         <td>{{ $serviceProvider->type_of_business_entity ? ($serviceProvider->type_of_business_entity == 'consultant' ? 'Konsultan' : 'Penyelenggara') : '-' }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Profile Perusahaan</td>
+                                        <td>:</td>
+                                        <td>@if ( $serviceProvider->file)
+                                            <a href="{{ asset('storage/'. $serviceProvider->file) }}" target="_blank"> <button type="submit" class="btn text-white fw-normal" style="background-color:#2CA67A;">
+                                                <svg xmlns="http://www.w3.org/2000/svg" height="14" width="14" fill="white"
+                                                    transform="rotate(90)" viewBox="0 0 512 512">
+                                                    <path
+                                                        d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 192 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128zM160 96c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 32C43 32 0 75 0 128L0 384c0 53 43 96 96 96l64 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l64 0z" />
+                                                </svg>
+                                                <span class="ms-2">Download</span>
+                                            </button></a>
+                                        @else
+                                            -
+                                        @endif
+                                            
                                         </td>
                                     </tr>
 
@@ -954,7 +979,7 @@
                         style="color: white;"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="profile-service-providers" id="form-update-badan-usaha" method="POST">
+                    <form action="profile-service-providers" enctype="multipart/form-data" id="form-update-badan-usaha" method="POST">
                         @method('PUT')
                         @csrf
                         <div class="row">
@@ -970,6 +995,20 @@
                                     <label id="name" for="recipient-name" class="control-label mb-2">Email</label>
                                     <input name="email" type="email" value="{{ $serviceProvider->user->email }}"
                                         class="form-control" id="update-email">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label id="name" for="recipient-name" class="control-label mb-2">Direktur</label>
+                                    <input name="directur" type="name" 
+                                        class="form-control" id="update-directur">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label id="name" for="recipient-name" class="control-label mb-2">Profile Perusahaan</label>
+                                    <input name="file" type="file"
+                                        class="form-control" id="update-file">
                                 </div>
                             </div>
                             <div class="col-6">
