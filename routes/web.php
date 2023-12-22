@@ -138,7 +138,7 @@ Route::middleware('auth')->group(function () {
             'associations' => AssociationController::class,
             'qualification-trainings' => QualificationTrainingController::class,
         ]);
-        Route::get('qualification-detail', [QualificationController::class, 'detail']);
+        Route::get('qualification-detail/{qualification}', [QualificationController::class, 'detail']);
 
         Route::get('classification-training', [ClassificationTrainingController::class, 'index']);
         Route::post('classification-training', [ClassificationTrainingController::class, 'store'])->name('classification-training.store');
