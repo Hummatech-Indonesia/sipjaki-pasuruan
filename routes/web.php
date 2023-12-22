@@ -255,7 +255,7 @@ Route::middleware('auth')->group(function () {
 });
 Route::middleware('role:admin|superadmin')->group(function () {
     Route::get('all-service-provider', [ServiceProviderProjectController::class, 'allServiceProvider']);
-    Route::get('detail-service-provider/{service_provider}', [ServiceProviderController::class, 'show']);
+    Route::get('detail-service-provider/{service_provider}', [ServiceProviderController::class, 'show'])->name('detail.service.provider');
     Route::get('service-provider-detail/{service_provider}', [ServiceProviderProjectController::class, 'projectDetail']);
     Route::patch('update-password-service-provider/{service_provider}', [ServiceProviderController::class, 'updatePassword']);
     Route::get('all-service-provider', [ServiceProviderProjectController::class, 'allServiceProvider'])->name('all.service.provider');

@@ -82,7 +82,7 @@ class ServiceProviderController extends Controller
      */
     public function show(ServiceProvider $service_provider): View
     {
-        return view('', ['serviceProvider' => $service_provider]);
+        return view('pages.service-provider.detail', ['serviceProvider' => $service_provider]);
     }
 
     /**
