@@ -26,12 +26,14 @@ use App\Contracts\Repositories\FiscalYearRepository;
 use App\Contracts\Repositories\FundSourceRepository;
 use App\Contracts\Interfaces\ClassificationInterface;
 use App\Contracts\Interfaces\ClassificationTrainingInterface;
+use App\Contracts\Interfaces\ConsultantProjectInterface;
 use App\Contracts\Interfaces\ForgotPasswordInterface;
 use App\Contracts\Interfaces\RuleCategoriesInterface;
 use App\Contracts\Interfaces\TrainingMemberInterface;
 use App\Contracts\Interfaces\TrainingMethodInterface;
 use App\Contracts\Interfaces\ContractCategoryInterface;
 use App\Contracts\Interfaces\DinasInterface;
+use App\Contracts\Interfaces\ExecutorProjectInterface;
 use App\Contracts\Interfaces\FaqInterface;
 use App\Contracts\Interfaces\FoundingDeepInterface;
 use App\Contracts\Interfaces\HistoryLoginInterface;
@@ -60,8 +62,10 @@ use App\Contracts\Repositories\AccidentRepository;
 use App\Contracts\Repositories\AmendmentDeepRepository;
 use App\Contracts\Repositories\AssociationRepositoy;
 use App\Contracts\Repositories\ClassificationTrainingRepository;
+use App\Contracts\Repositories\ConsultantProjectRepository;
 use App\Contracts\Repositories\ContractCategoryRepository;
 use App\Contracts\Repositories\DinasRepository;
+use App\Contracts\Repositories\ExecutorProjectRepository;
 use App\Contracts\Repositories\FaqRepository;
 use App\Contracts\Repositories\FoundingDeepRepository;
 use App\Contracts\Repositories\HistoryLoginRepository;
@@ -108,7 +112,6 @@ class AppServiceProvider extends ServiceProvider
         DinasInterface::class => DinasRepository::class,
         HistoryLoginInterface::class => HistoryLoginRepository::class,
         ServiceProviderProjectInterface::class => ServiceProviderProjectRepository::class,
-        SectionInterface::class => SectionRepository::class,
         TypeInterface::class => TypeRepository::class,
         FaqInterface::class => FaqRepository::class,
         ClassificationTrainingInterface::class => ClassificationTrainingRepository::class,
@@ -121,6 +124,8 @@ class AppServiceProvider extends ServiceProvider
         FoundingDeepInterface::class => FoundingDeepRepository::class,
         AmendmentDeepInterface::class => AmendmentDeepRepository::class,
         WorkerCertificateInterface::class => WorkerCertificateRepository::class,
+        ExecutorProjectInterface::class => ExecutorProjectRepository::class,
+        ConsultantProjectInterface::class => ConsultantProjectRepository::class,
     ];
 
     /**
