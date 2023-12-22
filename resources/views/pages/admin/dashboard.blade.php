@@ -325,7 +325,7 @@
     </div>
 
     <div class="card p-3">
-        <h5 class="mb-2">
+        <h5 class="mb-4">
             Berikut daftar Pekerjaan sedang aktif
         </h5>
         <div class="table-responsive">
