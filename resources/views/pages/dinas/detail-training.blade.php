@@ -228,22 +228,9 @@
                                                     @enderror
                                                 </div>
                                             </div>
-                                            <div class="col-lg-4">
+                                            <div class="col-lg-8">
                                                 <div class="mb-3">
-                                                    <label for="basicpill-email-input">Surat Keputusan</label>
-                                                    <input name="decree" type="text" class="form-control"
-                                                        id="basicpill-phoneno-input"
-                                                        placeholder="Masukkan Surat Keputusan">
-                                                    @error('decree')
-                                                        <p class="text-danger">
-                                                            {{ $message }}
-                                                        </p>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div class="mb-3">
-                                                    <label for="basicpill-email-input">File</label>
+                                                    <label for="basicpill-email-input">Sertifikat</label>
                                                     <input name="file" type="file" class="form-control"
                                                         id="basicpill-phoneno-input" placeholder="Enter Your Name.">
                                                     @error('file')
@@ -260,7 +247,21 @@
                                     <h3>Data 2</h3>
                                     <section>
                                         <div class="row">
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-4">
+                                                <div class="mb-3">
+                                                    <label for="basicpill-email-input">Surat Keputusan</label>
+                                                    <input name="decree" type="text" class="form-control"
+                                                        id="basicpill-phoneno-input"
+                                                        placeholder="Masukkan Surat Keputusan">
+                                                    @error('decree')
+                                                        <p class="text-danger">
+                                                            {{ $message }}
+                                                        </p>
+                                                    @enderror
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4">
                                                 <div class="mb-3">
                                                     <label for="basicpill-email-input">Pendidikan</label>
                                                     <input name="education" type="text" class="form-control"
@@ -272,7 +273,7 @@
                                                     @enderror
                                                 </div>
                                             </div>
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-4">
                                                 <div class="mb-3">
                                                     <label for="basicpill-phoneno-input">NIK</label>
                                                     <input name="national_identity_number" type="number"
@@ -376,22 +377,10 @@
                                                     @enderror
                                                 </div>
                                             </div>
-                                            <div class="col-lg-4">
+                                           
+                                            <div class="col-lg-8">
                                                 <div class="mb-3">
-                                                    <label for="basicpill-email-input">Surat Keputusan</label>
-                                                    <input name="decree" type="text" class="form-control"
-                                                        id="basicpill-phoneno-input"
-                                                        placeholder="Masukkan Surat Keputusan">
-                                                    @error('decree')
-                                                        <p class="text-danger">
-                                                            {{ $message }}
-                                                        </p>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div class="mb-3">
-                                                    <label for="basicpill-email-input">File</label>
+                                                    <label for="basicpill-email-input">Sertifikat</label>
                                                     <input name="file" type="file" class="form-control"
                                                         id="basicpill-phoneno-input" placeholder="Enter Your Name.">
                                                     @error('file')
@@ -408,7 +397,20 @@
                                     <h3>Data 2</h3>
                                     <section>
                                         <div class="row">
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-4">
+                                                <div class="mb-3">
+                                                    <label for="basicpill-email-input">Surat Keputusan</label>
+                                                    <input name="decree" type="text" class="form-control"
+                                                        id="basicpill-phoneno-input"
+                                                        placeholder="Masukkan Surat Keputusan">
+                                                    @error('decree')
+                                                        <p class="text-danger">
+                                                            {{ $message }}
+                                                        </p>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
                                                 <div class="mb-3">
                                                     <label for="basicpill-email-input">Pendidikan</label>
                                                     <input name="education" type="text" class="form-control"
@@ -420,7 +422,7 @@
                                                     @enderror
                                                 </div>
                                             </div>
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-4">
                                                 <div class="mb-3">
                                                     <label for="basicpill-phoneno-input">NIK</label>
                                                     <input name="national_identity_number" type="number"

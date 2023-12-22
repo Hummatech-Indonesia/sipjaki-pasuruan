@@ -162,7 +162,7 @@
                         <td><span class="fs-6 badge px-4 py-2" style="background-color: #E4ECFF;color:#1B3061;">{{ $project->finance_progress }}%</span>
                         </td>
                         <td>
-                            <span class="fs-6 badge px-4 py-2" style="background-color: {{ $project->status == 'nonactive' ? '#FF0000' : '#E4ECFF' }}; color: {{ $project->status == 'nonactive' ? '#FFFFFF' : '#1B3061' }}">
+                        <span class="fs-6 badge px-4 py-2" style="background-color: {{ $project->status == 'nonactive' ? '#FF0000' : '#E4ECFF' }}; color: {{ $project->status == 'nonactive' ? '#FFFFFF' : '#1B3061' }}">
                                 {{ $project->status == "active" ? "Aktif" : "Non Aktif" }}
                             </span>
                         </td>
