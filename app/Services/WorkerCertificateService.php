@@ -49,6 +49,6 @@ class WorkerCertificateService
      */
     public function downloadCertificate(WorkerCertificate $worker_certificate)
     {
-        return response()->download(storage_path('app/public/' . $worker_certificate->file));
+        return response()->download(storage_path('app/public/' . $worker_certificate->file), $worker_certificate->certificate);
     }
 }
