@@ -17,15 +17,7 @@
             <a class="nav-link" style="border: solid 1px #1B3061;" id="administrasi-tab" data-bs-toggle="pill"
                 href="#administrasi" role="tab" aria-controls="administrasi" aria-selected="false">
                 <div class="fw-bold">Administrasi</div>
-            </a>
-            <a class="nav-link" style="border: solid 1px #1B3061;" id="pengurus-tab" data-bs-toggle="pill" href="#pengurus"
-                role="tab" aria-controls="pengurus" aria-selected="false">
-                <div class="fw-bold">Pengurus</div>
-            </a>
-            <a class="nav-link" style="border: solid 1px #1B3061;" id="tenaga-kerja-tab" data-bs-toggle="pill"
-                href="#tenaga-kerja" role="tab" aria-controls="tenaga-kerja" aria-selected="false">
-                <div class="fw-bold">Tenaga Kerja</div>
-            </a>
+        </a>
             <a class="nav-link rounded-end" style="border: solid 1px #1B3061;" id="pengalaman-tab" data-bs-toggle="pill"
                 href="#pengalaman" role="tab" aria-controls="pengalaman" aria-selected="false">
                 <div class="fw-bold">Pengalaman</div>
@@ -129,35 +121,6 @@
         </div>
         <div class="tab-pane fade" id="kualifikasi-klasifikasi" role="tabpanel"
             aria-labelledby="kualifikasi-klasifikasi-tab">
-            <div class="card rounded-4">
-                <div class="card-body">
-                    <div class="d-flex">
-                        <div class="flex-grow-1">
-                            <div class="ms-2">
-                                <div class="btn btn-sm mb-3 text-dark rounded-3" style="background-color: #E4ECFF;">
-                                    Data Kualifikasi / Klasifikasi Badan Usaha
-                                </div>
-                                <p class="fw-bolder fs-4">{{ $serviceProvider->user->name }}</p>
-                            </div>
-                            <table cellpadding="5" style="border-collapse: collapse; width: 40%;" class="fs-6 fw-normal">
-                                <tbody>
-                                    <tr>
-                                        <td>Alamat Badan Usaha</td>
-                                        <td>:</td>
-                                        <td>{{ $serviceProvider->address ? $serviceProvider->address : '-' }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Telepon</td>
-                                        <td>:</td>
-                                        <td>{{ $serviceProvider->user->phone_number }}</td>
-                                    </tr>
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="d-flex justify-content-end mb-2">
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-create-qualification"
                     style="background-color: #1B3061; border-radius: 10px"><i class="fas fa-plus"
@@ -341,35 +304,7 @@
         </div>
 
         <div class="tab-pane fade" id="administrasi" role="tabpanel" aria-labelledby="administrasi-tab">
-            <div class="card rounded-4">
-                <div class="card-body">
-                    <div class="d-flex">
-                        <div class="flex-grow-1">
-                            <div class="ms-2">
-                                <div class="btn btn-sm mb-3 text-dark rounded-3" style="background-color: #E4ECFF;">
-                                    Data Administrasi
-                                </div>
-                                <p class="fw-bolder fs-4">{{ $serviceProvider->user->name }}</p>
-                            </div>
-                            <table cellpadding="5" style="border-collapse: collapse; width: 40%;" class="fs-6 fw-normal">
-                                <tbody>
-                                    <tr>
-                                        <td>Alamat Badan Usaha</td>
-                                        <td>:</td>
-                                        <td>{{ $serviceProvider->address ? $serviceProvider->address : '-' }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Telepon</td>
-                                        <td>:</td>
-                                        <td>{{ $serviceProvider->user->phone_number }}</td>
-                                    </tr>
 
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <h4 class="mt-3 mb-3 fw-bold">Akte Pendiri</h4>
             <div class="card rounded-bottom-4" style="border: 1px solid black;border-radius: 20px 20px 20px 20px;">
                 <h5 class="card-header text-center border-bottom text-uppercase rounded-top-4 p-3"
@@ -837,124 +772,7 @@
                 </table>
             </div>
         </div>
-        <div class="tab-pane fade" id="tenaga-kerja" role="tabpanel" aria-labelledby="tenaga-kerja-tab">
-            <div class="card rounded-4">
-                <div class="card-body">
-                    <div class="d-flex">
-                        <div class="flex-grow-1">
-                            <div class="ms-2">
-                                <div class="btn btn-sm mb-3 text-dark rounded-3" style="background-color: #E4ECFF;">
-                                    Data Tenaga Kerja Badan Usaha
-                                </div>
-                                <p class="fw-bolder fs-4">{{ $serviceProvider->user->name }}</p>
-                            </div>
-                            <table cellpadding="5" style="border-collapse: collapse; width: 40%;" class="fs-6 fw-normal">
-                                <tbody>
-                                    <tr>
-                                        <td>Alamat Badan Usaha</td>
-                                        <td>:</td>
-                                        <td>{{ $serviceProvider->address }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Telepon</td>
-                                        <td>:</td>
-                                        <td>{{ $serviceProvider->user->phone_number }}</td>
-                                    </tr>
 
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-body">
-                    <div class="table-responsive rounded-4">
-                        <table class="table table-bordered" border="1">
-                            <thead>
-                                <tr>
-                                    <th class="text-white" style="background-color: #1B3061">
-                                        No
-                                    </th>
-                                    <th class="text-white" style="background-color: #1B3061">
-                                        Nama
-                                    </th>
-                                    <th class="text-white" style="background-color: #1B3061">
-                                        Tanggal Lahir
-                                    </th>
-                                    <th class="text-white" style="background-color: #1B3061">
-                                        Pendidikan
-                                    </th>
-                                    <th class="text-white" style="background-color: #1B3061">
-                                        No Registrasi
-                                    </th>
-                                    <th class="text-white" style="background-color: #1B3061">
-                                        Jenis Sertifikat
-                                    </th>
-                                    <th class="text-white" style="background-color: #1B3061">
-                                        Detail
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse ($workers as $worker)
-                                    <tr>
-                                        <td class="fs-6">{{ $loop->iteration }}</td>
-                                        <td class="fs-6">{{ $worker->name }}</td>
-                                        <td class="fs-6">
-                                            {{ \Carbon\Carbon::parse($worker->birth_date)->translatedFormat('d F Y') }}
-                                        </td>
-                                        <td class="fs-6">{{ $worker->education }}</td>
-                                        <td class="fs-6">{{ $worker->registration_number }}</td>
-                                        <td>{{ $worker->cerificate }}</td>
-                                        <td>
-                                            <div class="d-flex justify-content-header gap-3">
-                                                <div class="">
-                                                    <button id="btn-detail-{{ $worker->id }}"
-                                                        data-id="{{ $worker->id }}" data-name-worker="{{ $worker->name }}"
-                                                        data-birth_date="{{ \Carbon\Carbon::parse($worker->birth_date)->translatedFormat('d F Y') }}"
-                                                        data-cerificate="{{ $worker->cerificate }}"
-                                                        data-education="{{ $worker->education }}"
-                                                        data-registration_number="{{ $worker->registration_number }}"
-                                                        type="button" data-bs-target="#modal-detail"
-                                                        data-bs-toggle="modal"
-                                                        class="btn btn-detail-tenaga-kerja waves-effect waves-light text-white btn waves-effect d-flex flex-row gap-1 justify-content-evenly"
-                                                        style="background-color: #1B3061">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="19"
-                                                            height="19" viewBox="0 0 24 24" fill="none">
-                                                            <path d="M4.5 12.5C7.5 6 16.5 6 19.5 12.5" stroke="white"
-                                                                stroke-width="1.5" stroke-linecap="round"
-                                                                stroke-linejoin="round" />
-                                                            <path
-                                                                d="M12 16C10.8954 16 10 15.1046 10 14C10 12.8954 10.8954 12 12 12C13.1046 12 14 12.8954 14 14C14 15.1046 13.1046 16 12 16Z"
-                                                                stroke="white" stroke-width="1.5" stroke-linecap="round"
-                                                                stroke-linejoin="round" />
-                                                        </svg> Detail
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="7" class="text-center">
-                                            <div class="d-flex justify-content-center" style="min-height:19rem">
-                                                <div class="my-auto">
-                                                    <img src="{{ asset('no-data.png') }}" width="300"
-                                                        height="300" />
-                                                    <h4 class="text-center mt-4">Tidak Ada Tenaga Kerja!!</h4>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="modal fade" id="modal-detail-qualification" tabindex="-1" aria-labelledby="exampleModalLabel1">
             <div class="modal-dialog modal-md" role="document">
                 <div class="modal-content">
@@ -1057,35 +875,6 @@
             </div>
         </div>
         <div class="tab-pane fade" id="pengalaman" role="tabpanel" aria-labelledby="pengalaman-tab">
-            <div class="card rounded-4">
-                <div class="card-body">
-                    <div class="d-flex">
-                        <div class="flex-grow-1">
-                            <div class="ms-2">
-                                <div class="btn btn-sm mb-3 text-dark rounded-3" style="background-color: #E4ECFF;">
-                                    Data Pengalaman Badan Usaha
-                                </div>
-                                <p class="fw-bolder fs-4">{{ $serviceProvider->user->name }}</p>
-                            </div>
-                            <table cellpadding="5" style="border-collapse: collapse; width: 40%;" class="fs-6 fw-normal">
-                                <tbody>
-                                    <tr>
-                                        <td>Alamat Badan Usaha</td>
-                                        <td>:</td>
-                                        <td>{{ $serviceProvider->address ? $serviceProvider->address : '-' }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Telepon</td>
-                                        <td>:</td>
-                                        <td>{{ $serviceProvider->user->phone_number ? $serviceProvider->user->phone_number : '-' }}
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <h4 class="mt-3 mb-3 fw-bold">Pengalaman</h4>
             <div class="table-responsive rounded-4">
                 <div class="table-responsive">
