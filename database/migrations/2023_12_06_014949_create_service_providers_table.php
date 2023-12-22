@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('province')->nullable();
             $table->text('website')->nullable();
             $table->string('fax')->nullable();
+            $table->string('file')->nullable(); 
             $table->enum('form_of_business_entity', [FormOfBusinessEntityEnum::CV->value, FormOfBusinessEntityEnum::PT->value])->nullable();
             $table->enum('type_of_business_entity', [TypeOfBusinessEntityEnum::EXECUTOR->value, TypeOfBusinessEntityEnum::CONSULTANT->value])->nullable();
             $table->timestamps();
