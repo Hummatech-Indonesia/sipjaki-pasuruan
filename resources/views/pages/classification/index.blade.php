@@ -97,7 +97,7 @@
                             <th class="text-white" style="background-color: #1B3061; text-align: center">Aksi</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody> 
                         @forelse ($classifications as $classification)
                             <tr>
                                 <th scope="row" class="fs-5">{{ $loop->iteration }}</th>

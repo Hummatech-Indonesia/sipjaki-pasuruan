@@ -40,16 +40,18 @@
                             </td>
                             <td>
                                 @php
-                                $imageSrc = 'storage/structure_organitation/structure_organitation.jpg';
-                                $imagePath = public_path($imageSrc);
-                                $defaultImageSrc = 'no-data.png';
-                            @endphp
-                            
-                            @if(file_exists($imagePath))
-                                <img src="{{ asset($imageSrc) }}" width="200px" height="200px" style="object-fit: cover" alt="">
-                            @else
-                                <img src="{{ asset($defaultImageSrc) }}" width="200px" height="200px" style="object-fit: cover"  alt="No Data">
-                            @endif
+                                    $imageSrc = 'storage/structure_organitation/structure_organitation.jpg';
+                                    $imagePath = public_path($imageSrc);
+                                    $defaultImageSrc = 'no-data.png';
+                                @endphp
+
+                                @if (file_exists($imagePath))
+                                    <img src="{{ asset($imageSrc) }}" width="200px" height="200px"
+                                        style="object-fit: cover" alt="">
+                                @else
+                                    <img src="{{ asset($defaultImageSrc) }}" width="200px" height="200px"
+                                        style="object-fit: cover" alt="No Data">
+                                @endif
                             </td>
                             <td>
                                 <div class="d-flex justify-content-header gap-2">
@@ -103,16 +105,18 @@
                             </td>
                             <td>
                                 @php
-                                $imageSrc = 'storage/strategic_plan/strategic_plan.jpg';
-                                $imagePath = public_path($imageSrc);
-                                $defaultImageSrc = 'no-data.png';
-                            @endphp
-                            
-                            @if(file_exists($imagePath))
-                                <img src="{{ asset($imageSrc) }}" width="200px" height="200px" style="object-fit: cover" alt="">
-                            @else
-                                <img src="{{ asset($defaultImageSrc) }}" width="200px" height="200px" style="object-fit: cover"  alt="No Data">
-                            @endif
+                                    $imageSrc = 'storage/strategic_plan/strategic_plan.jpg';
+                                    $imagePath = public_path($imageSrc);
+                                    $defaultImageSrc = 'no-data.png';
+                                @endphp
+
+                                @if (file_exists($imagePath))
+                                    <img src="{{ asset($imageSrc) }}" width="200px" height="200px"
+                                        style="object-fit: cover" alt="">
+                                @else
+                                    <img src="{{ asset($defaultImageSrc) }}" width="200px" height="200px"
+                                        style="object-fit: cover" alt="No Data">
+                                @endif
                             </td>
                             <td>
                                 <div class="d-flex justify-content-header gap-2">
@@ -166,16 +170,18 @@
                             </td>
                             <td>
                                 @php
-                                $imageSrc = 'storage/job_and_function/job_and_function.jpg';
-                                $imagePath = public_path($imageSrc);
-                                $defaultImageSrc = 'no-data.png';
-                            @endphp
-                            
-                            @if(file_exists($imagePath))
-                                <img src="{{ asset($imageSrc) }}" width="200px" height="200px" style="object-fit: cover" alt="">
-                            @else
-                                <img src="{{ asset($defaultImageSrc) }}" width="200px" height="200px" style="object-fit: cover"  alt="No Data">
-                            @endif
+                                    $imageSrc = 'storage/job_and_function/job_and_function.jpg';
+                                    $imagePath = public_path($imageSrc);
+                                    $defaultImageSrc = 'no-data.png';
+                                @endphp
+
+                                @if (file_exists($imagePath))
+                                    <img src="{{ asset($imageSrc) }}" width="200px" height="200px"
+                                        style="object-fit: cover" alt="">
+                                @else
+                                    <img src="{{ asset($defaultImageSrc) }}" width="200px" height="200px"
+                                        style="object-fit: cover" alt="No Data">
+                                @endif
                             </td>
                             <td>
                                 <div class="d-flex justify-content-header gap-2">
@@ -267,7 +273,7 @@
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #1B3061">
-                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Edit Gambar Struktur Organisasi</h5>
+                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Edit Struktur Organisasi</h5>
                     <button type="button" class="btn-close" style="background-color: white" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
@@ -275,10 +281,9 @@
                     <form action="{{ route('images.store') }}" enctype="multipart/form-data" method="POST">
                         @csrf
                         @method('POST')
-                        <img src="" id="img-beranda" height="200" alt="">
-                        <input type="hidden" name="categories" value="structure_organitation">
-                        <input type="file" value="{{ old('photo') }}" name="photo" id="fileInput"
-                            class="form-control">
+                        <input type="hidden" class="mb-" name="categories" value="structure_organitation">
+                            <p class="fs-5 mb-1" style="font-weight: 400">Kategori Struktur Organisasi</p>
+                            <textarea id="summernote" name="photo"></textarea>
                 </div>
                 <div class="modal-footer">
                     <div class="d-flex justify-content-end">
@@ -339,7 +344,7 @@
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #1B3061">
-                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Edit Gambar Rencana Strategis</h5>
+                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Edit Rencana Strategis</h5>
                     <button type="button" class="btn-close" style="background-color: white" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
@@ -347,10 +352,9 @@
                     <div class="modal-body">
                         @csrf
                         @method('POST')
-                        <img src="" id="img-beranda" height="200" alt="">
                         <input type="hidden" name="categories" value="strategic_plan">
-                        <input type="file" value="{{ old('photo') }}" name="photo" id="fileInput"
-                            class="form-control">
+                            <p class="fs-5 mb-1" style="font-weight: 400">Kategori Rencana Strategis</p>
+                            <textarea id="summernote-rencana" name="photo"></textarea>
                     </div>
                     <div class="modal-footer">
                         <div class="d-flex justify-content-end">
@@ -385,10 +389,8 @@
                     <div class="modal-body">
                         @csrf
                         @method('POST')
-                        <img src="" id="img-beranda" height="200" alt="">
-                        <input type="hidden" name="categories" value="job_and_function">
-                        <input type="file" value="{{ old('photo') }}" name="photo" id="fileInput"
-                            class="form-control">
+                            <p class="fs-5 mb-1" style="font-weight: 400">Kategori Gambar Tugas dan Fungsi</p>
+                            <textarea id="summernote-tugas" name="photo"></textarea>
                     </div>
                     <div class="modal-footer">
                         <div class="d-flex justify-content-end">
@@ -455,6 +457,17 @@
         </script>
     @endif
     <script>
+        $(document).ready(function() {
+            $('#summernote').summernote({
+                height: 200
+            });
+            $('#summernote-tugas').summernote({
+                height: 200
+            });
+            $('#summernote-rencana').summernote({
+                height: 200
+            });
+        });
         // preview 
         const fileInput = document.getElementById('fileInput');
         const previewDiv = document.getElementById('preview');

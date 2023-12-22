@@ -21,8 +21,9 @@ class ServiceProviderQualificationController extends Controller
     private ServiceProviderQualificationInterface $serviceProviderQualification;
     private ServiceProviderQualificationService $service;
 
-    public function __construct(ServiceProviderQualificationInterface $serviceProviderQualification)
+    public function __construct(ServiceProviderQualificationInterface $serviceProviderQualification, ServiceProviderQualificationService $serviceProviderQualificationService)
     {
+        $this->service = $serviceProviderQualificationService;
         $this->serviceProviderQualification = $serviceProviderQualification;
     }
 
@@ -69,7 +70,7 @@ class ServiceProviderQualificationController extends Controller
      */
     public function show(ServiceProviderQualification $service_provider_qualification): View
     {
-        return view('', ['serviceProviderQualification' => $service_provider_qualification]);
+        return view('pages.detail-file-sercive', ['serviceProviderQualification' => $service_provider_qualification]);
     }
 
     /**

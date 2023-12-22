@@ -16,7 +16,6 @@ class QualificationRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'file' => 'required|mimes:pdf'
         ];
     }
 

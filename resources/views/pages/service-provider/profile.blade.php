@@ -169,6 +169,9 @@
                             <th style="background-color: #1B3061;color:#ffffff;vertical-align: middle" rowspan="2"
                                 colspan="1">
                                 Asosiasi</th>
+                            <th style="background-color: #1B3061;color:#ffffff;vertical-align: middle" rowspan="2"
+                                colspan="1">
+                                File</th>
                             <th style="background-color: #1B3061;color:#ffffff;vertical-align: middle;width:150px;"
                                 rowspan="2" colspan="1">Tanggal Permohonan</th>
                             <th style="background-color: #1B3061;color:#ffffff;vertical-align: middle;width:150px;"
@@ -187,6 +190,9 @@
                                 <td colspan="1">{{ $serviceProviderQualification->qualification->name }}</td>
                                 <td colspan="1">{{ $serviceProviderQualification->year }}</td>
                                 <td colspan="1">{{ $serviceProviderQualification->serviceProvider->association->name }}
+                                </td>
+                                <td>
+                                    <a href="detail-service-provider-qualification/{{ $serviceProviderQualification->id }}" class="btn text-white" style="background-color: #1B3061">Detail</a>
                                 </td>
                                 <td colspan="1">
                                     {{ Carbon::parse($serviceProviderQualification->created_at)->locale('id_ID')->isoFormat('DD MMMM Y') }}
@@ -1354,7 +1360,7 @@
     <div class="modal fade" id="modal-create-qualification" tabindex="-1" aria-labelledby="exampleModalLabel1">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <form id="form-create" action="{{ route('service.provider.qualifications.store') }}" method="POST">
+                <form id="form-create" action="{{ route('service.provider.qualifications.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('POST')
                     <div class="modal-header d-flex align-items-center">
@@ -1371,6 +1377,7 @@
                                 <option value="">Pilih Klalifikasi</option>
                             </select>
                         </div>
+                        
                         <div class="mb-3">
                             <label for="basicpill-email-input">Sub Klasifikasi</label>
                             <select name="sub_classification_id" class="form-select sub-classifications select2-create"
@@ -1381,6 +1388,10 @@
                                     {{ $message }}
                                 </p>
                             @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="basicpill-email-input">File</label>
+                            <input type="file" name="file" class="form-control">
                         </div>
                         <div class="mb-3">
                             <label for="basicpill-phoneno-input">Kualifikasi</label>
@@ -1446,6 +1457,10 @@
                                 style="width:100%" id="update-list-qualifications">
                                 <option value="">Pilih Kualifikasi</option>
                             </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="basicpill-phoneno-input">File</label>
+                            <input type="file" name="file" class="form-control" id="">
                         </div>
                         <div class="mb-3">
                             <label id="name" for="recipient-name" class="control-label mb-2">Masukan

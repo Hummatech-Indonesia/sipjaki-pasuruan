@@ -2,39 +2,19 @@
 
 @section('style')
     <style>
-        .carousel-control-prev,
-        .carousel-control-next {
-            top: 50%;
-            transform: translateY(-50%);
-            width: 40px;
-            height: 40px;
-            opacity: 0.5;
+        .carousel-control-prev .carousel-control-prev-icon,
+        .carousel-control-next .carousel-control-next-icon {
+            outline: black;
             background-color: rgba(0, 0, 0, 0.3);
-            color: white;
-            border-radius: 50%;
-            font-size: 20px;
-            text-align: center;
-            line-height: 40px;
-            position: absolute;
         }
 
-        .carousel-control-prev {
-            left: 10px;
-        }
-
-        .carousel-control-next {
-            right: 10px;
+        .carousel-control-prev .fa-chevron-left,
+        .carousel-control-next .fa-chevron-right {
+            color: black;
         }
 
         .carousel-caption {
             color: black;
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: rgba(255, 255, 255, 0.7);
-            padding: 5px 10px;
-            border-radius: 5px;
         }
     </style>
 @endsection
@@ -44,21 +24,24 @@
         <div id="carousel" class="carousel" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <canvas id="pdf-canvas" class="d-block w-100" data-file="{{ asset('Bootsrap.pdf') }}"></canvas>
+                    <canvas id="pdf-canvas" class="d-block w-100" data-file="{{ asset('storage/qualification/'.$serviceProviderQualification->file) }}"></canvas>
                     <div class="carousel-caption d-none d-md-block">
                         <span>Page: <span id="page-num"></span> / <span id="page-count"></span></span>
                     </div>
                 </div>
             </div>
             <a class="carousel-control-prev" href="#" role="button" data-slide="prev">
-                <i class="fas fa-chevron-left"></i>
+                <i class="fas fa-chevron-left fa-2x"></i>
+                <span class="sr-only">Previous</span>
             </a>
             <a class="carousel-control-next" href="#" role="button" data-slide="next">
-                <i class="fas fa-chevron-right"></i>
+                <i class="fas fa-chevron-right fa-2x"></i>
+                <span class="sr-only">Next</span>
             </a>
         </div>
     </main>
 @endsection
+
 @section('script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
     <script>

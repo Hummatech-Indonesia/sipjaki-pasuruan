@@ -50,12 +50,6 @@
                                     name="name" aria-describedby="name"
                                     placeholder="Masukkan Kualifikasi Nasional Indonesia" />
                             </div>
-                            <div class="mb-3">
-                                <label id="name" for="recipient-name" class="control-label mb-2">File</label>
-                                <input type="file" class="form-control" id="create-name" class="form-control"
-                                    name="file" aria-describedby="name"
-                                    placeholder="Masukkan Kualifikasi Nasional Indonesia" />
-                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger text-white font-medium waves-effect"
@@ -82,7 +76,6 @@
                     <tr>
                         <th style="background-color: #1B3061;color:#ffffff" >No</th>
                         <th style="background-color: #1B3061;color:#ffffff">Nama Kualifikasi</th>
-                        <th style="background-color: #1B3061;color:#ffffff">File</th>
                         <th style="background-color: #1B3061;color:#ffffff; text-align: center">Aksi</th>
                     </tr>
                 </thead>
@@ -91,9 +84,6 @@
                         <tr>
                             <td>{{ $index + 1 }}</td>
                             <td>{{ $qualification->name }}
-                            </td>
-                            <td>
-                                <button class="btn text-white" style="background-color: #1B3061">Detail</button>
                             </td>
                             <td class="d-flex flex-row gap-3 justify-content-center" style="border-bottom: 1px solid #fff">
                                 <a href="{{ route('qualifications.show', $qualification->id) }}" type="button" class="btn  waves-effect waves-light text-white"
@@ -156,15 +146,6 @@
                                 <input type="text" class="form-control" id="update-name" class="form-control"
                                     name="name" aria-describedby="name"
                                     placeholder="Masukkan Kualifikasi Nasional Indonesia" />
-                            </div>
-                            <div class="mb-3">
-                                <label id="name" for="recipient-name" class="control-label mb-2">File</label>
-                                <input type="file" class="form-control" id="create-name" class="form-control"
-                                    name="file" aria-describedby="name"
-                                    placeholder="Masukkan Kualifikasi Nasional Indonesia" />
-                                    @error('file')
-                                        {{ $message }}
-                                    @enderror
                             </div>
                         </div>
                         <div class="modal-footer">

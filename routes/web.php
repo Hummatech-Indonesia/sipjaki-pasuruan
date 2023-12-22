@@ -123,9 +123,7 @@ Route::middleware('auth')->group(function () {
 
 
     Route::middleware('role:superadmin')->group(function () {
-        Route::get('detail-file', function () {
-            return view('pages.detail-file');
-        });
+        
         Route::get('dashboard-superadmin', [SuperadminController::class, 'dashboard'])->name('dashboard-superadmin');
         Route::resources([
             'contract-categories' => ContractCategoryController::class,
@@ -187,7 +185,9 @@ Route::middleware('auth')->group(function () {
         Route::post('agencies', [UserController::class, 'store'])->name('agencies.store');
         Route::put('agencies/{user}', [UserController::class, 'update'])->name('agencies.update');
         Route::delete('agencies/{user}', [UserController::class, 'destroy'])->name('agencies.destroy');
-
+        Route::get('detail-file', function () {
+            return view('pages.detail-file');
+        });
         Route::get('images', function () {
             return view('pages.admin.input-image');
         })->name('images.index');
