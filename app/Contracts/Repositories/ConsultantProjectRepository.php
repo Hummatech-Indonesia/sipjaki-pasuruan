@@ -17,9 +17,10 @@ class ConsultantProjectRepository extends BaseRepository implements ConsultantPr
      *
      * @return mixed
      */
-    public function get(): mixed
+    public function show(mixed $id): mixed
     {
         return $this->model->query()
+            ->where('project_id', $id)
             ->get();
     }
 
