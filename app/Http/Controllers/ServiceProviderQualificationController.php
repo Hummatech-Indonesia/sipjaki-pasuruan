@@ -187,6 +187,6 @@ class ServiceProviderQualificationController extends Controller
      */
     public function detailPending(ServiceProviderQualification $service_provider_qualification) : View
     {
-        return view('', ['service_provider_qualification' => $service_provider_qualification]);
+        return view('pages.detail-file', ['service_provider_qualification' => $service_provider_qualification]);
     }
 }
