@@ -17,6 +17,7 @@ class ServiceProviderQualificationRequest extends FormRequest
             'sub_classification_id' => 'required|exists:sub_classifications,id',
             'qualification_id' => 'required|exists:qualifications,id',
             'year' => 'required|max:4',
+            'file' =>  ($this->serviceProviderQualification == null) ? 'required|file' : 'nullable'
         ];
     }
 
