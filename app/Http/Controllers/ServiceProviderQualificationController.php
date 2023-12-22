@@ -101,6 +101,7 @@ class ServiceProviderQualificationController extends Controller
      */
     public function delete(Request $request, ServiceProviderQualification $serviceProviderQualification)
     {
+        $this->service->remove($serviceProviderQualification->file);
         $this->serviceProviderQualification->delete($serviceProviderQualification->id);
         if ($request->is('api/*')) {
             return ResponseHelper::success(null, trans('alert.add_success'));
