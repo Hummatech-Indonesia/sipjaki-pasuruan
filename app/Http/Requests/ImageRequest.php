@@ -17,7 +17,7 @@ class ImageRequest extends FormRequest
     {
         return [
             'categories' => ['required', new CategoryImageRule],
-            'photo' => 'required|mimes:png,jpg,jpeg',
+            'photo' => 'required',
         ];
     }
 
@@ -31,7 +31,6 @@ class ImageRequest extends FormRequest
         return [
             'categories.required' => 'Kategori wajib diisi',
             'photo.required' => 'Foto wajib diisi',
-            'photo.mimes' => 'Foto yang anda inputkan harus berupa berekstensi PNG, JPG Ataupun JPEG'
         ];
     }
 }
