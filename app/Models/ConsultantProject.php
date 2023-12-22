@@ -12,7 +12,7 @@ class ConsultantProject extends Model implements HasProject
     use HasFactory;
     protected $table = 'consultant_projects';
     protected $primaryKey = 'id';
-    protected $fillable = ['id', 'project_id', 'contract', 'administrative_minutes', 'report', 'minutes_of_disbursement'];
+    protected $fillable = ['id', 'project_id', 'name_package', 'contract', 'administrative_minutes', 'report', 'minutes_of_disbursement'];
     protected $guarded = [];
     public $incrementing = false;
     public $keyType = 'char';

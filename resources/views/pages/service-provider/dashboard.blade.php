@@ -137,7 +137,7 @@
         <h4 class="mb-sm-0 font-size-18">Pekerjaan Aktif</h4>
     </div>
     <div class="card p-3">
-        <h5 class="mb-3">
+        <h5 class="mb-4">
             Berikut daftar Pekerjaan sedang aktif
         </h5>
         <div class="table-responsive">

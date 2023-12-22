@@ -325,25 +325,9 @@
     </div>
 
     <div class="card p-3">
-        <h5 class="mb-2">
+        <h5 class="mb-4">
             Berikut daftar Pekerjaan sedang aktif
         </h5>
-        <form action="" class="d-flex">
-            <div class="position-relative search-container me-2">
-                <input type="search" class="form-control py-2 ps-5" name="name" id="search-name"
-                    placeholder="Search" value="{{ request()->name }}">
-                <i class="bx bx-search-alt search-icon"></i>
-            </div>
-            <div class="py-3">
-                <select name="year" class="form-select pe-5">
-                    <option value="2022" {{ $year == '2022' ? 'selected' : '' }}>2022</option>
-                    <option value="2023" {{ $year == '2023' ? 'selected' : '' }}>2023</option>
-                </select>
-            </div>
-            <div class="py-3 px-2">
-                <button class="btn text-white" type="submit" style="background-color: #1B3061">Search</button>
-            </div>
-        </form>
         <div class="table-responsive">
             <table class="table table-borderless" border="1">
                 <thead>

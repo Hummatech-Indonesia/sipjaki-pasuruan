@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Interfaces\ExecutorProjectInterface;
+use App\Http\Requests\ExecutorProjectRequest;
+use App\Models\Project;
 use App\Services\ExecutorProjectService;
 use Illuminate\Http\Request;
 
@@ -14,59 +16,29 @@ class ExecutorProjectController extends Controller
         $this->executorProject = $executorProjectInterface;
         $this->service = $executorProjectService;
     }
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
 
     /**
-     * Show the form for creating a new resource.
+     * index
+     *
+     * @return void
      */
-    public function create()
+    public function index(Project $project)
     {
-        //
+        $executorProjects = $this->executorProject->show($project->id);
+        return view('', ['executorProjects' => $executorProjects]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
-     * Display the specified resource.
+     * store
+     *
+     * @param  mixed $request
+     * @param  mixed $project
+     * @return void
      */
-    public function show(string $id)
+    public function store(ExecutorProjectRequest $request, Project $project)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $this->executorProject->store($this->service->store($request, $project));
+        return redirect()->back()->with('success', trans('alert.update_success'));
     }
 }

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('consultant_projects', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('project_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string('name_package')->nullable();
             $table->string('contract')->nullable();
             $table->string('administrative_minutes')->nullable();
             $table->string('report')->nullable();
