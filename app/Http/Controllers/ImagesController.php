@@ -28,9 +28,10 @@ class ImagesController extends Controller
      *
      * @return void
      */
-    public function store(ImageRequest $request, Image $image)
+    public function store(ImageRequest $request)
     {
-        $this->service->update($request, $image);
+        $this->image->store($this->service->uploadImageSummernote($request));
+
         if ($request->is('api/*')) {
             return ResponseHelper::success(null, trans('alert.update_success'));
         } else {

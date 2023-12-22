@@ -5,49 +5,61 @@ namespace App\Services;
 use App\Http\Requests\ImageRequest;
 use App\Models\Image;
 use App\Traits\UploadTrait;
+use Illuminate\Support\Facades\Storage;
 
 class ImageService
 {
 
-    use UploadTrait;
-
     /**
-     * store
+     * uploadImageSummernote
      *
      * @param  mixed $request
-     * @return array
+     * @return void
      */
-    public function store(ImageRequest $request): array
+    public function uploadImageSummernote(ImageRequest $request): array
     {
         $data = $request->validated();
+
+        $domQuestion = new \DOMDocument();
+        libxml_use_internal_errors(true);
+        $domQuestion->loadHTML($data['photo'], LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NOIMPLIED);
+        $this->processImages($domQuestion, $data['categories']);
+        libxml_clear_errors();
+
         return [
-            'photo' => $this->upload($data['categories'], $request->file('photo')),
-            'categories' => $data['categories'],
+            'photo' => $domQuestion->saveHTML(),
+            'categories' => $data['categories']
         ];
     }
 
     /**
-     * update
+     * processImages
      *
-     * @param  mixed $request
-     * @param  mixed $image
-     * @return array
+     * @param  mixed $dom
+     * @param  mixed $storage
+     * @return void
      */
-    public function update(ImageRequest $request, Image $image): array
+    private function processImages(\DOMDocument $dom, $storage)
     {
-        $data = $request->validated();
-        $old_photo = $image->photo;
-        if ($old_photo) {
-            if ($request->hasFile('photo')) {
-                $this->remove($old_photo);
-                $old_photo = $this->updateWithCustomName($data['categories'], $request->file('photo'), $data['categories']);
+        $images = $dom->getElementsByTagName('img');
+        foreach ($images as $img) {
+            $src = $img->getAttribute('src');
+            if (preg_match('#data:image/#', $src)) {
+                preg_match('#data:image/(?<mime>.*?)\;#', $src, $groups);
+                $mimetype = $groups['mime'];
+                $fileNameContent = uniqid();
+                $fileNameContentRand = substr(md5($fileNameContent), 6, 6) . '_' . time();
+                $filepath = $fileNameContentRand . '.' . $mimetype;
+
+                $imageData = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $src));
+
+                Storage::put($storage . '/' . $filepath, $imageData);
+
+                $new_src = Storage::url($storage . '/' . $filepath);
+                $img->removeAttribute('src');
+                $img->setAttribute('src', $new_src);
+                $img->setAttribute('class', 'img-responsive');
             }
-        } else {
-            $old_photo = $this->updateWithCustomName($data['categories'], $request->file('photo'), $data['categories']);
         }
-        return [
-            'categories' => $data['categories'],
-            'photo' => $old_photo,
-        ];
     }
 }
