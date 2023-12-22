@@ -122,7 +122,8 @@
                                         <td>Profile Perusahaan</td>
                                         <td>:</td>
                                         <td>@if ( $serviceProvider->file)
-                                            <a href="{{ asset('storage/'. $serviceProvider->file) }}" target="_blank"> <button type="submit" class="btn text-white fw-normal" style="background-color:#2CA67A;">
+                                            <a href="{{ asset('storage/'. $serviceProvider->file) }}" download>
+                                                <button type="submit" class="btn text-white fw-normal" style="background-color:#2CA67A;">
                                                 <svg xmlns="http://www.w3.org/2000/svg" height="14" width="14" fill="white"
                                                     transform="rotate(90)" viewBox="0 0 512 512">
                                                     <path
@@ -1000,14 +1001,14 @@
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Direktur</label>
-                                    <input name="directur" type="name" 
+                                    <input name="directur" type="name" value="{{ $serviceProvider->directur }}"
                                         class="form-control" id="update-directur">
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Profile Perusahaan</label>
-                                    <input name="file" type="file"
+                                    <input name="file" type="file" value="{{ $serviceProvider->file }}"
                                         class="form-control" id="update-file">
                                 </div>
                             </div>
