@@ -80,7 +80,7 @@ class ServiceProviderController extends Controller
      * @param  mixed $service_provider
      * @return View
      */
-    public function show(ServiceProvider $service_provider): View
+    public function show(ServiceProvider $service_provider,Request $request): View
     {
         $serviceProviders = $this->serviceProvider->show($service_provider->id);
         $serviceProviderQualifications = $this->serviceProviderQualification->customPaginate($request, 10);
