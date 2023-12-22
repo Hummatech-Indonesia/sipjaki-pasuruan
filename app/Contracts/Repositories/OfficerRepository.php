@@ -52,7 +52,9 @@ class OfficerRepository extends BaseRepository implements OfficerInterface
     public function get(): mixed
     {
         return $this->model->query()
-            ->where('service_provider_id', auth()->user()->serviceProvider->id)
+            ->when(auth()->user()->serviceProvider, function ($query) {
+                $query->where('service_provider_id', auth()->user()->serviceProvider->id);
+            })
             ->get();
     }
 

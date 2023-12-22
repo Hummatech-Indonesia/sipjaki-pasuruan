@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class WorkerCertificateRequest extends FormRequest
 {
-     /**
+    /**
      * Get the validation rules that apply to the request.
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
@@ -14,7 +14,7 @@ class WorkerCertificateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'file' => 'required|mimes:pdf',
+            'file' => $this->worker_certificate == null ? 'required|mimes:pdf' : 'nullable|mimes:pdf',
             'certificate' => 'required|max:255',
             'registration_number' => 'required|max:255',
         ];

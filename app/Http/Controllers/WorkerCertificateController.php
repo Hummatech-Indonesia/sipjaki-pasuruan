@@ -7,7 +7,6 @@ use App\Http\Requests\WorkerCertificateRequest;
 use App\Models\Worker;
 use App\Models\WorkerCertificate;
 use App\Services\WorkerCertificateService;
-use Illuminate\Http\Request;
 
 class WorkerCertificateController extends Controller
 {
@@ -25,7 +24,7 @@ class WorkerCertificateController extends Controller
     public function index(Worker $worker)
     {
         $workerCertificates = $this->workerCertificate->show($worker->id);
-        return view('', ['workerCertificates' => $workerCertificates]);
+        return view('pages.service-provider.workforce-certificate', ['workerCertificates' => $workerCertificates, 'worker' => $worker]);
     }
 
     /**
@@ -58,7 +57,7 @@ class WorkerCertificateController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(WorkerCertificate $worker_ertificate)
+    public function edit(WorkerCertificate $worker_certificate)
     {
         //
     }
@@ -80,5 +79,16 @@ class WorkerCertificateController extends Controller
         $this->service->remove($worker_certificate->file);
         $this->workerCertificate->delete($worker_certificate->id);
         return redirect()->back()->with('success', trans('alert.delete_success'));
+    }
+
+    /**
+     * downloadCertificate
+     *
+     * @param  mixed $worker_certificate
+     * @return void
+     */
+    public function downloadCertificate(WorkerCertificate $worker_certificate)
+    {
+        return $this->service->downloadCertificate($worker_certificate);
     }
 }
