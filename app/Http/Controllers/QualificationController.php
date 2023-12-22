@@ -114,4 +114,19 @@ class QualificationController extends Controller
     {
         return ResponseHelper::success($this->qualification->get());
     }
+
+    /**
+     * detail
+     *
+     * @param  mixed $qualification
+     * @return View
+     */
+    public function detail(Qualification $qualification, Request $request): View|JsonResponse
+    {
+        if ($request->is('api/*')) {
+            return ResponseHelper::success($qualification);
+        } else {
+            return View('', ['qualification' => $qualification]);
+        }
+    }
 }

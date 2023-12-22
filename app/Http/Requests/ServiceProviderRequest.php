@@ -18,6 +18,7 @@ class ServiceProviderRequest extends FormRequest
         return [
             'name' => 'required|max:255',
             'address' => 'required',
+            'directur' => 'required|max:255',
             'city' => 'required|max:50',
             'postal_code' => 'required|max:10',
             'province' => 'required|max:255',
@@ -29,9 +30,16 @@ class ServiceProviderRequest extends FormRequest
         ];
     }
 
-    public function messages()
+    /**
+     * messages
+     *
+     * @return array
+     */
+    public function messages(): array
     {
         return [
+            'directur.required' => 'Nama direktur wajib diisi',
+            'directur.max' => 'Nama direktur maksimal 255 karakter',
             'name.required' => 'Nama perusahaan harus diisi.',
             'name.max' => 'Nama perusahaan tidak boleh lebih dari :max karakter.',
             'address.required' => 'Alamat perusahaan harus diisi.',
