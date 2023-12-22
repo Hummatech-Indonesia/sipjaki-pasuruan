@@ -82,6 +82,13 @@ class ServiceProviderController extends Controller
      */
     public function show(ServiceProvider $service_provider): View
     {
+        $serviceProviders = $this->serviceProvider->show($service_provider->id);
+        $serviceProviderQualifications = $this->serviceProviderQualification->customPaginate($request, 10);
+        $officers = $this->officer->get();
+        $workers = $this->worker->get();
+        $verifications = $service_provider->verification;
+        $amendmentDeeps = $service_provider->amendmentDeed;
+        $foundingDeeps = $service_provider->foundingDeed;
         return view('', ['serviceProvider' => $service_provider]);
     }
 
