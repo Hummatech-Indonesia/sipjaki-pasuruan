@@ -28,7 +28,6 @@ class OfficerRequest extends FormRequest
             'position' => 'required|max:255',
             'citizenship' => ['required', new CitizenshipRule],
             'education' => 'required|max:255',
-            'job' => 'required',
         ];
     }
 

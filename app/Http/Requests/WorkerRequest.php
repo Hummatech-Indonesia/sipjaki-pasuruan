@@ -26,10 +26,8 @@ class WorkerRequest extends FormRequest
             'address' => 'required',
             'religion' => ['required', new ReligionRule],
             'marital_status' => ['required', new MaritalStatusRule],
-            'position' => 'required|max:255',
             'citizenship' => ['required', new CitizenshipRule],
             'education' => 'required|max:255',
-            'job' => 'required',
             'phone_number' => 'required|max:255',
         ];
     }

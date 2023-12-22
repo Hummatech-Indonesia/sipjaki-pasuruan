@@ -25,11 +25,9 @@ return new class extends Migration
             $table->text('address');
             $table->enum('religion', [ReligionEnum::ISLAM->value, ReligionEnum::KRISTEN->value, ReligionEnum::KATHOLIK->value, ReligionEnum::HINDU->value, ReligionEnum::BUDHA->value, ReligionEnum::NOTFILLED->value]);
             $table->enum('marital_status', [MaritalStatusEnum::MARRY->value, MaritalStatusEnum::SINGLE->value, MaritalStatusEnum::DIVORCED->value, MaritalStatusEnum::DEATH_DIVORCE->value]);
-            $table->string('position');
             $table->enum('citizenship', [CitizenshipEnum::WNA->value, CitizenshipEnum::WNI->value]);
             $table->string('education');
             $table->string('phone_number');
-            $table->string('job');
             $table->timestamps();
         });
     }
