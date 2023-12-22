@@ -32,10 +32,6 @@ return new class extends Migration
             $table->integer('year');
             $table->dateTime('start_at');
             $table->dateTime('end_at');
-            $table->string('contract')->nullable();
-            $table->string('administrative_minutes')->nullable();
-            $table->string('report')->nullable();
-            $table->string('minutes_of_disbursement')->nullable();
             $table->enum('status', [StatusEnum::ACTIVE->value, StatusEnum::NONACTIVE->value]);
             $table->timestamps();
         });
