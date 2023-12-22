@@ -1,6 +1,8 @@
 @extends('layouts.app')
-
 @section('content')
+    @php
+        use Carbon\Carbon;
+    @endphp
     <p class="fs-4 text-dark" style="font-weight: 600">
         Paket Pekerjaan
     </p>
@@ -81,35 +83,35 @@
                                             </select>
                                         </div>
                                     </div>
-                                        <div class="col-lg-6">
-                                            <div class="mb-3">
-                                                <label for="basicpill-penyedia-jasa">Penyelenggara</label>
-                                                <select class="form-control select2-create" style="width:100%"
-                                                    name="executor_id" id="basicpill-penyelenggara">
-                                                    @foreach ($executors as $executor)
-                                                        <option value="{{ $executor->id }}"
-                                                            {{ old('service_provider_id') == $executor->id ? 'selected' : '' }}>
-                                                            {{ $executor->user->name }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="mb-3">
-                                                <label for="basicpill-penyedia-jasa">Konsultan</label>
-                                                <select class="form-control select2-create" style="width:100%"
-                                                    name="consultant_id" id="basicpill-konsultan">
-                                                    @foreach ($consultants as $consultant)
-                                                        <option value="{{ $consultant->id }}"
-                                                            {{ old('service_provider_id') == $consultant->id ? 'selected' : '' }}>
-                                                            {{ $consultant->user->name }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label for="basicpill-penyedia-jasa">Penyelenggara</label>
+                                            <select class="form-control select2-create" style="width:100%"
+                                                name="executor_id" id="basicpill-penyelenggara">
+                                                @foreach ($executors as $executor)
+                                                    <option value="{{ $executor->id }}"
+                                                        {{ old('service_provider_id') == $executor->id ? 'selected' : '' }}>
+                                                        {{ $executor->user->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label for="basicpill-penyedia-jasa">Konsultan</label>
+                                            <select class="form-control select2-create" style="width:100%"
+                                                name="consultant_id" id="basicpill-konsultan">
+                                                @foreach ($consultants as $consultant)
+                                                    <option value="{{ $consultant->id }}"
+                                                        {{ old('service_provider_id') == $consultant->id ? 'selected' : '' }}>
+                                                        {{ $consultant->user->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
                             </section>
 
                             <!-- Company Document -->
@@ -274,10 +276,12 @@
                                 <div class="d-flex justify-content-center gap-2">
                                     <div class="d-flex justify-content-center mb-2">
                                         <button data-id="{{ $project->id }}" style="min-width: 90px;width:100%"
-                                            class="btn btn-danger btn-delete">Hapus</button>
+                                            class="btn btn-danger btn-delete d-flex"><i
+                                                class="bx bx-bx bxs-trash fs-4 me-1"></i>
+                                            Hapus</button>
                                     </div>
                                     <div class="d-flex justify-content-center mb-2">
-                                        <button style="min-width: 90px;width:100%" class="btn btn-edit btn-warning"
+                                        <button style="min-width: 90px;width:100%" class="d-flex btn btn-edit btn-warning"
                                             id="btn-edit-{{ $project->id }}" data-id="{{ $project->id }}"
                                             data-name="{{ $project->name }}" data-year="{{ $project->year }}"
                                             data-status="{{ $project->status }}"
@@ -293,24 +297,35 @@
                                             data-contract_category_id="{{ $project->contract_category_id }}"
                                             data-consultant_id="{{ $project->consultant_id }}"
                                             data-executor_id="{{ $project->executor_id }}"
-                                            data-characteristic_project="{{ $project->characteristic_project }}">Edit</button>
+                                            data-characteristic_project="{{ $project->characteristic_project }}"><i
+                                                class="bx bx-bx bxs-edit fs-4 me-1"></i> Edit</button>
                                     </div>
                                     <div class="d-flex justify-content-center mb-2">
                                         <button style="min-width: 90px;width:100%;background-color: #1B3061"
                                             class="btn text-white btn-detail" id="btn-detail-{{ $project->id }}"
                                             data-id="{{ $project->id }}" data-name="{{ $project->name }}"
-                                            data-year="{{ $project->year }}" data-status="{{ $project->status }}"
-                                            data-start_at="{{ \Carbon\Carbon::parse($project->start_at)->format('Y-m-d') }}"
-                                            data-end_at="{{ \Carbon\Carbon::parse($project->end_at)->format('Y-m-d') }}"
+                                            data-year="{{ $project->year }}" data-status="{{ $project->status == 'active' ? 'Aktif' : 'Tidak Aktif' }}"
+                                            data-start_at="{{ Carbon::parse($project->start_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}"
+                                            data-end_at="{{ Carbon::parse($project->end_at)->locale('id_ID')->isoFormat('DD MMMM Y') }}"
                                             data-finance_progress="{{ $project->finance_progress ? $project->finance_progress . ' %' : '-' }}"
-                                            data-finance_progress_start="{{ \Carbon\Carbon::parse($project->finance_progress_start)->format('Y-m-d') ? Carbon\Carbon::parse($project->finance_progress_start)->format('Y-m-d') : '-' }}"
+                                            data-finance_progress_start="{{ Carbon::parse($project->finance_progress_start)->locale('id_ID')->isoFormat('DD MMMM Y')? Carbon::parse($project->finance_progress_start)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}"
                                             data-physical_progress="{{ $project->physical_progress ? $project->physical_progress . ' %' : '-' }}"
-                                            data-physical_progress_start="{{ \Carbon\Carbon::parse($project->physical_progress_start)->format('Y-m-d') ? \Carbon\Carbon::parse($project->physical_progress_start)->format('Y-m-d') : '-' }}"
+                                            data-physical_progress_start="{{ Carbon::parse($project->physical_progress_start)->locale('id_ID')->isoFormat('DD MMMM Y')? Carbon::parse($project->physical_progress_start)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}"
                                             data-project_value="{{ $project->project_value }}"
-                                            data-fund_source="{{ $project->fundSource->name }}" data-konsultan="{{ $project->consultant->user->name }}"
+                                            data-fund_source="{{ $project->fundSource->name }}"
+                                            data-konsultan="{{ $project->consultant->user->name }}"
                                             data-executor="{{ $project->executor->user->name }}"
                                             data-contract_category_name="{{ $project->contractCategory->name }}"
-                                            data-characteristic_project="{{ $project->characteristic_project }}">Detail</button>
+                                            data-characteristic_project="{{ $project->characteristic_project }}"><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="19" height="19"
+                                                viewBox="0 0 24 24" fill="none">
+                                                <path d="M4.5 12.5C7.5 6 16.5 6 19.5 12.5" stroke="white"
+                                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path
+                                                    d="M12 16C10.8954 16 10 15.1046 10 14C10 12.8954 10.8954 12 12 12C13.1046 12 14 12.8954 14 14C14 15.1046 13.1046 16 12 16Z"
+                                                    stroke="white" stroke-width="1.5" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                            </svg> Detail</button>
                                     </div>
                                 </div>
                             </td>
@@ -342,137 +357,83 @@
                         aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="badge bg-info">
-                                <p class="mb-0 px-3 py-1 fs-6">
-                                    <span id="detail-year"></span>
-                                </p>
-                            </div>
-                            <p class="mt-3 fs-5 text-dark mb-2" style="font-weight: 700">
-                                <span id="detail-name"></span>
-                            </p>
-                            <div class="">
-                                <div class="row mb-1">
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark">Nilai Kontrak :</p>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                id="detail-project_value"></span></p>
-                                    </div>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark">Progres Fisik :</p>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                id="detail-physical_progress"></span></p>
-                                    </div>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark">Progres Keuangan :</p>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                id="detail-finance_progress"></span></p>
-                                    </div>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark">Status :</p>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                id="detail-status"></span></p>
-                                    </div>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark">Konsultan :</p>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                id="detail-konsultan"></span></p>
-                                    </div>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark">Penyelenggara :</p>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                id="detail-executor"></span></p>
-                                    </div>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark">Mulai :</p>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                id="detail-start_at"></span></p>
-                                    </div>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark">Selesai :</p>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                id="detail-end_at"></span></p>
-                                    </div>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark">Fisik Bulan :</p>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                id="detail-physical_progress_start"></span></p>
-                                    </div>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark">Keuangan Bulan :</p>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                id="detail-finance_progress_start"></span></p>
-                                    </div>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark">Sumber Dana :</p>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                id="detail-fund_source"></span></p>
-                                    </div>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark">jenis Kontrak :</p>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"> <span
-                                                id="detail-contract_category_name"></span></p>
-                                    </div>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark">Karakteristik Kontrak :</p>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                id="detail-characteristic_project_name"></span></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="badge bg-info">
+                        <p class="mb-0 px-3 py-1 fs-6">
+                            <span id="detail-year"></span>
+                        </p>
                     </div>
+                    <p class="mt-3 fs-5 text-dark mb-2" style="font-weight: 700">
+                        <span id="detail-name"></span>
+                    </p>
+                    <table cellpadding="7" style="border-collapse: collapse;width:100%;" class="fs-6 fw-normal">
+                        <tbody>
+                            <tr>
+                                <td class="fw-bold">Nilai Kontrak</td>
+                                <td>:</td>
+                                <td id="detail-project_value"></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">Progres Fisik</td>
+                                <td>:</td>
+                                <td id="detail-physical_progress"></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">Progres Keuangan</td>
+                                <td>:</td>
+                                <td id="detail-finance_progress"></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">Status</td>
+                                <td>:</td>
+                                <td id="detail-status"></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">Konsultan</td>
+                                <td>:</td>
+                                <td id="detail-konsultan"></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">Penyelenggara</td>
+                                <td>:</td>
+                                <td id="detail-executor"></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">Mulai</td>
+                                <td>:</td>
+                                <td id="detail-start_at"></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">Selesai</td>
+                                <td>:</td>
+                                <td id="detail-end_at"></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">Fisik Bulan</td>
+                                <td>:</td>
+                                <td id="detail-physical_progress_start"></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">Keuangan Bulan</td>
+                                <td>:</td>
+                                <td id="detail-finance_progress_start"></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">Sumber Dana</td>
+                                <td>:</td>
+                                <td id="detail-fund_source"></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">jenis Kontrak</td>
+                                <td>:</td>
+                                <td id="detail-contract_category_name"></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">Karakteristik Kontrak</td>
+                                <td>:</td>
+                                <td id="detail-characteristic_project_name"></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -526,35 +487,35 @@
                                             </select>
                                         </div>
                                     </div>
-                                        <div class="col-lg-6">
-                                            <div class="mb-3">
-                                                <label for="update-penyedia-jasa">Penyelenggara</label>
-                                                <select class="form-control select2-update" style="width:100%"
-                                                    name="executor_id" id="update-penyelenggara">
-                                                    @foreach ($executors as $serviceProvider)
-                                                        <option value="{{ $serviceProvider->id }}"
-                                                            {{ old('service_provider_id') == $serviceProvider->id ? 'selected' : '' }}>
-                                                            {{ $serviceProvider->user->name }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="mb-3">
-                                                <label for="update-penyedia-jasa">Konsultan</label>
-                                                <select class="form-control select2-update" style="width:100%"
-                                                    name="consultant_id" id="update-konsultan">
-                                                    @foreach ($consultants as $serviceProvider)
-                                                        <option value="{{ $serviceProvider->id }}"
-                                                            {{ old('service_provider_id') == $serviceProvider->id ? 'selected' : '' }}>
-                                                            {{ $serviceProvider->user->name }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label for="update-penyedia-jasa">Penyelenggara</label>
+                                            <select class="form-control select2-update" style="width:100%"
+                                                name="executor_id" id="update-penyelenggara">
+                                                @foreach ($executors as $serviceProvider)
+                                                    <option value="{{ $serviceProvider->id }}"
+                                                        {{ old('service_provider_id') == $serviceProvider->id ? 'selected' : '' }}>
+                                                        {{ $serviceProvider->user->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label for="update-penyedia-jasa">Konsultan</label>
+                                            <select class="form-control select2-update" style="width:100%"
+                                                name="consultant_id" id="update-konsultan">
+                                                @foreach ($consultants as $serviceProvider)
+                                                    <option value="{{ $serviceProvider->id }}"
+                                                        {{ old('service_provider_id') == $serviceProvider->id ? 'selected' : '' }}>
+                                                        {{ $serviceProvider->user->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
                             </section>
 
                             <!-- Company Document -->
@@ -624,8 +585,8 @@
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="update-end_at">Selesai</label>
-                                            <input type="date" name="end_at" class="form-control"
-                                                id="update-end_at" value="{{ old('end_at') }}">
+                                            <input type="date" name="end_at" class="form-control" id="update-end_at"
+                                                value="{{ old('end_at') }}">
                                         </div>
                                     </div>
                                 </div>
@@ -667,8 +628,7 @@
                                             <div class="mb-3">
                                                 <label for="update-declaration-input">Progress Keuangan(%)</label>
                                                 <input type="number" name="finance_progress" class="form-control"
-                                                    id="update-Declaration-input"
-                                                    placeholder="Masukan progress keuangan"
+                                                    id="update-Declaration-input" placeholder="Masukan progress keuangan"
                                                     value="{{ old('finance_progress') }}">
                                             </div>
                                         </div>
@@ -717,7 +677,7 @@
             $('#modal-detail').modal('show')
         })
         $('.btn-edit').click(function() {
-            const formData = getDataAttributes($(this).attr('id'))            
+            const formData = getDataAttributes($(this).attr('id'))
             var actionUrl = `projects/${formData['id']}`;
             $('#form-update').attr('action', actionUrl);
 

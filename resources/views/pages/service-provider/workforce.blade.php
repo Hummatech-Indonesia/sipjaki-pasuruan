@@ -366,8 +366,6 @@
                         <th scope="col" class="table-sipjaki text-center">Tanggal Lahir</th>
                         <th scope="col" class="table-sipjaki text-center">Pendidikan</th>
                         <th scope="col" class="table-sipjaki text-center">No Telepon</th>
-                        <th scope="col" class="table-sipjaki text-center" style="">
-                            Alamat</th>
                         <th scope="col" class="text-white text-center"
                             style="background-color: #1B3061; border-radius:0px 5px 5px 0px; color: #ffffff; border-color: #1B3061; border-width: 0px;">
                             Aksi
@@ -386,11 +384,10 @@
                                 {{ Carbon::parse($worker->birth_date)->translatedFormat('d F Y') }}</td>
                             <td class="text-center">{{ $worker->education }}</td>
                             <td class="text-center">{{ $worker->phone_number }}</td>
-                            <td class="text-center">{{ $worker->address }}</td>
                             <td class="" style="border-bottom: 1px solid #fff">
                                 <div class="d-flex justify-content-header gap-2">
                                     <div class="">
-                                        <a href="{{ route('worker-certificate', ['worker' => $worker->id]) }}" class="btn btn-md btn-danger">
+                                        <a href="{{ route('worker-certificate', ['worker' => $worker->id]) }}" class="btn btn-md btn-success"> <i class="far fa-file-alt fs-5"></i>
                                             Sertifikat
                                         </a>
                                     </div>
