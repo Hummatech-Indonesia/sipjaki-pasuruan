@@ -25,24 +25,6 @@
         background: var(--Kuning, #FFC928);" class="title p-1">Data Peraturan</h2>
         </div>
     </div>
-    <div class="d-flex row">
-        <div class="col-xl-12">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title mb-4">Peraturan</h4>
-                    <div id="column_chart_datalabel" data-colors='["#FFC928"]' class="apex-charts" dir="ltr"></div>
-                    <div class="text-center col-12" style="display: none;">
-                        <div class="d-flex justify-content-center" style="min-height:16rem">
-                            <div class="my-auto">
-                                <img src="{{ asset('no-data.png') }}" width="300" height="300" />
-                                <h4 class="text-center mt-4">Data Masih Kosong!!</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="row justify-content-center">
         <div class="col-12">
             <div class="card">
