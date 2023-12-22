@@ -22,9 +22,9 @@ class ExecutorProjectController extends Controller
      *
      * @return void
      */
-    public function index()
+    public function index(Project $project)
     {
-        $executorProjects = $this->executorProject->get();
+        $executorProjects = $this->executorProject->show($project->id);
         return view('', ['executorProjects' => $executorProjects]);
     }
 
