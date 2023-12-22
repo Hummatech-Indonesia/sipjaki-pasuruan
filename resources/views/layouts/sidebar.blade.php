@@ -135,8 +135,8 @@
                             <span key="t-file-manager">Dinas</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ route('training') }}" class="waves-effect">
+                    <li id="training-admin">
+                        <a href="{{ route('training') }}" id="training-link-admin" class="waves-effect">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                 viewBox="0 0 44 44" fill="currentColor">
                                 <g clip-path="url(#clip0_26_6710)">

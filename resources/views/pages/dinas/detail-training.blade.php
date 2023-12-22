@@ -56,12 +56,14 @@
                     <tr>
                         <td class="text-dark" style="font-weight: bold;">Klasifikasi:</td>
                         <td class="text-dark" style="font-weight: 600;"><span
-                                id="detail-status">{{ $training->subClassificationTraining->classificationTraining->name }}</span></td>
+                                id="detail-status">{{ $training->subClassificationTraining->classificationTraining->name }}</span>
+                        </td>
                     </tr>
                     <tr>
                         <td class="text-dark" style="font-weight: bold;">Sub Klasifikasi:</td>
                         <td class="text-dark" style="font-weight: 600;"><span
-                                id="detail-service_provider_name">{{ $training->subClassificationTraining->name }}</span></td>
+                                id="detail-service_provider_name">{{ $training->subClassificationTraining->name }}</span>
+                        </td>
                     </tr>
                     <tr>
                         <td class="text-dark" style="font-weight: bold;">Waktu Pelaksanaan:</td>
@@ -114,7 +116,8 @@
                     <form action="" class="">
                         <div class="">
                             <div class="position-relative mb-3 ">
-                                <input type="search" class="form-control search-chat py-2 ps-5" placeholder="Search" name="name" value="{{ $name }}">
+                                <input type="search" class="form-control search-chat py-2 ps-5" placeholder="Search"
+                                    name="name" value="{{ $name }}">
                                 <i
                                     class="bx bx-search-alt-2
                             position-absolute top-50 translate-middle-y fs-6 text-dark ms-3"></i>
@@ -122,7 +125,8 @@
                         </div>
                     </form>
                     <div class="">
-                        <button id="checkAll" onclick="selectAll()" class="btn text-white" style="background-color: #1B3061">
+                        <button id="checkAll" onclick="selectAll()" class="btn text-white"
+                            style="background-color: #1B3061">
                             Select All
                         </button>
                     </div>
@@ -131,7 +135,8 @@
                             @csrf
                             @method('DELETE')
                             <input type="hidden" name="id" id="selected-worker">
-                            <button id="DeleteAll" onclick="deleteSelected()" type="button" class="btn text-white btn-danger">
+                            <button id="DeleteAll" onclick="deleteSelected()" type="button"
+                                class="btn text-white btn-danger">
                                 Delete Select
                             </button>
                         </form>
@@ -227,7 +232,8 @@
                                                 <div class="mb-3">
                                                     <label for="basicpill-email-input">Surat Keputusan</label>
                                                     <input name="decree" type="text" class="form-control"
-                                                        id="basicpill-phoneno-input" placeholder="Masukkan Surat Keputusan">
+                                                        id="basicpill-phoneno-input"
+                                                        placeholder="Masukkan Surat Keputusan">
                                                     @error('decree')
                                                         <p class="text-danger">
                                                             {{ $message }}
@@ -282,7 +288,8 @@
                                             <div class="col-lg-12">
                                                 <div class="mb-3">
                                                     <label for="basicpill-email-input">Alamat</label>
-                                                    <textarea name="address" placeholder="Masukkan Alamat" id="" cols="30" rows="5" class="form-control"></textarea>
+                                                    <textarea name="address" placeholder="Masukkan Alamat" id="" cols="30" rows="5"
+                                                        class="form-control"></textarea>
                                                     @error('address')
                                                         <p class="text-danger">
                                                             {{ $message }}
@@ -373,7 +380,8 @@
                                                 <div class="mb-3">
                                                     <label for="basicpill-email-input">Surat Keputusan</label>
                                                     <input name="decree" type="text" class="form-control"
-                                                        id="basicpill-phoneno-input" placeholder="Masukkan Surat Keputusan">
+                                                        id="basicpill-phoneno-input"
+                                                        placeholder="Masukkan Surat Keputusan">
                                                     @error('decree')
                                                         <p class="text-danger">
                                                             {{ $message }}
@@ -428,7 +436,8 @@
                                             <div class="col-lg-12">
                                                 <div class="mb-3">
                                                     <label for="basicpill-email-input">Alamat</label>
-                                                    <textarea name="address" placeholder="Masukkan Alamat" id="" cols="30" rows="5" class="form-control"></textarea>
+                                                    <textarea name="address" placeholder="Masukkan Alamat" id="" cols="30" rows="5"
+                                                        class="form-control"></textarea>
                                                     @error('address')
                                                         <p class="text-danger">
                                                             {{ $message }}
@@ -447,14 +456,14 @@
             </div>
             {{-- end --}}
             @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
             <div class="table-responsive">
                 <table class="table">
@@ -599,7 +608,8 @@
 @endsection
 @section('script')
     <script>
-        
+        $('#training-admin').addClass('mm-active')
+        $('#training-link-admin').addClass('active')
         $('.btn-delete').click(function() {
             id = $(this).data('id')
             var actionUrl = `/training-members/${id}`;
@@ -622,6 +632,7 @@
             $('#form-update').attr('action', );
             $('#modal-update').modal('show')
         })
+
         function updateSelected() {
             var selectedIds = [];
             var checkboxes = document.querySelectorAll('input[type="checkbox"]');
