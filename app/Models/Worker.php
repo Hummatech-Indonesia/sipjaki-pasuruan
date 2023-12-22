@@ -15,14 +15,7 @@ class Worker extends Model implements HasServiceProvider
     public $keyType = 'char';
     protected $table = 'workers';
     protected $primaryKey = 'id';
-    protected $fillable = [
-        'id',
-        'service_provider_id',
-        'name',
-        'birth_date',
-        'education',
-        'phone_number',
-    ];
+    protected $fillable = ['id', 'service_provider_id', 'national_identity_number', 'name', 'phone_number', 'birth_date', 'gender', 'address', 'religion','marital_status', 'position', 'citizenship', 'education', 'job'];
     protected $guarded = [];
 
     /**

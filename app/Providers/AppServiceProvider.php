@@ -54,6 +54,7 @@ use App\Contracts\Interfaces\ServiceProviderQualificationInterface;
 use App\Contracts\Interfaces\SubClassificationTrainingInterface;
 use App\Contracts\Interfaces\TypeInterface;
 use App\Contracts\Interfaces\VerificationInterface;
+use App\Contracts\Interfaces\WorkerCertificateInterface;
 use App\Contracts\Interfaces\WorkerInterface;
 use App\Contracts\Repositories\AccidentRepository;
 use App\Contracts\Repositories\AmendmentDeepRepository;
@@ -76,6 +77,7 @@ use App\Contracts\Repositories\ServiceProviderRepository;
 use App\Contracts\Repositories\SubClassificationTrainingRepository;
 use App\Contracts\Repositories\TypeRepository;
 use App\Contracts\Repositories\VerificationRepository;
+use App\Contracts\Repositories\WorkerCertificateRepository;
 use App\Contracts\Repositories\WorkerRepository;
 
 class AppServiceProvider extends ServiceProvider
@@ -118,6 +120,7 @@ class AppServiceProvider extends ServiceProvider
         VerificationInterface::class => VerificationRepository::class,
         FoundingDeepInterface::class => FoundingDeepRepository::class,
         AmendmentDeepInterface::class => AmendmentDeepRepository::class,
+        WorkerCertificateInterface::class => WorkerCertificateRepository::class,
     ];
 
     /**

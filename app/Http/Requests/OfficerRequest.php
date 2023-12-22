@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\CitizenshipRule;
 use App\Rules\GenderRule;
 use App\Rules\MaritalStatusRule;
 use App\Rules\ReligionRule;
@@ -25,7 +26,7 @@ class OfficerRequest extends FormRequest
             'religion' => ['required', new ReligionRule],
             'marital_status' => ['required', new MaritalStatusRule],
             'position' => 'required|max:255',
-            'citizenship' => 'required',
+            'citizenship' => ['required', new CitizenshipRule],
             'education' => 'required|max:255',
             'job' => 'required',
         ];

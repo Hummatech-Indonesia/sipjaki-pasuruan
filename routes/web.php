@@ -42,7 +42,7 @@ use App\Http\Controllers\TrainingController;
 use App\Http\Controllers\ServiceProvider\AmendmentDeepController;
 use App\Http\Controllers\ServiceProvider\FoundingDeepController;
 use App\Http\Controllers\ServiceProvider\VerificationController as ServiceProviderVerificationController;
-
+use App\Http\Controllers\WorkerCertificateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -227,6 +227,11 @@ Route::middleware('auth')->group(function () {
             'founding-deed' => FoundingDeepController::class,
             'amendment-deed' => AmendmentDeepController::class,
         ]);
+
+        Route::get('worker-certificate/{worker}', [WorkerCertificateController::class, 'index']);
+        Route::post('worker-certificate/{worker}', [WorkerCertificateController::class, 'store']);
+        Route::put('worker-certificate/{worker_certificate}', [WorkerCertificateController::class, 'update']);
+        Route::delete('worker-certificate/{worker_certificate}', [WorkerCertificateController::class, 'destroy']);
 
         Route::get('service-provider-profile', [ServiceProviderController::class, 'index'])->name('service-provider-profile');
         Route::put('update-business-entity', [ServiceProviderController::class, 'update'])->name('update-business-entity');
