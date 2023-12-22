@@ -18,7 +18,7 @@
         }
     </style>
     <div class="container d-flex justify-content-center" style="margin-top:12px">
-        <iframe src="{{ asset('storage/video/video.mp4') }}" width="1200" height="700" frameborder="2"></iframe>
+        {{-- <iframe src="{{ asset('storage/video/video.mp4') }}" width="1200" height="700" frameborder="2"></iframe> --}}
     </div>
     <div class="blog-post-archive">
         <div class="container">
