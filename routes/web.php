@@ -220,8 +220,8 @@ Route::middleware('auth')->group(function () {
         Route::get('detail-consultan', function () {
             return view('pages.service-provider.detail-consultan');
         });
-        Route::get('worker-certificate/{worker}', [WorkerCertificateController::class, 'index']);
-        Route::post('worker-certificate/{worker}', [WorkerCertificateController::class, 'store']);
+        Route::get('worker-certificate/{worker}', [WorkerCertificateController::class, 'index'])->name('worker-certificate');
+        Route::post('worker-certificate/{worker}', [WorkerCertificateController::class, 'store'])->name('worker-certificate.store');
         Route::put('worker-certificate/{worker_certificate}', [WorkerCertificateController::class, 'update']);
         Route::delete('worker-certificate/{worker_certificate}', [WorkerCertificateController::class, 'destroy']);
 

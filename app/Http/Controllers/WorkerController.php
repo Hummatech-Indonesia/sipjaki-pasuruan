@@ -71,7 +71,7 @@ class WorkerController extends Controller
         if ($request->is('api/*')) {
             return ResponseHelper::success(null, trans('alert.add_success'));
         } else {
-            return redirect()->back()->with('success', trans('alert.delete_success'));
+            return redirect()->back()->with('success', trans('alert.add_success'));
         }
     }
 
