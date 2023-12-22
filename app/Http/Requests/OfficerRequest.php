@@ -28,6 +28,7 @@ class OfficerRequest extends Rule
             'position' => 'required|max:255',
             'citizenship' => 'required',
             'education' => 'required|max:255',
+            'job' => 'required',
         ];
     }
 

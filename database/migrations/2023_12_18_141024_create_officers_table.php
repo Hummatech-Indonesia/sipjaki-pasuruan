@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('position');
             $table->string('citizenship');
             $table->string('education');
+            $table->string('job');
             $table->timestamps();
         });
     }
