@@ -24,7 +24,7 @@
         <div id="carousel" class="carousel" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <canvas id="pdf-canvas" class="d-block w-100" data-file="{{ asset('storage/qualification/'.$serviceProviderQualification->file) }}"></canvas>
+                    <canvas id="pdf-canvas" class="d-block w-100" data-file="{{ asset('storage/'.$serviceProviderQualification->file) }}"></canvas>
                     <div class="carousel-caption d-none d-md-block">
                         <span>Page: <span id="page-num"></span> / <span id="page-count"></span></span>
                     </div>
