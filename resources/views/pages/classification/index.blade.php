@@ -1,14 +1,14 @@
 @extends('layouts.app')
 @section('content')
-@if(session('success'))
-<script>
-    Swal.fire({
-        icon: 'success',
-        title: 'Success',
-        text: '{{ session('success') }}',
-    });
-</script>
-@endif
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: '{{ session('success') }}',
+            });
+        </script>
+    @endif
     <div class="">
         <div>
             <h2 class="">
@@ -38,12 +38,11 @@
                         </div>
                         <div class="mb-3">
                             <label id="name" for="recipient-name" class="control-label mb-2">File</label>
-                            <input type="file" class="form-control" id="create-name" class="form-control"
-                                name="file" aria-describedby="name"
-                                placeholder="Masukkan Kualifikasi Nasional Indonesia" />
-                                @error('file')
-                                    {{ $message }}
-                                @enderror
+                            <input type="file" class="form-control" id="create-name" class="form-control" name="file"
+                                aria-describedby="name" placeholder="Masukkan Kualifikasi Nasional Indonesia" />
+                            @error('file')
+                                {{ $message }}
+                            @enderror
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -66,9 +65,11 @@
             <div class="d-flex justify-content-between mb-3">
                 <form class=" col-lg-3">
                     <div class="input-group">
-                        <input name="name" value="{{$name}}" type="text" class="form-control" placeholder="Search">
+                        <input name="name" value="{{ $name }}" type="text" class="form-control"
+                            placeholder="Search">
                         <div class="input-group-append">
-                            <button class="btn text-white" style="background-color: #1B3061; border-radius: 0 5px 5px 0;" type="submit">
+                            <button class="btn text-white" style="background-color: #1B3061; border-radius: 0 5px 5px 0;"
+                                type="submit">
                                 <i class="fa fa-search"></i>
                             </button>
                         </div>
@@ -82,13 +83,13 @@
                 </div>
             </div>
             @if ($errors->has('name'))
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                {{ $errors->first('name') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @endif
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ $errors->first('name') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
             <div class="table-responsive">
-                <table class="table mb-0 table-borderless" border="1">
+                <table class="table mb-2 table-borderless" border="1">
                     <thead>
                         <tr>
                             <th class="text-white" style="background-color: #1B3061">No</th>
@@ -104,12 +105,14 @@
                                 <td>
                                     <div class="d-flex justify-content-center gap-2">
                                         <div class="">
-                                            <a href="sub-classifications/{{ $classification->id }}" type="button" class="btn  waves-effect waves-light text-white"
+                                            <a href="sub-classifications/{{ $classification->id }}" type="button"
+                                                class="btn  waves-effect waves-light text-white"
                                                 style="background-color: #1B3061">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19"
                                                     viewBox="0 0 24 24" fill="none">
                                                     <path d="M4.5 12.5C7.5 6 16.5 6 19.5 12.5" stroke="white"
-                                                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                        stroke-width="1.5" stroke-linecap="round"
+                                                        stroke-linejoin="round" />
                                                     <path
                                                         d="M12 16C10.8954 16 10 15.1046 10 14C10 12.8954 10.8954 12 12 12C13.1046 12 14 12.8954 14 14C14 15.1046 13.1046 16 12 16Z"
                                                         stroke="white" stroke-width="1.5" stroke-linecap="round"
@@ -118,7 +121,10 @@
                                             </a>
                                         </div>
                                         <div class="">
-                                            <button type="button" class="btn btn-warning waves-effect waves-light btn-edit" id="btn-edit-{{ $classification->id }}" data-id="{{ $classification->id }}"
+                                            <button type="button"
+                                                class="btn btn-warning waves-effect waves-light btn-edit"
+                                                id="btn-edit-{{ $classification->id }}"
+                                                data-id="{{ $classification->id }}"
                                                 data-name="{{ $classification->name }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                     viewBox="0 0 24 24" fill="none">
@@ -143,7 +149,10 @@
                                             </button>
                                         </div>
                                         <div class="">
-                                            <button type="button" class="btn btn-danger waves-effect waves-light btn-delete" data-id="{{ $classification->id }}" id="btn-delete-{{ $classification->id }}">
+                                            <button type="button"
+                                                class="btn btn-danger waves-effect waves-light btn-delete"
+                                                data-id="{{ $classification->id }}"
+                                                id="btn-delete-{{ $classification->id }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                     viewBox="0 0 20 20" fill="none">
                                                     <path fill-rule="evenodd" clip-rule="evenodd"
@@ -155,21 +164,22 @@
                                     </div>
                                 </td>
                             </tr>
-                            @empty
+                        @empty
                             <tr>
                                 <td colspan="3" class="text-center">
                                     <div class="d-flex justify-content-center" style="min-height:16rem">
                                         <div class="my-auto">
                                             <img src="{{ asset('no-data.png') }}" width="300" height="300" />
-                                            <h4 class="text-center mt-4">Klasifikasi {{$name ? 'Tidak Ditemukan' : 'Kosong'}}!!</h4>
+                                            <h4 class="text-center mt-4">Klasifikasi
+                                                {{ $name ? 'Tidak Ditemukan' : 'Kosong' }}!!</h4>
                                         </div>
                                     </div>
                                 </td>
                             </tr>
-                            @endforelse
+                        @endforelse
                     </tbody>
                 </table>
-                {{$classifications->links('pagination::bootstrap-5')}}
+                {{ $classifications->links('pagination::bootstrap-5') }}
             </div>
 
         </div>
@@ -181,7 +191,8 @@
                     <h4 class="modal-title" id="exampleModalLabel1">
                         Edit Metode Pelatihan
                     </h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="color: white;"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        style="color: white;"></button>
                 </div>
                 <div class="modal-body">
                     <form id="form-update" method="POST" enctype="multipart/form-data">
@@ -198,9 +209,9 @@
                             <input type="file" class="form-control" id="create-name" class="form-control"
                                 name="file" aria-describedby="name"
                                 placeholder="Masukkan Kualifikasi Nasional Indonesia" />
-                                @error('file')
-                                    {{ $message }}
-                                @enderror
+                            @error('file')
+                                {{ $message }}
+                            @enderror
                         </div>
                 </div>
                 <div class="modal-footer">
@@ -220,22 +231,22 @@
     <x-delete-modal-component />
 @endsection
 @section('script')
-<script>
-    $('.btn-edit').click(function() {
-        const formData = getDataAttributes($(this).attr('id'))
-        console.log();
-        var actionUrl = `classifications/${formData['id']}`;
-        $('#form-update').attr('action', actionUrl);
-        setFormValues('form-update', formData)
-        $('#form-update').data('id', formData['id'])
-        $('#form-update').attr('action', );
-        $('#modal-update').modal('show')
-    })
-    $('.btn-delete').click(function() {
-        id = $(this).data('id')
-        var actionUrl = `classifications/${id}`;
-        $('#form-delete').attr('action', actionUrl);
-        $('#modal-delete').modal('show')
-    })
-</script>
+    <script>
+        $('.btn-edit').click(function() {
+            const formData = getDataAttributes($(this).attr('id'))
+            console.log();
+            var actionUrl = `classifications/${formData['id']}`;
+            $('#form-update').attr('action', actionUrl);
+            setFormValues('form-update', formData)
+            $('#form-update').data('id', formData['id'])
+            $('#form-update').attr('action', );
+            $('#modal-update').modal('show')
+        })
+        $('.btn-delete').click(function() {
+            id = $(this).data('id')
+            var actionUrl = `classifications/${id}`;
+            $('#form-delete').attr('action', actionUrl);
+            $('#modal-delete').modal('show')
+        })
+    </script>
 @endsection

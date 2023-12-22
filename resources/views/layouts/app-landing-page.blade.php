@@ -247,7 +247,7 @@
                                 </li>
                                 <li class="menu-item-has-children">
                                     <a class="d-flex d-row {{ request()->routeIs('struktur-organisasi') || request()->routeIs('rencana-strategis') || request()->routeIs('tugas-fungsi') ? 'active' : '' }}"
-                                        href="#">Profil </a>
+                                        href="#">Profil</a>
                                     <ul class="sub-menu">
                                         <li><a class="{{ request()->routeIs('struktur-organisasi') ? 'active' : '' }}"
                                                 href="{{ route('struktur-organisasi') }}">Struktur Organisasi

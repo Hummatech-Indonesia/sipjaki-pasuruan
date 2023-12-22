@@ -48,7 +48,7 @@
                                     </div>
                                     <div class="col-md-6 col-12 ">
                                         <label id="name" for="recipient-name" class="control-label mb-2">Masukan
-                                            Gambar</label>
+                                            Thumbnail</label>
                                         <input type="file" class="form-control mb-3" name="thumbnail" id="thumbnail"
                                             aria-describedby="name" placeholder="Masukan"
                                             accept="image/png, image/jpeg, image/jpg" />
@@ -156,7 +156,7 @@
                                     </div>
                                     <div class="col-md-6 col-12 ">
                                         <label id="name" for="recipient-name" class="control-label mb-2">Masukan
-                                            Gambar</label>
+                                            Thumbnail</label>
                                         <input type="file" class="form-control mb-3" name="thumbnail" id="update-thumbnail"
                                             aria-describedby="name" placeholder="Masukan"
                                             accept="image/png, image/jpeg, image/jpg" />
