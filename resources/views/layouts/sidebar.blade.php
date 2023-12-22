@@ -333,10 +333,10 @@
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect">
                             <i class="bx bx-briefcase"></i>
-                            <span key="t-multi-level">Paket Pekerjaan</span>
+                            <span key="t-multi-level">Paket</span>
                         </a>
                         <ul class="sub-menu" aria-expanded="true">
-                            <li><a href="{{ route('work.package') }}" key="t-tui-calendar">Paket</a></li>
+                            <li><a href="{{ route('work.package') }}" key="t-tui-calendar">Paket Pekerjaan</a></li>
                             <li><a href="consultant-package" key="t-tui-calendar">Paket Konsultan</a></li>
                         </ul>
                     </li>

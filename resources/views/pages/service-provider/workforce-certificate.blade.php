@@ -73,7 +73,6 @@
                                 {{ $workerCertificate->registration_number }}
                             </td>
                             <td class="d-flex flex-row justify-content-center gap-2">
-                                <a href=""></a>
                                 <button type="button"
                                     class="btn waves-effect waves-light d-flex btn-edit flex-row gap-1 justify-content-evenly"
                                     style="width: 90px; background-color: #FFC928; color: white"
@@ -87,6 +86,7 @@
                                     style="width: 90px; background-color: #E05C39; color: white"
                                     data-id="{{ $workerCertificate->id }}" data-bs-toggle="modal"
                                     data-bs-target="#modal-delete"><i class="bx bx-bx bxs-trash fs-4"></i> Hapus</button>
+                                    <a class="btn btn-md btn-success" href=""><i class="bx bxs-download bx-xs"></i></a>
                             </td>
                         </tr>
                     @empty
