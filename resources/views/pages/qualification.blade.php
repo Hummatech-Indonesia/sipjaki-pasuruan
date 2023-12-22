@@ -82,7 +82,7 @@
                     <tr>
                         <th style="background-color: #1B3061;color:#ffffff" >No</th>
                         <th style="background-color: #1B3061;color:#ffffff">Nama Kualifikasi</th>
-                        {{-- <th style="background-color: #1B3061;color:#ffffff">File</th> --}}
+                        <th style="background-color: #1B3061;color:#ffffff">File</th>
                         <th style="background-color: #1B3061;color:#ffffff; text-align: center">Aksi</th>
                     </tr>
                 </thead>
@@ -92,9 +92,9 @@
                             <td>{{ $index + 1 }}</td>
                             <td>{{ $qualification->name }}
                             </td>
-                            {{-- <td>
-                                <img src="{{ asset('storage/'.$qualification->file) }}" width="100px" height="100px" alt="" srcset="">
-                            </td> --}}
+                            <td>
+                                <button class="btn text-white" style="background-color: #1B3061">Detail</button>
+                            </td>
                             <td class="d-flex flex-row gap-3 justify-content-center" style="border-bottom: 1px solid #fff">
                                 <a href="{{ route('qualifications.show', $qualification->id) }}" type="button" class="btn  waves-effect waves-light text-white"
                                     style="background-color: #1B3061">

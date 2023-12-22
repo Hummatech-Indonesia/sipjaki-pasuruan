@@ -123,6 +123,9 @@ Route::middleware('auth')->group(function () {
 
 
     Route::middleware('role:superadmin')->group(function () {
+        Route::get('detail-file', function () {
+            return view('pages.detail-file');
+        });
         Route::get('dashboard-superadmin', [SuperadminController::class, 'dashboard'])->name('dashboard-superadmin');
         Route::resources([
             'contract-categories' => ContractCategoryController::class,
@@ -175,6 +178,34 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('role:admin')->group(function () {
         Route::get('dashboard-admin', [AdminController::class, 'dashboard'])->name('dashboard-admin');
+        Route::resources([
+            'news' => NewsController::class,
+            'faqs' => FaqController::class
+        ]);
+        Route::get('agencies', [UserController::class, 'index'])->name('agencies.index');
+        Route::post('agencies', [UserController::class, 'store'])->name('agencies.store');
+        Route::put('agencies/{user}', [UserController::class, 'update'])->name('agencies.update');
+        Route::delete('agencies/{user}', [UserController::class, 'destroy'])->name('agencies.destroy');
+
+        Route::get('images', function () {
+            return view('pages.admin.input-image');
+        })->name('images.index');
+
+        Route::post('images', [ImagesController::class, 'store'])->name('images.store');
+        Route::post('videos', [ImagesController::class, 'storeVideo'])->name('video.store');
+
+        Route::get('training-members/{training}', [TrainingMemberController::class, 'index']);
+        Route::post('training-members/{training}', [TrainingMemberController::class, 'store'])->name('training.members.store');
+        Route::put('training-member-update/{training_member}', [TrainingMemberController::class, 'update'])->name('training.members');
+        Route::delete('training-members/{training_member}', [TrainingMemberController::class, 'destroy']);
+        Route::post('import-training-members', [TrainingMemberController::class, 'import']);
+        Route::delete('delete-training-members',[ TrainingMemberController::class, 'multipleDelete'])->name('delete-member');
+
+
+        Route::get('training', [TrainingController::class, 'index'])->name('training');
+        Route::post('training', [TrainingController::class, 'store'])->name('training.store');
+        Route::put('training.update/{training}', [TrainingController::class, 'update'])->name('training.update');
+        Route::delete('training.destroy/{training}', [TrainingController::class, 'destroy'])->name('training.destroy');
     });
 
     Route::middleware('role:dinas')->group(function () {
