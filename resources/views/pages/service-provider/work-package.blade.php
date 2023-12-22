@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('content')
     <h4 class="mb-3 font-size-18">Paket Pekerjaan</h4>
-    <div class="col-12 col-lg-4 col-xxl-3 mb-3">
+    <div class="col-12 col-lg-5 col-xxl-3 mb-3">
         <form action="" class="">
-            <div class="input-group">
+            <div class="input-group d-flex ">
                 <input type="text" name="name" value="{{ request()->name }}" class="form-control" placeholder="Search">
                 <div class="input-group-append">
                     <button class="btn text-white" style="background-color: #1B3061; border-radius: 0 5px 5px 0;"
@@ -11,9 +11,17 @@
                         <i class="fa fa-search"></i>
                     </button>
                 </div>
+                <div class="ms-3">
+                    <select name="year" class="form-select pe-5">
+                        <option value="2022" {{ $year == '2022' ? 'selected' : '' }}>2022</option>
+                        <option value="2023" {{ $year == '2023' ? 'selected' : '' }}>2023</option>
+                    </select>
+                </div>
+                <div class="ms-1">
+                    <button class="btn text-white" type="submit" style="background-color: #1B3061">Search</button>
+                </div>
             </div>
         </form>
-    </div>
     </div>
     <div class="row">
         <div class="table-responsive">
