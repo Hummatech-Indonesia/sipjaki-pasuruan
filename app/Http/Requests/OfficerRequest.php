@@ -6,9 +6,8 @@ use App\Rules\GenderRule;
 use App\Rules\MaritalStatusRule;
 use App\Rules\ReligionRule;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class OfficerRequest extends Rule
+class OfficerRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
