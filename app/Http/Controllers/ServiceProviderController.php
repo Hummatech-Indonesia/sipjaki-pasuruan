@@ -94,7 +94,7 @@ class ServiceProviderController extends Controller
             'serviceProviderQualifications'=>$serviceProviderQualifications,
             'officers'=>$officers,
             'workers'=>$workers,
-            'verivications'=>$verifications,
+            'verifications'=>$verifications,
             'amendmentDeeps'=>$amendmentDeeps,
             'foundingDeeps'=>$foundingDeeps]);
     }
