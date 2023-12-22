@@ -15,7 +15,7 @@ class ClassificationRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'file' => 'required|mimes:png,jpg,jpeg'
+            'file' => 'required|mimes:pdf'
         ];
     }
 
@@ -28,7 +28,9 @@ class ClassificationRequest extends FormRequest
     {
         return [
             'name.required' => 'Nama klasifikasi wajib diisi',
-            'name.max' => 'Nama klasifikasi maksimal :max karakter',
+            'name.max' => 'Nama klasifikasi maksimal 255 karakter',
+            'file.required' => 'File wajib diisi',
+            'file.mimes' => 'Format file yang diizinkan harus berformat PDF',
         ];
     }
 }

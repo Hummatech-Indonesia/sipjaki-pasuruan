@@ -10,42 +10,6 @@
                             <span key="t-file-manager">Dashboard</span>
                         </a>
                     </li>
-                    <li id="jasa">
-                        <a href="javascript: void(0);" id="jasa-link" class="has-arrow waves-effect">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 42 42"
-                                fill="currentColor">
-                                <path
-                                    d="M17.5 7V10.5H24.5V7H17.5ZM28 7H29.75C30.6783 7 31.5685 7.36875 32.2249 8.02513C32.8813 8.6815 33.25 9.57174 33.25 10.5V35C33.25 35.9283 32.8813 36.8185 32.2249 37.4749C31.5685 38.1312 30.6783 38.5 29.75 38.5H12.25C11.3217 38.5 10.4315 38.1312 9.77513 37.4749C9.11875 36.8185 8.75 35.9283 8.75 35V10.5C8.75 9.57174 9.11875 8.6815 9.77513 8.02513C10.4315 7.36875 11.3217 7 12.25 7H14C14 6.07174 14.3687 5.1815 15.0251 4.52513C15.6815 3.86875 16.5717 3.5 17.5 3.5H24.5C25.4283 3.5 26.3185 3.86875 26.9749 4.52513C27.6313 5.1815 28 6.07174 28 7ZM28 10.5C28 11.4283 27.6313 12.3185 26.9749 12.9749C26.3185 13.6313 25.4283 14 24.5 14H17.5C16.5717 14 15.6815 13.6313 15.0251 12.9749C14.3687 12.3185 14 11.4283 14 10.5H12.25V35H29.75V10.5H28ZM15.75 17.5H26.25C26.7141 17.5 27.1592 17.6844 27.4874 18.0126C27.8156 18.3408 28 18.7859 28 19.25C28 19.7141 27.8156 20.1592 27.4874 20.4874C27.1592 20.8156 26.7141 21 26.25 21H15.75C15.2859 21 14.8408 20.8156 14.5126 20.4874C14.1844 20.1592 14 19.7141 14 19.25C14 18.7859 14.1844 18.3408 14.5126 18.0126C14.8408 17.6844 15.2859 17.5 15.75 17.5ZM15.75 26.25H26.25C26.7141 26.25 27.1592 26.4344 27.4874 26.7626C27.8156 27.0908 28 27.5359 28 28C28 28.4641 27.8156 28.9092 27.4874 29.2374C27.1592 29.5656 26.7141 29.75 26.25 29.75H15.75C15.2859 29.75 14.8408 29.5656 14.5126 29.2374C14.1844 28.9092 14 28.4641 14 28C14 27.5359 14.1844 27.0908 14.5126 26.7626C14.8408 26.4344 15.2859 26.25 15.75 26.25Z"
-                                    fill="currentColor" />
-                            </svg>
-                            <span key="t-dashboards" class="px-2">Penyedia jasa
-                            </span>
-                        </a>
-                        <ul class="sub-menu">
-                            <li id="kualifikasi-jasa"><a href="{{ route('qualifications.index') }}" id="kualifikasi-link-jasa" key="t-tui-calendar">Kualifikasi</a></li>
-                            <li id="klasisikasi-jasa"><a href="{{ route('classifications.index') }}" id="klasifikasi-link-jasa" key="t-full-calendar">Klasifikasi</a></li>
-                            <li><a href="{{ route('contract-categories.index') }}" key="t-full-calendar">Kategori Kontrak</a></li>
-                            <li><a href="{{ route('associations.index') }}" key="t-full-calendar">Assosiasi</a></li>
-                        </ul>
-                    </li>
-
-                    <li id="training">
-                        <a href="javascript: void(0);" id="training-link" class="has-arrow waves-effect">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 42 42"
-                                fill="currentColor">
-                                <path
-                                    d="M17.5 7V10.5H24.5V7H17.5ZM28 7H29.75C30.6783 7 31.5685 7.36875 32.2249 8.02513C32.8813 8.6815 33.25 9.57174 33.25 10.5V35C33.25 35.9283 32.8813 36.8185 32.2249 37.4749C31.5685 38.1312 30.6783 38.5 29.75 38.5H12.25C11.3217 38.5 10.4315 38.1312 9.77513 37.4749C9.11875 36.8185 8.75 35.9283 8.75 35V10.5C8.75 9.57174 9.11875 8.6815 9.77513 8.02513C10.4315 7.36875 11.3217 7 12.25 7H14C14 6.07174 14.3687 5.1815 15.0251 4.52513C15.6815 3.86875 16.5717 3.5 17.5 3.5H24.5C25.4283 3.5 26.3185 3.86875 26.9749 4.52513C27.6313 5.1815 28 6.07174 28 7ZM28 10.5C28 11.4283 27.6313 12.3185 26.9749 12.9749C26.3185 13.6313 25.4283 14 24.5 14H17.5C16.5717 14 15.6815 13.6313 15.0251 12.9749C14.3687 12.3185 14 11.4283 14 10.5H12.25V35H29.75V10.5H28ZM15.75 17.5H26.25C26.7141 17.5 27.1592 17.6844 27.4874 18.0126C27.8156 18.3408 28 18.7859 28 19.25C28 19.7141 27.8156 20.1592 27.4874 20.4874C27.1592 20.8156 26.7141 21 26.25 21H15.75C15.2859 21 14.8408 20.8156 14.5126 20.4874C14.1844 20.1592 14 19.7141 14 19.25C14 18.7859 14.1844 18.3408 14.5126 18.0126C14.8408 17.6844 15.2859 17.5 15.75 17.5ZM15.75 26.25H26.25C26.7141 26.25 27.1592 26.4344 27.4874 26.7626C27.8156 27.0908 28 27.5359 28 28C28 28.4641 27.8156 28.9092 27.4874 29.2374C27.1592 29.5656 26.7141 29.75 26.25 29.75H15.75C15.2859 29.75 14.8408 29.5656 14.5126 29.2374C14.1844 28.9092 14 28.4641 14 28C14 27.5359 14.1844 27.0908 14.5126 26.7626C14.8408 26.4344 15.2859 26.25 15.75 26.25Z"
-                                    fill="currentColor" />
-                            </svg>
-                            <span key="t-dashboards" class="px-2">Pelatihan
-                            </span>
-                        </a>
-                        <ul class="sub-menu" aria-expanded="false">
-                            <li id="kualifikasi-training"><a href="{{ route('qualification-trainings.index') }}"  id="kualifikasi-link-training" key="t-tui-calendar">Kualifikasi</a></li>
-                            <li id="klasifikasi-training"><a href="{{ route('classification-training.index') }}" key="t-full-calendar" id="klasifikasi-link-training">Klasifikasi</a></li>
-                            <li><a href="{{ route('training-methods.index') }}" key="t-full-calendar">Metode Pelatihan</a></li>
-                        </ul>
-                    </li>
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect">
                             <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="20" height="20"
@@ -54,10 +18,35 @@
                                     stroke-linejoin="round" stroke-width="2"
                                     d="M8 7a4 4 0 1 0 8 0a4 4 0 1 0-8 0M2.5 17a4 4 0 1 0 8 0a4 4 0 1 0-8 0m11 0a4 4 0 1 0 8 0a4 4 0 1 0-8 0" />
                             </svg>
-                            <span key="t-multi-level">Pengguna</span>
+                            <span key="t-multi-level">Master</span>
                         </a>
                         <ul class="sub-menu" aria-expanded="true">
-                            <li><a href="{{ route('all.agency') }}" key="t-tui-calendar">Dinas</a></li>
+                            <li>
+                                <a href="javascript: void(0);" class="has-arrow" key="t-level-1-2">Penyedia Jasa</a>
+                                <ul class="sub-menu" aria-expanded="true">
+                                    <li id="kualifikasi-jasa"><a href="{{ route('qualifications.index') }}"
+                                            id="kualifikasi-link-jasa" key="t-tui-calendar">Kualifikasi</a></li>
+                                    <li id="klasisikasi-jasa"><a href="{{ route('classifications.index') }}"
+                                            id="klasifikasi-link-jasa" key="t-full-calendar">Klasifikasi</a></li>
+                                    <li><a href="{{ route('contract-categories.index') }}"
+                                            key="t-full-calendar">Kategori Kontrak</a></li>
+                                    <li><a href="{{ route('associations.index') }}" key="t-full-calendar">Assosiasi</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript: void(0);" class="has-arrow" key="t-level-1-2">Pelatihan</a>
+                                <ul class="sub-menu" aria-expanded="true">
+                                    <li id="kualifikasi-training"><a
+                                            href="{{ route('qualification-trainings.index') }}"
+                                            id="kualifikasi-link-training" key="t-tui-calendar">Kualifikasi</a></li>
+                                    <li id="klasifikasi-training"><a
+                                            href="{{ route('classification-training.index') }}" key="t-full-calendar"
+                                            id="klasifikasi-link-training">Klasifikasi</a></li>
+                                    <li><a href="{{ route('training-methods.index') }}" key="t-full-calendar">Metode
+                                            Pelatihan</a></li>
+                                </ul>
+                            </li>
                             <li>
                                 <a href="javascript: void(0);" class="has-arrow" key="t-level-1-2">Penyedia Jasa</a>
                                 <ul class="sub-menu" aria-expanded="true">
@@ -65,25 +54,23 @@
                                     <li><a href="/service-provider-executors" key="t-level-2-2">Penyelenggara</a></li>
                                 </ul>
                             </li>
+                            <li><a href="{{ route('all.agency') }}" key="t-tui-calendar">Dinas</a></li>
+                            <li>
+                                <a href="{{ route('rule-categories.index') }}" class="waves-effect">
+                                    <span key="t-file-manager">Kategori Peraturan</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('fund-sources.index') }}" class="waves-effect">
+                                    <span key="t-file-manager">Sumber Dana</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('fiscal-years.index') }}" class="waves-effect">
+                                    <span key="t-file-manager">Tahun Anggaran</span>
+                                </a>
+                            </li>
                         </ul>
-                    </li>
-                    <li>
-                        <a href="{{ route('rule-categories.index') }}" class="waves-effect">
-                            <i class="fas fa-clipboard"></i>
-                            <span key="t-file-manager">Kategori Peraturan</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('fund-sources.index') }}" class="waves-effect">
-                            <i class="bx bx-bx bx-money"></i>
-                            <span key="t-file-manager">Sumber Dana</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('fiscal-years.index') }}" class="waves-effect">
-                            <i class="bx bx-bar-chart-alt"></i>
-                            <span key="t-file-manager">Tahun Anggaran</span>
-                        </a>
                     </li>
                     <li>
                         <a href="{{ route('history-login.index') }}" class="waves-effect">
@@ -101,8 +88,8 @@
                     </li>
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 42 42"
-                                fill="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                viewBox="0 0 42 42" fill="currentColor">
                                 <path
                                     d="M17.5 7V10.5H24.5V7H17.5ZM28 7H29.75C30.6783 7 31.5685 7.36875 32.2249 8.02513C32.8813 8.6815 33.25 9.57174 33.25 10.5V35C33.25 35.9283 32.8813 36.8185 32.2249 37.4749C31.5685 38.1312 30.6783 38.5 29.75 38.5H12.25C11.3217 38.5 10.4315 38.1312 9.77513 37.4749C9.11875 36.8185 8.75 35.9283 8.75 35V10.5C8.75 9.57174 9.11875 8.6815 9.77513 8.02513C10.4315 7.36875 11.3217 7 12.25 7H14C14 6.07174 14.3687 5.1815 15.0251 4.52513C15.6815 3.86875 16.5717 3.5 17.5 3.5H24.5C25.4283 3.5 26.3185 3.86875 26.9749 4.52513C27.6313 5.1815 28 6.07174 28 7ZM28 10.5C28 11.4283 27.6313 12.3185 26.9749 12.9749C26.3185 13.6313 25.4283 14 24.5 14H17.5C16.5717 14 15.6815 13.6313 15.0251 12.9749C14.3687 12.3185 14 11.4283 14 10.5H12.25V35H29.75V10.5H28ZM15.75 17.5H26.25C26.7141 17.5 27.1592 17.6844 27.4874 18.0126C27.8156 18.3408 28 18.7859 28 19.25C28 19.7141 27.8156 20.1592 27.4874 20.4874C27.1592 20.8156 26.7141 21 26.25 21H15.75C15.2859 21 14.8408 20.8156 14.5126 20.4874C14.1844 20.1592 14 19.7141 14 19.25C14 18.7859 14.1844 18.3408 14.5126 18.0126C14.8408 17.6844 15.2859 17.5 15.75 17.5ZM15.75 26.25H26.25C26.7141 26.25 27.1592 26.4344 27.4874 26.7626C27.8156 27.0908 28 27.5359 28 28C28 28.4641 27.8156 28.9092 27.4874 29.2374C27.1592 29.5656 26.7141 29.75 26.25 29.75H15.75C15.2859 29.75 14.8408 29.5656 14.5126 29.2374C14.1844 28.9092 14 28.4641 14 28C14 27.5359 14.1844 27.0908 14.5126 26.7626C14.8408 26.4344 15.2859 26.25 15.75 26.25Z"
                                     fill="currentColor" />
@@ -111,7 +98,8 @@
                             </span>
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="{{ route('service.provider.qualification.pending') }}" key="t-tui-calendar">Kualifikasi</a></li>
+                            <li><a href="{{ route('service.provider.qualification.pending') }}"
+                                    key="t-tui-calendar">Kualifikasi</a></li>
                         </ul>
                     </li>
                     <li>
@@ -149,8 +137,8 @@
                     </li>
                     <li>
                         <a href="{{ route('training') }}" class="waves-effect">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 44 44"
-                                fill="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                viewBox="0 0 44 44" fill="currentColor">
                                 <g clip-path="url(#clip0_26_6710)">
                                     <path d="M9.16675 5.5V38.5" stroke="currentColor" stroke-width="3"
                                         stroke-linecap="round" stroke-linejoin="round" />
@@ -210,18 +198,23 @@
                     </li>
                 @endif
                 @if (Auth::user()->roles->pluck('name')[0] == 'dinas')
-                <li>
-                    <a href="{{ route('dashboard-dinas') }}" class="waves-effect">
-                        <i class="bx bxs-dashboard"></i>
-                        <span key="t-file-manager">Dashboard</span>
-                    </a>
-                </li>
+                    <li>
+                        <a href="{{ route('dashboard-dinas') }}" class="waves-effect">
+                            <i class="bx bxs-dashboard"></i>
+                            <span key="t-file-manager">Dashboard</span>
+                        </a>
+                    </li>
                     <li>
                         <a href="{{ route('accident.index') }}" class="waves-effect">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 60 60" fill="currentColor">
-                                <path d="M32.5 40C32.5 41.3807 31.3807 42.5 30 42.5C28.6193 42.5 27.5 41.3807 27.5 40C27.5 38.6193 28.6193 37.5 30 37.5C31.3807 37.5 32.5 38.6193 32.5 40Z" fill="currentColor"/>
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M18.9124 5.73223C19.3813 5.26339 20.0172 5 20.6802 5L39.3198 5C39.9828 5 40.6187 5.26339 41.0876 5.73223L54.2678 18.9124C54.7366 19.3813 55 20.0172 55 20.6802V39.3198C55 39.9828 54.7366 40.6187 54.2678 41.0876L41.0876 54.2678C40.6187 54.7366 39.9828 55 39.3198 55H20.6802C20.0172 55 19.3813 54.7366 18.9124 54.2678L5.73223 41.0876C5.26339 40.6187 5 39.9828 5 39.3198L5 20.6802C5 20.0172 5.26339 19.3813 5.73223 18.9124L18.9124 5.73223ZM21.7157 10L10 21.7157L10 38.2843L21.7157 50H38.2843L50 38.2843V21.7157L38.2843 10L21.7157 10ZM30 17.5C31.3807 17.5 32.5 18.6193 32.5 20V30C32.5 31.3807 31.3807 32.5 30 32.5C28.6193 32.5 27.5 31.3807 27.5 30V20C27.5 18.6193 28.6193 17.5 30 17.5Z" fill="currentColor"/>
-                              </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                viewBox="0 0 60 60" fill="currentColor">
+                                <path
+                                    d="M32.5 40C32.5 41.3807 31.3807 42.5 30 42.5C28.6193 42.5 27.5 41.3807 27.5 40C27.5 38.6193 28.6193 37.5 30 37.5C31.3807 37.5 32.5 38.6193 32.5 40Z"
+                                    fill="currentColor" />
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M18.9124 5.73223C19.3813 5.26339 20.0172 5 20.6802 5L39.3198 5C39.9828 5 40.6187 5.26339 41.0876 5.73223L54.2678 18.9124C54.7366 19.3813 55 20.0172 55 20.6802V39.3198C55 39.9828 54.7366 40.6187 54.2678 41.0876L41.0876 54.2678C40.6187 54.7366 39.9828 55 39.3198 55H20.6802C20.0172 55 19.3813 54.7366 18.9124 54.2678L5.73223 41.0876C5.26339 40.6187 5 39.9828 5 39.3198L5 20.6802C5 20.0172 5.26339 19.3813 5.73223 18.9124L18.9124 5.73223ZM21.7157 10L10 21.7157L10 38.2843L21.7157 50H38.2843L50 38.2843V21.7157L38.2843 10L21.7157 10ZM30 17.5C31.3807 17.5 32.5 18.6193 32.5 20V30C32.5 31.3807 31.3807 32.5 30 32.5C28.6193 32.5 27.5 31.3807 27.5 30V20C27.5 18.6193 28.6193 17.5 30 17.5Z"
+                                    fill="currentColor" />
+                            </svg>
                             <span key="t-file-manager" class="px-2">Kecelakaan</span>
                         </a>
                     </li>

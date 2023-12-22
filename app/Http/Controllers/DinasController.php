@@ -90,18 +90,20 @@ class DinasController extends Controller
         $project_total = $this->project->countDinas();
         $countActiveWorker = $this->project->countAllProject();
 
-        return view('pages.dinas.dashboard', ['accident_count' => $accident_total, 'project_count' => $project_total, 'countActiveWorker' => $countActiveWorker, 'projects' => $projects ,'year'=>$year,'name'=>$name]);
+        return view('pages.dinas.dashboard', ['accident_count' => $accident_total, 'project_count' => $project_total, 'countActiveWorker' => $countActiveWorker, 'projects' => $projects, 'year' => $year, 'name' => $name]);
     }
 
     public function accidentLandingPage(Request $request): View
     {
         $data = $this->dinas->countAccidentByDinas($request);
+        $total_accident = 0;
         foreach ($data as $projects) {
             $projects->total_accident = 0;
             foreach ($projects->projects as $project) {
                 $projects->total_accident += $project->accidents->count();
+                $total_accident += $project->total_accident;
             }
         }
-        return view('kecelakaan', ['data' => $data]);
+        return view('kecelakaan', ['data' => $data, 'total_accident' => $total_accident]);
     }
 }
