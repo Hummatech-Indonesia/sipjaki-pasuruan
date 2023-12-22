@@ -35,6 +35,7 @@ use App\Models\TrainingMethod;
 use App\Models\Type;
 use App\Models\Verification;
 use App\Models\Worker;
+use App\Models\WorkerCertificate;
 use App\Observers\AccidentObserver;
 use App\Observers\AmendmendDeedObserver;
 use App\Observers\AssociationObserver;
@@ -67,6 +68,7 @@ use App\Observers\TrainingMethodObserver;
 use App\Observers\TrainingObserver;
 use App\Observers\TypeObserver;
 use App\Observers\VerificationObserver;
+use App\Observers\WorkerCertificateObserver;
 use App\Observers\WorkerObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -122,6 +124,7 @@ class EventServiceProvider extends ServiceProvider
         QualificationLevelTraining::observe(QualificationLevelTrainingObserver::class);
         Officer::observe(OfficerObserver::class);
         ServiceProviderQualification::observe(ServiceProviderQualificationObserver::class);
+        WorkerCertificate::observe(WorkerCertificateObserver::class);
     }
 
     /**
