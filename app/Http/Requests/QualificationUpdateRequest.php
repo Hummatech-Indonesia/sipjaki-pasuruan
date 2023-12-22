@@ -15,7 +15,7 @@ class QualificationUpdateRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'file' => 'nullable|mimes:png,jpg,jpeg'
+            'file' => 'required|mimes:png,jpg,jpeg'
         ];
     }
 

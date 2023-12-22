@@ -20,7 +20,7 @@
     <div class="modal fade" id="samedata-modal" tabindex="-1" id="modeal-create" aria-labelledby="exampleModalLabel1">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <form id="{{ route('classifications.store') }}" method="post">
+                <form id="{{ route('classifications.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method('POST')
                     <div class="modal-header d-flex align-items-center text-white " style="background-color: #1B3061">
@@ -36,7 +36,15 @@
                             <input type="text" class="form-control" id="create-school_year" class="form-control"
                                 name="name" id="nametext" aria-describedby="name" placeholder="" />
                         </div>
-
+                        <div class="mb-3">
+                            <label id="name" for="recipient-name" class="control-label mb-2">File</label>
+                            <input type="file" class="form-control" id="create-name" class="form-control"
+                                name="file" aria-describedby="name"
+                                placeholder="Masukkan Kualifikasi Nasional Indonesia" />
+                                @error('file')
+                                    {{ $message }}
+                                @enderror
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger text-white font-medium waves-effect"
@@ -176,14 +184,23 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="color: white;"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="form-update" method="POST">
+                    <form id="form-update" method="POST" enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
                         <div class="mb-3">
                             <label id="name" for="recipient-name" class="control-label mb-2">Masukan
-                                Anggaran</label>
+                                Klasifikasi</label>
                             <input type="text" class="form-control" id="update-name" class="form-control"
                                 name="name" aria-describedby="name" placeholder="Masukan Anggaran" />
+                        </div>
+                        <div class="mb-3">
+                            <label id="name" for="recipient-name" class="control-label mb-2">File</label>
+                            <input type="file" class="form-control" id="create-name" class="form-control"
+                                name="file" aria-describedby="name"
+                                placeholder="Masukkan Kualifikasi Nasional Indonesia" />
+                                @error('file')
+                                    {{ $message }}
+                                @enderror
                         </div>
                 </div>
                 <div class="modal-footer">
