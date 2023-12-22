@@ -22,7 +22,8 @@
         <div class="d-flex justify-content-between align-items-center mb-3">
             <form action="" class=" col-lg-3">
                 <div class="input-group">
-                    <input type="text" name="name" value="{{ request()->name }}" class="form-control" placeholder="Search">
+                    <input type="text" name="name" value="{{ request()->name }}" class="form-control"
+                        placeholder="Search">
                     <div class="input-group-append">
                         <button class="btn text-white" style="background-color: #1B3061; border-radius: 0 5px 5px 0;"
                             type="submit">
@@ -56,13 +57,15 @@
                                         <label id="name" for="recipient-name" class="control-label mb-2">Masukan
                                             Pengurus</label>
                                         <input type="text" class="form-control" id="create-name" class="form-control"
-                                            name="name" aria-describedby="name" placeholder="Masukkan Pengurus" value="{{old('name')}}" />
+                                            name="name" aria-describedby="name" placeholder="Masukkan Pengurus"
+                                            value="{{ old('name') }}" />
                                     </div>
                                     <div class="col-6">
                                         <label id="name" for="recipient-name" class="control-label mb-2">Masukan
                                             NIK</label>
                                         <input type="text" class="form-control" id="create-name" class="form-control"
-                                            name="national_identity_number" aria-describedby="name" placeholder="Masukkan Pengurus" value="{{old('name')}}" />
+                                            name="national_identity_number" aria-describedby="name"
+                                            placeholder="Masukkan Pengurus" value="{{ old('name') }}" />
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -70,13 +73,15 @@
                                         <label id="name" for="recipient-name" class="control-label mb-2">Masukan
                                             Jabatan</label>
                                         <input type="text" class="form-control" id="create-name" class="form-control"
-                                            name="position" aria-describedby="name" value="{{old('position')}}" placeholder="Masukkan Jabatan" />
+                                            name="position" aria-describedby="name" value="{{ old('position') }}"
+                                            placeholder="Masukkan Jabatan" />
                                     </div>
                                     <div class="col-6">
                                         <label id="name" for="recipient-name" class="control-label mb-2">Masukan
                                             Pendidikan</label>
                                         <input type="text" class="form-control" id="create-name" class="form-control"
-                                            name="education" aria-describedby="name" value="{{old('education')}}" placeholder="Masukkan Pendidikan" />
+                                            name="education" aria-describedby="name" value="{{ old('education') }}"
+                                            placeholder="Masukkan Pendidikan" />
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -84,37 +89,33 @@
                                         <label id="name" for="recipient-name" class="control-label mb-2">Masukan
                                             Pekerjaan</label>
                                         <input type="text" class="form-control" id="create-name" class="form-control"
-                                            name="job" aria-describedby="name" value="{{old('job')}}" placeholder="Masukkan Pekerjaan" />
+                                            name="job" aria-describedby="name" value="{{ old('job') }}"
+                                            placeholder="Masukkan Pekerjaan" />
                                     </div>
                                     <div class="col-6">
                                         <label id="name" for="recipient-name" class="control-label mb-2">Masukan
                                             Agama</label>
-                                            <select name="religion" class="form-select">
-                                                <option value="islam"
-                                                    {{ old('religion') == 'islam' ? 'selected' : '' }}>
-                                                    Islam
-                                                </option>
-                                                <option value="kristen"
-                                                    {{ old('religion') == 'kristen' ? 'selected' : '' }}>
-                                                    Kristen
-                                                </option>
-                                                <option value="hindu"
-                                                    {{ old('religion') == 'hindu' ? 'selected' : '' }}>
-                                                    Hindu
-                                                </option>
-                                                <option value="budha"
-                                                    {{ old('religion') == 'budha' ? 'selected' : '' }}>
-                                                    Budha
-                                                </option>
-                                                <option value="katolik"
-                                                    {{ old('religion') == 'katolik' ? 'selected' : '' }}>
-                                                    Katolik
-                                                </option>
-                                                <option value="konghucu"
-                                                    {{ old('religion') == 'konghucu' ? 'selected' : '' }}>
-                                                    Konghucu
-                                                </option>
-                                            </select>
+                                        <select name="religion" class="form-select">
+                                            <option value="islam" {{ old('religion') == 'islam' ? 'selected' : '' }}>
+                                                Islam
+                                            </option>
+                                            <option value="kristen" {{ old('religion') == 'kristen' ? 'selected' : '' }}>
+                                                Kristen
+                                            </option>
+                                            <option value="hindu" {{ old('religion') == 'hindu' ? 'selected' : '' }}>
+                                                Hindu
+                                            </option>
+                                            <option value="budha" {{ old('religion') == 'budha' ? 'selected' : '' }}>
+                                                Budha
+                                            </option>
+                                            <option value="katolik" {{ old('religion') == 'katolik' ? 'selected' : '' }}>
+                                                Katolik
+                                            </option>
+                                            <option value="konghucu"
+                                                {{ old('religion') == 'konghucu' ? 'selected' : '' }}>
+                                                Konghucu
+                                            </option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -122,34 +123,36 @@
                                         <label id="name" for="recipient-name" class="control-label mb-2">Masukan
                                             Tanggal Lahir</label>
                                         <input type="date" class="form-control" id="create-name" class="form-control"
-                                            name="birth_date" aria-describedby="name" value="{{old('birth_date')}}" placeholder="Masukkan Tanggal Lahir" />
+                                            name="birth_date" aria-describedby="name" value="{{ old('birth_date') }}"
+                                            placeholder="Masukkan Tanggal Lahir" />
                                     </div>
                                     <div class="col-6">
                                         <label id="name" for="recipient-name" class="control-label mb-2">Masukan
                                             Kewarganegaraan</label>
                                         <select name="citizenship" class="form-select">
-                                                <option value="wni"
-                                                    {{ old('citizenship') == 'wni' ? 'selected' : '' }}>
-                                                    WNI
-                                                </option>
-                                                <option value="wna"
-                                                    {{ old('citizenship') == 'wna' ? 'selected' : '' }}>
-                                                    WNA
-                                                </option>
-                                            </select>
+                                            <option value="wni" {{ old('citizenship') == 'wni' ? 'selected' : '' }}>
+                                                WNI
+                                            </option>
+                                            <option value="wna" {{ old('citizenship') == 'wna' ? 'selected' : '' }}>
+                                                WNA
+                                            </option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col">
-                                        <label id="name" for="recipient-name" class="control-label mb-2">Masukan Jenis Kelamin</label>
+                                        <label id="name" for="recipient-name" class="control-label mb-2">Masukan
+                                            Jenis Kelamin</label>
                                         <div class="form-check mb-3">
-                                            <input class="form-check-input" type="radio" name="gender" id="formRadios1" checked="" value="male">
+                                            <input class="form-check-input" type="radio" name="gender"
+                                                id="formRadios1" checked="" value="male">
                                             <label class="form-check-label" for="formRadios1">
                                                 Laki - laki
                                             </label>
                                         </div>
                                         <div class="form-check mb-3">
-                                            <input class="form-check-input" type="radio" name="gender" id="formRadios1" checked="" value="female">
+                                            <input class="form-check-input" type="radio" name="gender"
+                                                id="formRadios1" checked="" value="female">
                                             <label class="form-check-label" for="formRadios1">
                                                 Perempuan
                                             </label>
@@ -159,30 +162,30 @@
                                         <label id="name" for="recipient-name" class="control-label mb-2">Masukan
                                             Status Kawin</label>
                                         <select name="marital_status" class="form-select">
-                                                <option value="single"
-                                                    {{ old('marital_status') == 'single' ? 'selected' : '' }}>
-                                                    Belum Kawin
-                                                </option>
-                                                <option value="marry"
-                                                    {{ old('marital_status') == 'marry' ? 'selected' : '' }}>
-                                                    Sudah Kawin
-                                                </option>
-                                                <option value="divorced"
-                                                    {{ old('marital_status') == 'divorced' ? 'selected' : '' }}>
-                                                    Cerai Hidup
-                                                </option>
-                                                <option value="death_divorce"
-                                                    {{ old('marital_status') == 'death_divorce' ? 'selected' : '' }}>
-                                                    Cerai Mati
-                                                </option>
-                                            </select>
+                                            <option value="single"
+                                                {{ old('marital_status') == 'single' ? 'selected' : '' }}>
+                                                Belum Kawin
+                                            </option>
+                                            <option value="marry"
+                                                {{ old('marital_status') == 'marry' ? 'selected' : '' }}>
+                                                Sudah Kawin
+                                            </option>
+                                            <option value="divorced"
+                                                {{ old('marital_status') == 'divorced' ? 'selected' : '' }}>
+                                                Cerai Hidup
+                                            </option>
+                                            <option value="death_divorce"
+                                                {{ old('marital_status') == 'death_divorce' ? 'selected' : '' }}>
+                                                Cerai Mati
+                                            </option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Masukan
                                         Alamat</label>
                                     <textarea class="form-control" name="address" id="" cols="15" rows="5"
-                                        placeholder="Masukkan Alamat">{{old('address')}}</textarea>
+                                        placeholder="Masukkan Alamat">{{ old('address') }}</textarea>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -254,11 +257,54 @@
                             <td class="fs-6">{{ $officer->position }}</td>
                             <td class="fs-6">{{ $officer->education }}</td>
                             <td class="d-flex flex-row gap-3 justify-content-center">
+                                <button data-name="{{ $officer->name }}"
+                                    data-birth_date="{{ Carbon::parse($officer->birth_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}"
+                                    data-address="{{ $officer->address }}" data-position="{{ $officer->position }}"
+                                    data-education="{{ $officer->education }}"
+                                    data-religion="{{ $officer->religion == 'islam'
+                                        ? 'Islam'
+                                        : ($officer->religion == 'kristen'
+                                            ? 'Kristen'
+                                            : ($officer->religion == 'hindu'
+                                                ? 'Hindu'
+                                                : ($officer->religion == 'budha'
+                                                    ? 'Buddha'
+                                                    : ($officer->religion == 'katolik'
+                                                        ? 'Katolik'
+                                                        : ($officer->religion == 'konghucu'
+                                                            ? 'Konghucu'
+                                                            : ''))))) }}"
+                                    data-gender="{{ $officer->gender == 'male' ? 'Laki - Laki' : 'Perempuan' }}"
+                                    data-marital_status="{{ $officer->marital_status == 'marry'
+                                        ? 'Sudah Kawin'
+                                        : ($officer->marital_status == 'single'
+                                            ? 'Belum Kawin'
+                                            : ($officer->marital_status == 'divorced'
+                                                ? 'Cerai Hidup'
+                                                : ($officer->marital_status == 'death_divorce'
+                                                    ? 'Cerai Mati'
+                                                    : ''))) }}"
+                                    data-citizenship="{{ $officer->citizenship == 'wni' ? 'WNI' : 'WNA' }}"
+                                    data-job="{{ $officer->job }}"
+                                    data-national_identity_number="{{ $officer->national_identity_number }}"
+                                    id="btn-detail-{{ $officer->id }}" data-id="{{ $officer->id }}"
+                                    class="btn btn-detail text-white" style="background-color: #1B3061"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                        viewBox="0 0 24 24" fill="none">
+                                        <path d="M4.5 12.5C7.5 6 16.5 6 19.5 12.5" stroke="white" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                        <path
+                                            d="M12 16C10.8954 16 10 15.1046 10 14C10 12.8954 10.8954 12 12 12C13.1046 12 14 12.8954 14 14C14 15.1046 13.1046 16 12 16Z"
+                                            stroke="white" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg> Detail</button>
                                 <button type="button"
                                     class="btn waves-effect waves-light d-flex btn-edit flex-row gap-1 justify-content-evenly"
                                     style="width: 90px; background-color: #FFC928; color: white"
                                     id="btn-edit-{{ $officer->id }}" data-id="{{ $officer->id }}"
-                                    data-name="{{ $officer->name }}" data-birth_date="{{ $officer->birth_date }}" data-address="{{ $officer->address }}" data-position="{{ $officer->position }}" data-education="{{ $officer->education }}"><i class="bx bx-bx bxs-edit fs-4"></i>
+                                    data-name="{{ $officer->name }}" data-birth_date="{{ $officer->birth_date }}"
+                                    data-address="{{ $officer->address }}" data-position="{{ $officer->position }}"
+                                    data-education="{{ $officer->education }}"><i class="bx bx-bx bxs-edit fs-4"></i>
                                     <span>Edit</span></button>
                                 <button type="button"
                                     class="btn waves-effect waves-light btn-delete d-flex flex-row gap-1 justify-content-between"
@@ -309,7 +355,8 @@
                                     <label id="name" for="recipient-name" class="control-label mb-2">Masukan
                                         Tanggal Lahir</label>
                                     <input type="date" class="form-control" id="create-name" class="form-control"
-                                        name="birth_date" aria-describedby="name" value="{{old('birth_date')}}" placeholder="Masukkan Tanggal Lahir" />
+                                        name="birth_date" aria-describedby="name" value="{{ old('birth_date') }}"
+                                        placeholder="Masukkan Tanggal Lahir" />
 
                                 </div>
                             </div>
@@ -318,20 +365,22 @@
                                     <label id="name" for="recipient-name" class="control-label mb-2">Masukan
                                         Jabatan</label>
                                     <input type="text" class="form-control" id="create-name" class="form-control"
-                                        name="position" aria-describedby="name" value="{{old('position')}}" placeholder="Masukkan Jabatan" />
+                                        name="position" aria-describedby="name" value="{{ old('position') }}"
+                                        placeholder="Masukkan Jabatan" />
                                 </div>
                                 <div class="col-6">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Masukan
                                         Pendidikan</label>
                                     <input type="text" class="form-control" id="create-name" class="form-control"
-                                        name="education" aria-describedby="name" value="{{old('education')}}" placeholder="Masukkan Pendidikan" />
+                                        name="education" aria-describedby="name" value="{{ old('education') }}"
+                                        placeholder="Masukkan Pendidikan" />
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label id="name" for="recipient-name" class="control-label mb-2">Masukan
                                     Alamat</label>
                                 <textarea class="form-control" name="address" id="" cols="15" rows="5"
-                                    placeholder="Masukkan Alamat">{{old('address')}}</textarea>
+                                    placeholder="Masukkan Alamat">{{ old('address') }}</textarea>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -348,10 +397,88 @@
             </div>
         </div>
     </div>
+    <div class="modal fade bs-example-modal-md" id="modal-detail" tabindex="-1" role="dialog"
+        aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #1B3061">
+                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Detail</h5>
+                    <button type="button" class="btn-close" style="background-color: white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table cellpadding="6" style="border-collapse: collapse;width:80%;" class="fs-6 fw-normal">
+                        <tbody>
+                            <tr>
+                                <td class="fw-bold">Nama Pengurus</td>
+                                <td>:</td>
+                                <td id="detail-name"></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">NIK</td>
+                                <td>:</td>
+                                <td id="detail-national_identity_number"></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">Jenis Kelamin</td>
+                                <td>:</td>
+                                <td id="detail-gender"></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">Agama</td>
+                                <td>:</td>
+                                <td id="detail-religion"></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">Status</td>
+                                <td>:</td>
+                                <td id="detail-marital_status"></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">Kewarganegaran</td>
+                                <td>:</td>
+                                <td id="detail-citizenship"></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">Jabatan</td>
+                                <td>:</td>
+                                <td id="detail-position"></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">Pekerjaan</td>
+                                <td>:</td>
+                                <td id="detail-job"></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">Pendidikan</td>
+                                <td>:</td>
+                                <td id="detail-education"></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">Tanggal Lahir</td>
+                                <td>:</td>
+                                <td id="detail-birth_date"></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">Alamat</td>
+                                <td>:</td>
+                                <td id="detail-address"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div>
     <x-delete-modal-component />
 @endsection
 @section('script')
     <script>
+        $('.btn-detail').click(function() {
+            const data = getDataAttributes($(this).attr('id'))
+            handleDetail(data)
+            $('#modal-detail').modal('show')
+        })
         $('.btn-edit').click(function() {
             const formData = getDataAttributes($(this).attr('id'))
             var actionUrl = `officers/${formData['id']}`;
