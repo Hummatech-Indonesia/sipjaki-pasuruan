@@ -20,6 +20,7 @@
                             <th class="text-center table-sipjaki">Nama</th>
                             <th class="text-center table-sipjaki">Tanggal</th>
                             <th class="text-center table-sipjaki">Kualifikasi</th>
+                            <th class="text-center table-sipjaki">File</th>
                             <th class="text-center table-sipjaki">Tahun</th>
                             <th class="text-center table-sipjaki">Aksi</th>
                         </tr>
@@ -37,6 +38,9 @@
                                     {{ $serviceProviderQualificationPendin->created_at->format('j F Y') }} </td>
                                 <td class="text-center">
                                     {{ $serviceProviderQualificationPendin->qualification->name }}
+                                </td>
+                                <td class="text-center">
+                                    <button class="btn text-white" style="background-color: #1B3061">Detail</button>
                                 </td>
                                 <td class="text-center">
                                     {{ $serviceProviderQualificationPendin->year }}

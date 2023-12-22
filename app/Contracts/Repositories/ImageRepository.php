@@ -14,6 +14,11 @@ class ImageRepository extends BaseRepository implements ImageInterface
     {
         $this->model = $image;
     }
+    public function get(): mixed
+    {
+        return $this->model->query()
+        ->get();
+    }
 
     /**
      * store

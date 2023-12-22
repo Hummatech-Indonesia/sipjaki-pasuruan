@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('images', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('photo');
+            $table->longText('photo');
             $table->enum('categories', [UploadDiskEnum::STRUCTUREORGANITATION->value, UploadDiskEnum::JOBANDFUNCTION->value, UploadDiskEnum::STRATEGICPLAN->value, UploadDiskEnum::FAQ->value]);
             $table->timestamps();
         });

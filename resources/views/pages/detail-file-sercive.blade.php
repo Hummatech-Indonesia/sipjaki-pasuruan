@@ -1,42 +1,70 @@
 @extends('layouts.app')
 
 @section('style')
-    <style>
-        .carousel-control-prev .carousel-control-prev-icon,
-        .carousel-control-next .carousel-control-next-icon {
-            outline: black;
-            background-color: rgba(0, 0, 0, 0.3);
-        }
+<style>
+    .carousel-control-prev,
+    .carousel-control-next {
+        top: 50%;
+        transform: translateY(-50%);
+        width: 40px;
+        height: 40px;
+        opacity: 0.5;
+        background-color: rgba(0, 0, 0, 0.3);
+        color: white;
+        border-radius: 50%;
+        font-size: 20px;
+        text-align: center;
+        line-height: 40px;
+        position: absolute;
+    }
 
-        .carousel-control-prev .fa-chevron-left,
-        .carousel-control-next .fa-chevron-right {
-            color: black;
-        }
+    .carousel-control-prev {
+        left: 10px;
+    }
 
-        .carousel-caption {
-            color: black;
-        }
-    </style>
+    .carousel-control-next {
+        right: 10px;
+    }
+
+    .carousel-caption {
+        color: black;
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgba(255, 255, 255, 0.7);
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+</style>
 @endsection
 
 @section('content')
+    <div class="d-flex justify-content-between mb-4">
+        <div class="">
+            <h5>
+                {{ $serviceProviderQualification->subClassification->name }} </h5>
+        </div>
+        <div class="">
+            <button class="btn text-white" style="background-color: #1B3061" onclick="history.back()">Kembali</button>
+        </div>
+    </div>
     <main role="main">
         <div id="carousel" class="carousel" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <canvas id="pdf-canvas" class="d-block w-100" data-file="{{ asset('storage/'.$serviceProviderQualification->file) }}"></canvas>
+                    <canvas id="pdf-canvas" class="d-block w-100"
+                        data-file="{{ asset('storage/' . $serviceProviderQualification->file) }}"></canvas>
                     <div class="carousel-caption d-none d-md-block">
                         <span>Page: <span id="page-num"></span> / <span id="page-count"></span></span>
                     </div>
                 </div>
             </div>
             <a class="carousel-control-prev" href="#" role="button" data-slide="prev">
-                <i class="fas fa-chevron-left fa-2x"></i>
-                <span class="sr-only">Previous</span>
+                <i class="fas fa-chevron-left"></i>
             </a>
             <a class="carousel-control-next" href="#" role="button" data-slide="next">
-                <i class="fas fa-chevron-right fa-2x"></i>
-                <span class="sr-only">Next</span>
+                <i class="fas fa-chevron-right"></i>
             </a>
         </div>
     </main>
@@ -65,7 +93,9 @@
 
                 // Using promise to fetch the page
                 pdfDoc.getPage(num).then(function(page) {
-                    const page_viewport = page.getViewport({ scale });
+                    const page_viewport = page.getViewport({
+                        scale
+                    });
                     canvas.height = page_viewport.height;
                     canvas.width = page_viewport.width;
 

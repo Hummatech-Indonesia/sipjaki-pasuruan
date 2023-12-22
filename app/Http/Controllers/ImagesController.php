@@ -23,6 +23,10 @@ class ImagesController extends Controller
         $this->service = $service;
     }
 
+    public function index(){
+       $images = $this->image->get();
+        return view('pages.admin.input-image', compact('images'));
+    }
     /**
      * update
      *

@@ -188,10 +188,7 @@ Route::middleware('auth')->group(function () {
         Route::get('detail-file', function () {
             return view('pages.detail-file');
         });
-        Route::get('images', function () {
-            return view('pages.admin.input-image');
-        })->name('images.index');
-
+        Route::get('images', [ImagesController::class, 'index'])->name('images.index');
         Route::post('images', [ImagesController::class, 'store'])->name('images.store');
         Route::post('videos', [ImagesController::class, 'storeVideo'])->name('video.store');
 
@@ -283,9 +280,6 @@ Route::middleware('role:admin|superadmin')->group(function () {
 
     //Upload Foto
     Route::post('images', [ImagesController::class, 'store'])->name('images.store');
-    Route::get('images', function () {
-        return view('pages.admin.input-image');
-    })->name('images.index');
 
     Route::resources([
         'news' => NewsController::class,
