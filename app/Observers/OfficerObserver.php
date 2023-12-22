@@ -13,6 +13,7 @@ class OfficerObserver
     public function creating(Officer $officer): void
     {
         $officer->id = Uuid::uuid();
+        $officer->service_provider_id = auth()->user()->serviceProvider->id;
     }
 
     /**
