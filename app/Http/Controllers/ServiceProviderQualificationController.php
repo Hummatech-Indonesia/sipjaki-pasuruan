@@ -9,6 +9,7 @@ use App\Http\Requests\RejectSericeProviderQualificationRequest;
 use App\Http\Requests\ServiceProviderQualificationRequest;
 use App\Http\Resources\ServiceProviderQualificationResource;
 use App\Models\ServiceProviderQualification;
+use App\Services\ServiceProviderQualificationService;
 use App\Traits\PaginationTrait;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
@@ -18,6 +19,7 @@ class ServiceProviderQualificationController extends Controller
 {
     use PaginationTrait;
     private ServiceProviderQualificationInterface $serviceProviderQualification;
+    private ServiceProviderQualificationService $service;
 
     public function __construct(ServiceProviderQualificationInterface $serviceProviderQualification)
     {
@@ -50,7 +52,8 @@ class ServiceProviderQualificationController extends Controller
      */
     public function store(ServiceProviderQualificationRequest $request)
     {
-        $this->serviceProviderQualification->store($request->validated());
+        $data = $this->service->store($request);
+        $this->serviceProviderQualification->store($data);
         if ($request->is('api/*')) {
             return ResponseHelper::success(null, trans('alert.add_success'));
         } else {

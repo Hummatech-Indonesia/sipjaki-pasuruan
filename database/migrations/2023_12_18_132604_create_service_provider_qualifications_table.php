@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('resend')->nullable();
             $table->dateTime('first_print')->nullable();
             $table->dateTime('last_print')->nullable();
+            $table->string('file');
             $table->timestamps();
         });
     }
