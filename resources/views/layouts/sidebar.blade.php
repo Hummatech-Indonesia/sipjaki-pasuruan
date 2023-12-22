@@ -188,8 +188,8 @@
                             <span key="t-file-manager">Dashboard</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="javascript: void(0);" class="has-arrow waves-effect">
+                    <li id="approval">
+                        <a href="javascript: void(0);" id="approval-link" class="has-arrow waves-effect">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                 viewBox="0 0 42 42" fill="currentColor">
                                 <path
@@ -200,7 +200,7 @@
                             </span>
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="{{ route('service.provider.qualification.pending') }}"
+                            <li id="kualifikasi-approval"><a id="kualifikasi-approval-link" href="{{ route('service.provider.qualification.pending') }}"
                                     key="t-tui-calendar">Kualifikasi</a></li>
                         </ul>
                     </li>

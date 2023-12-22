@@ -1,42 +1,42 @@
 @extends('layouts.app')
 
 @section('style')
-<style>
-    .carousel-control-prev,
-    .carousel-control-next {
-        top: 50%;
-        transform: translateY(-50%);
-        width: 40px;
-        height: 40px;
-        opacity: 0.5;
-        background-color: rgba(0, 0, 0, 0.3);
-        color: white;
-        border-radius: 50%;
-        font-size: 20px;
-        text-align: center;
-        line-height: 40px;
-        position: absolute;
-    }
+    <style>
+        .carousel-control-prev,
+        .carousel-control-next {
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            opacity: 0.5;
+            background-color: rgba(0, 0, 0, 0.3);
+            color: white;
+            border-radius: 50%;
+            font-size: 20px;
+            text-align: center;
+            line-height: 40px;
+            position: absolute;
+        }
 
-    .carousel-control-prev {
-        left: 10px;
-    }
+        .carousel-control-prev {
+            left: 10px;
+        }
 
-    .carousel-control-next {
-        right: 10px;
-    }
+        .carousel-control-next {
+            right: 10px;
+        }
 
-    .carousel-caption {
-        color: black;
-        position: absolute;
-        bottom: 10px;
-        left: 50%;
-        transform: translateX(-50%);
-        background-color: rgba(255, 255, 255, 0.7);
-        padding: 5px 10px;
-        border-radius: 5px;
-    }
-</style>
+        .carousel-caption {
+            color: black;
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -73,6 +73,8 @@
 @section('script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
     <script>
+        
+       
         $(function() {
             let pdfDoc = null,
                 pageNum = 1,
