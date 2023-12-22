@@ -6,13 +6,16 @@ use App\Contracts\Interfaces\WorkerCertificateInterface;
 use App\Http\Requests\WorkerCertificateRequest;
 use App\Models\Worker;
 use App\Models\WorkerCertificate;
+use App\Services\WorkerCertificateService;
 use Illuminate\Http\Request;
 
 class WorkerCertificateController extends Controller
 {
     private WorkerCertificateInterface $workerCertificate;
-    public function __construct(WorkerCertificateInterface $workerCertificateInterface)
+    private WorkerCertificateService $service;
+    public function __construct(WorkerCertificateInterface $workerCertificateInterface, WorkerCertificateService $workerCertificateService)
     {
+        $this->service = $workerCertificateService;
         $this->workerCertificate = $workerCertificateInterface;
     }
 
@@ -38,7 +41,7 @@ class WorkerCertificateController extends Controller
      */
     public function store(WorkerCertificateRequest $request, Worker $worker)
     {
-        $data = $request->validated();
+        $data = $this->service->store($request);
         $data['worker_id'] = $worker->id;
         $this->workerCertificate->store($data);
         return redirect()->back()->with('success', trans('alert.add_success'));
@@ -65,7 +68,7 @@ class WorkerCertificateController extends Controller
      */
     public function update(WorkerCertificateRequest $request, WorkerCertificate $worker_certificate)
     {
-        $this->workerCertificate->update($worker_certificate->id, $request->validated());
+        $this->workerCertificate->update($worker_certificate->id, $this->service->update($worker_certificate, $request));
         return redirect()->back()->with('success', trans('alert.update_success'));
     }
 
@@ -74,6 +77,7 @@ class WorkerCertificateController extends Controller
      */
     public function destroy(WorkerCertificate $worker_certificate)
     {
+        $this->service->remove($worker_certificate->file);
         $this->workerCertificate->delete($worker_certificate->id);
         return redirect()->back()->with('success', trans('alert.delete_success'));
     }

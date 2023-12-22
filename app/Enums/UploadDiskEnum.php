@@ -22,4 +22,5 @@ enum UploadDiskEnum: string
     case QUALIFICATION = 'qualification';
     case CLASSIFICATION = 'classification';
     case SERVICEPROVIDER = 'serviceprovider';
+    case WORKER_CERTIFICATE = 'worker_certificate';
 }
