@@ -174,7 +174,7 @@
                 max-width: 75%;
             }
             .alamat{
-                margin-top: 70px;
+                margin-top: 45px;
             }
         }
     </style>
@@ -388,21 +388,12 @@
                 <div class="footer-inner wow pixFadeUp">
                     <div class="row">
                         <div class="col-lg-6 col-md-6">
-                            <div>
-                                <img class="logo-kab-pasuruan mb-4" src="{{ asset('logo-kab-pasuruan-2.png') }}"
-                                    alt="" srcset="">
-                                {{-- <div id="googleMap" style="width:100%;height:400px;"></div> --}}
-                                <div id="map" class="maps" style="border:1px solid;"></div>
-
-                            </div>
-                            <!-- /.widget footer-widget -->
-                        </div>
-
-                        <!-- /.col-lg-3 col-md-6 -->
-
-                        <div class="col-lg-6 col-md-6">
                             <div class="widget footer-widget">
-                                <img class="img-sipjaki" src="{{ asset('sipjaki.png') }}" alt="" srcset="">
+                                <img class="img-sipjaki mb-5" style="margin-left: 3%" src="{{ asset('sipjaki.png') }}" alt="" srcset="">
+                                <div>
+                                    <img class="logo-kab-pasuruan mb-4" src="{{ asset('logo-kab-pasuruan-2.png') }}"
+                                    alt="" srcset="">
+                                </div>
                                 <div class="alamat"
                                     style="color: var(--Biru-Primary, #1B3061);
                                 font-family: Poppins;
@@ -465,6 +456,19 @@
                             </div>
                             <!-- /.widget footer-widget -->
                         </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div>
+                              
+                                {{-- <div id="googleMap" style="width:100%;height:400px;"></div> --}}
+                                <div id="map" class="maps" style="border:1px solid;height:572px;margin-top:34px"></div>
+
+                            </div>
+                            <!-- /.widget footer-widget -->
+                        </div>
+
+                        <!-- /.col-lg-3 col-md-6 -->
+
+
                     </div>
                     <ul class="d-flex justify-content-end"
                         style="color: var(--Biru-Primary, #1B3061);
