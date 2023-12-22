@@ -38,7 +38,7 @@
             </div>
 
             <div class="modal fade" id="modal-create" tabindex="-1" id="modal-create" aria-labelledby="exampleModalLabel1">
-                <div class="modal-dialog" role="document">
+                <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <form id="form-create" action="{{ route('officers.store') }}" method="POST">
                             @csrf
@@ -60,9 +60,9 @@
                                     </div>
                                     <div class="col-6">
                                         <label id="name" for="recipient-name" class="control-label mb-2">Masukan
-                                            Tanggal Lahir</label>
-                                        <input type="date" class="form-control" id="create-name" class="form-control"
-                                            name="birth_date" aria-describedby="name" value="{{old('birth_date')}}" placeholder="Masukkan Tanggal Lahir" />
+                                            NIK</label>
+                                        <input type="text" class="form-control" id="create-name" class="form-control"
+                                            name="national_identity_number" aria-describedby="name" placeholder="Masukkan Pengurus" value="{{old('name')}}" />
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -77,6 +77,105 @@
                                             Pendidikan</label>
                                         <input type="text" class="form-control" id="create-name" class="form-control"
                                             name="education" aria-describedby="name" value="{{old('education')}}" placeholder="Masukkan Pendidikan" />
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-6">
+                                        <label id="name" for="recipient-name" class="control-label mb-2">Masukan
+                                            Pekerjaan</label>
+                                        <input type="text" class="form-control" id="create-name" class="form-control"
+                                            name="job" aria-describedby="name" value="{{old('job')}}" placeholder="Masukkan Pekerjaan" />
+                                    </div>
+                                    <div class="col-6">
+                                        <label id="name" for="recipient-name" class="control-label mb-2">Masukan
+                                            Agama</label>
+                                            <select name="religion" class="form-select">
+                                                <option value="islam"
+                                                    {{ old('religion') == 'islam' ? 'selected' : '' }}>
+                                                    Islam
+                                                </option>
+                                                <option value="kristen"
+                                                    {{ old('religion') == 'kristen' ? 'selected' : '' }}>
+                                                    Kristen
+                                                </option>
+                                                <option value="hindu"
+                                                    {{ old('religion') == 'hindu' ? 'selected' : '' }}>
+                                                    Hindu
+                                                </option>
+                                                <option value="budha"
+                                                    {{ old('religion') == 'budha' ? 'selected' : '' }}>
+                                                    Budha
+                                                </option>
+                                                <option value="katolik"
+                                                    {{ old('religion') == 'katolik' ? 'selected' : '' }}>
+                                                    Katolik
+                                                </option>
+                                                <option value="konghucu"
+                                                    {{ old('religion') == 'konghucu' ? 'selected' : '' }}>
+                                                    Konghucu
+                                                </option>
+                                            </select>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-6">
+                                        <label id="name" for="recipient-name" class="control-label mb-2">Masukan
+                                            Tanggal Lahir</label>
+                                        <input type="date" class="form-control" id="create-name" class="form-control"
+                                            name="birth_date" aria-describedby="name" value="{{old('birth_date')}}" placeholder="Masukkan Tanggal Lahir" />
+                                    </div>
+                                    <div class="col-6">
+                                        <label id="name" for="recipient-name" class="control-label mb-2">Masukan
+                                            Kewarganegaraan</label>
+                                        <select name="citizenship" class="form-select">
+                                                <option value="wni"
+                                                    {{ old('citizenship') == 'wni' ? 'selected' : '' }}>
+                                                    WNI
+                                                </option>
+                                                <option value="wna"
+                                                    {{ old('citizenship') == 'wna' ? 'selected' : '' }}>
+                                                    WNA
+                                                </option>
+                                            </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <label id="name" for="recipient-name" class="control-label mb-2">Masukan Jenis Kelamin</label>
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="radio" name="gender" id="formRadios1" checked="" value="male">
+                                            <label class="form-check-label" for="formRadios1">
+                                                Laki - laki
+                                            </label>
+                                        </div>
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="radio" name="gender" id="formRadios1" checked="" value="female">
+                                            <label class="form-check-label" for="formRadios1">
+                                                Perempuan
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <label id="name" for="recipient-name" class="control-label mb-2">Masukan
+                                            Status Kawin</label>
+                                        <select name="marital_status" class="form-select">
+                                                <option value="single"
+                                                    {{ old('marital_status') == 'single' ? 'selected' : '' }}>
+                                                    Belum Kawin
+                                                </option>
+                                                <option value="marry"
+                                                    {{ old('marital_status') == 'marry' ? 'selected' : '' }}>
+                                                    Sudah Kawin
+                                                </option>
+                                                <option value="divorced"
+                                                    {{ old('marital_status') == 'divorced' ? 'selected' : '' }}>
+                                                    Cerai Hidup
+                                                </option>
+                                                <option value="death_divorce"
+                                                    {{ old('marital_status') == 'death_divorce' ? 'selected' : '' }}>
+                                                    Cerai Mati
+                                                </option>
+                                            </select>
                                     </div>
                                 </div>
                                 <div class="mb-3">
