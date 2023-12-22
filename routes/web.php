@@ -56,13 +56,13 @@ use App\Http\Controllers\ServiceProvider\VerificationController as ServiceProvid
  */
 
 
-Route::get('/',[LandingController::class,'news'])->name('landing-page');
+Route::get('/', [LandingController::class, 'news'])->name('landing-page');
 
-Route::get('peraturan',[LandingController::class,'rules'])->name('rules.landing');
-Route::get('berita/{news}',[LandingController::class,'show'])->name('berita');
+Route::get('peraturan', [LandingController::class, 'rules'])->name('rules.landing');
+Route::get('berita/{news}', [LandingController::class, 'show'])->name('berita');
 
-Route::get('asosiasi',[AssociationController::class,'dataServiceProvider'])->name('association.landing');
-Route::get('detail-asosiasi/{association}',[LandingController::class,'associationDetail'])->name('association-detail.landing');
+Route::get('asosiasi', [AssociationController::class, 'dataServiceProvider'])->name('association.landing');
+Route::get('detail-asosiasi/{association}', [LandingController::class, 'associationDetail'])->name('association-detail.landing');
 
 Route::get('struktur-organisasi-DKSDK', function () {
     return view('struktur-organisasi');
@@ -81,7 +81,7 @@ Auth::routes(['verify' => true]);
 Route::get('download-rule/{rule}', [RuleController::class, 'downloadRule']);
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('berita-terbaru',[LandingController::class,'latestNews'])->name('berita-terbaru');
+Route::get('berita-terbaru', [LandingController::class, 'latestNews'])->name('berita-terbaru');
 
 Route::get('/kecelakaan', [DinasController::class, 'accidentLandingPage'])->name('kecelakaan');
 
@@ -174,45 +174,14 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::middleware('role:admin')->group(function () {
-        Route::resource('rules', RuleController::class);
         Route::get('dashboard-admin', [AdminController::class, 'dashboard'])->name('dashboard-admin');
-        Route::resources([
-            'news' => NewsController::class,
-            'faqs' => FaqController::class
-        ]);
-        Route::get('agencies', [UserController::class, 'index'])->name('agencies.index');
-        Route::post('agencies', [UserController::class, 'store'])->name('agencies.store');
-        Route::put('agencies/{user}', [UserController::class, 'update'])->name('agencies.update');
-        Route::delete('agencies/{user}', [UserController::class, 'destroy'])->name('agencies.destroy');
-
-        Route::get('images', function () {
-            return view('pages.admin.input-image');
-        })->name('images.index');
-        Route::get('video', function () {
-            return view('pages.admin.input-video');
-        })->name('video.index');
-        Route::post('images', [ImagesController::class, 'store'])->name('images.store');
-        Route::post('videos', [ImagesController::class, 'storeVideo'])->name('video.store');
-
-        Route::get('training-members/{training}', [TrainingMemberController::class, 'index']);
-        Route::post('training-members/{training}', [TrainingMemberController::class, 'store'])->name('training.members.store');
-        Route::put('training-member-update/{training_member}', [TrainingMemberController::class, 'update'])->name('training.members');
-        Route::delete('training-members/{training_member}', [TrainingMemberController::class, 'destroy']);
-        Route::post('import-training-members', [TrainingMemberController::class, 'import']);
-        Route::delete('delete-training-members',[ TrainingMemberController::class, 'multipleDelete'])->name('delete-member');
-
-
-        Route::get('training', [TrainingController::class, 'index'])->name('training');
-        Route::post('training', [TrainingController::class, 'store'])->name('training.store');
-        Route::put('training.update/{training}', [TrainingController::class, 'update'])->name('training.update');
-        Route::delete('training.destroy/{training}', [TrainingController::class, 'destroy'])->name('training.destroy');
     });
 
     Route::middleware('role:dinas')->group(function () {
         Route::get('dashboard-dinas', [DinasController::class, 'dashboard'])->name('dashboard-dinas');
         Route::get('profile-OPD', [DinasController::class, 'index']);
         Route::resource('accident', AccidentController::class)->except('create', 'edit');
-        Route::delete('accident-destroy/{accident}' , [AccidentController::class,'destroy']);
+        Route::delete('accident-destroy/{accident}', [AccidentController::class, 'destroy']);
         Route::get('accident-show/{accident}', [AccidentController::class, 'show']);
         Route::resources([
             'projects' => ProjectController::class
@@ -236,7 +205,7 @@ Route::middleware('auth')->group(function () {
         Route::delete('service-provider-projects/{service_provider_project}', [ServiceProviderProjectController::class, 'destroy'])->name('service-provider-projects.delete');
 
         Route::get('dashboard-service-provider', [ServiceProviderController::class, 'dashboard'])->name('dashboard-service-provider');
-        Route::resource('workers', WorkerController::class)->only('index', 'update', 'destroy','store');
+        Route::resource('workers', WorkerController::class)->only('index', 'update', 'destroy', 'store');
         Route::delete('delete-workers', [WorkerController::class, 'deleteMultiple'])->name('delete-workers');
         Route::post('workers/{service_provider}', [WorkerController::class, 'store']);
 
@@ -260,6 +229,38 @@ Route::middleware('role:admin|superadmin')->group(function () {
     Route::get('all-agency', [DinasController::class, 'all'])->name('all.agency');
     Route::get('service-provider-consultants', [ServiceProviderController::class, 'consultant']);
     Route::get('service-provider-executors', [ServiceProviderController::class, 'executor']);
+
+    //Training
+    Route::get('training', [TrainingController::class, 'index'])->name('training');
+    Route::post('training', [TrainingController::class, 'store'])->name('training.store');
+    Route::put('training.update/{training}', [TrainingController::class, 'update'])->name('training.update');
+    Route::delete('training.destroy/{training}', [TrainingController::class, 'destroy'])->name('training.destroy');
+
+    //Training Member
+    Route::get('training-members/{training}', [TrainingMemberController::class, 'index']);
+    Route::post('training-members/{training}', [TrainingMemberController::class, 'store'])->name('training.members.store');
+    Route::put('training-member-update/{training_member}', [TrainingMemberController::class, 'update'])->name('training.members');
+    Route::delete('training-members/{training_member}', [TrainingMemberController::class, 'destroy']);
+    Route::post('import-training-members', [TrainingMemberController::class, 'import']);
+    Route::delete('delete-training-members', [TrainingMemberController::class, 'multipleDelete'])->name('delete-member');
+
+    //Upload Foto
+    Route::post('images', [ImagesController::class, 'store'])->name('images.store');
+    Route::get('images', function () {
+        return view('pages.admin.input-image');
+    })->name('images.index');
+
+    Route::resources([
+        'news' => NewsController::class,
+        'faqs' => FaqController::class,
+        'rules' => RuleController::class
+    ]);
+
+    //Agencies
+    Route::get('agencies', [UserController::class, 'index'])->name('agencies.index');
+    Route::post('agencies', [UserController::class, 'store'])->name('agencies.store');
+    Route::put('agencies/{user}', [UserController::class, 'update'])->name('agencies.update');
+    Route::delete('agencies/{user}', [UserController::class, 'destroy'])->name('agencies.destroy');
 });
 
 //Reset Password

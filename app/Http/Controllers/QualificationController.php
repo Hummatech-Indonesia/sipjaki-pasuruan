@@ -67,7 +67,7 @@ class QualificationController extends Controller
 
         $qualification = $this->qualification->show($qualification->id);
         if ($request->is('api/*')) {
-            return ResponseHelper::success(null, trans('alert.update_success'));
+            return ResponseHelper::success($qualification);
         } else {
             return view('pages.sub-qualification', compact('qualification'));
         }

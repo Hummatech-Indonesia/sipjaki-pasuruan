@@ -24,7 +24,7 @@ class ClassificationController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request) : View | JsonResponse
+    public function index(Request $request): View | JsonResponse
     {
         $classifications = $this->classification->customPaginate($request, 10);
         $classifications->appends(['name' => $request->name]);
@@ -34,7 +34,7 @@ class ClassificationController extends Controller
             return ResponseHelper::success($data);
         } else {
             $name = $request->name;
-            return view('pages.classification.index',compact('classifications','name'));
+            return view('pages.classification.index', compact('classifications', 'name'));
         }
     }
 
@@ -62,9 +62,14 @@ class ClassificationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Classification $classification, Request $request)
     {
-        //
+        $classification = $this->classification->show($classification->id);
+        if ($request->is('api/*')) {
+            return ResponseHelper::success($classification);
+        } else {
+            return view('pages.sub-qualification', compact('qualification'));
+        }
     }
 
     /**
