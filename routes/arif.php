@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::put('dinas', [DinasController::class, 'update'])->name('dinas.update');
 
-Route::get('accident-chart', [DinasController::class, 'chart'])->name('accident.chart');
 Route::get('export-associations', [AssociationController::class, 'export']);
 
 Route::get('verification', [VerificationController::class, 'index']);
