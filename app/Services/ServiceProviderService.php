@@ -30,6 +30,7 @@ class ServiceProviderService
                 $old_file = $this->upload(UploadDiskEnum::SERVICEPROVIDER->value, $request->file('file'));
             }
         }
+        $data['file'] = $old_file;
         return $data;
     }
 }

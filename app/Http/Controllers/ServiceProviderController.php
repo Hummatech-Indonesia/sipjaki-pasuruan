@@ -69,8 +69,8 @@ class ServiceProviderController extends Controller
     public function update(ServiceProviderRequest $request)
     {
         $service = $this->service->update($request);
-        $this->user->update(auth()->user()->id, $request->validated());
-        $this->serviceProvider->update(auth()->user()->serviceProvider->id, $request->validated());
+        $this->user->update(auth()->user()->id, $service);
+        $this->serviceProvider->update(auth()->user()->serviceProvider->id, $service);
         return redirect()->back()->with('success', trans('alert.update_success'));
     }
 

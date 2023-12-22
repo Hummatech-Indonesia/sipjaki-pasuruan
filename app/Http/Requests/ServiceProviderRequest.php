@@ -35,7 +35,7 @@ class ServiceProviderRequest extends FormRequest
      *
      * @return array
      */
-    public function messages(): array
+    public function mespsages(): array
     {
         return [
             'directur.required' => 'Nama direktur wajib diisi',
