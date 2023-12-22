@@ -40,11 +40,23 @@
 @endsection
 
 @section('content')
+<div class="d-flex justify-content-between mb-4 ">
+    <div class="">
+        <h5>
+            {{ $service_provider_qualification->serviceProvider->user->name }}
+        </h5>
+    </div>
+    <div class="">
+        <button onclick="history.back()" class="text-white btn" style="background-color: #1B3061">
+            Kembali
+        </button>
+    </div>
+</div>
     <main role="main">
         <div id="carousel" class="carousel" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <canvas id="pdf-canvas" class="d-block w-100" data-file="{{ asset('Bootsrap.pdf') }}"></canvas>
+                    <canvas id="pdf-canvas" class="d-block w-100" data-file="{{ asset('storage/'.$service_provider_qualification->file) }}"></canvas>
                     <div class="carousel-caption d-none d-md-block">
                         <span>Page: <span id="page-num"></span> / <span id="page-count"></span></span>
                     </div>

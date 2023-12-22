@@ -178,4 +178,15 @@ class ServiceProviderQualificationController extends Controller
         $serviceProviderQualificationReject = $this->serviceProviderQualification->getReject();
         return view('', ['serviceProviderQualificationReject' => $serviceProviderQualificationReject]);
     }
+
+    /**
+     * detailPending
+     *
+     * @param  mixed $service_provider_qualification
+     * @return View
+     */
+    public function detailPending(ServiceProviderQualification $service_provider_qualification) : View
+    {
+        return view('pages.detail-file', ['service_provider_qualification' => $service_provider_qualification]);
+    }
 }

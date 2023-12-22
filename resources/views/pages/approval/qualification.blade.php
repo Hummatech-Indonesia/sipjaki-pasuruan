@@ -40,7 +40,7 @@
                                     {{ $serviceProviderQualificationPendin->qualification->name }}
                                 </td>
                                 <td class="text-center">
-                                    <button class="btn text-white" style="background-color: #1B3061">Detail</button>
+                                    <a href="detail-service-provider-qualification-pending/{{ $serviceProviderQualificationPendin->id }}" class="btn text-white" style="background-color: #1B3061">Detail</a>
                                 </td>
                                 <td class="text-center">
                                     {{ $serviceProviderQualificationPendin->year }}

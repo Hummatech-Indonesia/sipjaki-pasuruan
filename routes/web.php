@@ -185,9 +185,6 @@ Route::middleware('auth')->group(function () {
         Route::post('agencies', [UserController::class, 'store'])->name('agencies.store');
         Route::put('agencies/{user}', [UserController::class, 'update'])->name('agencies.update');
         Route::delete('agencies/{user}', [UserController::class, 'destroy'])->name('agencies.destroy');
-        Route::get('detail-file', function () {
-            return view('pages.detail-file');
-        });
         Route::get('images', [ImagesController::class, 'index'])->name('images.index');
         Route::post('images', [ImagesController::class, 'store'])->name('images.store');
         Route::post('videos', [ImagesController::class, 'storeVideo'])->name('video.store');
