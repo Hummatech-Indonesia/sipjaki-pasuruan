@@ -20,7 +20,7 @@ class ServiceProvider extends Model implements HasUser, HasProjects, HasAssociat
     use HasFactory;
     protected $table = 'service_providers';
     protected $primaryKey = 'id';
-    protected $fillable = ['id', 'user_id', 'association_id', 'address', 'city', 'postal_code', 'province', 'website', 'form_of_business_entity', 'type_of_business_entity', 'fax', 'file'];
+    protected $fillable = ['id', 'user_id', 'association_id', 'address', 'city', 'postal_code', 'province', 'website', 'form_of_business_entity', 'type_of_business_entity', 'fax', 'file', 'directur'];
     protected $guarded = [];
     public $incrementing = false;
     public $keyType = 'char';
