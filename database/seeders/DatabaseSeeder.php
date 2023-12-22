@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             TrainingMethodSeeder::class,
             ClassificationSeeder::class,
             SubClassificationSeeder::class,
+            ImageSeeder::class
         ]);
     }
 }
