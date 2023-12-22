@@ -154,7 +154,7 @@
                                                     value="{{ $image->categories }}">
                                                 <p class="fs-5 mb-1" style="font-weight: 400">Kategori Struktur Organisasi
                                                 </p>
-                                                <textarea id="summernote" name="photo">{!! $image->photo !!}</textarea>
+                                                <textarea class="summernote" name="photo">{!! $image->photo !!}</textarea>
                                         </div>
                                         <div class="modal-footer">
                                             <div class="d-flex justify-content-end">
@@ -198,13 +198,7 @@
     @endif
     <script>
         $(document).ready(function() {
-            $('#summernote').summernote({
-                height: 200
-            });
-            $('#summernote-tugas').summernote({
-                height: 200
-            });
-            $('#summernote-rencana').summernote({
+            $('.summernote').summernote({
                 height: 200
             });
         });
