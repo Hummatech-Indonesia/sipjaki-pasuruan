@@ -112,8 +112,8 @@
                                                     <input id="phone" type="number"
                                                         class="form-control @error('phone') is-invalid @enderror"
                                                         name="phone_number" placeholder="Masukan phone"
-                                                        value="{{ old('phone_number') }}" autocomplete="phone" autofocus
-                                                        style="border-radius: 8px">
+                                                        value="{{ old('phone_number') }}" autocomplete="phone"
+                                                        autofocus style="border-radius: 8px">
                                                     @error('phone')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
@@ -126,29 +126,35 @@
                                                     <select name="association_id" class="form-select" id="">
                                                         <option value="consultant">Pilih Asosiasi</option>
                                                         @foreach ($associations as $association)
-                                                            <option value="{{ $association->id }}" {{ $association->id == old('association_id') ? "selected" : "" }}>
+                                                            <option value="{{ $association->id }}"
+                                                                {{ $association->id == old('association_id') ? 'selected' : '' }}>
                                                                 {{ $association->name }}</option>
                                                         @endforeach
                                                     </select>
                                                     @error('association_id')
-                                                            <span class="invalid-feedback" role="alert">
-                                                                <strong>{{ $message }}</strong>
-                                                            </span>
-                                                        @enderror
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
 
                                                 <div class="mb-3 col-md-6 col-12">
                                                     <label for="phone" class="form-label"
                                                         style="font-weight: bold">{{ __('Tipe') }}</label>
-                                                    <select name="type_of_business_entity" class="form-select" id="">
-                                                        <option value="consultant" {{ "consultant" == old('type_of_business_entity') ? "selected" : "" }}>Konsultan</option>
-                                                        <option value="executor" {{ "executor" == old('type_of_business_entity') ? "selected" : "" }}>Penyelenggara</option>
+                                                    <select name="type_of_business_entity" class="form-select"
+                                                        id="">
+                                                        <option value="consultant"
+                                                            {{ 'consultant' == old('type_of_business_entity') ? 'selected' : '' }}>
+                                                            Konsultan</option>
+                                                        <option value="executor"
+                                                            {{ 'executor' == old('type_of_business_entity') ? 'selected' : '' }}>
+                                                            Penyelenggara</option>
                                                     </select>
                                                     @error('type_of_business_entity')
-                                                            <span class="invalid-feedback" role="alert">
-                                                                <strong>{{ $message }}</strong>
-                                                            </span>
-                                                        @enderror
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
 
                                                 <div class="mb-3 col-md-6 col-12">
