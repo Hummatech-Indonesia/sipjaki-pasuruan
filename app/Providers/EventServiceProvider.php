@@ -7,8 +7,10 @@ use App\Models\AmendmentDeed;
 use App\Models\Association;
 use App\Models\Classification;
 use App\Models\ClassificationTraining;
+use App\Models\ConsultantProject;
 use App\Models\ContractCategory;
 use App\Models\Dinas;
+use App\Models\ExecutorProject;
 use App\Models\FiscalYear;
 use App\Models\FoundingDeed;
 use App\Models\FundSource;
@@ -41,8 +43,10 @@ use App\Observers\AmendmendDeedObserver;
 use App\Observers\AssociationObserver;
 use App\Observers\ClassificationObserver;
 use App\Observers\ClassificationTrainingObserver;
+use App\Observers\ConstultantProjectObserver;
 use App\Observers\ContractCategoryObserver;
 use App\Observers\DinasObserver;
+use App\Observers\ExecutorProjectObserver;
 use App\Observers\FiscalYearObserver;
 use App\Observers\FoundingDeedObserver;
 use App\Observers\FundSourceObserver;
@@ -125,6 +129,8 @@ class EventServiceProvider extends ServiceProvider
         Officer::observe(OfficerObserver::class);
         ServiceProviderQualification::observe(ServiceProviderQualificationObserver::class);
         WorkerCertificate::observe(WorkerCertificateObserver::class);
+        ConsultantProject::observe(ConstultantProjectObserver::class);
+        ExecutorProject::observe(ExecutorProjectObserver::class);
     }
 
     /**
