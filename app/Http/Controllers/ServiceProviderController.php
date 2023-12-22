@@ -17,6 +17,7 @@ use App\Contracts\Interfaces\VerificationInterface;
 use App\Http\Requests\UpdatePasswordServiceProviderRequest;
 use App\Models\ServiceProvider;
 use App\Enums\TypeOfBusinessEntityEnum;
+use App\Services\ServiceProviderService;
 
 class ServiceProviderController extends Controller
 {
@@ -26,23 +27,19 @@ class ServiceProviderController extends Controller
     private ServiceProviderInterface $serviceProvider;
     private ServiceProviderQualificationInterface $serviceProviderQualification;
     private OfficerInterface $officer;
-    private VerificationInterface $verification;
-    private FoundingDeepInterface $foundingDeep;
-    private AmendmentDeepInterface $amendmentDeep;
     private UserInterface $userI;
+    private ServiceProviderService $service;
 
-    public function __construct(UserInterface $user, ServiceProviderInterface $serviceProvider, ProjectInterface $projectInterface, WorkerInterface $workerInterface, ServiceProviderQualificationInterface $serviceProviderQualification, OfficerInterface $officerInterface, VerificationInterface $verification, FoundingDeepInterface $foundingDeep, AmendmentDeepInterface $amendmentDeep, UserInterface $userInterface)
+    public function __construct(UserInterface $user, ServiceProviderInterface $serviceProvider, ProjectInterface $projectInterface, WorkerInterface $workerInterface, ServiceProviderQualificationInterface $serviceProviderQualification, OfficerInterface $officerInterface, UserInterface $userInterface, ServiceProviderService $service)
     {
         $this->userI = $userInterface;
-        $this->foundingDeep = $foundingDeep;
-        $this->verification = $verification;
         $this->worker = $workerInterface;
         $this->project = $projectInterface;
         $this->user = $user;
         $this->serviceProvider = $serviceProvider;
         $this->serviceProviderQualification = $serviceProviderQualification;
         $this->officer = $officerInterface;
-        $this->amendmentDeep = $amendmentDeep;
+        $this->service = $service;
     }
 
     /**
@@ -60,7 +57,7 @@ class ServiceProviderController extends Controller
         $countExperience = $this->project->countProject();
         $countAllExperience = $this->project->countAllProject();
         $year = $request->year;
-        return view('pages.service-provider.dashboard', ['experiences' => $experiences, 'workers' => $workers, 'countWorker' => $countWorker, 'countExperience' => $countExperience, 'countAllExperience' => $countAllExperience, 'countOfficer' => $countOfficer, 'year'=> $year]);
+        return view('pages.service-provider.dashboard', ['experiences' => $experiences, 'workers' => $workers, 'countWorker' => $countWorker, 'countExperience' => $countExperience, 'countAllExperience' => $countAllExperience, 'countOfficer' => $countOfficer, 'year' => $year]);
     }
 
     /**
@@ -71,6 +68,7 @@ class ServiceProviderController extends Controller
      */
     public function update(ServiceProviderRequest $request)
     {
+        $service = $this->service->update($request);
         $this->user->update(auth()->user()->id, $request->validated());
         $this->serviceProvider->update(auth()->user()->serviceProvider->id, $request->validated());
         return redirect()->back()->with('success', trans('alert.update_success'));

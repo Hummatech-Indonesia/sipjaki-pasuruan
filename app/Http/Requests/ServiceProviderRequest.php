@@ -23,6 +23,7 @@ class ServiceProviderRequest extends FormRequest
             'province' => 'required|max:255',
             'website' => 'required',
             'fax' => 'required',
+            'file' => 'nullable|mimes:pdf,docx',
             'form_of_business_entity' => ['required', new FormOfBusinessEntityRule],
             'type_of_business_entity' => ['required', new TypeOfBussinessEntityRule]
         ];
@@ -37,6 +38,7 @@ class ServiceProviderRequest extends FormRequest
             'city.required' => 'Kota harus diisi.',
             'city.max' => 'Kota tidak boleh lebih dari :max karakter.',
             'postal_code.required' => 'Kode pos harus diisi.',
+            'file.mimes' => 'File wajib berformat PDF ataupun Docx.',
             'postal_code.max' => 'Kode pos tidak boleh lebih dari :max karakter.',
             'province.required' => 'Provinsi harus diisi.',
             'province.max' => 'Provinsi tidak boleh lebih dari :max karakter.',

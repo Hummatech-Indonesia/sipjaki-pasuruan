@@ -20,7 +20,7 @@ class ServiceProvider extends Model implements HasUser, HasProjects, HasAssociat
     use HasFactory;
     protected $table = 'service_providers';
     protected $primaryKey = 'id';
-    protected $fillable = ['id', 'user_id', 'association_id', 'address', 'city', 'postal_code', 'province', 'website', 'form_of_business_entity', 'type_of_business_entity', 'fax'];
+    protected $fillable = ['id', 'user_id', 'association_id', 'address', 'city', 'postal_code', 'province', 'website', 'form_of_business_entity', 'type_of_business_entity', 'fax', 'file'];
     protected $guarded = [];
     public $incrementing = false;
     public $keyType = 'char';
@@ -42,12 +42,12 @@ class ServiceProvider extends Model implements HasUser, HasProjects, HasAssociat
      */
     public function projects(): HasMany
     {
-        if($this->type_of_business_entity == TypeOfBusinessEntityEnum::CONSULTANT->value){
+        if ($this->type_of_business_entity == TypeOfBusinessEntityEnum::CONSULTANT->value) {
             $foreignColumn = 'consultant_id';
-        }else{
+        } else {
             $foreignColumn = 'executor_id';
         }
-        return $this->hasMany(Project::class,$foreignColumn);
+        return $this->hasMany(Project::class, $foreignColumn);
     }
 
     /**

@@ -21,4 +21,5 @@ enum UploadDiskEnum: string
     case MINUTESOFDISBURSEMENT = 'minutes_of_disbursement';
     case QUALIFICATION = 'qualification';
     case CLASSIFICATION = 'classification';
+    case SERVICEPROVIDER = 'serviceprovider';
 }
