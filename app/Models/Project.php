@@ -9,12 +9,15 @@ use App\Base\Interfaces\HasFundSource;
 use Illuminate\Database\Eloquent\Model;
 use App\Base\Interfaces\HasContractCategory;
 use App\Base\Interfaces\HasExecutor;
+use App\Base\Interfaces\HasOneConsultantProject;
+use App\Base\Interfaces\HasOneExecutorProject;
 use App\Base\Interfaces\HasServiceProviderProjects;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Project extends Model implements HasDinas, HasExecutor, HasConsultant, HasFundSource, HasContractCategory, HasServiceProviderProjects
+class Project extends Model implements HasDinas, HasExecutor, HasConsultant, HasFundSource, HasContractCategory, HasServiceProviderProjects, HasOneConsultantProject, HasOneExecutorProject
 {
     use HasFactory;
     protected $table = 'projects';
@@ -23,6 +26,26 @@ class Project extends Model implements HasDinas, HasExecutor, HasConsultant, Has
     protected $guarded = [];
     public $incrementing = false;
     public $keyType = 'char';
+
+    /**
+     * executorProject
+     *
+     * @return HasOne
+     */
+    public function executorProject(): HasOne
+    {
+        return $this->hasOne(ExecutorProject::class);
+    }
+
+    /**
+     * consultantProject
+     *
+     * @return HasOne
+     */
+    public function consultantProject(): HasOne
+    {
+        return $this->hasOne(ConsultantProject::class);
+    }
 
     /**
      * dinas

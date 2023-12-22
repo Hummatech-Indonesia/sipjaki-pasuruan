@@ -47,13 +47,6 @@
                                             Pelatihan</a></li>
                                 </ul>
                             </li>
-                            <li>
-                                <a href="javascript: void(0);" class="has-arrow" key="t-level-1-2">Penyedia Jasa</a>
-                                <ul class="sub-menu" aria-expanded="true">
-                                    <li><a href="/service-provider-consultants" key="t-level-2-1">konsultan </a></li>
-                                    <li><a href="/service-provider-executors" key="t-level-2-2">Penyelenggara</a></li>
-                                </ul>
-                            </li>
                             <li><a href="{{ route('all.agency') }}" key="t-tui-calendar">Dinas</a></li>
                             <li>
                                 <a href="{{ route('rule-categories.index') }}" class="waves-effect">
@@ -69,6 +62,26 @@
                                 <a href="{{ route('fiscal-years.index') }}" class="waves-effect">
                                     <span key="t-file-manager">Tahun Anggaran</span>
                                 </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow waves-effect">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="20" height="20"
+                                viewBox="0 0 24 24">
+                                <path fill="none" stroke="currentColor" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2"
+                                    d="M8 7a4 4 0 1 0 8 0a4 4 0 1 0-8 0M2.5 17a4 4 0 1 0 8 0a4 4 0 1 0-8 0m11 0a4 4 0 1 0 8 0a4 4 0 1 0-8 0" />
+                            </svg>
+                            <span key="t-multi-level">Pengguna</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="true">
+                            <li>
+                                <a href="javascript: void(0);" class="has-arrow" key="t-level-1-2">Penyedia Jasa</a>
+                                <ul class="sub-menu" aria-expanded="true">
+                                    <li><a href="/service-provider-consultants" key="t-level-2-1">konsultan</a></li>
+                                    <li><a href="/service-provider-executors" key="t-level-2-2">Pelaksana</a></li>
+                                </ul>
                             </li>
                         </ul>
                     </li>
@@ -206,8 +219,8 @@
                             <li>
                                 <a href="javascript: void(0);" class="has-arrow" key="t-level-1-2">Penyedia Jasa</a>
                                 <ul class="sub-menu" aria-expanded="true">
-                                    <li><a href="/service-provider-consultants" key="t-level-2-1">konsultan </a></li>
-                                    <li><a href="/service-provider-executors" key="t-level-2-2">Penyelenggara</a></li>
+                                    <li><a href="/service-provider-consultants" key="t-level-2-1">konsultan</a></li>
+                                    <li><a href="/service-provider-executors" key="t-level-2-2">Pelaksana</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -327,11 +340,15 @@
                             <span key="t-file-manager">Dashboard</span>
                         </a>
                     </li>
-                    <li id="paket-pekerjaan">
-                        <a href="{{ route('work.package') }}" id="paket-link" class="waves-effect">
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow waves-effect">
                             <i class="bx bx-briefcase"></i>
-                            <span key="t-file-manager">Paket Pekerjaan</span>
+                            <span key="t-multi-level">Paket Pekerjaan</span>
                         </a>
+                        <ul class="sub-menu" aria-expanded="true">
+                            <li><a href="{{ route('work.package') }}" key="t-tui-calendar">Paket</a></li>
+                            <li><a href="consultant-package" key="t-tui-calendar">Paket Konsultan</a></li>
+                        </ul>
                     </li>
                     <li>
                         <a href="{{ route('workers.index') }}" class="waves-effect">

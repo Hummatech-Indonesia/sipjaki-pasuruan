@@ -42,9 +42,9 @@
 @section('content')
 <div class="d-flex justify-content-between mb-4 ">
     <div class="">
-        <h5>
+        <h4>
             {{ $service_provider_qualification->serviceProvider->user->name }}
-        </h5>
+        </h4>
     </div>
     <div class="">
         <button onclick="history.back()" class="text-white btn" style="background-color: #1B3061">
@@ -52,6 +52,7 @@
         </button>
     </div>
 </div>
+<div class="container">
     <main role="main">
         <div id="carousel" class="carousel" data-ride="carousel">
             <div class="carousel-inner">
@@ -70,6 +71,7 @@
             </a>
         </div>
     </main>
+</div>
 @endsection
 @section('script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
