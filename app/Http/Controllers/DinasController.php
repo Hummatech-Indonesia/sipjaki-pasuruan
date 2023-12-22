@@ -72,17 +72,6 @@ class DinasController extends Controller
         }
     }
 
-    /**
-     * chart
-     *
-     * @return void
-     */
-    public function chart()
-    {
-        $dinases =  $this->dinas->get();
-        $data = DinasAccidentResource::collection($dinases);
-        return ResponseHelper::success($data);
-    }
 
     /**
      * dashboard
