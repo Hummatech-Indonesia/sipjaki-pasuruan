@@ -62,6 +62,17 @@ class ServiceProviderQualificationController extends Controller
     }
 
     /**
+     * show
+     *
+     * @param  mixed $service_provider_qualification
+     * @return View
+     */
+    public function show(ServiceProviderQualification $service_provider_qualification): View
+    {
+        return view('', ['serviceProviderQualification' => $service_provider_qualification]);
+    }
+
+    /**
      * update
      *
      * @param  mixed $request

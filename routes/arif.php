@@ -22,6 +22,7 @@ Route::get('service-provider-qualification-active', [ServiceProviderQualificatio
 Route::get('service-provider-qualification-pending', [ServiceProviderQualificationController::class, 'pending'])->name('service.provider.qualification.pending');
 Route::get('service-provider-qualification-reject-by-user', [ServiceProviderQualificationController::class, 'getReject'])->name('service.provider.qualification.reject.by.user');
 Route::post('service-provider-qualifications', [ServiceProviderQualificationController::class, 'store'])->name('service.provider.qualifications.store');
+Route::post('detail-service-provider-qualification/{service_provider_qualification}', [ServiceProviderQualificationController::class, 'show'])->name('service.provider.qualifications.detail');
 Route::put('service-provider-qualifications/{serviceProviderQualification}', [ServiceProviderQualificationController::class, 'update'])->name('service.provider.qualifications.update');
 Route::patch('approve-service-provider-qualifications/{serviceProviderQualification}', [ServiceProviderQualificationController::class, 'approve']);
 Route::patch('reject-service-provider-qualifications/{serviceProviderQualification}', [ServiceProviderQualificationController::class, 'reject']);
