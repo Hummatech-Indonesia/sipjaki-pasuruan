@@ -24,7 +24,7 @@ class ImageRepository extends BaseRepository implements ImageInterface
     public function store(array $data): mixed
     {
         return $this->model->query()
-            ->create($data);
+            ->updateOrCreate(['categories' => $data['categories']], $data);
     }
 
     /**
