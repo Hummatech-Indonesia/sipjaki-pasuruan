@@ -17,12 +17,10 @@ use App\Services\QualificationService;
 class QualificationController extends Controller
 {
     private QualificationInterface $qualification;
-    private QualificationService $service;
 
-    public function __construct(QualificationInterface $qualification, QualificationService $service)
+    public function __construct(QualificationInterface $qualification)
     {
         $this->qualification = $qualification;
-        $this->service = $service;
     }
     /**
      * Display a listing of the resource.
@@ -48,7 +46,7 @@ class QualificationController extends Controller
      */
     public function store(QualificationRequest $request): RedirectResponse | JsonResponse
     {
-        $this->qualification->store($this->service->store($request));
+        $this->qualification->store($request->validated());
 
         if ($request->is('api/*')) {
 
@@ -78,7 +76,7 @@ class QualificationController extends Controller
      */
     public function update(QualificationUpdateRequest $request, Qualification $qualification): RedirectResponse | JsonResponse
     {
-        $this->qualification->update($qualification->id, $this->service->update($request, $qualification));
+        $this->qualification->update($qualification->id, $request->validated());
 
         if ($request->is('api/*')) {
 

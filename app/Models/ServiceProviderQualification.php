@@ -14,7 +14,7 @@ class ServiceProviderQualification extends Model implements HasSubClassification
     use HasFactory;
     protected $table = 'service_provider_qualifications';
     protected $primaryKey = 'id';
-    protected $fillable = ['id', 'sub_classification_id', 'service_provider_id', 'status', 'qualification_id', 'year', 'first_print', 'last_print', 'resend'];
+    protected $fillable = ['id', 'sub_classification_id', 'service_provider_id', 'status', 'qualification_id', 'year', 'first_print', 'last_print', 'resend', 'file'];
     protected $guarded = [];
     public $incrementing = false;
     public $keyType = 'char';
