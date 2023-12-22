@@ -82,7 +82,7 @@
                     <tr>
                         <th style="background-color: #1B3061;color:#ffffff" >No</th>
                         <th style="background-color: #1B3061;color:#ffffff">Nama Kualifikasi</th>
-                        <th style="background-color: #1B3061;color:#ffffff">File</th>
+                        {{-- <th style="background-color: #1B3061;color:#ffffff">File</th> --}}
                         <th style="background-color: #1B3061;color:#ffffff; text-align: center">Aksi</th>
                     </tr>
                 </thead>
