@@ -19,7 +19,7 @@ class TrainingMemberRequest extends FormRequest
             'position' => 'required|max:255',
             'address' => 'required',
             'phone_number' => 'required',
-            'decree' => 'required',
+            'decree' => 'nullable',
             'gender' => ['required', new GenderRule],
             'file' => 'required',
             'national_identity_number' => 'required|max:18',
