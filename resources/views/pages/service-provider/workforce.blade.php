@@ -70,7 +70,8 @@
                                 <ul>
                                     <li class="mb-1">File yang dapat diunggah berupa file excel berekstensi xls, xlsx.
                                     </li>
-                                    <li class="mb-1">Format pengisian file excel berisi Nama, Tanggal Lahir, Edukasi, Nomor Registrasi, Jumlah Sertifikasi</li>
+                                    <li class="mb-1">Format pengisian file excel berisi Nama, Tanggal Lahir, Edukasi,
+                                        Nomor Registrasi, Jumlah Sertifikasi</li>
                                 </ul>
                                 <!--end::Content-->
 
@@ -78,8 +79,7 @@
                             <!--end::Wrapper-->
                         </div>
                         <a href="{{ asset('import-workers.xlsx') }}" class="btn btn-success mb-3" style="">
-                            <i
-                                        class="fas fa-file-excel"></i>
+                            <i class="fas fa-file-excel"></i>
                             Download Format Excel
                         </a>
                         <p class="mb-0 text-dark " style="font-weight: 600">
@@ -128,15 +128,6 @@
                             </div>
                             <div class="col-6">
                                 <div class="mb-3">
-                                    <label id="name" for="recipient-name" class="control-label mb-2">Jenis
-                                        Sertifikat</label>
-                                    <input type="text" value="{{ old('cerificate') }}" class="form-control"
-                                        id="create-name" class="form-control" name="cerificate" aria-describedby="name"
-                                        placeholder="Masukkan Jenis Sertifikat" />
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-4">
-                                <div class="mb-3">
                                     <label id="name" for="recipient-name"
                                         class="control-label mb-2">Pendidikan</label>
                                     <input type="text" value="{{ old('education') }}" class="form-control"
@@ -144,23 +135,20 @@
                                         placeholder="Masukkan Pendidikan" />
                                 </div>
                             </div>
-                            <div class="col-6 col-md-4">
-                                <div class="mb-3">
-                                    <label id="name" for="recipient-name" class="control-label mb-2">No.
-                                        Registrasi</label>
-                                    <input type="text" value="{{ old('registration_number') }}" class="form-control"
-                                        id="create-name" class="form-control" name="registration_number"
-                                        aria-describedby="name" placeholder="Masukkan No. Registrasi" />
-                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <label id="name" for="recipient-name" class="control-label mb-2">Tanggal
+                                    Lahir</label>
+                                <input type="date" value="{{ old('birth_date') }}" class="form-control"
+                                    id="create-name" class="form-control" name="birth_date" aria-describedby="name"
+                                    placeholder="Masukkan Tanggal Lahir" />
                             </div>
-                            <div class="col-6 col-md-4">
-                                <div class="mb-3">
-                                    <label id="name" for="recipient-name" class="control-label mb-2">Tanggal
-                                        Lahir</label>
-                                    <input type="date" value="{{ old('birth_date') }}" class="form-control"
-                                        id="create-name" class="form-control" name="birth_date" aria-describedby="name"
-                                        placeholder="Masukkan Tanggal Lahir" />
-                                </div>
+                            <div class="col-6">
+                                <label id="name" for="recipient-name" class="control-label mb-2">No Telpon</label>
+                                <input type="number" value="{{ old('phone_number') }}" class="form-control"
+                                    id="create-name" class="form-control" name="phone_number" aria-describedby="name"
+                                    placeholder="Masukkan Pendidikan" />
                             </div>
                         </div>
                     </div>
@@ -184,10 +172,11 @@
                 <div class="col-lg-5">
                     <form action="" class="">
                         <div class="input-group">
-                            <input type="text" name="name" value="{{ request()->name }}" class="form-control" placeholder="Search">
+                            <input type="text" name="name" value="{{ request()->name }}" class="form-control"
+                                placeholder="Search">
                             <div class="input-group-append">
-                                <button class="btn text-white" style="background-color: #1B3061; border-radius: 0 5px 5px 0;"
-                                    type="submit">
+                                <button class="btn text-white"
+                                    style="background-color: #1B3061; border-radius: 0 5px 5px 0;" type="submit">
                                     <i class="fa fa-search"></i>
                                 </button>
                             </div>
@@ -279,8 +268,7 @@
                                 <div class="d-flex justify-content-header gap-3">
                                     <div class="">
                                         <button id="btn-edit-{{ $worker->id }}" data-id="{{ $worker->id }}"
-                                            data-name="{{ $worker->name }}"
-                                            data-birth_date="{{$worker->birth_date }}"
+                                            data-name="{{ $worker->name }}" data-birth_date="{{ $worker->birth_date }}"
                                             data-cerificate="{{ $worker->cerificate }}"
                                             data-education="{{ $worker->education }}"
                                             data-registration_number="{{ $worker->registration_number }}" type="button"

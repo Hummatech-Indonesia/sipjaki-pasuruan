@@ -2,9 +2,13 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\GenderRule;
+use App\Rules\MaritalStatusRule;
+use App\Rules\ReligionRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class OfficerRequest extends FormRequest
+class OfficerRequest extends Rule
 {
     /**
      * Get the validation rules that apply to the request.
@@ -14,11 +18,17 @@ class OfficerRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'national_identity_number' => 'required|max:18',
             'name' => 'required|max:150',
             'birth_date' => 'required|date|before:today',
+            'gender' => [new GenderRule, 'required'],
             'address' => 'required',
+            'religion' => ['required', new ReligionRule],
+            'marital_status' => ['required', new MaritalStatusRule],
             'position' => 'required|max:255',
+            'citizenship' => 'required',
             'education' => 'required|max:255',
+            'job' => 'required',
         ];
     }
 

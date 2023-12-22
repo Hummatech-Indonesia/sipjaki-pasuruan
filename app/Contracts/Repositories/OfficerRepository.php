@@ -38,6 +38,7 @@ class OfficerRepository extends BaseRepository implements OfficerInterface
     public function customPaginate(Request $request, int $pagination = 10): LengthAwarePaginator
     {
         return $this->model->query()
+            ->where('service_provider_id', auth()->user()->serviceProvider->id)
             ->when($request->name, function ($query) use ($request) {
                 $query->where('name', 'LIKE', '%'. $request->name .'%');
             })
@@ -51,6 +52,7 @@ class OfficerRepository extends BaseRepository implements OfficerInterface
     public function get(): mixed
     {
         return $this->model->query()
+            ->where('service_provider_id', auth()->user()->serviceProvider->id)
             ->get();
     }
 
@@ -102,6 +104,7 @@ class OfficerRepository extends BaseRepository implements OfficerInterface
     public function count(?array $data): int
     {
         return $this->model->query()
+            ->where('service_provider_id', auth()->user()->serviceProvider->id)
             ->count();
     }
 }

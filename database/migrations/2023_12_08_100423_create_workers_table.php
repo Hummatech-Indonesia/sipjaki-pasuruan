@@ -17,8 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->date('birth_date');
             $table->string('education');
-            $table->string('registration_number');
-            $table->string('cerificate'); 
+            $table->string('phone_number');
             $table->timestamps();
         });
     }
