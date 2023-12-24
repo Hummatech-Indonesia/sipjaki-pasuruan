@@ -33,4 +33,4 @@ Route::delete('service-provider-qualifications/{serviceProviderQualification}', 
 Route::get('history-project', [ProjectController::class, 'history']);
 Route::get('my-project', [ProjectController::class, 'myProject']);
 
-Route::get('image-landing-page/{category}', [LandingController::class, 'image']);
+Route::get('image-landing-page', [LandingController::class, 'image']);
