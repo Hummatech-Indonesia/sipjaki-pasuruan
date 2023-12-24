@@ -13,8 +13,8 @@ use App\Contracts\Interfaces\FaqInterface;
 use App\Contracts\Interfaces\NewsInterface;
 use App\Contracts\Interfaces\RuleInterface;
 use App\Contracts\Interfaces\DinasInterface;
+use App\Contracts\Interfaces\ImageInterface;
 use App\Contracts\Interfaces\TrainingInterface;
-use App\Contracts\Interfaces\AssociationInterface;
 use App\Contracts\Interfaces\ProjectInterface;
 use App\Contracts\Interfaces\ServiceProviderInterface;
 
@@ -28,8 +28,9 @@ class LandingController extends Controller
     private RuleInterface $rule;
     private FaqInterface $faq;
     private ServiceProviderInterface $serviceProvider;
+    private ImageInterface $image;
 
-    public function __construct(FaqInterface $faq, DinasInterface $dinas, NewsInterface $news, TrainingInterface $training, RuleInterface $rule, ServiceProviderInterface $serviceProvider, ProjectInterface $project)
+    public function __construct(FaqInterface $faq, DinasInterface $dinas, NewsInterface $news, TrainingInterface $training, RuleInterface $rule, ServiceProviderInterface $serviceProvider, ProjectInterface $project, ImageInterface $image)
     {
         $this->project = $project;
         $this->dinas = $dinas;
@@ -38,6 +39,7 @@ class LandingController extends Controller
         $this->rule = $rule;
         $this->faq = $faq;
         $this->serviceProvider = $serviceProvider;
+        $this->image = $image;
     }
     /**
      * project
@@ -148,5 +150,16 @@ class LandingController extends Controller
         } else {
             return view('detail-asosiasi', ['serviceProviders' => $serviceProviders]);
         }
+    }
+
+    /**
+     * image
+     *
+     * @return View
+     */
+    public function image(): View
+    {
+        $this->image->get();
+        return view();
     }
 }
