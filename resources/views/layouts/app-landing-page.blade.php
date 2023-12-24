@@ -74,7 +74,6 @@
 
             .logo-kab-pasuruan {
                 width: 80%;
-                margin-bottom: 30px;
             }
 
             .banner {
@@ -113,7 +112,6 @@
                 margin-top: 20px;
             }
             .img-sipjaki{
-                margin-top:30px;
                 max-width: 80%;
             }
             .tabs-wrapper {
@@ -389,7 +387,7 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6">
                             <div class="widget footer-widget">
-                                <img class="img-sipjaki mb-2" style="margin-left: 3%;width:70%;" src="{{ asset('sipjaki.png') }}" alt="" srcset="">
+                                <img class="img-sipjaki mb-2" style="margin-left: 3%;" src="{{ asset('sipjaki.png') }}" alt="" srcset="">
                                 <div class="alamat"
                                     style="color: var(--Biru-Primary, #1B3061);
                                 font-family: Poppins;
@@ -429,7 +427,7 @@
                                 line-height: normal;
                                 text-decoration-line: underline;
                                 text-decoration-thickness: 2px;
-                                margin-top:20px;">
+                                margin-top:10px;">
                                     Email
                                 </div>
                                 <div class="d-flex d-row mt-3">
@@ -454,7 +452,7 @@
                         </div>
                         <div class="col-lg-6 col-md-6">
                             <div>
-                                <img class="logo-kab-pasuruan" style="width: 70%;" src="{{ asset('logo-kab-pasuruan-2.png') }}"
+                                <img class="logo-kab-pasuruan" src="{{ asset('logo-kab-pasuruan-2.png') }}"
                                 alt="" srcset="">
                             </div>
                             <div>
