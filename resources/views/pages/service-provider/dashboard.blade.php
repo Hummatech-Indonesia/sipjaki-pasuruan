@@ -161,7 +161,7 @@
                         <td class="fs-5">{{ $experience->year }}</td>
                         <td>
                             <span class="fs-6 badge px-4 py-2" style="background-color: {{ $experience->status == 'nonactive' ? '#FF0000' : '#E4ECFF' }}; color: {{ $experience->status == 'nonactive' ? '#FFFFFF' : '#1B3061' }}">
-                                {{ $experience->status }}
+                                {{ $experience->status == 'active' ? 'Aktif' : 'Tidak Aktif' }}
                             </span>
                         </td>
 

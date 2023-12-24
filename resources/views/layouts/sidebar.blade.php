@@ -337,7 +337,7 @@
                         </a>
                         <ul class="sub-menu" aria-expanded="true">
                             <li><a href="{{ route('work.package') }}" key="t-tui-calendar">Paket Pekerjaan</a></li>
-                            <li><a href="consultant-package" key="t-tui-calendar">Paket Konsultan</a></li>
+                            <li><a href="{{ route('consultant-package') }}" key="t-tui-calendar">Paket Konsultan</a></li>
                         </ul>
                     </li>
                     <li>

@@ -389,11 +389,7 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6">
                             <div class="widget footer-widget">
-                                <img class="img-sipjaki mb-5" style="margin-left: 3%" src="{{ asset('sipjaki.png') }}" alt="" srcset="">
-                                <div>
-                                    <img class="logo-kab-pasuruan mb-4" src="{{ asset('logo-kab-pasuruan-2.png') }}"
-                                    alt="" srcset="">
-                                </div>
+                                <img class="img-sipjaki mb-2" style="margin-left: 3%;width:70%;" src="{{ asset('sipjaki.png') }}" alt="" srcset="">
                                 <div class="alamat"
                                     style="color: var(--Biru-Primary, #1B3061);
                                 font-family: Poppins;
@@ -458,9 +454,13 @@
                         </div>
                         <div class="col-lg-6 col-md-6">
                             <div>
-                              
+                                <img class="logo-kab-pasuruan" style="width: 70%;" src="{{ asset('logo-kab-pasuruan-2.png') }}"
+                                alt="" srcset="">
+                            </div>
+                            <div>
+
                                 {{-- <div id="googleMap" style="width:100%;height:400px;"></div> --}}
-                                <div id="map" class="maps" style="border:1px solid;height:572px;margin-top:34px"></div>
+                                <div id="map" class="maps" style="border:1px solid;height:300px;margin-top:34px"></div>
 
                             </div>
                             <!-- /.widget footer-widget -->
@@ -470,7 +470,7 @@
 
 
                     </div>
-                    <ul class="d-flex justify-content-end"
+                    <ul class="d-flex justify-content-end mt-2"
                         style="color: var(--Biru-Primary, #1B3061);
                     font-family: Poppins;
                     font-size: 16px;
