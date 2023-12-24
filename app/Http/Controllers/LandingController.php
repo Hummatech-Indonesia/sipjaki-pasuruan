@@ -155,11 +155,12 @@ class LandingController extends Controller
     /**
      * image
      *
-     * @return View
+     * @param  mixed $request
+     * @return JsonResponse
      */
-    public function image(): View
+    public function image(Request $request): JsonResponse
     {
-        $images=$this->image->get();
-        return view('struktur-organisasi',compact('images'));
+        $images = $this->image->search($request);
+        return ResponseHelper::success($images);
     }
 }

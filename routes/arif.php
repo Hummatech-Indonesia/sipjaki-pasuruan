@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AssociationController;
 use App\Http\Controllers\DinasController;
+use App\Http\Controllers\LandingController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ServiceProvider\VerificationController;
 use App\Http\Controllers\ServiceProviderQualificationController;
@@ -31,3 +32,5 @@ Route::delete('service-provider-qualifications/{serviceProviderQualification}', 
 
 Route::get('history-project', [ProjectController::class, 'history']);
 Route::get('my-project', [ProjectController::class, 'myProject']);
+
+Route::get('image-landing-page', [LandingController::class, 'image']);

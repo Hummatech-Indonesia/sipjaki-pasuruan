@@ -17,7 +17,7 @@ class ImageRepository extends BaseRepository implements ImageInterface
     public function get(): mixed
     {
         return $this->model->query()
-        ->get();
+            ->get();
     }
 
     /**
@@ -84,5 +84,14 @@ class ImageRepository extends BaseRepository implements ImageInterface
                 $query->where('name', 'LIKE', '%' . $request->name . '%');
             })
             ->fastPaginate($pagination);
+    }
+
+    public function search(Request $request): mixed
+    {
+        return $this->model->query()
+            ->when($request->category, function ($query) use ($request) {
+                $query->where('categories', $request->category);
+            })
+            ->get();
     }
 }
