@@ -158,8 +158,9 @@ class LandingController extends Controller
      * @param  mixed $request
      * @return JsonResponse
      */
-    public function image(Request $request): JsonResponse
+    public function image(Request $request, string $category): JsonResponse
     {
+        $request->merge(['category' => $category]);
         $images = $this->image->search($request);
         return ResponseHelper::success($images);
     }
