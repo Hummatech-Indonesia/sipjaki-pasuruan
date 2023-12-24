@@ -183,8 +183,8 @@
                             <span key="t-file-manager">Dashboard</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="javascript: void(0);" class="has-arrow waves-effect">
+                    <li id="approval">
+                        <a href="javascript: void(0);" id="approval-link" class="has-arrow waves-effect">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                 viewBox="0 0 42 42" fill="currentColor">
                                 <path
@@ -195,7 +195,7 @@
                             </span>
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="{{ route('service.provider.qualification.pending') }}"
+                            <li id="kualifikasi-approval"><a id="kualifikasi-approval-link" href="{{ route('service.provider.qualification.pending') }}"
                                     key="t-tui-calendar">Kualifikasi</a></li>
                         </ul>
                     </li>
@@ -333,10 +333,10 @@
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect">
                             <i class="bx bx-briefcase"></i>
-                            <span key="t-multi-level">Paket Pekerjaan</span>
+                            <span key="t-multi-level">Paket</span>
                         </a>
                         <ul class="sub-menu" aria-expanded="true">
-                            <li><a href="{{ route('work.package') }}" key="t-tui-calendar">Paket</a></li>
+                            <li><a href="{{ route('work.package') }}" key="t-tui-calendar">Paket Pekerjaan</a></li>
                             <li><a href="consultant-package" key="t-tui-calendar">Paket Konsultan</a></li>
                         </ul>
                     </li>

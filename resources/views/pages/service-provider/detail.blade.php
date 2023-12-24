@@ -65,33 +65,33 @@
                                     Data Badan Usaha
                                 </div>
                             </div>
-                            <p class="fw-bolder fs-4">{{ $serviceProvider->user->name }}</p>
+                            <p class="fw-bolder fs-4">{{ $serviceProviders->user->name }}</p>
                             <table cellpadding="5" style="border-collapse: collapse; width: 50%;" class="fs-6 fw-normal">
                                 <tbody>
                                     <tr>
                                         <td>Alamat Badan Usaha</td>
                                         <td>:</td>
-                                        <td>{{ $serviceProvider->address ? $serviceProvider->address : '-' }}</td>
+                                        <td>{{ $serviceProviders->address ? $serviceProviders->address : '-' }}</td>
                                     </tr>
                                     <tr>
                                         <td>Kabupaten</td>
                                         <td>:</td>
-                                        <td>{{ $serviceProvider->city ? $serviceProvider->city : '-' }}</td>
+                                        <td>{{ $serviceProviders->city ? $serviceProviders->city : '-' }}</td>
                                     </tr>
                                     <tr>
                                         <td>Provinsi</td>
                                         <td>:</td>
-                                        <td>{{ $serviceProvider->province ? $serviceProvider->province : '-' }}</td>
+                                        <td>{{ $serviceProviders->province ? $serviceProviders->province : '-' }}</td>
                                     </tr>
                                     <tr>
                                         <td>Kode Pos</td>
                                         <td>:</td>
-                                        <td>{{ $serviceProvider->postal_code ? $serviceProvider->postal_code : '-' }}</td>
+                                        <td>{{ $serviceProviders->postal_code ? $serviceProviders->postal_code : '-' }}</td>
                                     </tr>
                                     <tr>
                                         <td>Telepon</td>
                                         <td>:</td>
-                                        <td>{{ $serviceProvider->user->phone_number ? $serviceProvider->user->phone_number : '-' }}
+                                        <td>{{ $serviceProviders->user->phone_number ? $serviceProviders->user->phone_number : '-' }}
                                         </td>
                                     </tr>
                                     <tr>
@@ -102,23 +102,23 @@
                                     <tr>
                                         <td>Email</td>
                                         <td>:</td>
-                                        <td>{{ $serviceProvider->user->email ? $serviceProvider->user->email : '-' }}</td>
+                                        <td>{{ $serviceProviders->user->email ? $serviceProviders->user->email : '-' }}</td>
                                     </tr>
                                     <tr>
                                         <td>Website</td>
                                         <td>:</td>
-                                        <td>{{ $serviceProvider->website ? $serviceProvider->website : '-' }}</td>
+                                        <td>{{ $serviceProviders->website ? $serviceProviders->website : '-' }}</td>
                                     </tr>
                                     <tr>
                                         <td>Bentuk Badan Usaha</td>
                                         <td>:</td>
-                                        <td>{{ $serviceProvider->form_of_business_entity ? ($serviceProvider->form_of_business_entity == 'pt' ? 'PT' : 'CV') : '-' }}
+                                        <td>{{ $serviceProviders->form_of_business_entity ? ($serviceProviders->form_of_business_entity == 'pt' ? 'PT' : 'CV') : '-' }}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Jenis Badan Usaha</td>
                                         <td>:</td>
-                                        <td>{{ $serviceProvider->type_of_business_entity ? ($serviceProvider->type_of_business_entity == 'consultant' ? 'Konsultan' : 'Penyelenggara') : '-' }}
+                                        <td>{{ $serviceProviders->type_of_business_entity ? ($serviceProviders->type_of_business_entity == 'consultant' ? 'Konsultan' : 'Penyelenggara') : '-' }}
                                         </td>
                                     </tr>
                                 </tbody>
@@ -138,19 +138,19 @@
                                 <div class="btn btn-sm mb-3 text-dark rounded-3" style="background-color: #E4ECFF;">
                                     Data Kualifikasi / Klasifikasi Badan Usaha
                                 </div>
-                                <p class="fw-bolder fs-4">{{ $serviceProvider->user->name }}</p>
+                                <p class="fw-bolder fs-4">{{ $serviceProviders->user->name }}</p>
                             </div>
                             <table cellpadding="5" style="border-collapse: collapse; width: 40%;" class="fs-6 fw-normal">
                                 <tbody>
                                     <tr>
                                         <td>Alamat Badan Usaha</td>
                                         <td>:</td>
-                                        <td>{{ $serviceProvider->address ? $serviceProvider->address : '-' }}</td>
+                                        <td>{{ $serviceProviders->address ? $serviceProviders->address : '-' }}</td>
                                     </tr>
                                     <tr>
                                         <td>Telepon</td>
                                         <td>:</td>
-                                        <td>{{ $serviceProvider->user->phone_number }}</td>
+                                        <td>{{ $serviceProviders->user->phone_number }}</td>
                                     </tr>
 
                                 </tbody>
@@ -234,19 +234,19 @@
                                 <div class="btn btn-sm mb-3 text-dark rounded-3" style="background-color: #E4ECFF;">
                                     Data Administrasi
                                 </div>
-                                <p class="fw-bolder fs-4">{{ $serviceProvider->user->name }}</p>
+                                <p class="fw-bolder fs-4">{{ $serviceProviders->user->name }}</p>
                             </div>
                             <table cellpadding="5" style="border-collapse: collapse; width: 40%;" class="fs-6 fw-normal">
                                 <tbody>
                                     <tr>
                                         <td>Alamat Badan Usaha</td>
                                         <td>:</td>
-                                        <td>{{ $serviceProvider->address ? $serviceProvider->address : '-' }}</td>
+                                        <td>{{ $serviceProviders->address ? $serviceProviders->address : '-' }}</td>
                                     </tr>
                                     <tr>
                                         <td>Telepon</td>
                                         <td>:</td>
-                                        <td>{{ $serviceProvider->user->phone_number }}</td>
+                                        <td>{{ $serviceProviders->user->phone_number }}</td>
                                     </tr>
 
                                 </tbody>
@@ -512,19 +512,19 @@
                                 <div class="btn btn-sm mb-3 text-dark rounded-3" style="background-color: #E4ECFF;">
                                     Data Pengurus Badan Usaha
                                 </div>
-                                <p class="fw-bolder fs-4">{{ $serviceProvider->user->name }}</p>
+                                <p class="fw-bolder fs-4">{{ $serviceProviders->user->name }}</p>
                             </div>
                             <table cellpadding="5" style="border-collapse: collapse; width: 40%;" class="fs-6 fw-normal">
                                 <tbody>
                                     <tr>
                                         <td>Alamat Badan Usaha</td>
                                         <td>:</td>
-                                        <td>{{ $serviceProvider->address ? $serviceProvider->address : '-' }}</td>
+                                        <td>{{ $serviceProviders->address ? $serviceProviders->address : '-' }}</td>
                                     </tr>
                                     <tr>
                                         <td>Telepon</td>
                                         <td>:</td>
-                                        <td>{{ $serviceProvider->user->phone_number }}</td>
+                                        <td>{{ $serviceProviders->user->phone_number }}</td>
                                     </tr>
 
                                 </tbody>
@@ -594,19 +594,19 @@
                                 <div class="btn btn-sm mb-3 text-dark rounded-3" style="background-color: #E4ECFF;">
                                     Data Tenaga Kerja Badan Usaha
                                 </div>
-                                <p class="fw-bolder fs-4">{{ $serviceProvider->user->name }}</p>
+                                <p class="fw-bolder fs-4">{{ $serviceProviders->user->name }}</p>
                             </div>
                             <table cellpadding="5" style="border-collapse: collapse; width: 40%;" class="fs-6 fw-normal">
                                 <tbody>
                                     <tr>
                                         <td>Alamat Badan Usaha</td>
                                         <td>:</td>
-                                        <td>{{ $serviceProvider->address }}</td>
+                                        <td>{{ $serviceProviders->address }}</td>
                                     </tr>
                                     <tr>
                                         <td>Telepon</td>
                                         <td>:</td>
-                                        <td>{{ $serviceProvider->user->phone_number }}</td>
+                                        <td>{{ $serviceProviders->user->phone_number }}</td>
                                     </tr>
 
                                 </tbody>
@@ -783,19 +783,19 @@
                                 <div class="btn btn-sm mb-3 text-dark rounded-3" style="background-color: #E4ECFF;">
                                     Data Pengalaman Badan Usaha
                                 </div>
-                                <p class="fw-bolder fs-4">{{ $serviceProvider->user->name }}</p>
+                                <p class="fw-bolder fs-4">{{ $serviceProviders->user->name }}</p>
                             </div>
                             <table cellpadding="5" style="border-collapse: collapse; width: 40%;" class="fs-6 fw-normal">
                                 <tbody>
                                     <tr>
                                         <td>Alamat Badan Usaha</td>
                                         <td>:</td>
-                                        <td>{{ $serviceProvider->address ? $serviceProvider->address : '-' }}</td>
+                                        <td>{{ $serviceProviders->address ? $serviceProviders->address : '-' }}</td>
                                     </tr>
                                     <tr>
                                         <td>Telepon</td>
                                         <td>:</td>
-                                        <td>{{ $serviceProvider->user->phone_number ? $serviceProvider->user->phone_number : '-' }}
+                                        <td>{{ $serviceProviders->user->phone_number ? $serviceProviders->user->phone_number : '-' }}
                                         </td>
                                     </tr>
                                 </tbody>
@@ -837,7 +837,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($serviceProvider->projects()->where('end_date','<',now()) as $project)
+                            @forelse ($serviceProviders->projects()->where('end_date','<',now()) as $project)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $project->name }}</td>
@@ -873,7 +873,7 @@
                 <h5 class="card-header rounded-top-3 border-bottom text-uppercase text-center h-20"
                     style="background-color: #1B3061;color:white;">Ganti Password</h5>
                 <div class="card-body">
-                    <form action="/update-password-service-provider/{{ $serviceProvider->id }}" method="post">
+                    <form action="/update-password-service-provider/{{ $serviceProviders->id }}" method="post">
                         @method('PATCH')
                         @csrf
                         <div class="row">

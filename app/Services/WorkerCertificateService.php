@@ -40,4 +40,15 @@ class WorkerCertificateService
         $data['file'] = $oldFile;
         return $data;
     }
+
+    /**
+     * downloadCertificate
+     *
+     * @param  mixed $worker_certificate
+     * @return void
+     */
+    public function downloadCertificate(WorkerCertificate $worker_certificate)
+    {
+        return response()->download(storage_path('app/public/' . $worker_certificate->file), $worker_certificate->certificate);
+    }
 }

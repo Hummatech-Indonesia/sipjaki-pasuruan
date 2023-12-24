@@ -115,15 +115,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('verify-account/{user}', [VerificationController::class, 'verifyToken'])->name('verify.account');
 
 
-    Route::middleware('role:superadmin|admin')->group(function () {
-        Route::get('all-service-provider', [ServiceProviderProjectController::class, 'allServiceProvider']);
-        Route::get('service-provider-detail/{service_provider}', [ServiceProviderProjectController::class, 'projectDetail']);
-        Route::patch('update-password-service-provider/{service_provider}', [ServiceProviderController::class, 'updatePassword']);
-    });
-
-
     Route::middleware('role:superadmin')->group(function () {
-        
+
         Route::get('dashboard-superadmin', [SuperadminController::class, 'dashboard'])->name('dashboard-superadmin');
         Route::resources([
             'contract-categories' => ContractCategoryController::class,
@@ -227,10 +220,11 @@ Route::middleware('auth')->group(function () {
         Route::get('detail-consultan', function () {
             return view('pages.service-provider.detail-consultan');
         });
-        Route::get('worker-certificate/{worker}', [WorkerCertificateController::class, 'index']);
-        Route::post('worker-certificate/{worker}', [WorkerCertificateController::class, 'store']);
+        Route::get('worker-certificate/{worker}', [WorkerCertificateController::class, 'index'])->name('worker-certificate');
+        Route::post('worker-certificate/{worker}', [WorkerCertificateController::class, 'store'])->name('worker-certificate.store');
         Route::put('worker-certificate/{worker_certificate}', [WorkerCertificateController::class, 'update']);
         Route::delete('worker-certificate/{worker_certificate}', [WorkerCertificateController::class, 'destroy']);
+        Route::get('worker-certificate-download/{worker_certificate}', [WorkerCertificateController::class, 'downloadCertificate'])->name('worker-certificate-download');
 
         Route::get('service-provider-profile', [ServiceProviderController::class, 'index'])->name('service-provider-profile');
         Route::put('update-business-entity', [ServiceProviderController::class, 'update'])->name('update-business-entity');
@@ -261,6 +255,10 @@ Route::middleware('auth')->group(function () {
     });
 });
 Route::middleware('role:admin|superadmin')->group(function () {
+    Route::get('all-service-provider', [ServiceProviderProjectController::class, 'allServiceProvider']);
+    Route::get('detail-service-provider/{service_provider}', [ServiceProviderController::class, 'show'])->name('detail.service.provider');
+    Route::get('service-provider-detail/{service_provider}', [ServiceProviderProjectController::class, 'projectDetail']);
+    Route::patch('update-password-service-provider/{service_provider}', [ServiceProviderController::class, 'updatePassword']);
     Route::get('all-service-provider', [ServiceProviderProjectController::class, 'allServiceProvider'])->name('all.service.provider');
     Route::get('all-agency', [DinasController::class, 'all'])->name('all.agency');
     Route::get('service-provider-consultants', [ServiceProviderController::class, 'consultant']);

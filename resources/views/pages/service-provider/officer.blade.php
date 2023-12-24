@@ -65,7 +65,7 @@
                                             NIK</label>
                                         <input type="text" class="form-control" id="create-name" class="form-control"
                                             name="national_identity_number" aria-describedby="name"
-                                            placeholder="Masukkan Pengurus" value="{{ old('name') }}" />
+                                            placeholder="Masukkan NIK" value="{{ old('name') }}" />
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -226,6 +226,37 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
+        @if ($errors->has('religion'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ $errors->first('education') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+        @if ($errors->has('national_identity_number'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ $errors->first('education') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+        @if ($errors->has('marital_status'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ $errors->first('education') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+        @if ($errors->has('position'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ $errors->first('education') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+        @if ($errors->has('citizenship'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ $errors->first('education') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
         <div class="table-responsive">
             <table class="table table-borderless" border="1">
                 <thead>
