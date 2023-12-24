@@ -114,17 +114,17 @@
                                     <tr>
                                         <td>Progres Fisik</td>
                                         <td>:</td>
-                                        <td>{{ $project->physical_progress }}</td>
+                                        <td>{{ $project->physical_progress != null ? $project->physical_progress . '%' : '0%' }}</td>
                                     </tr>
                                     <tr>
                                         <td>Progres Keuangan</td>
                                         <td>:</td>
-                                        <td>{{ $project->finance_progress }}</td>
+                                        <td>{{ $project->finance_progress != null ? $project->finance_progress . '%' : '0%' }}</td>
                                     </tr>
                                     <tr>
                                         <td>Status</td>
                                         <td>:</td>
-                                        <td>{{ $project->status }}</td>
+                                        <td>{{ $project->status == 'active' ? 'Aktif' : 'Tidak Aktif' }}</td>
                                     </tr>
                                     <tr>
                                         <td>Mulai</td>
@@ -344,7 +344,7 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="5" class="text-center">
+                                            <td colspan="8" class="text-center">
                                                 <div class="d-flex justify-content-center" style="min-height:16rem">
                                                     <div class="my-auto">
                                                         <img src="{{ asset('no-data.png') }}" width="300"

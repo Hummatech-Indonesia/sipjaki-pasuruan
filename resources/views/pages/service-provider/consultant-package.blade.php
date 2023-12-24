@@ -13,8 +13,8 @@
                 </div>
                 <div class="ms-3">
                     <select name="year" class="form-select pe-5">
-                        <option value="2022" >2022</option>
-                        <option value="2023" >2023</option>
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
                     </select>
                 </div>
                 <div class="ms-1">
@@ -48,7 +48,7 @@
                 <tbody>
                     <tr>
                         <td class="text-center">
-                            1 
+                            1
                         </td>
                         <td class="text-center">
                             Abdul Kader
@@ -60,24 +60,16 @@
                             80%
                         </td>
                         <td class="text-center">
-                            <div class="d-flex justify-content-center gap-2">
-                                <div class="d-flex justify-content-center">
-                                    <a href=""
-                                        class="btn btn-primary btn-md" style="background-color: #1B3061;">
-                                        Lihat Progress
-                                    </a>
-                                </div>
-                                <div class="d-flex justify-content-center">
-                                    <a href="detail-consultan"
-                                        class="btn btn-primary btn-md" style="background-color: #1B3061;">
-                                        Detail
-                                    </a>
-                                </div>
+                            <div class="d-flex justify-content-center">
+                                <a href="detail-consultan" class="btn btn-primary btn-md"
+                                    style="background-color: #1B3061;">
+                                    Detail
+                                </a>
                             </div>
                         </td>
                     </tr>
                 </tbody>
-                </table>
-            </div>
+            </table>
         </div>
-    @endsection
+    </div>
+@endsection
