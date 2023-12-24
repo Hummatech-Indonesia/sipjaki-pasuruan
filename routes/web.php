@@ -64,17 +64,15 @@ Route::get('berita/{news}', [LandingController::class, 'show'])->name('berita');
 Route::get('asosiasi', [AssociationController::class, 'dataServiceProvider'])->name('association.landing');
 Route::get('detail-asosiasi/{association}', [LandingController::class, 'associationDetail'])->name('association-detail.landing');
 
-Route::get('struktur-organisasi-DKSDK', function () {
-    return view('struktur-organisasi');
-})->name('struktur-organisasi');
+Route::get('profile/{categories}',[LandingController::class,'image'])->name('profile.landing');
 
-Route::get('rencana-strategis-DKSDK', function () {
-    return view('rencana-strategis');
-})->name('rencana-strategis');
+// Route::get('rencana-strategis-DKSDK', function () {
+//     return view('rencana-strategis');
+// })->name('rencana-strategis');
 
-Route::get('tugas-fungsi-DKSDK', function () {
-    return view('tugas-fungsi');
-})->name('tugas-fungsi');
+// Route::get('tugas-fungsi-DKSDK', function () {
+//     return view('tugas-fungsi');
+// })->name('tugas-fungsi');
 Auth::routes(['verify' => true]);
 // Route::middleware(['auth'])->group(function () {
 
@@ -280,6 +278,7 @@ Route::middleware('role:admin|superadmin')->group(function () {
 
     //Upload Foto
     Route::post('images', [ImagesController::class, 'store'])->name('images.store');
+
 
     Route::resources([
         'news' => NewsController::class,

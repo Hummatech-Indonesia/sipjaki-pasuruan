@@ -159,7 +159,7 @@ class LandingController extends Controller
      */
     public function image(): View
     {
-        $this->image->get();
-        return view();
+        $images=$this->image->get();
+        return view('struktur-organisasi',compact('images'));
     }
 }

@@ -246,17 +246,17 @@
                                         href="{{ route('landing-page') }}">Beranda</a>
                                 </li>
                                 <li class="menu-item-has-children">
-                                    <a class="d-flex d-row {{ request()->routeIs('struktur-organisasi') || request()->routeIs('rencana-strategis') || request()->routeIs('tugas-fungsi') ? 'active' : '' }}"
+                                    <a class="d-flex d-row {{ request()->routeIs('profile.landing') || request()->routeIs('rencana-strategis') || request()->routeIs('tugas-fungsi') ? 'active' : '' }}"
                                         href="#">Profil</a>
                                     <ul class="sub-menu">
-                                        <li><a class="{{ request()->routeIs('struktur-organisasi') ? 'active' : '' }}"
-                                                href="{{ route('struktur-organisasi') }}">Struktur Organisasi
+                                        <li><a class="{{ request()->routeIs('profile.landing') ? 'active' : '' }}"
+                                                href="{{ route('profile.landing',['categories'=>'structure_organitation']) }}">Struktur Organisasi
                                             </a></li>
                                         <li><a class="{{ request()->routeIs('rencana-strategis') ? 'active' : '' }}"
-                                                href="{{ route('rencana-strategis') }}">Rencana Strategis</a>
+                                                href="{{ route('profile.landing',['categories'=>'strategic_plan']) }}">Rencana Strategis</a>
                                         </li>
                                         <li><a class="{{ request()->routeIs('tugas-fungsi') ? 'active' : '' }}"
-                                                href="{{ route('tugas-fungsi') }}">Tugas Dan Fungsi</a></li>
+                                                href="{{ route('profile.landing',['categories'=>'strategic_plan']) }}">Tugas Dan Fungsi</a></li>
                                     </ul>
                                 </li>
 
