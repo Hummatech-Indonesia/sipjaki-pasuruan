@@ -74,6 +74,7 @@
 
             .logo-kab-pasuruan {
                 width: 80%;
+                margin-bottom: 30px;
             }
 
             .banner {
@@ -112,6 +113,7 @@
                 margin-top: 20px;
             }
             .img-sipjaki{
+                margin-top:30px;
                 max-width: 80%;
             }
             .tabs-wrapper {
@@ -244,17 +246,17 @@
                                         href="{{ route('landing-page') }}">Beranda</a>
                                 </li>
                                 <li class="menu-item-has-children">
-                                    <a class="d-flex d-row {{ request()->routeIs('profile.landing') || request()->routeIs('rencana-strategis') || request()->routeIs('tugas-fungsi') ? 'active' : '' }}"
+                                    <a class="d-flex d-row {{ request()->routeIs('struktur-organisasi') || request()->routeIs('rencana-strategis') || request()->routeIs('tugas-fungsi') ? 'active' : '' }}"
                                         href="#">Profil</a>
                                     <ul class="sub-menu">
-                                        <li><a class="{{ request()->routeIs('profile.landing') ? 'active' : '' }}"
-                                                href="{{ route('profile.landing',['categories'=>'structure_organitation']) }}">Struktur Organisasi
+                                        <li><a class="{{ request()->routeIs('struktur-organisasi') ? 'active' : '' }}"
+                                                href="{{ route('struktur-organisasi') }}">Struktur Organisasi
                                             </a></li>
                                         <li><a class="{{ request()->routeIs('rencana-strategis') ? 'active' : '' }}"
-                                                href="{{ route('profile.landing',['categories'=>'strategic_plan']) }}">Rencana Strategis</a>
+                                                href="{{ route('rencana-strategis') }}">Rencana Strategis</a>
                                         </li>
                                         <li><a class="{{ request()->routeIs('tugas-fungsi') ? 'active' : '' }}"
-                                                href="{{ route('profile.landing',['categories'=>'strategic_plan']) }}">Tugas Dan Fungsi</a></li>
+                                                href="{{ route('tugas-fungsi') }}">Tugas Dan Fungsi</a></li>
                                     </ul>
                                 </li>
 
@@ -387,7 +389,11 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6">
                             <div class="widget footer-widget">
-                                <img class="img-sipjaki mb-2" style="margin-left: 3%;" src="{{ asset('sipjaki.png') }}" alt="" srcset="">
+                                <img class="img-sipjaki mb-5" style="margin-left: 3%" src="{{ asset('sipjaki.png') }}" alt="" srcset="">
+                                <div>
+                                    <img class="logo-kab-pasuruan mb-4" src="{{ asset('logo-kab-pasuruan-2.png') }}"
+                                    alt="" srcset="">
+                                </div>
                                 <div class="alamat"
                                     style="color: var(--Biru-Primary, #1B3061);
                                 font-family: Poppins;
@@ -427,7 +433,7 @@
                                 line-height: normal;
                                 text-decoration-line: underline;
                                 text-decoration-thickness: 2px;
-                                margin-top:10px;">
+                                margin-top:20px;">
                                     Email
                                 </div>
                                 <div class="d-flex d-row mt-3">
@@ -452,13 +458,9 @@
                         </div>
                         <div class="col-lg-6 col-md-6">
                             <div>
-                                <img class="logo-kab-pasuruan" src="{{ asset('logo-kab-pasuruan-2.png') }}"
-                                alt="" srcset="">
-                            </div>
-                            <div>
-
+                              
                                 {{-- <div id="googleMap" style="width:100%;height:400px;"></div> --}}
-                                <div id="map" class="maps" style="border:1px solid;height:300px;margin-top:34px"></div>
+                                <div id="map" class="maps" style="border:1px solid;height:572px;margin-top:34px"></div>
 
                             </div>
                             <!-- /.widget footer-widget -->
@@ -468,7 +470,7 @@
 
 
                     </div>
-                    <ul class="d-flex justify-content-end mt-2"
+                    <ul class="d-flex justify-content-end"
                         style="color: var(--Biru-Primary, #1B3061);
                     font-family: Poppins;
                     font-size: 16px;
@@ -514,6 +516,16 @@
 
     <script src="{{ asset('assets/js/header.js') }}"></script>
     <script src="{{ asset('assets/js/app-min.js') }}"></script>
+    <script>
+         function showNoData(message) {
+            return `<div class="d-flex justify-content-center" style="min-height:16rem">
+                        <div class="my-auto ">
+                            <img src="{{ asset('no-data.png') }}" width="400" height="400"/>
+                            <h4 class="text-center mt-3">${message}</h4>
+                            </div>
+                    </div>`
+        }
+    </script>
     @yield('script')
 </body>
 
