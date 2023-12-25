@@ -35,4 +35,16 @@ class ConsultantProjectRepository extends BaseRepository implements ConsultantPr
         return $this->model->query()
             ->updateOrCreate(['project_id' => $data['project_id'], $data]);
     }
+
+    /**
+     * update
+     *
+     * @param  mixed $id
+     * @param  mixed $data
+     * @return mixed
+     */
+    public function update(mixed $id, array $data): mixed
+    {
+        return $this->show($id)->update($data);
+    }
 }
