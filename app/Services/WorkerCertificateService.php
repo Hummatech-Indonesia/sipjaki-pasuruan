@@ -22,9 +22,10 @@ class WorkerCertificateService
         $data['file'] = $this->upload(UploadDiskEnum::WORKER_CERTIFICATE->value, $request->file('file'));
         return $data;
     }
+
     /**
      * update
-     *
+     * 
      * @param  mixed $worker_certificate
      * @param  mixed $request
      * @return array
