@@ -216,7 +216,7 @@ Route::middleware('auth')->group(function () {
         ]);
         Route::get('consultant-package', function () {
             return view('pages.service-provider.consultant-package');
-        });
+        })->name('consultant-package');
         Route::get('detail-consultan', function () {
             return view('pages.service-provider.detail-consultan');
         });

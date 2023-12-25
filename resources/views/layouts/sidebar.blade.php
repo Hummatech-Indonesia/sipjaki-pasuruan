@@ -330,6 +330,7 @@
                             <span key="t-file-manager">Dashboard</span>
                         </a>
                     </li>
+                    @if (Auth::user()->serviceProvider->type_of_business_entity == 'consultant')
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect">
                             <i class="bx bx-briefcase"></i>
@@ -340,6 +341,14 @@
                             <li><a href="{{ route('consultant-package') }}" key="t-tui-calendar">Paket Konsultan</a></li>
                         </ul>
                     </li>
+                    @else
+                    <li>
+                        <a href="{{ route('work.package') }}" class="waves-effect">
+                            <i class="bx bx-briefcase"></i>
+                            <span key="t-file-manager">Paket Pekerjaan</span>
+                        </a>
+                    </li>
+                    @endif
                     <li>
                         <a href="{{ route('workers.index') }}" class="waves-effect">
                             <i class="fas fa-users-cog
@@ -347,7 +356,6 @@
                             <span key="t-file-manager">Tenaga Kerja</span>
                         </a>
                     </li>
-                    <li>
                     <li>
                         <a href="{{ route('officers.index') }}" class="waves-effect">
                             <i class="fas fa-user-tie fa-sm"></i>
