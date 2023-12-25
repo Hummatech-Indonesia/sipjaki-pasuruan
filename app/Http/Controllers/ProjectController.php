@@ -97,6 +97,18 @@ class ProjectController extends Controller
     }
 
     /**
+     * projectDetail
+     *
+     * @param  mixed $project
+     * @return View
+     */
+    public function projectConsultanDetail(Project $project): View
+    {
+        $listProviderProject = $this->serviceProviderProject->getByProject($project->id);
+        return view('pages.service-provider.detail-work-package', ['project' => $project, 'serviceProviderProject' => $listProviderProject]);
+    }
+
+    /**
      * Update the specified resource in storage.
      */
     public function update(ProjectRequest $request, Project $project): RedirectResponse | JsonResponse

@@ -13,8 +13,8 @@
                 </div>
                 <div class="ms-3">
                     <select name="year" class="form-select pe-5">
-                        <option value="2022">2022</option>
-                        <option value="2023">2023</option>
+                        <option value="2022" {{ $year == '2022' ? 'selected' : '' }}>2022</option>
+                        <option value="2023" {{ $year == '2023' ? 'selected' : '' }}>2023</option>
                     </select>
                 </div>
                 <div class="ms-1">
@@ -46,30 +46,63 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="text-center">
-                            1
-                        </td>
-                        <td class="text-center">
-                            Abdul Kader
-                        </td>
-                        <td class="text-center">
-                            2023
-                        </td>
-                        <td class="text-center">
-                            80%
-                        </td>
-                        <td class="text-center">
-                            <div class="d-flex justify-content-center">
-                                <a href="detail-consultan" class="btn btn-primary btn-md"
-                                    style="background-color: #1B3061;">
-                                    Detail
-                                </a>
+                    @forelse ($serviceProviderProjects as $index=>$serviceProviderProject)
+                    @php
+                        $totalProgres = $serviceProviderProject->serviceProviderProjects->pluck('progres')->sum();
+                    @endphp
+                    <tbody>
+                        <tr>
+                            <td class="text-center">
+                                {{ $index + 1 }}
+                            </td>
+                            <td class="text-center">
+                                {{ $serviceProviderProject->name }}
+                            </td>
+                            <td class="text-center">
+                                {{ $serviceProviderProject->year }}
+                            </td>
+                            <td class="text-center">
+                                {{ $totalProgres }}%
+                            </td>
+                            <td class="text-center">
+                                <div class="d-flex justify-content-center">
+                                    <a href="detail-project/{{ $serviceProviderProject->id }}"
+                                        class="btn btn-primary btn-md rounded-4  " style="background-color: #1B3061;">
+                                        Lihat Progress
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                @empty
+                <tr>
+                    <td colspan="5" class="text-center">
+                        <div class="d-flex justify-content-center" style="min-height:16rem">
+                            <div class="my-auto">
+                                <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                <h4 class="text-center mt-4">Pekerjaan Masih Kosong!!</h4>
                             </div>
-                        </td>
-                    </tr>
-                </tbody>
+                        </div>
+                    </td>
+                </tr>
+                @endforelse
             </table>
         </div>
     </div>
+@endsection
+@section('script')
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const progressBar = document.getElementById("progressBar");
+            const totalProgress = progressBar.getAttribute("data-total-progress");
+
+            progressBar.setAttribute("title", totalProgress + "%");
+            progressBar.setAttribute("data-toggle", "tooltip");
+            progressBar.setAttribute("data-placement", "top");
+
+            $(document).ready(function() {
+                $('[data-toggle="tooltip"]').tooltip();
+            });
+        });
+    </script>
 @endsection

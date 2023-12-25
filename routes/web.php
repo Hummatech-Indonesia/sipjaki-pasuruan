@@ -16,6 +16,7 @@ use App\Http\Controllers\LandingController;
 use App\Http\Controllers\OfficerController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\AccidentController;
+use App\Http\Controllers\TrainingController;
 use App\Http\Controllers\FiscalYearController;
 use App\Http\Controllers\FundSourceController;
 use App\Http\Controllers\SuperadminController;
@@ -29,7 +30,9 @@ use App\Http\Controllers\TrainingMethodController;
 use App\Http\Controllers\ServiceProviderController;
 use App\Http\Controllers\ContractCategoryController;
 use App\Http\Controllers\Auth\VerificationController;
+use App\Http\Controllers\ConsultantProjectController;
 use App\Http\Controllers\SubClassificationController;
+use App\Http\Controllers\WorkerCertificateController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\QualificationLevelController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
@@ -38,11 +41,9 @@ use App\Http\Controllers\ClassificationTrainingController;
 use App\Http\Controllers\ServiceProviderProjectController;
 use App\Http\Controllers\SubClassificationTrainingController;
 use App\Http\Controllers\QualificationLevelTrainingController;
-use App\Http\Controllers\TrainingController;
-use App\Http\Controllers\ServiceProvider\AmendmentDeepController;
 use App\Http\Controllers\ServiceProvider\FoundingDeepController;
+use App\Http\Controllers\ServiceProvider\AmendmentDeepController;
 use App\Http\Controllers\ServiceProvider\VerificationController as ServiceProviderVerificationController;
-use App\Http\Controllers\WorkerCertificateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -214,9 +215,7 @@ Route::middleware('auth')->group(function () {
             'founding-deed' => FoundingDeepController::class,
             'amendment-deed' => AmendmentDeepController::class,
         ]);
-        Route::get('consultant-package', function () {
-            return view('pages.service-provider.consultant-package');
-        })->name('consultant-package');
+        Route::get('consultant-package', [ConsultantProjectController::class, 'consultantProject'])->name('consultant-package');
         Route::get('detail-consultan', function () {
             return view('pages.service-provider.detail-consultan');
         });
