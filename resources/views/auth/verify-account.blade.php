@@ -110,7 +110,7 @@
                                     </div>
                                     <div class="mt-4 d-flex justify-content-end">
                                         <button type="submit" class="btn text-white" style="background-color: #1B3061">
-                                            Kirim Email
+                                            Verifikasi
                                         </button>
                                     </div>
                                 </form>
