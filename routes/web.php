@@ -218,6 +218,7 @@ Route::middleware('auth')->group(function () {
         Route::get('consultant-package', [ConsultantProjectController::class, 'consultantProject'])->name('consultant-package');
         Route::get('detail-consultant/{project}', [ConsultantProjectController::class, 'index'])->name('detail-consultant');
         Route::post('consultant-project/{project}', [ConsultantProjectController::class, 'store'])->name('consultant-project.store');
+        Route::put('consultant-project/{project}', [ConsultantProjectController::class, 'update'])->name('consultant-project.update');
 
         Route::get('worker-certificate/{worker}', [WorkerCertificateController::class, 'index'])->name('worker-certificate');
         Route::post('worker-certificate/{worker}', [WorkerCertificateController::class, 'store'])->name('worker-certificate.store');
