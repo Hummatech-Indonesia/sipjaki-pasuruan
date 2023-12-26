@@ -41,7 +41,8 @@ class ConsultantProjectController extends Controller
      */
     public function store(ConsultantProjectRequest $request, Project $project)
     {
-        $this->consultantProject->store($this->service->store($request, $project));
+        $data = $this->service->store($request, $project);
+        $this->consultantProject->store($data);
         return redirect()->back()->with('success', trans('alert.update_success'));
     }
 

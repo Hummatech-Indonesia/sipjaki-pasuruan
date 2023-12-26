@@ -38,7 +38,8 @@ class ExecutorProjectController extends Controller
      */
     public function store(ExecutorProjectRequest $request, Project $project)
     {
-        $this->executorProject->store($this->service->store($request, $project));
+        $data = $this->service->store($request, $project);
+        $this->executorProject->store($data);
         return redirect()->back()->with('success', trans('alert.update_success'));
     }
 }

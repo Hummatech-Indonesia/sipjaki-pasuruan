@@ -74,7 +74,8 @@ class ConsultantProjectService
             'report' => $old_report,
             'minutes_of_disbursement' => $old_minutes_of_disbursement,
             'administrative_minutes' => $old_administrative_minutes,
-            'contract' => $old_contract
+            'contract' => $old_contract,
+            'project_id' => $project->id,
         ];
     }
 }
