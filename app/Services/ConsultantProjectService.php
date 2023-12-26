@@ -22,7 +22,7 @@ class ConsultantProjectService
     {
         $data = $request->validated();
 
-        $old_administrative_minutes = $project->consultantProject->administrative_minutes;
+        $old_administrative_minutes = $project->consultantProject ? $project->consultantProject->administrative_minutes : null;
         if (isset($data['administrative_minutes'])) {
             if ($old_administrative_minutes) {
                 if ($request->hasFile('administrative_minutes')) {
@@ -34,7 +34,7 @@ class ConsultantProjectService
             }
         }
 
-        $old_contract = $project->consultantProject->contract;
+        $old_contract = $project->consultantProject ? $project->consultantProject->contract : null;
         if (isset($data['contract'])) {
             if ($old_contract) {
                 if ($request->hasFile('contract')) {
@@ -46,7 +46,7 @@ class ConsultantProjectService
             }
         }
 
-        $old_report = $project->consultantProject->report;
+        $old_report = $project->consultantProject ? $project->consultantProject->report : null;
         if (isset($data['report'])) {
             if ($old_report) {
                 if ($request->hasFile('report')) {
@@ -58,7 +58,7 @@ class ConsultantProjectService
             }
         }
 
-        $old_minutes_of_disbursement = $project->consultantProject->minutes_of_disbursement;
+        $old_minutes_of_disbursement = $project->consultantProject ? $project->consultantProject->minutes_of_disbursement : null;
         if (isset($data['minutes_of_disbursement'])) {
             if ($old_minutes_of_disbursement) {
                 if ($request->hasFile('minutes_of_disbursement')) {
