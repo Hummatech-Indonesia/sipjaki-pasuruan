@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Interfaces\ConsultantProjectInterface;
 use App\Contracts\Interfaces\ContractCategoryInterface;
+use App\Contracts\Interfaces\ExecutorProjectInterface;
 use App\Contracts\Interfaces\FundSourceInterface;
 use App\Models\Project;
 use Illuminate\View\View;
@@ -27,9 +29,13 @@ class ProjectController extends Controller
     private FundSourceInterface $fundSource;
     private ContractCategoryInterface $contractCategory;
     private ServiceProviderProjectInterface $serviceProviderProject;
+    private ExecutorProjectInterface $executorProject;
+    private ConsultantProjectInterface $consultantProject;
 
-    public function __construct(ProjectInterface $project, ServiceProviderInterface $serviceProvider, FundSourceInterface $fundSource, ContractCategoryInterface $contractCategory, ServiceProviderProjectInterface $serviceProviderProjectInterface, ProjectService $service)
+    public function __construct(ProjectInterface $project, ServiceProviderInterface $serviceProvider, FundSourceInterface $fundSource, ContractCategoryInterface $contractCategory, ServiceProviderProjectInterface $serviceProviderProjectInterface, ProjectService $service, ExecutorProjectInterface $executorProjectInterface, ConsultantProjectInterface $consultantProjectInterface)
     {
+        $this->consultantProject = $consultantProjectInterface;
+        $this->executorProject = $executorProjectInterface;
         $this->service = $service;
         $this->serviceProviderProject = $serviceProviderProjectInterface;
         $this->project = $project;
@@ -65,8 +71,10 @@ class ProjectController extends Controller
      */
     public function store(ProjectRequest $request): RedirectResponse | JsonResponse
     {
-        $this->project->store($request->validated());
-
+        $id = $this->project->store($request->validated())->id;
+        $data['project_id'] = $id;
+        $this->consultantProject->store($data);
+        $this->executorProject->store($data);
         if ($request->is('api/*')) {
 
             return ResponseHelper::success(null, trans('alert.add_success'));

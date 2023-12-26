@@ -33,7 +33,7 @@ class ConsultantProjectRepository extends BaseRepository implements ConsultantPr
     public function store(array $data): mixed
     {
         return $this->model->query()
-            ->updateOrCreate(['project_id' => $data['project_id'], $data]);
+            ->updateOrCreate(['project_id' => $data['project_id']], $data);
     }
 
     /**
