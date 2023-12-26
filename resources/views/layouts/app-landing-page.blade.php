@@ -51,6 +51,15 @@
             stroke: rgb(68, 116, 226);
         }
 
+        .site-header .site-main-menu li {
+            margin: 0 14px;
+            position: relative;
+            padding: 36px 0;
+            -webkit-transition: all 0.3s ease-in-out;
+            -o-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+        }
+
         @media (max-width: 540px) {
             .logo3 {
                 width: 150px;
@@ -74,7 +83,6 @@
 
             .logo-kab-pasuruan {
                 width: 80%;
-                margin-bottom: 30px;
             }
 
             .banner {
@@ -109,17 +117,19 @@
                 height: 200px;
                 margin-bottom: 20px;
             }
-            .alamat{
+
+            .alamat {
                 margin-top: 20px;
             }
-            .img-sipjaki{
-                margin-top:30px;
+
+            .img-sipjaki {
                 max-width: 80%;
             }
+
             .tabs-wrapper {
-    max-width: 320px;
-    margin: 0 auto;
-}
+                max-width: 320px;
+                margin: 0 auto;
+            }
         }
 
         @media (max-width: 991px) {
@@ -169,11 +179,12 @@
                 height: 280px;
             }
 
-            .img-sipjaki{
-                margin-top:20px;
+            .img-sipjaki {
+                margin-top: 20px;
                 max-width: 75%;
             }
-            .alamat{
+
+            .alamat {
                 margin-top: 45px;
             }
         }
@@ -389,10 +400,9 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6">
                             <div class="widget footer-widget">
-                                <img class="img-sipjaki mb-5" style="margin-left: 3%" src="{{ asset('sipjaki.png') }}" alt="" srcset="">
                                 <div>
-                                    <img class="logo-kab-pasuruan mb-4" src="{{ asset('logo-kab-pasuruan-2.png') }}"
-                                    alt="" srcset="">
+                                    <img class="img-sipjaki mb-2" style="margin-left: 3%;"
+                                        src="{{ asset('sipjaki.png') }}" alt="" srcset="">
                                 </div>
                                 <div class="alamat"
                                     style="color: var(--Biru-Primary, #1B3061);
@@ -458,9 +468,11 @@
                         </div>
                         <div class="col-lg-6 col-md-6">
                             <div>
-                              
+                                <img class="logo-kab-pasuruan" src="{{ asset('logo-kab-pasuruan-2.png') }}"
+                                    alt="" srcset="">
                                 {{-- <div id="googleMap" style="width:100%;height:400px;"></div> --}}
-                                <div id="map" class="maps" style="border:1px solid;height:572px;margin-top:34px"></div>
+                                <div id="map" class="maps"
+                                    style="border:1px solid;height:300px;margin-top:34px"></div>
 
                             </div>
                             <!-- /.widget footer-widget -->
@@ -470,7 +482,7 @@
 
 
                     </div>
-                    <ul class="d-flex justify-content-end"
+                    <ul class="d-flex justify-content-end mt-3"
                         style="color: var(--Biru-Primary, #1B3061);
                     font-family: Poppins;
                     font-size: 16px;
@@ -517,7 +529,7 @@
     <script src="{{ asset('assets/js/header.js') }}"></script>
     <script src="{{ asset('assets/js/app-min.js') }}"></script>
     <script>
-         function showNoData(message) {
+        function showNoData(message) {
             return `<div class="d-flex justify-content-center" style="min-height:16rem">
                         <div class="my-auto ">
                             <img src="{{ asset('no-data.png') }}" width="400" height="400"/>
