@@ -29,7 +29,7 @@ class ConsultantProjectController extends Controller
     public function index(Project $project)
     {
         $consultantProjects = $this->consultantProject->show($project->id);
-        return view('pages.service-provider.detail-consultant', ['consultantProjects' => $consultantProjects]);
+        return view('pages.service-provider.detail-consultant', ['consultantProject' => $consultantProjects, 'project' => $project]);
     }
 
     /**

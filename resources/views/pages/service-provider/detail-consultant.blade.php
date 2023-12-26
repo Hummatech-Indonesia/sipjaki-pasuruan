@@ -1,5 +1,8 @@
 @extends('layouts.app')
 @section('content')
+@php
+use Carbon\Carbon;
+@endphp
     <div class="d-flex justify-content-between">
         <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
             <div class="d-flex">
@@ -27,7 +30,7 @@
                             <div class="ms-2">
                                 <div class="d-flex justify-content-between">
                                     <div class="btn btn-sm mb-3 text-dark rounded-3" style="background-color: #E4ECFF;">
-                                        2022
+                                        {{ $project->year }}
                                     </div>
                                     <div data-bs-toggle="modal" data-bs-target="#modal-edit-consultan">
                                         <button class="btn btn-md text-white d-flex" style="background-color: #1B3061;">
@@ -36,7 +39,7 @@
                                     </div>
                                 </div>
 
-                                <p class="fw-bolder fs-5">tes</p>
+                                <p class="fw-bolder fs-5">{{ $project->name }}</p>
                             </div>
                             <table cellpadding="10" style="border-collapse: collapse; width: 75%;">
                                 <tbody>
@@ -48,49 +51,50 @@
                                     <tr>
                                         <td>Nilai Kontrak</td>
                                         <td>:</td>
-                                        <td></td>
+                                        <td>{{ 'Rp ' . number_format($project->project_value, 0, ',', '.') }}</td>
+
                                     </tr>
                                     <tr>
                                         <td>Progres Fisik</td>
                                         <td>:</td>
-                                        <td></td>
+                                        <td>{{ $project->physical_progress != null ? $project->physical_progress . '%' : '0%' }}</td>
                                     </tr>
                                     <tr>
                                         <td>Progres Keuangan</td>
                                         <td>:</td>
-                                        <td></td>
+                                        <td>{{ $project->finance_progress != null ? $project->finance_progress . '%' : '0%' }}</td>
                                     </tr>
                                     <tr>
                                         <td>Status</td>
                                         <td>:</td>
-                                        <td></td>
+                                        <td>{{ $project->status == 'active' ? 'Aktif' : 'Tidak Aktif' }}</td>
                                     </tr>
                                     <tr>
                                         <td>Mulai</td>
                                         <td>:</td>
-                                        <td>
+                                        <td>{{ Carbon::parse($project->start_at)->locale('id_ID')->isoFormat('DD MMMM Y') }}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Selesai</td>
                                         <td>:</td>
-                                        <td>
+                                        <td>{{ Carbon::parse($project->end_at)->locale('id_ID')->isoFormat('DD MMMM Y') }}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Sumber Dana</td>
                                         <td>:</td>
-                                        <td></td>
+                                        <td>{{ $project->fundSource->name }}</td>
                                     </tr>
                                     <tr>
                                         <td>Jenis Kontrak</td>
                                         <td>:</td>
-                                        <td></td>
+                                        <td>{{ $project->contractCategory->name }}</td>
                                     </tr>
                                     <tr>
                                         <td>Karakteristik Kontrak</td>
                                         <td>:</td>
-                                        <td></td>
+                                        <td>{{ $project->characteristic_project }}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -176,59 +180,70 @@
                         <div class="flex-grow-1">
                             <div class="ms-2">
                                 <div class="btn btn-sm mb-3 text-dark rounded-3" style="background-color: #E4ECFF;">
-                                    2022
+                                    {{ $project->year }}
                                 </div>
-                                <p class="fw-bolder fs-5">tes</p>
+                                <p class="fw-bolder fs-5">{{ $project->name }}</p>
                             </div>
                             <table cellpadding="10" style="border-collapse: collapse; width: 75%;">
                                 <tbody>
                                     <tr>
                                         <td>Nilai Kontrak</td>
                                         <td>:</td>
-                                        <td></td>
+                                        <td>{{ 'Rp ' . number_format($project->project_value, 0, ',', '.') }}</td>
 
                                     </tr>
                                     <tr>
                                         <td>Progres Fisik</td>
                                         <td>:</td>
-                                        <td></td>
+                                        <td>{{ $project->physical_progress != null ? $project->physical_progress . '%' : '0%' }}</td>
                                     </tr>
                                     <tr>
                                         <td>Progres Keuangan</td>
                                         <td>:</td>
-                                        <td></td>
+                                        <td>{{ $project->finance_progress != null ? $project->finance_progress . '%' : '0%' }}</td>
                                     </tr>
                                     <tr>
                                         <td>Status</td>
                                         <td>:</td>
-                                        <td></td>
+                                        <td>{{ $project->status == 'active' ? 'Aktif' : 'Tidak Aktif' }}</td>
                                     </tr>
                                     <tr>
                                         <td>Mulai</td>
                                         <td>:</td>
-                                        <td>
+                                        <td>{{ Carbon::parse($project->start_at)->locale('id_ID')->isoFormat('DD MMMM Y') }}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Selesai</td>
                                         <td>:</td>
-                                        <td>
+                                        <td>{{ Carbon::parse($project->end_at)->locale('id_ID')->isoFormat('DD MMMM Y') }}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Sumber Dana</td>
                                         <td>:</td>
-                                        <td></td>
+                                        <td>{{ $project->fundSource->name }}</td>
                                     </tr>
+                                    {{-- <tr>
+                                        <td>Penggunaan Jasa</td>
+                                        <td>:</td>
+                                        <td colspan="2" style="vertical-align: top;">
+                                            {{ $project->serviceProvider->user_id }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Penyedia Nama</td>
+                                        <td>:</td>
+                                        <td>{{ $project->dinas->user_id }}</td>
+                                    </tr> --}}
                                     <tr>
                                         <td>Jenis Kontrak</td>
                                         <td>:</td>
-                                        <td></td>
+                                        <td>{{ $project->contractCategory->name }}</td>
                                     </tr>
                                     <tr>
                                         <td>Karakteristik Kontrak</td>
                                         <td>:</td>
-                                        <td></td>
+                                        <td>{{ $project->characteristic_project }}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -245,9 +260,9 @@
                 <div style="background-color: #1B3061;">
                     <h5 class="modal-title text-white text-center m-3 fs-4">Upload File</h5>
                 </div>
-                <form id="form-update" method="post" enctype="multipart/form-data">
+                <form action="{{ route('consultant-project.store', ['project' => $project->id]) }}" method="post" enctype="multipart/form-data">
                     @csrf
-                    @method('PUT')
+                    @method('POST')
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-lg-6">
