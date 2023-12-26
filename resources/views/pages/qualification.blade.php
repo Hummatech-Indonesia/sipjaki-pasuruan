@@ -48,7 +48,7 @@
                                 <label id="name" for="recipient-name" class="control-label mb-2">Masukan Kualifikasi</label>
                                 <input type="text" class="form-control" id="create-name" class="form-control"
                                     name="name" aria-describedby="name"
-                                    placeholder="Masukkan Kualifikasi Nasional Indonesia" />
+                                    placeholder="Masukkan Kualifikasi" />
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -145,7 +145,7 @@
                                 <label id="name" for="recipient-name" class="control-label mb-2">Masukan Kualifikasi</label>
                                 <input type="text" class="form-control" id="update-name" class="form-control"
                                     name="name" aria-describedby="name"
-                                    placeholder="Masukkan Kualifikasi Nasional Indonesia" />
+                                    placeholder="Masukkan Kualifikasi" />
                             </div>
                         </div>
                         <div class="modal-footer">
