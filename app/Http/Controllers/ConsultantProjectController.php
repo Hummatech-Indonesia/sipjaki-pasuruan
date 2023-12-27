@@ -89,7 +89,8 @@ class ConsultantProjectController extends Controller
      */
     public function downloadContract(ConsultantProject $consultantProject)
     {
-        return response()->download(storage_path('app/public/' . $consultantProject->contract), $consultantProject->project->name . '.' . pathinfo(basename($consultantProject->contract, PATHINFO_EXTENSION)));
+        $filePath = pathinfo(basename($consultantProject->contract, PATHINFO_EXTENSION));
+        return response()->download(storage_path('app/public/' . $consultantProject->contract), $consultantProject->project->name . '.' . $filePath['extension']);
     }
 
     /**
@@ -100,7 +101,9 @@ class ConsultantProjectController extends Controller
      */
     public function downloadAdministrativeMinutes(ConsultantProject $consultantProject)
     {
-        return response()->download(storage_path('app/public/' . $consultantProject->administrative_minutes), $consultantProject->project->name . '.' . pathinfo(basename($consultantProject->administrative_minutes, PATHINFO_EXTENSION)));
+        $filePath = pathinfo(basename($consultantProject->administrative_minutes, PATHINFO_EXTENSION));
+
+        return response()->download(storage_path('app/public/' . $consultantProject->administrative_minutes), $consultantProject->project->name . '.' . $filePath['extension']);
     }
 
     /**
@@ -111,7 +114,9 @@ class ConsultantProjectController extends Controller
      */
     public function downloadReport(ConsultantProject $consultantProject)
     {
-        return response()->download(storage_path('app/public/' . $consultantProject->report), $consultantProject->project->name . '.' . pathinfo(basename($consultantProject->report, PATHINFO_EXTENSION)));
+        $filePath = pathinfo(basename($consultantProject->report, PATHINFO_EXTENSION));
+
+        return response()->download(storage_path('app/public/' . $consultantProject->report), $consultantProject->project->name . '.' . $filePath['extension']);
     }
 
 
@@ -123,6 +128,8 @@ class ConsultantProjectController extends Controller
      */
     public function downloadMinutesOfDisbursement(ConsultantProject $consultantProject)
     {
-        return response()->download(storage_path('app/public/' . $consultantProject->minutes_of_disbursement), $consultantProject->project->name . '.' . pathinfo(basename($consultantProject->minutes_of_disbursement, PATHINFO_EXTENSION)));
+        $filePath = pathinfo(basename($consultantProject->minutes_of_disbursement, PATHINFO_EXTENSION));
+
+        return response()->download(storage_path('app/public/' . $consultantProject->minutes_of_disbursement), $consultantProject->project->name . '.' . $filePath['extension']);
     }
 }
