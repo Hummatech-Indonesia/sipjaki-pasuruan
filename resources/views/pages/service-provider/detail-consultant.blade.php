@@ -12,6 +12,18 @@
             });
         </script>
     @endif
+    @if ($errors->has('name_package'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ $errors->first('name_package') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+    @if ($errors->has('project_value'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ $errors->first('project_value') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
     <div class="d-flex justify-content-between">
         <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
             <div class="d-flex">
@@ -114,6 +126,30 @@
                     </div>
                 </div>
             </div>
+            @if ($errors->has('contract'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ $errors->first('contract') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+            @if ($errors->has('report'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ $errors->first('report') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+            @if ($errors->has('minutes_of_disbursement'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ $errors->first('minutes_of_disbursement') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+            @if ($errors->has('administrative_minutes'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ $errors->first('administrative_minutes') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
             <div class="card rounded-4">
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
@@ -121,32 +157,36 @@
                             <p class="fw-medium fs-5" style="margin-bottom: 25%;">Daftar File</p>
                         </div>
                         <div>
-                            @if ($project->consultantProject->contract || $project->consultantProject->report || $project->consultantProject->minutes_of_disbursement || $project->consultantProject->administrative_minutes)
-                            <div data-bs-toggle="modal" data-bs-target="#modal-create" class="btn  rounded-3"
-                                style="background-color:#1B3061; color:white;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
-                                    fill="none">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M12 4C12.5523 4 13 4.35817 13 4.8V19.2C13 19.6418 12.5523 20 12 20C11.4477 20 11 19.6418 11 19.2V4.8C11 4.35817 11.4477 4 12 4Z"
-                                        fill="white"></path>
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M4 12C4 11.4477 4.35817 11 4.8 11H19.2C19.6418 11 20 11.4477 20 12C20 12.5523 19.6418 13 19.2 13H4.8C4.35817 13 4 12.5523 4 12Z"
-                                        fill="white"></path>
-                                </svg> Edit File
-                            </div>
+                            @if (
+                                $project->consultantProject->contract ||
+                                    $project->consultantProject->report ||
+                                    $project->consultantProject->minutes_of_disbursement ||
+                                    $project->consultantProject->administrative_minutes)
+                                <div data-bs-toggle="modal" data-bs-target="#modal-create" class="btn  rounded-3"
+                                    style="background-color:#1B3061; color:white;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                        viewBox="0 0 24 24" fill="none">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M12 4C12.5523 4 13 4.35817 13 4.8V19.2C13 19.6418 12.5523 20 12 20C11.4477 20 11 19.6418 11 19.2V4.8C11 4.35817 11.4477 4 12 4Z"
+                                            fill="white"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M4 12C4 11.4477 4.35817 11 4.8 11H19.2C19.6418 11 20 11.4477 20 12C20 12.5523 19.6418 13 19.2 13H4.8C4.35817 13 4 12.5523 4 12Z"
+                                            fill="white"></path>
+                                    </svg> Edit File
+                                </div>
                             @else
-                            <div data-bs-toggle="modal" data-bs-target="#modal-create" class="btn  rounded-3"
-                                style="background-color:#1B3061; color:white;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
-                                    fill="none">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M12 4C12.5523 4 13 4.35817 13 4.8V19.2C13 19.6418 12.5523 20 12 20C11.4477 20 11 19.6418 11 19.2V4.8C11 4.35817 11.4477 4 12 4Z"
-                                        fill="white"></path>
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M4 12C4 11.4477 4.35817 11 4.8 11H19.2C19.6418 11 20 11.4477 20 12C20 12.5523 19.6418 13 19.2 13H4.8C4.35817 13 4 12.5523 4 12Z"
-                                        fill="white"></path>
-                                </svg> Upload File
-                            </div>
+                                <div data-bs-toggle="modal" data-bs-target="#modal-create" class="btn  rounded-3"
+                                    style="background-color:#1B3061; color:white;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                        viewBox="0 0 24 24" fill="none">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M12 4C12.5523 4 13 4.35817 13 4.8V19.2C13 19.6418 12.5523 20 12 20C11.4477 20 11 19.6418 11 19.2V4.8C11 4.35817 11.4477 4 12 4Z"
+                                            fill="white"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M4 12C4 11.4477 4.35817 11 4.8 11H19.2C19.6418 11 20 11.4477 20 12C20 12.5523 19.6418 13 19.2 13H4.8C4.35817 13 4 12.5523 4 12Z"
+                                            fill="white"></path>
+                                    </svg> Upload File
+                                </div>
                             @endif
                         </div>
 
@@ -169,7 +209,8 @@
                                     <td>:</td>
                                     <td>
                                         @if ($project->consultantProject->contract)
-                                            <a href="{{ route('downloadContract', ['consultantProject' => $project->consultantProject->id]) }}" type="button" class="btn btn-md text-white"
+                                            <a href="{{ route('downloadContract', ['consultantProject' => $project->consultantProject->id]) }}"
+                                                type="button" class="btn btn-md text-white"
                                                 style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
                                                 Download</a>
                                         @endif
@@ -181,33 +222,36 @@
                                     <td>:</td>
                                     <td>
                                         @if ($project->consultantProject->administrative_minutes)
-                                        <a href="{{ route('downloadAdministrativeMinutes', ['consultantProject' => $project->consultantProject->id]) }}" type="button" class="btn btn-md text-white"
-                                            style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
-                                            Download</a>
-                                            @endif
-                                        </td>
+                                            <a href="{{ route('downloadAdministrativeMinutes', ['consultantProject' => $project->consultantProject->id]) }}"
+                                                type="button" class="btn btn-md text-white"
+                                                style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                                Download</a>
+                                        @endif
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Laporan</td>
                                     <td>:</td>
                                     <td>
                                         @if ($project->consultantProject->report)
-                                        <a href="{{ route('downloadReport', ['consultantProject' => $project->consultantProject->id]) }}" type="button" class="btn btn-md text-white"
-                                            style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
-                                            Download</a>
+                                            <a href="{{ route('downloadReport', ['consultantProject' => $project->consultantProject->id]) }}"
+                                                type="button" class="btn btn-md text-white"
+                                                style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                                Download</a>
                                         @endif
-                                        </td>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Berita Acara Pencairan</td>
                                     <td>:</td>
                                     <td>
                                         @if ($project->consultantProject->minutes_of_disbursement)
-                                        <a href="{{ route('downloadMinutesOfDisbursement', ['consultantProject' => $project->consultantProject->id]) }}" type="button" class="btn btn-md text-white"
-                                            style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
-                                            Download</a>
+                                            <a href="{{ route('downloadMinutesOfDisbursement', ['consultantProject' => $project->consultantProject->id]) }}"
+                                                type="button" class="btn btn-md text-white"
+                                                style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                                Download</a>
                                         @endif
-                                        </td>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
