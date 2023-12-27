@@ -6,6 +6,7 @@ use App\Contracts\Interfaces\Auth\RegisterInterface;
 use App\Enums\RoleEnum;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Mail\RegistrationMail;
+use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 
@@ -16,10 +17,10 @@ class RegisterService
      *
      * @param RegisterRequest $request
      * @param RegisterInterface $register
-     * @return void
+     * @return mixed
      */
 
-    public function handleRegistration(RegisterRequest $request, RegisterInterface $register): void
+    public function handleRegistration(RegisterRequest $request, RegisterInterface $register): mixed
     {
         $data = $request->validated();
         $password = bcrypt($data['password']);
@@ -38,5 +39,7 @@ class RegisterService
         Mail::to($data['email'])->send(new RegistrationMail(['email' => $request->email, 'user' => $request->name, 'token' => $token, 'id' => $user->id]));
 
         $user->assignRole(RoleEnum::SERVICE_PRODIVER);
+        $userEmail = User::where('email', $user->email)->first();
+        return $userEmail->id;
     }
 }
