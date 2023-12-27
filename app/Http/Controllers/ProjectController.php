@@ -93,6 +93,17 @@ class ProjectController extends Controller
     }
 
     /**
+     * detailProjectDinas
+     *
+     * @param  mixed $project
+     * @return View
+     */
+    public function detailProjectDinas(Project $project): View
+    {
+        return view('', ['project' => $project]);
+    }
+
+    /**
      * projectDetail
      *
      * @param  mixed $project
