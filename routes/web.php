@@ -220,6 +220,10 @@ Route::middleware('auth')->group(function () {
         Route::get('detail-consultant/{project}', [ConsultantProjectController::class, 'index'])->name('detail-consultant');
         Route::post('consultant-project/{project}', [ConsultantProjectController::class, 'store'])->name('consultant-project.store');
         Route::put('consultant-project/{project}', [ConsultantProjectController::class, 'update'])->name('consultant-project.update');
+        Route::get('downloadContract/{consultantProject}', [ConsultantProjectController::class, 'downloadContract'])->name('downloadContract');
+        Route::get('downloadAdministrativeMinutes/{consultantProject}', [ConsultantProjectController::class, 'downloadAdministrativeMinutes'])->name('downloadAdministrativeMinutes');
+        Route::get('downloadReport/{consultantProject}', [ConsultantProjectController::class, 'downloadReport'])->name('downloadReport');
+        Route::get('downloadMinutesOfDisbursement/{consultantProject}', [ConsultantProjectController::class, 'downloadMinutesOfDisbursement'])->name('downloadMinutesOfDisbursement');
 
         Route::get('worker-certificate/{worker}', [WorkerCertificateController::class, 'index'])->name('worker-certificate');
         Route::post('worker-certificate/{worker}', [WorkerCertificateController::class, 'store'])->name('worker-certificate.store');
