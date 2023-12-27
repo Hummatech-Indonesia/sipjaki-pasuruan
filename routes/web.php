@@ -220,10 +220,10 @@ Route::middleware('auth')->group(function () {
         Route::get('detail-consultant/{project}', [ConsultantProjectController::class, 'index'])->name('detail-consultant');
         Route::post('consultant-project/{project}', [ConsultantProjectController::class, 'store'])->name('consultant-project.store');
         Route::put('consultant-project/{project}', [ConsultantProjectController::class, 'update'])->name('consultant-project.update');
-        Route::get('downloadContract/{consultantProject}', [ConsultantProjectController::class, 'downloadContract'])->name('downloadContract');
-        Route::get('downloadAdministrativeMinutes/{consultantProject}', [ConsultantProjectController::class, 'downloadAdministrativeMinutes'])->name('downloadAdministrativeMinutes');
-        Route::get('downloadReport/{consultantProject}', [ConsultantProjectController::class, 'downloadReport'])->name('downloadReport');
-        Route::get('downloadMinutesOfDisbursement/{consultantProject}', [ConsultantProjectController::class, 'downloadMinutesOfDisbursement'])->name('downloadMinutesOfDisbursement');
+        Route::get('download-contract/{consultantProject}', [ConsultantProjectController::class, 'downloadContract'])->name('downloadContract');
+        Route::get('download-administrative-minutes/{consultantProject}', [ConsultantProjectController::class, 'downloadAdministrativeMinutes'])->name('downloadAdministrativeMinutes');
+        Route::get('download-report/{consultantProject}', [ConsultantProjectController::class, 'downloadReport'])->name('downloadReport');
+        Route::get('download-minutes-of-disbursement/{consultantProject}', [ConsultantProjectController::class, 'downloadMinutesOfDisbursement'])->name('downloadMinutesOfDisbursement');
 
         Route::get('worker-certificate/{worker}', [WorkerCertificateController::class, 'index'])->name('worker-certificate');
         Route::post('worker-certificate/{worker}', [WorkerCertificateController::class, 'store'])->name('worker-certificate.store');
@@ -301,12 +301,11 @@ Route::middleware('role:admin|superadmin')->group(function () {
 });
 
 //Reset Password
-Route::get('reset-password/{id}', [ResetPasswordController::class, 'index'])->name('reset.password');
 Route::post('send-email-reset-passsword', [ForgotPasswordController::class, 'sendEmail'])->name('send.email.reset.passsword');
 Route::put('reset-passsword-user/{user}', [ResetPasswordController::class, 'reset'])->name('reset.passsword.user');
 Route::get('send-email', function () {
     return view('auth.send-email');
-})->name('send.email');
+})->name('send.email.view');
 
 // verify token
 Route::get('/redirect-verify-account', [VerificationController::class, 'verifyAccount'])->name('redirect.verify.account');
@@ -316,7 +315,7 @@ Route::get('verify-account/{user}', [VerificationController::class, 'verifyacoun
 Route::post('resend-email-verification/{user}', [VerificationController::class, 'sendResend']);
 
 // verifikasi account
-Route::get('verify.account/{id}', [VerificationController::class, 'verifyacount'])->name('verify.account');
+// Route::get('verify.account/{id}', [VerificationController::class, 'verifyacount'])->name('verify.account');
 
 
 require __DIR__ . '/aldy.php';

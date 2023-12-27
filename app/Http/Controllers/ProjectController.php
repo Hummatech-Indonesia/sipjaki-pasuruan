@@ -71,7 +71,14 @@ class ProjectController extends Controller
      */
     public function store(ProjectRequest $request): RedirectResponse | JsonResponse
     {
-        $id = $this->project->store($request->validated())->id;
+        $data = $request->validated();
+        if ($data['physical_progress'] == null) {
+            $data['physical_progress'] = 0;
+        }
+        if ($data['finance_progress'] == null) {
+            $data['finance_progress'] = 0;
+        }
+        $id = $this->project->store($data)->id;
         $data['project_id'] = $id;
         $this->consultantProject->store($data);
         $this->executorProject->store($data);
