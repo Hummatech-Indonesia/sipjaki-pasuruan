@@ -84,7 +84,7 @@ class RegisterController extends Controller
         if ($request->is('api/*')) {
             return ResponseHelper::success(null, trans('auth.register_success'));
         } else {
-            return redirect()->back()->with('success', trans('auth.register_success'));
+            return redirect()->route('verification.verify')->with('success', trans('auth.register_success'));
         }
     }
 }
