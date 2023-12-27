@@ -11,6 +11,8 @@ use App\Http\Requests\ConsultantProjectUpdateRequest;
 use App\Contracts\Interfaces\ConsultantProjectInterface;
 use App\Helpers\ResponseHelper;
 use App\Http\Resources\ProjectResource;
+use App\Models\ConsultantProject;
+use Illuminate\Http\JsonResponse;
 
 class ConsultantProjectController extends Controller
 {
@@ -77,5 +79,50 @@ class ConsultantProjectController extends Controller
             $year = $request->year;
             return view('pages.service-provider.consultant-package', ['serviceProviderProjects' => $serviceProviderProjects, 'year' => $year]);
         }
+    }
+
+    /**
+     * downloadContract
+     *
+     * @param  mixed $consultantProject
+     * @return void
+     */
+    public function downloadContract(ConsultantProject $consultantProject)
+    {
+        return response()->download(storage_path('app/public/' . $consultantProject->contract), $consultantProject->name_package . '.' . pathinfo(basename($consultantProject->contract, PATHINFO_EXTENSION)));
+    }
+
+    /**
+     * downloadAdministrativeMinutes
+     *
+     * @param  mixed $downloadAdministrativeMinutes
+     * @return void
+     */
+    public function downloadAdministrativeMinutes(ConsultantProject $consultantProject)
+    {
+        return response()->download(storage_path('app/public/' . $consultantProject->administrative_minutes), $consultantProject->name_package . '.' . pathinfo(basename($consultantProject->administrative_minutes, PATHINFO_EXTENSION)));
+    }
+
+    /**
+     * downloadReport
+     *
+     * @param  mixed $downloadReport
+     * @return void
+     */
+    public function downloadReport(ConsultantProject $consultantProject)
+    {
+        return response()->download(storage_path('app/public/' . $consultantProject->report), $consultantProject->name_package . '.' . pathinfo(basename($consultantProject->report, PATHINFO_EXTENSION)));
+    }
+
+
+    /**
+     * downloadMinutesOfDisbursement
+     *
+     * @param  mixed $consultantProject
+     * @return void
+     */
+    public function downloadMinutesOfDisbursement(ConsultantProject $consultantProject)
+    {
+        return response()->download(storage_path('app/public/' . $consultantProject->minutes_of_disbursement), $consultantProject->name_package . '.' . pathinfo(basename($consultantProject->minutes_of_disbursement, PATHINFO_EXTENSION)));
     }
 }
