@@ -9,6 +9,8 @@ use App\Contracts\Interfaces\ProjectInterface;
 use App\Http\Requests\ConsultantProjectRequest;
 use App\Http\Requests\ConsultantProjectUpdateRequest;
 use App\Contracts\Interfaces\ConsultantProjectInterface;
+use App\Helpers\ResponseHelper;
+use App\Http\Resources\ProjectResource;
 
 class ConsultantProjectController extends Controller
 {
