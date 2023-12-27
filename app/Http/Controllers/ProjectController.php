@@ -100,7 +100,7 @@ class ProjectController extends Controller
      */
     public function detailProjectDinas(Project $project): View
     {
-        return view('', ['project' => $project]);
+        return view('pages.dinas.detail-project', ['project' => $project]);
     }
 
     /**

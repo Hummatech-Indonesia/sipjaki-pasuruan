@@ -301,22 +301,9 @@
                                                 class="bx bx-bx bxs-edit fs-4 me-1"></i> Edit</button>
                                     </div>
                                     <div class="d-flex justify-content-center mb-2">
-                                        <button style="min-width: 90px;width:100%;background-color: #1B3061"
-                                            class="btn text-white btn-detail" id="btn-detail-{{ $project->id }}"
-                                            data-id="{{ $project->id }}" data-name="{{ $project->name }}"
-                                            data-year="{{ $project->year }}" data-status="{{ $project->status == 'active' ? 'Aktif' : 'Tidak Aktif' }}"
-                                            data-start_at="{{ Carbon::parse($project->start_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}"
-                                            data-end_at="{{ Carbon::parse($project->end_at)->locale('id_ID')->isoFormat('DD MMMM Y') }}"
-                                            data-finance_progress="{{ $project->finance_progress ? $project->finance_progress . ' %' : '-' }}"
-                                            data-finance_progress_start="{{ Carbon::parse($project->finance_progress_start)->locale('id_ID')->isoFormat('DD MMMM Y')? Carbon::parse($project->finance_progress_start)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}"
-                                            data-physical_progress="{{ $project->physical_progress ? $project->physical_progress . ' %' : '-' }}"
-                                            data-physical_progress_start="{{ Carbon::parse($project->physical_progress_start)->locale('id_ID')->isoFormat('DD MMMM Y')? Carbon::parse($project->physical_progress_start)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}"
-                                            data-project_value="{{ $project->project_value }}"
-                                            data-fund_source="{{ $project->fundSource->name }}"
-                                            data-konsultan="{{ $project->consultant->user->name }}"
-                                            data-executor="{{ $project->executor->user->name }}"
-                                            data-contract_category_name="{{ $project->contractCategory->name }}"
-                                            data-characteristic_project="{{ $project->characteristic_project }}"><svg
+                                        <a href="/detail-project-dinas/{{ $project->id }}" style="min-width: 90px;width:100%;background-color: #1B3061"
+                                            class="btn text-white btn-detail" 
+                                            ><svg
                                                 xmlns="http://www.w3.org/2000/svg" width="19" height="19"
                                                 viewBox="0 0 24 24" fill="none">
                                                 <path d="M4.5 12.5C7.5 6 16.5 6 19.5 12.5" stroke="white"
@@ -325,7 +312,7 @@
                                                     d="M12 16C10.8954 16 10 15.1046 10 14C10 12.8954 10.8954 12 12 12C13.1046 12 14 12.8954 14 14C14 15.1046 13.1046 16 12 16Z"
                                                     stroke="white" stroke-width="1.5" stroke-linecap="round"
                                                     stroke-linejoin="round" />
-                                            </svg> Detail</button>
+                                            </svg> Detail</a>
                                     </div>
                                 </div>
                             </td>
