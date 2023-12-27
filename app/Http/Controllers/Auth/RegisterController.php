@@ -49,7 +49,7 @@ class RegisterController extends Controller
      *
      * @return void
      */
-    public function __construct(RegisterService $service, RegisterInterface $register,AssociationInterface $association)
+    public function __construct(RegisterService $service, RegisterInterface $register, AssociationInterface $association)
     {
         $this->service = $service;
         $this->register = $register;
@@ -66,7 +66,7 @@ class RegisterController extends Controller
         $title = trans('title.register');
         $associations = $this->association->get();
 
-        return view('auth.register', compact('title','associations'));
+        return view('auth.register', compact('title', 'associations'));
     }
 
 
@@ -80,7 +80,7 @@ class RegisterController extends Controller
 
     public function register(RegisterRequest $request)
     {
-        $this->service->handleRegistration($request, $this->register);
+        $params = $this->service->handleRegistration($request, $this->register);
         if ($request->is('api/*')) {
             return ResponseHelper::success(null, trans('auth.register_success'));
         } else {
