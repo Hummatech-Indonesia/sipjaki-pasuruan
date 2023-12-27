@@ -50,10 +50,10 @@
                                         Nama Jasa
                                     </td>
                                     <td class="text-white" style="background-color: #1B3061">
-                                        Email
+                                        Asosiasi
                                     </td>
                                     <td class="text-white" style="background-color: #1B3061">
-                                        Asosiasi
+                                        Nama Direktur
                                     </td>
                                     <td class="text-white" style="background-color: #1B3061">
                                         No Telp
@@ -73,10 +73,10 @@
                                             {{ $serviceProvider->user->name }}
                                         </td>
                                         <td>
-                                            {{ $serviceProvider->user->email }}
+                                            {{ $serviceProvider->association->name }}
                                         </td>
                                         <td>
-                                            {{ $serviceProvider->association->name }}
+                                            {{ $serviceProvider->directur ? $serviceProvider->directur : '-' }}
                                         </td>
                                         <td>
                                             {{ $serviceProvider->user->phone_number }}
