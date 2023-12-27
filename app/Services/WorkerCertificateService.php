@@ -25,7 +25,7 @@ class WorkerCertificateService
 
     /**
      * update
-     * 
+     *
      * @param  mixed $worker_certificate
      * @param  mixed $request
      * @return array
@@ -50,6 +50,6 @@ class WorkerCertificateService
      */
     public function downloadCertificate(WorkerCertificate $worker_certificate)
     {
-        return response()->download(storage_path('app/public/' . $worker_certificate->file), $worker_certificate->certificate);
+        return response()->download(storage_path('app/public/' . $worker_certificate->file), $worker_certificate->certificate . '.' . pathinfo(basename($worker_certificate->file, PATHINFO_EXTENSION)));
     }
 }
