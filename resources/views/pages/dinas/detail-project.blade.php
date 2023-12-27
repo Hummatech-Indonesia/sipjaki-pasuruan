@@ -26,7 +26,7 @@
             <h5 class="mt-4 text-dark" style="font-weight: 700">
                 {{ $project->name }}
             </h5>
-            <table cellpadding="7" style="border-collapse: collapse;width:30%;" class="fs-6 fw-normal">
+            <table cellpadding="7" style="border-collapse: collapse;width:35%;" class="fs-6 fw-normal">
                 <tbody>
                     <tr>
                         <td class="fw-bold">Nilai Kontrak</td>
@@ -105,9 +105,4 @@
             </table>
         </div>
     </div>
-@endsection
-@section('script')
-    <script>
-        $('#projects').addClass('active');
-    </script>
 @endsection
