@@ -52,7 +52,7 @@
         }
 
         .site-header .site-main-menu li {
-            margin: 0 14px;
+            margin: 0 12px;
             position: relative;
             padding: 36px 0;
             -webkit-transition: all 0.3s ease-in-out;
