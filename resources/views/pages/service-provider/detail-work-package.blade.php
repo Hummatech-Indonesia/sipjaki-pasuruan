@@ -362,17 +362,17 @@
                                                 style="width: auto" height="150"></td>
                                     </tr>
                                     <tr>
-                                        <td>report</td>
+                                        <td>Report</td>
                                         <td><img src="{{ asset('storage/' . $project->report) }}" alt=""
                                                 style="width: auto" height="150"></td>
                                     </tr>
                                     <tr>
-                                        <td>minutes_of_disbursement</td>
+                                        <td>Berita Acara Pencairan</td>
                                         <td><img src="{{ asset('storage/' . $project->minutes_of_disbursement) }}"
                                                 alt="" style="width: auto" height="150"></td>
                                     </tr>
                                     <tr>
-                                        <td>administrative_minutes</td>
+                                        <td>Berita Acara Administrasi</td>
                                         <td><img src="{{ asset('storage/' . $project->administrative_minutes) }}"
                                                 alt="" style="width: auto" height="150"></td>
                                     </tr>
