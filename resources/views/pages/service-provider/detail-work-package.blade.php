@@ -579,8 +579,11 @@
     @endif
 
     <script>
-        $('#paket-pekerjaan').addClass('mm-active')
-        $('#paket-link').addClass('active')
+        $('#paket-jasa').addClass('active')      
+        $('#paket-jasa .sub-menu').addClass('mm-show')
+        $('#paket-jasa-link').addClass('mm-active')
+        $('#paket-pekerjaan-jasa').addClass('mm-active')
+        $('#paket-pekerjaan-jasa-link').addClass('active')
         $('.btn-delete').click(function() {
             id = $(this).data('id')
             var actionUrl = `/service-provider-projects/${id}`;

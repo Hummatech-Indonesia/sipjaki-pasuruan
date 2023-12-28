@@ -47,34 +47,34 @@
                 </thead>
                 <tbody>
                     @forelse ($serviceProviderProjects as $index=>$serviceProviderProject)
-                    @php
-                        $totalProgres = $serviceProviderProject->serviceProviderProjects->pluck('progres')->sum();
-                    @endphp
-                    <tbody>
-                        <tr>
-                            <td class="text-center">
-                                {{ $index + 1 }}
-                            </td>
-                            <td class="text-center">
-                                {{ $serviceProviderProject->name }}
-                            </td>
-                            <td class="text-center">
-                                {{ $serviceProviderProject->year }}
-                            </td>
-                            <td class="text-center">
-                                {{ $totalProgres }}%
-                            </td>
-                            <td class="text-center">
-                                <div class="d-flex justify-content-center">
-                                    <a href="detail-consultant/{{ $serviceProviderProject->id }}"
-                                        class="btn btn-primary btn-md rounded-4  " style="background-color: #1B3061;">
-                                        Detail
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                @empty
+                        @php
+                            $totalProgres = $serviceProviderProject->serviceProviderProjects->pluck('progres')->sum();
+                        @endphp
+                <tbody>
+                    <tr>
+                        <td class="text-center">
+                            {{ $index + 1 }}
+                        </td>
+                        <td class="text-center">
+                            {{ $serviceProviderProject->name }}
+                        </td>
+                        <td class="text-center">
+                            {{ $serviceProviderProject->year }}
+                        </td>
+                        <td class="text-center">
+                            {{ $totalProgres }}%
+                        </td>
+                        <td class="text-center">
+                            <div class="d-flex justify-content-center">
+                                <a href="detail-consultant/{{ $serviceProviderProject->id }}"
+                                    class="btn btn-primary btn-md rounded-4  " style="background-color: #1B3061;">
+                                    Detail
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            @empty
                 <tr>
                     <td colspan="5" class="text-center">
                         <div class="d-flex justify-content-center" style="min-height:16rem">
@@ -92,6 +92,7 @@
 @endsection
 @section('script')
     <script>
+       
         document.addEventListener("DOMContentLoaded", function() {
             const progressBar = document.getElementById("progressBar");
             const totalProgress = progressBar.getAttribute("data-total-progress");

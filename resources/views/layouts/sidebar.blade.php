@@ -10,8 +10,8 @@
                             <span key="t-file-manager">Dashboard</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="javascript: void(0);" class="has-arrow waves-effect">
+                    <li id="master">
+                        <a href="javascript: void(0);" id="master-link" class="has-arrow waves-effect">
                             <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="20" height="20"
                                 viewBox="0 0 24 24">
                                 <path fill="none" stroke="currentColor" stroke-linecap="round"
@@ -20,9 +20,9 @@
                             </svg>
                             <span key="t-multi-level">Master</span>
                         </a>
-                        <ul class="sub-menu" aria-expanded="true">
-                            <li>
-                                <a href="javascript: void(0);" class="has-arrow" key="t-level-1-2">Penyedia Jasa</a>
+                        <ul class="sub-menu"  aria-expanded="true">
+                            <li id="jasa" id="sub-jasa">
+                                <a href="javascript: void(0);" id="jasa-link" class="has-arrow" key="t-level-1-2">Penyedia Jasa</a>
                                 <ul class="sub-menu" aria-expanded="true">
                                     <li id="kualifikasi-jasa"><a href="{{ route('qualifications.index') }}"
                                             id="kualifikasi-link-jasa" key="t-tui-calendar">Kualifikasi</a></li>
@@ -34,9 +34,9 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li>
-                                <a href="javascript: void(0);" class="has-arrow" key="t-level-1-2">Pelatihan</a>
-                                <ul class="sub-menu" aria-expanded="true">
+                            <li id="training">
+                                <a href="javascript: void(0);" id="training-link" class="has-arrow" key="t-level-1-2">Pelatihan</a>
+                                <ul class="sub-menu" id="sub-training" aria-expanded="true">
                                     <li id="kualifikasi-training"><a
                                             href="{{ route('qualification-trainings.index') }}"
                                             id="kualifikasi-link-training" key="t-tui-calendar">Kualifikasi</a></li>
@@ -65,23 +65,23 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="javascript: void(0);" class="has-arrow waves-effect">
+                    <li id="user-jasa">
+                        <a href="javascript: void(0);" id="user-jasa-link" class="has-arrow waves-effect">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M12 5.9a2.1 2.1 0 1 1 0 4.2a2.1 2.1 0 0 1 0-4.2m0 9c2.97 0 6.1 1.46 6.1 2.1v1.1H5.9V17c0-.64 3.13-2.1 6.1-2.1M12 4C9.79 4 8 5.79 8 8s1.79 4 4 4s4-1.79 4-4s-1.79-4-4-4zm0 9c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4z"/></svg>
                             <span key="t-multi-level" class="px-2">Pengguna</span>
                         </a>
                         <ul class="sub-menu" aria-expanded="true">
-                            <li>
-                                <a href="javascript: void(0);" class="has-arrow" key="t-level-1-2">Penyedia Jasa</a>
+                            <li id="jasa-user">
+                                <a href="javascript: void(0);" id="jasa-user-link" class="has-arrow" key="t-level-1-2">Penyedia Jasa</a>
                                 <ul class="sub-menu" aria-expanded="true">
-                                    <li><a href="/service-provider-consultants" key="t-level-2-1">konsultan</a></li>
-                                    <li><a href="/service-provider-executors" key="t-level-2-2">Pelaksana</a></li>
+                                    <li id="konsultan"><a id="konsultan-link" href="/service-provider-consultants" key="t-level-2-1">konsultan</a></li>
+                                    <li id="penyelenggara"><a id="penyelenggara-link" href="/service-provider-executors" key="t-level-2-2">Pelaksana</a></li>
                                 </ul>
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="javascript: void(0);" class="has-arrow waves-effect">
+                    <li id="approval">
+                        <a href="javascript: void(0);" id="appoval-link" class="has-arrow waves-effect">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                 viewBox="0 0 42 42" fill="currentColor">
                                 <path
@@ -92,7 +92,7 @@
                             </span>
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="{{ route('service.provider.qualification.pending') }}"
+                            <li id="kualifikasi-approval"><a id="kualifikasi-approval-link" href="{{ route('service.provider.qualification.pending') }}"
                                     key="t-tui-calendar">Kualifikasi</a></li>
                         </ul>
                     </li>
@@ -310,8 +310,8 @@
                             <span key="t-file-manager" class="px-2">Kecelakaan</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ route('projects.index') }}" class="waves-effect">
+                    <li id="project-admin">
+                        <a id="project-admin-link" href="{{ route('projects.index') }}" class="waves-effect">
                             <i class="bx bxs-package"></i>
                             <span key="t-file-manager">Paket Pekerjaan</span>
                         </a>
@@ -331,26 +331,26 @@
                         </a>
                     </li>
                     @if (Auth::user()->serviceProvider->type_of_business_entity == 'consultant')
-                    <li>
-                        <a href="javascript: void(0);" class="has-arrow waves-effect">
+                    <li id="paket-jasa">
+                        <a id="paket-jasa-link" href="javascript: void(0);" class="has-arrow waves-effect">
                             <i class="bx bx-briefcase"></i>
                             <span key="t-multi-level">Paket</span>
                         </a>
                         <ul class="sub-menu" aria-expanded="true">
-                            <li><a href="{{ route('work.package') }}" key="t-tui-calendar">Paket Pekerjaan</a></li>
-                            <li><a href="{{ route('consultant-package') }}" key="t-tui-calendar">Paket Konsultan</a></li>
+                            <li id="paket-pekerjaan-jasa"><a href="{{ route('work.package') }}" key="t-tui-calendar" id="paket-pekerjaan-jasa-link">Paket Pekerjaan</a></li>
+                            <li id="paket-konsultant"><a id="paket-konsultant-link" href="{{ route('consultant-package') }}" key="t-tui-calendar">Paket Konsultan</a></li>
                         </ul>
                     </li>
                     @else
-                    <li>
-                        <a href="{{ route('work.package') }}" class="waves-effect">
+                    <li id="paket-pekerjaan-jasa">
+                        <a id="paket-pekerjaan-jasa-link"  href="{{ route('work.package') }}" class="waves-effect">
                             <i class="bx bx-briefcase"></i>
                             <span key="t-file-manager">Paket Pekerjaan</span>
                         </a>
                     </li>
                     @endif
-                    <li>
-                        <a href="{{ route('workers.index') }}" class="waves-effect">
+                    <li id="worker">
+                        <a id="worker-link" href="{{ route('workers.index') }}" class="waves-effect">
                             <i class="fas fa-users-cog
                         fa-sm"></i>
                             <span key="t-file-manager">Tenaga Kerja</span>

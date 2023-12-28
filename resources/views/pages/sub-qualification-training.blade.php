@@ -179,6 +179,9 @@
 
 @section('script')
     <script>
+        $('#master').addClass('active mm-active')
+        $('#master .sub-menu').addClass('mm-show')
+        $('#master-link').addClass('mm-active')
         $('#training').addClass('mm-active')
         $('#training-link').addClass('mm-active')
         $('#training .sub-menu').addClass('mm-show');

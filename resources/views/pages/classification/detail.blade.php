@@ -239,6 +239,9 @@
 @endsection
 @section('script')
     <script>
+         $('#master').addClass('active')
+        $('#master .sub-menu').addClass('mm-show')
+        $('#master-link').addClass('mm-active')
         $('#jasa').addClass('mm-active')
         $('#jasa-link').addClass('mm-active')
         $('#jasa .sub-menu').addClass('mm-show');

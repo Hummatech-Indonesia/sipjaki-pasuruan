@@ -445,3 +445,12 @@
         </div>
     </div>
 @endsection
+@section('script')
+    <script>
+         $('#paket-jasa').addClass('active')
+        $('#paket-jasa .sub-menu').addClass('mm-show')
+        $('#paket-jasa-link').addClass('mm-active')
+        $('#paket-konsultant').addClass('mm-active')
+        $('#paket-konsultant-link').addClass('active')
+    </script>
+@endsection

@@ -37,7 +37,7 @@
                 <div class="fw-bold">Tenaga Kerja</div>
             </a>
             <a class="nav-link" style="border: solid 1px #1B3061;" id="pengalaman-tab" data-bs-toggle="pill"
-            href="#pengalaman" role="tab" role="tab" aria-controls="pengalaman" aria-selected="false">
+                href="#pengalaman" role="tab" role="tab" aria-controls="pengalaman" aria-selected="false">
                 <div class="fw-bold">Pengalaman</div>
             </a>
             <a class="nav-link rounded-end" style="border: solid 1px #1B3061;" id="ganti-tab" data-bs-toggle="pill"
@@ -180,7 +180,7 @@
                                 rowspan="2" colspan="1">Tanggal Permohonan</th>
                             <th style="background-color: #1B3061;color:#ffffff;vertical-align: middle;width:150px;"
                                 rowspan="2" colspan="1">Status</th>
-                            
+
                         </tr>
 
                     </thead>
@@ -206,7 +206,7 @@
                                         <span class="badge text-bg-success fs-6">Active</span>
                                     @endif
                                 </td>
-                                
+
                             </tr>
                         @empty
                             <tr>
@@ -290,12 +290,13 @@
                             <tr>
                                 <td>Tanggal Akte</td>
                                 <td>:</td>
-                                <td>@if ($foundingDeeps && $foundingDeeps->deed_date)
-                                    {{ Carbon::parse($foundingDeeps->deed_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}
-                                @else
-                                    -
-                                @endif
-                            </td>
+                                <td>
+                                    @if ($foundingDeeps && $foundingDeeps->deed_date)
+                                        {{ Carbon::parse($foundingDeeps->deed_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                    @else
+                                        -
+                                    @endif
+                                </td>
                             </tr>
                         </tbody>
 
@@ -312,119 +313,119 @@
                         <div class="card-body">
                             <table cellpadding="5" style="border-collapse: collapse; width: 60%;" class="fs-6 fw-normal">
                                 @if ($verifications)
-                                <tbody>
-                                    <tr>
-                                        <td colspan="5">
-                                            <h5 class="text-dark" style="font-weight: 700">
-                                                Materi Kehakiman dan HAM
-                                            </h5>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Nomor</td>
-                                        <td>:</td>
-                                        <td>{{ $verifications->judiciary_number ?? '-' }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Tanggal</td>
-                                        <td>:</td>
-                                        <td>{{ $verifications->judicary_date ? Carbon::parse($verifications->judicary_date)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="5">
-                                            <h5 class="text-dark mt-4" style="font-weight: 700">
-                                                Pengadilan Negeri
-                                            </h5>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Nomor</td>
-                                        <td>:</td>
-                                        <td>{{ $verifications->district_court_number ?? '-' }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Tanggal</td>
-                                        <td>:</td>
-                                        <td>{{ $verifications->district_court_date? Carbon::parse($verifications->district_court_date)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="5">
-                                            <h5 class="text-dark mt-4" style="font-weight: 700">
-                                                Lembar Negara
-                                            </h5>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Nomor</td>
-                                        <td>:</td>
-                                        <td>{{ $verifications->state_institution_number ?? '-' }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Tanggal</td>
-                                        <td>:</td>
-                                        <td>{{ $verifications->state_institution_date? Carbon::parse($verifications->state_institution_date)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}
-                                        </td>
-                                    </tr>
-                                </tbody>
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="5">
+                                                <h5 class="text-dark" style="font-weight: 700">
+                                                    Materi Kehakiman dan HAM
+                                                </h5>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Nomor</td>
+                                            <td>:</td>
+                                            <td>{{ $verifications->judiciary_number ?? '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tanggal</td>
+                                            <td>:</td>
+                                            <td>{{ $verifications->judicary_date? Carbon::parse($verifications->judicary_date)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="5">
+                                                <h5 class="text-dark mt-4" style="font-weight: 700">
+                                                    Pengadilan Negeri
+                                                </h5>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Nomor</td>
+                                            <td>:</td>
+                                            <td>{{ $verifications->district_court_number ?? '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tanggal</td>
+                                            <td>:</td>
+                                            <td>{{ $verifications->district_court_date? Carbon::parse($verifications->district_court_date)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="5">
+                                                <h5 class="text-dark mt-4" style="font-weight: 700">
+                                                    Lembar Negara
+                                                </h5>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Nomor</td>
+                                            <td>:</td>
+                                            <td>{{ $verifications->state_institution_number ?? '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tanggal</td>
+                                            <td>:</td>
+                                            <td>{{ $verifications->state_institution_date? Carbon::parse($verifications->state_institution_date)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}
+                                            </td>
+                                        </tr>
+                                    </tbody>
                                 @else
-                                <tbody>
-                                    <tr>
-                                        <td colspan="5">
-                                            <h5 class="text-dark" style="font-weight: 700">
-                                                Materi Kehakiman dan HAM
-                                            </h5>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Nomor</td>
-                                        <td>:</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Tanggal</td>
-                                        <td>:</td>
-                                        <td>-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="5">
-                                            <h5 class="text-dark mt-4" style="font-weight: 700">
-                                                Pengadilan Negeri
-                                            </h5>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Nomor</td>
-                                        <td>:</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Tanggal</td>
-                                        <td>:</td>
-                                        <td>-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="5">
-                                            <h5 class="text-dark mt-4" style="font-weight: 700">
-                                                Lembar Negara
-                                            </h5>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Nomor</td>
-                                        <td>:</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Tanggal</td>
-                                        <td>:</td>
-                                        <td>-
-                                        </td>
-                                    </tr>
-                                </tbody>
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="5">
+                                                <h5 class="text-dark" style="font-weight: 700">
+                                                    Materi Kehakiman dan HAM
+                                                </h5>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Nomor</td>
+                                            <td>:</td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tanggal</td>
+                                            <td>:</td>
+                                            <td>-
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="5">
+                                                <h5 class="text-dark mt-4" style="font-weight: 700">
+                                                    Pengadilan Negeri
+                                                </h5>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Nomor</td>
+                                            <td>:</td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tanggal</td>
+                                            <td>:</td>
+                                            <td>-
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="5">
+                                                <h5 class="text-dark mt-4" style="font-weight: 700">
+                                                    Lembar Negara
+                                                </h5>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Nomor</td>
+                                            <td>:</td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tanggal</td>
+                                            <td>:</td>
+                                            <td>-
+                                            </td>
+                                        </tr>
+                                    </tbody>
                                 @endif
 
 
@@ -442,57 +443,59 @@
                             <table cellpadding="5" style="border-collapse: collapse; width: 60%;" class="fs-6 fw-normal">
                                 <tbody>
                                     @if ($amendmentDeeps)
-                                    <tr>
-                                        <td>No Akte</td>
-                                        <td>:</td>
-                                        <td>{{ $amendmentDeeps->deed_number ? $amendmentDeeps->deed_number : '-' }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Nama Notaris</td>
-                                        <td>:</td>
-                                        <td>{{ $amendmentDeeps->notary_name ? $amendmentDeeps->notary_name : '-' }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Alamat</td>
-                                        <td>:</td>
-                                        <td>{{ $amendmentDeeps->address ? $amendmentDeeps->address : '-' }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Kota / Kabupaten</td>
-                                        <td>:</td>
-                                        <td>{{ $amendmentDeeps->city ? $amendmentDeeps->city : '-' }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Provinsi</td>
-                                        <td>:</td>
-                                        <td>{{ $amendmentDeeps->province ? $amendmentDeeps->province : '-' }}</td>
-                                    </tr>
+                                        <tr>
+                                            <td>No Akte</td>
+                                            <td>:</td>
+                                            <td>{{ $amendmentDeeps->deed_number ? $amendmentDeeps->deed_number : '-' }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Nama Notaris</td>
+                                            <td>:</td>
+                                            <td>{{ $amendmentDeeps->notary_name ? $amendmentDeeps->notary_name : '-' }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Alamat</td>
+                                            <td>:</td>
+                                            <td>{{ $amendmentDeeps->address ? $amendmentDeeps->address : '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Kota / Kabupaten</td>
+                                            <td>:</td>
+                                            <td>{{ $amendmentDeeps->city ? $amendmentDeeps->city : '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Provinsi</td>
+                                            <td>:</td>
+                                            <td>{{ $amendmentDeeps->province ? $amendmentDeeps->province : '-' }}</td>
+                                        </tr>
                                     @else
-                                    <tr>
-                                        <td>No Akte</td>
-                                        <td>:</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Nama Notaris</td>
-                                        <td>:</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Alamat</td>
-                                        <td>:</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Kota / Kabupaten</td>
-                                        <td>:</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Provinsi</td>
-                                        <td>:</td>
-                                        <td>-</td>
-                                    </tr>
+                                        <tr>
+                                            <td>No Akte</td>
+                                            <td>:</td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Nama Notaris</td>
+                                            <td>:</td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Alamat</td>
+                                            <td>:</td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Kota / Kabupaten</td>
+                                            <td>:</td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Provinsi</td>
+                                            <td>:</td>
+                                            <td>-</td>
+                                        </tr>
                                     @endif
 
                                 </tbody>
@@ -880,24 +883,30 @@
                             <div class="col-lg-3 d-flex flex-column align-items-center">
                                 <img width="90%" src="{{ asset('assets/images/Password 1.png') }}" alt="">
                             </div>
-    
+
                             <div class="col-lg-9">
                                 <div class="row mt-3">
                                     <div class="col">
                                         <label for="" class="form-label">Password Baru</label>
                                         <div class="input-group auth-pass-inputgroup">
-                                            <input type="password" name="password"  class="form-control" placeholder="Masukkan password Baru" aria-label="Password" aria-describedby="password-addon3" >
-                                            <button class="btn btn-light " type="button" id="password-addon3"><i class="mdi mdi-eye-outline"></i></button>
+                                            <input type="password" name="password" class="form-control"
+                                                placeholder="Masukkan password Baru" aria-label="Password"
+                                                aria-describedby="password-addon3">
+                                            <button class="btn btn-light " type="button" id="password-addon3"><i
+                                                    class="mdi mdi-eye-outline"></i></button>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <label for="" class="form-label">Konfirmasi Password</label>
                                         <div class="input-group auth-pass-inputgroup">
-                                            <input type="password" name="password_confirmation"  class="form-control" placeholder="Konfirmasi password" aria-label="Password" aria-describedby="password-addon" >
-                                            <button class="btn btn-light " type="button" id="password-addon"><i class="mdi mdi-eye-outline"></i></button>
+                                            <input type="password" name="password_confirmation" class="form-control"
+                                                placeholder="Konfirmasi password" aria-label="Password"
+                                                aria-describedby="password-addon">
+                                            <button class="btn btn-light " type="button" id="password-addon"><i
+                                                    class="mdi mdi-eye-outline"></i></button>
                                         </div>
                                     </div>
-    
+
                                 </div>
                                 <div class="d-flex mt-4 justify-content-end">
                                     <div>
@@ -917,13 +926,35 @@
 
 @endsection
 @section('script')
-@if (session('success'))
-<script>
-    Swal.fire({
-        icon: 'success',
-        title: 'Success',
-        text: '{{ session('success') }}',
-    });
-</script>
-@endif
+    @if ($serviceProviders->type_of_business_entity == 'consultant')
+        <script>
+            $('#active mm-active').addClass('active')
+            $('#user-jasa .sub-menu').addClass('mm-show')
+            $('#jasa-user').addClass('mm-active')
+            $('#jasa-user-link').addClass('mm-active')
+            $('#user-jasa-link').addClass('mm-active')
+            $('#konsultan').addClass('mm-active')
+            $('#konsultan-link').addClass('active')
+        </script>
+    @else
+        <script>
+            $('#active mm-active').addClass('active')
+            $('#user-jasa .sub-menu').addClass('mm-show')
+            $('#jasa-user').addClass('mm-active')
+            $('#jasa-user-link').addClass('mm-active')
+            $('#user-jasa-link').addClass('mm-active')
+            $('#penyelenggara').addClass('mm-active')
+            $('#penyelenggara-link').addClass('active')
+        </script>
+    @endif
+
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: '{{ session('success') }}',
+            });
+        </script>
+    @endif
 @endsection

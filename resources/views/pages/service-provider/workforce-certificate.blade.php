@@ -241,6 +241,8 @@
 @endsection
 @section('script')
     <script>
+        $('#worker').addClass('mm-active')
+        $('#worker-link').addClass('active')
         $('.btn-detail').click(function() {
             const data = getDataAttributes($(this).attr('id'))
             handleFile(data)

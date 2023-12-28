@@ -201,10 +201,13 @@
 
 @section('script')
     <script>
-         $('#jasa').addClass('mm-active')
+        $('#master').addClass('active')
+        $('#master #sub-jasa').addClass('mm-show')
+        $('#master-link').addClass('mm-active')
+        $('#jasa').addClass('active')
         $('#jasa-link').addClass('mm-active')
         $('#jasa .sub-menu').addClass('mm-show');
-         $('#kualifikasi-jasa').addClass('mm-active')
+        $('#kualifikasi-jasa').addClass('mm-active')
         $('#kualifikasi-link-jasa').addClass('active')
         $('.btn-edit').click(function() {
             const formData = getDataAttributes($(this).attr('id'))

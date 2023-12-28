@@ -106,3 +106,9 @@
         </div>
     </div>
 @endsection
+@section('script')
+    <script>
+        $('#project-admin').addClass('mm-active')
+        $('#project-admin-link').addClass('active')
+    </script>
+@endsection

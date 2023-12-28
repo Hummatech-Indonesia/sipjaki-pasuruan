@@ -76,7 +76,7 @@
 @section('script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
     <script>
-         $('#approval').addClass('mm-active')
+        $('#approval').addClass('mm-active')
         $('#approval-link').addClass('mm-active')
         $('#approval .sub-menu').addClass('mm-show');
         $('#kualifikasi-approval').addClass('mm-active')
