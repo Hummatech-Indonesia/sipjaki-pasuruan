@@ -401,8 +401,7 @@
                         <div class="col-lg-6 col-md-6">
                             <div class="widget footer-widget">
                                 <div>
-                                    <img class="img-sipjaki mb-2" style="margin-left: 3%;"
-                                        src="{{ asset('sipjaki.png') }}" alt="" srcset="">
+                                    <img class="img-sipjaki mb-2" src="{{ asset('sipjaki.png') }}" alt="" srcset="">
                                 </div>
                                 <div class="alamat"
                                     style="color: var(--Biru-Primary, #1B3061);
