@@ -69,11 +69,11 @@ Route::get('struktur-organisasi', function () {
     return view('struktur-organisasi');
 })->name('struktur-organisasi');
 
-Route::get('rencana-strategis-DKSDK', function () {
+Route::get('rencana-strategis', function () {
     return view('rencana-strategis');
 })->name('rencana-strategis');
 
-Route::get('tugas-fungsi-DKSDK', function () {
+Route::get('tugas-fungsi', function () {
     return view('tugas-fungsi');
 })->name('tugas-fungsi');
 Auth::routes(['verify' => true]);
