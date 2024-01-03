@@ -65,7 +65,7 @@ Route::get('berita/{news}', [LandingController::class, 'show'])->name('berita');
 Route::get('asosiasi', [AssociationController::class, 'dataServiceProvider'])->name('association.landing');
 Route::get('detail-asosiasi/{association}', [LandingController::class, 'associationDetail'])->name('association-detail.landing');
 
-Route::get('struktur-organisasi-DKSDK', function () {
+Route::get('struktur-organisasi', function () {
     return view('struktur-organisasi');
 })->name('struktur-organisasi');
 
