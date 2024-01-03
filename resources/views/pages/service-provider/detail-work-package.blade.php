@@ -114,7 +114,16 @@
                                     <tr>
                                         <td>Progres Fisik</td>
                                         <td>:</td>
-                                        <td>{{ $project->physical_progress != null ? $project->physical_progress . '%' : '0%' }}</td>
+                                        <td><?php
+                                            $totalProgress = 0;
+                                            
+                                            foreach ($serviceProviderProject as $index => $serviceProviderProjec) {
+                                                $progress = $serviceProviderProjec->progres ?? 0; // Jika nilai progres kosong, atur nilai menjadi 0
+                                                $totalProgress += $progress;
+                                            }
+                                            
+                                            echo $totalProgress . "%";
+                                            ?></td>
                                     </tr>
                                     <tr>
                                         <td>Progres Keuangan</td>
@@ -234,7 +243,6 @@
                                         <th>Tanggal Mulai</th>
                                         <th>Tanggal Akhir</th>
                                         <th>Miggu ke-</th>
-                                        <th>Deskripsi</th>
                                         <th>Progres (%)</th>
                                         <th>Aksi</th>
                                         <th>
@@ -247,11 +255,11 @@
                                         <th>Foto</th>
                                     </tr>
                                 @endif
-
                             </thead>
                             <tbody>
                                 @if (Auth::user()->serviceProvider->type_of_business_entity == 'consultant')
                                     @forelse ($serviceProviderProject as $index=>$serviceProviderProjec)
+                                    
                                         <tr>
                                             <td>{{ $index + 1 }}</td>
                                             <td>{{ Carbon::parse($serviceProviderProjec->date_start)->locale('id_ID')->isoFormat('DD MMMM Y') }}
@@ -259,7 +267,6 @@
                                             <td>{{ Carbon::parse($serviceProviderProjec->date_finish)->locale('id_ID')->isoFormat('DD MMMM Y') }}
                                             </td>
                                             <td>{{ $serviceProviderProjec->week }}</td>
-                                            <td>{{ Str::limit($serviceProviderProjec->description, 120) }}</td>
                                             <td>{{ $serviceProviderProjec->progres }}% Progress</td>
                                             <td>
                                                 <div class="d-flex justify-content-header gap-2">

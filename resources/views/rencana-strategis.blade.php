@@ -3,7 +3,7 @@
     <div class="tabs-wrapper">
         <div class="section-title text-center">
             <h2 style="border-radius: 16px;
-            background: var(--Kuning, #FFC928);" class="title p-1">Rencana Strategis DKSDK</h2>
+            background: var(--Kuning, #FFC928);" class="title p-1">Rencana Strategis</h2>
         </div>
     </div>
     <div class="px-2 py-2 d-flex justify-content-center">

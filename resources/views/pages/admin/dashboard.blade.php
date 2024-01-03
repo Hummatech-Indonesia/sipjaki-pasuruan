@@ -310,10 +310,10 @@
                             <div class="fw-bold mt-3">Pelatihan</div>
                         </div>
                         <div class="flex-shrink-0 mt-2">
-                           <a href="{{ route('training') }}">
-                            <button class="btn btn-md rounded-3"
-                            style="background-color: #1B3061;color:white;width:100px;">Lihat</button>
-                        </a>
+                            <a href="{{ route('training') }}">
+                                <button class="btn btn-md rounded-3"
+                                    style="background-color: #1B3061;color:white;width:100px;">Lihat</button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -344,7 +344,7 @@
                             <td class="fs-5">{{ $loop->iteration }}</td>
                             <td class="fs-5">{{ $activeProject->name }}</td>
                             <td class="fs-5">{{ $activeProject->dinas->user->name }}</td>
-                            <td class="fs-5">{{ $activeProject->project_value }}</td>
+                            <td class="fs-5">Rp.{{ number_format($activeProject->project_value, 0, ',', '.') }}</td>
                         </tr>
                     @empty
                         <tr>

@@ -170,7 +170,6 @@
             const formData = getDataAttributes($(this).attr('id'))
             var actionUrl = `qualifications/${formData['id']}`;
             $('#form-update').attr('action', actionUrl);
-
             setFormValues('form-update', formData)
             $('#form-update').data('id', formData['id'])
             $('#form-update').attr('action', );

@@ -65,15 +65,15 @@ Route::get('berita/{news}', [LandingController::class, 'show'])->name('berita');
 Route::get('asosiasi', [AssociationController::class, 'dataServiceProvider'])->name('association.landing');
 Route::get('detail-asosiasi/{association}', [LandingController::class, 'associationDetail'])->name('association-detail.landing');
 
-Route::get('struktur-organisasi-DKSDK', function () {
+Route::get('struktur-organisasi', function () {
     return view('struktur-organisasi');
 })->name('struktur-organisasi');
 
-Route::get('rencana-strategis-DKSDK', function () {
+Route::get('rencana-strategis', function () {
     return view('rencana-strategis');
 })->name('rencana-strategis');
 
-Route::get('tugas-fungsi-DKSDK', function () {
+Route::get('tugas-fungsi', function () {
     return view('tugas-fungsi');
 })->name('tugas-fungsi');
 Auth::routes(['verify' => true]);
@@ -171,30 +171,6 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('role:admin')->group(function () {
         Route::get('dashboard-admin', [AdminController::class, 'dashboard'])->name('dashboard-admin');
-        Route::resources([
-            'news' => NewsController::class,
-            'faqs' => FaqController::class
-        ]);
-        Route::get('agencies', [UserController::class, 'index'])->name('agencies.index');
-        Route::post('agencies', [UserController::class, 'store'])->name('agencies.store');
-        Route::put('agencies/{user}', [UserController::class, 'update'])->name('agencies.update');
-        Route::delete('agencies/{user}', [UserController::class, 'destroy'])->name('agencies.destroy');
-        Route::get('images', [ImagesController::class, 'index'])->name('images.index');
-        Route::post('images', [ImagesController::class, 'store'])->name('images.store');
-        Route::post('videos', [ImagesController::class, 'storeVideo'])->name('video.store');
-
-        Route::get('training-members/{training}', [TrainingMemberController::class, 'index']);
-        Route::post('training-members/{training}', [TrainingMemberController::class, 'store'])->name('training.members.store');
-        Route::put('training-member-update/{training_member}', [TrainingMemberController::class, 'update'])->name('training.members');
-        Route::delete('training-members/{training_member}', [TrainingMemberController::class, 'destroy']);
-        Route::post('import-training-members', [TrainingMemberController::class, 'import']);
-        Route::delete('delete-training-members',[ TrainingMemberController::class, 'multipleDelete'])->name('delete-member');
-
-
-        Route::get('training', [TrainingController::class, 'index'])->name('training');
-        Route::post('training', [TrainingController::class, 'store'])->name('training.store');
-        Route::put('training.update/{training}', [TrainingController::class, 'update'])->name('training.update');
-        Route::delete('training.destroy/{training}', [TrainingController::class, 'destroy'])->name('training.destroy');
     });
 
     Route::middleware('role:dinas')->group(function () {
@@ -286,18 +262,23 @@ Route::middleware('role:admin|superadmin')->group(function () {
     //Upload Foto
     Route::post('images', [ImagesController::class, 'store'])->name('images.store');
 
+    // Route::resources([
+    //     'news' => NewsController::class,
+    //     'faqs' => FaqController::class
+    // ]);
+    Route::get('agencies', [UserController::class, 'index'])->name('agencies.index');
+    Route::post('agencies', [UserController::class, 'store'])->name('agencies.store');
+    Route::put('agencies/{user}', [UserController::class, 'update'])->name('agencies.update');
+    Route::delete('agencies/{user}', [UserController::class, 'destroy'])->name('agencies.destroy');
+    Route::get('images', [ImagesController::class, 'index'])->name('images.index');
+    Route::post('images', [ImagesController::class, 'store'])->name('images.store');
+    Route::post('videos', [ImagesController::class, 'storeVideo'])->name('video.store');
 
     Route::resources([
         'news' => NewsController::class,
         'faqs' => FaqController::class,
         'rules' => RuleController::class
     ]);
-
-    //Agencies
-    Route::get('agencies', [UserController::class, 'index'])->name('agencies.index');
-    Route::post('agencies', [UserController::class, 'store'])->name('agencies.store');
-    Route::put('agencies/{user}', [UserController::class, 'update'])->name('agencies.update');
-    Route::delete('agencies/{user}', [UserController::class, 'destroy'])->name('agencies.destroy');
 });
 
 //Reset Password

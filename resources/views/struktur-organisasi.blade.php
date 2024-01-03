@@ -4,7 +4,7 @@
         <div class="section-title text-center">
             <h2 style="border-radius: 16px;
             background: var(--Kuning, #FFC928);" class="title p-1">Struktur
-                Organisasi DKSDK</h2>
+                Organisasi</h2>
         </div>
     </div>
     <div class="px-2 py-2 d-flex justify-content-center">

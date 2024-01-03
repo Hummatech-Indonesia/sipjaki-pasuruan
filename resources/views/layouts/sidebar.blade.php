@@ -47,7 +47,6 @@
                                             Pelatihan</a></li>
                                 </ul>
                             </li>
-                            <li><a href="{{ route('all.agency') }}" key="t-tui-calendar">Dinas</a></li>
                             <li>
                                 <a href="{{ route('rule-categories.index') }}" class="waves-effect">
                                     <span key="t-file-manager">Kategori Peraturan</span>
@@ -71,6 +70,7 @@
                             <span key="t-multi-level" class="px-2">Pengguna</span>
                         </a>
                         <ul class="sub-menu" aria-expanded="true">
+                            <li><a href="{{ route('all.agency') }}" key="t-tui-calendar">Dinas</a></li>
                             <li id="jasa-user">
                                 <a href="javascript: void(0);" id="jasa-user-link" class="has-arrow" key="t-level-1-2">Penyedia Jasa</a>
                                 <ul class="sub-menu" aria-expanded="true">
