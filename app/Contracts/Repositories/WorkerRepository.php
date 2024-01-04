@@ -38,7 +38,7 @@ class WorkerRepository extends BaseRepository implements WorkerInterface
     public function getByServiceProvider(Request $request): mixed
     {
         return $this->model->query()
-            ->where('service_provider_id', auth()->user()->serviceProvider->id)
+            ->where('service_provider_id', auth()->user()->serviceProvider?->id)
             ->get();
     }
 
@@ -50,7 +50,7 @@ class WorkerRepository extends BaseRepository implements WorkerInterface
     public function countWorker(): int
     {
         return $this->model->query()
-            ->where('service_provider_id', auth()->user()->serviceProvider->id)
+            ->where('service_provider_id', auth()->user()->serviceProvider?->id)
             ->count();
     }
 

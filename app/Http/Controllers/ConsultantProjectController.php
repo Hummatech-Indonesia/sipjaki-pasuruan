@@ -90,7 +90,7 @@ class ConsultantProjectController extends Controller
     public function downloadContract(ConsultantProject $consultantProject)
     {
         $filePath = pathinfo(basename($consultantProject->contract, PATHINFO_EXTENSION));
-        return response()->download(storage_path('app/public/' . $consultantProject->contract), $consultantProject->project->name . '.' . $filePath['extension']);
+        return response()->download(storage_path('app/' . $consultantProject->contract), $consultantProject->project->name . '.' . $filePath['extension']);
     }
 
     /**
@@ -103,7 +103,7 @@ class ConsultantProjectController extends Controller
     {
         $filePath = pathinfo(basename($consultantProject->administrative_minutes, PATHINFO_EXTENSION));
 
-        return response()->download(storage_path('app/public/' . $consultantProject->administrative_minutes), $consultantProject->project->name . '.' . $filePath['extension']);
+        return response()->download(storage_path('app/' . $consultantProject->administrative_minutes), $consultantProject->project->name . '.' . $filePath['extension']);
     }
 
     /**
@@ -116,7 +116,7 @@ class ConsultantProjectController extends Controller
     {
         $filePath = pathinfo(basename($consultantProject->report, PATHINFO_EXTENSION));
 
-        return response()->download(storage_path('app/public/' . $consultantProject->report), $consultantProject->project->name . '.' . $filePath['extension']);
+        return response()->download(storage_path('app/' . $consultantProject->report), $consultantProject->project->name . '.' . $filePath['extension']);
     }
 
 
@@ -130,6 +130,19 @@ class ConsultantProjectController extends Controller
     {
         $filePath = pathinfo(basename($consultantProject->minutes_of_disbursement, PATHINFO_EXTENSION));
 
-        return response()->download(storage_path('app/public/' . $consultantProject->minutes_of_disbursement), $consultantProject->project->name . '.' . $filePath['extension']);
+        return response()->download(storage_path('app/' . $consultantProject->minutes_of_disbursement), $consultantProject->project->name . '.' . $filePath['extension']);
+    }
+
+    /**
+     * downloadMinutesOfDisbursement
+     *
+     * @param  mixed $consultantProject
+     * @return void
+     */
+    public function downloadMinutesOfHandOver(ConsultantProject $consultantProject)
+    {
+        $filePath = pathinfo(basename($consultantProject->minutes_of_hand_over, PATHINFO_EXTENSION));
+
+        return response()->download(storage_path('app/' . $consultantProject->minutes_of_hand_over), $consultantProject->project->name . '.' . $filePath['extension']);
     }
 }

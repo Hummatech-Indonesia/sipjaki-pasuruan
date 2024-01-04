@@ -253,6 +253,18 @@
                                         @endif
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td>Berita Acara Serah Terima</td>
+                                    <td>:</td>
+                                    <td>
+                                        @if ($project->consultantProject->minutes_of_hand_over)
+                                            <a href="{{ route('downloadMinutesOfHandOver', ['consultantProject' => $project->consultantProject->id]) }}"
+                                                type="button" class="btn btn-md text-white"
+                                                style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                                Download</a>
+                                        @endif
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -385,6 +397,14 @@
                                         id="">
                                 </div>
                             </div>
+                            <div class="col-lg-6">
+                                <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                                    <label class="form-label">Berita Acara Serah Terima</label>
+                                    <input class="form-control" type="file"
+                                        value="{{ old('minutes_of_hand_over') }}" name="minutes_of_hand_over"
+                                        id="">
+                                </div>
+                            </div>
                         </div>
                         <div class="d-flex d-row justify-content-end mt-3">
 
@@ -395,8 +415,8 @@
 
                         </div>
                     </div>
+                </form>
             </div>
-            </form>
         </div>
     </div>
     <div class="modal fade bs-example-modal-lg" id="modal-edit-consultan" tabindex="-1" role="dialog"

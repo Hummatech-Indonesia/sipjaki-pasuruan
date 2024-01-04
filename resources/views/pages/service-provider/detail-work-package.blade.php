@@ -233,11 +233,11 @@
                         @endforeach
                     @endif
 
+                    @if (Auth::user()->serviceProvider->type_of_business_entity == 'consultant')
                     <div class="table-responsive">
                         <table class="table mb-0">
 
                             <thead>
-                                @if (Auth::user()->serviceProvider->type_of_business_entity == 'consultant')
                                     <tr>
                                         <th>No</th>
                                         <th>Tanggal Mulai</th>
@@ -249,15 +249,8 @@
                                             File
                                         </th>
                                     </tr>
-                                @else
-                                    <tr>
-                                        <th>Nama</th>
-                                        <th>Foto</th>
-                                    </tr>
-                                @endif
                             </thead>
                             <tbody>
-                                @if (Auth::user()->serviceProvider->type_of_business_entity == 'consultant')
                                     @forelse ($serviceProviderProject as $index=>$serviceProviderProjec)
                                     
                                         <tr>
@@ -356,37 +349,141 @@
                                                     <div class="my-auto">
                                                         <img src="{{ asset('no-data.png') }}" width="300"
                                                             height="300" />
-                                                        <h4 class="text-center mt-4">Pelatihan Masih Kosong!!</h4>
+                                                        <h4 class="text-center mt-4"> Belum Ada Progres Kosong!!</h4>
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
                                     @endforelse
-                                @else
-                                    <tr>
-                                        <td>Kontrak</td>
-                                        <td><img src="{{ asset('storage/' . $project->contract) }}" alt=""
-                                                style="width: auto" height="150"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Report</td>
-                                        <td><img src="{{ asset('storage/' . $project->report) }}" alt=""
-                                                style="width: auto" height="150"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Berita Acara Pencairan</td>
-                                        <td><img src="{{ asset('storage/' . $project->minutes_of_disbursement) }}"
-                                                alt="" style="width: auto" height="150"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Berita Acara Administrasi</td>
-                                        <td><img src="{{ asset('storage/' . $project->administrative_minutes) }}"
-                                                alt="" style="width: auto" height="150"></td>
-                                    </tr>
-                                @endif
                             </tbody>
                         </table>
                     </div>
+                    @else
+                    <div class="table-responsive">
+                        <table class="table mb-0">
+
+                            <thead>
+                                <tr>
+                                    <th>Nama</th>
+                                    <th></th>
+                                    <th>File</th>
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Kontrak</td>
+                                    <td>:</td>
+                                    <td>
+                                        @if ($project->executorProject->contract)
+                                            <a href="{{ route('downloadExecutorContract', ['executorProject' => $project->executorProject->id]) }}"
+                                                type="button" class="btn btn-md text-white"
+                                                style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                                Download</a>
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Berita Acara Administrasi
+                                    </td>
+                                    <td>:</td>
+                                    <td>
+                                        @if ($project->executorProject->administrative_minutes)
+                                            <a href="{{ route('downloadExecutorAdministrativeMinutes', ['executorProject' => $project->executorProject->id]) }}"
+                                                type="button" class="btn btn-md text-white"
+                                                style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                                Download</a>
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Laporan</td>
+                                    <td>:</td>
+                                    <td>
+                                        @if ($project->executorProject->report)
+                                            <a href="{{ route('downloadExecutorReport', ['executorProject' => $project->executorProject->id]) }}"
+                                                type="button" class="btn btn-md text-white"
+                                                style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                                Download</a>
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Berita Acara Pencariran</td>
+                                    <td>:</td>
+                                    <td>
+                                        @if ($project->executorProject->minutes_of_disbursement)
+                                            <a href="{{ route('downloadMinutesOfDisbursement', ['executorProject' => $project->executorProject->id]) }}"
+                                                type="button" class="btn btn-md text-white"
+                                                style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                                Download</a>
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Mutual Check 0</td>
+                                    <td>:</td>
+                                    <td>
+                                        @if ($project->executorProject->mutual_check_0)
+                                            <a href="{{ route('downloadMinutesOfHandOver', ['executorProject-' => $project->executorProject->id]) }}"
+                                                type="button" class="btn btn-md text-white"
+                                                style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                                Download</a>
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Mutual Check 100</td>
+                                    <td>:</td>
+                                    <td>
+                                        @if ($project->executorProject->mutual_check_100)
+                                            <a href="{{ route('downloadMinutesOfHandOver', ['executorProject-' => $project->executorProject->id]) }}"
+                                                type="button" class="btn btn-md text-white"
+                                                style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                                Download</a>
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Berita Acara P1</td>
+                                    <td>:</td>
+                                    <td>
+                                        @if ($project->executorProject->p1_meeting_minutes)
+                                            <a href="{{ route('downloadMinutesOfHandOver', ['executorProject-' => $project->executorProject->id]) }}"
+                                                type="button" class="btn btn-md text-white"
+                                                style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                                Download</a>
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Berita Acara P2</td>
+                                    <td>:</td>
+                                    <td>
+                                        @if ($project->executorProject->p2_meeting_minutes)
+                                            <a href="{{ route('downloadMinutesOfHandOver', ['executorProject-' => $project->executorProject->id]) }}"
+                                                type="button" class="btn btn-md text-white"
+                                                style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                                Download</a>
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Berita Acara Uitzet</td>
+                                    <td>:</td>
+                                    <td>
+                                        @if ($project->executorProject->uitzet_minutes)
+                                            <a href="{{ route('downloadMinutesOfHandOver', ['executorProject-' => $project->executorProject->id]) }}"
+                                                type="button" class="btn btn-md text-white"
+                                                style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                                Download</a>
+                                        @endif
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    @endif
 
                 </div>
             </div>
@@ -397,14 +494,14 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div style="background-color: #1B3061;">
-                    <h5 class="modal-title text-white text-center m-3 fs-4">Tambah Progress</h5>
+                    <h5 class="modal-title text-white text-center m-3 fs-4">Tambah {{ Auth::user()->serviceProvider->type_of_business_entity == 'consultant' ? 'Progress' : 'File'}}</h5>
                 </div>
                 @if (Auth::user()->serviceProvider->type_of_business_entity == 'consultant')
                     <form action="{{ route('service-provider-projects.store', ['project' => $project->id]) }}"
                         method="post" enctype="multipart/form-data">
                         @method('POST')
                     @else
-                        <form action="{{ route('upload-file-consultan.update', ['project' => $project->id]) }}"
+                        <form action="{{ route('upload-file-executor', ['project' => $project->id]) }}"
                             method="post" enctype="multipart/form-data">
                             @method('PUT')
                 @endif
@@ -486,6 +583,34 @@
                             <label class="form-label">Berita Acara Pencairan</label>
                             <input class="form-control" type="file" value="{{ old('minutes_of_disbursement') }}"
                                 name="minutes_of_disbursement" id="">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                            <label class="form-label">Mutual Check 0</label>
+                            <input class="form-control" type="file" value="{{ old('mitual_check_0') }}"
+                                name="minutes_of_mutual_check_0" id="">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                            <label class="form-label">Mutual Check 100</label>
+                            <input class="form-control" type="file" value="{{ old('mutual_check_100') }}"
+                                name="minutes_of_mutual_check_100" id="">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                            <label class="form-label">Berita Acara P1</label>
+                            <input class="form-control" type="file" value="{{ old('p1_meeting_minutes') }}"
+                                name="p1_meeting_minutes" id="">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                            <label class="form-label">Berita Acara Uitzet</label>
+                            <input class="form-control" type="file" value="{{ old('p2_meeting_minutes') }}"
+                                name="p2_meeting_minutes" id="">
                         </div>
                     </div>
                     @endif

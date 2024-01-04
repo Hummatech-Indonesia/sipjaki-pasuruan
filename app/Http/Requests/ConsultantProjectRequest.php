@@ -18,6 +18,7 @@ class ConsultantProjectRequest extends FormRequest
             'administrative_minutes' => 'nullable|mimes:pdf',
             'report' => 'nullable|mimes:pdf',
             'minutes_of_disbursement' => 'nullable|mimes:pdf',
+            'minutes_of_hand_over' => 'nullable|mimes:pdf'
         ];
     }
 
@@ -29,10 +30,11 @@ class ConsultantProjectRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'contract.mimes' => 'Berkas kontrak harus berformat PDF.',
-            'administrative_minutes.mimes' => 'Berkas menit administratif harus berformat PDF.',
-            'report.mimes' => 'Berkas laporan harus berformat PDF.',
-            'minutes_of_disbursement.mimes' => 'Berkas catatan pencairan harus berformat PDF.',
+            'contract.mimes' => 'Berkas Kontrak harus berformat PDF.',
+            'administrative_minutes.mimes' => 'Berkas Berita Acara Administrasi harus berformat PDF.',
+            'report.mimes' => 'Berkas Laporan harus berformat PDF.',
+            'minutes_of_disbursement.mimes' => 'Berkas Berita Acara Pencairan harus berformat PDF.',
+            'minutes_of_hand_over.mimes' => 'Berkas Berita Acara Serah Terima harus berformat PDF.'
         ];
     }
 }

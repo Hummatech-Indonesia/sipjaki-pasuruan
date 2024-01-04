@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('administrative_minutes')->nullable();
             $table->string('report')->nullable();
             $table->string('minutes_of_disbursement')->nullable();
+            $table->string('minutes_of_hand_over')->nullable();
             $table->timestamps();
         });
     }

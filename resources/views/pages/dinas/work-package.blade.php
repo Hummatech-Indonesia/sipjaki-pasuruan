@@ -6,22 +6,25 @@
     <p class="fs-4 text-dark" style="font-weight: 600">
         Paket Pekerjaan
     </p>
-    <div class="d-flex justify-content-between">
-        <div class="d-flex justify-content-header gap-3">
-            <div class="">
-                {{-- <button class="btn btn-success">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none">
-                        <path
-                            d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15"
-                            stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M7 10L12 15L17 10" stroke="white" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        <path d="M12 15V3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                    Export
-                </button> --}}
-            </div>
-        </div>
+    <div class="d-flex justify-content-between ">
+        <form action="" class="d-flex gap-3 col-8">
+            <input type="search" value="{{$name}}" name="name" class="form-control" placeholder="Search">
+            <select name="status" class="form-control ml-3" id="">
+                <option value="">Semua Status</option>
+                <option {{$status == 'active' ? 'selected' : ''}} value="active">Aktif</option>
+                <option {{$status == 'nonactive' ? 'selected' : ''}} value="nonactive">Non Aktif</option>
+            </select>
+            <select name="year" class="form-control ml-3" id="">
+                <option value="">Semua Tahun</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+            </select>
+            <button data-bs-toggle="modal" data-bs-target="#modal-create" class="btn text-white d-flex items-center gap-2"
+                style="background-color:#1B3061">
+                Cari <i class="fa fa-search my-auto"></i>
+            </button>
+        </form>
+        @if(auth()->user()->dinas)
         <div class="">
             <button data-bs-toggle="modal" data-bs-target="#modal-create" class="btn text-white"
                 style="background-color:#1B3061">
@@ -35,6 +38,7 @@
                 </svg>Tambah
             </button>
         </div>
+        @endif
     </div>
     <div class="modal fade bs-example-modal-xl" id="modal-create" tabindex="-1" role="dialog"
         aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
@@ -257,6 +261,7 @@
                         <th class="text-center table-sipjaki">No</th>
                         <th class="text-center table-sipjaki">Tahun</th>
                         <th class="text-center table-sipjaki">Nama Pekerjaan</th>
+                        <th class="text-center table-sipjaki">Nilai Kontrak</th>
                         <th class="text-center table-sipjaki">Aksi</th>
                     </tr>
                 </thead>
@@ -273,7 +278,11 @@
                                 {{ $project->name }}
                             </td>
                             <td class="text-center">
+                                Rp.{{ number_format($project->project_value, 0, ',', '.'); }}
+                            </td>
+                            <td class="text-center">
                                 <div class="d-flex justify-content-center gap-2">
+                                    @if(auth()->user()->dinas)
                                     <div class="d-flex justify-content-center mb-2">
                                         <button data-id="{{ $project->id }}" style="min-width: 90px;width:100%"
                                             class="btn btn-danger btn-delete d-flex"><i
@@ -300,6 +309,7 @@
                                             data-characteristic_project="{{ $project->characteristic_project }}"><i
                                                 class="bx bx-bx bxs-edit fs-4 me-1"></i> Edit</button>
                                     </div>
+                                    @endif
                                     <div class="d-flex justify-content-center mb-2">
                                         <a href="/detail-project-dinas/{{ $project->id }}" style="min-width: 90px;width:100%;background-color: #1B3061"
                                             class="btn text-white btn-detail" 

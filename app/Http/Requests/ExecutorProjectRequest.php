@@ -17,6 +17,10 @@ class ExecutorProjectRequest extends FormRequest
             'contract' => 'nullable|mimes:pdf',
             'administrative_minutes' => 'nullable|mimes:pdf',
             'p1_meeting_minutes' => 'nullable|mimes:pdf',
+            'p2_meeting_minutes' => 'nullable|mimes:pdf',
+            'mutual_check_0' => 'nullable|mimes:pdf',
+            'mutual_check_100' => 'nullable|mimes:pdf',
+            'uitzet_minutes' => 'nullable|mimes:pdf',
             'minutes_of_disbursement' => 'nullable|mimes:pdf',
         ];
     }
@@ -29,10 +33,13 @@ class ExecutorProjectRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'contract.mimes' => 'Berkas kontrak harus berformat PDF.',
-            'administrative_minutes.mimes' => 'Berkas menit administratif harus berformat PDF.',
-            'p1_meeting_minutes.mimes' => 'Berkas berita acara P1 harus berformat PDF.',
-            'minutes_of_disbursement.mimes' => 'Berkas catatan pencairan harus berformat PDF.',
+            'contract.mimes' => 'Berkas Kontrak harus berformat PDF.',
+            'administrative_minutes.mimes' => 'Berkas Berita Acara Administrasi harus berformat PDF.',
+            'p1_meeting_minutes.mimes' => 'Berkas Berita Acara P1 harus berformat PDF.',
+            'p2_meeting_minutes.mimes' => 'Berkas Berita Acara P2 harus berformat PDF.',
+            'mutual_check_0.mimes' => 'Berkas Mutual Check 0 harus berformat PDF.',
+            'mutual_check_100.mimes' => 'Berkas Mutual Check 100 harus berformat PDF.',
+            'minutes_of_disbursement.mimes' => 'Berkas Berita Acara Pencairan harus berformat PDF.',
         ];
     }
 }

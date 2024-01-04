@@ -106,7 +106,7 @@ class OfficerRepository extends BaseRepository implements OfficerInterface
     public function count(?array $data): int
     {
         return $this->model->query()
-            ->where('service_provider_id', auth()->user()->serviceProvider->id)
+            ->where('service_provider_id', auth()->user()->serviceProvider?->id)
             ->count();
     }
 }

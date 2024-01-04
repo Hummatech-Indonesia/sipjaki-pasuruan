@@ -27,6 +27,7 @@ use App\Http\Controllers\QualificationController;
 use App\Http\Controllers\ClassificationController;
 use App\Http\Controllers\TrainingMemberController;
 use App\Http\Controllers\TrainingMethodController;
+use App\Http\Controllers\ExecutorProjectController;
 use App\Http\Controllers\ServiceProviderController;
 use App\Http\Controllers\ContractCategoryController;
 use App\Http\Controllers\Auth\VerificationController;
@@ -115,6 +116,22 @@ Route::middleware('auth')->group(function () {
 
     Route::patch('verify-account/{user}', [VerificationController::class, 'verifyToken'])->name('verify.account');
 
+    Route::get('download-contract/{consultantProject}', [ConsultantProjectController::class, 'downloadContract'])->name('downloadContract');
+    Route::get('download-administrative-minutes/{consultantProject}', [ConsultantProjectController::class, 'downloadAdministrativeMinutes'])->name('downloadAdministrativeMinutes');
+    Route::get('download-report/{consultantProject}', [ConsultantProjectController::class, 'downloadReport'])->name('downloadReport');
+    Route::get('download-minutes-of-disbursement/{consultantProject}', [ConsultantProjectController::class, 'downloadMinutesOfDisbursement'])->name('downloadMinutesOfDisbursement');
+    Route::get('download-minutes-of-hand-over/{consultantProject}', [ConsultantProjectController::class, 'downloadMinutesOfHandOver'])->name('downloadMinutesOfHandOver');
+
+    Route::get('download-executor-contract/{executorProject}', [ExecutorProjectController::class, 'downloadContract'])->name('downloadExecutorContract');
+    Route::get('download-executor-administrative-minutes/{executorProject}', [ExecutorProjectController::class, 'downloadAdministrativeMinutes'])->name('downloadExecutorAdministrativeMinutes');
+    Route::get('download-executor-report/{executorProject}', [ExecutorProjectController::class, 'downloadReport'])->name('downloadExecutorReport');
+    Route::get('download-executor-minutes-of-disbursement/{executorProject}', [ExecutorProjectController::class, 'downloadMinutesOfDisbursement'])->name('downloadExecutorMinutesOfDisbursement');
+    Route::get('download-uitzet-minutes/{executorProject}', [ExecutorProjectController::class, 'downloadUitzetMinutes'])->name('downloadrUitzetMinutes');
+    Route::get('download-mutual-check-0/{executorProject}', [ExecutorProjectController::class, 'downloadMutualCheck0'])->name('downloadMutualCheck0');
+    Route::get('download-mutual-check-100/{executorProject}', [ExecutorProjectController::class, 'downloadMutualCheck100'])->name('downloadMutualCheck100');
+    Route::get('download-mutual-check-0/{executorProject}', [ExecutorProjectController::class, 'downloadMutualCheck0'])->name('downloadMutualCheck0');
+    Route::get('download-p1-meeting-minutes/{executorProject}', [ExecutorProjectController::class, 'downloadP1MeetingMinutes'])->name('downloadP1MeetingMinutes');
+    Route::get('download-p2-meeting-minutes/{executorProject}', [ExecutorProjectController::class, 'downloadP2MeetingMinutes'])->name('downloadP2MeetingMinutes');
 
     Route::middleware('role:superadmin')->group(function () {
 
@@ -173,6 +190,10 @@ Route::middleware('auth')->group(function () {
         Route::get('dashboard-admin', [AdminController::class, 'dashboard'])->name('dashboard-admin');
     });
 
+    Route::middleware('role:admin|superadmin|dinas')->group(function(){
+        Route::resource('projects', ProjectController::class)->only(['index']);
+    });
+
     Route::middleware('role:dinas')->group(function () {
         Route::get('detail-project-dinas/{project}', [ProjectController::class, 'detailProjectDinas']);
         Route::get('dashboard-dinas', [DinasController::class, 'dashboard'])->name('dashboard-dinas');
@@ -180,9 +201,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('accident', AccidentController::class)->except('create', 'edit');
         Route::delete('accident-destroy/{accident}', [AccidentController::class, 'destroy']);
         Route::get('accident-show/{accident}', [AccidentController::class, 'show']);
-        Route::resources([
-            'projects' => ProjectController::class
-        ]);
+        Route::resource('projects', ProjectController::class)->except(['index']);
     });
 
     Route::middleware('role:service provider')->group(function () {
@@ -196,10 +215,7 @@ Route::middleware('auth')->group(function () {
         Route::get('detail-consultant/{project}', [ConsultantProjectController::class, 'index'])->name('detail-consultant');
         Route::post('consultant-project/{project}', [ConsultantProjectController::class, 'store'])->name('consultant-project.store');
         Route::put('consultant-project/{project}', [ConsultantProjectController::class, 'update'])->name('consultant-project.update');
-        Route::get('download-contract/{consultantProject}', [ConsultantProjectController::class, 'downloadContract'])->name('downloadContract');
-        Route::get('download-administrative-minutes/{consultantProject}', [ConsultantProjectController::class, 'downloadAdministrativeMinutes'])->name('downloadAdministrativeMinutes');
-        Route::get('download-report/{consultantProject}', [ConsultantProjectController::class, 'downloadReport'])->name('downloadReport');
-        Route::get('download-minutes-of-disbursement/{consultantProject}', [ConsultantProjectController::class, 'downloadMinutesOfDisbursement'])->name('downloadMinutesOfDisbursement');
+        Route::post('service-provider-executor-projects/{project}', [ServiceProviderProjectController::class, 'store'])->name('service-provider-executor-projects.store');
 
         Route::get('worker-certificate/{worker}', [WorkerCertificateController::class, 'index'])->name('worker-certificate');
         Route::post('worker-certificate/{worker}', [WorkerCertificateController::class, 'store'])->name('worker-certificate.store');
@@ -280,6 +296,7 @@ Route::middleware('role:admin|superadmin')->group(function () {
         'rules' => RuleController::class
     ]);
 });
+
 
 //Reset Password
 Route::post('send-email-reset-passsword', [ForgotPasswordController::class, 'sendEmail'])->name('send.email.reset.passsword');

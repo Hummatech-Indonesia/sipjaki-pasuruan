@@ -16,7 +16,11 @@ return new class extends Migration
             $table->foreignUuid('project_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('contract')->nullable();
             $table->string('administrative_minutes')->nullable();
+            $table->string('uitzet_minutes')->nullable();
+            $table->string('mutual_check_0')->nullable();
+            $table->string('mutual_check_100')->nullable();
             $table->string('p1_meeting_minutes')->nullable();
+            $table->string('p2_meeting_minutes')->nullable();
             $table->string('minutes_of_disbursement')->nullable();
             $table->timestamps();
         });

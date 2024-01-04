@@ -54,7 +54,7 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
     public function getByServiceProvider(Request $request): mixed
     {
         return $this->model->query()
-            ->where(auth()->user()->serviceProvider->type_of_business_entity == TypeOfBusinessEntityEnum::CONSULTANT->value ? 'consultant_id' : 'executor_id', auth()->user()->serviceProvider->id)
+            ->where(auth()->user()->serviceProvider?->type_of_business_entity == TypeOfBusinessEntityEnum::CONSULTANT->value ? 'consultant_id' : 'executor_id', auth()->user()->serviceProvider?->id)
             ->where('status', StatusEnum::ACTIVE->value)
             ->when($request->year, function ($query) use ($request) {
                 $query->where('year', $request->year);
@@ -74,7 +74,7 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
     {
         return $this->model->query()
             ->when(auth()->user()->serviceProvider, function ($query) {
-                $query->where(auth()->user()->serviceProvider->type_of_business_entity == TypeOfBusinessEntityEnum::CONSULTANT->value ? 'consultant_id' : 'executor_id', auth()->user()->serviceProvider->id);
+                $query->where(auth()->user()->serviceProvider?->type_of_business_entity == TypeOfBusinessEntityEnum::CONSULTANT->value ? 'consultant_id' : 'executor_id', auth()->user()->serviceProvider?->id);
             })
             ->where('status', StatusEnum::ACTIVE->value)
             ->count();

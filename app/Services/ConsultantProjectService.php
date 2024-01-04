@@ -70,9 +70,22 @@ class ConsultantProjectService
             }
         }
 
+        $old_minutes_of_hand_over = $project->consultantProject ? $project->consultantProject->minutes_of_hand_over : null;
+        if (isset($data['minutes_of_hand_over'])) {
+            if ($old_minutes_of_hand_over) {
+                if ($request->hasFile('minutes_of_hand_over')) {
+                    $this->remove($old_minutes_of_hand_over);
+                    $old_minutes_of_hand_over = $this->upload(UploadDiskEnum::MINUTESOFHANDOVER->value, $request->file('minutes_of_hand_over'));
+                }
+            } else {
+                $old_minutes_of_hand_over = $this->upload(UploadDiskEnum::MINUTESOFHANDOVER->value, $request->file('minutes_of_hand_over'));
+            }
+        }
+
         return [
             'report' => $old_report,
             'minutes_of_disbursement' => $old_minutes_of_disbursement,
+            'minutes_of_hand_over' => $old_minutes_of_hand_over,
             'administrative_minutes' => $old_administrative_minutes,
             'contract' => $old_contract,
             'project_id' => $project->id,
