@@ -98,8 +98,14 @@
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header" style="background-color: #1B3061">
-                                            <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Detail Struktur
-                                                Organisasi</h5>
+                                            <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Detail  @if ($image->categories == 'structure_organitation')
+                                                Struktur Organisasi
+                                            @elseif ($image->categories == 'job_and_function')
+                                                Tugas dan Fungsi
+                                            @else
+                                                Rencana Strategis
+                                            @endif 
+                                                </h5>
                                             <button type="button" class="btn-close" style="background-color: white"
                                                 data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
@@ -134,14 +140,19 @@
                                     </div><!-- /.modal-content -->
                                 </div><!-- /.modal-dialog -->
                             </div>
-                            <div class="modal fade bs-example-modal-md" id="modal-struktur-{{ $image->id }}"
+                            <div class="modal fade bs-example-modal-lg" id="modal-struktur-{{ $image->id }}"
                                 tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
                                 aria-hidden="true">
-                                <div class="modal-dialog modal-md">
+                                <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header" style="background-color: #1B3061">
-                                            <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Edit Struktur
-                                                Organisasi</h5>
+                                            <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Edit @if ($image->categories == 'structure_organitation')
+                                                Struktur Organisasi
+                                            @elseif ($image->categories == 'job_and_function')
+                                                Tugas dan Fungsi
+                                            @else
+                                                Rencana Strategis
+                                            @endif </h5>
                                             <button type="button" class="btn-close" style="background-color: white"
                                                 data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
