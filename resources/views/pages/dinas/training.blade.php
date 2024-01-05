@@ -16,6 +16,37 @@
             </p>
         </div>
         <div class="">
+
+        </div>
+    </div>
+    <div class="d-flex justify-content-between mb-3">
+        <form action="" class="d-flex gap-3 col-8">
+            <input type="search" value="" name="name" class="form-control" placeholder="Search">
+            <select name="status" class="form-control ml-3" id="">
+                <option value="">Semua Status</option>
+                <option value="active">Aktif</option>
+                <option value="nonactive">Non Aktif</option>
+            </select>
+            <select name="year" class="form-control ml-3" id="">
+                <option value="">Semua Tahun</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+            </select>
+            <button data-bs-toggle="modal" data-bs-target="#modal-create" class="btn text-white d-flex items-center gap-2"
+                style="background-color:#1B3061">
+                Cari <i class="fa fa-search my-auto"></i>
+            </button>
+            <button class="btn btn-danger d-flex items-center gap-2">
+                PDF<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="white" d="m23 12l-4-4v3h-9v2h9v3M1 18V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3h-2V6H3v12h12v-3h2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2Z"/></svg>
+            </i>
+            </button>
+            <button class="btn btn-success d-flex items-center gap-2">
+                Excel<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="white" d="m23 12l-4-4v3h-9v2h9v3M1 18V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3h-2V6H3v12h12v-3h2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2Z"/></svg>
+            </i>
+            </button>
+            
+        </form>
+        <div class="">
             <button data-bs-toggle="modal" data-bs-target="#modal-create" class="btn text-white"
                 style="background-color:#1B3061">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
@@ -25,7 +56,7 @@
                     <path fill-rule="evenodd" clip-rule="evenodd"
                         d="M4 12C4 11.4477 4.35817 11 4.8 11H19.2C19.6418 11 20 11.4477 20 12C20 12.5523 19.6418 13 19.2 13H4.8C4.35817 13 4 12.5523 4 12Z"
                         fill="white" />
-                </svg>Tambah Pelatihan
+                </svg>Tambah
             </button>
         </div>
     </div>
