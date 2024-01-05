@@ -22,7 +22,6 @@
                 </th>
                 <th colspan="2" style="text-align: center; padding:4px; background-color:#1B3061; color:white">Tahun
                 </th>
-            
             </tr>
         </thead>
         <tbody>
