@@ -192,6 +192,18 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('role:admin|superadmin|dinas')->group(function(){
         Route::resource('projects', ProjectController::class)->only(['index']);
+        Route::get('training-members/{training}', [TrainingMemberController::class, 'index']);
+        Route::post('training-members/{training}', [TrainingMemberController::class, 'store'])->name('training.members.store');
+        Route::put('training-member-update/{training_member}', [TrainingMemberController::class, 'update'])->name('training.members');
+        Route::delete('training-members/{training_member}', [TrainingMemberController::class, 'destroy']);
+        Route::post('import-training-members', [TrainingMemberController::class, 'import']);
+        Route::delete('delete-training-members', [TrainingMemberController::class, 'multipleDelete'])->name('delete-member');
+
+
+        Route::get('training', [TrainingController::class, 'index'])->name('training');
+        Route::post('training', [TrainingController::class, 'store'])->name('training.store');
+        Route::put('training.update/{training}', [TrainingController::class, 'update'])->name('training.update');
+        Route::delete('training.destroy/{training}', [TrainingController::class, 'destroy'])->name('training.destroy');
     });
 
     Route::middleware('role:dinas')->group(function () {
@@ -314,6 +326,8 @@ Route::post('resend-email-verification/{user}', [VerificationController::class, 
 
 // verifikasi account
 // Route::get('verify.account/{id}', [VerificationController::class, 'verifyacount'])->name('verify.account');
+Route::get('project-export', [ProjectController::class, 'export']);
+
 
 
 require __DIR__ . '/aldy.php';
