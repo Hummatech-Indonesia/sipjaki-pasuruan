@@ -8,26 +8,26 @@
     </p>
     <div class="d-flex justify-content-between ">
         <form action="" class="d-flex gap-3 col-8">
-            <input type="search" value="{{$name}}" name="name" class="form-control" placeholder="Search">
-            <select name="status" class="form-control ml-3" id="">
+            <input type="search" id="search-name" value="{{$name}}" name="name" class="form-control" placeholder="Search">
+            <select name="status" id="search-status" class="form-control ml-3">
                 <option value="">Semua Status</option>
                 <option {{$status == 'active' ? 'selected' : ''}} value="active">Aktif</option>
                 <option {{$status == 'nonactive' ? 'selected' : ''}} value="nonactive">Non Aktif</option>
             </select>
-            <select name="year" class="form-control ml-3" id="">
-                <option value="">Semua Tahun</option>
-                <option value="2023">2023</option>
-                <option value="2024">2024</option>
+            <select name="year" id="search-year" class="form-control">
+                @for ($years = date('Y'); $years >= 2023; $years--)
+                    <option value="{{ $years }}">{{ $years }}</option>
+                @endfor
             </select>
             <button data-bs-toggle="modal" data-bs-target="#modal-create" class="btn text-white d-flex items-center gap-2"
                 style="background-color:#1B3061">
                 Cari <i class="fa fa-search my-auto"></i>
             </button>
-            <button class="btn btn-danger d-flex items-center gap-2">
+            <button id="export-pdf" type="button" class="btn btn-danger d-flex items-center gap-2">
                 PDF<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="white" d="m23 12l-4-4v3h-9v2h9v3M1 18V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3h-2V6H3v12h12v-3h2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2Z"/></svg>
             </i>
             </button>
-            <button class="btn btn-success d-flex items-center gap-2">
+            <button id="export-excel" type="button" class="btn btn-success d-flex items-center gap-2">
                 Excel<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="white" d="m23 12l-4-4v3h-9v2h9v3M1 18V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3h-2V6H3v12h12v-3h2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2Z"/></svg>
             </i>
             </button>
@@ -697,6 +697,24 @@
             var actionUrl = `projects/${id}`;
             $('#form-delete').attr('action', actionUrl);
             $('#modal-delete').modal('show')
+        })
+
+        $('#export-excel').click(function(){
+            var status = $('#search-status').val()
+            var name = $('#search-name').val()
+            var year = $('#search-year').val()
+            var route = "{{Route('project-export-excel')}}"
+            var location = `${route}?status=${status}&name=${name}&year=${year}`
+            window.location.href = location
+        })
+
+        $('#export-pdf').click(function(){
+            var status = $('#search-status').val()
+            var name = $('#search-name').val()
+            var year = $('#search-year').val()
+            var route = "{{Route('project-export-pdf')}}"
+            var location = `${route}?status=${status}&name=${name}&year=${year}`
+            window.location.href = location
         })
     </script>
 @endsection
