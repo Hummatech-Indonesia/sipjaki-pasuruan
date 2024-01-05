@@ -73,11 +73,29 @@ class TrainingRepository extends BaseRepository implements TrainingInterface
     {
         return $this->model->query()
             ->with('fiscalYear')
-            ->when($request->name,function($query) use ($request){
-                $query->where('name','LIKE','%'.$request->name.'%');
+            ->when($request->name, function ($query) use ($request) {
+                $query->where('name', 'LIKE', '%' . $request->name . '%');
             })
             ->withCount('trainingMembers')
             ->orderByDesc('created_at')
             ->fastPaginate($pagination);
+    }
+
+    /**
+     * search
+     *
+     * @param  mixed $request
+     * @return mixed
+     */
+    public function search(Request $request): mixed
+    {
+        return $this->model->query()
+            ->with('fiscalYear')
+            ->when($request->name, function ($query) use ($request) {
+                $query->where('name', 'LIKE', '%' . $request->name . '%');
+            })
+            ->withCount('trainingMembers')
+            ->orderByDesc('created_at')
+            ->get();
     }
 }

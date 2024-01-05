@@ -18,6 +18,8 @@ use App\Http\Resources\TrainingMemberResource;
 use App\Http\Requests\DeleteTrainingMemberRequest;
 use App\Contracts\Interfaces\TrainingMemberInterface;
 use App\Http\Requests\TrainingMemberUpdateRequest;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 
 class TrainingMemberController extends Controller
 {
@@ -50,7 +52,7 @@ class TrainingMemberController extends Controller
             return ResponseHelper::success($data);
         } else {
             $name = $request->name;
-            return view('pages.dinas.detail-training', compact('trainingMembers', 'training','name'));
+            return view('pages.dinas.detail-training', compact('trainingMembers', 'training', 'name'));
         }
     }
 
@@ -129,5 +131,20 @@ class TrainingMemberController extends Controller
         } else {
             return redirect()->back()->with('success', trans('alert.add_success'));
         }
+    }
+
+    /**
+     * exportPdf
+     *
+     * @return void
+     */
+    public function exportPdf(Request $request)
+    {
+        $data['trainingMembers'] = $this->trainingMember->search($request);
+        $data['now'] = Carbon::now()->isoFormat('Y-m-d H:i:s');
+        // $pdf = Pdf::loadView('exports.training-member-pdf', $data);
+
+        // return $pdf->download('training-member' . auth()->user()->name . '.pdf');
+        return view('exports.training-member-pdf', $data);
     }
 }

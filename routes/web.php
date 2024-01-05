@@ -190,7 +190,7 @@ Route::middleware('auth')->group(function () {
         Route::get('dashboard-admin', [AdminController::class, 'dashboard'])->name('dashboard-admin');
     });
 
-    Route::middleware('role:admin|superadmin|dinas')->group(function(){
+    Route::middleware('role:admin|superadmin|dinas')->group(function () {
         Route::resource('projects', ProjectController::class)->only(['index']);
         Route::get('training-members/{training}', [TrainingMemberController::class, 'index']);
         Route::post('training-members/{training}', [TrainingMemberController::class, 'store'])->name('training.members.store');
@@ -327,6 +327,8 @@ Route::post('resend-email-verification/{user}', [VerificationController::class, 
 // verifikasi account
 // Route::get('verify.account/{id}', [VerificationController::class, 'verifyacount'])->name('verify.account');
 Route::get('project-export', [ProjectController::class, 'export']);
+
+Route::get('print-training-member', [TrainingMemberController::class, 'exportPdf']);
 
 
 

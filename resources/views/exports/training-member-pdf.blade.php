@@ -1,19 +1,3 @@
-{{-- <table class="table">
-    <thead>
-        <tr>
-            <th colspan="2" style="text-align: center; padding:4px; background-color:#1B3061; color:white">Nama
-                Dinas</th>
-            <th colspan="2" style="text-align: center; padding:4px; background-color:#1B3061; color:white">Nama
-                Konsultan</th>
-            <th colspan="2" style="text-align: center; padding:4px; background-color:#1B3061; color:white">Nama
-                Eksekutor</th>
-            <th colspan="2" style="text-align: center; padding:4px; background-color:#1B3061; color:white">Nama
-            </th>
-            <th colspan="2" style="text-align: center; padding:4px; background-color:#1B3061; color:white">Tahun
-            </th>
-
-        </tr>
-    </thead> --}}
 @php
     use Carbon\Carbon;
 @endphp
@@ -71,17 +55,17 @@
 
         <table>
             <thead>
-                <th>Nama Dinas</th>
-                <th>Nama Konsultan</th>
-                <th>Nama Eksekutor</th>
-                <th>Tahun</th>
+                <th>Nama</th>
+                <th>Posisi</th>
+                <th>Nomor Telepon</th>
+                <th>Jenis Kelamin</th>
             </thead>
             <tbody>
-                @foreach ($projects as $project)
-                    <td>{{ $project->dinas->user->name }}</td>
-                    <td>{{ $project->consultant->name }}</td>
-                    <td>{{ $project->executor->name }}</td>
-                    <td>{{ $project->year }}</td>
+                @foreach ($trainingMembers as $trainingMember)
+                <td>{{$trainingMember->name}}</td>
+                <td>{{$trainingMember->position}}</td>
+                <td>{{$trainingMember->phone_number}}</td>
+                <td>{{$trainingMember->gender}}</td>
                 @endforeach
             </tbody>
         </table>

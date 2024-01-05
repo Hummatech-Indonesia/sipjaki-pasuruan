@@ -11,6 +11,7 @@ use App\Http\Requests\TrainingRequest;
 use App\Http\Resources\TrainingResource;
 use App\Contracts\Interfaces\TrainingInterface;
 use App\Models\Training;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class TrainingController extends Controller
 {
@@ -93,5 +94,18 @@ class TrainingController extends Controller
 
             return redirect()->back()->with('success', trans('alert.delete_success'));
         }
+    }
+
+    /**
+     * exportPdf
+     *
+     * @return void
+     */
+    public function exportPdf(Request $request)
+    {
+        $data['trainings'] = $this->training->search($request);
+        $pdf = Pdf::loadView('exports.training-pdf', $data);
+
+        return $pdf->download('training-' . auth()->user()->name . '.pdf');
     }
 }

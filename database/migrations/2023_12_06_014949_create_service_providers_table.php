@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('service_providers', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignUuid('association_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignUuid('association_id')->nullable()->constrained()->restrictOnDelete()->cascadeOnUpdate();
             $table->string('directur')->nullable();
             $table->text('address')->nullable();
             $table->string('city', 50)->nullable();

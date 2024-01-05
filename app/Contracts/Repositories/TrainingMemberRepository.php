@@ -91,4 +91,20 @@ class TrainingMemberRepository extends BaseRepository implements TrainingMemberI
             ->whereIn('id', $data)
             ->delete();
     }
+
+    /**
+     * search
+     *
+     * @param  mixed $request
+     * @return mixed
+     */
+    public function search(Request $request): mixed
+    {
+        return $this->model->query()
+            ->where('training_id', $request->training_id)
+            ->when($request->name, function ($query) use ($request) {
+                $query->where('name', 'LIKE', '%' . $request->name . '%');
+            })
+            ->get();
+    }
 }
