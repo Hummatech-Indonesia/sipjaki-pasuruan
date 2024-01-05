@@ -11,6 +11,7 @@ use Illuminate\View\View;
 use Illuminate\Http\Request;
 use App\Helpers\ResponseHelper;
 use Illuminate\Http\JsonResponse;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Requests\ProjectRequest;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Resources\ProjectResource;
@@ -64,11 +65,11 @@ class ProjectController extends Controller
             $executors = $this->serviceProvider->getExecutor();
             $fundSources = $this->fundSource->get();
             $contractCategories = $this->contractCategory->get();
-            
+
             $name = $request->name;
             $year = $request->year;
             $status = $request->status;
-            return view('pages.dinas.work-package', compact('name','status','year','projects', 'consultants', 'executors', 'fundSources', 'contractCategories'));
+            return view('pages.dinas.work-package', compact('name', 'status', 'year', 'projects', 'consultants', 'executors', 'fundSources', 'contractCategories'));
         }
     }
 
@@ -232,8 +233,21 @@ class ProjectController extends Controller
      *
      * @return void
      */
-    public function export()
+    public function export(Request $request)
     {
-        return Excel::download(new ProjectExport, 'paket-pekerjaan-' . auth()->user()->name . '.xlsx');
+        return Excel::download(new ProjectExport($request), 'paket-pekerjaan-' . auth()->user()->name . '.xlsx');
+    }
+
+    /**
+     * exportPdf
+     *
+     * @return void
+     */
+    public function exportPdf(Request $request)
+    {
+        $data['projects'] = $this->project->search($request);
+        $pdf = Pdf::loadView('exports.projects-pdf', $data);
+
+        return $pdf->download('paket-pekerjaan-' . auth()->user()->name . '.pdf');
     }
 }

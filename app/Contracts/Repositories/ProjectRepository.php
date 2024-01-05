@@ -180,6 +180,31 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
     }
 
     /**
+     * search
+     *
+     * @param  mixed $request
+     * @return mixed
+     */
+    public function search(Request $request): mixed
+    {
+        return $this->model->query()
+            ->with('serviceProviderProjects')
+            ->when(auth()->user()->dinas, function ($query) {
+                $query->whereRelation('dinas', 'dinas_id', auth()->user()->dinas->id);
+            })
+            ->when($request->name, function ($query) use ($request) {
+                $query->where('name', 'LIKE', '%' . $request->name . '%');
+            })
+            ->when($request->year, function ($query) use ($request) {
+                $query->whereYear('year', $request->year);
+            })
+            ->when($request->status, function ($query) use ($request) {
+                $query->where('status', $request->status);
+            })
+            ->get();
+    }
+
+    /**
      * serviceProviderProject
      *
      * @param  mixed $request
