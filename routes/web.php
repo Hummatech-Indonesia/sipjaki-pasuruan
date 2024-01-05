@@ -133,6 +133,10 @@ Route::middleware('auth')->group(function () {
     Route::get('download-p1-meeting-minutes/{executorProject}', [ExecutorProjectController::class, 'downloadP1MeetingMinutes'])->name('downloadP1MeetingMinutes');
     Route::get('download-p2-meeting-minutes/{executorProject}', [ExecutorProjectController::class, 'downloadP2MeetingMinutes'])->name('downloadP2MeetingMinutes');
 
+    Route::get('project-export', [ProjectController::class, 'export'])->name('project-export-excel');
+    Route::get('print-project-pdf', [ProjectController::class, 'exportPdf'])->name('project-export-pdf');
+
+
     Route::middleware('role:superadmin')->group(function () {
 
         Route::get('dashboard-superadmin', [SuperadminController::class, 'dashboard'])->name('dashboard-superadmin');

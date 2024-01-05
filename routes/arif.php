@@ -37,4 +37,3 @@ Route::get('my-project', [ProjectController::class, 'myProject']);
 
 Route::get('image-landing-page', [LandingController::class, 'image']);
 
-Route::get('print-project-pdf', [ProjectController::class, 'exportPdf']);
