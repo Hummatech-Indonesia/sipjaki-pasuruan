@@ -36,3 +36,4 @@ Route::get('history-project', [ProjectController::class, 'history']);
 Route::get('my-project', [ProjectController::class, 'myProject']);
 
 Route::get('image-landing-page', [LandingController::class, 'image']);
+

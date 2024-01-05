@@ -18,8 +18,10 @@ use App\Contracts\Interfaces\ProjectInterface;
 use App\Contracts\Interfaces\ServiceProviderInterface;
 use App\Contracts\Interfaces\ServiceProviderProjectInterface;
 use App\Enums\TypeOfBusinessEntityEnum;
+use App\Exports\ProjectExport;
 use App\Http\Requests\UploadFileProjectRequest;
 use App\Services\ProjectService;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProjectController extends Controller
 {
@@ -223,5 +225,15 @@ class ProjectController extends Controller
             $projects = $this->project->projectExecutor();
             return view('', ['projects' => $projects]);
         }
+    }
+
+    /**
+     * export
+     *
+     * @return void
+     */
+    public function export()
+    {
+        return Excel::download(new ProjectExport, 'paket-pekerjaan-' . auth()->user()->name . '.xlsx');
     }
 }
