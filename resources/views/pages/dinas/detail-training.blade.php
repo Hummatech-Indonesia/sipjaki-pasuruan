@@ -124,6 +124,29 @@
                             </div>
                         </div>
                     </form>
+                    <div>
+                        <button class="btn text-white d-flex items-center gap-2" style="background-color:#1B3061">
+                            Cari <i class="fa fa-search my-auto"></i>
+                        </button>
+                    </div>
+                    <div>
+                        <button class="btn btn-danger d-flex items-center gap-2">
+                            PDF<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                                <path fill="white"
+                                    d="m23 12l-4-4v3h-9v2h9v3M1 18V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3h-2V6H3v12h12v-3h2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2Z" />
+                            </svg>
+                            </i>
+                        </button>
+                    </div>
+                    <div>
+                        <button class="btn btn-success d-flex items-center gap-2">
+                            Excel<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                                <path fill="white"
+                                    d="m23 12l-4-4v3h-9v2h9v3M1 18V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3h-2V6H3v12h12v-3h2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2Z" />
+                            </svg>
+                            </i>
+                    </div>
+                    </button>
                     <div class="">
                         <button id="checkAll" onclick="selectAll()" class="btn text-white"
                             style="background-color: #1B3061">
@@ -142,6 +165,7 @@
                         </form>
                     </div>
                 </div>
+
                 <div class="">
                     <button data-bs-toggle="modal" data-bs-target=".bs-example-modal-xl" class="btn text-white"
                         style="background-color: #1B3061">
@@ -377,7 +401,7 @@
                                                     @enderror
                                                 </div>
                                             </div>
-                                           
+
                                             <div class="col-lg-8">
                                                 <div class="mb-3">
                                                     <label for="basicpill-email-input">Sertifikat</label>
