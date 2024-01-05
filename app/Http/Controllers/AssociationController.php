@@ -90,10 +90,11 @@ class AssociationController extends Controller
      */
     public function destroy(Association $association, Request $request)
     {
-        $this->association->delete($association->id);
         if ($request->is('api/*')) {
+            if (!$this->association->delete($association->id)) return ResponseHelper::error(null, trans('alert.delete_failed'));
             return ResponseHelper::success(null, trans('alert.delete_success'));
         } else {
+            if (!$this->association->delete($association->id)) redirect()->back()->with('error', trans('alert.delete_failed'));
             return redirect()->back()->with('success', trans('alert.add_success'));
         }
     }

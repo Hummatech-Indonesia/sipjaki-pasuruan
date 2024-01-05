@@ -4,6 +4,7 @@ namespace App\Contracts\Repositories;
 
 use App\Contracts\Interfaces\AssociationInterface;
 use App\Models\Association;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -69,7 +70,12 @@ class AssociationRepositoy extends BaseRepository implements AssociationInterfac
      */
     public function delete(mixed $id): mixed
     {
-        return $this->show($id)->delete($id);
+        try {
+            return $this->show($id)->delete($id);
+        }
+        catch (QueryException $e) {
+            if ($e->errorInfo[1] == 1451) return false;
+        }
     }
 
 
