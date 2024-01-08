@@ -28,8 +28,8 @@
             @foreach ($trainings as $training)
                 <tr>
                     <td>{{ $training->name }}</td>
-                    <td>{{ $project->organizer }}</td>
-                    <td>{{ $project->trainingMethod->name }}</td>
+                    <td>{{ $training->organizer }}</td>
+                    <td>{{ $training->trainingMethod->name }}</td>
                     <td>{{ $training->location }}</td>
                     <td>{{ $training->fiscalYear->name }}</td>
 
