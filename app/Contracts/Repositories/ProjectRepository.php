@@ -171,7 +171,10 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
                 $query->where('name', 'LIKE', '%' . $request->name . '%');
             })
             ->when($request->year, function ($query) use ($request) {
-                $query->whereYear('year', $request->year);
+                $query->where('year', $request->year);
+            })
+            ->when($request->dinas_id, function ($query) use ($request) {
+                $query->where('dinas_id', $request->dinas_id);
             })
             ->when($request->status, function ($query) use ($request) {
                 $query->where('status', $request->status);
@@ -192,15 +195,18 @@ class ProjectRepository extends BaseRepository implements ProjectInterface
             ->when(auth()->user()->dinas, function ($query) {
                 $query->whereRelation('dinas', 'dinas_id', auth()->user()->dinas->id);
             })
-            ->when(auth()->user()->serviceProvider,function ($query){
-                $query->where('consultant_id',auth()->user()->serviceProvider->id);
-                $query->orWhere('executor_id',auth()->user()->serviceProvider->id);
+            ->when(auth()->user()->serviceProvider, function ($query) {
+                $query->where('consultant_id', auth()->user()->serviceProvider->id);
+                $query->orWhere('executor_id', auth()->user()->serviceProvider->id);
             })
             ->when($request->name, function ($query) use ($request) {
                 $query->where('name', 'LIKE', '%' . $request->name . '%');
             })
             ->when($request->year, function ($query) use ($request) {
                 $query->whereYear('year', $request->year);
+            })
+            ->when($request->dinas_id, function ($query) use ($request) {
+                $query->where('dinas_id', $request->dinas_id);
             })
             ->when($request->status, function ($query) use ($request) {
                 $query->where('status', $request->status);
