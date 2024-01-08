@@ -135,7 +135,7 @@
                                     id="btn-detail-{{ $rule->id }}" data-title="{{ $rule->title }}"
                                     data-code="{{ $rule->code }}"
                                     data-rule_category_name="{{ $rule->ruleCategory->name }}"
-                                    data-year="{{ $rule->year }}" style="background-color: #1B3061">
+                                    data-year="{{ $rule->year }}" data-file="{{ asset('storage/' . $rule->file) }}" style="background-color: #1B3061">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19"
                                         viewBox="0 0 24 24" fill="none">
                                         <path d="M4.5 12.5C7.5 6 16.5 6 19.5 12.5" stroke="white" stroke-width="1.5"
@@ -278,6 +278,7 @@
                         aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <iframe id="detail-file" align="top" height="350" width="100%" frameborder="0" scrolling="auto" data-file=""></iframe>
                     <p class="mt-3 fs-5 text-dark text-center mb-3" style="font-weight: 700">
                         <span id="detail-title"></span>
                     </p>
@@ -312,6 +313,7 @@
         $('.btn-detail').click(function() {
             const data = getDataAttributes($(this).attr('id'))
             handleDetail(data)
+            handleFile(data)
             $('#modal-detail').modal('show')
         })
         $('.btn-edit').click(function() {

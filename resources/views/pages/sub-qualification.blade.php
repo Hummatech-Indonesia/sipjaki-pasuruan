@@ -202,9 +202,9 @@
 @section('script')
     <script>
         $('#master').addClass('active')
-        $('#master #sub-jasa').addClass('mm-show')
+        $('#master .sub-menu').addClass('mm-show')
         $('#master-link').addClass('mm-active')
-        $('#jasa').addClass('active')
+        $('#jasa').addClass('mm-active')
         $('#jasa-link').addClass('mm-active')
         $('#jasa .sub-menu').addClass('mm-show');
         $('#kualifikasi-jasa').addClass('mm-active')
@@ -220,7 +220,6 @@
         })
         $('.btn-delete').click(function() {
             id = $(this).data('id')
-            console.log(id);
             var actionUrl = `/sub-qualifications/${id}`;
             $('#form-delete').attr('action', actionUrl);
             $('#modal-delete').modal('show')

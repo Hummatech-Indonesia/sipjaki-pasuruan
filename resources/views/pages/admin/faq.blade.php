@@ -107,12 +107,12 @@
                                     {{ $loop->iteration }}
                                 </td>
                                 <td>
-                                    <p class="d-inline-block text-truncate" style="max-width: 400px;">
+                                    <p class="d-inline-block text-truncate" style="max-width: 350px;">
                                         {{ $faq->question }}
                                     </p>
                                 </td>
                                 <td>
-                                    <p class="d-inline-block text-truncate" style="max-width: 600px;">
+                                    <p class="d-inline-block text-truncate" style="max-width: 350px;">
                                         {{ $faq->answer }}
                                     </p>
                                 </td>
