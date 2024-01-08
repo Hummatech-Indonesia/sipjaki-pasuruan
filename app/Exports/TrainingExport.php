@@ -25,12 +25,12 @@ class TrainingExport implements FromView, ShouldAutoSize
      */
     public function view(): View
     {
-        $projects = Training::query()
+        $trainings = Training::query()
             ->when($this->request->name, function ($query) {
                 $query->where('name', 'LIKE', '%' . $this->request->name . '%');
             })
             ->get();
 
-        return view('exports.projects', ['projects' => $projects]);
+        return view('exports.training', ['trainings' => $trainings]);
     }
 }

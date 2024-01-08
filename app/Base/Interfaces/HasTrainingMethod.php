@@ -11,5 +11,5 @@ interface HasTrainingMethod
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function TrainingMethod(): BelongsTo;
+    public function trainingMethod(): BelongsTo;
 }

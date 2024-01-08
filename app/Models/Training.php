@@ -67,7 +67,7 @@ class Training extends Model implements HasFundSource, HasTrainingMethod, HasFis
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function TrainingMethod(): BelongsTo
+    public function trainingMethod(): BelongsTo
     {
         return $this->belongsTo(TrainingMethod::class);
     }
