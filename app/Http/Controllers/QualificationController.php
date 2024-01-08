@@ -74,7 +74,7 @@ class QualificationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(QualificationUpdateRequest $request, Qualification $qualification): RedirectResponse | JsonResponse
+    public function update(QualificationRequest $request, Qualification $qualification): RedirectResponse | JsonResponse
     {
         $this->qualification->update($qualification->id, $request->validated());
 
