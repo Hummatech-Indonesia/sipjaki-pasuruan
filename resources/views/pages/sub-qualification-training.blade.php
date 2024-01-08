@@ -42,7 +42,7 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label id="name" for="recipient-name" class="control-label mb-2">Masukan Jenjang
-                                KKNi</label>
+                                KKNI</label>
                             <input type="text" class="form-control" id="create-school_year" class="form-control"
                                 name="name" id="nametext" aria-describedby="name" placeholder="" />
                         </div>
@@ -61,10 +61,7 @@
         </div>
     </div>
     @if ($errors->has('name'))
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            {{ $errors->first('name') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
+        eb
     @endif
     <div class="card">
         <div class="card-body">

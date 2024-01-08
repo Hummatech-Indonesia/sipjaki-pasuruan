@@ -277,6 +277,11 @@
             $('#detail-file').attr('src', iframeSrc);
         }
 
+        function handleThumbnail(data) {
+            const thumbnailUrl = data['thumbnail'];
+            $('#detail-file-thumbnail').attr('src', thumbnailUrl);
+        }
+
         function showLoading() {
             return `<div class="d-flex justify-content-center" style="margin-top:11rem">
                         <div class="spinner-border my-auto" role="status">

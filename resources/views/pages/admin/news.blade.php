@@ -91,7 +91,7 @@
                     <tr>
                         <th style="background-color: #1B3061;color:#ffffff">No</th>
                         <th style="background-color: #1B3061;color:#ffffff">Judul</th>
-                        <th style="background-color: #1B3061;color:#ffffff">Tanggal Upload</th>
+                        <th style="background-color: #1B3061;color:#ffffff;text-align: center">Tanggal Upload</th>
                         <th style="background-color: #1B3061;color:#ffffff;text-align: center">Aksi</th>
                     </tr>
                 </thead>
@@ -100,9 +100,15 @@
                         <tr>
                             <td scope="row" class="fs-5">{{ $index + 1 }}</td>
                             <td class="fs-5">{{ $news->title }}</td>
-                            <td class="fs-5">
+                            <td class="fs-5 text-center">
                                 {{ \Carbon\Carbon::parse($news->created_at)->locale('id_ID')->isoFormat('DD MMMM Y') }}</td>
                             <td class="d-flex flex-row gap-3 justify-content-center">
+                                <button id="btn-detail-{{ $news->id }}" data-title="{{ $news->title }}" data-created_at="{{ \Carbon\Carbon::parse($news->created_at)->locale('id_ID')->isoFormat('DD MMMM Y') }}" data-thumbnail="{{ asset('storage/' . $news->thumbnail) }}" data-content="{{ $news->content }}" class="btn text-white btn-detail" style="background-color: #1B3061">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <path d="M4.5 12.5C7.5 6 16.5 6 19.5 12.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M12 16C10.8954 16 10 15.1046 10 14C10 12.8954 10.8954 12 12 12C13.1046 12 14 12.8954 14 14C14 15.1046 13.1046 16 12 16Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                      </svg> Detail
+                                </button>
                                 <button type="button"
                                     class="btn waves-effect waves-light d-flex btn-edit flex-row gap-1 justify-content-evenly"
                                     style="width: 90px; background-color: #FFC928; color: white"
@@ -183,6 +189,33 @@
             </div>
         </div>
     </div>
+    <div class="modal fade bs-example-modal-md" id="modal-detail" tabindex="-1" role="dialog"
+        aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #1B3061">
+                    <h5 class="modal-title text-white text-center" id="myExtraLargeModalLabel">Detail Berita</h5>
+                    <button type="button" class="btn-close" style="background-color: white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img id="detail-file-thumbnail" width="100%" alt="Thumbnail Image">
+
+                    <div id="detail-created_at" class="mb-2 fs-6 text-black">
+
+                    </div>
+                    <div id="detail-title" class="mt-2 mb-2 fw-bold fs-4 text-black">
+
+                    </div>
+                    <div id="detail-content" class="text-black">
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div>
     <x-delete-modal-component />
 @endsection
 @section('script')
@@ -245,6 +278,12 @@
                 height:300
             });
         });
+        $('.btn-detail').click(function() {
+            const data = getDataAttributes($(this).attr('id'))
+            handleDetail(data)
+            handleThumbnail(data)
+            $('#modal-detail').modal('show')
+        })
         $('.btn-edit').click(function() {
             const formData = getDataAttributes($(this).attr('id'))
             var actionUrl = `news/${formData['id']}`;
