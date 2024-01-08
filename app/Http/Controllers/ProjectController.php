@@ -69,10 +69,11 @@ class ProjectController extends Controller
             $fundSources = $this->fundSource->get();
             $contractCategories = $this->contractCategory->get();
             $dinases = $this->dinas->get();
+            $requestDinas = $request->dinas_id;
             $name = $request->name;
             $year = $request->year;
             $status = $request->status;
-            return view('pages.dinas.work-package', compact('name', 'status', 'year', 'projects', 'consultants', 'executors', 'fundSources', 'contractCategories', 'dinases'));
+            return view('pages.dinas.work-package', compact('name', 'status', 'year', 'projects', 'consultants', 'executors', 'fundSources', 'contractCategories', 'dinases','requestDinas'));
         }
     }
 

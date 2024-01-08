@@ -22,15 +22,10 @@
     <div class="d-flex justify-content-between mb-3">
         <form action="{{ route('training') }}" class="d-flex gap-3 col-8" method="GET">
             <input type="search" value="" name="name" class="form-control" placeholder="Search">
-            <select name="status" class="form-control ml-3" id="">
-                <option value="">Semua Status</option>
-                <option value="active">Aktif</option>
-                <option value="nonactive">Non Aktif</option>
-            </select>
             <select name="fiscal_year_id" class="form-control ml-3" id="">
                 <option value="">Semua Tahun</option>
                 @foreach ($fiscalYears as $fiscalYear)
-                    <option value="{{ $fiscalYear->id }}">{{ $fiscalYear->name }}</option>
+                    <option {{ $year == $fiscalYear->id ? 'selected' : '' }} value="{{ $fiscalYear->id }}">{{ $fiscalYear->name }}</option>
                 @endforeach
             </select>
             <button type="submit" class="btn text-white d-flex items-center gap-2" style="background-color:#1B3061">

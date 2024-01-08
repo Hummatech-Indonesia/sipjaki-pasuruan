@@ -13,14 +13,14 @@
             <select name="dinas_id" id="search-status" class="form-control ml-3">
                 <option value="">Semua Dinas</option>
                 @foreach ($dinases as $dinas)
-                    <option value="{{ $dinas->id }}">{{ $dinas->user->name }}</option>
+                    <option {{ $requestDinas == $dinas->id ? 'selected' : '' }} value="{{ $dinas->id }}">{{ $dinas->user->name }}</option>
                 @endforeach
 
             </select>
             <select name="year" id="search-year" class="form-control">
                 <option value="" selected>Tampilkan Semua Tahun</option>
                 @for ($years = date('Y'); $years >= 2010; $years--)
-                    <option value="{{ $years }}">{{ $years }}</option>
+                    <option {{ $year == $years ? 'selected' : '' }} value="{{ $years }}">{{ $years }}</option>
                 @endfor
             </select>
             <button type="submit" class="btn text-white d-flex items-center gap-2" style="background-color:#1B3061">
