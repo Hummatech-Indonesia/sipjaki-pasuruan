@@ -40,9 +40,6 @@
                             <label id="name" for="recipient-name" class="control-label mb-2">File</label>
                             <input type="file" class="form-control" id="create-name" class="form-control" name="file"
                                 aria-describedby="name" placeholder="Masukkan Kualifikasi Nasional Indonesia" />
-                            @error('file')
-                                {{ $message }}
-                            @enderror
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -88,6 +85,12 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
+            @if ($errors->has('file'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ $errors->first('file') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
             <div class="table-responsive">
                 <table class="table mb-2 table-borderless" border="1">
                     <thead>
@@ -97,7 +100,7 @@
                             <th class="text-white" style="background-color: #1B3061; text-align: center">Aksi</th>
                         </tr>
                     </thead>
-                    <tbody> 
+                    <tbody>
                         @forelse ($classifications as $classification)
                             <tr>
                                 <th scope="row" class="fs-5">{{ $loop->iteration }}</th>
@@ -209,9 +212,6 @@
                             <input type="file" class="form-control" id="create-name" class="form-control"
                                 name="file" aria-describedby="name"
                                 placeholder="Masukkan Kualifikasi Nasional Indonesia" />
-                            @error('file')
-                                {{ $message }}
-                            @enderror
                         </div>
                 </div>
                 <div class="modal-footer">
