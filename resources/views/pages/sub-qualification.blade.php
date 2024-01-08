@@ -128,8 +128,8 @@
                                         <div class="">
                                             <button type="button"
                                                 class="btn btn-danger waves-effect waves-light btn-delete"
-                                                data-id="{{ $qualification->id }}"
-                                                id="btn-delete-{{ $qualification->id }}">
+                                                data-id="{{ $qualificationLevel->id }}"
+                                                id="btn-delete-{{ $qualificationLevel->id }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                     viewBox="0 0 20 20" fill="none">
                                                     <path fill-rule="evenodd" clip-rule="evenodd"
