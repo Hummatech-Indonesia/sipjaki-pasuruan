@@ -32,7 +32,7 @@
                 <option value="2023">2023</option>
                 <option value="2024">2024</option>
             </select>
-            <button data-bs-toggle="modal" data-bs-target="#modal-create" class="btn text-white d-flex items-center gap-2"
+            <button type="submit" class="btn text-white d-flex items-center gap-2"
                 style="background-color:#1B3061">
                 Cari <i class="fa fa-search my-auto"></i>
             </button>
