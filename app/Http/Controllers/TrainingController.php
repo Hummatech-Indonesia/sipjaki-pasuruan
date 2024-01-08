@@ -10,8 +10,10 @@ use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\TrainingRequest;
 use App\Http\Resources\TrainingResource;
 use App\Contracts\Interfaces\TrainingInterface;
+use App\Exports\TrainingExport;
 use App\Models\Training;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TrainingController extends Controller
 {
@@ -96,6 +98,16 @@ class TrainingController extends Controller
         }
     }
 
+    /**
+     * export
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    public function export(Request $request)
+    {
+        return Excel::download(new TrainingExport($request), 'pelatihan-' . auth()->user()->name . '.xlsx');
+    }
     /**
      * exportPdf
      *
