@@ -8,7 +8,7 @@
                 text: '{{ session('success') }}',
             });
         </script>
-    @endif
+    @endif  
     <div class="">
         <div>
             <h2 class="">
@@ -192,7 +192,7 @@
             <div class="modal-content">
                 <div class="modal-header d-flex align-items-center text-white" style="background-color: #1B3061">
                     <h4 class="modal-title" id="exampleModalLabel1">
-                        Edit Metode Pelatihan
+                        Edit Klasifikasi
                     </h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                         style="color: white;"></button>
