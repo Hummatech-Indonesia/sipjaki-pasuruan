@@ -248,6 +248,6 @@ class ProjectController extends Controller
         $data['projects'] = $this->project->search($request);
         $pdf = Pdf::loadView('exports.projects-pdf', $data);
 
-        return $pdf->download('paket-pekerjaan'.'pdf');
+        return $pdf->download('paket-pekerjaan.pdf');
     }
 }

@@ -201,7 +201,7 @@
                 <div class="modal-body">
                     <img id="detail-file-thumbnail" width="100%" alt="Thumbnail Image">
 
-                    <div id="detail-created_at" class="mb-2 fs-6 text-black">
+                    <div id="detail-created_at" class="mt-2 mb-1 fs-5 text-black">
 
                     </div>
                     <div id="detail-title" class="mt-2 mb-2 fw-bold fs-4 text-black">

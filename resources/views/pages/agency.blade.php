@@ -160,19 +160,19 @@
                         <td class="">
                             <div class="d-flex justify-content-header gap-2">
                                 <div class="">
-                                    <button class="btn text-white btn-edit" id="btn-edit-{{ $user->id }}"
+                                    <button class="btn text-white d-flex gap-1 btn-edit" id="btn-edit-{{ $user->id }}"
                                         data-id="{{ $user->id }}" data-name="{{ $user->name }}"
                                         data-email="{{ $user->email }}"
                                         data-person_responsible="{{ $user->dinas->person_responsible }}"
                                         data-phone_number="{{ $user->phone_number }}"
                                         style="background-color: #1B3061; width: 100%;">
-                                        edit
+                                        <i class="bx bx-bx bxs-edit fs-4"></i>Edit
                                     </button>
                                 </div>
                                 <div class="">
-                                    <button data-id="{{ $user->id }}" class="btn text-white btn-delete btn-danger"
+                                    <button data-id="{{ $user->id }}" class="d-flex gap-1 btn text-white btn-delete btn-danger"
                                         style="width: 100%;">
-                                        hapus
+                                        <i class="bx bx-bx bxs-trash fs-4"></i> Hapus
                                     </button>
                                 </div>
                             </div>
@@ -246,7 +246,7 @@
                                     <label id="email" for="recipient-name"
                                         class="control-label mb-2">Password</label>
                                     <div class="d-flex">
-                                        <input type="password" class="form-control" name="password" required
+                                        <input type="password" class="form-control" name="password"
                                             autocomplete="current-password" placeholder="Masukan Password"
                                             aria-label="Password" aria-describedby="password-addon"
                                             style="border-radius: 8px 0 0 8px;">

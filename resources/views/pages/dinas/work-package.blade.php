@@ -31,7 +31,7 @@
                 Excel<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="white" d="m23 12l-4-4v3h-9v2h9v3M1 18V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3h-2V6H3v12h12v-3h2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2Z"/></svg>
             </i>
             </button>
-            
+
         </form>
         @if(auth()->user()->dinas)
         <div class="">
@@ -321,7 +321,7 @@
                                     @endif
                                     <div class="d-flex justify-content-center mb-2">
                                         <a href="/detail-project-dinas/{{ $project->id }}" style="min-width: 90px;width:100%;background-color: #1B3061"
-                                            class="btn text-white btn-detail" 
+                                            class="btn text-white btn-detail"
                                             ><svg
                                                 xmlns="http://www.w3.org/2000/svg" width="19" height="19"
                                                 viewBox="0 0 24 24" fill="none">
@@ -343,7 +343,7 @@
                             <div class="d-flex justify-content-center" style="min-height:16rem">
                                 <div class="my-auto">
                                     <img src="{{ asset('no-data.png') }}" width="300" height="300" />
-                                    <h4 class="text-center mt-4">Project Masih Kosong!!</h4>
+                                    <h4 class="text-center mt-4">Paket Pekerjaan Masih Kosong!!</h4>
                                 </div>
                             </div>
                         </td>
