@@ -235,7 +235,7 @@ class ProjectController extends Controller
      */
     public function export(Request $request)
     {
-        return Excel::download(new ProjectExport($request), 'paket-pekerjaan' . '.xlsx');
+        return Excel::download(new ProjectExport($request), 'project' . auth()->user()->name . '.xlsx');
     }
 
     /**
@@ -248,6 +248,6 @@ class ProjectController extends Controller
         $data['projects'] = $this->project->search($request);
         $pdf = Pdf::loadView('exports.projects-pdf', $data);
 
-        return $pdf->download('paket-pekerjaan.pdf');
+        return $pdf->download('paket-pekerjaan' . '.pdf');
     }
 }

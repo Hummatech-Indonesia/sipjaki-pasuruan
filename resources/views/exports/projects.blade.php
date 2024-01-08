@@ -1,22 +1,3 @@
-{{-- <table class="table">
-    <thead>
-        <tr>
-            <th colspan="2" style="text-align: center; padding:4px; background-color:#1B3061; color:white">Nama
-                Dinas</th>
-            <th colspan="2" style="text-align: center; padding:4px; background-color:#1B3061; color:white">Nama
-                Konsultan</th>
-            <th colspan="2" style="text-align: center; padding:4px; background-color:#1B3061; color:white">Nama
-                Eksekutor</th>
-            <th colspan="2" style="text-align: center; padding:4px; background-color:#1B3061; color:white">Nama
-            </th>
-            <th colspan="2" style="text-align: center; padding:4px; background-color:#1B3061; color:white">Tahun
-            </th>
-
-        </tr>
-    </thead> --}}
-@php
-    use Carbon\Carbon;
-@endphp
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,68 +6,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        th,
-        td {
-            text-align: center;
-            padding: 8px;
-        }
-
-        th {
-            background-color: #1B3061;
-            color: #FFFFFF;
-        }
-
-        td {
-            border: none;
-            /* Menghapus garis-garis di antara kolom-kolom */
-        }
-    </style>
 </head>
 
 <body>
-    <header>
-        <table style="width: 100%;">
+    <table class="table">
+        <thead>
             <tr>
-                <td style="text-align: left">
-                    <img src="../logo-3.png" width="120" alt="" srcset="">
-                </td>
-                <td style="text-align: right;">
-                    <img src="../DefaultHD.png" width="40" alt="" srcset="">
-                </td>
-            </tr>
-        </table>
-    </header>
-    <div class="">
-        <p style="font-weight:bold;text-align:center;">Data Paket Pekerjaan</p>
-        <p style="text-align:right">Di eksport pada
-            {{ Carbon::now()->locale('id_ID')->isoFormat('DD MMMM Y') }}
-        </p>
+                <th style="text-align: center; padding:4px; background-color:#1B3061; color:white">Nama
+                    Dinas</th>
+                <th style="text-align: center; padding:4px; background-color:#1B3061; color:white">Nama
+                    Konsultan
+                </th>
+                <th style="text-align: center; padding:4px; background-color:#1B3061; color:white">
+                    Nama Eksekutor</th>
+                <th style="text-align: center; padding:4px; background-color:#1B3061; color:white">
+                    Tahun</th>
 
-        <table>
-            <thead>
-                <th>Nama Dinas</th>
-                <th>Nama Konsultan</th>
-                <th>Nama Eksekutor</th>
-                <th>Tahun</th>
-            </thead>
-            <tbody>
-                @foreach ($projects as $project)
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($projects as $project)
+                <tr>
                     <td>{{ $project->dinas->user->name }}</td>
-                    <td>{{ $project->consultant->name }}</td>
-                    <td>{{ $project->executor->name }}</td>
+                    <td>{{ $project->consultant->user->name }}</td>
+                    <td>{{ $project->executor->user->name }}</td>
                     <td>{{ $project->year }}</td>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
-    .
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 </body>
 
 </html>
