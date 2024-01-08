@@ -55,19 +55,22 @@
 
         <table>
             <thead>
-                <th>Nama Dinas</th>
-                <th>Nama Konsultan</th>
-                <th>Nama Eksekutor</th>
-                <th>Nama</th>
-                <th>Tahun</th>
+                <tr>
+                    <th>Tahun</th>
+                    <th>Nama Pekerjaan</th>
+                    <th>Nilai Kontrak</th>
+                    <th>Dinas</th>
+                </tr>
             </thead>
             <tbody>
                 @foreach ($projects as $project)
-                    <td colspan="2" style="padding: 4px">{{ $project->dinas->user->name }}</td>
-                    <td colspan="2" style="padding: 4px">{{ $project->consultant->user->name }}</td>
-                    <td colspan="2" style="padding: 4px">{{ $project->executor->user->name }}</td>
-                    <td colspan="2" style="padding: 4px">{{ $project->name }}</td>
-                    <td colspan="2" style="padding: 4px">{{ $project->year }}</td>
+                    <tr>
+                        <td style="padding: 4px">{{ $project->year }}</td>
+                        <td style="padding: 4px">{{ $project->name }}</td>
+                        <td style="padding: 4px"> Rp.{{ number_format($project->project_value, 0, ',', '.') }}
+                        </td>
+                        <td style="padding: 4px">{{ $project->dinas->user->name }}</td>
+                    </tr>
                 @endforeach
             </tbody>
         </table>

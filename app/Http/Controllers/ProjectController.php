@@ -90,6 +90,7 @@ class ProjectController extends Controller
         }
         $id = $this->project->store($data)->id;
         $data['project_id'] = $id;
+        $data['name_package'] = 'Paket Konsultan ' . auth()->user()->name;
         $this->consultantProject->store($data);
         $this->executorProject->store($data);
         if ($request->is('api/*')) {

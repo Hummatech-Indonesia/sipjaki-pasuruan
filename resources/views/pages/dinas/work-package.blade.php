@@ -18,6 +18,7 @@
 
             </select>
             <select name="year" id="search-year" class="form-control">
+                <option value="" selected>Tampilkan Semua Taun</option>
                 @for ($years = date('Y'); $years >= 2010; $years--)
                     <option value="{{ $years }}">{{ $years }}</option>
                 @endfor
