@@ -25,63 +25,59 @@ class QualificationLevelController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request) : View | JsonResponse
+    public function index(Request $request): View | JsonResponse
     {
 
         $qualifications = $this->qualificationLevel->customPaginate($request, 15);
 
-        if( $request->is('api/*')){
+        if ($request->is('api/*')) {
 
             $data['paginate'] = $this->customPaginate($qualifications->currentPage(), $qualifications->lastPage());
             $data['data'] = QualificationLevelResource::collection($qualifications);
-            return ResponseHelper::success($data,trans('alert.get_success'));
+            return ResponseHelper::success($data, trans('alert.get_success'));
+        } else {
 
-        }else{
-
-            return view('pages.sub-qualification',compact('qualifications'));
-
+            return view('pages.sub-qualification', compact('qualifications'));
         }
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(QualificationLevelRequest $request,Qualification $qualification): RedirectResponse | JsonResponse
+    public function store(QualificationLevelRequest $request, Qualification $qualification): RedirectResponse | JsonResponse
     {
         $data = $request->validated();
         $data['qualification_id'] = $qualification->id;
         $this->qualificationLevel->store($data);
 
-        if( $request->is('api/*')){
-            return ResponseHelper::success(null,trans('alert.add_success'));
-        }else{
-            return redirect()->back()->with('success',trans('alert.add_success'));
+        if ($request->is('api/*')) {
+            return ResponseHelper::success(null, trans('alert.add_success'));
+        } else {
+            return redirect()->back()->with('success', trans('alert.add_success'));
         }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(QualificationLevel $qualificationLevel) : JsonResponse
+    public function show(QualificationLevel $qualificationLevel): JsonResponse
     {
-        return ResponseHelper::success(QualificationResource::make($qualificationLevel),trans('alert.get_success'));
+        return ResponseHelper::success(QualificationResource::make($qualificationLevel), trans('alert.get_success'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(QualificationLevelRequest $request,QualificationLevel $qualificationLevel) : RedirectResponse | JsonResponse
+    public function update(QualificationLevelRequest $request, QualificationLevel $qualificationLevel): RedirectResponse | JsonResponse
     {
         $this->qualificationLevel->update($qualificationLevel->id, $request->all());
 
-        if( $request->is('api/*')){
+        if ($request->is('api/*')) {
 
-            return ResponseHelper::success(null,trans('alert.update_success'));
+            return ResponseHelper::success(null, trans('alert.update_success'));
+        } else {
 
-        }else{
-
-           return redirect()->back()->with('success',trans('alert.update_success'));
-
+            return redirect()->back()->with('success', trans('alert.update_success'));
         }
     }
 
@@ -92,14 +88,12 @@ class QualificationLevelController extends Controller
     {
         $this->qualificationLevel->delete($qualificationLevel->id);
 
-        if( $request->is('api/*')){
+        if ($request->is('api/*')) {
 
-            return ResponseHelper::success(null,trans('alert.delete_success'));
+            return ResponseHelper::success(null, trans('alert.delete_success'));
+        } else {
 
-        }else{
-
-            return redirect()->back()->with('success',trans('alert.delete_success'));
-
+            return redirect()->back()->with('success', trans('alert.delete_success'));
         }
     }
 
