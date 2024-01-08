@@ -63,7 +63,7 @@ class AssociationController extends Controller
     {
         $this->association->update($association->id, $request->validated());
         // return ResponseHelper::success(null, trans('alert.update_success'));
-        return redirect()->back()->with('success', trans('alert.add_success'));
+        return redirect()->back()->with('success', trans('alert.update_success'));
     }
 
     /**
@@ -95,7 +95,7 @@ class AssociationController extends Controller
             return ResponseHelper::success(null, trans('alert.delete_success'));
         } else {
             if (!$this->association->delete($association->id)) redirect()->back()->with('error', trans('alert.delete_failed'));
-            return redirect()->back()->with('success', trans('alert.add_success'));
+            return redirect()->back()->with('success', trans('alert.delete_success'));
         }
     }
 
