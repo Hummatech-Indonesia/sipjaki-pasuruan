@@ -19,7 +19,7 @@
                     <option value="{{ $years }}">{{ $years }}</option>
                 @endfor
             </select>
-            <button data-bs-toggle="modal" data-bs-target="#modal-create" class="btn text-white d-flex items-center gap-2"
+            <button type="submit" class="btn text-white d-flex items-center gap-2"
                 style="background-color:#1B3061">
                 Cari <i class="fa fa-search my-auto"></i>
             </button>
