@@ -3,7 +3,7 @@
         <div class="tabs-wrapper">
             <div class="section-title text-center">
                 <h2 style="border-radius: 16px;
-                background: var(--Kuning, #FFC928);" class="title p-1">FAQ</h2>
+                background: var(--Kuning, #FFC928);" class="title p-1">Bantuan</h2>
             </div>
         </div>
         <div class="tab-content">
@@ -31,7 +31,7 @@
                         <div class="d-flex justify-content-center" style="min-height:16rem">
                             <div class="my-auto">
                                 <img src="{{ asset('no-data.png') }}" width="300" height="300" />
-                                <h4 class="text-center mt-4">Faq Kosong!!</h4>
+                                <h4 class="text-center mt-4">Bantuan Kosong!!</h4>
                             </div>
                         </div>
                     </div>

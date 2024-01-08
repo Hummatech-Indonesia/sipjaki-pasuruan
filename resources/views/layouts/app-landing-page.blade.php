@@ -374,12 +374,11 @@
                 </svg>
 
                 <div class="font-size-email mt-1">
-                    <a style="color: var(--White-Original, #FFF);
+                    <div style="color: var(--White-Original, #FFF);
                     font-family: Poppins;
                     font-style: normal;
                     font-weight: 600;
-                    line-height: normal;"
-                        href="kelembagaan.djbk@pu.go.id">kelembagaan.djbk@pu.go.id</a>
+                    line-height: normal;">kelembagaan.djbk@pu.go.id</div>
                 </div>
             </div>
         </div>
@@ -453,13 +452,12 @@
                                             fill="#1B3061" />
                                     </svg>
                                     <div>
-                                        <a style="color: var(--Biru-Primary, #1B3061);
+                                        <div style="color: var(--Biru-Primary, #1B3061);
                                         font-family: Poppins;
                                         font-size: 16px;
                                         font-style: normal;
                                         font-weight: 500;
-                                        line-height: normal;margin-left:10px;"
-                                            href="dbmbk@pasuruankab.go.id">dbmbk@pasuruankab.go.id</a>
+                                        line-height: normal;margin-left:10px;">dbmbk@pasuruankab.go.id</div>
                                     </div>
                                 </div>
                             </div>
