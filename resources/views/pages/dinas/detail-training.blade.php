@@ -125,11 +125,6 @@
                         </div>
                     </form>
                     <div>
-                        <button class="btn text-white d-flex items-center gap-2" style="background-color:#1B3061">
-                            Cari <i class="fa fa-search my-auto"></i>
-                        </button>
-                    </div>
-                    <div>
                         <button class="btn btn-danger d-flex items-center gap-2">
                             PDF<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                 viewBox="0 0 24 24">

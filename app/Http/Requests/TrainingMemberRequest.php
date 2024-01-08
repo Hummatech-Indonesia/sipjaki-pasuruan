@@ -21,7 +21,7 @@ class TrainingMemberRequest extends FormRequest
             'phone_number' => 'required',
             'decree' => 'nullable',
             'gender' => ['required', new GenderRule],
-            'file' => 'required',
+            'file' => 'required|mimes:pdf',
             'national_identity_number' => 'required|max:18',
             'education' => 'required',
         ];
@@ -43,7 +43,8 @@ class TrainingMemberRequest extends FormRequest
             'phone_number.required' => 'Nomor telepon harus diisi.',
             'decree.required' => 'Surat keputusan harus diisi.',
             'gender.required' => 'Jenis kelamin harus diisi.',
-            'file.required' => 'Berkas harus diunggah.',
+            'file.required' => 'Sertifikat harus diunggah.',
+            'file.mimes' => 'Sertifikat Harus Berekstensi PDF.',
             'national_identity_number.required' => 'Nomor identitas nasional harus diisi.',
             'national_identity_number.max' => 'Nomor identitas nasional tidak boleh lebih dari :max karakter.',
             'education.required' => 'Pendidikan harus diisi.',
