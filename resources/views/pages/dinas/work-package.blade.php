@@ -703,7 +703,7 @@
             var status = $('#search-status').val()
             var name = $('#search-name').val()
             var year = $('#search-year').val()
-            var route = "{{Route('project-export-excel')}}"
+            var route = "/project-export"
             var location = `${route}?status=${status}&name=${name}&year=${year}`
             window.location.href = location
         })
