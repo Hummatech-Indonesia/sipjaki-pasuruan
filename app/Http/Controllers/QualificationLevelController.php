@@ -84,15 +84,12 @@ class QualificationLevelController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(QualificationLevel $qualificationLevel, Request $request)
+    public function destroy(QualificationLevel $qualification_level, Request $request)
     {
-        $this->qualificationLevel->delete($qualificationLevel->id);
-
+        $this->qualificationLevel->delete($qualification_level->id);
         if ($request->is('api/*')) {
-
             return ResponseHelper::success(null, trans('alert.delete_success'));
         } else {
-
             return redirect()->back()->with('success', trans('alert.delete_success'));
         }
     }

@@ -179,7 +179,7 @@ Route::middleware('auth')->group(function () {
         Route::name('qualifications.level.')->group(function () {
             Route::post('sub-qualifications/{qualification}', [QualificationLevelController::class, 'store'])->name('store');
             Route::put('sub-qualifications/{qualification_level}', [QualificationLevelController::class, 'update'])->name('update');
-            Route::delete('sub-qualifications/{qualification_level}', [QualificationLevelController::class, 'store'])->name('destroy');
+            Route::delete('sub-qualifications/{qualification_level}', [QualificationLevelController::class, 'destroy'])->name('destroy');
         });
         Route::name('sub-classfication.')->group(function () {
             Route::get('sub-classifications/{classification}', [SubClassificationController::class, 'showSubClassification'])->name('index');
