@@ -20,31 +20,36 @@
         </div>
     </div>
     <div class="d-flex justify-content-between mb-3">
-        <form action="" class="d-flex gap-3 col-8">
+        <form action="{{ route('training') }}" class="d-flex gap-3 col-8" method="GET">
             <input type="search" value="" name="name" class="form-control" placeholder="Search">
             <select name="status" class="form-control ml-3" id="">
                 <option value="">Semua Status</option>
                 <option value="active">Aktif</option>
                 <option value="nonactive">Non Aktif</option>
             </select>
-            <select name="year" class="form-control ml-3" id="">
+            <select name="fiscal_year_id" class="form-control ml-3" id="">
                 <option value="">Semua Tahun</option>
-                <option value="2023">2023</option>
-                <option value="2024">2024</option>
+                @foreach ($fiscalYears as $fiscalYear)
+                    <option value="{{ $fiscalYear->id }}">{{ $fiscalYear->name }}</option>
+                @endforeach
             </select>
-            <button type="submit" class="btn text-white d-flex items-center gap-2"
-                style="background-color:#1B3061">
+            <button type="submit" class="btn text-white d-flex items-center gap-2" style="background-color:#1B3061">
                 Cari <i class="fa fa-search my-auto"></i>
             </button>
-            <button class="btn btn-danger d-flex items-center gap-2">
-                PDF<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="white" d="m23 12l-4-4v3h-9v2h9v3M1 18V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3h-2V6H3v12h12v-3h2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2Z"/></svg>
-            </i>
-            </button>
-            <button class="btn btn-success d-flex items-center gap-2">
-                Excel<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="white" d="m23 12l-4-4v3h-9v2h9v3M1 18V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3h-2V6H3v12h12v-3h2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2Z"/></svg>
-            </i>
-            </button>
-            
+            <a href="/print-training" class="btn btn-danger d-flex items-center gap-2">
+                PDF<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                    <path fill="white"
+                        d="m23 12l-4-4v3h-9v2h9v3M1 18V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3h-2V6H3v12h12v-3h2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2Z" />
+                </svg>
+                </i>
+            </a>
+            <a href="/training-export" class="btn btn-success d-flex items-center gap-2">
+                Excel<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                    <path fill="white"
+                        d="m23 12l-4-4v3h-9v2h9v3M1 18V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3h-2V6H3v12h12v-3h2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2Z" />
+                </svg>
+                </i>
+            </a>
         </form>
         <div class="">
             <button data-bs-toggle="modal" data-bs-target="#modal-create" class="btn text-white"
@@ -96,7 +101,8 @@
                                         <div class="mb-3">
                                             <label for="basicpill-lastname-input">Nama</label>
                                             <input name="name" type="text" class="form-control"
-                                                id="basicpill-phoneno-input" placeholder="Masukkan Nama" value="{{ old('name') }}">
+                                                id="basicpill-phoneno-input" placeholder="Masukkan Nama"
+                                                value="{{ old('name') }}">
                                             @error('name')
                                                 <p class="text-danger">
                                                     {{ $message }}
@@ -108,7 +114,8 @@
                                         <div class="mb-3">
                                             <label for="basicpill-lastname-input">Penyelenggara</label>
                                             <input name="organizer" type="text" class="form-control"
-                                                id="basicpill-phoneno-input" placeholder="Masukkan Nama Penyelenggara" value="{{ old('organizer') }}">
+                                                id="basicpill-phoneno-input" placeholder="Masukkan Nama Penyelenggara"
+                                                value="{{ old('organizer') }}">
                                             @error('organizer')
                                                 <p class="text-danger">
                                                     {{ $message }}
@@ -119,8 +126,8 @@
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="basicpill-lastname-input">Sumber Dana</label>
-                                            <select name="fund_source_id" class="form-select  founds-source" id=""
-                                                value="{{ old('fund_source_id') }}">
+                                            <select name="fund_source_id" class="form-select  founds-source"
+                                                id="" value="{{ old('fund_source_id') }}">
                                             </select>
                                         </div>
                                     </div>
@@ -192,7 +199,8 @@
                                         <div class="mb-3">
                                             <label for="basicpill-phoneno-input">Waktu Pelaksanaan</label>
                                             <input name="start_at" type="date" class="form-control"
-                                                id="basicpill-phoneno-input" placeholder="Enter Your Name." value="{{ old('start_at') }}">
+                                                id="basicpill-phoneno-input" placeholder="Enter Your Name."
+                                                value="{{ old('start_at') }}">
                                             @error('start_at')
                                                 <p class="text-danger">
                                                     {{ $message }}
@@ -204,7 +212,8 @@
                                         <div class="mb-3">
                                             <label for="basicpill-email-input">Selesai Pelaksanaan</label>
                                             <input name="end_time" type="date" class="form-control"
-                                                id="basicpill-phoneno-input" placeholder="Enter Your Name." value="{{ old('end_time') }}">
+                                                id="basicpill-phoneno-input" placeholder="Enter Your Name."
+                                                value="{{ old('end_time') }}">
                                             @error('end_time')
                                                 <p class="text-danger">
                                                     {{ $message }}
@@ -216,7 +225,8 @@
                                         <div class="mb-3">
                                             <label for="basicpill-email-input">Jam Pelajaran</label>
                                             <input type="number" name="lesson_hour" class="form-control"
-                                                id="basicpill-phoneno-input" placeholder="Masukkan Jam pelajaran" value="{{ old('lesson_hour') }}">
+                                                id="basicpill-phoneno-input" placeholder="Masukkan Jam pelajaran"
+                                                value="{{ old('lesson_hour') }}">
                                             @error('lesson_hour')
                                                 <p class="text-danger">
                                                     {{ $message }}
@@ -548,7 +558,6 @@
 @endsection
 @section('script')
     <script>
-
         $('.btn-delete').click(function() {
             id = $(this).data('id')
             var actionUrl = `training.destroy/${id}`;

@@ -76,6 +76,9 @@ class TrainingRepository extends BaseRepository implements TrainingInterface
             ->when($request->name, function ($query) use ($request) {
                 $query->where('name', 'LIKE', '%' . $request->name . '%');
             })
+            ->when($request->fiscal_year_id, function ($query) use ($request) {
+                $query->where('fiscal_year_id', $request->fiscal_year_id);
+            })
             ->withCount('trainingMembers')
             ->orderByDesc('created_at')
             ->fastPaginate($pagination);
@@ -93,6 +96,9 @@ class TrainingRepository extends BaseRepository implements TrainingInterface
             ->with('fiscalYear')
             ->when($request->name, function ($query) use ($request) {
                 $query->where('name', 'LIKE', '%' . $request->name . '%');
+            })
+            ->when($request->fiscal_year_id, function ($query) use ($request) {
+                $query->where('fiscal_year_id', $request->fiscal_year_id);
             })
             ->withCount('trainingMembers')
             ->orderByDesc('created_at')

@@ -17,6 +17,7 @@ use App\Http\Requests\TrainingMemberRequest;
 use App\Http\Resources\TrainingMemberResource;
 use App\Http\Requests\DeleteTrainingMemberRequest;
 use App\Contracts\Interfaces\TrainingMemberInterface;
+use App\Exports\TrainingMemberExport;
 use App\Http\Requests\TrainingMemberUpdateRequest;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
@@ -142,9 +143,19 @@ class TrainingMemberController extends Controller
     {
         $data['trainingMembers'] = $this->trainingMember->search($request);
         $data['now'] = Carbon::now()->isoFormat('Y-m-d H:i:s');
-        // $pdf = Pdf::loadView('exports.training-member-pdf', $data);
+        $pdf = Pdf::loadView('exports.training-member-pdf', $data);
 
-        // return $pdf->download('training-member' . auth()->user()->name . '.pdf');
-        return view('exports.training-member-pdf', $data);
+        return $pdf->download('training-member' . auth()->user()->name . '.pdf');
+    }
+
+    /**
+     * export
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    public function export(Request $request)
+    {
+        return Excel::download(new TrainingMemberExport($request), 'training-member' . auth()->user()->name . '.xlsx');
     }
 }

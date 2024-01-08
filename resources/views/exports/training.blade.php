@@ -19,6 +19,8 @@
                     Metode Pelatihan</th>
                 <th style="text-align: center; padding:4px; background-color:#1B3061; color:white">
                     Lokasi</th>
+                <th style="text-align: center; padding:4px; background-color:#1B3061; color:white">
+                    Tahun</th>
 
             </tr>
         </thead>
@@ -29,6 +31,8 @@
                     <td>{{ $project->organizer }}</td>
                     <td>{{ $project->trainingMethod->name }}</td>
                     <td>{{ $training->location }}</td>
+                    <td>{{ $training->fiscalYear->name }}</td>
+
                 </tr>
             @endforeach
         </tbody>

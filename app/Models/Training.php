@@ -7,8 +7,6 @@ use App\Base\Interfaces\HasFundSource;
 use Illuminate\Database\Eloquent\Model;
 use App\Base\Interfaces\HasTrainingMethod;
 use App\Base\Interfaces\HasTrainingMembers;
-use App\Base\Interfaces\HasSubClassification;
-use App\Base\Interfaces\HasQualificationLevel;
 use App\Base\Interfaces\HasQualificationLevelTraining;
 use App\Base\Interfaces\HasQualificationTraining;
 use App\Base\Interfaces\HasSubClassificationTraining;

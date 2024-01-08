@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Interfaces\FiscalYearInterface;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use App\Helpers\ResponseHelper;
@@ -19,9 +20,11 @@ class TrainingController extends Controller
 {
 
     private TrainingInterface $training;
+    private FiscalYearInterface $fiscalYear;
 
-    public function __construct(TrainingInterface $training)
+    public function __construct(TrainingInterface $training, FiscalYearInterface $fiscalYear)
     {
+        $this->fiscalYear = $fiscalYear;
         $this->training = $training;
     }
 
@@ -30,7 +33,6 @@ class TrainingController extends Controller
      */
     public function index(Request $request): View | JsonResponse
     {
-
         $trainings = $this->training->customPaginate($request, 15);
         $trainings->appends(['name' => $request->name]);
         if ($request->is('api/*')) {
@@ -38,8 +40,8 @@ class TrainingController extends Controller
             $data['data'] = TrainingResource::collection($trainings);
             return ResponseHelper::success($data, trans('alert.get_success'));
         } else {
-
-            return view('pages.dinas.training', compact('trainings'));
+            $fiscalYears = $this->fiscalYear->get();
+            return view('pages.dinas.training', compact('trainings', 'fiscalYears'));
         }
     }
 

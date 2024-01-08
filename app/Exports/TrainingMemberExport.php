@@ -3,14 +3,14 @@
 namespace App\Exports;
 
 use App\Models\Project;
-use App\Models\Training;
+use App\Models\TrainingMember;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request; // Import the Request class
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class TrainingExport implements FromView, ShouldAutoSize
+class TrainingMemberExport implements FromView, ShouldAutoSize
 {
     use Exportable;
 
@@ -25,15 +25,12 @@ class TrainingExport implements FromView, ShouldAutoSize
      */
     public function view(): View
     {
-        $trainings = Training::query()
-            ->when($this->request->name, function ($query) {
-                $query->where('name', 'LIKE', '%' . $this->request->name . '%');
-            })
-            ->when($this->request->fiscal_year_id, function ($query) {
-                $query->where('fiscal_year_id', $this->request->fiscal_year_id);
+        $trainingMembers = TrainingMember::query()
+            ->when($this->request->training, function ($query) {
+                $query->where('training_id', $this->request->training);
             })
             ->get();
 
-        return view('exports.training', ['trainings' => $trainings]);
+        return view('exports.training-member', ['trainingMembers' => $trainingMembers]);
     }
 }
