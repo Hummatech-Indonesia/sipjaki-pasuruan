@@ -172,7 +172,7 @@
                     <li>
                         <a href="{{ route('images.index') }}" class="waves-effect">
                             <i class="bx bx-image-add"></i>
-                            <span key="t-file-manager">Input Image</span>
+                            <span key="t-file-manager">Profil</span>
                         </a>
                     </li>
                     <li>
