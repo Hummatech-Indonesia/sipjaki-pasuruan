@@ -211,7 +211,7 @@
                             <span key="t-multi-level" class="px-2">Pengguna</span>
                         </a>
                         <ul class="sub-menu" aria-expanded="true">
-                            <li><a href="{{ route('all.agency') }}" key="t-tui-calendar">Dinas</a></li>
+                            <li><a href="{{ route('agencies.index') }}" key="t-tui-calendar">Dinas</a></li>
                             <li id="jasa-user">
                                 <a href="javascript: void(0);" id="jasa-user-link" class="has-arrow" key="t-level-1-2">Penyedia Jasa</a>
                                 <ul class="sub-menu" aria-expanded="true">
@@ -231,12 +231,6 @@
                         <a id="project-admin-link" href="{{ route('projects.index') }}" class="waves-effect">
                             <i class="bx bxs-package"></i>
                             <span key="t-file-manager">Paket Pekerjaan</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('agencies.index') }}" class="waves-effect">
-                            <i class="bx bx-user-plus"></i>
-                            <span key="t-file-manager">Dinas</span>
                         </a>
                     </li>
                     <li id="training-admin">
