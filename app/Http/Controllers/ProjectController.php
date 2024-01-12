@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Contracts\Interfaces\ConsultantProjectInterface;
 use App\Contracts\Interfaces\ContractCategoryInterface;
+use App\Contracts\Interfaces\DinasInterface;
 use App\Contracts\Interfaces\ExecutorProjectInterface;
 use App\Contracts\Interfaces\FundSourceInterface;
 use App\Models\Project;
@@ -34,9 +35,11 @@ class ProjectController extends Controller
     private ServiceProviderProjectInterface $serviceProviderProject;
     private ExecutorProjectInterface $executorProject;
     private ConsultantProjectInterface $consultantProject;
+    private DinasInterface $dinas;
 
-    public function __construct(ProjectInterface $project, ServiceProviderInterface $serviceProvider, FundSourceInterface $fundSource, ContractCategoryInterface $contractCategory, ServiceProviderProjectInterface $serviceProviderProjectInterface, ProjectService $service, ExecutorProjectInterface $executorProjectInterface, ConsultantProjectInterface $consultantProjectInterface)
+    public function __construct(ProjectInterface $project, ServiceProviderInterface $serviceProvider, FundSourceInterface $fundSource, ContractCategoryInterface $contractCategory, ServiceProviderProjectInterface $serviceProviderProjectInterface, ProjectService $service, ExecutorProjectInterface $executorProjectInterface, ConsultantProjectInterface $consultantProjectInterface, DinasInterface $dinas)
     {
+        $this->dinas = $dinas;
         $this->consultantProject = $consultantProjectInterface;
         $this->executorProject = $executorProjectInterface;
         $this->service = $service;
@@ -65,11 +68,12 @@ class ProjectController extends Controller
             $executors = $this->serviceProvider->getExecutor();
             $fundSources = $this->fundSource->get();
             $contractCategories = $this->contractCategory->get();
-
+            $dinases = $this->dinas->get();
+            $requestDinas = $request->dinas_id;
             $name = $request->name;
             $year = $request->year;
             $status = $request->status;
-            return view('pages.dinas.work-package', compact('name', 'status', 'year', 'projects', 'consultants', 'executors', 'fundSources', 'contractCategories'));
+            return view('pages.dinas.work-package', compact('name', 'status', 'year', 'projects', 'consultants', 'executors', 'fundSources', 'contractCategories', 'dinases','requestDinas'));
         }
     }
 
@@ -87,6 +91,7 @@ class ProjectController extends Controller
         }
         $id = $this->project->store($data)->id;
         $data['project_id'] = $id;
+        $data['name_package'] = 'Paket Konsultan ' . auth()->user()->name;
         $this->consultantProject->store($data);
         $this->executorProject->store($data);
         if ($request->is('api/*')) {

@@ -396,7 +396,7 @@
                             <td class="fs-5">{{ $loop->iteration }}</td>
                             <td class="fs-5">{{ $activeProject->name }}</td>
                             <td class="fs-5">{{ $activeProject->dinas->user->name }}</td>
-                            <td class="fs-5">{{ $activeProject->project_value }}</td>
+                            <td class="fs-5">{{ 'Rp ' . number_format($activeProject->project_value, 0, ',', '.') }}</td>
                         </tr>
                     @empty
                         <tr>

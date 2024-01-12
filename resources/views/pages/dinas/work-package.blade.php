@@ -7,46 +7,56 @@
         Paket Pekerjaan
     </p>
     <div class="d-flex justify-content-between ">
-        <form action="" class="d-flex gap-3 col-8">
-            <input type="search" id="search-name" value="{{$name}}" name="name" class="form-control" placeholder="Search">
-            <select name="status" id="search-status" class="form-control ml-3">
-                <option value="">Semua Status</option>
-                <option {{$status == 'active' ? 'selected' : ''}} value="active">Aktif</option>
-                <option {{$status == 'nonactive' ? 'selected' : ''}} value="nonactive">Non Aktif</option>
+        <form action="{{ route('projects.index') }}" method="GET" class="d-flex gap-3 col-8">
+            <input type="search" id="search-name" value="{{ $name }}" name="name" class="form-control"
+                placeholder="Search">
+            <select name="dinas_id" id="search-status" class="form-control ml-3">
+                <option value="">Semua Dinas</option>
+                @foreach ($dinases as $dinas)
+                    <option {{ $requestDinas == $dinas->id ? 'selected' : '' }} value="{{ $dinas->id }}">{{ $dinas->user->name }}</option>
+                @endforeach
+
             </select>
             <select name="year" id="search-year" class="form-control">
-                @for ($years = date('Y'); $years >= 2023; $years--)
-                    <option value="{{ $years }}">{{ $years }}</option>
+                <option value="" selected>Tampilkan Semua Tahun</option>
+                @for ($years = date('Y'); $years >= 2010; $years--)
+                    <option {{ $year == $years ? 'selected' : '' }} value="{{ $years }}">{{ $years }}</option>
                 @endfor
             </select>
-            <button type="submit" class="btn text-white d-flex items-center gap-2"
-                style="background-color:#1B3061">
+            <button type="submit" class="btn text-white d-flex items-center gap-2" style="background-color:#1B3061">
                 Cari <i class="fa fa-search my-auto"></i>
             </button>
             <button id="export-pdf" type="button" class="btn btn-danger d-flex items-center gap-2">
-                PDF<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="white" d="m23 12l-4-4v3h-9v2h9v3M1 18V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3h-2V6H3v12h12v-3h2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2Z"/></svg>
-            </i>
+                PDF<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                    <path fill="white"
+                        d="m23 12l-4-4v3h-9v2h9v3M1 18V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3h-2V6H3v12h12v-3h2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2Z" />
+                </svg>
+                </i>
             </button>
             <button id="export-excel" type="button" class="btn btn-success d-flex items-center gap-2">
-                Excel<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="white" d="m23 12l-4-4v3h-9v2h9v3M1 18V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3h-2V6H3v12h12v-3h2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2Z"/></svg>
-            </i>
+                Excel<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                    <path fill="white"
+                        d="m23 12l-4-4v3h-9v2h9v3M1 18V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3h-2V6H3v12h12v-3h2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2Z" />
+                </svg>
+                </i>
             </button>
 
         </form>
-        @if(auth()->user()->dinas)
-        <div class="">
-            <button data-bs-toggle="modal" data-bs-target="#modal-create" class="btn text-white"
-                style="background-color:#1B3061">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <path fill-rule="evenodd" clip-rule="evenodd"
-                        d="M12 4C12.5523 4 13 4.35817 13 4.8V19.2C13 19.6418 12.5523 20 12 20C11.4477 20 11 19.6418 11 19.2V4.8C11 4.35817 11.4477 4 12 4Z"
-                        fill="white" />
-                    <path fill-rule="evenodd" clip-rule="evenodd"
-                        d="M4 12C4 11.4477 4.35817 11 4.8 11H19.2C19.6418 11 20 11.4477 20 12C20 12.5523 19.6418 13 19.2 13H4.8C4.35817 13 4 12.5523 4 12Z"
-                        fill="white" />
-                </svg>Tambah
-            </button>
-        </div>
+        @if (auth()->user()->dinas)
+            <div class="">
+                <button data-bs-toggle="modal" data-bs-target="#modal-create" class="btn text-white"
+                    style="background-color:#1B3061">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                        fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M12 4C12.5523 4 13 4.35817 13 4.8V19.2C13 19.6418 12.5523 20 12 20C11.4477 20 11 19.6418 11 19.2V4.8C11 4.35817 11.4477 4 12 4Z"
+                            fill="white" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M4 12C4 11.4477 4.35817 11 4.8 11H19.2C19.6418 11 20 11.4477 20 12C20 12.5523 19.6418 13 19.2 13H4.8C4.35817 13 4 12.5523 4 12Z"
+                            fill="white" />
+                    </svg>Tambah
+                </button>
+            </div>
         @endif
     </div>
     <div class="modal fade bs-example-modal-xl" id="modal-create" tabindex="-1" role="dialog"
@@ -271,6 +281,7 @@
                         <th class="text-center table-sipjaki">Tahun</th>
                         <th class="text-center table-sipjaki">Nama Pekerjaan</th>
                         <th class="text-center table-sipjaki">Nilai Kontrak</th>
+                        <th class="text-center table-sipjaki">Dinas</th>
                         <th class="text-center table-sipjaki">Aksi</th>
                     </tr>
                 </thead>
@@ -287,44 +298,46 @@
                                 {{ $project->name }}
                             </td>
                             <td class="text-center">
-                                Rp.{{ number_format($project->project_value, 0, ',', '.'); }}
+                                Rp.{{ number_format($project->project_value, 0, ',', '.') }}
+                            </td>
+                            <td class="text-center">
+                                {{ $project->dinas->user->name }}
                             </td>
                             <td class="text-center">
                                 <div class="d-flex justify-content-center gap-2">
-                                    @if(auth()->user()->dinas)
-                                    <div class="d-flex justify-content-center mb-2">
-                                        <button data-id="{{ $project->id }}" style="min-width: 90px;width:100%"
-                                            class="btn btn-danger btn-delete d-flex"><i
-                                                class="bx bx-bx bxs-trash fs-4 me-1"></i>
-                                            Hapus</button>
-                                    </div>
-                                    <div class="d-flex justify-content-center mb-2">
-                                        <button style="min-width: 90px;width:100%" class="d-flex btn btn-edit btn-warning"
-                                            id="btn-edit-{{ $project->id }}" data-id="{{ $project->id }}"
-                                            data-name="{{ $project->name }}" data-year="{{ $project->year }}"
-                                            data-status="{{ $project->status }}"
-                                            data-start_at="{{ \Carbon\Carbon::parse($project->start_at)->format('Y-m-d') }}"
-                                            data-end_at="{{ \Carbon\Carbon::parse($project->end_at)->format('Y-m-d') }}"
-                                            data-finance_progress="{{ $project->finance_progress }}"
-                                            data-finance_progress_start="{{ \Carbon\Carbon::parse($project->finance_progress_start)->format('Y-m-d') }}"
-                                            data-physical_progress="{{ $project->physical_progress }}"
-                                            data-physical_progress_start="{{ \Carbon\Carbon::parse($project->physical_progress_start)->format('Y-m-d') }}"
-                                            data-project_value="{{ $project->project_value }}"
-                                            data-fund_source_id="{{ $project->fund_source_id }}"
-                                            data-service_provider_id="{{ $project->service_provider_id }}"
-                                            data-contract_category_id="{{ $project->contract_category_id }}"
-                                            data-consultant_id="{{ $project->consultant_id }}"
-                                            data-executor_id="{{ $project->executor_id }}"
-                                            data-characteristic_project="{{ $project->characteristic_project }}"><i
-                                                class="bx bx-bx bxs-edit fs-4 me-1"></i> Edit</button>
-                                    </div>
+                                    @if (auth()->user()->dinas)
+                                        <div class="d-flex justify-content-center mb-2">
+                                            <button data-id="{{ $project->id }}" style="min-width: 90px;width:100%"
+                                                class="btn btn-danger btn-delete d-flex"><i
+                                                    class="bx bx-bx bxs-trash fs-4 me-1"></i>
+                                                Hapus</button>
+                                        </div>
+                                        <div class="d-flex justify-content-center mb-2">
+                                            <button style="min-width: 90px;width:100%"
+                                                class="d-flex btn btn-edit btn-warning" id="btn-edit-{{ $project->id }}"
+                                                data-id="{{ $project->id }}" data-name="{{ $project->name }}"
+                                                data-year="{{ $project->year }}" data-status="{{ $project->status }}"
+                                                data-start_at="{{ \Carbon\Carbon::parse($project->start_at)->format('Y-m-d') }}"
+                                                data-end_at="{{ \Carbon\Carbon::parse($project->end_at)->format('Y-m-d') }}"
+                                                data-finance_progress="{{ $project->finance_progress }}"
+                                                data-finance_progress_start="{{ \Carbon\Carbon::parse($project->finance_progress_start)->format('Y-m-d') }}"
+                                                data-physical_progress="{{ $project->physical_progress }}"
+                                                data-physical_progress_start="{{ \Carbon\Carbon::parse($project->physical_progress_start)->format('Y-m-d') }}"
+                                                data-project_value="{{ $project->project_value }}"
+                                                data-fund_source_id="{{ $project->fund_source_id }}"
+                                                data-service_provider_id="{{ $project->service_provider_id }}"
+                                                data-contract_category_id="{{ $project->contract_category_id }}"
+                                                data-consultant_id="{{ $project->consultant_id }}"
+                                                data-executor_id="{{ $project->executor_id }}"
+                                                data-characteristic_project="{{ $project->characteristic_project }}"><i
+                                                    class="bx bx-bx bxs-edit fs-4 me-1"></i> Edit</button>
+                                        </div>
                                     @endif
                                     <div class="d-flex justify-content-center mb-2">
-                                        <a href="/detail-project-dinas/{{ $project->id }}" style="min-width: 90px;width:100%;background-color: #1B3061"
-                                            class="btn text-white btn-detail"
-                                            ><svg
-                                                xmlns="http://www.w3.org/2000/svg" width="19" height="19"
-                                                viewBox="0 0 24 24" fill="none">
+                                        <a href="/detail-project-dinas/{{ $project->id }}"
+                                            style="min-width: 90px;width:100%;background-color: #1B3061"
+                                            class="btn text-white btn-detail"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="19" height="19" viewBox="0 0 24 24" fill="none">
                                                 <path d="M4.5 12.5C7.5 6 16.5 6 19.5 12.5" stroke="white"
                                                     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                                 <path
@@ -699,7 +712,7 @@
             $('#modal-delete').modal('show')
         })
 
-        $('#export-excel').click(function(){
+        $('#export-excel').click(function() {
             var status = $('#search-status').val()
             var name = $('#search-name').val()
             var year = $('#search-year').val()
@@ -708,11 +721,11 @@
             window.location.href = location
         })
 
-        $('#export-pdf').click(function(){
+        $('#export-pdf').click(function() {
             var status = $('#search-status').val()
             var name = $('#search-name').val()
             var year = $('#search-year').val()
-            var route = "{{Route('project-export-pdf')}}"
+            var route = "{{ Route('project-export-pdf') }}"
             var location = `${route}?status=${status}&name=${name}&year=${year}`
             window.location.href = location
         })

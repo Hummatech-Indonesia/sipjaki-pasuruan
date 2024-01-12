@@ -195,6 +195,7 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::middleware('role:admin|superadmin|dinas')->group(function () {
+        Route::get('detail-project-dinas/{project}', [ProjectController::class, 'detailProjectDinas']);
         Route::resource('projects', ProjectController::class)->only(['index']);
         Route::get('training-members/{training}', [TrainingMemberController::class, 'index']);
         Route::post('training-members/{training}', [TrainingMemberController::class, 'store'])->name('training.members.store');
@@ -211,7 +212,6 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::middleware('role:dinas')->group(function () {
-        Route::get('detail-project-dinas/{project}', [ProjectController::class, 'detailProjectDinas']);
         Route::get('dashboard-dinas', [DinasController::class, 'dashboard'])->name('dashboard-dinas');
         Route::get('profile-OPD', [DinasController::class, 'index']);
         Route::resource('accident', AccidentController::class)->except('create', 'edit');

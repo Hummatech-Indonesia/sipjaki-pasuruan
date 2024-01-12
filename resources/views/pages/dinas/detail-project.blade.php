@@ -37,12 +37,31 @@
                     <tr>
                         <td class="fw-bold">Progres Fisik</td>
                         <td>:</td>
-                        <td id="detail-physical_progress">{{ $project->physical_progress }} %</td>
+                        <td id="detail-physical_progress"><?php
+                        $totalProgress = 0;
+                        
+                        foreach ($project->serviceProviderProjects as $index => $serviceProviderProjec) {
+                            $progress = $serviceProviderProjec->progres ?? 0;
+                            $totalProgress += $progress;
+                        }
+                        
+                        echo $totalProgress . '%';
+                        ?></td>
                     </tr>
+
                     <tr>
                         <td class="fw-bold">Progres Keuangan</td>
                         <td>:</td>
-                        <td id="detail-finance_progress">{{ $project->finance_progress }} %</td>
+                        <td id="detail-finance_progress"><?php
+                        $totalProgress = 0;
+                        
+                        foreach ($project->serviceProviderProjects as $index => $serviceProviderProjec) {
+                            $progress = $serviceProviderProjec->finance_progress ?? 0;
+                            $totalProgress += $progress;
+                        }
+                        
+                        echo $totalProgress . '%';
+                        ?></td>
                     </tr>
                     <tr>
                         <td class="fw-bold">Status</td>
@@ -114,14 +133,14 @@
             </div>
             <div class="table-responsive">
                 <table class="table mb-0">
-        
+
                     <thead>
                         <tr>
                             <th>Nama</th>
                             <th></th>
                             <th>File</th>
                         </tr>
-        
+
                     </thead>
                     <tbody>
                         <tr>
@@ -130,8 +149,8 @@
                             <td>
                                 @if ($project->executorProject->contract)
                                     <a href="{{ route('downloadExecutorContract', ['executorProject' => $project->executorProject->id]) }}"
-                                        type="button" class="btn btn-md text-white"
-                                        style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                        type="button" class="btn btn-md text-white" style="background-color:#1B3061;"><i
+                                            class="bx bxs-download bx-xs"></i>
                                         Download</a>
                                 @endif
                             </td>
@@ -143,8 +162,8 @@
                             <td>
                                 @if ($project->executorProject->administrative_minutes)
                                     <a href="{{ route('downloadExecutorAdministrativeMinutes', ['executorProject' => $project->executorProject->id]) }}"
-                                        type="button" class="btn btn-md text-white"
-                                        style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                        type="button" class="btn btn-md text-white" style="background-color:#1B3061;"><i
+                                            class="bx bxs-download bx-xs"></i>
                                         Download</a>
                                 @endif
                             </td>
@@ -155,8 +174,8 @@
                             <td>
                                 @if ($project->executorProject->report)
                                     <a href="{{ route('downloadExecutorReport', ['executorProject' => $project->executorProject->id]) }}"
-                                        type="button" class="btn btn-md text-white"
-                                        style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                        type="button" class="btn btn-md text-white" style="background-color:#1B3061;"><i
+                                            class="bx bxs-download bx-xs"></i>
                                         Download</a>
                                 @endif
                             </td>
@@ -167,8 +186,8 @@
                             <td>
                                 @if ($project->executorProject->minutes_of_disbursement)
                                     <a href="{{ route('downloadMinutesOfDisbursement', ['executorProject' => $project->executorProject->id]) }}"
-                                        type="button" class="btn btn-md text-white"
-                                        style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                        type="button" class="btn btn-md text-white" style="background-color:#1B3061;"><i
+                                            class="bx bxs-download bx-xs"></i>
                                         Download</a>
                                 @endif
                             </td>
@@ -179,8 +198,8 @@
                             <td>
                                 @if ($project->executorProject->mutual_check_0)
                                     <a href="{{ route('downloadMinutesOfHandOver', ['executorProject-' => $project->executorProject->id]) }}"
-                                        type="button" class="btn btn-md text-white"
-                                        style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                        type="button" class="btn btn-md text-white" style="background-color:#1B3061;"><i
+                                            class="bx bxs-download bx-xs"></i>
                                         Download</a>
                                 @endif
                             </td>
@@ -191,8 +210,8 @@
                             <td>
                                 @if ($project->executorProject->mutual_check_100)
                                     <a href="{{ route('downloadMinutesOfHandOver', ['executorProject-' => $project->executorProject->id]) }}"
-                                        type="button" class="btn btn-md text-white"
-                                        style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                        type="button" class="btn btn-md text-white" style="background-color:#1B3061;"><i
+                                            class="bx bxs-download bx-xs"></i>
                                         Download</a>
                                 @endif
                             </td>
@@ -203,8 +222,8 @@
                             <td>
                                 @if ($project->executorProject->p1_meeting_minutes)
                                     <a href="{{ route('downloadMinutesOfHandOver', ['executorProject-' => $project->executorProject->id]) }}"
-                                        type="button" class="btn btn-md text-white"
-                                        style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                        type="button" class="btn btn-md text-white" style="background-color:#1B3061;"><i
+                                            class="bx bxs-download bx-xs"></i>
                                         Download</a>
                                 @endif
                             </td>
@@ -215,8 +234,8 @@
                             <td>
                                 @if ($project->executorProject->p2_meeting_minutes)
                                     <a href="{{ route('downloadMinutesOfHandOver', ['executorProject-' => $project->executorProject->id]) }}"
-                                        type="button" class="btn btn-md text-white"
-                                        style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                        type="button" class="btn btn-md text-white" style="background-color:#1B3061;"><i
+                                            class="bx bxs-download bx-xs"></i>
                                         Download</a>
                                 @endif
                             </td>
@@ -227,8 +246,8 @@
                             <td>
                                 @if ($project->executorProject->uitzet_minutes)
                                     <a href="{{ route('downloadMinutesOfHandOver', ['executorProject-' => $project->executorProject->id]) }}"
-                                        type="button" class="btn btn-md text-white"
-                                        style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                        type="button" class="btn btn-md text-white" style="background-color:#1B3061;"><i
+                                            class="bx bxs-download bx-xs"></i>
                                         Download</a>
                                 @endif
                             </td>
@@ -263,8 +282,8 @@
                             <td>
                                 @if ($project->consultantProject->contract)
                                     <a href="{{ route('downloadContract', ['consultantProject' => $project->consultantProject->id]) }}"
-                                        type="button" class="btn btn-md text-white"
-                                        style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                        type="button" class="btn btn-md text-white" style="background-color:#1B3061;"><i
+                                            class="bx bxs-download bx-xs"></i>
                                         Download</a>
                                 @endif
                             </td>
@@ -276,8 +295,8 @@
                             <td>
                                 @if ($project->consultantProject->administrative_minutes)
                                     <a href="{{ route('downloadAdministrativeMinutes', ['consultantProject' => $project->consultantProject->id]) }}"
-                                        type="button" class="btn btn-md text-white"
-                                        style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                        type="button" class="btn btn-md text-white" style="background-color:#1B3061;"><i
+                                            class="bx bxs-download bx-xs"></i>
                                         Download</a>
                                 @endif
                             </td>
@@ -288,8 +307,8 @@
                             <td>
                                 @if ($project->consultantProject->report)
                                     <a href="{{ route('downloadReport', ['consultantProject' => $project->consultantProject->id]) }}"
-                                        type="button" class="btn btn-md text-white"
-                                        style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                        type="button" class="btn btn-md text-white" style="background-color:#1B3061;"><i
+                                            class="bx bxs-download bx-xs"></i>
                                         Download</a>
                                 @endif
                             </td>
@@ -300,8 +319,8 @@
                             <td>
                                 @if ($project->consultantProject->minutes_of_disbursement)
                                     <a href="{{ route('downloadMinutesOfDisbursement', ['consultantProject' => $project->consultantProject->id]) }}"
-                                        type="button" class="btn btn-md text-white"
-                                        style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                        type="button" class="btn btn-md text-white" style="background-color:#1B3061;"><i
+                                            class="bx bxs-download bx-xs"></i>
                                         Download</a>
                                 @endif
                             </td>
@@ -312,8 +331,8 @@
                             <td>
                                 @if ($project->consultantProject->minutes_of_hand_over)
                                     <a href="{{ route('downloadMinutesOfHandOver', ['consultantProject' => $project->consultantProject->id]) }}"
-                                        type="button" class="btn btn-md text-white"
-                                        style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                        type="button" class="btn btn-md text-white" style="background-color:#1B3061;"><i
+                                            class="bx bxs-download bx-xs"></i>
                                         Download</a>
                                 @endif
                             </td>
@@ -323,7 +342,6 @@
             </div>
         </div>
     </div>
-    
 @endsection
 @section('script')
     <script>

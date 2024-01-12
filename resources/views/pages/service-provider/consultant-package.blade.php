@@ -56,7 +56,7 @@
                             {{ $index + 1 }}
                         </td>
                         <td class="text-center">
-                            {{ $serviceProviderProject->name }}
+                            {{ $serviceProviderProject->consultantProject->name_package }}
                         </td>
                         <td class="text-center">
                             {{ $serviceProviderProject->year }}
@@ -92,7 +92,6 @@
 @endsection
 @section('script')
     <script>
-       
         document.addEventListener("DOMContentLoaded", function() {
             const progressBar = document.getElementById("progressBar");
             const totalProgress = progressBar.getAttribute("data-total-progress");

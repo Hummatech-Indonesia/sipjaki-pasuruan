@@ -40,8 +40,9 @@ class TrainingController extends Controller
             $data['data'] = TrainingResource::collection($trainings);
             return ResponseHelper::success($data, trans('alert.get_success'));
         } else {
+            $year = $request->fiscal_year_id;
             $fiscalYears = $this->fiscalYear->get();
-            return view('pages.dinas.training', compact('trainings', 'fiscalYears'));
+            return view('pages.dinas.training', compact('trainings', 'fiscalYears','year'));
         }
     }
 
