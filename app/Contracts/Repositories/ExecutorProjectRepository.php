@@ -89,6 +89,9 @@ class ExecutorProjectRepository extends BaseRepository implements ExecutorProjec
             ->when($request->name, function ($query) use ($request) {
                 $query->where('name', 'LIKE', '%' . $request->name . '%');
             })
+            ->when($request->consultant,function($query) use ($request){
+                $query->where('consultant_project_id',$request->consultant);
+            })
             ->when($request->year, function ($query) use ($request) {
                 $query->where('fiscal_year_id', $request->year);
             })
@@ -121,6 +124,9 @@ class ExecutorProjectRepository extends BaseRepository implements ExecutorProjec
                 $query->when(auth()->user()->serviceProvider->type_of_business_entity == TypeOfBusinessEntityEnum::EXECUTOR->value,function($q){
                     $q->where('service_provider_id',auth()->user()->serviceProvider->id);
                 });
+            })
+            ->when($request->consultant,function($query) use ($request){
+                $query->where('consultant_project_id',$request->consultant);
             })
             ->when($request->name, function ($query) use ($request) {
                 $query->where('name', 'LIKE', '%' . $request->name . '%');

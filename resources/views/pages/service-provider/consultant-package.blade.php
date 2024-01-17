@@ -25,6 +25,7 @@
             </div>
         </form>
     </div>
+    
     <div class="row">
         <div class="table-responsive">
             <table class="table">
@@ -64,7 +65,7 @@
                         </td>
                         <td class="text-center">
                             <div class="d-flex justify-content-center">
-                                <a href="detail-consultant/{{ $consultantProject->id }}"
+                                <a href="{{Route('consultant-projects.show',['consultant_project' => $consultantProject->id])}}"
                                     class="btn btn-primary btn-md rounded-4  " style="background-color: #1B3061;">
                                     Detail
                                 </a>

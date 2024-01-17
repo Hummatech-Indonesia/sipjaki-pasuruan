@@ -136,6 +136,7 @@ Route::middleware('auth')->group(function () {
     Route::get('project-export', [ProjectController::class, 'export'])->name('project-export-excel');
     Route::get('print-project-pdf', [ProjectController::class, 'exportPdf'])->name('project-export-pdf');
 
+    Route::resource('consultant-projects',ConsultantProjectController::class)->only(['show']);
 
     Route::middleware('role:superadmin')->group(function () {
 
@@ -188,6 +189,7 @@ Route::middleware('auth')->group(function () {
             Route::delete('sub-classifications/{sub_classification}', [SubClassificationController::class, 'destroy'])->name('destroy');
         });
         Route::post('import-associations', [AssociationController::class, 'import'])->name('import.assosiations');
+
     });
 
     Route::middleware('role:admin')->group(function () {
@@ -218,7 +220,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('accident', AccidentController::class)->except('create', 'edit');
         Route::delete('accident-destroy/{accident}', [AccidentController::class, 'destroy']);
         Route::get('accident-show/{accident}', [AccidentController::class, 'show']);
-        Route::resource('consultant-projects',ConsultantProjectController::class)->except(['index']);
+        Route::resource('consultant-projects',ConsultantProjectController::class)->except(['index','show']);
         Route::resource('executor-projects',ExecutorProjectController::class)->except(['index']);
     });
 
@@ -231,7 +233,6 @@ Route::middleware('auth')->group(function () {
             'amendment-deed' => AmendmentDeepController::class,
         ]);
         Route::get('consultant-package', [ConsultantProjectController::class, 'consultantProject'])->name('consultant-package');
-        Route::get('detail-consultant/{project}', [ConsultantProjectController::class, 'index'])->name('detail-consultant');
         Route::post('consultant-project/{project}', [ConsultantProjectController::class, 'store'])->name('consultant-project.store');
         Route::put('consultant-project/{project}', [ConsultantProjectController::class, 'update'])->name('consultant-project.update');
         Route::post('service-provider-executor-projects/{project}', [ServiceProviderProjectController::class, 'store'])->name('service-provider-executor-projects.store');

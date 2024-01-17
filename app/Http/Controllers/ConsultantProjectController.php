@@ -9,6 +9,7 @@ use App\Http\Requests\ConsultantProjectUpdateRequest;
 use App\Contracts\Interfaces\ConsultantProjectInterface;
 use App\Contracts\Interfaces\ContractCategoryInterface;
 use App\Contracts\Interfaces\DinasInterface;
+use App\Contracts\Interfaces\ExecutorProjectInterface;
 use App\Contracts\Interfaces\FiscalYearInterface;
 use App\Contracts\Interfaces\FundSourceInterface;
 use App\Contracts\Interfaces\ServiceProviderInterface;
@@ -25,6 +26,7 @@ class ConsultantProjectController extends Controller
     private ContractCategoryInterface $contractCategory;
     private ServiceProviderInterface $serviceProvider;
     private FiscalYearInterface $fiscalYear;
+    private ExecutorProjectInterface $executorProject;
 
     public function __construct(
         ConsultantProjectInterface $consultantProject,
@@ -34,6 +36,7 @@ class ConsultantProjectController extends Controller
         ContractCategoryInterface $contractCategory,
         ServiceProviderInterface $serviceProvider,
         FiscalYearInterface $fiscalYear,
+        ExecutorProjectInterface $executorProject,
         )
     {
         $this->consultantProject = $consultantProject;
@@ -43,6 +46,7 @@ class ConsultantProjectController extends Controller
         $this->contractCategory = $contractCategory;
         $this->serviceProvider = $serviceProvider;
         $this->fiscalYear = $fiscalYear;
+        $this->executorProject = $executorProject;
     }
     /**
      * Display a listing of the resource.
@@ -50,20 +54,35 @@ class ConsultantProjectController extends Controller
      */
     public function index(Request $request)
     {
+        $consultantProjects = $this->consultantProject->customPaginate($request, 10);
+        $fiscalYears = $this->fiscalYear->get();
+
+        return view('pages.service-provider.consultant-package',compact(
+            'consultantProjects',
+            'fiscalYears'
+        ));   
+    }
+
+    public function show(Request $request,ConsultantProject $consultantProject)
+    {
+        $request->merge([
+            'consultant' => $consultantProject->id
+        ]);
+        
         $fundSources = $this->fundSource->get();
         $contractCategories = $this->contractCategory->get();
         $dinases = $this->dinas->get();
         $fiscalYears = $this->fiscalYear->get();
         $consultants = $this->serviceProvider->getConsultant();
-        $consultantProjects = $this->consultantProject->customPaginate($request,15);
-        
+        $executorProjects = $this->executorProject->customPaginate($request,15);
         return view('pages.consultant-project.index',compact(
+            'consultantProject',
             'fundSources',
             'contractCategories',
             'dinases',
             'fiscalYears',
             'consultants',
-            'consultantProjects'
+            'executorProjects'
         ));
     }
 
