@@ -61,8 +61,8 @@
                 <div class="card-body">
                     <div class="d-flex">
                         <div class="flex-grow-1">
-                            <p class="text-muted fw-medium">Jumlah Pekerjaan Aktif</p>
-                            <h4 class="mb-0" style="color: #1B3061">{{ $activeExecutorProjectCount }}</h4>
+                            <p class="text-muted fw-medium">Jumlah Paket Aktif</p>
+                            <h4 class="mb-0" style="color: #1B3061">{{ $activeProjectCount }}</h4>
                         </div>
 
                         <div class="flex-shrink-0 align-self-center ">
@@ -86,8 +86,8 @@
                 <div class="card-body">
                     <div class="d-flex">
                         <div class="flex-grow-1">
-                            <p class="text-muted fw-medium">Jumlah Paket Pekerjaan</p>
-                            <h4 class="mb-0" style="color: #1B3061">{{ $executorProjectCount }}</h4>
+                            <p class="text-muted fw-medium">Jumlah Paket</p>
+                            <h4 class="mb-0" style="color: #1B3061">{{ $projectCount }}</h4>
                         </div>
 
                         <div class="flex-shrink-0 align-self-center">
@@ -138,40 +138,63 @@
     </div>
     <div class="card p-3">
         <h5 class="mb-4">
-            Berikut daftar Pekerjaan sedang aktif
+            Berikut daftar paket {{ auth()->user()->serviceProvider->type_of_business_entity == 'consultant' ? 'konsultan' : 'pekerjaan'}} yang sedang aktif
         </h5>
         <div class="table-responsive">
             <table class="table table-borderless" border="1">
                 <thead>
                     <tr>
                         <th style="background-color: #1B3061;color:#ffffff">No</th>
-                        <th style="background-color: #1B3061;color:#ffffff">Nama Pekerjaan</th>
+                        <th style="background-color: #1B3061;color:#ffffff">Nama</th>
                         <th style="background-color: #1B3061;color:#ffffff">Dinas</th>
                         <th style="background-color: #1B3061;color:#ffffff">Nilai Project</th>
                         <th style="background-color: #1B3061;color:#ffffff">Progres</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($activeExecutorProjects as $activeExecutorProject)
-                    <tr>
-                        <td class="fs-5">{{ $loop->iteration }}</td>
-                        <td class="fs-5">{{ $activeExecutorProject->name }}</td>
-                        <td class="fs-5">{{ $activeExecutorProject->consultantProject->dinas->user->name }}</td>
-                        <td class="fs-5">Rp.{{ number_format($activeExecutorProject->project_value, 0, ',', '.') }}</td>
-                        <td class="fs-5">{{ $activeExecutorProject->physical_progress }}%</td>
-                    </tr>
-                    @empty
-                    <tr>
-                        <td colspan="6" class="text-center">
-                            <div class="d-flex justify-content-center" style="min-height:16rem">
-                                <div class="my-auto">
-                                    <img src="{{ asset('no-data.png') }}" width="300" height="300" />
-                                    <h4 class="text-center mt-4">Tidak Ada Pekerjaan Yang Aktif !!</h4>
+                    @if (auth()->user()->serviceProvider->type_of_business_entity == 'consultant')
+                        @forelse ($consultantProjects as $consultantProject)
+                        <tr>
+                            <td class="fs-5">{{ $loop->iteration }}</td>
+                            <td class="fs-5">{{ $consultantProject->name }}</td>
+                            <td class="fs-5">{{ $consultantProject->dinas->user->name }}</td>
+                            <td class="fs-5">Rp.{{ number_format($consultantProject->project_value, 0, ',', '.') }}</td>
+                            <td class="fs-5">{{ $consultantProject->finance_progress }}%</td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="6" class="text-center">
+                                <div class="d-flex justify-content-center" style="min-height:16rem">
+                                    <div class="my-auto">
+                                        <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                        <h4 class="text-center mt-4">Tidak Ada Pekerjaan Yang Aktif !!</h4>
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                    </tr>
-                    @endforelse
+                            </td>
+                        </tr>
+                        @endforelse
+                    @else
+                        @forelse ($activeExecutorProjects as $activeExecutorProject)
+                        <tr>
+                            <td class="fs-5">{{ $loop->iteration }}</td>
+                            <td class="fs-5">{{ $activeExecutorProject->name }}</td>
+                            <td class="fs-5">{{ $activeExecutorProject->consultantProject->dinas->user->name }}</td>
+                            <td class="fs-5">Rp.{{ number_format($activeExecutorProject->project_value, 0, ',', '.') }}</td>
+                            <td class="fs-5">{{ $activeExecutorProject->physical_progress }}%</td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="6" class="text-center">
+                                <div class="d-flex justify-content-center" style="min-height:16rem">
+                                    <div class="my-auto">
+                                        <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                        <h4 class="text-center mt-4">Tidak Ada Pekerjaan Yang Aktif !!</h4>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        @endforelse
+                    @endif
                 </tbody>
             </table>
         </div>

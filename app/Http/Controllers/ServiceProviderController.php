@@ -67,16 +67,24 @@ class ServiceProviderController extends Controller
         $activeExecutorProjects = $this->executorProject->search($request);
         $countOfficer = $this->officer->count(null);
         $countWorker = $this->worker->countWorker();
-        $activeExecutorProjectCount = $this->executorProject->count(['status' => StatusEnum::ACTIVE->value]);
-        $executorProjectCount = $this->executorProject->count(null);
+        $consultantProjects = $this->consultantProject->search($request);
+
+        if(auth()->user()->serviceProvider->type_of_business_entity == 'consultant'){
+            $activeProjectCount = $this->consultantProject->count(['status' => StatusEnum::ACTIVE->value]);
+            $projectCount = $this->consultantProject->count(null);
+        }else{
+            $activeProjectCount = $this->executorProject->count(['status' => StatusEnum::ACTIVE->value]);
+            $projectCount = $this->executorProject->count(null);
+        }
 
         return view('pages.service-provider.dashboard',compact(
             'workers',
             'activeExecutorProjects',
             'countOfficer',
             'countWorker',
-            'activeExecutorProjectCount',
-            'executorProjectCount',
+            'activeProjectCount',
+            'projectCount',
+            'consultantProjects'
         ));
     }
 
@@ -132,9 +140,11 @@ class ServiceProviderController extends Controller
         $officers = $this->officer->get();
         $workers = $this->worker->get();
         $executorProjects = $this->executorProject->search($request);
+        $consultantProjects = $this->consultantProject->search($request);
         $verifications = auth()->user()->serviceProvider->verification;
         $amendmentDeeps = auth()->user()->serviceProvider->amendmentDeed;
         $foundingDeeps = auth()->user()->serviceProvider->foundingDeed;
+
 
         return view('pages.service-provider.profile', compact(
             'serviceProvider',
@@ -142,6 +152,7 @@ class ServiceProviderController extends Controller
             'officers',
             'workers',
             'executorProjects',
+            'consultantProjects',
             'verifications',
             'amendmentDeeps',
             'foundingDeeps'
