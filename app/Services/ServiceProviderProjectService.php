@@ -6,6 +6,7 @@ use App\Enums\UploadDiskEnum;
 use App\Helpers\ResponseHelper;
 use Illuminate\Support\Str;
 use App\Http\Requests\ServiceProviderProjectRequest;
+use App\Models\ExecutorProject;
 use App\Models\Project;
 use App\Models\ServiceProviderProject;
 use App\Traits\UploadTrait;
@@ -25,19 +26,19 @@ class ServiceProviderProjectService
      * @param  mixed $project
      * @return mixed
      */
-    public function store(ServiceProviderProjectRequest $request, $serviceProviderProjects, Project $project): mixed
+    public function store(ServiceProviderProjectRequest $request, $serviceProviderProjects, ExecutorProject $executorProject): mixed
     {
         $data = $request->validated();
         $progres = 0;
-        $data['project_id'] = $project->id;
-        if($data['file']) $data['file'] = $this->upload(UploadDiskEnum::SERVICEPROVIDERPROJECT->value, $request->file('file'));
+        $data['executor_project_id'] = $executorProject->id;
+        if(isset($data['file'])) $data['file'] = $this->upload(UploadDiskEnum::SERVICEPROVIDERPROJECT->value, $request->file('file'));
         if ($serviceProviderProjects->first() == null) {
             return $data;
         } else {
             foreach ($serviceProviderProjects as $serviceProviderProject) {
                 $progres += $serviceProviderProject->progres;
             }
-            if ($data['progres']  + $project->physical_progress + $progres > 100) {
+            if ($data['progres']  + $executorProject->physical_progress + $progres > 100) {
                 return false;
             } else {
                 return $data;
@@ -66,7 +67,7 @@ class ServiceProviderProjectService
         foreach ($serviceProviderProjects as $serviceProviderProject) {
             $progres += $serviceProviderProject->progres;
         }
-        if ($data['progres']  + $service_provider_project->project->physical_progres + ($progres - $service_provider_project->progres) > 100) {
+        if ($data['progres']  + $service_provider_project->executorProject->physical_progres + ($progres - $service_provider_project->progres) > 100) {
             return false;
         } else {
             return $data;

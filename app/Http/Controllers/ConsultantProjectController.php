@@ -2,38 +2,69 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Services\ConsultantProjectService;
-use App\Contracts\Interfaces\ProjectInterface;
 use App\Http\Requests\ConsultantProjectRequest;
 use App\Http\Requests\ConsultantProjectUpdateRequest;
 use App\Contracts\Interfaces\ConsultantProjectInterface;
+use App\Contracts\Interfaces\ContractCategoryInterface;
+use App\Contracts\Interfaces\DinasInterface;
+use App\Contracts\Interfaces\FiscalYearInterface;
+use App\Contracts\Interfaces\FundSourceInterface;
+use App\Contracts\Interfaces\ServiceProviderInterface;
 use App\Helpers\ResponseHelper;
 use App\Http\Resources\ProjectResource;
 use App\Models\ConsultantProject;
-use Illuminate\Http\JsonResponse;
 
 class ConsultantProjectController extends Controller
 {
     private ConsultantProjectInterface $consultantProject;
     private ConsultantProjectService $service;
-    private ProjectInterface $project;
-    public function __construct(ConsultantProjectInterface $consultantProjectInterface, ConsultantProjectService $consultantProjectService, ProjectInterface $project)
+    private DinasInterface $dinas;
+    private FundSourceInterface $fundSource;
+    private ContractCategoryInterface $contractCategory;
+    private ServiceProviderInterface $serviceProvider;
+    private FiscalYearInterface $fiscalYear;
+
+    public function __construct(
+        ConsultantProjectInterface $consultantProject,
+        ConsultantProjectService $consultantProjectService,
+        DinasInterface $dinas,
+        FundSourceInterface $fundSource,
+        ContractCategoryInterface $contractCategory,
+        ServiceProviderInterface $serviceProvider,
+        FiscalYearInterface $fiscalYear,
+        )
     {
-        $this->project = $project;
-        $this->consultantProject = $consultantProjectInterface;
+        $this->consultantProject = $consultantProject;
         $this->service = $consultantProjectService;
+        $this->dinas = $dinas;
+        $this->fundSource = $fundSource;
+        $this->contractCategory = $contractCategory;
+        $this->serviceProvider = $serviceProvider;
+        $this->fiscalYear = $fiscalYear;
     }
     /**
      * Display a listing of the resource.
-     * @param  mixed $project
      * @return void
      */
-    public function index(Project $project)
+    public function index(Request $request)
     {
-        $consultantProjects = $this->consultantProject->show($project->id);
-        return view('pages.service-provider.detail-consultant', ['consultantProject' => $consultantProjects, 'project' => $project]);
+        $fundSources = $this->fundSource->get();
+        $contractCategories = $this->contractCategory->get();
+        $dinases = $this->dinas->get();
+        $fiscalYears = $this->fiscalYear->get();
+        $consultants = $this->serviceProvider->getConsultant();
+        $consultantProjects = $this->consultantProject->customPaginate($request,15);
+        
+        return view('pages.consultant-project.index',compact(
+            'fundSources',
+            'contractCategories',
+            'dinases',
+            'fiscalYears',
+            'consultants',
+            'consultantProjects'
+        ));
     }
 
     /**
@@ -43,11 +74,12 @@ class ConsultantProjectController extends Controller
      * @param  mixed $project
      * @return void
      */
-    public function store(ConsultantProjectRequest $request, Project $project)
+    public function store(ConsultantProjectRequest $request)
     {
-        $data = $this->service->store($request, $project);
-        $this->consultantProject->store($data);
-        return redirect()->back()->with('success', trans('alert.update_success'));
+
+        $this->consultantProject->store($request->validated());
+
+        return redirect()->back()->with('success', trans('alert.add_success'));
     }
 
     /**
@@ -56,29 +88,27 @@ class ConsultantProjectController extends Controller
      * @param  mixed $request
      * @return void
      */
-    public function update(ConsultantProjectUpdateRequest $request, Project $project)
+    public function update(ConsultantProjectUpdateRequest $request,ConsultantProject $consultantProject)
     {
-        $this->consultantProject->update($project->consultantProject->id, $request->validated());
-        $this->project->update($project->id, $request->validated());
+        $this->consultantProject->update($consultantProject->consultantProject->id, $request->validated());
         return redirect()->back()->with('success', trans('alert.update_success'));
     }
 
-    /**
+    /**d
      * index
      *
      * @return void
      */
     public function consultantProject(Request $request)
     {
-        $serviceProviderProjects = $this->project->serviceProviderProject($request, 10);
-        if ($request->is('api/*')) {
-            $data['paginate'] = $this->customPaginate($serviceProviderProjects->currentPage(), $serviceProviderProjects->lastPage());
-            $data['data'] = ProjectResource::collection($serviceProviderProjects);
-            return ResponseHelper::success($data);
-        } else {
-            $year = $request->year;
-            return view('pages.service-provider.consultant-package', ['serviceProviderProjects' => $serviceProviderProjects, 'year' => $year]);
-        }
+        $consultantProjects = $this->consultantProject->customPaginate($request, 10);
+        $fiscalYears = $this->fiscalYear->get();
+
+        return view('pages.service-provider.consultant-package',compact(
+            'consultantProjects',
+            'fiscalYears'
+        ));
+        
     }
 
     /**

@@ -82,8 +82,9 @@ class ServiceProviderProjectRepository extends BaseRepository implements Service
     public function search(Request $request): mixed
     {
         return $this->model->query()
-            ->where('project_id', $request->project_id)
-            ->where('service_provider_id', auth()->user()->serviceProvider->id)
+            ->when($request->executor_project_id,function($query) use ($request){
+                $query->where('executor_project_id',$request->executor_project_id);
+            })
             ->get();
     }
 }

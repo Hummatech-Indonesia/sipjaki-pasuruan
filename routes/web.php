@@ -126,7 +126,7 @@ Route::middleware('auth')->group(function () {
     Route::get('download-executor-administrative-minutes/{executorProject}', [ExecutorProjectController::class, 'downloadAdministrativeMinutes'])->name('downloadExecutorAdministrativeMinutes');
     Route::get('download-executor-report/{executorProject}', [ExecutorProjectController::class, 'downloadReport'])->name('downloadExecutorReport');
     Route::get('download-executor-minutes-of-disbursement/{executorProject}', [ExecutorProjectController::class, 'downloadMinutesOfDisbursement'])->name('downloadExecutorMinutesOfDisbursement');
-    Route::get('download-uitzet-minutes/{executorProject}', [ExecutorProjectController::class, 'downloadUitzetMinutes'])->name('downloadrUitzetMinutes');
+    Route::get('download-uitzet-minutes/{executorProject}', [ExecutorProjectController::class, 'downloadUitzetMinutes'])->name('downloadUitzetMinutes');
     Route::get('download-mutual-check-0/{executorProject}', [ExecutorProjectController::class, 'downloadMutualCheck0'])->name('downloadMutualCheck0');
     Route::get('download-mutual-check-100/{executorProject}', [ExecutorProjectController::class, 'downloadMutualCheck100'])->name('downloadMutualCheck100');
     Route::get('download-mutual-check-0/{executorProject}', [ExecutorProjectController::class, 'downloadMutualCheck0'])->name('downloadMutualCheck0');
@@ -196,7 +196,8 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('role:admin|superadmin|dinas')->group(function () {
         Route::get('detail-project-dinas/{project}', [ProjectController::class, 'detailProjectDinas']);
-        Route::resource('projects', ProjectController::class)->only(['index']);
+        Route::resource('consultant-projects',ConsultantProjectController::class)->only(['index']);
+        Route::resource('executor-projects',ExecutorProjectController::class)->only(['index']);
         Route::get('training-members/{training}', [TrainingMemberController::class, 'index']);
         Route::post('training-members/{training}', [TrainingMemberController::class, 'store'])->name('training.members.store');
         Route::put('training-member-update/{training_member}', [TrainingMemberController::class, 'update'])->name('training.members');
@@ -217,10 +218,12 @@ Route::middleware('auth')->group(function () {
         Route::resource('accident', AccidentController::class)->except('create', 'edit');
         Route::delete('accident-destroy/{accident}', [AccidentController::class, 'destroy']);
         Route::get('accident-show/{accident}', [AccidentController::class, 'show']);
-        Route::resource('projects', ProjectController::class)->except(['index']);
+        Route::resource('consultant-projects',ConsultantProjectController::class)->except(['index']);
+        Route::resource('executor-projects',ExecutorProjectController::class)->except(['index']);
     });
 
     Route::middleware('role:service provider')->group(function () {
+        Route::put('upload-file-executor{executorProject}', [ExecutorProjectController::class, 'upload'])->name('upload-file-executor');
         Route::resources([
             'officers' => OfficerController::class,
             'verification-service-provider' => ServiceProviderVerificationController::class,
@@ -243,7 +246,7 @@ Route::middleware('auth')->group(function () {
         Route::put('update-business-entity', [ServiceProviderController::class, 'update'])->name('update-business-entity');
 
         Route::get('service-provider-projects', [ServiceProviderProjectController::class, 'index']);
-        Route::post('service-provider-projects/{project}', [ServiceProviderProjectController::class, 'store'])->name('service-provider-projects.store');
+        Route::post('service-provider-projects/{executorProject}', [ServiceProviderProjectController::class, 'store'])->name('service-provider-projects.store');
         Route::put('service-provider-projects/{service_provider_project}', [ServiceProviderProjectController::class, 'update'])->name('service-provider-projects.update');
         Route::delete('service-provider-projects/{service_provider_project}', [ServiceProviderProjectController::class, 'destroy'])->name('service-provider-projects.delete');
 
@@ -259,7 +262,7 @@ Route::middleware('auth')->group(function () {
         Route::get('data-service-providers', [AssociationController::class, 'dataServiceProvider']);
 
         Route::get('work-package', [ServiceProviderProjectController::class, 'index'])->name('work.package');
-        Route::get('detail-project/{project}', [ProjectController::class, 'projectDetail'])->name('detail-project');
+        Route::get('detail-project/{executorProject}', [ProjectController::class, 'projectDetail'])->name('detail-project');
         Route::get('service-provider-project-detail/{service_provider_project}', [ServiceProviderProjectController::class, 'show'])->name('service.provider.project.detail');
 
         // download
@@ -338,9 +341,6 @@ Route::get('training-member-export', [TrainingMemberController::class, 'extraini
 
 
 
-require __DIR__ . '/aldy.php';
 require __DIR__ . '/arif.php';
-require __DIR__ . '/daffa.php';
 require __DIR__ . '/ibnu.php';
-require __DIR__ . '/kader.php';
 require __DIR__ . '/femas.php';

@@ -13,8 +13,10 @@
                 </div>
                 <div class="ms-3">
                     <select name="year" class="form-select pe-5">
-                        <option value="2022" {{ $year == '2022' ? 'selected' : '' }}>2022</option>
-                        <option value="2023" {{ $year == '2023' ? 'selected' : '' }}>2023</option>
+                        <option value="" selected>Semua Tahun</option>
+                        @foreach ($fiscalYears as $fiscalYear)
+                            <option value="{{$fiscalYear->id}}" {{ request()->year == $fiscalYear->id ? 'selected' : '' }}>{{$fiscalYear->name}}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="ms-1">
@@ -46,46 +48,42 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($serviceProviderProjects as $index=>$serviceProviderProject)
-                        @php
-                            $totalProgres = $serviceProviderProject->serviceProviderProjects->pluck('progres')->sum();
-                        @endphp
-                <tbody>
+                    @forelse ($consultantProjects as $consultantProject)
                     <tr>
                         <td class="text-center">
-                            {{ $index + 1 }}
+                            {{ $loop->iteration }}
                         </td>
                         <td class="text-center">
-                            {{ $serviceProviderProject->consultantProject->name_package }}
+                            {{ $consultantProject->name }}
                         </td>
                         <td class="text-center">
-                            {{ $serviceProviderProject->year }}
+                            {{ $consultantProject->fiscalYear->name }}
                         </td>
                         <td class="text-center">
-                            {{ $totalProgres }}%
+                            {{ $consultantProject->finance_progress }}%
                         </td>
                         <td class="text-center">
                             <div class="d-flex justify-content-center">
-                                <a href="detail-consultant/{{ $serviceProviderProject->id }}"
+                                <a href="detail-consultant/{{ $consultantProject->id }}"
                                     class="btn btn-primary btn-md rounded-4  " style="background-color: #1B3061;">
                                     Detail
                                 </a>
                             </div>
                         </td>
                     </tr>
-                </tbody>
-            @empty
-                <tr>
-                    <td colspan="5" class="text-center">
-                        <div class="d-flex justify-content-center" style="min-height:16rem">
-                            <div class="my-auto">
-                                <img src="{{ asset('no-data.png') }}" width="300" height="300" />
-                                <h4 class="text-center mt-4">Pekerjaan Masih Kosong!!</h4>
+                @empty
+                    <tr>
+                        <td colspan="5" class="text-center">
+                            <div class="d-flex justify-content-center" style="min-height:16rem">
+                                <div class="my-auto">
+                                    <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                    <h4 class="text-center mt-4">Pekerjaan Masih Kosong!!</h4>
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                </tr>
-                @endforelse
+                        </td>
+                    </tr>
+                    @endforelse
+                </tbody>
             </table>
         </div>
     </div>

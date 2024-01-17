@@ -3,13 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\DinasRequest;
-use App\Contracts\Interfaces\TypeInterface;
 use App\Contracts\Interfaces\DinasInterface;
-use App\Contracts\Interfaces\ProjectInterface;
-use App\Contracts\Interfaces\SectionInterface;
+use App\Contracts\Interfaces\ExecutorProjectInterface;
 use App\Contracts\Interfaces\UserInterface;
 use App\Helpers\ResponseHelper;
-use App\Http\Resources\DinasAccidentResource;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -17,16 +14,18 @@ use Illuminate\Http\Request;
 class DinasController extends Controller
 {
     private DinasInterface $dinas;
-    private TypeInterface $type;
     private UserInterface $user;
-    private ProjectInterface $project;
+    private ExecutorProjectInterface $executorProject;
 
-    public function __construct(DinasInterface $dinas, TypeInterface $type, UserInterface $user, ProjectInterface $project)
+    public function __construct(
+        DinasInterface $dinas,
+        UserInterface $user,
+        ExecutorProjectInterface $executorProject,
+    )
     {
         $this->user = $user;
         $this->dinas = $dinas;
-        $this->type = $type;
-        $this->project = $project;
+        $this->executorProject = $executorProject;
     }
 
     /**
@@ -80,17 +79,23 @@ class DinasController extends Controller
      */
     public function dashboard(Request $request): JsonResponse|View
     {
-        $accident_total = 0;
-        $name = $request->name;
-        $year = $request->year;
-        $projects = $this->project->getbyId($request);
-        foreach ($projects as $project) {
-            $accident_total += $project->accidents->count();
+        $request->merge([
+            'status' => 'active'
+        ]);
+        $accidentCount = 0;
+        $executorProjects = $this->executorProject->search($request);
+        $executorProjectCount = $this->executorProject->count(null);
+        $executorProjectActive = $this->executorProject->count(['status' => 'active']);
+        foreach ($executorProjects as $executorProject) {
+            $accidentCount += $executorProject->accidents->count();
         }
-        $project_total = $this->project->countDinas();
-        $countActiveWorker = $this->project->countAllProject();
 
-        return view('pages.dinas.dashboard', ['accident_count' => $accident_total, 'project_count' => $project_total, 'countActiveWorker' => $countActiveWorker, 'projects' => $projects, 'year' => $year, 'name' => $name]);
+        return view('pages.dinas.dashboard',compact(
+            'accidentCount',
+            'executorProjects',
+            'executorProjectCount',
+            'executorProjectActive'
+        ));
     }
 
     public function accidentLandingPage(Request $request): View

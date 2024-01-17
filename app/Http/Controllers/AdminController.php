@@ -6,8 +6,8 @@ use App\Enums\StatusEnum;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use App\Contracts\Interfaces\DinasInterface;
-use App\Contracts\Interfaces\ProjectInterface;
 use App\Contracts\Interfaces\AccidentInterface;
+use App\Contracts\Interfaces\ExecutorProjectInterface;
 use App\Contracts\Interfaces\ServiceProviderInterface;
 
 class AdminController extends Controller
@@ -15,19 +15,19 @@ class AdminController extends Controller
 
     private ServiceProviderInterface $serviceProvider;
     private DinasInterface $dinas;
-    private ProjectInterface $project;
+    private ExecutorProjectInterface $executorProject;
     private AccidentInterface $accident;
 
 
     public function __construct(
         ServiceProviderInterface $serviceProvider,
         DinasInterface $dinas,
-        ProjectInterface $project,
+        ExecutorProjectInterface $executorProject,
         AccidentInterface $accident
     ) {
         $this->serviceProvider = $serviceProvider;
         $this->dinas = $dinas;
-        $this->project = $project;
+        $this->executorProject = $executorProject;
         $this->accident = $accident;
     }
     /**
@@ -44,12 +44,18 @@ class AdminController extends Controller
 
         $dinas = $this->dinas->count(null);
         $serviceProvider = $this->serviceProvider->count(null);
-        $project = $this->project->count(null);
+        $project = $this->executorProject->count(null);
         $accident = $this->accident->count(null);
-        $activeProjects = $this->project->customPaginate($request, 15);
+        $activeProjects = $this->executorProject->customPaginate($request, 15);
         $activeProjects->appends(['name' => $request->name]);
-        $year = $request->year;
 
-        return view('pages.admin.dashboard', ['dinas' => $dinas, 'serviceProvider' => $serviceProvider, 'project' => $project, 'accident' => $accident, 'serviceProvider' => $serviceProvider, 'activeProjects' => $activeProjects, 'year' => $year]);
+        return view('pages.admin.dashboard',compact(
+            'dinas',
+            'serviceProvider',
+            'project',
+            'accident',
+            'activeProjects',
+            'activeProjects'
+        ));
     }
 }

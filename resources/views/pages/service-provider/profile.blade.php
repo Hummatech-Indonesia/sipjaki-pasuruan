@@ -929,7 +929,7 @@
                                     Pemberi Tugas
                                 </td>
                                 <td class="text-white" style="background-color: #1B3061">
-                                    Kontrak
+                                    Status
                                 </td>
                                 <td class="text-white" style="background-color: #1B3061">
                                     Mulai
@@ -940,17 +940,36 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($serviceProvider->projects()->where('end_date','<',now()) as $project)
+                            @forelse ($executorProjects as $project)
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $project->name }}</td>
-                                    <td>{{ $project->year }}</td>
-                                    <td>{{ $project->project_value }}</td>
-                                    <td>{{ $project->dinas->user->name }}</td>
-                                    <td>{{ $project->contractCategory->name }}</td>
-                                    <td>{{ Carbon::parse($project->start_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                    <td class="fs-5">{{ $loop->iteration }}</td>
+                                    <td class="fs-5">{{ $project->name }}</td>
+                                    <td class="fs-5">{{ $project->fiscalYear->name }}</td>
+                                    <td class="fs-5">Rp.{{ number_format($project->project_value, 0, ',', '.') }}</td>
+                                    <td class="fs-5">{{ $project->consultantProject->dinas->user->name }}</td>
+                                    <td class="fs-5">
+                                        @php
+                                            switch ($project->status) {
+                                                case 'canceled':
+                                                    $color = '#FF0000';
+                                                    $text = 'Dibatalkan';
+                                                    break;
+                                                case 'nonactive':
+                                                    $color = '#FFF700';
+                                                    $text = 'Non Aktif';
+                                                    break;
+                                                default:
+                                                    $color = '#1B3061';
+                                                    $text = 'Aktif';
+                                            }
+                                        @endphp
+                                        <span class="fs-6 badge px-4 py-2" style="background-color: {{$color}}; color: #FFFFFF">
+                                            {{$text}}
+                                        </span>
                                     </td>
-                                    <td>{{ Carbon::parse($project->end_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                    <td class="fs-5">{{ Carbon::parse($project->start_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                    </td>
+                                    <td class="fs-5">{{ Carbon::parse($project->end_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}
                                     </td>
                                 </tr>
                             @empty

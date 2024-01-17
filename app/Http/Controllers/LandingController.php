@@ -15,14 +15,12 @@ use App\Contracts\Interfaces\RuleInterface;
 use App\Contracts\Interfaces\DinasInterface;
 use App\Contracts\Interfaces\ImageInterface;
 use App\Contracts\Interfaces\TrainingInterface;
-use App\Contracts\Interfaces\ProjectInterface;
 use App\Contracts\Interfaces\ServiceProviderInterface;
 
 class LandingController extends Controller
 {
 
     private DinasInterface $dinas;
-    private ProjectInterface $project;
     private NewsInterface $news;
     private TrainingInterface $training;
     private RuleInterface $rule;
@@ -30,9 +28,8 @@ class LandingController extends Controller
     private ServiceProviderInterface $serviceProvider;
     private ImageInterface $image;
 
-    public function __construct(FaqInterface $faq, DinasInterface $dinas, NewsInterface $news, TrainingInterface $training, RuleInterface $rule, ServiceProviderInterface $serviceProvider, ProjectInterface $project, ImageInterface $image)
+    public function __construct(FaqInterface $faq, DinasInterface $dinas, NewsInterface $news, TrainingInterface $training, RuleInterface $rule, ServiceProviderInterface $serviceProvider, ImageInterface $image)
     {
-        $this->project = $project;
         $this->dinas = $dinas;
         $this->news = $news;
         $this->training = $training;

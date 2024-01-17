@@ -14,7 +14,7 @@ class AccidentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'project_id' => 'required|exists:projects,id',
+            'executor_project_id' => 'required|exists:executor_projects,id',
             'location' => 'required|max:255',
             'time' => 'required|date',
             'description' => 'required',
@@ -31,15 +31,15 @@ class AccidentRequest extends FormRequest
     public function messages()
     {
         return [
-            'project_id.required' => 'Kolom project harus diisi.',
-            'project_id.exists' => 'Project yang dipilih tidak valid.',
-            'location.required' => 'Kolom lokasi harus diisi.',
-            'location.max' => 'Kolom lokasi maksimal :max karakter.',
-            'time.required' => 'Kolom waktu harus diisi.',
+            'executor_project_id.required' => 'Pekerjaan harus diisi.',
+            'executor_project_id.exists' => 'Pekerjaan yang dipilih tidak valid.',
+            'location.required' => 'lokasi harus diisi.',
+            'location.max' => 'lokasi maksimal :max karakter.',
+            'time.required' => 'waktu harus diisi.',
             'time.date' => 'Format waktu tidak valid.',
-            'description.required' => 'Kolom deskripsi harus diisi.',
-            'loss.required' => 'Kolom kerugian harus diisi.',
-            'problem.required' => 'Kolom masalah harus diisi.',
+            'description.required' => 'deskripsi harus diisi.',
+            'loss.required' => 'kerugian harus diisi.',
+            'problem.required' => 'masalah harus diisi.',
         ];
 
     }

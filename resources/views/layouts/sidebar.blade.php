@@ -103,9 +103,15 @@
                         </a>
                     </li>
                     <li id="project-admin">
-                        <a id="project-admin-link" href="{{ route('projects.index') }}" class="waves-effect">
+                        <a id="project-admin-link" href="{{ route('executor-projects.index') }}" class="waves-effect">
                             <i class="bx bxs-package"></i>
                             <span key="t-file-manager">Paket Pekerjaan</span>
+                        </a>
+                    </li>
+                    <li id="project-admin">
+                        <a id="project-admin-link" href="{{ route('consultant-projects.index') }}" class="waves-effect">
+                            <i class="bx bxs-package"></i>
+                            <span key="t-file-manager">Paket Konsultan</span>
                         </a>
                     </li>
                     <li id="training-admin">
@@ -222,9 +228,15 @@
                         </a>
                     </li>
                     <li id="project-admin">
-                        <a id="project-admin-link" href="{{ route('projects.index') }}" class="waves-effect">
+                        <a id="project-admin-link" href="{{ route('executor-projects.index') }}" class="waves-effect">
                             <i class="bx bxs-package"></i>
                             <span key="t-file-manager">Paket Pekerjaan</span>
+                        </a>
+                    </li>
+                    <li id="project-admin">
+                        <a id="project-admin-link" href="{{ route('consultant-projects.index') }}" class="waves-effect">
+                            <i class="bx bxs-package"></i>
+                            <span key="t-file-manager">Paket Konsultan</span>
                         </a>
                     </li>
                     <li id="training-admin">
@@ -311,9 +323,15 @@
                         </a>
                     </li>
                     <li id="project-admin">
-                        <a id="project-admin-link" href="{{ route('projects.index') }}" class="waves-effect">
+                        <a id="project-admin-link" href="{{ route('executor-projects.index') }}" class="waves-effect">
                             <i class="bx bxs-package"></i>
                             <span key="t-file-manager">Paket Pekerjaan</span>
+                        </a>
+                    </li>
+                    <li id="project-admin">
+                        <a id="project-admin-link" href="{{ route('consultant-projects.index') }}" class="waves-effect">
+                            <i class="bx bxs-package"></i>
+                            <span key="t-file-manager">Paket Konsultan</span>
                         </a>
                     </li>
                     <li>

@@ -61,8 +61,8 @@
                 <div class="card-body">
                     <div class="d-flex">
                         <div class="flex-grow-1">
-                            <p class="text-muted fw-medium">Jumlah Pekerja Aktif</p>
-                            <h4 class="mb-0" style="color: #1B3061">{{ $countExperience }}</h4>
+                            <p class="text-muted fw-medium">Jumlah Pekerjaan Aktif</p>
+                            <h4 class="mb-0" style="color: #1B3061">{{ $activeExecutorProjectCount }}</h4>
                         </div>
 
                         <div class="flex-shrink-0 align-self-center ">
@@ -87,7 +87,7 @@
                     <div class="d-flex">
                         <div class="flex-grow-1">
                             <p class="text-muted fw-medium">Jumlah Paket Pekerjaan</p>
-                            <h4 class="mb-0" style="color: #1B3061">{{ $countAllExperience }}</h4>
+                            <h4 class="mb-0" style="color: #1B3061">{{ $executorProjectCount }}</h4>
                         </div>
 
                         <div class="flex-shrink-0 align-self-center">
@@ -146,25 +146,19 @@
                     <tr>
                         <th style="background-color: #1B3061;color:#ffffff">No</th>
                         <th style="background-color: #1B3061;color:#ffffff">Nama Pekerjaan</th>
+                        <th style="background-color: #1B3061;color:#ffffff">Dinas</th>
+                        <th style="background-color: #1B3061;color:#ffffff">Nilai Project</th>
                         <th style="background-color: #1B3061;color:#ffffff">Progres</th>
-                        <th style="background-color: #1B3061;color:#ffffff">Tahun</th>
-                        <th style="background-color: #1B3061;color:#ffffff">Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($experiences as $experience)
+                    @forelse ($activeExecutorProjects as $activeExecutorProject)
                     <tr>
                         <td class="fs-5">{{ $loop->iteration }}</td>
-                        <td class="fs-5">{{ $experience->name }}</td>
-                        <td><span class="fs-6 badge px-4 py-2" style="background-color: #E4ECFF;color:#1B3061;">{{ $experience->finance_progress }}%</span>
-                        </td>
-                        <td class="fs-5">{{ $experience->year }}</td>
-                        <td>
-                            <span class="fs-6 badge px-4 py-2" style="background-color: {{ $experience->status == 'nonactive' ? '#FF0000' : '#E4ECFF' }}; color: {{ $experience->status == 'nonactive' ? '#FFFFFF' : '#1B3061' }}">
-                                {{ $experience->status == 'active' ? 'Aktif' : 'Tidak Aktif' }}
-                            </span>
-                        </td>
-
+                        <td class="fs-5">{{ $activeExecutorProject->name }}</td>
+                        <td class="fs-5">{{ $activeExecutorProject->consultantProject->dinas->user->name }}</td>
+                        <td class="fs-5">Rp.{{ number_format($activeExecutorProject->project_value, 0, ',', '.') }}</td>
+                        <td class="fs-5">{{ $activeExecutorProject->physical_progress }}%</td>
                     </tr>
                     @empty
                     <tr>

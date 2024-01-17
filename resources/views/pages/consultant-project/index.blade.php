@@ -4,24 +4,25 @@
         use Carbon\Carbon;
     @endphp
     <p class="fs-4 text-dark" style="font-weight: 600">
-        Paket Pekerjaan
+        Paket Konsultan
     </p>
     <div class="d-flex justify-content-between ">
         <form action="" method="GET" class="d-flex gap-3 col-8">
             <input type="search" id="search-name" value="{{ request()->name }}" name="name" class="form-control"
                 placeholder="Search">
+            
             @if(auth()->user()->role() == 'admin' || auth()->user()->role() == 'superadmin')
-            <select name="dinas_id" id="search-status" class="form-control ml-3">
-                <option value="">Semua Dinas</option>
-                @foreach ($dinases as $dinas)
-                    <option {{ request()->dinas == $dinas->id ? 'selected' : '' }} value="{{ $dinas->id }}">{{ $dinas->user->name }}</option>
-                @endforeach
+                <select name="dinas_id" id="search-status" class="form-control ml-3">
+                    <option value="">Semua Dinas</option>
+                    @foreach ($dinases as $dinas)
+                        <option {{ request()->dinas_id == $dinas->id ? 'selected' : '' }} value="{{ $dinas->id }}">{{ $dinas->user->name }}</option>
+                    @endforeach
+                </select>
             @endif
-            </select>
-        <select name="year" id="search-year" class="form-control">
+            <select name="year" id="search-year" class="form-control">
                 <option value="" selected>Tampilkan Semua Tahun</option>
                 @foreach ($fiscalYears as $fiscalYear)
-                    <option {{ $fiscalYear->id == request()->year ? 'selected' : '' }} value="{{ $fiscalYear->id }}">{{ $fiscalYear->name }}</option>
+                <option {{ request()->year == $fiscalYear->id ? 'selected' : '' }} value="{{ $fiscalYear->id }}">{{ $fiscalYear->name }}</option>
                 @endforeach
             </select>
             <button type="submit" class="btn text-white d-flex items-center gap-2" style="background-color:#1B3061">
@@ -43,7 +44,7 @@
             </button>
 
         </form>
-        @if (auth()->user()->role() == 'dinas')
+        @if (auth()->user()->dinas)
             <div class="">
                 <button data-bs-toggle="modal" data-bs-target="#modal-create" class="btn text-white"
                     style="background-color:#1B3061">
@@ -70,31 +71,45 @@
                         aria-label="Close"></button>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('executor-projects.store') }}" method="POST" id="form-create">
+                    <form action="{{ route('consultant-projects.store') }}" method="POST" id="form-create">
                         @csrf
                         <div id="basic-example">
                             <!-- Seller Details -->
                             <h3>informasi Umum</h3>
                             <section>
                                 <div class="row">
-                                    <div class="col-lg-12">
+                                    <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="basicpill-name">Nama Pekerjaan</label>
+                                            <label for="basicpill-name">Nama Paket Konsultan</label>
                                             <input type="text" class="form-control" name="name" id="basicpill-name"
-                                                placeholder="masukan nama pekerjaan" value="{{ old('name') }}">
+                                                placeholder="masukan nama pekerjaan" value="{{ old('name') ? old('name') : 'Paket Konsultan Dinas '.auth()->user()->name }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label for="basicpill-fiscal_year_id">Tahun</label>
+                                            <select name="fiscal_year_id" class="form-control select2-create"
+                                                style="width:100%" id="basicpill-fiscal_year_id">
+                                                @foreach ($fiscalYears as $fiscalYear)
+                                                    <option value="{{ $fiscalYear->id }}"
+                                                        {{ old('fund_source_id') == $fiscalYear->id ? 'selected' : '' }}>
+                                                        {{ $fiscalYear->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="update-fiscal_year_id">Tahun</label>
-                                            <select name="fiscal_year_id" class="form-control select2-update"
-                                                style="width:100%" id="update-fiscal_year_id">
-                                                @foreach ($fiscalYears as $fiscalYear)
-                                                    <option value="{{ $fiscalYear->id }}"
-                                                        {{ old('fiscal_year_id') == $fiscalYear->id ? 'selected' : '' }}>
-                                                        {{ $fiscalYear->name }}
+                                            <label for="basicpill-penyedia-jasa">Konsultan</label>
+                                            <select class="form-control select2-create" style="width:100%"
+                                                name="service_provider_id" id="basicpill-konsultan">
+                                                @foreach ($consultants as $consultant)
+                                                    <option value="{{ $consultant->id }}"
+                                                        {{ old('service_provider_id') == $consultant->id ? 'selected' : '' }}>
+                                                        {{ $consultant->user->name }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -109,34 +124,6 @@
                                                     <option value="{{ $fundSource->id }}"
                                                         {{ old('fund_source_id') == $fundSource->id ? 'selected' : '' }}>
                                                         {{ $fundSource->name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label for="basicpill-penyedia-jasa">Pelaksana</label>
-                                            <select class="form-control select2-create" style="width:100%"
-                                                name="service_provider_id" id="basicpill-penyelenggara">
-                                                @foreach ($executors as $executor)
-                                                    <option value="{{ $executor->id }}"
-                                                        {{ old('service_provider_id') == $executor->id ? 'selected' : '' }}>
-                                                        {{ $executor->user->name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label for="basicpill-penyedia-jasa">Paket Konsultan</label>
-                                            <select class="form-control select2-create" style="width:100%"
-                                                name="consultant_project_id" id="basicpill-konsultan">
-                                                @foreach ($consultantProjects as $consultantProject)
-                                                    <option value="{{ $consultantProject->id }}"
-                                                        {{ old('consultant_project_id') == $consultantProject->id ? 'selected' : '' }}>
-                                                        {{ $consultantProject->name }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -175,7 +162,7 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="basicpill-cstno-input">karakteristik Kontrak</label>
+                                            <label for="basicpill-cstno-input">Karakteristik Kontrak</label>
                                             <select name="characteristic_project" class="form-select">
                                                 <option value="single"
                                                     {{ old('characteristic_project') == 'single' ? 'selected' : '' }}>
@@ -226,24 +213,6 @@
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="mb-3">
-                                                <label for="basicpill-physical_progress_start">Progress Fisik Pada</label>
-                                                <input type="date" name="physical_progress_start" class="form-control"
-                                                    id="basicpill-physical_progress_start"
-                                                    value="{{ old('physical_progress_start') }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="mb-3">
-                                                <label for="basicpill-servicetax-input">Progress Fisik(%)</label>
-                                                <input type="number" name="physical_progress" class="form-control"
-                                                    id="basicpill-servicetax-input" placeholder="Masukan progress"
-                                                    value="{{ old('physical_progress') ? old('physical_progress') : '0' }}">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="mb-3">
                                                 <label for="basicpill-physical_progress_start">Progress Keuangan
                                                     Pada</label>
                                                 <input type="date" class="form-control" name="finance_progress_start"
@@ -286,98 +255,102 @@
                 <thead>
                     <tr>
                         <th class="text-center table-sipjaki">No</th>
-                        <th class="text-center table-sipjaki">Nama Pekerjaan</th>
-                        <th class="text-center table-sipjaki">Tahun</th>
-                        <th class="text-center table-sipjaki">Nilai Kontrak</th>
-                        @if (!auth()->user()->dinas)   
+                        <th class="text-center table-sipjaki">Nama</th>
+                        @if(!auth()->user()->dinas)
                         <th class="text-center table-sipjaki">Dinas</th>
                         @endif
+                        <th class="text-center table-sipjaki">Konsultan</th>
+                        <th class="text-center table-sipjaki">Tahun</th>
+                        <th class="text-center table-sipjaki">Nilai Kontrak</th>
                         <th class="text-center table-sipjaki">Progress</th>
                         <th class="text-center table-sipjaki">Aksi</th>
                     </tr>
                 </thead>
-                @forelse ($executorProjects as $executorProject)
-                    <tbody>
-                        <tr>
-                            <td class="text-center">
-                                {{ $loop->iteration }}
-                            </td>
-                            <td class="text-center">
-                                {{ $executorProject->name }}
-                            </td>
-                            <td class="text-center">
-                                {{ $executorProject->fiscalYear->name }}
-                            </td>
-                            <td class="text-center">
-                                Rp.{{ number_format($executorProject->project_value, 0, ',', '.') }}
-                            </td>
-                            @if (!auth()->user()->dinas)  
-                            <td class="text-center">
-                                {{ $executorProject->consultantProject->dinas->user->name }}
-                            </td>
-                            @endif
-                            <td class="text-center">
-                                {{ $executorProject->physical_progress }}%
-                            </td>
-                            <td class="text-center">
-                                <div class="d-flex justify-content-center gap-2">
-                                    @if (auth()->user()->dinas)
-                                        <div class="d-flex justify-content-center mb-2">
-                                            <button data-id="{{ $executorProject->id }}" style="min-width: 90px;width:100%"
-                                                class="btn btn-danger btn-delete d-flex"><i
-                                                    class="bx bx-bx bxs-trash fs-4 me-1"></i>
-                                                Hapus</button>
-                                        </div>
-                                        <div class="d-flex justify-content-center mb-2">
-                                            <button style="min-width: 90px;width:100%"
-                                                class="d-flex btn btn-edit btn-warning" id="btn-edit-{{ $executorProject->id }}"
-                                                data-id="{{ $executorProject->id }}" data-name="{{ $executorProject->name }}"
-                                                data-year="{{ $executorProject->year }}" data-status="{{ $executorProject->status }}"
-                                                data-start_at="{{ \Carbon\Carbon::parse($executorProject->start_at)->format('Y-m-d') }}"
-                                                data-end_at="{{ \Carbon\Carbon::parse($executorProject->end_at)->format('Y-m-d') }}"
-                                                data-finance_progress="{{ $executorProject->finance_progress }}"
-                                                data-finance_progress_start="{{ \Carbon\Carbon::parse($executorProject->finance_progress_start)->format('Y-m-d') }}"
-                                                data-physical_progress="{{ $executorProject->physical_progress }}"
-                                                data-physical_progress_start="{{ \Carbon\Carbon::parse($executorProject->physical_progress_start)->format('Y-m-d') }}"
-                                                data-project_value="{{ $executorProject->project_value }}"
-                                                data-fund_source_id="{{ $executorProject->fund_source_id }}"
-                                                data-service_provider_id="{{ $executorProject->service_provider_id }}"
-                                                data-contract_category_id="{{ $executorProject->contract_category_id }}"
-                                                data-consultant_id="{{ $executorProject->consultant_id }}"
-                                                data-executor_id="{{ $executorProject->executor_id }}"
-                                                data-characteristic_project="{{ $executorProject->characteristic_project }}"><i
-                                                    class="bx bx-bx bxs-edit fs-4 me-1"></i> Edit</button>
-                                        </div>
-                                    @endif
-                                    <div class="d-flex justify-content-center mb-2">
-                                        <a href="/detail-project-dinas/{{ $executorProject->id }}"
-                                            style="min-width: 90px;width:100%;background-color: #1B3061"
-                                            class="btn text-white btn-detail"><svg xmlns="http://www.w3.org/2000/svg"
-                                                width="19" height="19" viewBox="0 0 24 24" fill="none">
-                                                <path d="M4.5 12.5C7.5 6 16.5 6 19.5 12.5" stroke="white"
-                                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                                <path
-                                                    d="M12 16C10.8954 16 10 15.1046 10 14C10 12.8954 10.8954 12 12 12C13.1046 12 14 12.8954 14 14C14 15.1046 13.1046 16 12 16Z"
-                                                    stroke="white" stroke-width="1.5" stroke-linecap="round"
-                                                    stroke-linejoin="round" />
-                                            </svg> Detail</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                @empty
+            @forelse ($consultantProjects as $consultantProject)
+                <tbody>
                     <tr>
-                        <td colspan="{{auth()->user()->dinas ? '5' : '6' }}" class="text-center">
-                            <div class="d-flex justify-content-center" style="min-height:16rem">
-                                <div class="my-auto">
-                                    <img src="{{ asset('no-data.png') }}" width="300" height="300" />
-                                    <h4 class="text-center mt-4">Paket Pekerjaan Masih Kosong!!</h4>
+                        <td class="text-center">
+                            {{ $loop->iteration }}
+                        </td>
+                        <td class="text-center">
+                            {{ $consultantProject->name }}
+                        </td>
+                        @if(!auth()->user()->dinas)
+                        <td class="text-center">
+                            {{ $consultantProject->dinas->user->name }}
+                        </td>
+                        @endif
+                        <td class="text-center">
+                            {{ $consultantProject->serviceProvider->user->name }}
+                        </td>
+                        <td class="text-center">
+                            {{ $consultantProject->fiscalYear->name }}
+                        </td>
+                        <td class="text-center">
+                            Rp.{{ number_format($consultantProject->project_value, 0, ',', '.') }}
+                        </td>
+                        <td class="text-center">
+                            {{ $consultantProject->finance_progress }}%
+                        </td>
+                        <td class="text-center">
+                            <div class="d-flex justify-content-center gap-2">
+                                @if (auth()->user()->dinas)
+                                    <div class="d-flex justify-content-center mb-2">
+                                        <button data-id="{{ $consultantProject->id }}" style="min-width: 90px;width:100%"
+                                            class="btn btn-danger btn-delete d-flex"><i
+                                                class="bx bx-bx bxs-trash fs-4 me-1"></i>
+                                            Hapus</button>
+                                    </div>
+                                    <div class="d-flex justify-content-center mb-2">
+                                        <button style="min-width: 90px;width:100%"
+                                            class="d-flex btn btn-edit btn-warning" id="btn-edit-{{ $consultantProject->id }}"
+                                            data-id="{{ $consultantProject->id }}" data-name="{{ $consultantProject->name }}"
+                                            data-year="{{ $consultantProject->year }}" data-status="{{ $consultantProject->status }}"
+                                            data-start_at="{{ \Carbon\Carbon::parse($consultantProject->start_at)->format('Y-m-d') }}"
+                                            data-end_at="{{ \Carbon\Carbon::parse($consultantProject->end_at)->format('Y-m-d') }}"
+                                            data-finance_progress="{{ $consultantProject->finance_progress }}"
+                                            data-finance_progress_start="{{ \Carbon\Carbon::parse($consultantProject->finance_progress_start)->format('Y-m-d') }}"
+                                            data-physical_progress="{{ $consultantProject->physical_progress }}"
+                                            data-physical_progress_start="{{ \Carbon\Carbon::parse($consultantProject->physical_progress_start)->format('Y-m-d') }}"
+                                            data-project_value="{{ $consultantProject->project_value }}"
+                                            data-fund_source_id="{{ $consultantProject->fund_source_id }}"
+                                            data-service_provider_id="{{ $consultantProject->service_provider_id }}"
+                                            data-contract_category_id="{{ $consultantProject->contract_category_id }}"
+                                            data-consultant_id="{{ $consultantProject->consultant_id }}"
+                                            data-executor_id="{{ $consultantProject->executor_id }}"
+                                            data-characteristic_project="{{ $consultantProject->characteristic_project }}"><i
+                                                class="bx bx-bx bxs-edit fs-4 me-1"></i> Edit</button>
+                                    </div>
+                                @endif
+                                <div class="d-flex justify-content-center mb-2">
+                                    <a href="/detail-project-dinas/{{ $consultantProject->id }}"
+                                        style="min-width: 90px;width:100%;background-color: #1B3061"
+                                        class="btn text-white btn-detail"><svg xmlns="http://www.w3.org/2000/svg"
+                                            width="19" height="19" viewBox="0 0 24 24" fill="none">
+                                            <path d="M4.5 12.5C7.5 6 16.5 6 19.5 12.5" stroke="white"
+                                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path
+                                                d="M12 16C10.8954 16 10 15.1046 10 14C10 12.8954 10.8954 12 12 12C13.1046 12 14 12.8954 14 14C14 15.1046 13.1046 16 12 16Z"
+                                                stroke="white" stroke-width="1.5" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                        </svg> Detail</a>
                                 </div>
                             </div>
                         </td>
                     </tr>
-                @endforelse
+                </tbody>
+            @empty
+                <tr>
+                    <td colspan="7" class="text-center">
+                        <div class="d-flex justify-content-center" style="min-height:16rem">
+                            <div class="my-auto">
+                                <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                <h4 class="text-center mt-4">Paket Pekerjaan Masih Kosong!!</h4>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            @endforelse
             </table>
         </div>
     </div>
@@ -428,7 +401,7 @@
                                 <td id="detail-konsultan"></td>
                             </tr>
                             <tr>
-                                <td class="fw-bold">Pelaksana</td>
+                                <td class="fw-bold">Penyelenggara</td>
                                 <td>:</td>
                                 <td id="detail-executor"></td>
                             </tr>
@@ -492,15 +465,13 @@
                             <h3>informasi Umum</h3>
                             <section>
                                 <div class="row">
-                                    <div class="col-lg-12">
+                                    <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="update-name">Nama Pekerjaan</label>
                                             <input type="text" class="form-control" name="name" id="update-name"
                                                 placeholder="masukan nama pekerjaan" value="{{ old('name') }}">
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="update-fiscal_year_id">Tahun</label>
@@ -515,6 +486,8 @@
                                             </select>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="update-fund_source_id">Sumber Dana</label>
@@ -531,27 +504,13 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="update-penyedia-jasa">Penyelenggara</label>
+                                            <label for="update-penyedia-jasa">Konsultan</label>
                                             <select class="form-control select2-update" style="width:100%"
-                                                name="executor_id" id="update-penyelenggara">
-                                                @foreach ($executors as $serviceProvider)
+                                                name="consultant_id" id="update-konsultan">
+                                                @foreach ($consultants as $serviceProvider)
                                                     <option value="{{ $serviceProvider->id }}"
                                                         {{ old('service_provider_id') == $serviceProvider->id ? 'selected' : '' }}>
                                                         {{ $serviceProvider->user->name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label for="update-penyedia-jasa">Paket Konsultan</label>
-                                            <select class="form-control select2-update" style="width:100%"
-                                                name="consultant_project_id" id="update-konsultan">
-                                                @foreach ($consultantProjects as $consultantProject)
-                                                    <option value="{{ $consultantProject->id }}"
-                                                        {{ old('consultant_project_id') == $consultantProject->id ? 'selected' : '' }}>
-                                                        {{ $consultantProject->name }}
                                                     </option>
                                                 @endforeach
                                             </select>

@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Contracts\Interfaces\AccidentInterface;
 use App\Contracts\Interfaces\DinasInterface;
+use App\Contracts\Interfaces\ExecutorProjectInterface;
 use App\Contracts\Interfaces\ProjectInterface;
 use App\Contracts\Interfaces\ServiceProviderInterface;
 use App\Enums\StatusEnum;
+use App\Models\ExecutorProject;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
@@ -15,20 +17,20 @@ class SuperadminController extends Controller
 
     private ServiceProviderInterface $serviceProvider;
     private DinasInterface $dinas;
-    private ProjectInterface $project;
+    private ExecutorProjectInterface $executorProject;
     private AccidentInterface $accident;
 
 
     public function __construct(
         ServiceProviderInterface $serviceProvider,
         DinasInterface $dinas,
-        ProjectInterface $project,
+        ExecutorProjectInterface $executorProject,
         AccidentInterface $accident
     )
     {
         $this->serviceProvider = $serviceProvider;
         $this->dinas = $dinas;
-        $this->project = $project;
+        $this->executorProject = $executorProject;
         $this->accident = $accident;
     }
     /**
@@ -43,14 +45,18 @@ class SuperadminController extends Controller
             'status' => StatusEnum::ACTIVE->value
         ]);
 
-        $dinas = $this->dinas->count(null);
-        $serviceProvider = $this->serviceProvider->count(null);
-        $project = $this->project->count(null);
-        $accident = $this->accident->count(null);
-        $activeProjects = $this->project->customPaginate($request,15);
-        $activeProjects->appends(['name' => $request->name]);
-        $year = $request->year;
+        $dinasCount = $this->dinas->count(null);
+        $serviceProviderCount = $this->serviceProvider->count(null);
+        $executorProjectCount = $this->executorProject->count(null);
+        $accidentCount = $this->accident->count(null);
+        $activeExecutorProjects = $this->executorProject->customPaginate($request,15);
 
-        return view('pages.dasboard',compact('dinas','serviceProvider','project','accident','activeProjects','year'));
+        return view('pages.dasboard',compact(
+            'dinasCount',
+            'serviceProviderCount',
+            'executorProjectCount',
+            'accidentCount',
+            'activeExecutorProjects',
+        ));
     }
 }

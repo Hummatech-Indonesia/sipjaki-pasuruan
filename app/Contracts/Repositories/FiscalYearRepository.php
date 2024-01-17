@@ -22,6 +22,7 @@ class FiscalYearRepository extends BaseRepository implements FiscalYearInterface
     public function get(): mixed
     {
         return $this->model->query()
+            ->latest()
             ->get();
     }
 

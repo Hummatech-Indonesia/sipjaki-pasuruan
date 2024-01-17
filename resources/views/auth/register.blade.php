@@ -148,7 +148,7 @@
                                                             Konsultan</option>
                                                         <option value="executor"
                                                             {{ 'executor' == old('type_of_business_entity') ? 'selected' : '' }}>
-                                                            Penyelenggara</option>
+                                                        Pelaksana</option>
                                                     </select>
                                                     @error('type_of_business_entity')
                                                         <span class="invalid-feedback" role="alert">

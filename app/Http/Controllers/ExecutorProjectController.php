@@ -2,8 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Interfaces\ConsultantProjectInterface;
+use App\Contracts\Interfaces\ContractCategoryInterface;
+use App\Contracts\Interfaces\DinasInterface;
 use App\Contracts\Interfaces\ExecutorProjectInterface;
+use App\Contracts\Interfaces\FiscalYearInterface;
+use App\Contracts\Interfaces\FundSourceInterface;
+use App\Contracts\Interfaces\ServiceProviderInterface;
 use App\Http\Requests\ExecutorProjectRequest;
+use App\Http\Requests\UploadExecutorRequest;
 use App\Models\ExecutorProject;
 use App\Models\Project;
 use App\Services\ExecutorProjectService;
@@ -13,9 +20,33 @@ class ExecutorProjectController extends Controller
 {
     private ExecutorProjectInterface $executorProject;
     private ExecutorProjectService $service;
-    public function __construct(ExecutorProjectInterface $executorProjectInterface, ExecutorProjectService $executorProjectService) {
+    private FiscalYearInterface $fiscalYear;
+    private FundSourceInterface $fundSource;
+    private ServiceProviderInterface $serviceProvider;
+    private ConsultantProjectInterface $consultantProject;
+    private ContractCategoryInterface $contractCategory;
+    private DinasInterface $dinas;
+
+    public function __construct
+    (
+        ExecutorProjectInterface $executorProjectInterface,
+        ExecutorProjectService $service,
+        FiscalYearInterface $fiscalYear,
+        FundSourceInterface $fundSource,
+        ServiceProviderInterface $serviceProvider,
+        ConsultantProjectInterface $consultantProject,
+        ContractCategoryInterface $contractCategory,
+        DinasInterface $dinas,
+    )
+    {
         $this->executorProject = $executorProjectInterface;
-        $this->service = $executorProjectService;
+        $this->service = $service;
+        $this->fiscalYear = $fiscalYear;
+        $this->fundSource = $fundSource;
+        $this->serviceProvider = $serviceProvider;
+        $this->consultantProject = $consultantProject;
+        $this->contractCategory = $contractCategory;
+        $this->dinas = $dinas;
     }
 
     /**
@@ -23,10 +54,25 @@ class ExecutorProjectController extends Controller
      *
      * @return void
      */
-    public function index(Project $project)
+    public function index(Request $request)
     {
-        $executorProjects = $this->executorProject->show($project->id);
-        return view('', ['executorProjects' => $executorProjects]);
+        $executorProjects = $this->executorProject->customPaginate($request, 10);
+        $fiscalYears = $this->fiscalYear->get();
+        $fundSources = $this->fundSource->get();
+        $executors = $this->serviceProvider->getExecutor();
+        $consultantProjects = $this->consultantProject->get();
+        $contractCategories = $this->contractCategory->get();
+        $dinases = $this->dinas->get();
+
+        return view('pages.dinas.work-package',compact(
+            'executorProjects',
+            'fiscalYears',
+            'fundSources',
+            'executors',
+            'consultantProjects',
+            'contractCategories',
+            'dinases'
+        ));
     }
 
 
@@ -37,11 +83,18 @@ class ExecutorProjectController extends Controller
      * @param  mixed $project
      * @return void
      */
-    public function store(ExecutorProjectRequest $request, Project $project)
+    public function store(ExecutorProjectRequest $request)
     {
-        $data = $this->service->store($request, $project);
-        $this->executorProject->store($data);
+        $this->executorProject->store($request->validated());
         return redirect()->back()->with('success', trans('alert.update_success'));
+    }
+
+    public function upload(UploadExecutorRequest $request,ExecutorProject $executorProject)
+    {
+        $data = $this->service->store($request,$executorProject);
+        $this->executorProject->update($executorProject->id,$data);
+
+        return redirect()->back()->with('success',trans('alert.update_success'));
     }
 
         /**
@@ -53,7 +106,7 @@ class ExecutorProjectController extends Controller
     public function downloadContract(ExecutorProject $executorProject)
     {
         $filePath = pathinfo(basename($executorProject->contract, PATHINFO_EXTENSION));
-        return response()->download(storage_path('app/' . $executorProject->contract), $executorProject->project->name . '.' . $filePath['extension']);
+        return response()->download(storage_path('app/' . $executorProject->contract), 'Kontrak ' . $executorProject->name . '.' . $filePath['extension']);
     }
 
     /**
@@ -66,7 +119,7 @@ class ExecutorProjectController extends Controller
     {
         $filePath = pathinfo(basename($executorProject->administrative_minutes, PATHINFO_EXTENSION));
 
-        return response()->download(storage_path('app/' . $executorProject->administrative_minutes), $executorProject->project->name . '.' . $filePath['extension']);
+        return response()->download(storage_path('app/' . $executorProject->administrative_minutes), 'Berita Acara Administrasi ' . $executorProject->name . '.' . $filePath['extension']);
     }
 
     /**
@@ -79,7 +132,7 @@ class ExecutorProjectController extends Controller
     {
         $filePath = pathinfo(basename($executorProject->report, PATHINFO_EXTENSION));
 
-        return response()->download(storage_path('app/' . $executorProject->report), $executorProject->project->name . '.' . $filePath['extension']);
+        return response()->download(storage_path('app/' . $executorProject->report), 'Laporan ' . $executorProject->name . '.' . $filePath['extension']);
     }
 
 
@@ -93,7 +146,7 @@ class ExecutorProjectController extends Controller
     {
         $filePath = pathinfo(basename($executorProject->minutes_of_disbursement, PATHINFO_EXTENSION));
 
-        return response()->download(storage_path('app/' . $executorProject->minutes_of_disbursement), $executorProject->project->name . '.' . $filePath['extension']);
+        return response()->download(storage_path('app/' . $executorProject->minutes_of_disbursement), 'Berita Acara Pencairan ' . $executorProject->name . '.' . $filePath['extension']);
     }
 
     /**
@@ -106,7 +159,7 @@ class ExecutorProjectController extends Controller
     {
         $filePath = pathinfo(basename($executorProject->uitzet_minutes, PATHINFO_EXTENSION));
 
-        return response()->download(storage_path('app/' . $executorProject->uitzet_minutes), $executorProject->project->name . '.' . $filePath['extension']);
+        return response()->download(storage_path('app/' . $executorProject->uitzet_minutes), 'Berita Uitzet ' . $executorProject->name . '.' . $filePath['extension']);
     }
 
     
@@ -120,7 +173,7 @@ class ExecutorProjectController extends Controller
     {
         $filePath = pathinfo(basename($executorProject->mutual_check_0, PATHINFO_EXTENSION));
 
-        return response()->download(storage_path('app/' . $executorProject->mutual_check_0), $executorProject->project->name . '.' . $filePath['extension']);
+        return response()->download(storage_path('app/' . $executorProject->mutual_check_0), 'Mutual Check 0% ' . $executorProject->name . '.' . $filePath['extension']);
     }
 
     
@@ -133,8 +186,8 @@ class ExecutorProjectController extends Controller
     public function downloadMutualCheck100(ExecutorProject $executorProject)
     {
         $filePath = pathinfo(basename($executorProject->mutual_check_100, PATHINFO_EXTENSION));
-
-        return response()->download(storage_path('app/' . $executorProject->mutual_check_100), $executorProject->project->name . '.' . $filePath['extension']);
+ 
+        return response()->download(storage_path('app/' . $executorProject->mutual_check_100), 'Mutual Check 100% ' . $executorProject->name . '.' . $filePath['extension']);
     }
 
     
@@ -148,7 +201,7 @@ class ExecutorProjectController extends Controller
     {
         $filePath = pathinfo(basename($executorProject->p1_meeting_minutes, PATHINFO_EXTENSION));
 
-        return response()->download(storage_path('app/' . $executorProject->p1_meeting_minutes), $executorProject->project->name . '.' . $filePath['extension']);
+        return response()->download(storage_path('app/' . $executorProject->p1_meeting_minutes), 'Berita Acara P1 ' . $executorProject->name . '.' . $filePath['extension']);
     }
 
         /**
@@ -161,6 +214,6 @@ class ExecutorProjectController extends Controller
     {
         $filePath = pathinfo(basename($executorProject->p2_meeting_minutes, PATHINFO_EXTENSION));
 
-        return response()->download(storage_path('app/' . $executorProject->p2_meeting_minutes), $executorProject->project->name . '.' . $filePath['extension']);
+        return response()->download(storage_path('app/' . $executorProject->p2_meeting_minutes),'Berita Acara P2 ' . $executorProject->name . '.' . $filePath['extension']);
     }
 }

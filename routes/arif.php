@@ -18,7 +18,6 @@ Route::get('verification', [VerificationController::class, 'index']);
 Route::post('verification', [VerificationController::class, 'store']);
 
 Route::put('upload-file-consultan/{project}', [ProjectController::class, 'uploadFileKonsultan'])->name('upload-file-consultan.update');
-Route::put('upload-file-executor{project}', [ExecutorProjectController::class, 'store'])->name('upload-file-executor');
 
 Route::get('service-provider-qualifications', [ServiceProviderQualificationController::class, 'index'])->name('service.provider.qualifications');
 Route::get('service-provider-qualification-active', [ServiceProviderQualificationController::class, 'active'])->name('service.provider.qualification.active');

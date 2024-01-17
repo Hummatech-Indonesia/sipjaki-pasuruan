@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use App\Base\Interfaces\HasProject;
+use App\Base\Interfaces\HasExecutorProject;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Accident extends Model implements HasProject
+class Accident extends Model implements HasExecutorProject
 {
     use HasFactory;
 
@@ -15,7 +15,7 @@ class Accident extends Model implements HasProject
     protected $primaryKey = 'id';
     protected $fillable = [
         'id',
-        'project_id',
+        'executor_project_id',
         'location',
         'time',
         'description',
@@ -27,12 +27,12 @@ class Accident extends Model implements HasProject
     public $keyType = 'char';
 
     /**
-     * project
+     * Get the executorProject that owns the Accident
      *
-     * @return BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function project(): BelongsTo
+    public function executorProject(): BelongsTo
     {
-        return $this->belongsTo(Project::class);
+        return $this->belongsTo(ExecutorProject::class);
     }
 }

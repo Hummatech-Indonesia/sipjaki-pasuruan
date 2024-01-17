@@ -13,5 +13,6 @@ class ConsultantProjectObserver
     public function creating(ConsultantProject $consultantProject): void
     {
         $consultantProject->id = Uuid::uuid();
+        $consultantProject->dinas_id = auth()->user()->dinas->id;
     }
 }

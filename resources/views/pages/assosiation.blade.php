@@ -141,7 +141,7 @@
         </div>
     </div>
     <div class="mt-4 rounded p-4" style="background-color: #fff;box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);">
-        <h6 class="mb-3 font-size-14">Berikut Daftar Peserta Pelatihan</h6>
+        <h6 class="mb-3 font-size-14">Berikut Daftar Asosiasi</h6>
         <div class="d-flex justify-content-between align-items-center mb-3">
             <form action="" class=" col-lg-3">
                 <div class="input-group">
