@@ -6,90 +6,179 @@
     <p class="fs-4 text-dark" style="font-weight: 600">
         Paket Konsultan
     </p>
+    @if (auth()->user()->serviceProvider)
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card rounded-4">
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <div class="flex-grow-1">
+                                <div class="ms-2">
+                                    <span
+                                        class="badge bg-info text-light-primary fs-5">{{ $consultantProject->fiscalYear->name }}</span>
+                                </div>
+                                <div class="ms-2 mt-2">
+                                    <h4>
+                                        {{ $consultantProject->name }}
+                                    </h4>
+                                </div>
+                                <table cellpadding="10" style="border-collapse: collapse; width: 75%;">
+                                    <tbody>
+                                        <tr>
+                                            <td>Nilai Kontrak</td>
+                                            <td>:</td>
+                                            <td>Rp.{{ number_format($consultantProject->project_value, 0, ',', '.') }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Progres Keuangan</td>
+                                            <td>:</td>
+                                            <td>{{ $consultantProject->finance_progress }}%
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Status</td>
+                                            <td>:</td>
+                                            <td>
+                                                @php
+                                                    switch ($consultantProject->status) {
+                                                        case 'canceled':
+                                                            $text = 'Dibatalkan';
+                                                            break;
+                                                        case 'nonactive':
+                                                            $text = 'Non Aktif';
+                                                            break;
+                                                        default:
+                                                            $text = 'Aktif';
+                                                    }
+                                                @endphp
+                                                {{ $text }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Mulai</td>
+                                            <td>:</td>
+                                            <td>
+                                                {{ Carbon::parse($consultantProject->start_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Selesai</td>
+                                            <td>:</td>
+                                            <td>
+                                                {{ Carbon::parse($consultantProject->end_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sumber Dana</td>
+                                            <td>:</td>
+                                            <td>{{ $consultantProject->fundSource->name }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Dinas</td>
+                                            <td>:</td>
+                                            <td colspan="2" style="vertical-align: top;">
+                                                {{ $consultantProject->dinas->user->name }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Jenis Kontrak</td>
+                                            <td>:</td>
+                                            <td>{{ $consultantProject->contractCategory->name }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Karakteristik Kontrak</td>
+                                            <td>:</td>
+                                            <td>{{ $consultantProject->characteristic_project }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card rounded-4">
-                <div class="card-body">
-                    <div class="d-flex">
-                        <div class="flex-grow-1">
-                            <div class="ms-2">
-                                <span
-                                    class="badge bg-info text-light-primary fs-5">{{ $consultantProject->fiscalYear->name }}</span>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card rounded-4">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div class="ms-2 fw">
+                                <p class="fw-medium fs-5" style="margin-bottom: 25%;">Daftar File</p>
                             </div>
-                            <div class="ms-2 mt-2">
-                                <h4>
-                                    {{ $consultantProject->name }}
-                                </h4>
+                            <div>
+                                <div data-bs-toggle="modal" data-bs-target="#modal-create" class="btn  rounded-3"
+                                    style="background-color:#1B3061; color:white;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                        viewBox="0 0 24 24" fill="none">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M12 4C12.5523 4 13 4.35817 13 4.8V19.2C13 19.6418 12.5523 20 12 20C11.4477 20 11 19.6418 11 19.2V4.8C11 4.35817 11.4477 4 12 4Z"
+                                            fill="white" />
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M4 12C4 11.4477 4.35817 11 4.8 11H19.2C19.6418 11 20 11.4477 20 12C20 12.5523 19.6418 13 19.2 13H4.8C4.35817 13 4 12.5523 4 12Z"
+                                            fill="white" />
+                                    </svg> Upload File
+                                </div>
                             </div>
-                            <table cellpadding="10" style="border-collapse: collapse; width: 75%;">
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table mb-0">
+
+                                <thead>
+                                    <tr>
+                                        <th>Nama</th>
+                                        <th></th>
+                                        <th>File</th>
+                                    </tr>
+
+                                </thead>
                                 <tbody>
                                     <tr>
-                                        <td>Nilai Kontrak</td>
-                                        <td>:</td>
-                                        <td>Rp.{{ number_format($consultantProject->project_value, 0, ',', '.') }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Progres Keuangan</td>
-                                        <td>:</td>
-                                        <td>{{ $consultantProject->finance_progress }}%
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Status</td>
+                                        <td>Kontrak</td>
                                         <td>:</td>
                                         <td>
-                                            @php
-                                                switch ($consultantProject->status) {
-                                                    case 'canceled':
-                                                        $text = 'Dibatalkan';
-                                                        break;
-                                                    case 'nonactive':
-                                                        $text = 'Non Aktif';
-                                                        break;
-                                                    default:
-                                                        $text = 'Aktif';
-                                                }
-                                            @endphp
-                                            {{ $text }}
+                                            <a href="#" type="button" class="btn btn-md text-white"
+                                                style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                                Download</a>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Mulai</td>
+                                        <td>Berita Acara Serah Terima</td>
                                         <td>:</td>
                                         <td>
-                                            {{ Carbon::parse($consultantProject->start_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                            <a href="#" type="button" class="btn btn-md text-white"
+                                                style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                                Download</a>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Selesai</td>
+                                        <td>Berita Acara Administrasi</td>
                                         <td>:</td>
                                         <td>
-                                            {{ Carbon::parse($consultantProject->end_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                            <a href="#" type="button" class="btn btn-md text-white"
+                                                style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                                Download</a>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Sumber Dana</td>
+                                        <td>Berita Acara Pencairan</td>
                                         <td>:</td>
-                                        <td>{{ $consultantProject->fundSource->name }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Dinas</td>
-                                        <td>:</td>
-                                        <td colspan="2" style="vertical-align: top;">
-                                            {{ $consultantProject->dinas->user->name }}
+                                        <td>
+                                            <a href="#" type="button" class="btn btn-md text-white"
+                                                style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                                Download</a>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Jenis Kontrak</td>
+                                        <td>Dokumen Pendukung / Laporan</td>
                                         <td>:</td>
-                                        <td>{{ $consultantProject->contractCategory->name }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Karakteristik Kontrak</td>
-                                        <td>:</td>
-                                        <td>{{ $consultantProject->characteristic_project }}</td>
+                                        <td>
+                                            <a href="#" type="button" class="btn btn-md text-white"
+                                                style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                                Download</a>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -98,26 +187,71 @@
                 </div>
             </div>
         </div>
-    </div>
+        <div class="modal fade bs-example-modal-xl" id="modal-create" tabindex="-1" role="dialog"
+            aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div style="background-color: #1B3061;">
+                        <h5 class="modal-title text-white text-center m-3 fs-4">Tambah
+                            {{ Auth::user()->serviceProvider->type_of_business_entity == 'consultant' ? 'Progress' : 'File' }}
+                        </h5>
+                    </div>
+                    <form action="" method="post" enctype="multipart/form-data">
+                        @method('POST')
+                        @csrf
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                                        <label class="form-label">Kontrak</label>
+                                        <input class="form-control" accept=".pdf" type="file"
+                                            value="{{ old('contract') }}" name="contract" id="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                                        <label class="form-label">Berita Acara Serah Terima</label>
+                                        <input class="form-control" type="file" value="{{ old('uitzet_minutes') }}"
+                                            name="uitzet_minutes" accept=".pdf" id="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                                        <label class="form-label">Berita Acara Administrasi</label>
+                                        <input class="form-control" type="file"
+                                            value="{{ old('administrative_minutes') }}" name="administrative_minutes"
+                                            accept=".pdf" id="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                                        <label class="form-label">Berita Acara Pencairan</label>
+                                        <input class="form-control" type="file"
+                                            value="{{ old('minutes_of_disbursement') }}" name="minutes_of_disbursement"
+                                            accept=".pdf" id="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                                        <label class="form-label">Dokumen Pendukung / Laporan</label>
+                                        <input class="form-control" type="file" value="{{ old('mitual_check_0') }}"
+                                            name="minutes_of_mutual_check_0" accept=".pdf" id="">
+                                    </div>
+                                </div>
+                                <div class="d-flex d-row justify-content-end mt-3">
+                                    <button type="button" class="btn btn-danger btn-md me-2" data-bs-dismiss="modal"
+                                        aria-label="Close">Batal</button>
+                                    <button type="submit" style="background-color: #1B3061; color:white;"
+                                        class="btn btn-md">Tambah</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+    @endif
 
-    <div class="d-flex justify-content-between ">
-        @if (auth()->user()->dinas)
-            <div class="">
-                <button data-bs-toggle="modal" data-bs-target="#modal-create" class="btn text-white"
-                    style="background-color:#1B3061">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                        fill="none">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M12 4C12.5523 4 13 4.35817 13 4.8V19.2C13 19.6418 12.5523 20 12 20C11.4477 20 11 19.6418 11 19.2V4.8C11 4.35817 11.4477 4 12 4Z"
-                            fill="white" />
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M4 12C4 11.4477 4.35817 11 4.8 11H19.2C19.6418 11 20 11.4477 20 12C20 12.5523 19.6418 13 19.2 13H4.8C4.35817 13 4 12.5523 4 12Z"
-                            fill="white" />
-                    </svg>Tambah
-                </button>
-            </div>
-        @endif
-    </div>
     @if (auth()->user()->dinas)
         <div class="modal fade bs-example-modal-xl" id="modal-create" tabindex="-1" role="dialog"
             aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
@@ -313,8 +447,62 @@
                 </ul>
             </div>
         @endif
-        <div>
-            <h4>Paket Pekerjaan</h4>
+        <div class="d-flex justify-content-between mb-3">
+            <form action="" class="d-flex gap-3 col-8">
+                <input type="search" name="name" value="{{ request()->name }}" class="form-control"
+                    placeholder="Search">
+                <select name="status" class="form-control ml-3" id="">
+                    <option value="">Semua Status</option>
+                    <option value="active" {{ request()->status == 'active' ? 'selected' : '' }}>Aktif</option>
+                    <option value="nonactive" {{ request()->status == 'nonactive' ? 'selected' : '' }}>Non Aktif</option>
+                    <option value="canceled" {{ request()->status == 'canceled' ? 'selected' : '' }}>Dibatalkan</option>
+                </select>
+                <select name="year" class="form-control ml-3" id="">
+                    <option value="">Semua Tahun</option>
+                    @foreach ($fiscalYears as $fiscalYear)
+                        <option value="{{ $fiscalYear->id }}" {{ request()->year == $fiscalYear->id ? 'selected' : '' }}>
+                            {{ $fiscalYear->name }}</option>
+                    @endforeach
+                </select>
+                <button data-bs-toggle="modal" data-bs-target="#modal-create"
+                    class="btn text-white d-flex items-center gap-2" style="background-color:#1B3061">
+                    Cari <i class="fa fa-search my-auto"></i>
+                </button>
+                <button class="btn btn-danger d-flex items-center gap-2">
+                    PDF<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                        <path fill="white"
+                            d="m23 12l-4-4v3h-9v2h9v3M1 18V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3h-2V6H3v12h12v-3h2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2Z" />
+                    </svg>
+                    </i>
+                </button>
+                <button class="btn btn-success d-flex items-center gap-2">
+                    Excel<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                        <path fill="white"
+                            d="m23 12l-4-4v3h-9v2h9v3M1 18V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3h-2V6H3v12h12v-3h2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2Z" />
+                    </svg>
+                    </i>
+                </button>
+            </form>
+            @if (auth()->user()->dinas)
+                <div class="">
+                    <button data-bs-toggle="modal" data-bs-target="#modal-create" class="btn text-white"
+                        style="background-color:#1B3061">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                            fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M12 4C12.5523 4 13 4.35817 13 4.8V19.2C13 19.6418 12.5523 20 12 20C11.4477 20 11 19.6418 11 19.2V4.8C11 4.35817 11.4477 4 12 4Z"
+                                fill="white" />
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M4 12C4 11.4477 4.35817 11 4.8 11H19.2C19.6418 11 20 11.4477 20 12C20 12.5523 19.6418 13 19.2 13H4.8C4.35817 13 4 12.5523 4 12Z"
+                                fill="white" />
+                        </svg>Tambah
+                    </button>
+                </div>
+            @else
+                <div>
+                    <h4>Paket Pekerjaan</h4>
+                </div>
+            @endif
         </div>
         <div class="table-responsive">
             <table class="table table-borderless" border="1">

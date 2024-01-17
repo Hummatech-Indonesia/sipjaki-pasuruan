@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <h4 class="mb-3 font-size-18">Paket Pekerjaan</h4>
+    <h4 class="mb-3 font-size-18">Paket Pekerjaan ok</h4>
     <div class="col-12 col-lg-5 col-xxl-4 mb-3">
         <form action="" class="">
             <div class="input-group d-flex ">

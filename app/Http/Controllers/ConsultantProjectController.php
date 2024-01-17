@@ -55,10 +55,18 @@ class ConsultantProjectController extends Controller
     public function index(Request $request)
     {
         $consultantProjects = $this->consultantProject->customPaginate($request, 10);
+        $consultants = $this->serviceProvider->getConsultant();
+        $fundSources = $this->fundSource->get();
         $fiscalYears = $this->fiscalYear->get();
+        $contractCategories = $this->contractCategory->get();
+        $executorProjects = $this->executorProject->get();
 
-        return view('pages.service-provider.consultant-package',compact(
+        return view('pages.consultant-project.index',compact(
             'consultantProjects',
+            'fundSources',
+            'contractCategories',
+            'executorProjects',
+            'consultants',
             'fiscalYears'
         ));   
     }
