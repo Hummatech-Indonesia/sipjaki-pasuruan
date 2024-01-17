@@ -35,20 +35,20 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between mb-3">
-                        <form action="" class="d-flex gap-3 col-8">
-                            <input type="search" name="name" value="{{request()->name}}" class="form-control" placeholder="Search">
-                            <select name="status" class="form-control ml-3" id="">
-                                <option value="">Semua Status</option>
-                                <option value="active" {{request()->status == 'active' ? 'selected' : ''}}>Aktif</option>
-                                <option value="nonactive" {{request()->status == 'nonactive' ? 'selected' : ''}}>Non Aktif</option>
-                                <option value="canceled" {{request()->status == 'canceled' ? 'selected' : ''}}>Dibatalkan</option>
-                            </select>
-                            <select name="year" class="form-control ml-3" id="">
-                                <option value="">Semua Tahun</option>
-                                @foreach ($fiscalYears as $fiscalYear)
-                                    <option value="{{$fiscalYear->id}}" {{ request()->year == $fiscalYear->id ? 'selected' : ''}}>{{$fiscalYear->name}}</option>
-                                @endforeach
-                            </select>
+                        <form>
+                            <div class="d-flex justify-content-header gap-2">
+                                <div class="d-flex d-row align-items-center mb-3">
+                                    <div class="position-relative  search-container">
+                                        <input type="search" class="py-2 ps-5" id="search-name" name="title" placeholder="Search">
+                                        <i class="bx bx-search-alt search-icon"></i>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <button type="submit" class="text-white btn" style="background-color: #1B3061">
+                                        Search
+                                    </button>
+                                </div>
+                            </div>
                         </form>
                     </div>
                     <div class="table-responsive">
