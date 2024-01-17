@@ -75,10 +75,10 @@ class ExecutorProjectRepository extends BaseRepository implements ExecutorProjec
     public function customPaginate(Request $request, int $pagination = 10): LengthAwarePaginator
     {
         return $this->model->query()
-            ->when(auth()->user()->dinas, function ($query) {
+            ->when(auth()->user()?->dinas, function ($query) {
                 $query->whereRelation('consultantProject','dinas_id', auth()->user()->dinas->id);
             })
-            ->when(auth()->user()->serviceProvider,function($query){
+            ->when(auth()->user()?->serviceProvider,function($query){
                 $query->when(auth()->user()->serviceProvider->type_of_business_entity == TypeOfBusinessEntityEnum::CONSULTANT->value,function($q){
                     $q->whereRelation('consultantProject','service_provider_id',auth()->user()->serviceProvider->id);
                 });

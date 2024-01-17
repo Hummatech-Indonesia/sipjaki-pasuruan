@@ -107,13 +107,8 @@ class ConsultantProjectRepository extends BaseRepository implements ConsultantPr
     public function search(Request $request): mixed
     {
         return $this->model->query()
-            ->with('serviceProviderProjects')
             ->when(auth()->user()->dinas, function ($query) {
                 $query->whereRelation('dinas', 'dinas_id', auth()->user()->dinas->id);
-            })
-            ->when(auth()->user()->serviceProvider, function ($query) {
-                $query->where('consultant_id', auth()->user()->serviceProvider->id);
-                $query->orWhere('executor_id', auth()->user()->serviceProvider->id);
             })
             ->when($request->name, function ($query) use ($request) {
                 $query->where('name', 'LIKE', '%' . $request->name . '%');
@@ -128,5 +123,24 @@ class ConsultantProjectRepository extends BaseRepository implements ConsultantPr
                 $query->where('status', $request->status);
             })
             ->get();
+    }
+
+    
+    /**
+     * count
+     *
+     * @param  mixed $data
+     * @return int
+     */
+    public function count(?array $data): int
+    {
+        return $this->model->query()
+            ->when(auth()->user()->serviceProvider,function($query){
+                $query->where('service_provider_id',auth()->user()->serviceProvider->id);
+            })
+            ->when(isset($data['status']),function($query) use ($data){
+                $query->where('status',$data['status']);
+            })
+            ->count();
     }
 }

@@ -47,8 +47,7 @@ class DinasRepository extends BaseRepository implements DinasInterface
             ->when($request->name, function ($query) use ($request) {
                 $query->whereRelation('user', 'name', 'LIKE', '%' . $request->name . '%');
             })
-            ->withCount('projects')
-            ->with('user', 'projects')
+            ->with('user')
             ->get();
     }
 
