@@ -184,6 +184,7 @@ class ServiceProviderController extends Controller
     {
         $request->merge(['type_of_business_entity' => TypeOfBusinessEntityEnum::CONSULTANT->value]);
         $serviceProviders = $this->serviceProvider->customPaginate($request, 10);
+
         return view('pages.dinas.konsultan', ['serviceProviders' => $serviceProviders]);
     }
 
