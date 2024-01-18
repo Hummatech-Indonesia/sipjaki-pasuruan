@@ -48,6 +48,7 @@ class DinasRepository extends BaseRepository implements DinasInterface
                 $query->whereRelation('user', 'name', 'LIKE', '%' . $request->name . '%');
             })
             ->with('user')
+            ->latest()
             ->get();
     }
 
@@ -83,6 +84,7 @@ class DinasRepository extends BaseRepository implements DinasInterface
     public function get(): mixed
     {
         return $this->model->query()
+            ->latest()
             ->get();
     }
 
@@ -111,6 +113,7 @@ class DinasRepository extends BaseRepository implements DinasInterface
             ->when($request->name, function ($query) use ($request) {
                 $query->where('name_opd', 'LIKE', '%' . $request->name . '%');
             })
+            ->latest()
             ->fastPaginate($pagination);
     }
 }

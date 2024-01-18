@@ -2,6 +2,8 @@
 
 namespace App\Exports;
 
+use App\Contracts\Interfaces\ExecutorProjectInterface;
+use App\Models\ExecutorProject;
 use App\Models\Project;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request; // Import the Request class
@@ -14,30 +16,22 @@ class ProjectExport implements FromView, ShouldAutoSize
     use Exportable;
 
     protected $request;
+    private ExecutorProjectInterface $executorProject;
 
-    public function __construct(Request $request)
+    public function __construct(
+        Request $request,
+        ExecutorProjectInterface $executorProject,
+    )
     {
         $this->request = $request;
+        $this->executorProject = $executorProject;
     }
     /**
      * @return \Illuminate\Support\Collection
      */
     public function view(): View
     {
-        $projects = Project::query()->with('serviceProviderProjects')
-            ->when(auth()->user()->dinas, function ($query) {
-                $query->whereRelation('dinas', 'dinas_id', auth()->user()->dinas->id);
-            })
-            ->when($this->request->name, function ($query) {
-                $query->where('name', 'LIKE', '%' . $this->request->name . '%');
-            })
-            ->when($this->request->year, function ($query) {
-                $query->whereYear('year', $this->request->year);
-            })
-            ->when($this->request->status, function ($query) {
-                $query->where('status', $this->request->status);
-            })
-            ->get();
+        $projects = $this->executorProject->search($this->request);
 
         return view('exports.projects', ['projects' => $projects]);
     }

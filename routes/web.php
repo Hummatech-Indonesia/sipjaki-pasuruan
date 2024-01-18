@@ -138,6 +138,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('consultant-projects',ConsultantProjectController::class)->only(['show']);
     Route::get('detail-project/{executorProject}', [ProjectController::class, 'projectDetail'])->name('detail-project');
+    Route::get('consultant-package', [ConsultantProjectController::class, 'consultantProject'])->name('consultant-package');
 
     Route::middleware('role:superadmin')->group(function () {
 
@@ -235,7 +236,6 @@ Route::middleware('auth')->group(function () {
             'founding-deed' => FoundingDeepController::class,
             'amendment-deed' => AmendmentDeepController::class,
         ]);
-        Route::get('consultant-package', [ConsultantProjectController::class, 'consultantProject'])->name('consultant-package');
         Route::post('consultant-project/{project}', [ConsultantProjectController::class, 'store'])->name('consultant-project.store');
         Route::put('consultant-project/{project}', [ConsultantProjectController::class, 'update'])->name('consultant-project.update');
         Route::post('service-provider-executor-projects/{project}', [ServiceProviderProjectController::class, 'store'])->name('service-provider-executor-projects.store');

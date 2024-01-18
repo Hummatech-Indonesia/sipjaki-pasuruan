@@ -7,22 +7,28 @@
         Paket Pekerjaan
     </p>
     <div class="d-flex justify-content-between ">
-        <form action="" method="GET" class="d-flex gap-3 col-8">
+        <form action="" method="GET" class="d-flex gap-3 col-10">
             <input type="search" id="search-name" value="{{ request()->name }}" name="name" class="form-control"
                 placeholder="Search">
-            @if(auth()->user()->role() == 'admin' || auth()->user()->role() == 'superadmin')
-            <select name="dinas_id" id="search-status" class="form-control ml-3">
+            @role(['admin','superadmin'])
+            <select name="dinas" id="search-dinas" class="form-control ml-3">
                 <option value="">Semua Dinas</option>
                 @foreach ($dinases as $dinas)
                     <option {{ request()->dinas == $dinas->id ? 'selected' : '' }} value="{{ $dinas->id }}">{{ $dinas->user->name }}</option>
                 @endforeach
-            @endif
+            @endrole
             </select>
-        <select name="year" id="search-year" class="form-control">
-                <option value="" selected>Tampilkan Semua Tahun</option>
+            <select name="year" id="search-year" class="form-control">
+                <option value="" selected> Semua Tahun</option>
                 @foreach ($fiscalYears as $fiscalYear)
                     <option {{ $fiscalYear->id == request()->year ? 'selected' : '' }} value="{{ $fiscalYear->id }}">{{ $fiscalYear->name }}</option>
                 @endforeach
+            </select>
+            <select name="status"  id="search-status" class="form-control">
+                <option value="" selected> Semua Status</option>
+                <option value="active"  {{request()->status == 'active' ? 'selected' : ''}}>Aktif</option>
+                <option value="nonactive"  {{request()->status == 'nonantive' ? 'selected' : ''}}>Non Aktif</option>
+                <option value="canceled"  {{request()->status == 'canceled' ? 'selected' : ''}}>Dibatalkan</option>
             </select>
             <button type="submit" class="btn text-white d-flex items-center gap-2" style="background-color:#1B3061">
                 Cari <i class="fa fa-search my-auto"></i>
@@ -43,7 +49,7 @@
             </button>
 
         </form>
-        @if (auth()->user()->role() == 'dinas')
+        @role('dinas')
             <div class="">
                 <button data-bs-toggle="modal" data-bs-target="#modal-create" class="btn text-white"
                     style="background-color:#1B3061">
@@ -58,8 +64,9 @@
                     </svg>Tambah
                 </button>
             </div>
-        @endif
+        @endrole
     </div>
+    @role('dinas')
     <div class="modal fade bs-example-modal-xl" id="modal-create" tabindex="-1" role="dialog"
         aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
@@ -270,6 +277,7 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div>
+    @endrole
 
     <div class="row mt-4">
         @if ($errors->any())
@@ -287,11 +295,14 @@
                     <tr>
                         <th class="text-center table-sipjaki">No</th>
                         <th class="text-center table-sipjaki">Nama Pekerjaan</th>
+                        @role(['admin','superadmin','dinas'])
+                        <th class="text-center table-sipjaki">Pelaksana</th>
+                        @endrole
+                        @role(['service provider','admin','superadmin']) 
+                        <th class="text-center table-sipjaki">Dinas</th>
+                        @endrole
                         <th class="text-center table-sipjaki">Tahun</th>
                         <th class="text-center table-sipjaki">Nilai Kontrak</th>
-                        @if (!auth()->user()->dinas)   
-                        <th class="text-center table-sipjaki">Dinas</th>
-                        @endif
                         <th class="text-center table-sipjaki">Progress</th>
                         <th class="text-center table-sipjaki">Aksi</th>
                     </tr>
@@ -305,23 +316,28 @@
                             <td class="text-center">
                                 {{ $executorProject->name }}
                             </td>
+                            @role(['admin','superadmin','dinas'])
+                            <td class="text-center">
+                                {{ $executorProject->serviceProvider->user->name }}
+                            </td>
+                            @endrole
+                            @role(['service provider','admin','superadmin'])
+                            <td class="text-center">
+                                {{ $executorProject->consultantProject->dinas->user->name }}
+                            </td>
+                            @endrole
                             <td class="text-center">
                                 {{ $executorProject->fiscalYear->name }}
                             </td>
                             <td class="text-center">
                                 Rp.{{ number_format($executorProject->project_value, 0, ',', '.') }}
                             </td>
-                            @if (!auth()->user()->dinas)  
-                            <td class="text-center">
-                                {{ $executorProject->consultantProject->dinas->user->name }}
-                            </td>
-                            @endif
                             <td class="text-center">
                                 {{ $executorProject->physical_progress }}%
                             </td>
                             <td class="text-center">
                                 <div class="d-flex justify-content-center gap-2">
-                                    @if (auth()->user()->dinas)
+                                    @role('dinas')
                                         <div class="d-flex justify-content-center mb-2">
                                             <button data-id="{{ $executorProject->id }}" style="min-width: 90px;width:100%"
                                                 class="btn btn-danger btn-delete d-flex"><i
@@ -348,9 +364,9 @@
                                                 data-characteristic_project="{{ $executorProject->characteristic_project }}"><i
                                                     class="bx bx-bx bxs-edit fs-4 me-1"></i> Edit</button>
                                         </div>
-                                    @endif
+                                    @endrole
                                     <div class="d-flex justify-content-center mb-2">
-                                        <a href="/detail-project-dinas/{{ $executorProject->id }}"
+                                        <a href="{{route('detail-project',['executorProject' => $executorProject->id ])}}"
                                             style="min-width: 90px;width:100%;background-color: #1B3061"
                                             class="btn text-white btn-detail"><svg xmlns="http://www.w3.org/2000/svg"
                                                 width="19" height="19" viewBox="0 0 24 24" fill="none">
@@ -697,7 +713,6 @@
     @endif
     <script>
         $('a[href="#finish"]').click(function() {
-            console.log(true);
             $(this).closest('form').submit()
         })
         $(document).ready(function() {
@@ -741,6 +756,10 @@
             var year = $('#search-year').val()
             var route = "/project-export"
             var location = `${route}?status=${status}&name=${name}&year=${year}`
+            @role(['admin','superadmin'])
+            var dinas = $('#search-dinas').val()
+            location = `${route}?status=${status}&name=${name}&year=${year}&dinas=${dinas}`
+            @endrole
             window.location.href = location
         })
 

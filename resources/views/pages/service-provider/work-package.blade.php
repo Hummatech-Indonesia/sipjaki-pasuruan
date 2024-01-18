@@ -2,15 +2,15 @@
 @section('content')
     <h4 class="mb-3 font-size-18">Paket Pekerjaan</h4>
     <div class="d-flex justify-content-between mb-3">
-        <form action="" class="d-flex gap-3 col-8">
-            <input type="search" name="name" value="{{request()->name}}" class="form-control" placeholder="Search">
-            <select name="status" class="form-control ml-3" id="">
+        <div class="d-flex gap-3 col-8">
+            <input type="search" name="name" id="search-name" value="{{request()->name}}" class="form-control" placeholder="Search">
+            <select name="status" class="form-control ml-3" id="search-status">
                 <option value="">Semua Status</option>
                 <option value="active" {{request()->status == 'active' ? 'selected' : ''}}>Aktif</option>
                 <option value="nonactive" {{request()->status == 'nonactive' ? 'selected' : ''}}>Non Aktif</option>
                 <option value="canceled" {{request()->status == 'canceled' ? 'selected' : ''}}>Dibatalkan</option>
             </select>
-            <select name="year" class="form-control ml-3" id="">
+            <select name="year" class="form-control ml-3" id="search-year">
                 <option value="">Semua Tahun</option>
                 @foreach ($fiscalYears as $fiscalYear)
                     <option value="{{$fiscalYear->id}}" {{ request()->year == $fiscalYear->id ? 'selected' : ''}}>{{$fiscalYear->name}}</option>
@@ -20,16 +20,15 @@
                 style="background-color:#1B3061">
                 Cari <i class="fa fa-search my-auto"></i>
             </button>
-            <button class="btn btn-danger d-flex items-center gap-2">
+            <button class="btn btn-danger d-flex items-center gap-2" id="export-pdf">
                 PDF<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="white" d="m23 12l-4-4v3h-9v2h9v3M1 18V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3h-2V6H3v12h12v-3h2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2Z"/></svg>
             </i>
             </button>
-            <button class="btn btn-success d-flex items-center gap-2">
+            <button class="btn btn-success d-flex items-center gap-2" id="export-excel">
                 Excel<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="white" d="m23 12l-4-4v3h-9v2h9v3M1 18V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3h-2V6H3v12h12v-3h2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2Z"/></svg>
             </i>
-            </button>
-            
-        </form>
+            </button>     
+        </div>
         @if(auth()->user()->dinas)
         <div class="">
             <button data-bs-toggle="modal" data-bs-target="#modal-create" class="btn text-white"
@@ -153,5 +152,23 @@
                 $('[data-toggle="tooltip"]').tooltip();
             });
         });
+
+        $('#export-excel').click(function() {
+            var status = $('#search-status').val()
+            var name = $('#search-name').val()
+            var year = $('#search-year').val()
+            var route = "/project-export"
+            var location = `${route}?status=${status}&name=${name}&year=${year}`
+            window.location.href = location
+        })
+
+        $('#export-pdf').click(function() {
+            var status = $('#search-status').val()
+            var name = $('#search-name').val()
+            var year = $('#search-year').val()
+            var route = "{{ Route('project-export-pdf') }}"
+            var location = `${route}?status=${status}&name=${name}&year=${year}`
+            window.location.href = location
+        })
     </script>
 @endsection

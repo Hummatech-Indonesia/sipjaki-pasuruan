@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <h4 class="mb-3 font-size-18">Paket Konsultan</h4>
-    <div class="col-8 mb-3">
+    <div class="col-10 mb-3">
         <form action="" class="d-flex gap-3 ">
             <input type="search" name="name" value="{{ request()->name }}" class="form-control" placeholder="Search">
             <select name="status" class="form-control ml-3" id="">
@@ -11,6 +11,13 @@
                 </option>
                 <option value="canceled" {{ request()->status == 'canceled' ? 'selected' : '' }}>Dibatalkan
                 </option>
+            </select>
+            <select name="dinas" class="form-control ml-3" id="">
+                <option value="">Semua Dinas</option>
+                @foreach ($dinases as $dinas)
+                    <option value="{{ $dinas->id }}" {{ request()->dinas == $dinas->id ? 'selected' : '' }}>
+                        {{ $dinas->name }}</option>
+                @endforeach
             </select>
             <select name="year" class="form-control ml-3" id="">
                 <option value="">Semua Tahun</option>
@@ -51,6 +58,14 @@
                         <td class="text-white text-center" style="background-color: #1B3061">
                             Nama
                         </td>
+                        @role(['admin','superadmin'])
+                        <td class="text-white text-center" style="background-color: #1B3061">
+                            Dinas
+                        </td>
+                        <td class="text-white text-center" style="background-color: #1B3061">
+                            Konsultan
+                        </td>
+                        @endrole
                         <td class="text-white text-center" style="background-color: #1B3061">
                             Tahun
                         </td>
@@ -71,6 +86,14 @@
                             <td class="text-center">
                                 {{ $consultantProject->name }}
                             </td>
+                            @role(['admin','superadmin'])
+                            <td class="text-center">
+                                {{ $consultantProject->dinas->user->name }}
+                            </td>
+                            <td class="text-center">
+                                {{ $consultantProject->serviceProvider->user->name }}
+                            </td>
+                            @endrole
                             <td class="text-center">
                                 {{ $consultantProject->fiscalYear->name }}
                             </td>

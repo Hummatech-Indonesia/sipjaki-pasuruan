@@ -147,13 +147,11 @@ class ConsultantProjectController extends Controller
      */
     public function consultantProject(Request $request)
     {
-        $consultantProjects = $this->consultantProject->customPaginate($request, 10);
-        $fiscalYears = $this->fiscalYear->get();
+        $data['consultantProjects'] = $this->consultantProject->customPaginate($request, 10);
+        $data['fiscalYears'] = $this->fiscalYear->get();
+        $data['dinases'] = $this->dinas->get();
 
-        return view('pages.service-provider.consultant-package',compact(
-            'consultantProjects',
-            'fiscalYears'
-        ));
+        return view('pages.service-provider.consultant-package',$data);
         
     }
 

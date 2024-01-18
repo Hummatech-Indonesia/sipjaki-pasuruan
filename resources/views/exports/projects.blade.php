@@ -13,24 +13,45 @@
         <thead>
             <tr>
                 <th style="text-align: center; padding:4px; background-color:#1B3061; color:white">Nama
-                    Dinas</th>
+                    Tahun</th>
                 <th style="text-align: center; padding:4px; background-color:#1B3061; color:white">Nama
+                    Nama
+                </th>
+                <th style="text-align: center; padding:4px; background-color:#1B3061; color:white">
+                    Nilai Kontrak
+                </th>
+                @role(['admin','superadmin','service provider'])
+                <th style="text-align: center; padding:4px; background-color:#1B3061; color:white">
+                    Dinas
+                </th>
+                @endrole
+                <th style="text-align: center; padding:4px; background-color:#1B3061; color:white">
+                    Pelaksana
+                </th>
+                <th style="text-align: center; padding:4px; background-color:#1B3061; color:white">
                     Konsultan
                 </th>
                 <th style="text-align: center; padding:4px; background-color:#1B3061; color:white">
-                    Nama Eksekutor</th>
+                    Mulai
+                </th>
                 <th style="text-align: center; padding:4px; background-color:#1B3061; color:white">
-                    Tahun</th>
-
+                    Selesai
+                </th>
             </tr>
         </thead>
         <tbody>
             @foreach ($projects as $project)
                 <tr>
-                    <td>{{ $project->dinas->user->name }}</td>
-                    <td>{{ $project->consultant->user->name }}</td>
-                    <td>{{ $project->executor->user->name }}</td>
-                    <td>{{ $project->year }}</td>
+                    <td>{{ $project->fiscalYear->name }}</td>
+                    <td>{{ $project->name }}</td>
+                    <td>Rp.{{ number_format($project->project_value, 0, ',', '.') }}</td>
+                    @role(['admin','superadmin','service provider'])
+                    <td>{{ $project->consultantProject->dinas->user->name }}</td>
+                    @endrole
+                    <td>{{ $project->serviceProvider->user->name }}</td>
+                    <td>{{ $project->consultantProject->serviceProvider->user->name }}</td>
+                    <td>{{ \Carbon\Carbon::parse($project->start_at)->locale('id_ID')->isoFormat('DD MMMM Y') }}</td>
+                    <td>{{ \Carbon\Carbon::parse($project->start_at)->locale('id_ID')->isoFormat('DD MMMM Y') }}</td>
                 </tr>
             @endforeach
         </tbody>

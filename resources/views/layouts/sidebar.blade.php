@@ -109,7 +109,7 @@
                         </a>
                     </li>
                     <li id="project-admin">
-                        <a id="project-admin-link" href="{{ route('consultant-projects.index') }}" class="waves-effect">
+                        <a id="project-admin-link" href="{{ route('consultant-package') }}" class="waves-effect">
                             <i class="bx bxs-package"></i>
                             <span key="t-file-manager">Paket Konsultan</span>
                         </a>
@@ -234,7 +234,7 @@
                         </a>
                     </li>
                     <li id="project-admin">
-                        <a id="project-admin-link" href="{{ route('consultant-projects.index') }}" class="waves-effect">
+                        <a id="project-admin-link" href="{{ route('consultant-package') }}" class="waves-effect">
                             <i class="bx bxs-package"></i>
                             <span key="t-file-manager">Paket Konsultan</span>
                         </a>

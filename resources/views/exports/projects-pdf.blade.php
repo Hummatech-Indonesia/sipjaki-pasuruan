@@ -27,8 +27,8 @@
             color: #FFFFFF;
         }
 
-        td {
-            border: none;
+        .border td {
+            border: 1px solid black;
             /* Menghapus garis-garis di antara kolom-kolom */
         }
     </style>
@@ -49,27 +49,50 @@
     </header>
     <div class="">
         <p style="font-weight:bold;text-align:center;">Data Paket Pekerjaan</p>
-        <p style="text-align:right">Di eksport pada
-            {{ Carbon::now()->locale('id_ID')->isoFormat('DD MMMM Y') }}
-        </p>
 
-        <table>
+        <table class="table">
             <thead>
                 <tr>
-                    <th>Tahun</th>
-                    <th>Nama Pekerjaan</th>
-                    <th>Nilai Kontrak</th>
-                    <th>Dinas</th>
+                    <th style="text-align: center; padding:4px; background-color:#1B3061; color:white">Nama
+                        Tahun</th>
+                    <th style="text-align: center; padding:4px; background-color:#1B3061; color:white">Nama
+                        Nama
+                    </th>
+                    <th style="text-align: center; padding:4px; background-color:#1B3061; color:white">
+                        Nilai Kontrak
+                    </th>
+                    @role(['admin','superadmin','service provider'])
+                    <th style="text-align: center; padding:4px; background-color:#1B3061; color:white">
+                        Dinas
+                    </th>
+                    @endrole
+                    <th style="text-align: center; padding:4px; background-color:#1B3061; color:white">
+                        Pelaksana
+                    </th>
+                    <th style="text-align: center; padding:4px; background-color:#1B3061; color:white">
+                        Konsultan
+                    </th>
+                    <th style="text-align: center; padding:4px; background-color:#1B3061; color:white">
+                        Mulai
+                    </th>
+                    <th style="text-align: center; padding:4px; background-color:#1B3061; color:white">
+                        Selesai
+                    </th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="border">
                 @foreach ($projects as $project)
                     <tr>
-                        <td style="padding: 4px">{{ $project->year }}</td>
-                        <td style="padding: 4px">{{ $project->name }}</td>
-                        <td style="padding: 4px"> Rp.{{ number_format($project->project_value, 0, ',', '.') }}
-                        </td>
-                        <td style="padding: 4px">{{ $project->dinas->user->name }}</td>
+                        <td>{{ $project->fiscalYear->name }}</td>
+                        <td>{{ $project->name }}</td>
+                        <td>Rp.{{ number_format($project->project_value, 0, ',', '.') }}</td>
+                        @role(['admin','superadmin','service provider'])
+                        <td>{{ $project->consultantProject->dinas->user->name }}</td>
+                        @endrole
+                        <td>{{ $project->serviceProvider->user->name }}</td>
+                        <td>{{ $project->consultantProject->serviceProvider->user->name }}</td>
+                        <td>{{ \Carbon\Carbon::parse($project->start_at)->locale('id_ID')->isoFormat('DD MMMM Y') }}</td>
+                        <td>{{ \Carbon\Carbon::parse($project->start_at)->locale('id_ID')->isoFormat('DD MMMM Y') }}</td>
                     </tr>
                 @endforeach
             </tbody>
