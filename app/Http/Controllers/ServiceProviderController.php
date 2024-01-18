@@ -39,8 +39,8 @@ class ServiceProviderController extends Controller
         ServiceProviderQualificationInterface $serviceProviderQualification,
         OfficerInterface $officerInterface,
         UserInterface $userInterface,
-        ServiceProviderService $service)
-    {
+        ServiceProviderService $service
+    ) {
         $this->userI = $userInterface;
         $this->worker = $workerInterface;
         $this->executorProject = $executorProject;
@@ -69,15 +69,15 @@ class ServiceProviderController extends Controller
         $countWorker = $this->worker->countWorker();
         $consultantProjects = $this->consultantProject->search($request);
 
-        if(auth()->user()->serviceProvider->type_of_business_entity == 'consultant'){
+        if (auth()->user()->serviceProvider->type_of_business_entity == 'consultant') {
             $activeProjectCount = $this->consultantProject->count(['status' => StatusEnum::ACTIVE->value]);
             $projectCount = $this->consultantProject->count(null);
-        }else{
+        } else {
             $activeProjectCount = $this->executorProject->count(['status' => StatusEnum::ACTIVE->value]);
             $projectCount = $this->executorProject->count(null);
         }
 
-        return view('pages.service-provider.dashboard',compact(
+        return view('pages.service-provider.dashboard', compact(
             'workers',
             'activeExecutorProjects',
             'countOfficer',
@@ -108,7 +108,7 @@ class ServiceProviderController extends Controller
      * @param  mixed $service_provider
      * @return View
      */
-    public function show(ServiceProvider $service_provider,Request $request): View
+    public function show(ServiceProvider $service_provider, Request $request): View
     {
         $serviceProviders = $this->serviceProvider->show($service_provider->id);
         $serviceProviderQualifications = $this->serviceProviderQualification->customPaginate($request, 10);
@@ -119,12 +119,13 @@ class ServiceProviderController extends Controller
         $foundingDeeps = $service_provider->foundingDeed;
         return view('pages.service-provider.detail', [
             'serviceProviders' => $serviceProviders,
-            'serviceProviderQualifications'=>$serviceProviderQualifications,
-            'officers'=>$officers,
-            'workers'=>$workers,
-            'verifications'=>$verifications,
-            'amendmentDeeps'=>$amendmentDeeps,
-            'foundingDeeps'=>$foundingDeeps]);
+            'serviceProviderQualifications' => $serviceProviderQualifications,
+            'officers' => $officers,
+            'workers' => $workers,
+            'verifications' => $verifications,
+            'amendmentDeeps' => $amendmentDeeps,
+            'foundingDeeps' => $foundingDeeps
+        ]);
     }
 
     /**
@@ -182,7 +183,7 @@ class ServiceProviderController extends Controller
     public function consultant(Request $request): View
     {
         $request->merge(['type_of_business_entity' => TypeOfBusinessEntityEnum::CONSULTANT->value]);
-        $serviceProviders = $this->serviceProvider->search($request);
+        $serviceProviders = $this->serviceProvider->customPaginate($request, 10);
         return view('pages.dinas.konsultan', ['serviceProviders' => $serviceProviders]);
     }
 
@@ -195,7 +196,7 @@ class ServiceProviderController extends Controller
     public function executor(Request $request): View
     {
         $request->merge(['type_of_business_entity' => TypeOfBusinessEntityEnum::EXECUTOR->value]);
-        $serviceProviders = $this->serviceProvider->search($request);
+        $serviceProviders = $this->serviceProvider->customPaginate($request, 10);
         return view('pages.dinas.penyelenggara', ['serviceProviders' => $serviceProviders]);
     }
 }
