@@ -548,6 +548,7 @@
                 </tr>
             @endforelse
         </table>
+        {{$trainings->links('pagination::bootstrap-5')}}
     </div>
     <x-delete-modal-component />
 @endsection

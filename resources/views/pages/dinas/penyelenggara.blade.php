@@ -1,12 +1,12 @@
 @extends('layouts.app')
 @section('content')
     <h4 style="font-weight:800" class="text-dark mb-4">
-        Penyedia Jasa penyelenggara
+        Penyedia Jasa Pelaksana
     </h4>
     <div class="card">
         <div class="card-body">
             <p class="fs-5 " style="font-weight: 600">
-                Berikut daftar Penyedia Jasa penyelenggara  
+                Berikut Daftar Penyedia Jasa Pelaksana 
             </p>
             <div class="d-flex justify-content-between">
                 <div class="d-flex justify-content-header gap-3">
@@ -64,11 +64,11 @@
                             </td>
                         </tr>
                     </thead>
-                    @forelse ($serviceProviders as $index=>$serviceProvider)
+                    @forelse ($serviceProviders as $serviceProvider)
                         <tbody>
                             <tr>
                                 <td>
-                                    {{ $index + 1 }}
+                                    {{ $iteration + 1 }}
                                 </td>
                                 <td>
                                     {{ $serviceProvider->user->name }}
@@ -103,6 +103,7 @@
                     </tr>
                     @endforelse
                 </table>
+                {{$serviceProviders->links('pagination::bootstrap-5')}}
             </div>
         </div>
     </div>

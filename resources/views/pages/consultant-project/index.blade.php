@@ -4,9 +4,9 @@
         use Carbon\Carbon;
     @endphp
     <p class="fs-4 text-dark" style="font-weight: 600">
-        Paket Konsultan
+        Paket Pekerjaan
     </p>
-    @if (auth()->user()->serviceProvider)
+    @if (request()->routeIs('consultant-projects.show'))
         <div class="row">
             <div class="col-md-12">
                 <div class="card rounded-4">
@@ -207,6 +207,7 @@
                 </div>
             </div>
         </div>
+        @role('service provider')
         <div class="modal fade bs-example-modal-xl" id="modal-create" tabindex="-1" role="dialog"
             aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
@@ -270,6 +271,7 @@
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div>
+        @endrole
     @endif
 
     @if (auth()->user()->dinas)
@@ -467,7 +469,7 @@
                 </ul>
             </div>
         @endif
-        @if (auth()->user()->serviceProvider)
+        @if (request()->routeIs('consultant-projects.show'))
             <div>
                 <h4>Paket Pekerjaan</h4>
             </div>
@@ -529,6 +531,7 @@
                 @endif
             </div>
         @endif
+        @if(request()->routeIs('consultant-projects.show'))
         <div class="table-responsive">
             <table class="table table-borderless" border="1">
                 <thead>
@@ -650,6 +653,130 @@
                 @endforelse
             </table>
         </div>
+        @endif
+        @if(request()->routeIs('consultant-projects.index'))
+            <div class="table-responsive">
+                <table class="table table-borderless" border="1">
+                    <thead>
+                        <tr>
+                            <th class="text-center table-sipjaki">No</th>
+                            <th class="text-center table-sipjaki">Nama</th>
+                            <th class="text-center table-sipjaki">Konsultan</th>
+                            <th class="text-center table-sipjaki">Tahun</th>
+                            <th class="text-center table-sipjaki">Nilai Kontrak</th>
+                            <th class="text-center table-sipjaki">Progress</th>
+                            <th class="text-center table-sipjaki">Status</th>
+                            <th class="text-center table-sipjaki">Aksi</th>
+                        </tr>
+                    </thead>
+                    @forelse ($consultantProjects as $consultantProject)
+                        <tbody>
+                            <tr>
+                                <td class="text-center">
+                                    {{ $loop->iteration }}
+                                </td>
+                                <td class="text-center">
+                                    {{ $consultantProject->name }}
+                                </td>
+                                <td class="text-center">
+                                    {{ $consultantProject->serviceProvider->user->name }}
+                                </td>
+                                <td class="text-center">
+                                    {{ $consultantProject->fiscalYear->name }}
+                                </td>
+                                <td class="text-center">
+                                    Rp.{{ number_format($consultantProject->project_value, 0, ',', '.') }}
+                                </td>
+                                <td class="text-center">
+                                    {{ $consultantProject->finance_progress }}%
+                                </td>
+                                <td class="text-center">
+                                    @php
+                                        switch ($consultantProject->status) {
+                                            case 'canceled':
+                                                $color = '#FF0000';
+                                                $text = 'Dibatalkan';
+                                                break;
+                                            case 'nonactive':
+                                                $color = '#FFF700';
+                                                $text = 'Non Aktif';
+                                                break;
+                                            default:
+                                                $color = '#1B3061';
+                                                $text = 'Aktif';
+                                        }
+                                    @endphp
+                                    <span class="fs-6 badge px-4 py-2"
+                                        style="background-color: {{ $color }}; color: #FFFFFF">
+                                        {{ $text }}
+                                    </span>
+                                </td>
+                                <td class="text-center">
+                                    <div class="d-flex justify-content-center gap-2">
+                                        @if (auth()->user()->dinas)
+                                            <div class="d-flex justify-content-center mb-2">
+                                                <button data-id="{{ $consultantProject->id }}"
+                                                    style="min-width: 90px;width:100%"
+                                                    class="btn btn-danger btn-delete d-flex"><i
+                                                        class="bx bx-bx bxs-trash fs-4 me-1"></i>
+                                                    Hapus</button>
+                                            </div>
+                                            <div class="d-flex justify-content-center mb-2">
+                                                <button style="min-width: 90px;width:100%"
+                                                    class="d-flex btn btn-edit btn-warning"
+                                                    id="btn-edit-{{ $consultantProject->id }}"
+                                                    data-id="{{ $consultantProject->id }}"
+                                                    data-name="{{ $consultantProject->name }}"
+                                                    data-year="{{ $consultantProject->year }}"
+                                                    data-status="{{ $consultantProject->status }}"
+                                                    data-start_at="{{ \Carbon\Carbon::parse($consultantProject->start_at)->format('Y-m-d') }}"
+                                                    data-end_at="{{ \Carbon\Carbon::parse($consultantProject->end_at)->format('Y-m-d') }}"
+                                                    data-finance_progress="{{ $consultantProject->finance_progress }}"
+                                                    data-finance_progress_start="{{ \Carbon\Carbon::parse($consultantProject->finance_progress_start)->format('Y-m-d') }}"
+                                                    data-physical_progress="{{ $consultantProject->physical_progress }}"
+                                                    data-physical_progress_start="{{ \Carbon\Carbon::parse($consultantProject->physical_progress_start)->format('Y-m-d') }}"
+                                                    data-project_value="{{ $consultantProject->project_value }}"
+                                                    data-fund_source_id="{{ $consultantProject->fund_source_id }}"
+                                                    data-service_provider_id="{{ $consultantProject->service_provider_id }}"
+                                                    data-contract_category_id="{{ $consultantProject->contract_category_id }}"
+                                                    data-consultant_id="{{ $consultantProject->consultant_id }}"
+                                                    data-executor_id="{{ $consultantProject->executor_id }}"
+                                                    data-characteristic_project="{{ $consultantProject->characteristic_project }}"><i
+                                                        class="bx bx-bx bxs-edit fs-4 me-1"></i> Edit</button>
+                                            </div>
+                                        @endif
+                                        <div class="d-flex justify-content-center mb-2">
+                                            <a href="{{route('consultant-projects.show',['consultant_project' => $consultantProject->id])}}"
+                                                style="min-width: 90px;width:100%;background-color: #1B3061"
+                                                class="btn text-white btn-detail"><svg xmlns="http://www.w3.org/2000/svg"
+                                                    width="19" height="19" viewBox="0 0 24 24" fill="none">
+                                                    <path d="M4.5 12.5C7.5 6 16.5 6 19.5 12.5" stroke="white"
+                                                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                    <path
+                                                        d="M12 16C10.8954 16 10 15.1046 10 14C10 12.8954 10.8954 12 12 12C13.1046 12 14 12.8954 14 14C14 15.1046 13.1046 16 12 16Z"
+                                                        stroke="white" stroke-width="1.5" stroke-linecap="round"
+                                                        stroke-linejoin="round" />
+                                                </svg> Detail</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    @empty
+                        <tr>
+                            <td colspan="8" class="text-center">
+                                <div class="d-flex justify-content-center" style="min-height:16rem">
+                                    <div class="my-auto">
+                                        <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                        <h4 class="text-center mt-4">Paket Pekerjaan Masih Kosong!!</h4>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforelse
+                </table>
+            </div>
+        @endif
     </div>
 
     <div class="modal fade bs-example-modal-md" id="modal-detail" tabindex="-1" role="dialog"
