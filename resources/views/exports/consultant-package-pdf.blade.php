@@ -35,7 +35,7 @@
 </head>
 
 <body>
-    <header>
+    {{-- <header>
         <table style="width: 100%;">
             <tr>
                 <td style="text-align: left">
@@ -46,7 +46,7 @@
                 </td>
             </tr>
         </table>
-    </header>
+    </header> --}}
     <div class="">
         <p style="font-weight:bold;text-align:center;">Data Paket Konsultan</p>
         <p style="text-align:right">Di eksport pada

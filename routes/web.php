@@ -69,6 +69,9 @@ Route::get('detail-asosiasi/{association}', [LandingController::class, 'associat
 Route::get('struktur-organisasi', function () {
     return view('struktur-organisasi');
 })->name('struktur-organisasi');
+Route::get('test', function () {
+    return view('exports.consultant-package-pdf');
+});
 
 Route::get('rencana-strategis', function () {
     return view('rencana-strategis');

@@ -218,7 +218,7 @@ class ConsultantProjectController extends Controller
         $data['consultantProjects'] = $this->consultantProject->search($request);
         $pdf = Pdf::loadView('exports.consultant-package-pdf', $data);
 
-        return $pdf->download('Paket Konsulatn.pdf');
+        return $pdf->download('Paket Konsultan.pdf');
     }
 
     public function exportExcel(Request $request)
