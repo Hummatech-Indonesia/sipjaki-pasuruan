@@ -68,7 +68,7 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    {{ $iteration + 1 }}
+                                    {{ $loop->iteration}}
                                 </td>
                                 <td>
                                     {{ $serviceProvider->user->name }}

@@ -58,6 +58,7 @@ use App\Http\Controllers\ServiceProvider\VerificationController as ServiceProvid
  */
 
 
+ 
 Route::get('/', [LandingController::class, 'news'])->name('landing-page');
 
 Route::get('peraturan', [LandingController::class, 'rules'])->name('rules.landing');
