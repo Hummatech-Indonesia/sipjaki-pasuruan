@@ -1080,8 +1080,19 @@
         </script>
     @endif
     <script>
+        $('#project-dinas-konsultant').addClass('mm-active')
+        $('#project-dinas-konsultant-link').addClass('active')
+
+        $('#paket-konsultant').addClass('mm-active')
+        $('#paket-konsultant-link').addClass('active')
+
+        $('#project-konsultant-admin').addClass('mm-active')
+        $('#project-konsultant-admin-link').addClass('active')
+
+        $('#paket-jasa').addClass('active')
+        $('#paket-jasa .sub-menu').addClass('mm-show')
+
         $('a[href="#finish"]').click(function() {
-            console.log(true);
             $(this).closest('form').submit()
         })
         $(document).ready(function() {

@@ -179,7 +179,7 @@
                         <div>
                             @if($executorProject->status == 'active')
                                 @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant')
-                                    <div {{$executorProject->physical_progress == 100 ? '' : 'data-bs-toggle="modal" data-bs-target="#modal-create"'}} class="btn  rounded-3"
+                                    <div {{$executorProject->physical_progress == 100 ? '' : "data-bs-toggle=modal data-bs-target=#modal-create"}} class="btn  rounded-3"
                                     style="background-color:#1B3061; color:white;">
                                         @if($executorProject->physical_progress == 100)
                                         <form action="{{Route('mark.done',['executorProject' => $executorProject->id])}}" method="POST" id="mark-done">
@@ -753,8 +753,17 @@
         $('#paket-jasa').addClass('active')
         $('#paket-jasa .sub-menu').addClass('mm-show')
         $('#paket-jasa-link').addClass('mm-active')
+
         $('#paket-pekerjaan-jasa').addClass('mm-active')
+        
+        $('#project-admin').addClass('mm-active')
+        $('#project-admin-link').addClass('active')
+
         $('#paket-pekerjaan-jasa-link').addClass('active')
+        $('#project-dinas').addClass('mm-active')
+
+        $('#project-dinas-link').addClass('active')
+        
         $('.btn-delete').click(function() {
             id = $(this).data('id')
             var actionUrl = `/service-provider-projects/${id}`;
