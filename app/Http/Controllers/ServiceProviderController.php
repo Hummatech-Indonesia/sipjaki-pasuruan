@@ -195,7 +195,7 @@ class ServiceProviderController extends Controller
     public function executor(Request $request): View
     {
         $request->merge(['type_of_business_entity' => TypeOfBusinessEntityEnum::EXECUTOR->value]);
-        $serviceProviders = $this->serviceProvider->search($request);
+        $serviceProviders = $this->serviceProvider->customPaginate($request,15);
         return view('pages.dinas.penyelenggara', ['serviceProviders' => $serviceProviders]);
     }
 }
