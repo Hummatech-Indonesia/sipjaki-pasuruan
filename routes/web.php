@@ -58,52 +58,54 @@ use App\Http\Controllers\ServiceProvider\VerificationController as ServiceProvid
  */
 
 
-Route::get('/', [LandingController::class, 'news'])->name('landing-page');
-
-Route::get('peraturan', [LandingController::class, 'rules'])->name('rules.landing');
-Route::get('berita/{news}', [LandingController::class, 'show'])->name('berita');
-
-Route::get('asosiasi', [AssociationController::class, 'dataServiceProvider'])->name('association.landing');
-Route::get('detail-asosiasi/{association}', [LandingController::class, 'associationDetail'])->name('association-detail.landing');
-
-Route::get('struktur-organisasi', function () {
-    return view('struktur-organisasi');
-})->name('struktur-organisasi');
-Route::get('test', function () {
-    return view('exports.consultant-package-pdf');
+Route::middleware('guest')->group(function(){
+    Route::get('/', [LandingController::class, 'news'])->name('landing-page');
+    
+    Route::get('peraturan', [LandingController::class, 'rules'])->name('rules.landing');
+    Route::get('berita/{news}', [LandingController::class, 'show'])->name('berita');
+    
+    Route::get('asosiasi', [AssociationController::class, 'dataServiceProvider'])->name('association.landing');
+    Route::get('detail-asosiasi/{association}', [LandingController::class, 'associationDetail'])->name('association-detail.landing');
+    
+    Route::get('struktur-organisasi', function () {
+        return view('struktur-organisasi');
+    })->name('struktur-organisasi');
+    Route::get('test', function () {
+        return view('exports.consultant-package-pdf');
+    });
+    
+    Route::get('rencana-strategis', function () {
+        return view('rencana-strategis');
+    })->name('rencana-strategis');
+    
+    Route::get('tugas-fungsi', function () {
+        return view('tugas-fungsi');
+    })->name('tugas-fungsi');
+    Auth::routes(['verify' => true]);
+    // Route::middleware(['auth'])->group(function () {
+    
+    Route::get('download-rule/{rule}', [RuleController::class, 'downloadRule']);
+    
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('berita-terbaru', [LandingController::class, 'latestNews'])->name('berita-terbaru');
+    
+    Route::get('/kecelakaan', [DinasController::class, 'accidentLandingPage'])->name('kecelakaan');
+    
+    Route::get('bantuan', [LandingController::class, 'faq'])->name('bantuan');
+    
+    Route::get('data-paket-pekerjaan', [LandingController::class, 'project'])->name('paket.pekerjaan');
+    Route::get('data-paket-pekerjaan/{dinas}', [LandingController::class, 'projectDetail'])->name('detail.project');
+    Route::get('/pelatihan', [LandingController::class, 'training'])->name('pelatihan');
+    
+    Route::get('/opd', function () {
+        return view('opd');
+    })->name('opd');
+    
+    Route::get('json-classification-training', [ClassificationTrainingController::class, 'jsonClassificationTraining']);
+    Route::get('json-sub-classification-training/{classification_training}', [SubClassificationTrainingController::class, 'jsonSubClassificationTraining']);
+    Route::get('list-qualification-training', [QualificationTrainingController::class, 'jsonQualificationTraining']);
+    Route::get('json-qualification-level-training/{qualification_training}', [QualificationLevelTrainingController::class, 'jsonQualificationLevelTraining']);
 });
-
-Route::get('rencana-strategis', function () {
-    return view('rencana-strategis');
-})->name('rencana-strategis');
-
-Route::get('tugas-fungsi', function () {
-    return view('tugas-fungsi');
-})->name('tugas-fungsi');
-Auth::routes(['verify' => true]);
-// Route::middleware(['auth'])->group(function () {
-
-Route::get('download-rule/{rule}', [RuleController::class, 'downloadRule']);
-
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('berita-terbaru', [LandingController::class, 'latestNews'])->name('berita-terbaru');
-
-Route::get('/kecelakaan', [DinasController::class, 'accidentLandingPage'])->name('kecelakaan');
-
-Route::get('bantuan', [LandingController::class, 'faq'])->name('bantuan');
-
-Route::get('data-paket-pekerjaan', [LandingController::class, 'project'])->name('paket.pekerjaan');
-Route::get('data-paket-pekerjaan/{dinas}', [LandingController::class, 'projectDetail'])->name('detail.project');
-Route::get('/pelatihan', [LandingController::class, 'training'])->name('pelatihan');
-
-Route::get('/opd', function () {
-    return view('opd');
-})->name('opd');
-
-Route::get('json-classification-training', [ClassificationTrainingController::class, 'jsonClassificationTraining']);
-Route::get('json-sub-classification-training/{classification_training}', [SubClassificationTrainingController::class, 'jsonSubClassificationTraining']);
-Route::get('list-qualification-training', [QualificationTrainingController::class, 'jsonQualificationTraining']);
-Route::get('json-qualification-level-training/{qualification_training}', [QualificationLevelTrainingController::class, 'jsonQualificationLevelTraining']);
 
 Route::middleware('auth')->group(function () {
     Route::get('profile', function () {
