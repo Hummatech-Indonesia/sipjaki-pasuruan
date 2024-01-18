@@ -32,9 +32,7 @@
                 <td style="text-align: center; padding:4px; background-color:#1B3061; color:white">
                     Progres
                 </td>
-                <td style="text-align: center; padding:4px; background-color:#1B3061; color:white">
-                    Aksi
-                </td>
+
             </tr>
 
         </thead>
@@ -58,14 +56,7 @@
                     <td class="text-center">
                         {{ $consultantProject->finance_progress }}%
                     </td>
-                    <td class="text-center">
-                        <div class="d-flex justify-content-center">
-                            <a href="{{ Route('consultant-projects.show', ['consultant_project' => $consultantProject->id]) }}"
-                                class="btn btn-primary btn-md rounded-4  " style="background-color: #1B3061;">
-                                Detail
-                            </a>
-                        </div>
-                    </td>
+                  
                 </tr>
             @endforeach
         </tbody>

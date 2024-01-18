@@ -64,7 +64,6 @@
             <tbody>
                 @foreach ($consultantProjects as $consultantProject)
                     <tr>
-                       
                         <td class="text-center">
                             {{ $consultantProject->name }}
                         </td>
@@ -81,14 +80,6 @@
                         </td>
                         <td class="text-center">
                             {{ $consultantProject->finance_progress }}%
-                        </td>
-                        <td class="text-center">
-                            <div class="d-flex justify-content-center">
-                                <a href="{{ Route('consultant-projects.show', ['consultant_project' => $consultantProject->id]) }}"
-                                    class="btn btn-primary btn-md rounded-4  " style="background-color: #1B3061;">
-                                    Detail
-                                </a>
-                            </div>
                         </td>
                     </tr>
                 @endforeach
