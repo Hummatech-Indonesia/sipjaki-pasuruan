@@ -358,6 +358,7 @@
                             <p class="fw-medium fs-5" style="margin-bottom: 25%;">Daftar File</p>
                         </div>
                         <div>
+                            @role('service provider')
                             @if (Auth::user()->serviceProvider?->type_of_business_entity == 'executor')
                             <div data-bs-toggle="modal" data-bs-target="#modal-create" class="btn  rounded-3"
                                 style="background-color:#1B3061; color:white;">
@@ -376,6 +377,7 @@
                                     @endif  
                             </div>
                             @endif
+                            @endrole
                         </div>
                     </div>
                     <div class="table-responsive">

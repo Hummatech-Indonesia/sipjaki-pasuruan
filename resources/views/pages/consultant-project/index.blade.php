@@ -109,6 +109,7 @@
                                 <p class="fw-medium fs-5" style="margin-bottom: 25%;">Daftar File</p>
                             </div>
                             <div>
+                                @if(auth()->user()->serviceProvider?->type_of_business_entity == 'consultant')
                                 <div data-bs-toggle="modal" data-bs-target="#modal-create" class="btn  rounded-3"
                                     style="background-color:#1B3061; color:white;">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
@@ -121,6 +122,7 @@
                                             fill="white" />
                                     </svg> Upload File
                                 </div>
+                                @endif
                             </div>
                         </div>
                         <div class="table-responsive">
