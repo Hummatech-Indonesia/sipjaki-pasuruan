@@ -135,6 +135,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('project-export', [ProjectController::class, 'export'])->name('project-export-excel');
     Route::get('print-project-pdf', [ProjectController::class, 'exportPdf'])->name('project-export-pdf');
+    Route::get('export-pdf-consultant-project', [ConsultantProjectController::class, 'exportPdf'])->name('export.pdf.consultant.project');
+    Route::get('export-excel-consultant-project', [ConsultantProjectController::class, 'exportExcel'])->name('export.excel.consultant.project');
 
     Route::resource('consultant-projects', ConsultantProjectController::class)->only(['show']);
     Route::get('detail-project/{executorProject}', [ProjectController::class, 'projectDetail'])->name('detail-project');
@@ -198,8 +200,6 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::middleware('role:admin|superadmin|dinas')->group(function () {
-        Route::get('export-pdf-consultant-project', [ConsultantProjectController::class, 'exportPdf'])->name('export.pdf.consultant.project');
-        Route::get('export-excel-consultant-project', [ConsultantProjectController::class, 'exportExcel'])->name('export.excel.consultant.project');
 
 
         Route::get('detail-project-dinas/{project}', [ProjectController::class, 'detailProjectDinas']);

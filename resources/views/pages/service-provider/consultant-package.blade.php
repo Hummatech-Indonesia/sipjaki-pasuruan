@@ -2,9 +2,9 @@
 @section('content')
     <h4 class="mb-3 font-size-18">Paket Konsultan</h4>
     <div class="col-10 mb-3">
-        <form action="" class="d-flex gap-3 ">
-            <input type="search" name="name" value="{{ request()->name }}" class="form-control" placeholder="Search">
-            <select name="status" class="form-control ml-3" id="">
+        <div class="d-flex gap-3 ">
+            <input type="search" name="name" value="{{ request()->name }}" id="search-name" class="form-control" placeholder="Search">
+            <select name="status"  class="form-control ml-3" id="search-status">
                 <option value="">Semua Status</option>
                 <option value="active" {{ request()->status == 'active' ? 'selected' : '' }}>Aktif</option>
                 <option value="nonactive" {{ request()->status == 'nonactive' ? 'selected' : '' }}>Non Aktif
@@ -12,14 +12,16 @@
                 <option value="canceled" {{ request()->status == 'canceled' ? 'selected' : '' }}>Dibatalkan
                 </option>
             </select>
-            <select name="dinas" class="form-control ml-3" id="">
+            @role(['admin','superadmin'])
+            <select name="dinas"  class="form-control ml-3" id="search-dinas">
                 <option value="">Semua Dinas</option>
                 @foreach ($dinases as $dinas)
                     <option value="{{ $dinas->id }}" {{ request()->dinas == $dinas->id ? 'selected' : '' }}>
-                        {{ $dinas->name }}</option>
+                        {{ $dinas->user->name }}</option>
                 @endforeach
             </select>
-            <select name="year" class="form-control ml-3" id="">
+            @endrole
+            <select name="year" class="form-control ml-3" id="search-year">
                 <option value="">Semua Tahun</option>
                 @foreach ($fiscalYears as $fiscalYear)
                     <option value="{{ $fiscalYear->id }}" {{ request()->year == $fiscalYear->id ? 'selected' : '' }}>
@@ -44,7 +46,7 @@
                 </svg>
                 </i>
             </a>
-        </form>
+        </div>
     </div>
 
     <div class="row">
@@ -140,5 +142,31 @@
                 $('[data-toggle="tooltip"]').tooltip();
             });
         });
+
+        $('#export-excel').click(function() {
+            var status = $('#search-status').val()
+            var name = $('#search-name').val()
+            var year = $('#search-year').val()
+            var route = "{{ Route('export.excel.consultant.project')}}"
+            var location = `${route}?status=${status}&name=${name}&year=${year}`
+            @role(['admin','superadmin'])
+            var dinas = $('#search-dinas').val()
+            location = `${route}?status=${status}&name=${name}&year=${year}&dinas=${dinas}`
+            @endrole
+            window.location.href = location
+        })
+
+        $('#export-pdf').click(function() {
+            var status = $('#search-status').val()
+            var name = $('#search-name').val()
+            var year = $('#search-year').val()
+            var route = "{{ Route('export.pdf.consultant.project') }}"
+            var location = `${route}?status=${status}&name=${name}&year=${year}`
+            @role(['admin','superadmin'])
+            var dinas = $('#search-dinas').val()
+            location = `${route}?status=${status}&name=${name}&year=${year}&dinas=${dinas}`
+            @endrole
+            window.location.href = location
+        })
     </script>
 @endsection

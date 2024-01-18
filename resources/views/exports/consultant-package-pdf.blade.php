@@ -48,7 +48,7 @@
         </table>
     </header>
     <div class="">
-        <p style="font-weight:bold;text-align:center;">Data Pelatihan</p>
+        <p style="font-weight:bold;text-align:center;">Data Paket Konsultan</p>
         <p style="text-align:right">Di eksport pada
             {{ Carbon::now()->locale('id_ID')->isoFormat('DD MMMM Y') }}
         </p>
@@ -67,14 +67,12 @@
                         <td class="text-center">
                             {{ $consultantProject->name }}
                         </td>
-                        @role(['admin', 'superadmin'])
-                            <td class="text-center">
-                                {{ $consultantProject->dinas->user->name }}
-                            </td>
-                            <td class="text-center">
-                                {{ $consultantProject->serviceProvider->user->name }}
-                            </td>
-                        @endrole
+                        <td class="text-center">
+                            {{ $consultantProject->dinas->user->name }}
+                        </td>
+                        <td class="text-center">
+                            {{ $consultantProject->serviceProvider->user->name }}
+                        </td>
                         <td class="text-center">
                             {{ $consultantProject->fiscalYear->name }}
                         </td>

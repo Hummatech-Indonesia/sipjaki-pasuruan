@@ -231,11 +231,11 @@ class ConsultantProjectController extends Controller
         $data['consultantProjects'] = $this->consultantProject->search($request);
         $pdf = Pdf::loadView('exports.consultant-package-pdf', $data);
 
-        return $pdf->download('consultant-project-' . auth()->user()->name . '.pdf');
+        return $pdf->download('Paket Konsulatn.pdf');
     }
 
     public function exportExcel(Request $request)
     {
-        return Excel::download(new ConsultantProjectExport($request, $this->consultantProject), 'consultant-project.xlsx');
+        return Excel::download(new ConsultantProjectExport($request, $this->consultantProject), 'Paket Konsultan.xlsx');
     }
 }

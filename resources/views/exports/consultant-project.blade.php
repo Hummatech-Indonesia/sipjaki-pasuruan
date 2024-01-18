@@ -18,14 +18,12 @@
                 <td style="text-align: center; padding:4px; background-color:#1B3061; color:white">
                     Nama
                 </td>
-                @role(['admin', 'superadmin'])
-                    <td style="text-align: center; padding:4px; background-color:#1B3061; color:white">
-                        Dinas
-                    </td>
-                    <td style="text-align: center; padding:4px; background-color:#1B3061; color:white">
-                        Konsultan
-                    </td>
-                @endrole
+                <td style="text-align: center; padding:4px; background-color:#1B3061; color:white">
+                    Dinas
+                </td>
+                <td style="text-align: center; padding:4px; background-color:#1B3061; color:white">
+                    Konsultan
+                </td>
                 <td style="text-align: center; padding:4px; background-color:#1B3061; color:white">
                     Tahun
                 </td>
@@ -42,14 +40,12 @@
                     <td class="text-center">
                         {{ $consultantProject->name }}
                     </td>
-                    @role(['admin', 'superadmin'])
-                        <td class="text-center">
-                            {{ $consultantProject->dinas->user->name }}
-                        </td>
-                        <td class="text-center">
-                            {{ $consultantProject->serviceProvider->user->name }}
-                        </td>
-                    @endrole
+                    <td class="text-center">
+                        {{ $consultantProject->dinas->user->name }}
+                    </td>
+                    <td class="text-center">
+                        {{ $consultantProject->serviceProvider->user->name }}
+                    </td>
                     <td class="text-center">
                         {{ $consultantProject->fiscalYear->name }}
                     </td>
