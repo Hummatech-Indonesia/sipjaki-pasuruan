@@ -14,8 +14,10 @@ use App\Contracts\Interfaces\FiscalYearInterface;
 use App\Contracts\Interfaces\FundSourceInterface;
 use App\Contracts\Interfaces\ServiceProviderInterface;
 use App\Helpers\ResponseHelper;
+use App\Http\Requests\UploadConsultantRequest;
 use App\Http\Resources\ProjectResource;
 use App\Models\ConsultantProject;
+use Illuminate\Http\RedirectResponse;
 
 class ConsultantProjectController extends Controller
 {
@@ -120,6 +122,23 @@ class ConsultantProjectController extends Controller
         $this->consultantProject->update($consultantProject->consultantProject->id, $request->validated());
         return redirect()->back()->with('success', trans('alert.update_success'));
     }
+    
+    /**
+     * upload
+     *
+     * @param  mixed $request
+     * @param  mixed $consultantProject
+     * @return RedirectResponse
+     */
+    public function upload(UploadConsultantRequest $request, ConsultantProject $consultantProject) : RedirectResponse
+    {
+        $data = $this->service->store($request,$consultantProject);
+
+        $this->consultantProject->update($consultantProject->id,$data);
+
+        return redirect()->back()->with('success',trans('alert.update_success'));
+    }
+
 
     /**d
      * index
@@ -147,7 +166,7 @@ class ConsultantProjectController extends Controller
     public function downloadContract(ConsultantProject $consultantProject)
     {
         $filePath = pathinfo(basename($consultantProject->contract, PATHINFO_EXTENSION));
-        return response()->download(storage_path('app/' . $consultantProject->contract), $consultantProject->project->name . '.' . $filePath['extension']);
+        return response()->download(storage_path('app/' . $consultantProject->contract),'Berkas Kontrak ' . $consultantProject->project->name . '.' . $filePath['extension']);
     }
 
     /**
@@ -160,7 +179,7 @@ class ConsultantProjectController extends Controller
     {
         $filePath = pathinfo(basename($consultantProject->administrative_minutes, PATHINFO_EXTENSION));
 
-        return response()->download(storage_path('app/' . $consultantProject->administrative_minutes), $consultantProject->project->name . '.' . $filePath['extension']);
+        return response()->download(storage_path('app/' . $consultantProject->administrative_minutes), ' Berkas Berita Acara Administrasi ' . $consultantProject->project->name . '.' . $filePath['extension']);
     }
 
     /**
@@ -173,7 +192,7 @@ class ConsultantProjectController extends Controller
     {
         $filePath = pathinfo(basename($consultantProject->report, PATHINFO_EXTENSION));
 
-        return response()->download(storage_path('app/' . $consultantProject->report), $consultantProject->project->name . '.' . $filePath['extension']);
+        return response()->download(storage_path('app/' . $consultantProject->report), 'Berkas Laporan '.  $consultantProject->project->name . '.' . $filePath['extension']);
     }
 
 
@@ -187,7 +206,7 @@ class ConsultantProjectController extends Controller
     {
         $filePath = pathinfo(basename($consultantProject->minutes_of_disbursement, PATHINFO_EXTENSION));
 
-        return response()->download(storage_path('app/' . $consultantProject->minutes_of_disbursement), $consultantProject->project->name . '.' . $filePath['extension']);
+        return response()->download(storage_path('app/' . $consultantProject->minutes_of_disbursement),'Berkas Berita Acara Pencairan ' . $consultantProject->project->name . '.' . $filePath['extension']);
     }
 
     /**
@@ -200,6 +219,6 @@ class ConsultantProjectController extends Controller
     {
         $filePath = pathinfo(basename($consultantProject->minutes_of_hand_over, PATHINFO_EXTENSION));
 
-        return response()->download(storage_path('app/' . $consultantProject->minutes_of_hand_over), $consultantProject->project->name . '.' . $filePath['extension']);
+        return response()->download(storage_path('app/' . $consultantProject->minutes_of_hand_over), 'Berkas Berita Acara Serah Terima ' . $consultantProject->project->name . '.' . $filePath['extension']);
     }
 }

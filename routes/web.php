@@ -137,6 +137,7 @@ Route::middleware('auth')->group(function () {
     Route::get('print-project-pdf', [ProjectController::class, 'exportPdf'])->name('project-export-pdf');
 
     Route::resource('consultant-projects',ConsultantProjectController::class)->only(['show']);
+    Route::get('detail-project/{executorProject}', [ProjectController::class, 'projectDetail'])->name('detail-project');
 
     Route::middleware('role:superadmin')->group(function () {
 
@@ -225,7 +226,9 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::middleware('role:service provider')->group(function () {
-        Route::put('upload-file-executor{executorProject}', [ExecutorProjectController::class, 'upload'])->name('upload-file-executor');
+        Route::put('upload-file-executor/{executorProject}', [ExecutorProjectController::class, 'upload'])->name('upload-file-executor');
+    Route::put('upload-file-consultant/{consultantProject}',[ConsultantProjectController::class,'upload'])->name('upload-file-consultant');
+        Route::put('mark-down-project/{executorProject}',[ExecutorProjectController::class,'markDone'])->name('mark.done');
         Route::resources([
             'officers' => OfficerController::class,
             'verification-service-provider' => ServiceProviderVerificationController::class,
@@ -263,7 +266,6 @@ Route::middleware('auth')->group(function () {
         Route::get('data-service-providers', [AssociationController::class, 'dataServiceProvider']);
 
         Route::get('work-package', [ServiceProviderProjectController::class, 'index'])->name('work.package');
-        Route::get('detail-project/{executorProject}', [ProjectController::class, 'projectDetail'])->name('detail-project');
         Route::get('service-provider-project-detail/{service_provider_project}', [ServiceProviderProjectController::class, 'show'])->name('service.provider.project.detail');
 
         // download

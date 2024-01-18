@@ -115,9 +115,9 @@
 
                             <td class="text-center">
                                 <div class="d-flex justify-content-center">
-                                    <a href="detail-project/{{ $executorProject->id }}"
+                                    <a href="{{route('detail-project',['executorProject' => $executorProject->id])}}"
                                         class="btn btn-primary btn-md rounded-4  " style="background-color: #1B3061;">
-                                        Lihat Progress
+                                        Detail
                                     </a>
                                 </div>
                             </td>

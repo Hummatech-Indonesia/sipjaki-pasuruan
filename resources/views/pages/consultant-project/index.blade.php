@@ -139,45 +139,65 @@
                                         <td>Kontrak</td>
                                         <td>:</td>
                                         <td>
-                                            <a href="#" type="button" class="btn btn-md text-white"
+                                            @if($consultantProject->contract)
+                                            <a href="{{route('downloadContract',['consultantProject' => $consultantProject->id])}}" type="button" class="btn btn-md text-white"
                                                 style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
                                                 Download</a>
+                                            @else
+                                            -
+                                            @endif
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Berita Acara Serah Terima</td>
                                         <td>:</td>
                                         <td>
-                                            <a href="#" type="button" class="btn btn-md text-white"
+                                            @if ($consultantProject->minutes_of_hand_over) 
+                                            <a href="{{route('downloadMinutesOfHandOver',['consultantProject' => $consultantProject->id])}}" type="button" class="btn btn-md text-white"
                                                 style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
                                                 Download</a>
+                                            @else
+                                            -
+                                            @endif
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Berita Acara Administrasi</td>
                                         <td>:</td>
                                         <td>
-                                            <a href="#" type="button" class="btn btn-md text-white"
+                                            @if ($consultantProject->administrative_minutes)
+                                            <a href="{{route('downloadAdministrativeMinutes',['consultantProject' => $consultantProject->id])}}" type="button" class="btn btn-md text-white"
                                                 style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
                                                 Download</a>
+                                            @else
+                                            -
+                                            @endif
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Berita Acara Pencairan</td>
                                         <td>:</td>
                                         <td>
-                                            <a href="#" type="button" class="btn btn-md text-white"
+                                            @if ($consultantProject->minutes_of_disbursement) 
+                                            <a href="{{route('downloadMinutesOfDisbursement',['consultantProject' => $consultantProject->id])}}" type="button" class="btn btn-md text-white"
                                                 style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
                                                 Download</a>
+                                            @else
+                                                -
+                                            @endif
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Dokumen Pendukung / Laporan</td>
                                         <td>:</td>
                                         <td>
-                                            <a href="#" type="button" class="btn btn-md text-white"
+                                            @if ($consultantProject->report)
+                                            <a href="{{route('downloadReport',['consultantProject' => $consultantProject->id])}}" type="button" class="btn btn-md text-white"
                                                 style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
                                                 Download</a>
+                                            @else
+                                                -
+                                            @endif
                                         </td>
                                     </tr>
                                 </tbody>
@@ -196,8 +216,8 @@
                             {{ Auth::user()->serviceProvider->type_of_business_entity == 'consultant' ? 'Progress' : 'File' }}
                         </h5>
                     </div>
-                    <form action="" method="post" enctype="multipart/form-data">
-                        @method('POST')
+                    <form action="{{route('upload-file-consultant',['consultantProject' => $consultantProject->id])}}" method="POST" method="post" enctype="multipart/form-data">
+                        @method('PUT')
                         @csrf
                         <div class="modal-body">
                             <div class="row">
@@ -211,8 +231,8 @@
                                 <div class="col-lg-6">
                                     <div class="mb-3 ajax-select mt-3 mt-lg-0">
                                         <label class="form-label">Berita Acara Serah Terima</label>
-                                        <input class="form-control" type="file" value="{{ old('uitzet_minutes') }}"
-                                            name="uitzet_minutes" accept=".pdf" id="">
+                                        <input class="form-control" type="file" value="{{ old('minutes_of_hand_over') }}"
+                                            name="minutes_of_hand_over" accept=".pdf" id="">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -234,15 +254,15 @@
                                 <div class="col-lg-6">
                                     <div class="mb-3 ajax-select mt-3 mt-lg-0">
                                         <label class="form-label">Dokumen Pendukung / Laporan</label>
-                                        <input class="form-control" type="file" value="{{ old('mitual_check_0') }}"
-                                            name="minutes_of_mutual_check_0" accept=".pdf" id="">
+                                        <input class="form-control" type="file" value="{{ old('report') }}"
+                                            name="report" accept=".pdf" id="">
                                     </div>
                                 </div>
                                 <div class="d-flex d-row justify-content-end mt-3">
                                     <button type="button" class="btn btn-danger btn-md me-2" data-bs-dismiss="modal"
                                         aria-label="Close">Batal</button>
                                     <button type="submit" style="background-color: #1B3061; color:white;"
-                                        class="btn btn-md">Tambah</button>
+                                        class="btn btn-md">Upload</button>
                                 </div>
                             </div>
                         </div>
@@ -600,7 +620,7 @@
                                         </div>
                                     @endif
                                     <div class="d-flex justify-content-center mb-2">
-                                        <a href="/detail-project-dinas/{{ $executorProject->id }}"
+                                        <a href="{{route('detail-project',['executorProject' => $executorProject->id])}}"
                                             style="min-width: 90px;width:100%;background-color: #1B3061"
                                             class="btn text-white btn-detail"><svg xmlns="http://www.w3.org/2000/svg"
                                                 width="19" height="19" viewBox="0 0 24 24" fill="none">

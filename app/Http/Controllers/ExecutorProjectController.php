@@ -9,11 +9,13 @@ use App\Contracts\Interfaces\ExecutorProjectInterface;
 use App\Contracts\Interfaces\FiscalYearInterface;
 use App\Contracts\Interfaces\FundSourceInterface;
 use App\Contracts\Interfaces\ServiceProviderInterface;
+use App\Enums\StatusEnum;
 use App\Http\Requests\ExecutorProjectRequest;
 use App\Http\Requests\UploadExecutorRequest;
 use App\Models\ExecutorProject;
 use App\Models\Project;
 use App\Services\ExecutorProjectService;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class ExecutorProjectController extends Controller
@@ -96,6 +98,19 @@ class ExecutorProjectController extends Controller
 
         return redirect()->back()->with('success',trans('alert.update_success'));
     }
+    
+    /**
+     * markDone
+     *
+     * @param  mixed $executorProject
+     * @return RedirectResponse
+     */
+    public function markDone(ExecutorProject $executorProject) : RedirectResponse
+    {
+        $this->executorProject->update($executorProject->id,['status' => StatusEnum::NONACTIVE->value]);
+
+        return redirect()->back()->with('success',trans('alert.update_success'));
+    }
 
         /**
      * downloadContract
@@ -106,7 +121,7 @@ class ExecutorProjectController extends Controller
     public function downloadContract(ExecutorProject $executorProject)
     {
         $filePath = pathinfo(basename($executorProject->contract, PATHINFO_EXTENSION));
-        return response()->download(storage_path('app/' . $executorProject->contract), 'Kontrak ' . $executorProject->name . '.' . $filePath['extension']);
+        return response()->download(storage_path('app/' . $executorProject->contract), 'Berkas Kontrak ' . $executorProject->name . '.' . $filePath['extension']);
     }
 
     /**
@@ -119,7 +134,7 @@ class ExecutorProjectController extends Controller
     {
         $filePath = pathinfo(basename($executorProject->administrative_minutes, PATHINFO_EXTENSION));
 
-        return response()->download(storage_path('app/' . $executorProject->administrative_minutes), 'Berita Acara Administrasi ' . $executorProject->name . '.' . $filePath['extension']);
+        return response()->download(storage_path('app/' . $executorProject->administrative_minutes), 'Berkas Berita Acara Administrasi ' . $executorProject->name . '.' . $filePath['extension']);
     }
 
     /**
@@ -132,7 +147,7 @@ class ExecutorProjectController extends Controller
     {
         $filePath = pathinfo(basename($executorProject->report, PATHINFO_EXTENSION));
 
-        return response()->download(storage_path('app/' . $executorProject->report), 'Laporan ' . $executorProject->name . '.' . $filePath['extension']);
+        return response()->download(storage_path('app/' . $executorProject->report), 'Berkas Laporan ' . $executorProject->name . '.' . $filePath['extension']);
     }
 
 
@@ -146,7 +161,7 @@ class ExecutorProjectController extends Controller
     {
         $filePath = pathinfo(basename($executorProject->minutes_of_disbursement, PATHINFO_EXTENSION));
 
-        return response()->download(storage_path('app/' . $executorProject->minutes_of_disbursement), 'Berita Acara Pencairan ' . $executorProject->name . '.' . $filePath['extension']);
+        return response()->download(storage_path('app/' . $executorProject->minutes_of_disbursement), 'Berkas Berita Acara Pencairan ' . $executorProject->name . '.' . $filePath['extension']);
     }
 
     /**
@@ -159,7 +174,7 @@ class ExecutorProjectController extends Controller
     {
         $filePath = pathinfo(basename($executorProject->uitzet_minutes, PATHINFO_EXTENSION));
 
-        return response()->download(storage_path('app/' . $executorProject->uitzet_minutes), 'Berita Uitzet ' . $executorProject->name . '.' . $filePath['extension']);
+        return response()->download(storage_path('app/' . $executorProject->uitzet_minutes), 'Berkas Berita Uitzet ' . $executorProject->name . '.' . $filePath['extension']);
     }
 
     
@@ -173,7 +188,7 @@ class ExecutorProjectController extends Controller
     {
         $filePath = pathinfo(basename($executorProject->mutual_check_0, PATHINFO_EXTENSION));
 
-        return response()->download(storage_path('app/' . $executorProject->mutual_check_0), 'Mutual Check 0% ' . $executorProject->name . '.' . $filePath['extension']);
+        return response()->download(storage_path('app/' . $executorProject->mutual_check_0), 'Berkas Mutual Check 0% ' . $executorProject->name . '.' . $filePath['extension']);
     }
 
     
@@ -187,7 +202,7 @@ class ExecutorProjectController extends Controller
     {
         $filePath = pathinfo(basename($executorProject->mutual_check_100, PATHINFO_EXTENSION));
  
-        return response()->download(storage_path('app/' . $executorProject->mutual_check_100), 'Mutual Check 100% ' . $executorProject->name . '.' . $filePath['extension']);
+        return response()->download(storage_path('app/' . $executorProject->mutual_check_100), 'Berkas Mutual Check 100% ' . $executorProject->name . '.' . $filePath['extension']);
     }
 
     
@@ -201,7 +216,7 @@ class ExecutorProjectController extends Controller
     {
         $filePath = pathinfo(basename($executorProject->p1_meeting_minutes, PATHINFO_EXTENSION));
 
-        return response()->download(storage_path('app/' . $executorProject->p1_meeting_minutes), 'Berita Acara P1 ' . $executorProject->name . '.' . $filePath['extension']);
+        return response()->download(storage_path('app/' . $executorProject->p1_meeting_minutes), 'Berkas Berita Acara P1 ' . $executorProject->name . '.' . $filePath['extension']);
     }
 
         /**
@@ -214,6 +229,6 @@ class ExecutorProjectController extends Controller
     {
         $filePath = pathinfo(basename($executorProject->p2_meeting_minutes, PATHINFO_EXTENSION));
 
-        return response()->download(storage_path('app/' . $executorProject->p2_meeting_minutes),'Berita Acara P2 ' . $executorProject->name . '.' . $filePath['extension']);
+        return response()->download(storage_path('app/' . $executorProject->p2_meeting_minutes),'Berkas Berita Acara P2 ' . $executorProject->name . '.' . $filePath['extension']);
     }
 }

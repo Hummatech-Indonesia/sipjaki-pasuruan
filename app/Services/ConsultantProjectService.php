@@ -4,7 +4,9 @@ namespace App\Services;
 
 use App\Enums\UploadDiskEnum;
 use App\Http\Requests\ConsultantProjectRequest;
-use App\Models\Project;
+use App\Http\Requests\UploadConsultantRequest;
+use App\Http\Requests\UploadFileProjectRequest;
+use App\Models\ConsultantProject;
 use App\Traits\UploadTrait;
 
 class ConsultantProjectService
@@ -15,14 +17,14 @@ class ConsultantProjectService
      * store
      *
      * @param  mixed $request
-     * @param  mixed $project
+     * @param  mixed $consultantProject
      * @return array
      */
-    public function store(ConsultantProjectRequest $request, Project $project): array
+    public function store(UploadConsultantRequest $request,ConsultantProject $consultantProject): array
     {
         $data = $request->validated();
 
-        $old_administrative_minutes = $project->consultantProject ? $project->consultantProject->administrative_minutes : null;
+        $old_administrative_minutes = $consultantProject->administrative_minutes;
         if (isset($data['administrative_minutes'])) {
             if ($old_administrative_minutes) {
                 if ($request->hasFile('administrative_minutes')) {
@@ -34,7 +36,7 @@ class ConsultantProjectService
             }
         }
 
-        $old_contract = $project->consultantProject ? $project->consultantProject->contract : null;
+        $old_contract = $consultantProject->contract;
         if (isset($data['contract'])) {
             if ($old_contract) {
                 if ($request->hasFile('contract')) {
@@ -46,7 +48,7 @@ class ConsultantProjectService
             }
         }
 
-        $old_report = $project->consultantProject ? $project->consultantProject->report : null;
+        $old_report = $consultantProject->report;
         if (isset($data['report'])) {
             if ($old_report) {
                 if ($request->hasFile('report')) {
@@ -58,7 +60,7 @@ class ConsultantProjectService
             }
         }
 
-        $old_minutes_of_disbursement = $project->consultantProject ? $project->consultantProject->minutes_of_disbursement : null;
+        $old_minutes_of_disbursement = $consultantProject->minutes_of_disbursement;
         if (isset($data['minutes_of_disbursement'])) {
             if ($old_minutes_of_disbursement) {
                 if ($request->hasFile('minutes_of_disbursement')) {
@@ -70,7 +72,7 @@ class ConsultantProjectService
             }
         }
 
-        $old_minutes_of_hand_over = $project->consultantProject ? $project->consultantProject->minutes_of_hand_over : null;
+        $old_minutes_of_hand_over = $consultantProject->minutes_of_hand_over;
         if (isset($data['minutes_of_hand_over'])) {
             if ($old_minutes_of_hand_over) {
                 if ($request->hasFile('minutes_of_hand_over')) {
@@ -88,7 +90,6 @@ class ConsultantProjectService
             'minutes_of_hand_over' => $old_minutes_of_hand_over,
             'administrative_minutes' => $old_administrative_minutes,
             'contract' => $old_contract,
-            'project_id' => $project->id,
         ];
     }
 }

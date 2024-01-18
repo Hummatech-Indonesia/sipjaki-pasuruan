@@ -177,9 +177,17 @@
                             <p class="fw-medium fs-5" style="margin-bottom: 25%;">Daftar Progress</p>
                         </div>
                         <div>
-                            <div data-bs-toggle="modal" data-bs-target="#modal-create" class="btn  rounded-3"
+                            @if($executorProject->status == 'active')
+                            <div {{ $executorProject->physical_progress == 100 ? '' : 'data-bs-toggle="modal" data-bs-target="#modal-create"'}} class="btn  rounded-3"
                                 style="background-color:#1B3061; color:white;">
                                 @if (Auth::user()->serviceProvider->type_of_business_entity == 'consultant')
+                                    @if($executorProject->physical_progress == 100)
+                                    <form action="{{Route('mark.done',['executorProject' => $executorProject->id])}}" method="POST" id="mark-done">
+                                        @method('PUT')
+                                        @csrf
+                                        <span class="text-white" onclick="document.getElementById('mark-done').submit()">Tandai Selesai</span>
+                                    </form>
+                                    @else
                                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
                                         viewBox="0 0 24 24" fill="none">
                                         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -189,7 +197,8 @@
                                             d="M4 12C4 11.4477 4.35817 11 4.8 11H19.2C19.6418 11 20 11.4477 20 12C20 12.5523 19.6418 13 19.2 13H4.8C4.35817 13 4 12.5523 4 12Z"
                                             fill="white" />
                                     </svg> Upload Progress
-                                @else
+                                    @endif
+                                @elseif (Auth::user()->serviceProvider->type_of_business_entity == 'executor')
                                     @if ($executorProject->contract || $executorProject->report || $executorProject->minutes_of_disbursement || $executorProject->administrative_minutes)
                                         Edit File
                                     @else
@@ -205,6 +214,7 @@
                                     @endif
                                 @endif
                             </div>
+                            @endif
                         </div>
 
                     </div>
@@ -264,7 +274,8 @@
                                                             </svg>
                                                         </button>
                                                     </div>
-                                                    <div class="">
+                                                    @if (Auth::user()->serviceProvider->type_of_business_entity == 'consultant' && $executorProject->status == 'active')
+                                                    <div>
                                                         <button class="btn btn-edit btn-sm btn-warning"
                                                             id="btn-edit-{{ $serviceProviderProject->id }}"
                                                             data-id="{{ $serviceProviderProject->id }}"
@@ -295,6 +306,7 @@
                                                                 </defs>
                                                             </svg></button>
                                                     </div>
+                                                    @endif
                                                     <div class="">
                                                         <button class="btn btn-delete btn-danger btn-sm"
                                                             id="{{ $serviceProviderProject->id }}"
