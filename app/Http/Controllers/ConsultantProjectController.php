@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Services\ConsultantProjectService;
 use App\Http\Requests\ConsultantProjectRequest;
 use App\Http\Requests\ConsultantProjectUpdateRequest;
@@ -13,6 +15,7 @@ use App\Contracts\Interfaces\ExecutorProjectInterface;
 use App\Contracts\Interfaces\FiscalYearInterface;
 use App\Contracts\Interfaces\FundSourceInterface;
 use App\Contracts\Interfaces\ServiceProviderInterface;
+use App\Exports\ConsultantProjectExport;
 use App\Helpers\ResponseHelper;
 use App\Http\Requests\UploadConsultantRequest;
 use App\Http\Resources\ProjectResource;
@@ -39,8 +42,7 @@ class ConsultantProjectController extends Controller
         ServiceProviderInterface $serviceProvider,
         FiscalYearInterface $fiscalYear,
         ExecutorProjectInterface $executorProject,
-        )
-    {
+    ) {
         $this->consultantProject = $consultantProject;
         $this->service = $consultantProjectService;
         $this->dinas = $dinas;
@@ -63,29 +65,29 @@ class ConsultantProjectController extends Controller
         $contractCategories = $this->contractCategory->get();
         $executorProjects = $this->executorProject->get();
 
-        return view('pages.consultant-project.index',compact(
+        return view('pages.consultant-project.index', compact(
             'consultantProjects',
             'fundSources',
             'contractCategories',
             'executorProjects',
             'consultants',
             'fiscalYears'
-        ));   
+        ));
     }
 
-    public function show(Request $request,ConsultantProject $consultantProject)
+    public function show(Request $request, ConsultantProject $consultantProject)
     {
         $request->merge([
             'consultant' => $consultantProject->id
         ]);
-        
+
         $fundSources = $this->fundSource->get();
         $contractCategories = $this->contractCategory->get();
         $dinases = $this->dinas->get();
         $fiscalYears = $this->fiscalYear->get();
         $consultants = $this->serviceProvider->getConsultant();
-        $executorProjects = $this->executorProject->customPaginate($request,15);
-        return view('pages.consultant-project.index',compact(
+        $executorProjects = $this->executorProject->customPaginate($request, 15);
+        return view('pages.consultant-project.index', compact(
             'consultantProject',
             'fundSources',
             'contractCategories',
@@ -117,12 +119,12 @@ class ConsultantProjectController extends Controller
      * @param  mixed $request
      * @return void
      */
-    public function update(ConsultantProjectUpdateRequest $request,ConsultantProject $consultantProject)
+    public function update(ConsultantProjectUpdateRequest $request, ConsultantProject $consultantProject)
     {
         $this->consultantProject->update($consultantProject->consultantProject->id, $request->validated());
         return redirect()->back()->with('success', trans('alert.update_success'));
     }
-    
+
     /**
      * upload
      *
@@ -130,13 +132,13 @@ class ConsultantProjectController extends Controller
      * @param  mixed $consultantProject
      * @return RedirectResponse
      */
-    public function upload(UploadConsultantRequest $request, ConsultantProject $consultantProject) : RedirectResponse
+    public function upload(UploadConsultantRequest $request, ConsultantProject $consultantProject): RedirectResponse
     {
-        $data = $this->service->store($request,$consultantProject);
+        $data = $this->service->store($request, $consultantProject);
 
-        $this->consultantProject->update($consultantProject->id,$data);
+        $this->consultantProject->update($consultantProject->id, $data);
 
-        return redirect()->back()->with('success',trans('alert.update_success'));
+        return redirect()->back()->with('success', trans('alert.update_success'));
     }
 
 
@@ -151,8 +153,7 @@ class ConsultantProjectController extends Controller
         $data['fiscalYears'] = $this->fiscalYear->get();
         $data['dinases'] = $this->dinas->get();
 
-        return view('pages.service-provider.consultant-package',$data);
-        
+        return view('pages.service-provider.consultant-package', $data);
     }
 
     /**
@@ -164,7 +165,7 @@ class ConsultantProjectController extends Controller
     public function downloadContract(ConsultantProject $consultantProject)
     {
         $filePath = pathinfo(basename($consultantProject->contract, PATHINFO_EXTENSION));
-        return response()->download(storage_path('app/' . $consultantProject->contract),'Berkas Kontrak ' . $consultantProject->project->name . '.' . $filePath['extension']);
+        return response()->download(storage_path('app/' . $consultantProject->contract), 'Berkas Kontrak ' . $consultantProject->project->name . '.' . $filePath['extension']);
     }
 
     /**
@@ -190,7 +191,7 @@ class ConsultantProjectController extends Controller
     {
         $filePath = pathinfo(basename($consultantProject->report, PATHINFO_EXTENSION));
 
-        return response()->download(storage_path('app/' . $consultantProject->report), 'Berkas Laporan '.  $consultantProject->project->name . '.' . $filePath['extension']);
+        return response()->download(storage_path('app/' . $consultantProject->report), 'Berkas Laporan ' .  $consultantProject->project->name . '.' . $filePath['extension']);
     }
 
 
@@ -204,7 +205,7 @@ class ConsultantProjectController extends Controller
     {
         $filePath = pathinfo(basename($consultantProject->minutes_of_disbursement, PATHINFO_EXTENSION));
 
-        return response()->download(storage_path('app/' . $consultantProject->minutes_of_disbursement),'Berkas Berita Acara Pencairan ' . $consultantProject->project->name . '.' . $filePath['extension']);
+        return response()->download(storage_path('app/' . $consultantProject->minutes_of_disbursement), 'Berkas Berita Acara Pencairan ' . $consultantProject->project->name . '.' . $filePath['extension']);
     }
 
     /**
@@ -218,5 +219,23 @@ class ConsultantProjectController extends Controller
         $filePath = pathinfo(basename($consultantProject->minutes_of_hand_over, PATHINFO_EXTENSION));
 
         return response()->download(storage_path('app/' . $consultantProject->minutes_of_hand_over), 'Berkas Berita Acara Serah Terima ' . $consultantProject->project->name . '.' . $filePath['extension']);
+    }
+
+    /**
+     * exportPdf
+     *
+     * @return void
+     */
+    public function exportPdf(Request $request)
+    {
+        $data['consultantProjects'] = $this->consultantProject->search($request);
+        $pdf = Pdf::loadView('exports.consultant-package-pdf', $data);
+
+        return $pdf->download('consultant-project-' . auth()->user()->name . '.pdf');
+    }
+
+    public function exportExcel(Request $request)
+    {
+        return Excel::download(new ConsultantProjectExport($request, $this->consultantProject), 'consultant-project.xlsx');
     }
 }

@@ -136,7 +136,7 @@ Route::middleware('auth')->group(function () {
     Route::get('project-export', [ProjectController::class, 'export'])->name('project-export-excel');
     Route::get('print-project-pdf', [ProjectController::class, 'exportPdf'])->name('project-export-pdf');
 
-    Route::resource('consultant-projects',ConsultantProjectController::class)->only(['show']);
+    Route::resource('consultant-projects', ConsultantProjectController::class)->only(['show']);
     Route::get('detail-project/{executorProject}', [ProjectController::class, 'projectDetail'])->name('detail-project');
     Route::get('consultant-package', [ConsultantProjectController::class, 'consultantProject'])->name('consultant-package');
 
@@ -191,7 +191,6 @@ Route::middleware('auth')->group(function () {
             Route::delete('sub-classifications/{sub_classification}', [SubClassificationController::class, 'destroy'])->name('destroy');
         });
         Route::post('import-associations', [AssociationController::class, 'import'])->name('import.assosiations');
-
     });
 
     Route::middleware('role:admin')->group(function () {
@@ -199,9 +198,13 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::middleware('role:admin|superadmin|dinas')->group(function () {
+        Route::get('export-pdf-consultant-project', [ConsultantProjectController::class, 'exportPdf'])->name('export.pdf.consultant.project');
+        Route::get('export-excel-consultant-project', [ConsultantProjectController::class, 'exportExcel'])->name('export.excel.consultant.project');
+
+
         Route::get('detail-project-dinas/{project}', [ProjectController::class, 'detailProjectDinas']);
-        Route::resource('consultant-projects',ConsultantProjectController::class)->only(['index']);
-        Route::resource('executor-projects',ExecutorProjectController::class)->only(['index']);
+        Route::resource('consultant-projects', ConsultantProjectController::class)->only(['index']);
+        Route::resource('executor-projects', ExecutorProjectController::class)->only(['index']);
         Route::get('training-members/{training}', [TrainingMemberController::class, 'index']);
         Route::post('training-members/{training}', [TrainingMemberController::class, 'store'])->name('training.members.store');
         Route::put('training-member-update/{training_member}', [TrainingMemberController::class, 'update'])->name('training.members');
@@ -222,14 +225,14 @@ Route::middleware('auth')->group(function () {
         Route::resource('accident', AccidentController::class)->except('create', 'edit');
         Route::delete('accident-destroy/{accident}', [AccidentController::class, 'destroy']);
         Route::get('accident-show/{accident}', [AccidentController::class, 'show']);
-        Route::resource('consultant-projects',ConsultantProjectController::class)->except(['index','show']);
-        Route::resource('executor-projects',ExecutorProjectController::class)->except(['index']);
+        Route::resource('consultant-projects', ConsultantProjectController::class)->except(['index', 'show']);
+        Route::resource('executor-projects', ExecutorProjectController::class)->except(['index']);
     });
 
     Route::middleware('role:service provider')->group(function () {
         Route::put('upload-file-executor/{executorProject}', [ExecutorProjectController::class, 'upload'])->name('upload-file-executor');
-    Route::put('upload-file-consultant/{consultantProject}',[ConsultantProjectController::class,'upload'])->name('upload-file-consultant');
-        Route::put('mark-down-project/{executorProject}',[ExecutorProjectController::class,'markDone'])->name('mark.done');
+        Route::put('upload-file-consultant/{consultantProject}', [ConsultantProjectController::class, 'upload'])->name('upload-file-consultant');
+        Route::put('mark-down-project/{executorProject}', [ExecutorProjectController::class, 'markDone'])->name('mark.done');
         Route::resources([
             'officers' => OfficerController::class,
             'verification-service-provider' => ServiceProviderVerificationController::class,
