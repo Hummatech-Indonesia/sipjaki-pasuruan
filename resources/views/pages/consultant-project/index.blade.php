@@ -447,63 +447,68 @@
                 </ul>
             </div>
         @endif
-        <div class="d-flex justify-content-between mb-3">
-            <form action="" class="d-flex gap-3 col-8">
-                <input type="search" name="name" value="{{ request()->name }}" class="form-control"
-                    placeholder="Search">
-                <select name="status" class="form-control ml-3" id="">
-                    <option value="">Semua Status</option>
-                    <option value="active" {{ request()->status == 'active' ? 'selected' : '' }}>Aktif</option>
-                    <option value="nonactive" {{ request()->status == 'nonactive' ? 'selected' : '' }}>Non Aktif</option>
-                    <option value="canceled" {{ request()->status == 'canceled' ? 'selected' : '' }}>Dibatalkan</option>
-                </select>
-                <select name="year" class="form-control ml-3" id="">
-                    <option value="">Semua Tahun</option>
-                    @foreach ($fiscalYears as $fiscalYear)
-                        <option value="{{ $fiscalYear->id }}" {{ request()->year == $fiscalYear->id ? 'selected' : '' }}>
-                            {{ $fiscalYear->name }}</option>
-                    @endforeach
-                </select>
-                <button data-bs-toggle="modal" data-bs-target="#modal-create"
-                    class="btn text-white d-flex items-center gap-2" style="background-color:#1B3061">
-                    Cari <i class="fa fa-search my-auto"></i>
-                </button>
-                <button class="btn btn-danger d-flex items-center gap-2">
-                    PDF<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                        <path fill="white"
-                            d="m23 12l-4-4v3h-9v2h9v3M1 18V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3h-2V6H3v12h12v-3h2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2Z" />
-                    </svg>
-                    </i>
-                </button>
-                <button class="btn btn-success d-flex items-center gap-2">
-                    Excel<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                        <path fill="white"
-                            d="m23 12l-4-4v3h-9v2h9v3M1 18V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3h-2V6H3v12h12v-3h2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2Z" />
-                    </svg>
-                    </i>
-                </button>
-            </form>
-            @if (auth()->user()->dinas)
-                <div class="">
-                    <button data-bs-toggle="modal" data-bs-target="#modal-create" class="btn text-white"
-                        style="background-color:#1B3061">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                            fill="none">
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M12 4C12.5523 4 13 4.35817 13 4.8V19.2C13 19.6418 12.5523 20 12 20C11.4477 20 11 19.6418 11 19.2V4.8C11 4.35817 11.4477 4 12 4Z"
-                                fill="white" />
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M4 12C4 11.4477 4.35817 11 4.8 11H19.2C19.6418 11 20 11.4477 20 12C20 12.5523 19.6418 13 19.2 13H4.8C4.35817 13 4 12.5523 4 12Z"
-                                fill="white" />
-                        </svg>Tambah
+        @if (auth()->user()->serviceProvider)
+            <div>
+                <h4>Paket Pekerjaan</h4>
+            </div>
+        @else
+            <div class="d-flex justify-content-between mb-3">
+                <form action="" class="d-flex gap-3 col-8">
+                    <input type="search" name="name" value="{{ request()->name }}" class="form-control"
+                        placeholder="Search">
+                    <select name="status" class="form-control ml-3" id="">
+                        <option value="">Semua Status</option>
+                        <option value="active" {{ request()->status == 'active' ? 'selected' : '' }}>Aktif</option>
+                        <option value="nonactive" {{ request()->status == 'nonactive' ? 'selected' : '' }}>Non Aktif
+                        </option>
+                        <option value="canceled" {{ request()->status == 'canceled' ? 'selected' : '' }}>Dibatalkan
+                        </option>
+                    </select>
+                    <select name="year" class="form-control ml-3" id="">
+                        <option value="">Semua Tahun</option>
+                        @foreach ($fiscalYears as $fiscalYear)
+                            <option value="{{ $fiscalYear->id }}"
+                                {{ request()->year == $fiscalYear->id ? 'selected' : '' }}>
+                                {{ $fiscalYear->name }}</option>
+                        @endforeach
+                    </select>
+                    <button data-bs-toggle="modal" data-bs-target="#modal-create"
+                        class="btn text-white d-flex items-center gap-2" style="background-color:#1B3061">
+                        Cari <i class="fa fa-search my-auto"></i>
                     </button>
-                </div>
-            @else
-                <div>
-                    <h4>Paket Pekerjaan</h4>
-                </div>
-            @endif
-        </div>
+                    <button class="btn btn-danger d-flex items-center gap-2">
+                        PDF<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                            <path fill="white"
+                                d="m23 12l-4-4v3h-9v2h9v3M1 18V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3h-2V6H3v12h12v-3h2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2Z" />
+                        </svg>
+                        </i>
+                    </button>
+                    <button class="btn btn-success d-flex items-center gap-2">
+                        Excel<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                            <path fill="white"
+                                d="m23 12l-4-4v3h-9v2h9v3M1 18V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3h-2V6H3v12h12v-3h2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2Z" />
+                        </svg>
+                        </i>
+                    </button>
+                </form>
+                @if (auth()->user()->dinas)
+                    <div class="">
+                        <button data-bs-toggle="modal" data-bs-target="#modal-create" class="btn text-white"
+                            style="background-color:#1B3061">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M12 4C12.5523 4 13 4.35817 13 4.8V19.2C13 19.6418 12.5523 20 12 20C11.4477 20 11 19.6418 11 19.2V4.8C11 4.35817 11.4477 4 12 4Z"
+                                    fill="white" />
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M4 12C4 11.4477 4.35817 11 4.8 11H19.2C19.6418 11 20 11.4477 20 12C20 12.5523 19.6418 13 19.2 13H4.8C4.35817 13 4 12.5523 4 12Z"
+                                    fill="white" />
+                            </svg>Tambah
+                        </button>
+                    </div>
+                @endif
+            </div>
+        @endif
         <div class="table-responsive">
             <table class="table table-borderless" border="1">
                 <thead>
