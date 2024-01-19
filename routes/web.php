@@ -205,7 +205,7 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('role:admin|superadmin|dinas')->group(function () {
 
-
+        Route::get('detail-association/{association}',[AssociationController::class,'show'])->name('association.detail');
         Route::get('detail-project-dinas/{project}', [ProjectController::class, 'detailProjectDinas']);
         Route::resource('consultant-projects', ConsultantProjectController::class)->only(['index']);
         Route::resource('executor-projects', ExecutorProjectController::class)->only(['index']);

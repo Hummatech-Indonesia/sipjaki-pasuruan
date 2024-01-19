@@ -115,7 +115,7 @@
                                     <tr>
                                         <td>Jenis Badan Usaha</td>
                                         <td>:</td>
-                                        <td>{{ $serviceProvider->type_of_business_entity ? ($serviceProvider->type_of_business_entity == 'consultant' ? 'Konsultan' : 'Penyelenggara') : '-' }}
+                                        <td>{{ $serviceProvider->type_of_business_entity ? ($serviceProvider->type_of_business_entity == 'consultant' ? 'Konsultan' : 'Pelaksana') : '-' }}
                                         </td>
                                     </tr>
                                     <tr>
@@ -639,13 +639,13 @@
                                 <p class="mb-0 text-dark fs-6">
                                     Kota / Kabupaten
                                 </p>
-                                <input type="text" name="city" class="form-control" placeholder="Masukkan Nomor" value="{{ $foundingDeeps->city }}">
+                                <input type="text" name="city" class="form-control" placeholder="Masukkan Kota/Kabupaten" value="{{ $foundingDeeps->city }}">
                             </div>
                             <div class="col-6">
                                 <p class="mb-0 text-dark fs-6">
                                     Provinsi
                                 </p>
-                                <input name="province" type="text" class="form-control" placeholder="Masukkan Nomor" value="{{ $foundingDeeps->province }}">
+                                <input name="province" type="text" class="form-control" placeholder="Masukkan Provinsi" value="{{ $foundingDeeps->province }}">
                             </div>
                         </div>
                         <div class="row">
@@ -1109,14 +1109,14 @@
                                     <select name="type_of_business_entity" class="form-select" id="">
                                         @if ($serviceProvider->type_of_business_entity == 'consultant')
                                             <option value="consultant" selected>Konsultan</option>
-                                            <option value="executor">Penyelenggara</option>
+                                            <option value="executor">Pelaksana</option>
                                         @elseif ($serviceProvider->type_of_business_entity == 'executor')
                                             <option value="consultant">Konsultan</option>
-                                            <option value="executor" selected>Penyelenggara</option>
+                                            <option value="executor" selected>Pelaksana</option>
                                         @else
                                             <option value="" selected disabled>Pilih Jenis Badan Usaha</option>
                                             <option value="consultant">Konsultan</option>
-                                            <option value="executor">Penyelenggara</option>
+                                            <option value="executor">Pelaksana</option>
                                         @endif
                                     </select>
                                 </div>
