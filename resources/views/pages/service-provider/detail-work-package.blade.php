@@ -308,7 +308,7 @@
                                             </td>
                                             @if ($serviceProviderProject->file)
                                             <td>
-                                                <a href="/download-service-provider-project/{{ $serviceProviderProjectt->id }}"
+                                                <a href="/download-service-provider-project/{{ $serviceProviderProject->id }}"
                                                     class="btn btn-success btn-sm rounded-3">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                         viewBox="0 0 24 24" fill="none">
@@ -564,7 +564,7 @@
                             <div class="col-lg-3">
                                 <div class="mb-3 ajax-select mt-3 mt-lg-0">
                                     <label class="form-label">Progres (max {{100 - $executorProject->physical_progress}}%)</label>
-                                    <input type="number" max="3" class="form-control" value="{{ old('progres') }}"
+                                    <input type="number" class="form-control" value="{{ old('progres') }}"
                                         name="progres" id="">
                                 </div>
                             </div>
@@ -799,6 +799,7 @@
             const formData = getDataAttributes($(this).attr('id'))
             var actionUrl = `/service-provider-projects/${formData['id']}`;
             $('#form-update').attr('action', actionUrl);
+            console.log(formData);
             setFormValues('form-update', formData)
             $('#form-update').data('id', formData['id'])
             $('#form-update').attr('action', );
