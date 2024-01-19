@@ -131,21 +131,6 @@
                             <td>{{ $rule->title }}</td>
                             <td class="d-flex flex-row gap-3 justify-content-center"
                                 style="border-bottom: 1px solid #fff">
-                                <button class="btn btn-detail waves-effect waves-light text-white"
-                                    id="btn-detail-{{ $rule->id }}" data-title="{{ $rule->title }}"
-                                    data-code="{{ $rule->code }}"
-                                    data-rule_category_name="{{ $rule->ruleCategory->name }}"
-                                    data-year="{{ $rule->year }}" data-file="{{ asset('storage/' . $rule->file) }}" style="background-color: #1B3061">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19"
-                                        viewBox="0 0 24 24" fill="none">
-                                        <path d="M4.5 12.5C7.5 6 16.5 6 19.5 12.5" stroke="white" stroke-width="1.5"
-                                            stroke-linecap="round" stroke-linejoin="round" />
-                                        <path
-                                            d="M12 16C10.8954 16 10 15.1046 10 14C10 12.8954 10.8954 12 12 12C13.1046 12 14 12.8954 14 14C14 15.1046 13.1046 16 12 16Z"
-                                            stroke="white" stroke-width="1.5" stroke-linecap="round"
-                                            stroke-linejoin="round" />
-                                    </svg> Detail
-                                </button>
                                 <button type="button" id="btn-edit-{{ $rule->id }}"
                                     data-title="{{ $rule->title }}"
                                     data-rule_category_id="{{ $rule->rule_category_id }}"
