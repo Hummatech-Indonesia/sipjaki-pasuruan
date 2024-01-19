@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\ServiceProviderQualificationController;
 use App\Http\Controllers\RuleController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
@@ -58,7 +59,7 @@ use App\Http\Controllers\ServiceProvider\VerificationController as ServiceProvid
  */
 
 
- 
+
 Route::get('/', [LandingController::class, 'news'])->name('landing-page');
 
 Route::get('peraturan', [LandingController::class, 'rules'])->name('rules.landing');
@@ -163,6 +164,8 @@ Route::middleware('auth')->group(function () {
             'associations' => AssociationController::class,
             'qualification-trainings' => QualificationTrainingController::class,
         ]);
+        Route::get('export-associations', [AssociationController::class, 'export']);
+
         Route::get('qualification-detail/{qualification}', [QualificationController::class, 'detail']);
 
         Route::get('classification-training', [ClassificationTrainingController::class, 'index']);
@@ -224,6 +227,8 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::middleware('role:dinas')->group(function () {
+        Route::put('dinas', [DinasController::class, 'update'])->name('dinas.update');
+
         Route::get('dashboard-dinas', [DinasController::class, 'dashboard'])->name('dashboard-dinas');
         Route::get('profile-OPD', [DinasController::class, 'index']);
         Route::resource('accident', AccidentController::class)->except('create', 'edit');
@@ -234,6 +239,11 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::middleware('role:service provider')->group(function () {
+        Route::put('upload-file-consultan/{project}', [ProjectController::class, 'uploadFileKonsultan'])->name('upload-file-consultan.update');
+
+        Route::get('my-project', [ProjectController::class, 'myProject']);
+        Route::get('history-project', [ProjectController::class, 'history']);
+
         Route::put('upload-file-executor/{executorProject}', [ExecutorProjectController::class, 'upload'])->name('upload-file-executor');
         Route::put('upload-file-consultant/{consultantProject}', [ConsultantProjectController::class, 'upload'])->name('upload-file-consultant');
         Route::put('mark-down-project/{executorProject}', [ExecutorProjectController::class, 'markDone'])->name('mark.done');
@@ -280,7 +290,19 @@ Route::middleware('auth')->group(function () {
     });
 });
 Route::middleware('role:admin|superadmin')->group(function () {
+    Route::get('service-provider-qualification-pending', [ServiceProviderQualificationController::class, 'pending'])->name('service.provider.qualification.pending');
+    Route::get('detail-service-provider-qualification-pending/{service_provider_qualification}', [ServiceProviderQualificationController::class, 'detailPending'])->name('service.provider.qualification.pending.detail');
+    Route::get('service-provider-qualification-reject-by-user', [ServiceProviderQualificationController::class, 'getReject'])->name('service.provider.qualification.reject.by.user');
+    Route::post('service-provider-qualifications', [ServiceProviderQualificationController::class, 'store'])->name('service.provider.qualifications.store');
+    Route::get('detail-service-provider-qualification/{service_provider_qualification}', [ServiceProviderQualificationController::class, 'show'])->name('service.provider.qualifications.detail');
+    Route::put('service-provider-qualifications/{serviceProviderQualification}', [ServiceProviderQualificationController::class, 'update'])->name('service.provider.qualifications.update');
+    Route::patch('approve-service-provider-qualifications/{serviceProviderQualification}', [ServiceProviderQualificationController::class, 'approve']);
+    Route::patch('reject-service-provider-qualifications/{serviceProviderQualification}', [ServiceProviderQualificationController::class, 'reject']);
+    Route::delete('service-provider-qualifications/{serviceProviderQualification}', [ServiceProviderQualificationController::class, 'delete']);
+
     Route::get('all-service-provider', [ServiceProviderProjectController::class, 'allServiceProvider']);
+    Route::get('verification', [VerificationController::class, 'index']);
+    Route::post('verification', [VerificationController::class, 'store']);
     Route::get('detail-service-provider/{service_provider}', [ServiceProviderController::class, 'show'])->name('detail.service.provider');
     Route::get('service-provider-detail/{service_provider}', [ServiceProviderProjectController::class, 'projectDetail']);
     Route::patch('update-password-service-provider/{service_provider}', [ServiceProviderController::class, 'updatePassword']);

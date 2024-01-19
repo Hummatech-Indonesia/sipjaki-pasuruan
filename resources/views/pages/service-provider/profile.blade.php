@@ -1215,13 +1215,13 @@
                         <div class="row mb-4">
                             <div class="col-6">
                                 <input type="number"
-                                    value="{{ $verifications->judiciary_number ? $amendmentDeeps->address : '-' }}"
+                                    value="{{ $verifications->judiciary_number ? $veridications->judiciary_number : '-' }}"
                                     name="judiciary_number" class="form-control" placeholder="Masukkan Nomor">
                             </div>
                             <div class="col-6">
                                 <input type="date" name="judiciary_date" class="form-control"
                                     value="{{ $verifications->judiciary_date ? $verifications->judiciary_date : '-' }}"
-                                    placeholder="Masukkan Nomor">
+                                    placeholder="Masukkan Tanggal">
                             </div>
                         </div>
                         <p class="fs-5 text-dark mb-1" style="font-weight: 700">
