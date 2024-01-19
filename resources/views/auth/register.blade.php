@@ -109,12 +109,12 @@
                                                 <div class="mb-3 col-md-6 col-12">
                                                     <label for="phone" class="form-label"
                                                         style="font-weight: bold">{{ __('No telephone') }}</label>
-                                                    <input id="phone" type="number"
-                                                        class="form-control @error('phone') is-invalid @enderror"
+                                                    <input id="phone_number" type="number"
+                                                        class="form-control @error('phone_number') is-invalid @enderror"
                                                         name="phone_number" placeholder="Masukan phone"
-                                                        value="{{ old('phone_number') }}" autocomplete="phone"
+                                                        value="{{ old('phone_number') }}" autocomplete="phone_number"
                                                         autofocus style="border-radius: 8px">
-                                                    @error('phone')
+                                                    @error('phone_number')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
                                                         </span>
