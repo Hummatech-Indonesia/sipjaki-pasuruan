@@ -33,10 +33,6 @@
                 <div class="card-body">
                     <div class="d-flex">
                         <div class="flex-grow-1">
-                            <div class="btn btn-sm mb-2 text-dark rounded-3" style="background-color: #E4ECFF;">
-                                2023
-                            </div>
-                            <p class="fw-bolder fs-5">PJL Kel. Purwosari Kec. Purwosari</p>
                             <table cellpadding="10" style="border-collapse: collapse; width: 100%;">
                                 <tbody>
                                     <tr>

@@ -24,11 +24,11 @@ jobs:
         # ftp server
         server: sipjaki.pasuruankab.com
         # ftp username
-        username: sipjaki2
+        username: pasuruankab.com_aw7k0wn2zxl
         # ftp password
-        password: pasuruankab
+        password: ~1LUz7%p5Kyvbelf
         # Server port to connect to (read your web hosts docs)
-        port: 21
+        port: 2212
         # protocol to deploy with - ftp, ftps, or ftps-legacy
         protocol: ftp
         # An array of glob patterns, these files will not be included in the publish/delete process
