@@ -9,12 +9,11 @@
     });
 </script>
 @endif
-    <h3>
-        Kecelakaan
-    </h3>
-    <div class="d-flex justify-content-between mb-3">
-        <div class="">
-            <button class="btn text-white mt-4" data-bs-toggle="modal" data-bs-target="#modal-create"
+<div class="d-flex justify-content-between mb-3">
+        <h3>
+            Kecelakaan
+        </h3>
+            <button class="btn text-white" data-bs-toggle="modal" data-bs-target="#modal-create"
                 style="background-color: #1B3061">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none">
                     <path fill-rule="evenodd" clip-rule="evenodd"
@@ -25,7 +24,6 @@
                         fill="white" />
                 </svg>Tambah
             </button>
-        </div>
     </div>
     {{-- modal --}}
     <div class="modal fade" id="modal-create" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
