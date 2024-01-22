@@ -23,6 +23,8 @@ jobs:
       with:
         # ftp server
         server: sipjaki.pasuruankab.com
+        # server directory
+        server-dir: sipjaki.pasuruankab.com/
         # ftp username
         username: sipjaki
         # ftp password
