@@ -30,7 +30,7 @@
                                             id="klasifikasi-link-jasa" key="t-full-calendar">Klasifikasi</a></li>
                                     <li><a href="{{ route('contract-categories.index') }}"
                                             key="t-full-calendar">Kategori Kontrak</a></li>
-                                    <li><a href="{{ route('associations.index') }}" key="t-full-calendar">Assosiasi</a>
+                                    <li id="assosiasi"><a id="assosiasi-link" href="{{ route('associations.index') }}" key="t-full-calendar">Assosiasi</a>
                                     </li>
                                 </ul>
                             </li>
