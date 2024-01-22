@@ -13,26 +13,38 @@ use App\Contracts\Interfaces\FaqInterface;
 use App\Contracts\Interfaces\NewsInterface;
 use App\Contracts\Interfaces\RuleInterface;
 use App\Contracts\Interfaces\DinasInterface;
+use App\Contracts\Interfaces\ExecutorProjectInterface;
+use App\Contracts\Interfaces\FiscalYearInterface;
 use App\Contracts\Interfaces\ImageInterface;
 use App\Contracts\Interfaces\TrainingInterface;
-use App\Contracts\Interfaces\ProjectInterface;
 use App\Contracts\Interfaces\ServiceProviderInterface;
+use App\Models\ExecutorProject;
 
 class LandingController extends Controller
 {
 
     private DinasInterface $dinas;
-    private ProjectInterface $project;
     private NewsInterface $news;
     private TrainingInterface $training;
     private RuleInterface $rule;
     private FaqInterface $faq;
     private ServiceProviderInterface $serviceProvider;
     private ImageInterface $image;
+    private FiscalYearInterface $fiscalYear;
+    private ExecutorProjectInterface $executorProject;
 
-    public function __construct(FaqInterface $faq, DinasInterface $dinas, NewsInterface $news, TrainingInterface $training, RuleInterface $rule, ServiceProviderInterface $serviceProvider, ProjectInterface $project, ImageInterface $image)
+    public function __construct(
+        FaqInterface $faq,
+        DinasInterface $dinas,
+        NewsInterface $news,
+        TrainingInterface $training,
+        RuleInterface $rule,
+        ServiceProviderInterface $serviceProvider,
+        ImageInterface $image,
+        FiscalYearInterface $fiscalYear,
+        ExecutorProjectInterface $executorProject
+    )
     {
-        $this->project = $project;
         $this->dinas = $dinas;
         $this->news = $news;
         $this->training = $training;
@@ -40,6 +52,8 @@ class LandingController extends Controller
         $this->faq = $faq;
         $this->serviceProvider = $serviceProvider;
         $this->image = $image;
+        $this->fiscalYear = $fiscalYear;
+        $this->executorProject = $executorProject;
     }
     /**
      * project
@@ -50,8 +64,12 @@ class LandingController extends Controller
     public function project(Request $request): View
     {
         $dinas = $this->dinas->search($request);
-        $name = $request->name;
-        return view('paket-pekerjaan', compact('dinas', 'name'));
+        $fiscalYears = $this->fiscalYear->get();
+        
+        return view('paket-pekerjaan', compact(
+            'dinas',
+            'fiscalYears'
+        ));
     }
 
     /**
@@ -63,10 +81,15 @@ class LandingController extends Controller
     {
         $data = $this->dinas->search($request);
 
-        $detailDinas = $this->project->getByDinas($dinas->id, $request);
-        $name = $request->name;
+        $request->merge([
+            'dinas' => $dinas->id
+        ]);
+        $executorProjects = $this->executorProject->customPaginate($request,15);
 
-        return view('detail-paket', compact('data', 'detailDinas', 'name'));
+        return view('detail-paket',compact(
+            'data',
+            'executorProjects',
+        ));
     }
 
     /**

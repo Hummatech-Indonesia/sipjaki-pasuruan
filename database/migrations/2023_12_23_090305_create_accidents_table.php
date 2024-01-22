@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('accidents', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('project_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignUuid('executor_project_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('location');
             $table->dateTime('time');
             $table->text('description');

@@ -64,11 +64,11 @@
                             </td>
                         </tr>
                     </thead>
-                    @forelse ($serviceProviders as $index=>$serviceProvider)
+                    @forelse ($serviceProviders as $serviceProvider)
                         <tbody>
                             <tr>
                                 <td>
-                                    {{ $index + 1 }}
+                                    {{ $loop->iteration }}
                                 </td>
                                 <td>
                                     {{ $serviceProvider->user->name }}
@@ -103,6 +103,7 @@
                     </tr>
                     @endforelse
                 </table>
+                {{$serviceProviders->links('pagination::bootstrap-5')}}
             </div>
         </div>
     </div>

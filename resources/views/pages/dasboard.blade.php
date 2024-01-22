@@ -57,7 +57,7 @@
                         </div>
                         <p class="font-16 text-muted mb-2"></p>
                         <div class="text-muted fw-medium">Jumlah Penyedia Jasa</div>
-                        <h4 class="mb-0" style="color: #1B3061">{{ $serviceProvider }}</h4>
+                        <h4 class="mb-0" style="color: #1B3061">{{ $serviceProviderCount }}</h4>
                     </div>
                 </div>
             </div>
@@ -77,7 +77,7 @@
                         </div>
                         <p class="font-16 text-muted mb-2"></p>
                         <div class="text-muted fw-medium">Jumlah Dinas</div>
-                        <h4 class="mb-0" style="color: #1B3061"> {{ $dinas }} </h4>
+                        <h4 class="mb-0" style="color: #1B3061"> {{ $dinasCount }} </h4>
                     </div>
                 </div>
             </div>
@@ -108,7 +108,7 @@
                         </div>
                         <p class="font-16 text-muted mb-2"></p>
                         <div class="text-muted fw-medium">Jumlah Pekerjaan</div>
-                        <h4 class="mb-0" style="color: #1B3061"> {{ $project }} </h4>
+                        <h4 class="mb-0" style="color: #1B3061"> {{ $executorProjectCount }} </h4>
                     </div>
                 </div>
             </div>
@@ -136,7 +136,7 @@
                         </div>
                         <p class="font-16 text-muted mb-2"></p>
                         <div class="text-muted fw-medium">Jumlah Kecelakaan</div>
-                        <h4 class="mb-0" style="color: #1B3061">{{ $accident }}</h4>
+                        <h4 class="mb-0" style="color: #1B3061">{{ $accidentCount }}</h4>
                     </div>
                 </div>
             </div>
@@ -391,12 +391,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($activeProjects as $activeProject)
+                    @forelse ($activeExecutorProjects as $activeExecutorProject)
                         <tr>
                             <td class="fs-5">{{ $loop->iteration }}</td>
-                            <td class="fs-5">{{ $activeProject->name }}</td>
-                            <td class="fs-5">{{ $activeProject->dinas->user->name }}</td>
-                            <td class="fs-5">{{ 'Rp ' . number_format($activeProject->project_value, 0, ',', '.') }}</td>
+                            <td class="fs-5">{{ $activeExecutorProject->name }}</td>
+                            <td class="fs-5">{{ $activeExecutorProject->consultantProject->dinas->user->name }}</td>
+                            <td class="fs-5">{{ 'Rp ' . number_format($activeExecutorProject->project_value, 0, ',', '.') }}</td>
                         </tr>
                     @empty
                         <tr>
@@ -404,7 +404,7 @@
                                 <div class="d-flex justify-content-center" style="min-height:16rem">
                                     <div class="my-auto">
                                         <img src="{{ asset('no-data.png') }}" width="300" height="300" />
-                                        <h4 class="text-center mt-4">Pekerjaan Kosong!!</h4>
+                                        <h4 class="text-center mt-4">Tidak Ada Pekerjaan Aktif!!</h4>
                                     </div>
                                 </div>
                             </td>

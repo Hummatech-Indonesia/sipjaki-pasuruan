@@ -35,18 +35,6 @@
 </head>
 
 <body>
-    <header>
-        <table style="width: 100%;">
-            <tr>
-                <td style="text-align: left">
-                    <img src="logo-3.png" width="120" alt="" srcset="">
-                </td>
-                <td style="text-align: right;">
-                    <img src="DefaultHD.png" width="40" alt="" srcset="">
-                </td>
-            </tr>
-        </table>
-    </header>
     <div class="">
         <p style="font-weight:bold;text-align:center;">Data Pelatihan</p>
         <p style="text-align:right">Di eksport pada

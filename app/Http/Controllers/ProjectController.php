@@ -16,19 +16,18 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Requests\ProjectRequest;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Resources\ProjectResource;
-use App\Contracts\Interfaces\ProjectInterface;
 use App\Contracts\Interfaces\ServiceProviderInterface;
 use App\Contracts\Interfaces\ServiceProviderProjectInterface;
 use App\Enums\TypeOfBusinessEntityEnum;
 use App\Exports\ProjectExport;
 use App\Http\Requests\UploadFileProjectRequest;
+use App\Models\ExecutorProject;
 use App\Services\ProjectService;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ProjectController extends Controller
 {
     private ProjectService $service;
-    private ProjectInterface $project;
     private ServiceProviderInterface $serviceProvider;
     private FundSourceInterface $fundSource;
     private ContractCategoryInterface $contractCategory;
@@ -37,14 +36,22 @@ class ProjectController extends Controller
     private ConsultantProjectInterface $consultantProject;
     private DinasInterface $dinas;
 
-    public function __construct(ProjectInterface $project, ServiceProviderInterface $serviceProvider, FundSourceInterface $fundSource, ContractCategoryInterface $contractCategory, ServiceProviderProjectInterface $serviceProviderProjectInterface, ProjectService $service, ExecutorProjectInterface $executorProjectInterface, ConsultantProjectInterface $consultantProjectInterface, DinasInterface $dinas)
+    public function __construct(
+        ServiceProviderInterface $serviceProvider,
+        FundSourceInterface $fundSource,
+        ContractCategoryInterface $contractCategory,
+        ServiceProviderProjectInterface $serviceProviderProjectInterface,
+        ProjectService $service,
+        ExecutorProjectInterface $executorProjectInterface,
+        ConsultantProjectInterface $consultantProjectInterface,
+        DinasInterface $dinas
+    )
     {
         $this->dinas = $dinas;
         $this->consultantProject = $consultantProjectInterface;
         $this->executorProject = $executorProjectInterface;
         $this->service = $service;
         $this->serviceProviderProject = $serviceProviderProjectInterface;
-        $this->project = $project;
         $this->serviceProvider = $serviceProvider;
         $this->fundSource = $fundSource;
         $this->contractCategory = $contractCategory;
@@ -128,10 +135,11 @@ class ProjectController extends Controller
      * @param  mixed $project
      * @return View
      */
-    public function projectDetail(Project $project): View
+    public function projectDetail(ExecutorProject $executorProject): View
     {
-        $listProviderProject = $this->serviceProviderProject->getByProject($project->id);
-        return view('pages.service-provider.detail-work-package', ['project' => $project, 'serviceProviderProject' => $listProviderProject]);
+        return view('pages.service-provider.detail-work-package',compact(
+            'executorProject',
+        ));
     }
 
     /**
@@ -240,7 +248,7 @@ class ProjectController extends Controller
      */
     public function export(Request $request)
     {
-        return Excel::download(new ProjectExport($request), 'project' . auth()->user()->name . '.xlsx');
+        return Excel::download(new ProjectExport($request,$this->executorProject), 'Paket Pekerjaan.xlsx');
     }
 
     /**
@@ -250,9 +258,9 @@ class ProjectController extends Controller
      */
     public function exportPdf(Request $request)
     {
-        $data['projects'] = $this->project->search($request);
+        $data['projects'] = $this->executorProject->search($request);
         $pdf = Pdf::loadView('exports.projects-pdf', $data);
-
-        return $pdf->download('paket-pekerjaan' . '.pdf');
+        $pdf->setPaper('A4','landscape');
+        return $pdf->download('Paket Pekerjaan' . '.pdf');
     }
 }

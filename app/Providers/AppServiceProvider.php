@@ -10,7 +10,6 @@ use App\Contracts\Interfaces\NewsInterface;
 use App\Contracts\Interfaces\RuleInterface;
 use App\Contracts\Interfaces\UserInterface;
 use App\Contracts\Interfaces\ImageInterface;
-use App\Contracts\Interfaces\ProjectInterface;
 use App\Contracts\Repositories\NewsRepository;
 use App\Contracts\Repositories\RuleRepository;
 use App\Contracts\Repositories\UserRepository;
@@ -18,7 +17,6 @@ use App\Contracts\Interfaces\TrainingInterface;
 use App\Contracts\Repositories\ImageRepository;
 use App\Contracts\Interfaces\FiscalYearInterface;
 use App\Contracts\Interfaces\FundSourceInterface;
-use App\Contracts\Repositories\ProjectRepository;
 use App\Contracts\Repositories\TrainingRepository;
 use App\Contracts\Interfaces\Auth\RegisterInterface;
 use App\Contracts\Interfaces\QualificationInterface;
@@ -49,7 +47,6 @@ use App\Contracts\Repositories\TrainingMethodRepository;
 use App\Contracts\Interfaces\QualificationLevelInterface;
 use App\Contracts\Interfaces\QualificationLevelTrainingInterface;
 use App\Contracts\Interfaces\QualificationTrainingInterface;
-use App\Contracts\Interfaces\SectionInterface;
 use App\Contracts\Interfaces\ServiceProviderInterface;
 use App\Contracts\Interfaces\ServiceProviderProjectInterface;
 use App\Contracts\Interfaces\ServiceProviderQualificationInterface;
@@ -74,7 +71,6 @@ use App\Contracts\Repositories\SubClassificationRepository;
 use App\Contracts\Repositories\QualificationLevelRepository;
 use App\Contracts\Repositories\QualificationLevelTrainingRepository;
 use App\Contracts\Repositories\QualificationTrainingRepository;
-use App\Contracts\Repositories\SectionRepository;
 use App\Contracts\Repositories\ServiceProviderProjectRepository;
 use App\Contracts\Repositories\ServiceProviderQualificationRepository;
 use App\Contracts\Repositories\ServiceProviderRepository;
@@ -103,7 +99,6 @@ class AppServiceProvider extends ServiceProvider
         TrainingInterface::class => TrainingRepository::class,
         ImageInterface::class => ImageRepository::class,
         ForgotPasswordInterface::class => ForgotPasswordRepository::class,
-        ProjectInterface::class => ProjectRepository::class,
         TrainingMemberInterface::class => TrainingMemberRepository::class,
         ServiceProviderInterface::class => ServiceProviderRepository::class,
         AccidentInterface::class => AccidentRepository::class,

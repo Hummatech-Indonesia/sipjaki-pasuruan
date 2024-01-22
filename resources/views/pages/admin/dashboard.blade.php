@@ -336,6 +336,7 @@
                         <th style="background-color: #1B3061;color:#ffffff">Nama Pekerjaan</th>
                         <th style="background-color: #1B3061;color:#ffffff">Dinas</th>
                         <th style="background-color: #1B3061;color:#ffffff">Nilai Pekerjaan</th>
+                        <th style="background-color: #1B3061;color:#ffffff">Progress</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -343,8 +344,9 @@
                         <tr>
                             <td class="fs-5">{{ $loop->iteration }}</td>
                             <td class="fs-5">{{ $activeProject->name }}</td>
-                            <td class="fs-5">{{ $activeProject->dinas->user->name }}</td>
+                            <td class="fs-5">{{ $activeProject->consultantProject->dinas->user->name }}</td>
                             <td class="fs-5">Rp.{{ number_format($activeProject->project_value, 0, ',', '.') }}</td>
+                            <td class="fs-5">{{ $activeProject->physical_progress }}%</td>
                         </tr>
                     @empty
                         <tr>

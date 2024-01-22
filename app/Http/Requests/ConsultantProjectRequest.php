@@ -14,11 +14,17 @@ class ConsultantProjectRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'contract' => 'nullable|mimes:pdf',
-            'administrative_minutes' => 'nullable|mimes:pdf',
-            'report' => 'nullable|mimes:pdf',
-            'minutes_of_disbursement' => 'nullable|mimes:pdf',
-            'minutes_of_hand_over' => 'nullable|mimes:pdf'
+            'fund_source_id' => 'required|exists:fund_sources,id',
+            'contract_category_id' => 'required|exists:contract_categories,id',
+            'service_provider_id' => 'required|exists:service_providers,id',
+            'name' => 'required|string',
+            'project_value' => 'required|integer',
+            'characteristic_project' => 'required',
+            'finance_progress_start' => 'nullable|date',
+            'finance_progress' => 'nullable|integer|max:100',
+            'fiscal_year_id' => 'required|exists:fiscal_years,id',
+            'start_at' => 'required|date',
+            'end_at' => 'required|date',
         ];
     }
 
@@ -30,11 +36,26 @@ class ConsultantProjectRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'contract.mimes' => 'Berkas Kontrak harus berformat PDF.',
-            'administrative_minutes.mimes' => 'Berkas Berita Acara Administrasi harus berformat PDF.',
-            'report.mimes' => 'Berkas Laporan harus berformat PDF.',
-            'minutes_of_disbursement.mimes' => 'Berkas Berita Acara Pencairan harus berformat PDF.',
-            'minutes_of_hand_over.mimes' => 'Berkas Berita Acara Serah Terima harus berformat PDF.'
+            'fund_source_id.required' => 'Sumber Dana wajib diisi.',
+            'fund_source_id.exists' => 'Sumber Dana yang dipilih tidak valid.',
+            'contract_category_id.required' => 'Kategori Kontrak wajib diisi.',
+            'contract_category_id.exists' => 'Kategori Kontrak yang dipilih tidak valid.',
+            'service_provider_id.required' => 'Konsultan wajib diisi.',
+            'service_provider_id.exists' => 'Konsultan yang dipilih tidak valid.',
+            'name.required' => 'Nama wajib diisi.',
+            'name.string' => 'Nama harus berupa teks.',
+            'project_value.required' => 'Nilai Proyek wajib diisi.',
+            'project_value.integer' => 'Nilai Proyek harus berupa bilangan bulat.',
+            'characteristic_project.required' => 'Karakteristik Proyek wajib diisi.',
+            'characteristic_project.in' => 'karakteristik Proyek tidak valid.',
+            'finance_progress_start.date' => 'Tanggal Awal Progres keuangan harus berupa tanggal yang valid.',
+            'finance_progress.integer' => 'Progress Keuangan harus berupa bilangan bulat.',
+            'fiscal_year_id.required' => 'Tahun wajib diisi.',
+            'fiscal_year_id.exists' => 'Tahun tidak valid.',
+            'start_at.required' => 'Tanggal mulai wajib diisi.',
+            'start_at.date' => 'Tanggal mulai harus berupa tanggal yang valid.',
+            'end_at.required' => 'Tanggal selesai wajib diisi.',
+            'end_at.date' => 'Tanggal selesai harus berupa tanggal yang valid.',
         ];
     }
 }

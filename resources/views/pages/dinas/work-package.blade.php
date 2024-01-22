@@ -7,21 +7,28 @@
         Paket Pekerjaan
     </p>
     <div class="d-flex justify-content-between ">
-        <form action="{{ route('projects.index') }}" method="GET" class="d-flex gap-3 col-8">
-            <input type="search" id="search-name" value="{{ $name }}" name="name" class="form-control"
+        <form action="" method="GET" class="d-flex gap-3 col-10">
+            <input type="search" id="search-name" value="{{ request()->name }}" name="name" class="form-control"
                 placeholder="Search">
-            <select name="dinas_id" id="search-status" class="form-control ml-3">
+            @role(['admin','superadmin'])
+            <select name="dinas" id="search-dinas" class="form-control ml-3">
                 <option value="">Semua Dinas</option>
                 @foreach ($dinases as $dinas)
-                    <option {{ $requestDinas == $dinas->id ? 'selected' : '' }} value="{{ $dinas->id }}">{{ $dinas->user->name }}</option>
+                    <option {{ request()->dinas == $dinas->id ? 'selected' : '' }} value="{{ $dinas->id }}">{{ $dinas->user->name }}</option>
                 @endforeach
-
+            @endrole
             </select>
             <select name="year" id="search-year" class="form-control">
-                <option value="" selected>Tampilkan Semua Tahun</option>
-                @for ($years = date('Y'); $years >= 2010; $years--)
-                    <option {{ $year == $years ? 'selected' : '' }} value="{{ $years }}">{{ $years }}</option>
-                @endfor
+                <option value="" selected> Semua Tahun</option>
+                @foreach ($fiscalYears as $fiscalYear)
+                    <option {{ $fiscalYear->id == request()->year ? 'selected' : '' }} value="{{ $fiscalYear->id }}">{{ $fiscalYear->name }}</option>
+                @endforeach
+            </select>
+            <select name="status"  id="search-status" class="form-control">
+                <option value="" selected> Semua Status</option>
+                <option value="active"  {{request()->status == 'active' ? 'selected' : ''}}>Aktif</option>
+                <option value="nonactive"  {{request()->status == 'nonantive' ? 'selected' : ''}}>Non Aktif</option>
+                <option value="canceled"  {{request()->status == 'canceled' ? 'selected' : ''}}>Dibatalkan</option>
             </select>
             <button type="submit" class="btn text-white d-flex items-center gap-2" style="background-color:#1B3061">
                 Cari <i class="fa fa-search my-auto"></i>
@@ -42,7 +49,7 @@
             </button>
 
         </form>
-        @if (auth()->user()->dinas)
+        @role('dinas')
             <div class="">
                 <button data-bs-toggle="modal" data-bs-target="#modal-create" class="btn text-white"
                     style="background-color:#1B3061">
@@ -57,8 +64,9 @@
                     </svg>Tambah
                 </button>
             </div>
-        @endif
+        @endrole
     </div>
+    @role('dinas')
     <div class="modal fade bs-example-modal-xl" id="modal-create" tabindex="-1" role="dialog"
         aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
@@ -69,7 +77,7 @@
                         aria-label="Close"></button>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('projects.store') }}" method="POST" id="form-create">
+                    <form action="{{ route('executor-projects.store') }}" method="POST" id="form-create">
                         @csrf
                         <div id="basic-example">
                             <!-- Seller Details -->
@@ -87,9 +95,16 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="basicpill-year">Tahun</label>
-                                            <input type="number" class="form-control" name="year" id="basicpill-year"
-                                                placeholder="Masukan Tahun" value="{{ old('year') }}">
+                                            <label for="update-fiscal_year_id">Tahun</label>
+                                            <select name="fiscal_year_id" class="form-control select2-update"
+                                                style="width:100%" id="update-fiscal_year_id">
+                                                @foreach ($fiscalYears as $fiscalYear)
+                                                    <option value="{{ $fiscalYear->id }}"
+                                                        {{ old('fiscal_year_id') == $fiscalYear->id ? 'selected' : '' }}>
+                                                        {{ $fiscalYear->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
@@ -108,9 +123,9 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="basicpill-penyedia-jasa">Penyelenggara</label>
+                                            <label for="basicpill-penyedia-jasa">Pelaksana</label>
                                             <select class="form-control select2-create" style="width:100%"
-                                                name="executor_id" id="basicpill-penyelenggara">
+                                                name="service_provider_id" id="basicpill-penyelenggara">
                                                 @foreach ($executors as $executor)
                                                     <option value="{{ $executor->id }}"
                                                         {{ old('service_provider_id') == $executor->id ? 'selected' : '' }}>
@@ -122,13 +137,13 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="basicpill-penyedia-jasa">Konsultan</label>
+                                            <label for="basicpill-penyedia-jasa">Paket Konsultan</label>
                                             <select class="form-control select2-create" style="width:100%"
-                                                name="consultant_id" id="basicpill-konsultan">
-                                                @foreach ($consultants as $consultant)
-                                                    <option value="{{ $consultant->id }}"
-                                                        {{ old('service_provider_id') == $consultant->id ? 'selected' : '' }}>
-                                                        {{ $consultant->user->name }}
+                                                name="consultant_project_id" id="basicpill-konsultan">
+                                                @foreach ($consultantProjects as $consultantProject)
+                                                    <option value="{{ $consultantProject->id }}"
+                                                        {{ old('consultant_project_id') == $consultantProject->id ? 'selected' : '' }}>
+                                                        {{ $consultantProject->name }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -229,7 +244,7 @@
                                                 <label for="basicpill-servicetax-input">Progress Fisik(%)</label>
                                                 <input type="number" name="physical_progress" class="form-control"
                                                     id="basicpill-servicetax-input" placeholder="Masukan progress"
-                                                    value="{{ old('physical_progress') }}">
+                                                    value="{{ old('physical_progress') ? old('physical_progress') : '0' }}">
                                             </div>
                                         </div>
                                     </div>
@@ -249,7 +264,7 @@
                                                 <input type="number" name="finance_progress" class="form-control"
                                                     id="basicpill-Declaration-input"
                                                     placeholder="Masukan progress keuangan"
-                                                    value="{{ old('finance_progress') }}">
+                                                    value="{{ old('finance_progress') ? old('finance_progress') : '0' }}">
                                             </div>
                                         </div>
                                     </div>
@@ -262,6 +277,7 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div>
+    @endrole
 
     <div class="row mt-4">
         @if ($errors->any())
@@ -278,63 +294,79 @@
                 <thead>
                     <tr>
                         <th class="text-center table-sipjaki">No</th>
-                        <th class="text-center table-sipjaki">Tahun</th>
                         <th class="text-center table-sipjaki">Nama Pekerjaan</th>
-                        <th class="text-center table-sipjaki">Nilai Kontrak</th>
+                        @role(['admin','superadmin','dinas'])
+                        <th class="text-center table-sipjaki">Pelaksana</th>
+                        @endrole
+                        @role(['service provider','admin','superadmin']) 
                         <th class="text-center table-sipjaki">Dinas</th>
+                        @endrole
+                        <th class="text-center table-sipjaki">Tahun</th>
+                        <th class="text-center table-sipjaki">Nilai Kontrak</th>
+                        <th class="text-center table-sipjaki">Progress</th>
                         <th class="text-center table-sipjaki">Aksi</th>
                     </tr>
                 </thead>
-                @forelse ($projects as $index=>$project)
+                @forelse ($executorProjects as $executorProject)
                     <tbody>
                         <tr>
                             <td class="text-center">
-                                {{ $index + 1 }}
+                                {{ $loop->iteration }}
                             </td>
                             <td class="text-center">
-                                {{ $project->year }}
+                                {{ $executorProject->name }}
+                            </td>
+                            @role(['admin','superadmin','dinas'])
+                            <td class="text-center">
+                                {{ $executorProject->serviceProvider->user->name }}
+                            </td>
+                            @endrole
+                            @role(['service provider','admin','superadmin'])
+                            <td class="text-center">
+                                {{ $executorProject->consultantProject->dinas->user->name }}
+                            </td>
+                            @endrole
+                            <td class="text-center">
+                                {{ $executorProject->fiscalYear->name }}
                             </td>
                             <td class="text-center">
-                                {{ $project->name }}
+                                Rp.{{ number_format($executorProject->project_value, 0, ',', '.') }}
                             </td>
                             <td class="text-center">
-                                Rp.{{ number_format($project->project_value, 0, ',', '.') }}
-                            </td>
-                            <td class="text-center">
-                                {{ $project->dinas->user->name }}
+                                {{ $executorProject->physical_progress }}%
                             </td>
                             <td class="text-center">
                                 <div class="d-flex justify-content-center gap-2">
-                                    @if (auth()->user()->dinas)
+                                    @role('dinas')
                                         <div class="d-flex justify-content-center mb-2">
-                                            <button data-id="{{ $project->id }}" style="min-width: 90px;width:100%"
+                                            <button data-id="{{ $executorProject->id }}" style="min-width: 90px;width:100%"
                                                 class="btn btn-danger btn-delete d-flex"><i
                                                     class="bx bx-bx bxs-trash fs-4 me-1"></i>
                                                 Hapus</button>
                                         </div>
                                         <div class="d-flex justify-content-center mb-2">
                                             <button style="min-width: 90px;width:100%"
-                                                class="d-flex btn btn-edit btn-warning" id="btn-edit-{{ $project->id }}"
-                                                data-id="{{ $project->id }}" data-name="{{ $project->name }}"
-                                                data-year="{{ $project->year }}" data-status="{{ $project->status }}"
-                                                data-start_at="{{ \Carbon\Carbon::parse($project->start_at)->format('Y-m-d') }}"
-                                                data-end_at="{{ \Carbon\Carbon::parse($project->end_at)->format('Y-m-d') }}"
-                                                data-finance_progress="{{ $project->finance_progress }}"
-                                                data-finance_progress_start="{{ \Carbon\Carbon::parse($project->finance_progress_start)->format('Y-m-d') }}"
-                                                data-physical_progress="{{ $project->physical_progress }}"
-                                                data-physical_progress_start="{{ \Carbon\Carbon::parse($project->physical_progress_start)->format('Y-m-d') }}"
-                                                data-project_value="{{ $project->project_value }}"
-                                                data-fund_source_id="{{ $project->fund_source_id }}"
-                                                data-service_provider_id="{{ $project->service_provider_id }}"
-                                                data-contract_category_id="{{ $project->contract_category_id }}"
-                                                data-consultant_id="{{ $project->consultant_id }}"
-                                                data-executor_id="{{ $project->executor_id }}"
-                                                data-characteristic_project="{{ $project->characteristic_project }}"><i
+                                                class="d-flex btn btn-edit btn-warning" id="btn-edit-{{ $executorProject->id }}"
+                                                data-id="{{ $executorProject->id }}" data-name="{{ $executorProject->name }}"
+                                                data-year="{{ $executorProject->year }}" data-status="{{ $executorProject->status }}"
+                                                data-start_at="{{ \Carbon\Carbon::parse($executorProject->start_at)->format('Y-m-d') }}"
+                                                data-end_at="{{ \Carbon\Carbon::parse($executorProject->end_at)->format('Y-m-d') }}"
+                                                data-finance_progress="{{ $executorProject->finance_progress }}"
+                                                data-finance_progress_start="{{ \Carbon\Carbon::parse($executorProject->finance_progress_start)->format('Y-m-d') }}"
+                                                data-physical_progress="{{ $executorProject->physical_progress }}"
+                                                data-physical_progress_start="{{ \Carbon\Carbon::parse($executorProject->physical_progress_start)->format('Y-m-d') }}"
+                                                data-project_value="{{ $executorProject->project_value }}"
+                                                data-fund_source_id="{{ $executorProject->fund_source_id }}"
+                                                data-service_provider_id="{{ $executorProject->service_provider_id }}"
+                                                data-contract_category_id="{{ $executorProject->contract_category_id }}"
+                                                data-consultant_id="{{ $executorProject->consultant_id }}"
+                                                data-executor_id="{{ $executorProject->executor_id }}"
+                                                data-characteristic_project="{{ $executorProject->characteristic_project }}"><i
                                                     class="bx bx-bx bxs-edit fs-4 me-1"></i> Edit</button>
                                         </div>
-                                    @endif
+                                    @endrole
                                     <div class="d-flex justify-content-center mb-2">
-                                        <a href="/detail-project-dinas/{{ $project->id }}"
+                                        <a href="{{route('detail-project',['executorProject' => $executorProject->id ])}}"
                                             style="min-width: 90px;width:100%;background-color: #1B3061"
                                             class="btn text-white btn-detail"><svg xmlns="http://www.w3.org/2000/svg"
                                                 width="19" height="19" viewBox="0 0 24 24" fill="none">
@@ -352,7 +384,7 @@
                     </tbody>
                 @empty
                     <tr>
-                        <td colspan="5" class="text-center">
+                        <td colspan="{{auth()->user()->dinas ? '5' : '6' }}" class="text-center">
                             <div class="d-flex justify-content-center" style="min-height:16rem">
                                 <div class="my-auto">
                                     <img src="{{ asset('no-data.png') }}" width="300" height="300" />
@@ -363,6 +395,7 @@
                     </tr>
                 @endforelse
             </table>
+            {{$executorProjects->links('pagination::bootstrap-5')}}
         </div>
     </div>
 
@@ -412,7 +445,7 @@
                                 <td id="detail-konsultan"></td>
                             </tr>
                             <tr>
-                                <td class="fw-bold">Penyelenggara</td>
+                                <td class="fw-bold">Pelaksana</td>
                                 <td>:</td>
                                 <td id="detail-executor"></td>
                             </tr>
@@ -487,9 +520,16 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="update-year">Tahun</label>
-                                            <input type="number" class="form-control" name="year" id="update-year"
-                                                placeholder="Masukan Tahun" value="{{ old('year') }}">
+                                            <label for="update-fiscal_year_id">Tahun</label>
+                                            <select name="fiscal_year_id" class="form-control select2-update"
+                                                style="width:100%" id="update-fiscal_year_id">
+                                                @foreach ($fiscalYears as $fiscalYear)
+                                                    <option value="{{ $fiscalYear->id }}"
+                                                        {{ old('fiscal_year_id') == $fiscalYear->id ? 'selected' : '' }}>
+                                                        {{ $fiscalYear->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
@@ -522,13 +562,13 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="update-penyedia-jasa">Konsultan</label>
+                                            <label for="update-penyedia-jasa">Paket Konsultan</label>
                                             <select class="form-control select2-update" style="width:100%"
-                                                name="consultant_id" id="update-konsultan">
-                                                @foreach ($consultants as $serviceProvider)
-                                                    <option value="{{ $serviceProvider->id }}"
-                                                        {{ old('service_provider_id') == $serviceProvider->id ? 'selected' : '' }}>
-                                                        {{ $serviceProvider->user->name }}
+                                                name="consultant_project_id" id="update-konsultan">
+                                                @foreach ($consultantProjects as $consultantProject)
+                                                    <option value="{{ $consultantProject->id }}"
+                                                        {{ old('consultant_project_id') == $consultantProject->id ? 'selected' : '' }}>
+                                                        {{ $consultantProject->name }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -674,7 +714,6 @@
     @endif
     <script>
         $('a[href="#finish"]').click(function() {
-            console.log(true);
             $(this).closest('form').submit()
         })
         $(document).ready(function() {
@@ -718,6 +757,10 @@
             var year = $('#search-year').val()
             var route = "/project-export"
             var location = `${route}?status=${status}&name=${name}&year=${year}`
+            @role(['admin','superadmin'])
+            var dinas = $('#search-dinas').val()
+            location = `${route}?status=${status}&name=${name}&year=${year}&dinas=${dinas}`
+            @endrole
             window.location.href = location
         })
 

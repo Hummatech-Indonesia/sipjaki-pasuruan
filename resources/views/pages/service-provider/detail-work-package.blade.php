@@ -99,80 +99,66 @@
                         <div class="flex-grow-1">
                             <div class="ms-2">
                                 <div class="btn btn-sm mb-3 text-dark rounded-3" style="background-color: #E4ECFF;">
-                                    {{ $project->year }}
+                                    {{ $executorProject->fiscalYear->name }}
                                 </div>
-                                <p class="fw-bolder fs-5">{{ $project->name }}</p>
+                                <p class="fw-bolder fs-5">{{ $executorProject->name }}</p>
                             </div>
                             <table cellpadding="10" style="border-collapse: collapse; width: 75%;">
                                 <tbody>
                                     <tr>
                                         <td>Nilai Kontrak</td>
                                         <td>:</td>
-                                        <td>{{ 'Rp ' . number_format($project->project_value, 0, ',', '.') }}</td>
+                                        <td>{{ 'Rp' . number_format($executorProject->project_value, 0, ',', '.') }}</td>
 
                                     </tr>
                                     <tr>
                                         <td>Progres Fisik</td>
                                         <td>:</td>
-                                        <td><?php
-                                        $totalProgress = 0;
-
-                                        foreach ($serviceProviderProject as $index => $serviceProviderProjec) {
-                                            $progress = $serviceProviderProjec->progres ?? 0; // Jika nilai progres kosong, atur nilai menjadi 0
-                                            $totalProgress += $progress;
-                                        }
-
-                                        echo $totalProgress . '%';
-                                        ?></td>
+                                        <td>{{ $executorProject->physical_progress != null ? $executorProject->physical_progress . '%' : '0%' }}
                                     </tr>
                                     <tr>
                                         <td>Progres Keuangan</td>
                                         <td>:</td>
-                                        <td>{{ $project->finance_progress != null ? $project->finance_progress . '%' : '0%' }}
+                                        <td>{{ $executorProject->finance_progress != null ? $executorProject->finance_progress . '%' : '0%' }}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Status</td>
                                         <td>:</td>
-                                        <td>{{ $project->status == 'active' ? 'Aktif' : 'Tidak Aktif' }}</td>
+                                        <td>{{ $executorProject->status == 'active' ? 'Aktif' : 'Tidak Aktif' }}</td>
                                     </tr>
                                     <tr>
                                         <td>Mulai</td>
                                         <td>:</td>
-                                        <td>{{ Carbon::parse($project->start_at)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                        <td>{{ Carbon::parse($executorProject->start_at)->locale('id_ID')->isoFormat('DD MMMM Y') }}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Selesai</td>
                                         <td>:</td>
-                                        <td>{{ Carbon::parse($project->end_at)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                        <td>{{ Carbon::parse($executorProject->end_at)->locale('id_ID')->isoFormat('DD MMMM Y') }}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Sumber Dana</td>
                                         <td>:</td>
-                                        <td>{{ $project->fundSource->name }}</td>
-                                    </tr>
-                                    {{-- <tr>
-                                        <td>Penggunaan Jasa</td>
-                                        <td>:</td>
-                                        <td colspan="2" style="vertical-align: top;">
-                                            {{ $project->serviceProvider->user_id }}</td>
+                                        <td>{{ $executorProject->fundSource->name }}</td>
                                     </tr>
                                     <tr>
-                                        <td>Penyedia Nama</td>
+                                        <td>Dinas</td>
                                         <td>:</td>
-                                        <td>{{ $project->dinas->user_id }}</td>
-                                    </tr> --}}
+                                        <td colspan="2" style="vertical-align: top;">
+                                            {{ $executorProject->consultantProject->dinas->user->name }}</td>
+                                    </tr>
                                     <tr>
                                         <td>Jenis Kontrak</td>
                                         <td>:</td>
-                                        <td>{{ $project->contractCategory->name }}</td>
+                                        <td>{{ $executorProject->contractCategory->name }}</td>
                                     </tr>
                                     <tr>
                                         <td>Karakteristik Kontrak</td>
                                         <td>:</td>
-                                        <td>{{ $project->characteristic_project }}</td>
+                                        <td>{{ $executorProject->characteristic_project }}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -191,22 +177,17 @@
                             <p class="fw-medium fs-5" style="margin-bottom: 25%;">Daftar Progress</p>
                         </div>
                         <div>
-                            <div data-bs-toggle="modal" data-bs-target="#modal-create" class="btn  rounded-3"
-                                style="background-color:#1B3061; color:white;">
-                                @if (Auth::user()->serviceProvider->type_of_business_entity == 'consultant')
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
-                                        viewBox="0 0 24 24" fill="none">
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                            d="M12 4C12.5523 4 13 4.35817 13 4.8V19.2C13 19.6418 12.5523 20 12 20C11.4477 20 11 19.6418 11 19.2V4.8C11 4.35817 11.4477 4 12 4Z"
-                                            fill="white" />
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                            d="M4 12C4 11.4477 4.35817 11 4.8 11H19.2C19.6418 11 20 11.4477 20 12C20 12.5523 19.6418 13 19.2 13H4.8C4.35817 13 4 12.5523 4 12Z"
-                                            fill="white" />
-                                    </svg> Upload Progress
-                                @else
-                                    @if ($project->contract || $project->report || $project->minutes_of_disbursement || $project->administrative_minutes)
-                                        Edit File
-                                    @else
+                            @if($executorProject->status == 'active')
+                                @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant')
+                                    <div {{$executorProject->physical_progress == 100 ? '' : "data-bs-toggle=modal data-bs-target=#modal-create"}} class="btn  rounded-3"
+                                    style="background-color:#1B3061; color:white;">
+                                        @if($executorProject->physical_progress == 100)
+                                        <form action="{{Route('mark.done',['executorProject' => $executorProject->id])}}" method="POST" id="mark-done">
+                                            @method('PUT')
+                                            @csrf
+                                            <span class="text-white" onclick="document.getElementById('mark-done').submit()">Tandai Selesai</span>
+                                        </form>
+                                        @else
                                         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
                                             viewBox="0 0 24 24" fill="none">
                                             <path fill-rule="evenodd" clip-rule="evenodd"
@@ -215,15 +196,15 @@
                                             <path fill-rule="evenodd" clip-rule="evenodd"
                                                 d="M4 12C4 11.4477 4.35817 11 4.8 11H19.2C19.6418 11 20 11.4477 20 12C20 12.5523 19.6418 13 19.2 13H4.8C4.35817 13 4 12.5523 4 12Z"
                                                 fill="white" />
-                                        </svg> Upload File
-                                    @endif
+                                        </svg> Upload Progress
+                                        @endif
+                                    </div>
                                 @endif
                             </div>
+                            @endif
                         </div>
 
                     </div>
-                    @if (session('errors'))
-                    @endif
                     @if ($errors->any())
                         @foreach ($errors->all() as $error)
                             <div class="alert mt-3 alert-danger alert-dismissible fade show" role="alert">
@@ -233,8 +214,6 @@
                             </div>
                         @endforeach
                     @endif
-
-                    @if (Auth::user()->serviceProvider->type_of_business_entity == 'consultant')
                         <div class="table-responsive">
                             <table class="table mb-0">
 
@@ -252,20 +231,20 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($serviceProviderProject as $index=>$serviceProviderProjec)
+                                    @forelse ($executorProject->serviceProviderProjects as $serviceProviderProject)
                                         <tr>
-                                            <td>{{ $index + 1 }}</td>
-                                            <td>{{ Carbon::parse($serviceProviderProjec->date_start)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ Carbon::parse($serviceProviderProject->date_start)->locale('id_ID')->isoFormat('DD MMMM Y') }}
                                             </td>
-                                            <td>{{ Carbon::parse($serviceProviderProjec->date_finish)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                            <td>{{ Carbon::parse($serviceProviderProject->date_finish)->locale('id_ID')->isoFormat('DD MMMM Y') }}
                                             </td>
-                                            <td>{{ $serviceProviderProjec->week }}</td>
-                                            <td>{{ $serviceProviderProjec->progres }}% Progress</td>
+                                            <td>{{ $serviceProviderProject->week }}</td>
+                                            <td>{{ $serviceProviderProject->progres }}% Progress</td>
                                             <td>
                                                 <div class="d-flex justify-content-header gap-2">
                                                     <div class="">
-                                                        <button type="button" id="{{ $serviceProviderProjec->id }}"
-                                                            data-id="{{ $serviceProviderProjec->id }}"
+                                                        <button type="button" id="{{ $serviceProviderProject->id }}"
+                                                            data-id="{{ $serviceProviderProject->id }}"
                                                             class="btn btn-sm btn-detail"
                                                             style="background-color: #1B3061;">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="20"
@@ -280,15 +259,16 @@
                                                             </svg>
                                                         </button>
                                                     </div>
-                                                    <div class="">
+                                                    @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant' && $executorProject->status == 'active')
+                                                    <div>
                                                         <button class="btn btn-edit btn-sm btn-warning"
-                                                            id="btn-edit-{{ $serviceProviderProjec->id }}"
-                                                            data-id="{{ $serviceProviderProjec->id }}"
-                                                            data-progres="{{ $serviceProviderProjec->progres }}"
-                                                            data-description="{{ $serviceProviderProjec->description }}"
-                                                            data-date_start="{{ \Carbon\Carbon::parse($serviceProviderProjec->date_start)->format('Y-m-d') }}"
-                                                            data-week="{{ $serviceProviderProjec->week }}"
-                                                            data-date_finish="{{ \Carbon\Carbon::parse($serviceProviderProjec->date_finish)->format('Y-m-d') }}"><svg
+                                                            id="btn-edit-{{ $serviceProviderProject->id }}"
+                                                            data-id="{{ $serviceProviderProject->id }}"
+                                                            data-progres="{{ $serviceProviderProject->progres }}"
+                                                            data-description="{{ $serviceProviderProject->description }}"
+                                                            data-date_start="{{ \Carbon\Carbon::parse($serviceProviderProject->date_start)->format('Y-m-d') }}"
+                                                            data-week="{{ $serviceProviderProject->week }}"
+                                                            data-date_finish="{{ \Carbon\Carbon::parse($serviceProviderProject->date_finish)->format('Y-m-d') }}"><svg
                                                                 xmlns="http://www.w3.org/2000/svg" width="20"
                                                                 height="20" viewBox="0 0 24 24" fill="none">
                                                                 <g clip-path="url(#clip0_373_6257)">
@@ -313,8 +293,8 @@
                                                     </div>
                                                     <div class="">
                                                         <button class="btn btn-delete btn-danger btn-sm"
-                                                            id="{{ $serviceProviderProjec->id }}"
-                                                            data-id="{{ $serviceProviderProjec->id }}">
+                                                            id="{{ $serviceProviderProject->id }}"
+                                                            data-id="{{ $serviceProviderProject->id }}">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="20"
                                                                 height="20" viewBox="0 0 20 20" fill="none">
                                                                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -323,10 +303,12 @@
                                                             </svg>
                                                         </button>
                                                     </div>
+                                                    @endif
                                                 </div>
                                             </td>
+                                            @if ($serviceProviderProject->file)
                                             <td>
-                                                <a href="/download-service-provider-project/{{ $serviceProviderProjec->id }}"
+                                                <a href="/download-service-provider-project/{{ $serviceProviderProject->id }}"
                                                     class="btn btn-success btn-sm rounded-3">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                         viewBox="0 0 24 24" fill="none">
@@ -341,6 +323,11 @@
                                                     </svg>
                                                 </a>
                                             </td>
+                                            @else
+                                            <td>
+                                                -
+                                            </td>
+                                            @endif
                                         </tr>
                                     @empty
                                         <tr>
@@ -358,144 +345,177 @@
                                 </tbody>
                             </table>
                         </div>
-                    @else
-                        <div class="table-responsive">
-                            <table class="table mb-0">
-
-                                <thead>
-                                    <tr>
-                                        <th>Nama</th>
-                                        <th></th>
-                                        <th>File</th>
-                                    </tr>
-
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Kontrak</td>
-                                        <td>:</td>
-                                        <td>
-                                            @if ($project->executorProject->contract)
-                                                <a href="{{ route('downloadExecutorContract', ['executorProject' => $project->executorProject->id]) }}"
-                                                    type="button" class="btn btn-md text-white"
-                                                    style="background-color:#1B3061;"><i
-                                                        class="bx bxs-download bx-xs"></i>
-                                                    Download</a>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Berita Acara Uitzet</td>
-                                        <td>:</td>
-                                        <td>
-                                            @if ($project->executorProject->uitzet_minutes)
-                                                <a href="{{ route('downloadMinutesOfHandOver', ['executorProject-' => $project->executorProject->id]) }}"
-                                                    type="button" class="btn btn-md text-white"
-                                                    style="background-color:#1B3061;"><i
-                                                        class="bx bxs-download bx-xs"></i>
-                                                    Download</a>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Mutual Check 0</td>
-                                        <td>:</td>
-                                        <td>
-                                            @if ($project->executorProject->mutual_check_0)
-                                                <a href="{{ route('downloadMinutesOfHandOver', ['executorProject-' => $project->executorProject->id]) }}"
-                                                    type="button" class="btn btn-md text-white"
-                                                    style="background-color:#1B3061;"><i
-                                                        class="bx bxs-download bx-xs"></i>
-                                                    Download</a>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Mutual Check 100</td>
-                                        <td>:</td>
-                                        <td>
-                                            @if ($project->executorProject->mutual_check_100)
-                                                <a href="{{ route('downloadMinutesOfHandOver', ['executorProject-' => $project->executorProject->id]) }}"
-                                                    type="button" class="btn btn-md text-white"
-                                                    style="background-color:#1B3061;"><i
-                                                        class="bx bxs-download bx-xs"></i>
-                                                    Download</a>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Berita Acara P1</td>
-                                        <td>:</td>
-                                        <td>
-                                            @if ($project->executorProject->p1_meeting_minutes)
-                                                <a href="{{ route('downloadMinutesOfHandOver', ['executorProject-' => $project->executorProject->id]) }}"
-                                                    type="button" class="btn btn-md text-white"
-                                                    style="background-color:#1B3061;"><i
-                                                        class="bx bxs-download bx-xs"></i>
-                                                    Download</a>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Berita Acara Administrasi
-                                        </td>
-                                        <td>:</td>
-                                        <td>
-                                            @if ($project->executorProject->administrative_minutes)
-                                                <a href="{{ route('downloadExecutorAdministrativeMinutes', ['executorProject' => $project->executorProject->id]) }}"
-                                                    type="button" class="btn btn-md text-white"
-                                                    style="background-color:#1B3061;"><i
-                                                        class="bx bxs-download bx-xs"></i>
-                                                    Download</a>
-                                            @endif
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>Berita Acara Pencariran</td>
-                                        <td>:</td>
-                                        <td>
-                                            @if ($project->executorProject->minutes_of_disbursement)
-                                                <a href="{{ route('downloadMinutesOfDisbursement', ['executorProject' => $project->executorProject->id]) }}"
-                                                    type="button" class="btn btn-md text-white"
-                                                    style="background-color:#1B3061;"><i
-                                                        class="bx bxs-download bx-xs"></i>
-                                                    Download</a>
-                                            @endif
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>Berita Acara P2</td>
-                                        <td>:</td>
-                                        <td>
-                                            @if ($project->executorProject->p2_meeting_minutes)
-                                                <a href="{{ route('downloadMinutesOfHandOver', ['executorProject-' => $project->executorProject->id]) }}"
-                                                    type="button" class="btn btn-md text-white"
-                                                    style="background-color:#1B3061;"><i
-                                                        class="bx bxs-download bx-xs"></i>
-                                                    Download</a>
-                                            @endif
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>Laporan</td>
-                                        <td>:</td>
-                                        <td>
-                                            @if ($project->executorProject->report)
-                                                <a href="{{ route('downloadExecutorReport', ['executorProject' => $project->executorProject->id]) }}"
-                                                    type="button" class="btn btn-md text-white"
-                                                    style="background-color:#1B3061;"><i
-                                                        class="bx bxs-download bx-xs"></i>
-                                                    Download</a>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card rounded-4">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div class="ms-2 fw">
+                            <p class="fw-medium fs-5" style="margin-bottom: 25%;">Daftar File</p>
                         </div>
-                    @endif
+                        <div>
+                            @role('service provider')
+                            @if (Auth::user()->serviceProvider?->type_of_business_entity == 'executor')
+                            <div data-bs-toggle="modal" data-bs-target="#modal-create" class="btn  rounded-3"
+                                style="background-color:#1B3061; color:white;">
+                                    @if ($executorProject->contract || $executorProject->report || $executorProject->minutes_of_disbursement || $executorProject->administrative_minutes)
+                                        Edit File
+                                    @else
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                            viewBox="0 0 24 24" fill="none">
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M12 4C12.5523 4 13 4.35817 13 4.8V19.2C13 19.6418 12.5523 20 12 20C11.4477 20 11 19.6418 11 19.2V4.8C11 4.35817 11.4477 4 12 4Z"
+                                                fill="white" />
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M4 12C4 11.4477 4.35817 11 4.8 11H19.2C19.6418 11 20 11.4477 20 12C20 12.5523 19.6418 13 19.2 13H4.8C4.35817 13 4 12.5523 4 12Z"
+                                                fill="white" />
+                                        </svg> Upload File
+                                    @endif  
+                            </div>
+                            @endif
+                            @endrole
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table mb-0">
+
+                            <thead>
+                                <tr>
+                                    <th>Nama</th>
+                                    <th></th>
+                                    <th>File</th>
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Kontrak</td>
+                                    <td>:</td>
+                                    <td>
+                                        @if ($executorProject->contract)
+                                            <a href="{{ route('downloadExecutorContract', ['executorProject' => $executorProject->id]) }}"
+                                                type="button" class="btn btn-md text-white"
+                                                style="background-color:#1B3061;"><i
+                                                    class="bx bxs-download bx-xs"></i>
+                                                Download</a>
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Berita Acara Uitzet</td>
+                                    <td>:</td>
+                                    <td>
+                                        @if ($executorProject->uitzet_minutes)
+                                            <a href="{{ route('downloadUitzetMinutes', ['executorProject' => $executorProject->id]) }}"
+                                                type="button" class="btn btn-md text-white"
+                                                style="background-color:#1B3061;"><i
+                                                    class="bx bxs-download bx-xs"></i>
+                                                Download</a>
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Mutual Check 0</td>
+                                    <td>:</td>
+                                    <td>
+                                        @if ($executorProject->mutual_check_0)
+                                            <a href="{{ route('downloadMinutesOfHandOver', ['executorProject' => $executorProject->id]) }}"
+                                                type="button" class="btn btn-md text-white"
+                                                style="background-color:#1B3061;"><i
+                                                    class="bx bxs-download bx-xs"></i>
+                                                Download</a>
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Mutual Check 100</td>
+                                    <td>:</td>
+                                    <td>
+                                        @if ($executorProject->mutual_check_100)
+                                            <a href="{{ route('downloadMinutesOfHandOver', ['executorProject' => $executorProject->id]) }}"
+                                                type="button" class="btn btn-md text-white"
+                                                style="background-color:#1B3061;"><i
+                                                    class="bx bxs-download bx-xs"></i>
+                                                Download</a>
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Berita Acara P1</td>
+                                    <td>:</td>
+                                    <td>
+                                        @if ($executorProject->p1_meeting_minutes)
+                                            <a href="{{ route('downloadMinutesOfHandOver', ['executorProject' => $executorProject->id]) }}"
+                                                type="button" class="btn btn-md text-white"
+                                                style="background-color:#1B3061;"><i
+                                                    class="bx bxs-download bx-xs"></i>
+                                                Download</a>
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Berita Acara Administrasi
+                                    </td>
+                                    <td>:</td>
+                                    <td>
+                                        @if ($executorProject->administrative_minutes)
+                                            <a href="{{ route('downloadExecutorAdministrativeMinutes', ['executorProject' => $executorProject->id]) }}"
+                                                type="button" class="btn btn-md text-white"
+                                                style="background-color:#1B3061;"><i
+                                                    class="bx bxs-download bx-xs"></i>
+                                                Download</a>
+                                        @endif
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>Berita Acara Pencariran</td>
+                                    <td>:</td>
+                                    <td>
+                                        @if ($executorProject->minutes_of_disbursement)
+                                            <a href="{{ route('downloadMinutesOfDisbursement', ['executorProject' => $executorProject->id]) }}"
+                                                type="button" class="btn btn-md text-white"
+                                                style="background-color:#1B3061;"><i
+                                                    class="bx bxs-download bx-xs"></i>
+                                                Download</a>
+                                        @endif
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>Berita Acara P2</td>
+                                    <td>:</td>
+                                    <td>
+                                        @if ($executorProject->p2_meeting_minutes)
+                                            <a href="{{ route('downloadMinutesOfHandOver', ['executorProject' => $executorProject->id]) }}"
+                                                type="button" class="btn btn-md text-white"
+                                                style="background-color:#1B3061;"><i
+                                                    class="bx bxs-download bx-xs"></i>
+                                                Download</a>
+                                        @endif
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>Laporan</td>
+                                    <td>:</td>
+                                    <td>
+                                        @if ($executorProject->report)
+                                            <a href="{{ route('downloadExecutorReport', ['executorProject' => $executorProject->id]) }}"
+                                                type="button" class="btn btn-md text-white"
+                                                style="background-color:#1B3061;"><i
+                                                    class="bx bxs-download bx-xs"></i>
+                                                Download</a>
+                                        @endif
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
                 </div>
             </div>
@@ -507,15 +527,15 @@
             <div class="modal-content">
                 <div style="background-color: #1B3061;">
                     <h5 class="modal-title text-white text-center m-3 fs-4">Tambah
-                        {{ Auth::user()->serviceProvider->type_of_business_entity == 'consultant' ? 'Progress' : 'File' }}
+                        {{ Auth::user()->serviceProvider?->type_of_business_entity == 'consultant' ? 'Progress' : 'File' }}
                     </h5>
                 </div>
-                @if (Auth::user()->serviceProvider->type_of_business_entity == 'consultant')
-                    <form action="{{ route('service-provider-projects.store', ['project' => $project->id]) }}"
+                @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant')
+                    <form action="{{ route('service-provider-projects.store', ['executorProject' => $executorProject->id]) }}"
                         method="post" enctype="multipart/form-data">
                         @method('POST')
                     @else
-                        <form action="{{ route('upload-file-executor', ['project' => $project->id]) }}" method="post"
+                        <form action="{{ route('upload-file-executor', ['executorProject' => $executorProject->id]) }}" method="post"
                             enctype="multipart/form-data">
                             @method('PUT')
                 @endif
@@ -523,7 +543,7 @@
                 @csrf
                 <div class="modal-body">
                     <div class="row">
-                        @if (Auth::user()->serviceProvider->type_of_business_entity == 'consultant')
+                        @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant')
                             <div class="col-lg-3">
                                 <div class="mb-3 ajax-select mt-3 mt-lg-0">
                                     <label class="form-label">Tanggal Mulai</label>
@@ -543,8 +563,8 @@
 
                             <div class="col-lg-3">
                                 <div class="mb-3 ajax-select mt-3 mt-lg-0">
-                                    <label class="form-label">Progres (%)</label>
-                                    <input type="text" class="form-control" value="{{ old('progres') }}"
+                                    <label class="form-label">Progres (max {{100 - $executorProject->physical_progress}}%)</label>
+                                    <input type="number" class="form-control" value="{{ old('progres') }}"
                                         name="progres" id="">
                                 </div>
                             </div>
@@ -552,7 +572,7 @@
                             <div class="col-lg-3">
                                 <div class="mb-3 ajax-select mt-3 mt-lg-0">
                                     <label class="form-label">Minggu ke-</label>
-                                    <input type="text" class="form-control" value="{{ old('week') }}"
+                                    <input type="number" class="form-control" value="{{ old('week') }}"
                                         name="week" id="">
                                 </div>
                             </div>
@@ -574,50 +594,64 @@
                     <div class="col-lg-6">
                         <div class="mb-3 ajax-select mt-3 mt-lg-0">
                             <label class="form-label">Kontrak</label>
-                            <input class="form-control" type="file" value="{{ old('contract') }}" name="contract"
+                            <input class="form-control" accept=".pdf" type="file" value="{{ old('contract') }}" name="contract"
                                 id="">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                            <label class="form-label">Berita Acara Uitzet</label>
+                            <input class="form-control" type="file" value="{{ old('uitzet_minutes') }}"
+                                name="uitzet_minutes" accept=".pdf" id="">
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="mb-3 ajax-select mt-3 mt-lg-0">
                             <label class="form-label">Berita Acara Administrasi</label>
                             <input class="form-control" type="file" value="{{ old('administrative_minutes') }}"
-                                name="administrative_minutes" id="">
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="mb-3 ajax-select mt-3 mt-lg-0">
-                            <label class="form-label">Laporan</label>
-                            <input class="form-control" type="file" value="{{ old('report') }}" name="report"
-                                id="">
+                                name="administrative_minutes" accept=".pdf" id="">
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="mb-3 ajax-select mt-3 mt-lg-0">
                             <label class="form-label">Berita Acara Pencairan</label>
                             <input class="form-control" type="file" value="{{ old('minutes_of_disbursement') }}"
-                                name="minutes_of_disbursement" id="">
+                                name="minutes_of_disbursement" accept=".pdf" id="">
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="mb-3 ajax-select mt-3 mt-lg-0">
                             <label class="form-label">Mutual Check 0</label>
                             <input class="form-control" type="file" value="{{ old('mitual_check_0') }}"
-                                name="minutes_of_mutual_check_0" id="">
+                                name="minutes_of_mutual_check_0" accept=".pdf" id="">
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="mb-3 ajax-select mt-3 mt-lg-0">
                             <label class="form-label">Mutual Check 100</label>
                             <input class="form-control" type="file" value="{{ old('mutual_check_100') }}"
-                                name="minutes_of_mutual_check_100" id="">
+                                name="minutes_of_mutual_check_100" accept=".pdf" id="">
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="mb-3 ajax-select mt-3 mt-lg-0">
                             <label class="form-label">Berita Acara P1</label>
                             <input class="form-control" type="file" value="{{ old('p1_meeting_minutes') }}"
-                                name="p1_meeting_minutes" id="">
+                                name="p1_meeting_minutes" accept=".pdf" id="">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                            <label class="form-label">Berita Acara P2</label>
+                            <input class="form-control" type="file" value="{{ old('p2_meeting_minutes') }}"
+                                name="p2_meeting_minutes" accept=".pdf" id="">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                            <label class="form-label">Laporan</label>
+                            <input class="form-control" accept=".pdf" type="file" value="{{ old('report') }}" name="report"
+                                id="">
                         </div>
                     </div>
                     @endif
@@ -663,8 +697,8 @@
 
                             <div class="col-lg-3">
                                 <div class="mb-3 ajax-select mt-3 mt-lg-0">
-                                    <label class="form-label">Progres (%)</label>
-                                    <input type="text" class="form-control" value="{{ old('progres') }}"
+                                    <label class="form-label">Progres (max {{100 - $executorProject->physical_progress}}%)</label>
+                                    <input type="text" max="3" class="form-control" value="{{ old('progres') }}"
                                         name="progres" id="">
                                 </div>
                             </div>
@@ -721,8 +755,17 @@
         $('#paket-jasa').addClass('active')
         $('#paket-jasa .sub-menu').addClass('mm-show')
         $('#paket-jasa-link').addClass('mm-active')
+
         $('#paket-pekerjaan-jasa').addClass('mm-active')
+        
+        $('#project-admin').addClass('mm-active')
+        $('#project-admin-link').addClass('active')
+
         $('#paket-pekerjaan-jasa-link').addClass('active')
+        $('#project-dinas').addClass('mm-active')
+
+        $('#project-dinas-link').addClass('active')
+        
         $('.btn-delete').click(function() {
             id = $(this).data('id')
             var actionUrl = `/service-provider-projects/${id}`;
@@ -756,6 +799,7 @@
             const formData = getDataAttributes($(this).attr('id'))
             var actionUrl = `/service-provider-projects/${formData['id']}`;
             $('#form-update').attr('action', actionUrl);
+            console.log(formData);
             setFormValues('form-update', formData)
             $('#form-update').data('id', formData['id'])
             $('#form-update').attr('action', );

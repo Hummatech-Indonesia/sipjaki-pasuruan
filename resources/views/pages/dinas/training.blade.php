@@ -10,13 +10,8 @@
         </script>
     @endif
     <div class="d-flex justify-content-between mb-3">
-        <div class="">
-            <p class="fs-4 text-dark" style="font-weight: 600">
+        <div class="fs-4 text-dark" style="font-weight: 600">
                 Pelatihan
-            </p>
-        </div>
-        <div class="">
-
         </div>
     </div>
     <div class="d-flex justify-content-between mb-3">
@@ -548,6 +543,7 @@
                 </tr>
             @endforelse
         </table>
+        {{$trainings->links('pagination::bootstrap-5')}}
     </div>
     <x-delete-modal-component />
 @endsection

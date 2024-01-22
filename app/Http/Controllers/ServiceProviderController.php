@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Contracts\Interfaces\AmendmentDeepInterface;
-use App\Contracts\Interfaces\FoundingDeepInterface;
+use App\Contracts\Interfaces\ConsultantProjectInterface;
+use App\Contracts\Interfaces\ExecutorProjectInterface;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use App\Contracts\Interfaces\UserInterface;
 use App\Contracts\Interfaces\WorkerInterface;
 use App\Http\Requests\ServiceProviderRequest;
 use App\Contracts\Interfaces\OfficerInterface;
-use App\Contracts\Interfaces\ProjectInterface;
 use App\Contracts\Interfaces\ServiceProviderInterface;
 use App\Contracts\Interfaces\ServiceProviderQualificationInterface;
-use App\Contracts\Interfaces\VerificationInterface;
+use App\Enums\StatusEnum;
 use App\Http\Requests\UpdatePasswordServiceProviderRequest;
 use App\Models\ServiceProvider;
 use App\Enums\TypeOfBusinessEntityEnum;
@@ -23,18 +22,29 @@ class ServiceProviderController extends Controller
 {
     private UserInterface $user;
     private WorkerInterface $worker;
-    private ProjectInterface $project;
+    private ExecutorProjectInterface $executorProject;
+    private ConsultantProjectInterface $consultantProject;
     private ServiceProviderInterface $serviceProvider;
     private ServiceProviderQualificationInterface $serviceProviderQualification;
     private OfficerInterface $officer;
     private UserInterface $userI;
     private ServiceProviderService $service;
 
-    public function __construct(UserInterface $user, ServiceProviderInterface $serviceProvider, ProjectInterface $projectInterface, WorkerInterface $workerInterface, ServiceProviderQualificationInterface $serviceProviderQualification, OfficerInterface $officerInterface, UserInterface $userInterface, ServiceProviderService $service)
-    {
+    public function __construct(
+        UserInterface $user,
+        ServiceProviderInterface $serviceProvider,
+        ExecutorProjectInterface $executorProject,
+        ConsultantProjectInterface $consultantProject,
+        WorkerInterface $workerInterface,
+        ServiceProviderQualificationInterface $serviceProviderQualification,
+        OfficerInterface $officerInterface,
+        UserInterface $userInterface,
+        ServiceProviderService $service
+    ) {
         $this->userI = $userInterface;
         $this->worker = $workerInterface;
-        $this->project = $projectInterface;
+        $this->executorProject = $executorProject;
+        $this->consultantProject = $consultantProject;
         $this->user = $user;
         $this->serviceProvider = $serviceProvider;
         $this->serviceProviderQualification = $serviceProviderQualification;
@@ -51,13 +61,31 @@ class ServiceProviderController extends Controller
     public function dashboard(Request $request): View
     {
         $workers = $this->worker->getByServiceProvider($request);
-        $experiences = $this->project->getByServiceProvider($request);
+        $request->merge([
+            'status' => StatusEnum::ACTIVE->value
+        ]);
+        $activeExecutorProjects = $this->executorProject->search($request);
         $countOfficer = $this->officer->count(null);
         $countWorker = $this->worker->countWorker();
-        $countExperience = $this->project->countProject();
-        $countAllExperience = $this->project->countAllProject();
-        $year = $request->year;
-        return view('pages.service-provider.dashboard', ['experiences' => $experiences, 'workers' => $workers, 'countWorker' => $countWorker, 'countExperience' => $countExperience, 'countAllExperience' => $countAllExperience, 'countOfficer' => $countOfficer, 'year' => $year]);
+        $consultantProjects = $this->consultantProject->search($request);
+
+        if (auth()->user()->serviceProvider->type_of_business_entity == 'consultant') {
+            $activeProjectCount = $this->consultantProject->count(['status' => StatusEnum::ACTIVE->value]);
+            $projectCount = $this->consultantProject->count(null);
+        } else {
+            $activeProjectCount = $this->executorProject->count(['status' => StatusEnum::ACTIVE->value]);
+            $projectCount = $this->executorProject->count(null);
+        }
+
+        return view('pages.service-provider.dashboard', compact(
+            'workers',
+            'activeExecutorProjects',
+            'countOfficer',
+            'countWorker',
+            'activeProjectCount',
+            'projectCount',
+            'consultantProjects'
+        ));
     }
 
     /**
@@ -80,7 +108,7 @@ class ServiceProviderController extends Controller
      * @param  mixed $service_provider
      * @return View
      */
-    public function show(ServiceProvider $service_provider,Request $request): View
+    public function show(ServiceProvider $service_provider, Request $request): View
     {
         $serviceProviders = $this->serviceProvider->show($service_provider->id);
         $serviceProviderQualifications = $this->serviceProviderQualification->customPaginate($request, 10);
@@ -91,12 +119,13 @@ class ServiceProviderController extends Controller
         $foundingDeeps = $service_provider->foundingDeed;
         return view('pages.service-provider.detail', [
             'serviceProviders' => $serviceProviders,
-            'serviceProviderQualifications'=>$serviceProviderQualifications,
-            'officers'=>$officers,
-            'workers'=>$workers,
-            'verifications'=>$verifications,
-            'amendmentDeeps'=>$amendmentDeeps,
-            'foundingDeeps'=>$foundingDeeps]);
+            'serviceProviderQualifications' => $serviceProviderQualifications,
+            'officers' => $officers,
+            'workers' => $workers,
+            'verifications' => $verifications,
+            'amendmentDeeps' => $amendmentDeeps,
+            'foundingDeeps' => $foundingDeeps
+        ]);
     }
 
     /**
@@ -107,14 +136,28 @@ class ServiceProviderController extends Controller
      */
     public function index(Request $request): View
     {
-        $serviceProviders = $this->serviceProvider->show(auth()->user()->serviceProvider->id);
+        $serviceProvider = $this->serviceProvider->show(auth()->user()->serviceProvider->id);
         $serviceProviderQualifications = $this->serviceProviderQualification->customPaginate($request, 10);
         $officers = $this->officer->get();
         $workers = $this->worker->get();
+        $executorProjects = $this->executorProject->search($request);
+        $consultantProjects = $this->consultantProject->search($request);
         $verifications = auth()->user()->serviceProvider->verification;
         $amendmentDeeps = auth()->user()->serviceProvider->amendmentDeed;
         $foundingDeeps = auth()->user()->serviceProvider->foundingDeed;
-        return view('pages.service-provider.profile', ['serviceProvider' => $serviceProviders, 'serviceProviderQualifications' => $serviceProviderQualifications, 'officers' => $officers, 'workers' => $workers, 'verifications' => $verifications, 'amendmentDeeps' => $amendmentDeeps, 'foundingDeeps' => $foundingDeeps]);
+
+
+        return view('pages.service-provider.profile', compact(
+            'serviceProvider',
+            'serviceProviderQualifications',
+            'officers',
+            'workers',
+            'executorProjects',
+            'consultantProjects',
+            'verifications',
+            'amendmentDeeps',
+            'foundingDeeps'
+        ));
     }
 
     /**
@@ -140,7 +183,8 @@ class ServiceProviderController extends Controller
     public function consultant(Request $request): View
     {
         $request->merge(['type_of_business_entity' => TypeOfBusinessEntityEnum::CONSULTANT->value]);
-        $serviceProviders = $this->serviceProvider->search($request);
+        $serviceProviders = $this->serviceProvider->customPaginate($request, 10);
+
         return view('pages.dinas.konsultan', ['serviceProviders' => $serviceProviders]);
     }
 
@@ -153,7 +197,7 @@ class ServiceProviderController extends Controller
     public function executor(Request $request): View
     {
         $request->merge(['type_of_business_entity' => TypeOfBusinessEntityEnum::EXECUTOR->value]);
-        $serviceProviders = $this->serviceProvider->search($request);
+        $serviceProviders = $this->serviceProvider->customPaginate($request, 10);
         return view('pages.dinas.penyelenggara', ['serviceProviders' => $serviceProviders]);
     }
 }

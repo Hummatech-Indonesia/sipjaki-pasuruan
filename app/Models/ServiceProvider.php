@@ -3,19 +3,19 @@
 namespace App\Models;
 
 use App\Base\Interfaces\HasAssociation;
+use App\Base\Interfaces\HasConsultantProjects;
+use App\Base\Interfaces\HasExecutorProjects;
 use App\Base\Interfaces\HasOneAmendmentDeed;
 use App\Base\Interfaces\HasOneFoundingDeed;
 use App\Base\Interfaces\HasOneVerification;
 use App\Base\Interfaces\HasUser;
-use App\Base\Interfaces\HasProjects;
-use App\Enums\TypeOfBusinessEntityEnum;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class ServiceProvider extends Model implements HasUser, HasProjects, HasAssociation, HasOneAmendmentDeed, HasOneFoundingDeed, HasOneVerification
+class ServiceProvider extends Model implements HasConsultantProjects,HasExecutorProjects,HasUser, HasAssociation, HasOneAmendmentDeed, HasOneFoundingDeed, HasOneVerification
 {
     use HasFactory;
     protected $table = 'service_providers';
@@ -33,21 +33,6 @@ class ServiceProvider extends Model implements HasUser, HasProjects, HasAssociat
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
-    }
-
-    /**
-     * Get all of the projects for the ServiceProvider
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function projects(): HasMany
-    {
-        if ($this->type_of_business_entity == TypeOfBusinessEntityEnum::CONSULTANT->value) {
-            $foreignColumn = 'consultant_id';
-        } else {
-            $foreignColumn = 'executor_id';
-        }
-        return $this->hasMany(Project::class, $foreignColumn);
     }
 
     /**
@@ -88,5 +73,25 @@ class ServiceProvider extends Model implements HasUser, HasProjects, HasAssociat
     public function verification(): HasOne
     {
         return $this->hasOne(Verification::class);
+    }
+
+    /**
+     * Get all of the consultantProjects for the ServiceProvider
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function consultantProjects(): HasMany
+    {
+        return $this->hasMany(ConsultantProject::class);
+    }
+
+    /**
+     * Get all of the executorProjects for the ServiceProvider
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function executorProjects(): HasMany
+    {
+        return $this->hasMany(ExecutorProject::class);
     }
 }

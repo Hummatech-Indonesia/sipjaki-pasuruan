@@ -80,9 +80,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($qualifications as $index => $qualification)
+                    @forelse ($qualifications as  $qualification)
                         <tr>
-                            <td>{{ $index + 1 }}</td>
+                            <td>{{ $loop->iteration }}</td>
                             <td>{{ $qualification->name }}
                             </td>
                             <td class="d-flex flex-row gap-3 justify-content-center" style="border-bottom: 1px solid #fff">

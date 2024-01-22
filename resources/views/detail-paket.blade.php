@@ -42,7 +42,7 @@
                         <div class="d-flex justify-content-header gap-2">
                             <div class="d-flex d-row align-items-center mb-3">
                                 <div class="position-relative  search-container">
-                                    <input type="search" value="{{ $name }}" class="py-2 ps-5" id="search-name" name="name" placeholder="Search">
+                                    <input type="search" value="{{ request()->name }}" class="py-2 ps-5" id="search-name" name="name" placeholder="Search">
                                     <i class="bx bx-search-alt search-icon"></i>
                                 </div>
                             </div>
@@ -79,7 +79,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($detailDinas as $project)
+                                @forelse ($executorProjects as $project)
                                 <tr>
 
                                     <th scope="row" class="fs-5">{{ $loop->iteration }}</th>
@@ -92,11 +92,21 @@
                                     <td class="fs-5">
                                         {{ Carbon::parse($project->end_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}
                                     </td>
-                                    <td class="fs-5">{{ $project->status == "active" ? "Aktif":"Non Aktif"}}</td>
-                                    {{-- <td class="text-center">
-                                        <a href="{{ route('detail-project', ['project' => $item->id]) }}"
-                                            class="text-white btn" style="background-color: #1B3061">Detail</a>
-                                        </td> --}}
+                                    <td class="text-center">
+                                        @php
+                                            switch ($project->status) {
+                                                case 'canceled':
+                                                    $text = 'Dibatalkan';
+                                                    break;
+                                                case 'nonactive':
+                                                    $text = 'Non Aktif';
+                                                    break;
+                                                default:
+                                                    $text = 'Aktif';
+                                            }
+                                        @endphp
+                                        {{$text}}
+                                    </td>
                                     </tr>
                                         @empty
                                     <tr>

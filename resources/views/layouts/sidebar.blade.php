@@ -30,7 +30,7 @@
                                             id="klasifikasi-link-jasa" key="t-full-calendar">Klasifikasi</a></li>
                                     <li><a href="{{ route('contract-categories.index') }}"
                                             key="t-full-calendar">Kategori Kontrak</a></li>
-                                    <li><a href="{{ route('associations.index') }}" key="t-full-calendar">Assosiasi</a>
+                                    <li id="assosiasi"><a id="assosiasi-link" href="{{ route('associations.index') }}" key="t-full-calendar">Assosiasi</a>
                                     </li>
                                 </ul>
                             </li>
@@ -103,9 +103,15 @@
                         </a>
                     </li>
                     <li id="project-admin">
-                        <a id="project-admin-link" href="{{ route('projects.index') }}" class="waves-effect">
+                        <a id="project-admin-link" href="{{ route('executor-projects.index') }}" class="waves-effect">
                             <i class="bx bxs-package"></i>
                             <span key="t-file-manager">Paket Pekerjaan</span>
+                        </a>
+                    </li>
+                    <li id="project-konsultant-admin">
+                        <a id="project-konsultant-admin-link" href="{{ route('consultant-package') }}" class="waves-effect">
+                            <i class="bx bxs-package"></i>
+                            <span key="t-file-manager">Paket Konsultan</span>
                         </a>
                     </li>
                     <li id="training-admin">
@@ -222,9 +228,15 @@
                         </a>
                     </li>
                     <li id="project-admin">
-                        <a id="project-admin-link" href="{{ route('projects.index') }}" class="waves-effect">
+                        <a id="project-admin-link" href="{{ route('executor-projects.index') }}" class="waves-effect">
                             <i class="bx bxs-package"></i>
                             <span key="t-file-manager">Paket Pekerjaan</span>
+                        </a>
+                    </li>
+                    <li id="project-konsultant-admin">
+                        <a id="project-konsultant-admin-link" href="{{ route('consultant-package') }}" class="waves-effect">
+                            <i class="bx bxs-package"></i>
+                            <span key="t-file-manager">Paket Konsultan</span>
                         </a>
                     </li>
                     <li id="training-admin">
@@ -310,10 +322,16 @@
                             <span key="t-file-manager" class="px-2">Kecelakaan</span>
                         </a>
                     </li>
-                    <li id="project-admin">
-                        <a id="project-admin-link" href="{{ route('projects.index') }}" class="waves-effect">
+                    <li id="project-dinas">
+                        <a id="project-dinas-link" href="{{ route('executor-projects.index') }}" class="waves-effect">
                             <i class="bx bxs-package"></i>
                             <span key="t-file-manager">Paket Pekerjaan</span>
+                        </a>
+                    </li>
+                    <li id="project-dinas-konsultant">
+                        <a id="project-dinas-konsultant-link" href="{{ route('consultant-projects.index') }}" class="waves-effect">
+                            <i class="bx bxs-package"></i>
+                            <span key="t-file-manager">Paket Konsultan</span>
                         </a>
                     </li>
                     <li>

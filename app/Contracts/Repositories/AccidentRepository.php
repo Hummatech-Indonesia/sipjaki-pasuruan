@@ -5,7 +5,8 @@ namespace App\Contracts\Repositories;
 use App\Contracts\Interfaces\AccidentInterface;
 use App\Contracts\Repositories\BaseRepository;
 use App\Models\Accident;
-
+use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class AccidentRepository extends BaseRepository implements AccidentInterface
 {
@@ -22,7 +23,7 @@ class AccidentRepository extends BaseRepository implements AccidentInterface
     public function get(): mixed
     {
         return $this->model->query()
-        ->whereRelation('project', 'dinas_id', auth()->user()->dinas->id)
+            ->whereRelation('project', 'dinas_id', auth()->user()->dinas->id)
             ->get();
     }
 
@@ -83,5 +84,41 @@ class AccidentRepository extends BaseRepository implements AccidentInterface
     {
         return $this->model->query()
             ->count();
+    }
+    
+    /**
+     * search
+     *
+     * @param  mixed $request
+     * @return mixed
+     */
+    public function search(Request $request): mixed
+    {
+        return $this->model->query()
+            ->when(auth()->user()->dinas,function($query){
+                $query->where('dinas_id',auth()->user()->dinas->id);
+            })
+            ->when($request->name,function($query) use ($request){
+                $query->where('name','LIKE','%'.$request->name.'%');
+            })
+            ->latest()
+            ->get();
+    }
+    
+    /**
+     * customPaginate
+     *
+     * @param  mixed $request
+     * @param  mixed $pagination
+     * @return LengthAwarePaginator
+     */
+    public function customPaginate(Request $request, int $pagination = 10): LengthAwarePaginator
+    {
+        return $this->model->query()
+            ->when(auth()->user()->dinas,function($query){
+                $query->whereRelation('executorProject.consultantProject','dinas_id',auth()->user()->dinas->id);
+            })
+            ->latest()
+            ->fastPaginate($pagination);
     }
 }

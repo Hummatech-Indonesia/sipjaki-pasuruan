@@ -80,4 +80,9 @@ class User extends Authenticatable implements MustVerifyEmail, HasOneDinas, HasO
     {
         return $this->hasOne(ServiceProvider::class);
     }
+
+    public function role(): string
+    {
+        return $this->roles[0]->name;
+    }
 }

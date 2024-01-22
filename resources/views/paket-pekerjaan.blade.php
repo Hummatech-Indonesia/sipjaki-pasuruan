@@ -1,4 +1,8 @@
 @extends('layouts.app-landing-page')
+
+@php
+    use App\Models\ExecutorProject;
+@endphp
 @section('content')
 <style>
     .search-container {
@@ -30,21 +34,23 @@
     <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <form>
-                        <div class="d-flex justify-content-header gap-2">
-                            <div class="d-flex d-row align-items-center mb-3">
-                                <div class="position-relative  search-container">
-                                    <input type="search" class="py-2 ps-5" id="search-name" value="{{ $name }}" name="name" placeholder="Search">
-                                    <i class="bx bx-search-alt search-icon"></i>
+                    <div class="d-flex justify-content-between mb-3">
+                        <form>
+                            <div class="d-flex justify-content-header gap-2">
+                                <div class="d-flex d-row align-items-center mb-3">
+                                    <div class="position-relative  search-container">
+                                        <input type="search" class="py-2 ps-5" id="search-name" name="title" placeholder="Search">
+                                        <i class="bx bx-search-alt search-icon"></i>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <button type="submit" class="text-white btn" style="background-color: #1B3061">
+                                        Search
+                                    </button>
                                 </div>
                             </div>
-                            <div class="">
-                                <button type="submit" class="text-white btn" style="background-color: #1B3061">
-                                    Search
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                     <div class="table-responsive">
                         <table class="table table-borderless mb-0" border="1">
                             <thead class="table-light">
@@ -66,7 +72,7 @@
                                 <tr>
                                     <th scope="row" class="fs-5">{{$loop->iteration}}</th>
                                     <td class="fs-5">{{$item->user->name}}</td>
-                                    <td class="fs-5 text-center">{{$item->projects_count}}</td>
+                                    <td class="fs-5 text-center">{{ExecutorProject::whereRelation('consultantProject','dinas_id',$item->id)->count()}}</td>
                                     <td class="text-center">
                                         <a href="{{ route('detail.project',['dinas' => $item->id]) }}" class="text-white btn" style="background-color: #1B3061">Detail</a>
                                     </td>

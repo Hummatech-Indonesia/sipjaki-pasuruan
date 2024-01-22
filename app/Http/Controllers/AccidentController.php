@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Interfaces\AccidentInterface;
+use App\Contracts\Interfaces\ExecutorProjectInterface;
 use App\Helpers\ResponseHelper;
 use App\Http\Requests\AccidentRequest;
 use App\Http\Resources\AccidentResource;
@@ -15,9 +16,15 @@ class AccidentController extends Controller
 {
 
     private AccidentInterface $accident;
-    public function __construct(AccidentInterface $accidentInterface)
+    private ExecutorProjectInterface $executorProject;
+
+    public function __construct(
+        AccidentInterface $accidentInterface,
+        ExecutorProjectInterface $executorProject,
+    )
     {
         $this->accident = $accidentInterface;
+        $this->executorProject = $executorProject;
     }
     /**
      * index
@@ -26,11 +33,16 @@ class AccidentController extends Controller
      */
     public function index(Request $request): JsonResponse|View
     {
-        $accidents = $this->accident->get();
+        $accidents = $this->accident->customPaginate($request,15);
+        $executorProjects = $this->executorProject->get();
+
         if ($request->is('api/*')) {
             return ResponseHelper::success(AccidentResource::collection($accidents, trans('alert.fetch_success')));
         } else {
-            return view('pages.dinas.accident', ['accidents' => $accidents]);
+            return view('pages.dinas.accident',compact(
+                'accidents',
+                'executorProjects'
+            ));
         }
     }
 

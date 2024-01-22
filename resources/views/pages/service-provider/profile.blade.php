@@ -115,7 +115,7 @@
                                     <tr>
                                         <td>Jenis Badan Usaha</td>
                                         <td>:</td>
-                                        <td>{{ $serviceProvider->type_of_business_entity ? ($serviceProvider->type_of_business_entity == 'consultant' ? 'Konsultan' : 'Penyelenggara') : '-' }}
+                                        <td>{{ $serviceProvider->type_of_business_entity ? ($serviceProvider->type_of_business_entity == 'consultant' ? 'Konsultan' : 'Pelaksana') : '-' }}
                                         </td>
                                     </tr>
                                     <tr>
@@ -639,13 +639,13 @@
                                 <p class="mb-0 text-dark fs-6">
                                     Kota / Kabupaten
                                 </p>
-                                <input type="text" name="city" class="form-control" placeholder="Masukkan Nomor" value="{{ $foundingDeeps->city }}">
+                                <input type="text" name="city" class="form-control" placeholder="Masukkan Kota/Kabupaten" value="{{ $foundingDeeps->city }}">
                             </div>
                             <div class="col-6">
                                 <p class="mb-0 text-dark fs-6">
                                     Provinsi
                                 </p>
-                                <input name="province" type="text" class="form-control" placeholder="Masukkan Nomor" value="{{ $foundingDeeps->province }}">
+                                <input name="province" type="text" class="form-control" placeholder="Masukkan Provinsi" value="{{ $foundingDeeps->province }}">
                             </div>
                         </div>
                         <div class="row">
@@ -929,7 +929,7 @@
                                     Pemberi Tugas
                                 </td>
                                 <td class="text-white" style="background-color: #1B3061">
-                                    Kontrak
+                                    Status
                                 </td>
                                 <td class="text-white" style="background-color: #1B3061">
                                     Mulai
@@ -940,32 +940,97 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($serviceProvider->projects()->where('end_date','<',now()) as $project)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $project->name }}</td>
-                                    <td>{{ $project->year }}</td>
-                                    <td>{{ $project->project_value }}</td>
-                                    <td>{{ $project->dinas->user->name }}</td>
-                                    <td>{{ $project->contractCategory->name }}</td>
-                                    <td>{{ Carbon::parse($project->start_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}
-                                    </td>
-                                    <td>{{ Carbon::parse($project->end_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="8" class="text-center">
-                                        <div class="d-flex justify-content-center" style="min-height:19rem">
-                                            <div class="my-auto">
-                                                <img src="{{ asset('no-data.png') }}" width="300" height="300" />
-                                                <h4 class="text-center mt-4">Belum Ada Pengalaman!!</h4>
+                            @if (auth()->user()->serviceProvider->type_of_business_entity == 'consultant')
+                                @forelse ($consultantProjects as $project)
+                                    <tr>
+                                        <td class="fs-5">{{ $loop->iteration }}</td>
+                                        <td class="fs-5">{{ $project->name }}</td>
+                                        <td class="fs-5">{{ $project->fiscalYear->name }}</td>
+                                        <td class="fs-5">Rp.{{ number_format($project->project_value, 0, ',', '.') }}</td>
+                                        <td class="fs-5">{{ $project->dinas->user->name }}</td>
+                                        <td class="fs-5">
+                                            @php
+                                                switch ($project->status) {
+                                                    case 'canceled':
+                                                        $color = '#FF0000';
+                                                        $text = 'Dibatalkan';
+                                                        break;
+                                                    case 'nonactive':
+                                                        $color = '#FFF700';
+                                                        $text = 'Non Aktif';
+                                                        break;
+                                                    default:
+                                                        $color = '#1B3061';
+                                                        $text = 'Aktif';
+                                                }
+                                            @endphp
+                                            <span class="fs-6 badge px-4 py-2" style="background-color: {{$color}}; color: #FFFFFF">
+                                                {{$text}}
+                                            </span>
+                                        </td>
+                                        <td class="fs-5">{{ Carbon::parse($project->start_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                        </td>
+                                        <td class="fs-5">{{ Carbon::parse($project->end_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="8" class="text-center">
+                                            <div class="d-flex justify-content-center" style="min-height:19rem">
+                                                <div class="my-auto">
+                                                    <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                                    <h4 class="text-center mt-4">Belum Ada Pengalaman!!</h4>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforelse
-
+                                        </td>
+                                    </tr>
+                                @endforelse
+                            @else
+                                @forelse ($executorProjects as $project)
+                                    <tr>
+                                        <td class="fs-5">{{ $loop->iteration }}</td>
+                                        <td class="fs-5">{{ $project->name }}</td>
+                                        <td class="fs-5">{{ $project->fiscalYear->name }}</td>
+                                        <td class="fs-5">Rp.{{ number_format($project->project_value, 0, ',', '.') }}</td>
+                                        <td class="fs-5">{{ $project->consultantProject->dinas->user->name }}</td>
+                                        <td class="fs-5">
+                                            @php
+                                                switch ($project->status) {
+                                                    case 'canceled':
+                                                        $color = '#FF0000';
+                                                        $text = 'Dibatalkan';
+                                                        break;
+                                                    case 'nonactive':
+                                                        $color = '#FFF700';
+                                                        $text = 'Non Aktif';
+                                                        break;
+                                                    default:
+                                                        $color = '#1B3061';
+                                                        $text = 'Aktif';
+                                                }
+                                            @endphp
+                                            <span class="fs-6 badge px-4 py-2" style="background-color: {{$color}}; color: #FFFFFF">
+                                                {{$text}}
+                                            </span>
+                                        </td>
+                                        <td class="fs-5">{{ Carbon::parse($project->start_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                        </td>
+                                        <td class="fs-5">{{ Carbon::parse($project->end_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="8" class="text-center">
+                                            <div class="d-flex justify-content-center" style="min-height:19rem">
+                                                <div class="my-auto">
+                                                    <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                                    <h4 class="text-center mt-4">Belum Ada Pengalaman!!</h4>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforelse
+                            @endif
                         </tbody>
                     </table>
                 </div>
@@ -1044,14 +1109,14 @@
                                     <select name="type_of_business_entity" class="form-select" id="">
                                         @if ($serviceProvider->type_of_business_entity == 'consultant')
                                             <option value="consultant" selected>Konsultan</option>
-                                            <option value="executor">Penyelenggara</option>
+                                            <option value="executor">Pelaksana</option>
                                         @elseif ($serviceProvider->type_of_business_entity == 'executor')
                                             <option value="consultant">Konsultan</option>
-                                            <option value="executor" selected>Penyelenggara</option>
+                                            <option value="executor" selected>Pelaksana</option>
                                         @else
                                             <option value="" selected disabled>Pilih Jenis Badan Usaha</option>
                                             <option value="consultant">Konsultan</option>
-                                            <option value="executor">Penyelenggara</option>
+                                            <option value="executor">Pelaksana</option>
                                         @endif
                                     </select>
                                 </div>
@@ -1150,13 +1215,13 @@
                         <div class="row mb-4">
                             <div class="col-6">
                                 <input type="number"
-                                    value="{{ $verifications->judiciary_number ? $amendmentDeeps->address : '-' }}"
+                                    value="{{ $verifications->judiciary_number ? $veridications->judiciary_number : '-' }}"
                                     name="judiciary_number" class="form-control" placeholder="Masukkan Nomor">
                             </div>
                             <div class="col-6">
                                 <input type="date" name="judiciary_date" class="form-control"
                                     value="{{ $verifications->judiciary_date ? $verifications->judiciary_date : '-' }}"
-                                    placeholder="Masukkan Nomor">
+                                    placeholder="Masukkan Tanggal">
                             </div>
                         </div>
                         <p class="fs-5 text-dark mb-1" style="font-weight: 700">

@@ -9,25 +9,11 @@
     });
 </script>
 @endif
-    <h3>
-        Kecelakaan
-    </h3>
-    <div class="d-flex justify-content-between mb-3">
-        <div class="d-flex justify-content-header gap-3 mt-4">
-            <div class="">
-                <div class="input-group">
-                    <input name="name" type="text" class="form-control" placeholder="Search">
-                    <div class="input-group-append">
-                        <button class="btn text-white" style="background-color: #1B3061; border-radius: 0 5px 5px 0;" type="submit">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            
-        </div>
-        <div class="">
-            <button class="btn text-white mt-4" data-bs-toggle="modal" data-bs-target="#modal-create"
+<div class="d-flex justify-content-between mb-3">
+        <h3>
+            Kecelakaan
+        </h3>
+            <button class="btn text-white" data-bs-toggle="modal" data-bs-target="#modal-create"
                 style="background-color: #1B3061">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none">
                     <path fill-rule="evenodd" clip-rule="evenodd"
@@ -38,7 +24,6 @@
                         fill="white" />
                 </svg>Tambah
             </button>
-        </div>
     </div>
     {{-- modal --}}
     <div class="modal fade" id="modal-create" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
@@ -58,11 +43,14 @@
                             <div class="col-lg-6">
                                 <div class="mb-3">
                                     <label for="update-year">Pekerjaan</label>
-                                    <select name="project_id" class="form-control select2" style="width:100%"
-                                        id="project_id">
+                                    <select name="executor_project_id" class="form-control select2" style="width:100%"
+                                        id="executor_project_id">
                                         <option value="">Pilih Pekerjaan</option>
+                                        @foreach ($executorProjects as $executorProject)
+                                            <option value="{{$executorProject->id}}" {{old('executor_project_id') == $executorProject->id ? 'selected' : ''}} >{{$executorProject->name}}</option>
+                                        @endforeach
                                     </select>
-                                    @error('project_id')
+                                    @error('executor_project_id')
                                         <p class="text-danger">
                                             {{ $message }}
                                         </p>
@@ -169,11 +157,14 @@
                             <div class="col-lg-6">
                                 <div class="mb-3">
                                     <label for="update-year">Pekerjaan</label>
-                                    <select name="project_id" class="form-control select2" style="width:100%"
-                                        id="update-project_id">
+                                    <select name="executor_project_id" class="form-control select2" style="width:100%"
+                                        id="update-executor_project_id">
                                         <option value="">Pilih Pekerjaan</option>
+                                        @foreach ($executorProjects as $executorProject)
+                                            <option value="{{$executorProject->id}}" {{old('executor_project_id') == $executorProject->id ? 'selected' : ''}} >{{$executorProject->name}}</option>
+                                        @endforeach
                                     </select>
-                                    @error('project_id')
+                                    @error('executor_project_id')
                                         <p class="text-danger">
                                             {{ $message }}
                                         </p>
@@ -269,7 +260,7 @@
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #1B3061">
-                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Detail Pelatihan</h5>
+                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Detail Kecelakaan</h5>
                     <button type="button" class="btn-close" style="background-color: white" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
@@ -343,14 +334,14 @@
                     <th class="text-center table-sipjaki" >Aksi</th>
                 </tr>
             </thead>
-            @forelse ($accidents as $index=>$accident)
+            @forelse ($accidents as $accident)
                 <tbody>
                     <tr>
                         <td class="text-center">
-                            {{ $index + 1 }}
+                            {{ $loop->iteration }}
                         </td>
                         <td class="text-center">
-                            {{ $accident->project->name }}
+                            {{ $accident->executorProject->name }}
                         </td>
                         <td class="text-center">
                             {{ $accident->problem }}
@@ -390,7 +381,7 @@
                         <div class="d-flex justify-content-center" style="min-height:16rem">
                             <div class="my-auto">
                                 <img src="{{ asset('no-data.png') }}" width="300" height="300" />
-                                <h4 class="text-center mt-4">Project Masih Kosong!!</h4>
+                                <h4 class="text-center mt-4">Kecelakaan Masih Kosong!!</h4>
                             </div>
                         </div>
                     </td>
