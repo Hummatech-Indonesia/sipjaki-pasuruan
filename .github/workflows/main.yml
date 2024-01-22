@@ -26,9 +26,9 @@ jobs:
         # server directory
         server-dir: sipjaki.pasuruankab.com/
         # ftp username
-        username: sipjaki
+        username: pasuruankab.com_aw7k0wn2zxl
         # ftp password
-        password: pasuruankab
+        password: ~1LUz7%p5Kyvbelf
         # Server port to connect to (read your web hosts docs)
         port: 21
         # protocol to deploy with - ftp, ftps, or ftps-legacy
