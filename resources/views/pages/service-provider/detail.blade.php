@@ -840,7 +840,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($serviceProviders->projects()->where('end_date','<',now()) as $project)
+                            @forelse ($serviceProviders->consultantProjects()->where('end_at','<',now()) as $project)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $project->name }}</td>
