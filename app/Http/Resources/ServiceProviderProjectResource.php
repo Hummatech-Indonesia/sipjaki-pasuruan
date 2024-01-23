@@ -16,8 +16,10 @@ class ServiceProviderProjectResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'project' => ProjectResource::make($this->project),
-            'service_provider' => ServiceProviderResource::make($this->serviceProvider),
+            'project' => [
+                'name' => $this->executorProject->name,
+                'year' => $this->executorProject->fiscalYear->name
+            ],
             'date_start' => $this->date_start,
             'date_finish' => $this->date_finish,
             'file' => asset('storage/' . $this->file),
