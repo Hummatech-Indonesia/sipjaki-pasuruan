@@ -402,7 +402,7 @@
                                     <td>:</td>
                                     <td>
                                         @if ($executorProject->contract)
-                                            <a href="{{ route('downloadExecutorContract', ['consultantProject' => $executorProject->consultant_project_id]) }}"
+                                            <a href="{{ route('downloadExecutorContract', ['executorProject' => $executorProject->id]) }}"
                                                 type="button" class="btn btn-md text-white"
                                                 style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
                                                 Download</a>
@@ -414,7 +414,7 @@
                                     <td>:</td>
                                     <td>
                                         @if ($executorProject->uitzet_minutes)
-                                            <a href="{{ route('downloadUitzetMinutes', ['consultantProject' => $executorProject->consultant_project_id]) }}"
+                                            <a href="{{ route('downloadUitzetMinutes', ['executorProject' => $executorProject->id]) }}"
                                                 type="button" class="btn btn-md text-white"
                                                 style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
                                                 Download</a>
@@ -476,7 +476,7 @@
                                     <td>:</td>
                                     <td>
                                         @if ($executorProject->minutes_of_disbursement)
-                                            <a href="{{ route('downloadMinutesOfDisbursement', ['consultantProject' => $executorProject->consultant_project_id]) }}"
+                                            <a href="{{ route('downloadMinutesOfDisbursement', ['executorProject' => $executorProject->id]) }}"
                                                 type="button" class="btn btn-md text-white"
                                                 style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
                                                 Download</a>
