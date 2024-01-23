@@ -384,7 +384,7 @@
                     </tbody>
                 @empty
                     <tr>
-                        <td colspan="{{auth()->user()->dinas ? '5' : '6' }}" class="text-center">
+                        <td colspan="{{auth()->user()->dinas ? '7' : '8' }}" class="text-center">
                             <div class="d-flex justify-content-center" style="min-height:16rem">
                                 <div class="my-auto">
                                     <img src="{{ asset('no-data.png') }}" width="300" height="300" />
