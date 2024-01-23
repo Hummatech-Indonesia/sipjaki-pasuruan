@@ -26,7 +26,7 @@
                 <i class="fa fa-fw fa-bars"></i>
             </button>
             <div class="mt-4">
-                <span class="badge badge-sipjaki fs-5">{{ Auth::user()->name }}</span>
+                <span class="badge badge-sipjaki fs-5">{{ auth()->user()->name }}</span>
             </div>
 
             <div class="dropdown dropdown-mega d-none d-lg-block ms-2">
