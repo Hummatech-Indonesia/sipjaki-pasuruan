@@ -4,12 +4,10 @@ namespace App\Models;
 
 use App\Base\Interfaces\HasWorker;
 use Illuminate\Database\Eloquent\Model;
-use App\Base\Interfaces\HasWorkerCertificates;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class WorkerCertificate extends Model implements HasWorker,HasWorkerCertificates
+class WorkerCertificate extends Model implements HasWorker
 {
     use HasFactory;
 
@@ -36,13 +34,5 @@ class WorkerCertificate extends Model implements HasWorker,HasWorkerCertificates
         return $this->belongsTo(Worker::class);
     }
 
-    /**
-     * Get all of the workerCertificates for the WorkerCertificate
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function workerCertificates(): HasMany
-    {
-        return $this->hasMany(WorkerCertificate::class);
-    }
+
 }

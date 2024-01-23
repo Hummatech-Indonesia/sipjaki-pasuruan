@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use App\Base\Interfaces\HasServiceProvider;
+use App\Base\Interfaces\HasWorkerCertificates;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Worker extends Model implements HasServiceProvider
+class Worker extends Model implements HasServiceProvider,HasWorkerCertificates
 {
     use HasFactory;
 
@@ -26,5 +27,15 @@ class Worker extends Model implements HasServiceProvider
     public function serviceProvider(): BelongsTo
     {
         return $this->belongsTo(ServiceProvider::class);
+    }
+
+        /**
+     * Get all of the workerCertificates for the WorkerCertificate
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function workerCertificates(): HasMany
+    {
+        return $this->hasMany(WorkerCertificate::class);
     }
 }
