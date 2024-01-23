@@ -638,11 +638,12 @@
                                         Pendidikan
                                     </th>
                                     <th class="text-white" style="background-color: #1B3061">
-                                        No Registrasi
+                                        Jumlah Sertifikat
                                     </th>
                                     <th class="text-white" style="background-color: #1B3061">
-                                        Jenis Sertifikat
+                                        Aksi
                                     </th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -654,8 +655,11 @@
                                             {{ \Carbon\Carbon::parse($worker->birth_date)->translatedFormat('d F Y') }}
                                         </td>
                                         <td class="fs-6">{{ $worker->education }}</td>
-                                        <td class="fs-6">{{ $worker->registration_number }}</td>
-                                        <td>{{ $worker->cerificate }}</td>
+                                        <td class="fs-6">{{ $worker->workerCertificates()->count() }}</td>
+                                        <td class="fs-6">
+                                            <a class="btn btn-md btn-primary"
+                                                href="{{ route('worker-certificate', ['worker' => $worker->id]) }}">Lihat Sertifikat</a>
+                                        </td>
                                     </tr>
                                 @empty
                                     <tr>

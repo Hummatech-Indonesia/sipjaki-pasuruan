@@ -147,7 +147,7 @@ Route::middleware('auth')->group(function () {
     Route::get('detail-project/{executorProject}', [ProjectController::class, 'projectDetail'])->name('detail-project');
     Route::get('consultant-package', [ConsultantProjectController::class, 'consultantProject'])->name('consultant-package');
     Route::get('service-provider-project-detail/{service_provider_project}', [ServiceProviderProjectController::class, 'show'])->name('service.provider.project.detail');
-
+    Route::get('worker-certificate/{worker}', [WorkerCertificateController::class, 'index'])->name('worker-certificate');
     
     Route::middleware('role:superadmin')->group(function () {
 
@@ -259,7 +259,6 @@ Route::middleware('auth')->group(function () {
         Route::put('consultant-project/{project}', [ConsultantProjectController::class, 'update'])->name('consultant-project.update');
         Route::post('service-provider-executor-projects/{project}', [ServiceProviderProjectController::class, 'store'])->name('service-provider-executor-projects.store');
 
-        Route::get('worker-certificate/{worker}', [WorkerCertificateController::class, 'index'])->name('worker-certificate');
         Route::post('worker-certificate/{worker}', [WorkerCertificateController::class, 'store'])->name('worker-certificate.store');
         Route::put('worker-certificate/{worker_certificate}', [WorkerCertificateController::class, 'update']);
         Route::delete('worker-certificate/{worker_certificate}', [WorkerCertificateController::class, 'destroy']);
