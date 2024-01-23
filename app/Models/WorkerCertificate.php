@@ -4,12 +4,12 @@ namespace App\Models;
 
 use App\Base\Interfaces\HasWorker;
 use Illuminate\Database\Eloquent\Model;
-use App\Base\Interfaces\HasWorkerCerificates;
+use App\Base\Interfaces\HasWorkerCertificates;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class WorkerCertificate extends Model implements HasWorker,HasWorkerCerificates
+class WorkerCertificate extends Model implements HasWorker,HasWorkerCertificates
 {
     use HasFactory;
 
