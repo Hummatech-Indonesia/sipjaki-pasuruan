@@ -121,7 +121,7 @@ class ExecutorProjectController extends Controller
     public function downloadContract(ExecutorProject $executorProject)
     {
         $filePath = pathinfo(basename($executorProject->contract, PATHINFO_EXTENSION));
-        return response()->download(storage_path('app/' . $executorProject->contract), 'Berkas Kontrak ' . $executorProject->name . '.' . $filePath['extension']);
+        return response()->download(storage_path('app/public/' . $executorProject->contract), 'Berkas Kontrak ' . $executorProject->name . '.' . $filePath['extension']);
     }
 
     /**
@@ -134,7 +134,7 @@ class ExecutorProjectController extends Controller
     {
         $filePath = pathinfo(basename($executorProject->administrative_minutes, PATHINFO_EXTENSION));
 
-        return response()->download(storage_path('app/' . $executorProject->administrative_minutes), 'Berkas Berita Acara Administrasi ' . $executorProject->name . '.' . $filePath['extension']);
+        return response()->download(storage_path('app/public/' . $executorProject->administrative_minutes), 'Berkas Berita Acara Administrasi ' . $executorProject->name . '.' . $filePath['extension']);
     }
 
     /**
@@ -147,7 +147,7 @@ class ExecutorProjectController extends Controller
     {
         $filePath = pathinfo(basename($executorProject->report, PATHINFO_EXTENSION));
 
-        return response()->download(storage_path('app/' . $executorProject->report), 'Berkas Laporan ' . $executorProject->name . '.' . $filePath['extension']);
+        return response()->download(storage_path('app/public/' . $executorProject->report), 'Berkas Laporan ' . $executorProject->name . '.' . $filePath['extension']);
     }
 
 
@@ -161,7 +161,7 @@ class ExecutorProjectController extends Controller
     {
         $filePath = pathinfo(basename($executorProject->minutes_of_disbursement, PATHINFO_EXTENSION));
 
-        return response()->download(storage_path('app/' . $executorProject->minutes_of_disbursement), 'Berkas Berita Acara Pencairan ' . $executorProject->name . '.' . $filePath['extension']);
+        return response()->download(storage_path('app/public/' . $executorProject->minutes_of_disbursement), 'Berkas Berita Acara Pencairan ' . $executorProject->name . '.' . $filePath['extension']);
     }
 
     /**
@@ -174,7 +174,7 @@ class ExecutorProjectController extends Controller
     {
         $filePath = pathinfo(basename($executorProject->uitzet_minutes, PATHINFO_EXTENSION));
 
-        return response()->download(storage_path('app/' . $executorProject->uitzet_minutes), 'Berkas Berita Uitzet ' . $executorProject->name . '.' . $filePath['extension']);
+        return response()->download(storage_path('app/public/' . $executorProject->uitzet_minutes), 'Berkas Berita Uitzet ' . $executorProject->name . '.' . $filePath['extension']);
     }
 
     
@@ -188,7 +188,7 @@ class ExecutorProjectController extends Controller
     {
         $filePath = pathinfo(basename($executorProject->mutual_check_0, PATHINFO_EXTENSION));
 
-        return response()->download(storage_path('app/' . $executorProject->mutual_check_0), 'Berkas Mutual Check 0% ' . $executorProject->name . '.' . $filePath['extension']);
+        return response()->download(storage_path('app/public/' . $executorProject->mutual_check_0), 'Berkas Mutual Check 0% ' . $executorProject->name . '.' . $filePath['extension']);
     }
 
     
@@ -202,7 +202,7 @@ class ExecutorProjectController extends Controller
     {
         $filePath = pathinfo(basename($executorProject->mutual_check_100, PATHINFO_EXTENSION));
  
-        return response()->download(storage_path('app/' . $executorProject->mutual_check_100), 'Berkas Mutual Check 100% ' . $executorProject->name . '.' . $filePath['extension']);
+        return response()->download(storage_path('app/public/' . $executorProject->mutual_check_100), 'Berkas Mutual Check 100% ' . $executorProject->name . '.' . $filePath['extension']);
     }
 
     
@@ -216,7 +216,7 @@ class ExecutorProjectController extends Controller
     {
         $filePath = pathinfo(basename($executorProject->p1_meeting_minutes, PATHINFO_EXTENSION));
 
-        return response()->download(storage_path('app/' . $executorProject->p1_meeting_minutes), 'Berkas Berita Acara P1 ' . $executorProject->name . '.' . $filePath['extension']);
+        return response()->download(storage_path('app/public/' . $executorProject->p1_meeting_minutes), 'Berkas Berita Acara P1 ' . $executorProject->name . '.' . $filePath['extension']);
     }
 
         /**
@@ -229,6 +229,6 @@ class ExecutorProjectController extends Controller
     {
         $filePath = pathinfo(basename($executorProject->p2_meeting_minutes, PATHINFO_EXTENSION));
 
-        return response()->download(storage_path('app/' . $executorProject->p2_meeting_minutes),'Berkas Berita Acara P2 ' . $executorProject->name . '.' . $filePath['extension']);
+        return response()->download(storage_path('app/public/' . $executorProject->p2_meeting_minutes),'Berkas Berita Acara P2 ' . $executorProject->name . '.' . $filePath['extension']);
     }
 }

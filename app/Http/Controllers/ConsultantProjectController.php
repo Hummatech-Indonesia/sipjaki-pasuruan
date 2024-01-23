@@ -152,7 +152,7 @@ class ConsultantProjectController extends Controller
     public function downloadContract(ConsultantProject $consultantProject)
     {
         $filePath = pathinfo(basename($consultantProject->contract, PATHINFO_EXTENSION));
-        return response()->download(storage_path('app/' . $consultantProject->contract), 'Berkas Kontrak ' . $consultantProject->name . '.' . $filePath['extension']);
+        return response()->download(storage_path('app/public/' . $consultantProject->contract), 'Berkas Kontrak ' . $consultantProject->name . '.' . $filePath['extension']);
     }
 
     /**
@@ -165,7 +165,7 @@ class ConsultantProjectController extends Controller
     {
         $filePath = pathinfo(basename($consultantProject->administrative_minutes, PATHINFO_EXTENSION));
 
-        return response()->download(storage_path('app/' . $consultantProject->administrative_minutes), ' Berkas Berita Acara Administrasi ' . $consultantProject->name . '.' . $filePath['extension']);
+        return response()->download(storage_path('app/public/' . $consultantProject->administrative_minutes), ' Berkas Berita Acara Administrasi ' . $consultantProject->name . '.' . $filePath['extension']);
     }
 
     /**
@@ -178,7 +178,7 @@ class ConsultantProjectController extends Controller
     {
         $filePath = pathinfo(basename($consultantProject->report, PATHINFO_EXTENSION));
 
-        return response()->download(storage_path('app/' . $consultantProject->report), 'Berkas Laporan ' .  $consultantProject->name . '.' . $filePath['extension']);
+        return response()->download(storage_path('app/public/' . $consultantProject->report), 'Berkas Laporan ' .  $consultantProject->name . '.' . $filePath['extension']);
     }
 
 
@@ -192,7 +192,7 @@ class ConsultantProjectController extends Controller
     {
         $filePath = pathinfo(basename($consultantProject->minutes_of_disbursement, PATHINFO_EXTENSION));
 
-        return response()->download(storage_path('app/' . $consultantProject->minutes_of_disbursement), 'Berkas Berita Acara Pencairan ' . $consultantProject->name . '.' . $filePath['extension']);
+        return response()->download(storage_path('app/public/' . $consultantProject->minutes_of_disbursement), 'Berkas Berita Acara Pencairan ' . $consultantProject->name . '.' . $filePath['extension']);
     }
 
     /**
@@ -205,7 +205,7 @@ class ConsultantProjectController extends Controller
     {
         $filePath = pathinfo(basename($consultantProject->minutes_of_hand_over, PATHINFO_EXTENSION));
 
-        return response()->download(storage_path('app/' . $consultantProject->minutes_of_hand_over), 'Berkas Berita Acara Serah Terima ' . $consultantProject->name . '.' . $filePath['extension']);
+        return response()->download(storage_path('app/public/' . $consultantProject->minutes_of_hand_over), 'Berkas Berita Acara Serah Terima ' . $consultantProject->name . '.' . $filePath['extension']);
     }
 
     /**
