@@ -134,7 +134,7 @@
                                         @else
                                             -
                                         @endif
-                                            
+
                                         </td>
                                     </tr>
 
@@ -1215,7 +1215,7 @@
                         <div class="row mb-4">
                             <div class="col-6">
                                 <input type="number"
-                                    value="{{ $verifications->judiciary_number ? $veridications->judiciary_number : '-' }}"
+                                    value="{{ $verifications->judiciary_number ? $verifications->judiciary_number : '-' }}"
                                     name="judiciary_number" class="form-control" placeholder="Masukkan Nomor">
                             </div>
                             <div class="col-6">
@@ -1442,7 +1442,7 @@
                                 <option value="">Pilih Klalifikasi</option>
                             </select>
                         </div>
-                        
+
                         <div class="mb-3">
                             <label for="basicpill-email-input">Sub Klasifikasi</label>
                             <select name="sub_classification_id" class="form-select sub-classifications select2-create"

@@ -147,6 +147,8 @@ Route::middleware('auth')->group(function () {
     Route::get('detail-project/{executorProject}', [ProjectController::class, 'projectDetail'])->name('detail-project');
     Route::get('consultant-package', [ConsultantProjectController::class, 'consultantProject'])->name('consultant-package');
     Route::get('service-provider-project-detail/{service_provider_project}', [ServiceProviderProjectController::class, 'show'])->name('service.provider.project.detail');
+
+    
     Route::middleware('role:superadmin')->group(function () {
 
         Route::get('dashboard-superadmin', [SuperadminController::class, 'dashboard'])->name('dashboard-superadmin');

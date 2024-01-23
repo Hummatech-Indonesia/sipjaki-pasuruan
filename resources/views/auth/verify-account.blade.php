@@ -69,51 +69,90 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="alert"
                                             aria-label="Close"></button>
                                     </div>
+                                    <form class="form-horizontal" action="{{ route('verify.token/', $Id) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <div class="mb-3">
+                                            <label for="useremail" class="form-label">Token</label>
+                                            <div class="email-input">
+                                                <!-- Input pertama -->
+                                                <input type="text" class="text-center form-control" id="email-part1"
+                                                    maxlength="1"
+                                                    oninput="updateTokenValue(); goToNextInput(this, 'email-part2');">
+    
+                                                <!-- Input kedua -->
+                                                <input type="text" class="text-center form-control" id="email-part2"
+                                                    maxlength="1"
+                                                    oninput="updateTokenValue(); goToNextInput(this, 'email-part3');">
+    
+                                                <!-- Input ketiga -->
+                                                <input type="text" class="text-center form-control" id="email-part3"
+                                                    maxlength="1"
+                                                    oninput="updateTokenValue(); goToNextInput(this, 'email-part4');">
+    
+                                                <!-- Input keempat -->
+                                                <input type="text" class="text-center form-control" id="email-part4"
+                                                    maxlength="1"
+                                                    oninput="updateTokenValue(); goToNextInput(this, 'email-part5');">
+    
+                                                <!-- Input kelima -->
+                                                <input type="text" class="text-center form-control" id="email-part5"
+                                                    maxlength="1"
+                                                    oninput="updateTokenValue(); goToNextInput(this, '');">
+                                            </div>
+                                            <input type="hidden" name="token" id="token">
+                                        </div>
+                                        <div class="mt-4 d-flex justify-content-end">
+                                            <button type="submit" class="btn text-white" style="background-color: #1B3061">
+                                                Verifikasi
+                                            </button>
+                                        </div>
+                                    </form>
                                 @else
                                     <div class="alert alert-info text-center mb-4" role="alert">
                                         Verifikasi akun anda!
                                     </div>
+                                    <form class="form-horizontal" action="{{ route('verify.token/', $Id) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <div class="mb-3">
+                                            <label for="useremail" class="form-label">Token</label>
+                                            <div class="email-input">
+                                                <!-- Input pertama -->
+                                                <input type="text" class="text-center form-control" id="email-part1"
+                                                    maxlength="1"
+                                                    oninput="updateTokenValue(); goToNextInput(this, 'email-part2');">
+    
+                                                <!-- Input kedua -->
+                                                <input type="text" class="text-center form-control" id="email-part2"
+                                                    maxlength="1"
+                                                    oninput="updateTokenValue(); goToNextInput(this, 'email-part3');">
+    
+                                                <!-- Input ketiga -->
+                                                <input type="text" class="text-center form-control" id="email-part3"
+                                                    maxlength="1"
+                                                    oninput="updateTokenValue(); goToNextInput(this, 'email-part4');">
+    
+                                                <!-- Input keempat -->
+                                                <input type="text" class="text-center form-control" id="email-part4"
+                                                    maxlength="1"
+                                                    oninput="updateTokenValue(); goToNextInput(this, 'email-part5');">
+    
+                                                <!-- Input kelima -->
+                                                <input type="text" class="text-center form-control" id="email-part5"
+                                                    maxlength="1"
+                                                    oninput="updateTokenValue(); goToNextInput(this, '');">
+                                            </div>
+                                            <input type="hidden" name="token" id="token">
+                                        </div>
+                                        <div class="mt-4 d-flex justify-content-end">
+                                            <button type="submit" class="btn text-white" style="background-color: #1B3061">
+                                                Verifikasi
+                                            </button>
+                                        </div>
+                                    </form>
                                 @endif
                                 
-                                <form class="form-horizontal" action="{{ route('verify.token/', $Id) }}" method="POST">
-                                    @csrf
-                                    @method('PUT')
-                                    <div class="mb-3">
-                                        <label for="useremail" class="form-label">Token</label>
-                                        <div class="email-input">
-                                            <!-- Input pertama -->
-                                            <input type="text" class="text-center form-control" id="email-part1"
-                                                maxlength="1"
-                                                oninput="updateTokenValue(); goToNextInput(this, 'email-part2');">
-
-                                            <!-- Input kedua -->
-                                            <input type="text" class="text-center form-control" id="email-part2"
-                                                maxlength="1"
-                                                oninput="updateTokenValue(); goToNextInput(this, 'email-part3');">
-
-                                            <!-- Input ketiga -->
-                                            <input type="text" class="text-center form-control" id="email-part3"
-                                                maxlength="1"
-                                                oninput="updateTokenValue(); goToNextInput(this, 'email-part4');">
-
-                                            <!-- Input keempat -->
-                                            <input type="text" class="text-center form-control" id="email-part4"
-                                                maxlength="1"
-                                                oninput="updateTokenValue(); goToNextInput(this, 'email-part5');">
-
-                                            <!-- Input kelima -->
-                                            <input type="text" class="text-center form-control" id="email-part5"
-                                                maxlength="1"
-                                                oninput="updateTokenValue(); goToNextInput(this, '');">
-                                        </div>
-                                        <input type="hidden" name="token" id="token">
-                                    </div>
-                                    <div class="mt-4 d-flex justify-content-end">
-                                        <button type="submit" class="btn text-white" style="background-color: #1B3061">
-                                            Verifikasi
-                                        </button>
-                                    </div>
-                                </form>
                             </div>
 
                         </div>
