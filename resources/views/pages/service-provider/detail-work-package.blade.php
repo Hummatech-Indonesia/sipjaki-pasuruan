@@ -463,7 +463,7 @@
                                     <td>:</td>
                                     <td>
                                         @if ($executorProject->administrative_minutes)
-                                            <a href="{{ route('downloadExecutorAdministrativeMinutes', ['consultantProject' => $executorProject->consultant_project_id]) }}"
+                                            <a href="{{ route('downloadExecutorAdministrativeMinutes', ['executorProject' => $executorProject->id]) }}"
                                                 type="button" class="btn btn-md text-white"
                                                 style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
                                                 Download</a>
