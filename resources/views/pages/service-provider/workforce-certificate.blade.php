@@ -12,7 +12,7 @@
     <div class="d-flex justify-content-between">
         <h4 class="mb-3 font-size-18">Sertifikat</h4>
         <div class="">
-            <a href="{{ route('workers.index') }}"
+            <a href="{{ url()->previous() }}"
                 class="btn me-2 btn-md btn-warning text-white cursor-pointer">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 16" fill="none">
                     <path
@@ -59,10 +59,12 @@
                         <th scope="col" class="table-sipjaki text-center" style="">
                             Jenis Sertifikat</th>
                         <th scope="col" class="table-sipjaki text-center">No Registrasi</th>
+                        @role('service provider')
                         <th scope="col" class="text-white text-center"
                             style="background-color: #1B3061; border-radius:0px 5px 5px 0px; color: #ffffff; border-color: #1B3061; border-width: 0px;">
                             Aksi
                         </th>
+                        @endrole
                     </tr>
                 </thead>
                 <tbody>
@@ -84,6 +86,7 @@
                             <td class="text-center">
                                 {{ $workerCertificate->registration_number }}
                             </td>
+                            @role('service provider')
                             <td class="d-flex flex-row justify-content-center gap-2">
                                 <button type="button"
                                     class="btn waves-effect waves-light d-flex btn-edit flex-row gap-1 justify-content-evenly"
@@ -100,6 +103,7 @@
                                     data-bs-target="#modal-delete"><i class="bx bx-bx bxs-trash fs-4"></i> Hapus</button>
                                     <a class="btn btn-md btn-success" href="{{ route('worker-certificate-download', ['worker_certificate' => $workerCertificate->id]) }}"><i class="bx bxs-download bx-xs"></i></a>
                             </td>
+                            @endrole
                         </tr>
                     @empty
                         <tr>
