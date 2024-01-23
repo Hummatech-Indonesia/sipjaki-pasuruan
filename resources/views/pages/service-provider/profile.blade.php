@@ -423,7 +423,7 @@
                                     <tr>
                                         <td>Tanggal</td>
                                         <td>:</td>
-                                        <td>{{ $verifications->judicary_date ? Carbon::parse($verifications->judicary_date)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}
+                                        <td>{{ $verifications->judiciary_date ? Carbon::parse($verifications->judiciary_date)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}
                                         </td>
                                     </tr>
                                     <tr>
