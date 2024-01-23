@@ -12,7 +12,7 @@
     <div class="d-flex justify-content-between">
         <h4 class="mb-3 font-size-18">Sertifikat</h4>
         <div class="">
-            <a href="{{ route('workers.index') }}"
+            <a href="{{ url()->previous() }}"
                 class="btn me-2 btn-md btn-warning text-white cursor-pointer">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 16" fill="none">
                     <path
