@@ -148,6 +148,7 @@ Route::middleware('auth')->group(function () {
     Route::get('consultant-package', [ConsultantProjectController::class, 'consultantProject'])->name('consultant-package');
     Route::get('service-provider-project-detail/{service_provider_project}', [ServiceProviderProjectController::class, 'show'])->name('service.provider.project.detail');
     Route::get('worker-certificate/{worker}', [WorkerCertificateController::class, 'index'])->name('worker-certificate');
+    Route::get('detail-service-provider-qualification/{service_provider_qualification}', [ServiceProviderQualificationController::class, 'show'])->name('service.provider.qualifications.detail');
     
     Route::middleware('role:superadmin')->group(function () {
 
@@ -295,7 +296,6 @@ Route::middleware('role:admin|superadmin')->group(function () {
     Route::get('service-provider-qualification-pending', [ServiceProviderQualificationController::class, 'pending'])->name('service.provider.qualification.pending');
     Route::get('detail-service-provider-qualification-pending/{service_provider_qualification}', [ServiceProviderQualificationController::class, 'detailPending'])->name('service.provider.qualification.pending.detail');
     Route::get('service-provider-qualification-reject-by-user', [ServiceProviderQualificationController::class, 'getReject'])->name('service.provider.qualification.reject.by.user');
-    Route::get('detail-service-provider-qualification/{service_provider_qualification}', [ServiceProviderQualificationController::class, 'show'])->name('service.provider.qualifications.detail');
     Route::patch('approve-service-provider-qualifications/{serviceProviderQualification}', [ServiceProviderQualificationController::class, 'approve']);
     Route::patch('reject-service-provider-qualifications/{serviceProviderQualification}', [ServiceProviderQualificationController::class, 'reject']);
     Route::delete('service-provider-qualifications/{serviceProviderQualification}', [ServiceProviderQualificationController::class, 'delete']);

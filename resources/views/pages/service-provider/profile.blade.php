@@ -192,7 +192,7 @@
                                 <td colspan="1">{{ $serviceProviderQualification->serviceProvider->association->name }}
                                 </td>
                                 <td>
-                                    <a href="detail-service-provider-qualification/{{ $serviceProviderQualification->id }}" class="btn text-white" style="background-color: #1B3061">Detail</a>
+                                    <a href="detail-service-provider-qualification/{{ $serviceProviderQualification->id }}" class="btn text-white" style="background-color: #1B3061">Lihat</a>
                                 </td>
                                 <td colspan="1">
                                     {{ Carbon::parse($serviceProviderQualification->created_at)->locale('id_ID')->isoFormat('DD MMMM Y') }}
