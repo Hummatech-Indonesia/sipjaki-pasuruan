@@ -108,6 +108,9 @@ Route::get('list-qualification-training', [QualificationTrainingController::clas
 Route::get('json-qualification-level-training/{qualification_training}', [QualificationLevelTrainingController::class, 'jsonQualificationLevelTraining']);
 
 Route::middleware('auth')->group(function () {
+    Route::get('download-manual-book',function(){
+        return view('pages.download-manual-book');
+    })->name('download.manual.book');
     Route::get('profile', function () {
         return view('pages.profile');
     })->name('profile');

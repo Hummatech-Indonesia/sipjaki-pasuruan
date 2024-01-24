@@ -386,7 +386,13 @@
                             <span key="t-file-manager">Profile Penyedia Jasa</span>
                         </a>
                     </li>
-                @endif
+                    @endif
+                    <li>
+                        <a href="{{ route('download.manual.book') }}" class="waves-effect">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7l7-7z"/></svg>
+                            <span key="t-file-manager px-2">Profile Penyedia Jasa</span>
+                        </a>
+                    </li>
             </ul>
         </div>
     </div>
