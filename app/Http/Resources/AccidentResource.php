@@ -16,7 +16,10 @@ class AccidentResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'project' => ProjectResource::make($this->project),
+            'project' => [
+                'name' => $this->executorProject->name,
+                'year' => $this->executorProject->fiscalYear->name
+            ],
             'location' => $this->location,
             'time' => $this->time,
             'description' => $this->description,

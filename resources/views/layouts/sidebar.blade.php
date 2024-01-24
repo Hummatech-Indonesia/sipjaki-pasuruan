@@ -74,7 +74,7 @@
                             <li id="jasa-user">
                                 <a href="javascript: void(0);" id="jasa-user-link" class="has-arrow" key="t-level-1-2">Penyedia Jasa</a>
                                 <ul class="sub-menu" aria-expanded="true">
-                                    <li id="konsultan"><a id="konsultan-link" href="/service-provider-consultants" key="t-level-2-1">konsultan</a></li>
+                                    <li id="konsultan"><a id="konsultan-link" href="/service-provider-consultants" key="t-level-2-1">Konsultan</a></li>
                                     <li id="penyelenggara"><a id="penyelenggara-link" href="/service-provider-executors" key="t-level-2-2">Pelaksana</a></li>
                                 </ul>
                             </li>
@@ -215,7 +215,7 @@
                             <li id="jasa-user">
                                 <a href="javascript: void(0);" id="jasa-user-link" class="has-arrow" key="t-level-1-2">Penyedia Jasa</a>
                                 <ul class="sub-menu" aria-expanded="true">
-                                    <li id="konsultan"><a id="konsultan-link" href="/service-provider-consultants" key="t-level-2-1">konsultan</a></li>
+                                    <li id="konsultan"><a id="konsultan-link" href="/service-provider-consultants" key="t-level-2-1">Konsultan</a></li>
                                     <li id="penyelenggara"><a id="penyelenggara-link" href="/service-provider-executors" key="t-level-2-2">Pelaksana</a></li>
                                 </ul>
                             </li>

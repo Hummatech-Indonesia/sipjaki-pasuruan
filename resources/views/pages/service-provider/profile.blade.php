@@ -192,7 +192,7 @@
                                 <td colspan="1">{{ $serviceProviderQualification->serviceProvider->association->name }}
                                 </td>
                                 <td>
-                                    <a href="detail-service-provider-qualification/{{ $serviceProviderQualification->id }}" class="btn text-white" style="background-color: #1B3061">Detail</a>
+                                    <a href="detail-service-provider-qualification/{{ $serviceProviderQualification->id }}" class="btn text-white" style="background-color: #1B3061">Lihat</a>
                                 </td>
                                 <td colspan="1">
                                     {{ Carbon::parse($serviceProviderQualification->created_at)->locale('id_ID')->isoFormat('DD MMMM Y') }}
@@ -423,7 +423,7 @@
                                     <tr>
                                         <td>Tanggal</td>
                                         <td>:</td>
-                                        <td>{{ $verifications->judicary_date ? Carbon::parse($verifications->judicary_date)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}
+                                        <td>{{ $verifications->judiciary_date ? Carbon::parse($verifications->judiciary_date)->locale('id_ID')->isoFormat('DD MMMM Y'): '-' }}
                                         </td>
                                     </tr>
                                     <tr>

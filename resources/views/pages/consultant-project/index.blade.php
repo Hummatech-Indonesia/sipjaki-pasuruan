@@ -4,7 +4,7 @@
         use Carbon\Carbon;
     @endphp
     <p class="fs-4 text-dark" style="font-weight: 600">
-        Paket Pekerjaan
+        Paket Konsultan
     </p>
     @if (request()->routeIs('consultant-projects.show'))
         <div class="row">
