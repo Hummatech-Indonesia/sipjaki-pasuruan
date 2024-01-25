@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<h3 class="text-dark fw-semibold">Download manual book sipjaki disini</h3>
+<h3 class="text-dark fw-semibold d-flex justify-content-center mb-3">Download buku panduan sipjaki disini</h3>
     <div class="d-flex justify-content-center align-items-center">
         <button class="btn text-white" style="background-color: #1B3061" onclick="downloadManualBook()">
             <span class="text-white">
