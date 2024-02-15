@@ -61,9 +61,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($fundSources as $index => $fundSource)
+                                    @forelse ($fundSources as  $fundSource)
                                         <tr>
-                                            <th scope="row" class="fs-5">{{ $index + 1 }}</th>
+                                            <th scope="row" class="fs-5">{{ $loop->iteration }}</th>
                                             <td class="fs-5">{{ $fundSource->name }}</td>
                                             <td class="d-flex flex-row gap-3 justify-content-center">
                                                 <button type="button"
