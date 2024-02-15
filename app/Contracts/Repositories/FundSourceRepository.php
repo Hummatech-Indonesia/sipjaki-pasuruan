@@ -22,6 +22,8 @@ class FundSourceRepository extends BaseRepository implements FundSourceInterface
     public function get() : mixed
     {
         return $this->model->query()
+            ->latest()
+            ->orderBy('id')
             ->get();
     }
 

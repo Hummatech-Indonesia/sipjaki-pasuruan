@@ -23,7 +23,8 @@ class ClassificationRepository extends BaseRepository implements ClassificationI
     public function get(): mixed
     {
         return $this->model->query()
-            ->orderByDesc('created_at')
+            ->latest()
+            ->orderBy('id')
             ->get();
     }
 
@@ -87,7 +88,8 @@ class ClassificationRepository extends BaseRepository implements ClassificationI
             ->when($request->name,function($query) use ($request){
                 $query->where('name','LIKE','%'.$request->name.'%');
             })
-            ->orderByDesc('created_at')
+            ->latest()
+            ->orderBy('id')
             ->fastPaginate($pagination);
     }
 }
