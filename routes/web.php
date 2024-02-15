@@ -313,6 +313,9 @@ Route::middleware('role:admin|superadmin')->group(function () {
     Route::get('all-agency', [DinasController::class, 'all'])->name('all.agency');
     Route::get('service-provider-consultants', [ServiceProviderController::class, 'consultant']);
     Route::get('service-provider-executors', [ServiceProviderController::class, 'executor']);
+    Route::delete('service-provider/{service_provider}',[ServiceProviderController::class,'destroy'])->name('service-provider.destroy');
+    Route::delete('sevvice-provider',[ServiceProviderController::class,'destroys'])->name('service-provider.destroys');
+
 
     //Training
     Route::get('training', [TrainingController::class, 'index'])->name('training');

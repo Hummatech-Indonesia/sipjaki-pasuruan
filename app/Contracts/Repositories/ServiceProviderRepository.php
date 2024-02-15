@@ -93,6 +93,19 @@ class ServiceProviderRepository extends BaseRepository implements ServiceProvide
     {
         return $this->show($id)->delete($id);
     }
+    
+    /**
+     * multipleDelete
+     *
+     * @param  mixed $data
+     * @return mixed
+     */
+    public function multipleDelete(mixed $data): mixed
+    {
+        return $this->model->query()
+            ->whereIn('id',$data)
+            ->delete();
+    }
 
 
     /**

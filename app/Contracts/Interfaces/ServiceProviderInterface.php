@@ -36,4 +36,12 @@ interface ServiceProviderInterface extends GetInterface, StoreInterface, CustomP
      * @return mixed
      */
     public function getByAssosiasi(mixed $id, Request $request): mixed;
+    
+    /**
+     * multipleDelete
+     *
+     * @param  mixed $data
+     * @return mixed
+     */
+    public function multipleDelete(mixed $data) : mixed;
 }

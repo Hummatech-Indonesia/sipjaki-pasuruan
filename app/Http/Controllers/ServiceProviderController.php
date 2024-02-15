@@ -16,7 +16,9 @@ use App\Enums\StatusEnum;
 use App\Http\Requests\UpdatePasswordServiceProviderRequest;
 use App\Models\ServiceProvider;
 use App\Enums\TypeOfBusinessEntityEnum;
+use App\Http\Requests\DeleteServiceProviderRequest;
 use App\Services\ServiceProviderService;
+use Illuminate\Http\RedirectResponse;
 
 class ServiceProviderController extends Controller
 {
@@ -101,6 +103,30 @@ class ServiceProviderController extends Controller
         $this->serviceProvider->update(auth()->user()->serviceProvider->id, $service);
         return redirect()->back()->with('success', trans('alert.update_success'));
     }
+    
+    /**
+     * destroy
+     *
+     * @param  mixed $serviceProvider
+     * @return RedirectResponse
+     */
+    public function destroy(ServiceProvider $serviceProvider) : RedirectResponse
+    {
+        $this->serviceProvider->delete($serviceProvider->id);
+        return redirect()->back()->with('success',trans('alert.delete_success'));
+    }
+
+    /**
+     * destroy
+     *
+     * @param  mixed $serviceProvider
+     * @return RedirectResponse
+     */
+    public function destroys(DeleteServiceProviderRequest $request) : RedirectResponse
+    {
+        $this->serviceProvider->multipleDelete(explode(',',$request->id));
+        return redirect()->back()->with('success',trans('alert.delete_success'));
+    }
 
     /**
      * show
@@ -182,6 +208,7 @@ class ServiceProviderController extends Controller
      */
     public function consultant(Request $request): View
     {
+
         $request->merge(['type_of_business_entity' => TypeOfBusinessEntityEnum::CONSULTANT->value]);
         $serviceProviders = $this->serviceProvider->customPaginate($request, 10);
 

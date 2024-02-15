@@ -1,5 +1,14 @@
 @extends('layouts.app')
 @section('content')
+    @if (session('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: '{{ session('success') }}',
+        });
+    </script>
+    @endif
     <h4 style="font-weight:800" class="text-dark mb-4">
         Penyedia Jasa Konsultan
     </h4>
@@ -29,10 +38,10 @@
                     <button class="btn ms-1 text-white rounded" style="background-color:#1B3061" onclick="selectAll()">
                         Pilih Semua
                     </button>
-                    <form action="{{ route('delete-workers') }}" id="delete-multiple" method="POST">
+                    <form action="{{ route('service-provider.destroys') }}" id="delete-multiple" method="POST">
                         @csrf
                         @method('DELETE')
-                        <input type="hidden" name="worker_id" id="selected-worker">
+                        <input type="hidden" name="id" id="selected-worker">
                         <button type="button" class="btn ms-1 text-white rounded" style="background-color:#E05C39"
                             onclick="deleteSelected()">
                             Hapus Pilihan
@@ -71,7 +80,7 @@
                         <tbody>
                             <tr>
                                 <th scope="row" class="text-center">
-                                    <input value="{{ $serviceProvider->user->id }}" type="checkbox"
+                                    <input value="{{ $serviceProvider->id }}" type="checkbox"
                                         aria-label="Checkbox for following text input">
                                 </th>
                                 <td>
@@ -95,8 +104,8 @@
                                         style="background-color: #1B3061">
                                         Detail
                                     </a>
-                                    <button type="button" id="{{ $serviceProvider->user->id }}"
-                                        data-id="{{ $serviceProvider->user->id }}"
+                                    <button type="button" id="{{ $serviceProvider->id }}"
+                                        data-id="{{ $serviceProvider->id }}"
                                         data-name="{{ $serviceProvider->user->name }}" class="btn btn-danger btn-delete">
                                         Hapus
                                     </button>
@@ -243,7 +252,7 @@
                 <form id="form-reject" method="post">
                     <div class="modal-body">
                         @csrf
-                        @method('PATCH')
+                        @method('DELETE')
                         <h5 class="text-black" id="label">
                         </h5>
                     </div>
@@ -349,7 +358,7 @@
             id = $(this).data('id')
             name = $(this).data('name')
             $('#label').html(`Apakah Anda Yakin Ingin Menghapus Akun Permanent dari ${name}?`);
-            var actionUrl = `reject-service-provider-qualifications/${id}`;
+            var actionUrl = `service-provider/${id}`;
             $('#form-reject').attr('action', actionUrl);
             $('#modal-reject').modal('show')
         })
