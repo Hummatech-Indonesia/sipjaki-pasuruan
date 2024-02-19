@@ -28,8 +28,7 @@ class QualificationLevelTrainingController extends Controller
     public function index(Request $request, $id)
     {
         $Id = $id;
-        $request->merge(['qualification_training_id' => $id]);
-        $qualificationLevelTrainings = $this->qualificationLevelTraining->customPaginate($request, 10);
+        $qualificationLevelTrainings = $this->qualificationLevelTraining->show($id);
         if ($request->is('api/*')) {
             $data['paginate'] = $this->customPaginate($qualificationLevelTrainings->currentPage(), $qualificationLevelTrainings->lastPage());
             $data['data'] = QualificationLevelTrainingResource::collection($qualificationLevelTrainings);
