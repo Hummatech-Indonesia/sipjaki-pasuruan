@@ -10,6 +10,6 @@ use App\Contracts\Interfaces\Eloquent\ShowInterface;
 use App\Contracts\Interfaces\Eloquent\StoreInterface;
 use App\Contracts\Interfaces\Eloquent\UpdateInterface;
 
-interface QualificationLevelTrainingInterface extends GetInterface, StoreInterface, CustomPaginationInterface, DeleteInterface, UpdateInterface, ShowInterface,SearchInterface
+interface QualificationLevelTrainingInterface extends GetInterface, StoreInterface, DeleteInterface, UpdateInterface, ShowInterface, SearchInterface
 {
 }

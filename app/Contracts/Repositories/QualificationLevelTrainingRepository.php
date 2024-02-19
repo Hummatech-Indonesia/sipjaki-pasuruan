@@ -37,22 +37,7 @@ class QualificationLevelTrainingRepository extends BaseRepository implements Qua
             ->create($data);
     }
 
-    /**
-     * customPaginate
-     *
-     * @param  mixed $request
-     * @param  mixed $pagination
-     * @return LengthAwarePaginator
-     */
-    public function customPaginate(Request $request, int $pagination = 10): LengthAwarePaginator
-    {
-        return $this->model->query()
-            ->where('qualification_training_id', $request->qualification_training_id)
-            ->when($request->name, function ($query) use ($request) {
-                $query->where('name', 'LIKE', '%' . $request->name . '%');
-            })
-            ->fastPaginate($pagination);
-    }
+   
 
     /**
      * delete
