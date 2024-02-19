@@ -25,16 +25,17 @@ class QualificationLevelTrainingController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request , $id)
+    public function index(Request $request, $id)
     {
-        $qualificationLevelTrainings = $this->qualificationLevelTraining->customPaginate($request, 10);
         $Id = $id;
+        $request->merge(['qualification_training_id' => $id]);
+        $qualificationLevelTrainings = $this->qualificationLevelTraining->customPaginate($request, 10);
         if ($request->is('api/*')) {
-        $data['paginate'] = $this->customPaginate($qualificationLevelTrainings->currentPage(), $qualificationLevelTrainings->lastPage());
-        $data['data'] = QualificationLevelTrainingResource::collection($qualificationLevelTrainings);
-        return ResponseHelper::success($data);
+            $data['paginate'] = $this->customPaginate($qualificationLevelTrainings->currentPage(), $qualificationLevelTrainings->lastPage());
+            $data['data'] = QualificationLevelTrainingResource::collection($qualificationLevelTrainings);
+            return ResponseHelper::success($data);
         } else {
-            return view('pages.sub-qualification-training' , compact('qualificationLevelTrainings','Id'));
+            return view('pages.sub-qualification-training', compact('qualificationLevelTrainings', 'Id'));
         }
     }
 
