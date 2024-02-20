@@ -50,7 +50,7 @@
     </div>
 </div>
 <div class="modal fade " id="modal-create" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header" style="background-color: #1B3061">
                 <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Tambah Pelatihan</h5>
