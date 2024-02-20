@@ -21,7 +21,7 @@ class TrainingMemberRequest extends FormRequest
             'phone_number' => 'required',
             'decree' => 'nullable',
             'gender' => ['required', new GenderRule],
-            'file' => 'required|mimes:pdf',
+            'file' => 'nullable|mimes:pdf',
             'national_identity_number' => 'required|max:18',
             'education' => 'required',
         ];

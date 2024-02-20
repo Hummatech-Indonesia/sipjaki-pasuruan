@@ -84,14 +84,12 @@
                                     <th scope="row" class="fs-5">{{$loop->iteration}}</th>
                                     <td>{{$training->name}}</td>
                                     <td>{{$training->organizer}}</td>
-                                    <td>jenis</td>
-                                    <td>tingkat</td>
+                                    <td>{{ $training->qualificationTraining->name }}</td>
+                                    <td>{{ $training->qualificationLevelTraining->name }}</td>
                                     <td>{{\Carbon\Carbon::parse($training->start_at)->isoFormat('Do MMMM YYYY HH:mm', 'ID')}}</td>
                                     <td>{{count($training->trainingMembers)}}</td>
-                                    <td>BKPSDM
-                                        Provinsi
-                                        Bali</td>
-                                    <td>Kolaborasi dengan IKATAN AHLI PERENCANAA INDONESIA (IAP)</td>
+                                    <td>{{ $training->location }}</td>
+                                    <td>{{ $training->description }}</td>
                                 </tr>
                                 @empty
                                     <tr>
