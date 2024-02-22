@@ -94,30 +94,6 @@
                                             Please Enter Konfirmasi Password
                                         </div>
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="username" class="form-label mb-2">Token</label>
-                                        <div class="email-input">
-                                            <input type="text" class="text-center form-control" id="email-part1" maxlength="1"
-                                                oninput="updateTokenValue()">
-                                            <input type="text" class="text-center form-control"  id="email-part2" maxlength="1"
-                                                oninput="updateTokenValue()">
-                                            <input type="text" class="text-center form-control"  id="email-part3" maxlength="1"
-                                                oninput="updateTokenValue()">
-                                            <input type="text" class="text-center form-control"  id="email-part4" maxlength="1"
-                                                oninput="updateTokenValue()">
-                                            <input type="text" class="text-center form-control"  id="email-part5" maxlength="1"
-                                                oninput="updateTokenValue()">
-                                        </div>
-                                        <input type="hidden" name="token" id="token" value="">
-                                        @if ($errors->has('token'))
-                                            <p class="text-danger">
-                                                {{ $errors->first('token') }}
-                                            </p>
-                                        @endif
-                                        <div class="invalid-feedback">
-                                            Please Enter Konfirmasi Password
-                                        </div>
-                                    </div>
                                     <div class="mt-4 d-flex justify-content-center">
                                         <button class="btn text-white" style="background-color: #1B3061">
                                             Ubah Password

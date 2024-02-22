@@ -347,10 +347,6 @@
                               <p>
 
                               </p>
-                             <h1
-                           align="center" style="color: #000000;">
-                                {{ $data['token'] }}
-                             </h1>
                             </div>
                           </td>
                         </tr>
