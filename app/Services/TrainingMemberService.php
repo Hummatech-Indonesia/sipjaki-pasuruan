@@ -24,7 +24,9 @@ class TrainingMemberService
     {
         $data = $request->validated();
         $data['training_id'] = $training->id;
-        $data['file'] = $this->upload(UploadDiskEnum::TRAININGMEMBER->value, $request->file('file'));
+        if($request->file('file')){
+            $data['file'] = $this->upload(UploadDiskEnum::TRAININGMEMBER->value, $request->file('file'));
+        }
         return $data;
     }
 
