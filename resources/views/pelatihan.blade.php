@@ -86,7 +86,7 @@
                                     <td>{{$training->organizer}}</td>
                                     <td>{{ $training->qualificationTraining->name }}</td>
                                     <td>{{ $training->qualificationLevelTraining->name }}</td>
-                                    <td>{{\Carbon\Carbon::parse($training->start_at)->isoFormat('Do MMMM YYYY HH:mm', 'ID')}}</td>
+                                    <td>{{\Carbon\Carbon::parse($training->start_at)->isoFormat('Do MMMM YYYY', 'ID')}}</td>
                                     <td>{{count($training->trainingMembers)}}</td>
                                     <td>{{ $training->location }}</td>
                                     <td>{{ $training->description }}</td>

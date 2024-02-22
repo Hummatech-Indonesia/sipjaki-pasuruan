@@ -54,6 +54,9 @@ class ClassificationTrainingRepository extends BaseRepository implements Classif
     {
         return $this->model->query()
             ->orderByDesc('created_at')
+            ->when($request->classification,function($query) use ($request){
+                $query->whereRelation('classificationTraining','id',$request->classification);
+            })
             ->when($request->name, function ($query) use ($request) {
                 $query->where('name', 'LIKE', '%'. $request->name .'%');
             })

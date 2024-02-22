@@ -80,7 +80,7 @@ class TrainingRepository extends BaseRepository implements TrainingInterface
                 $query->where('fiscal_year_id', $request->fiscal_year_id);
             })
             ->withCount('trainingMembers')
-            ->orderByDesc('created_at')
+            ->orderByDesc('start_at')
             ->fastPaginate($pagination);
     }
 
