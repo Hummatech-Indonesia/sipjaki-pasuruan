@@ -64,7 +64,7 @@
                                 baru anda
                             </div>
                             <div class="p-2">
-                                <form class="needs-validation" novalidate action="{{ route('reset-passsword-user/', $Id) }}"
+                                <form class="needs-validation" novalidate action="{{ route('reset.passsword.user', $Id) }}"
                                     method="POST">
                                     @csrf
                                     @method('PUT')

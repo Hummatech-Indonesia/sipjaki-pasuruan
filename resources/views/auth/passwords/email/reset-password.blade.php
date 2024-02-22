@@ -345,9 +345,9 @@
                                 Berikut Tautan untuk reset password anda, klik verifikasi untuk melanjutkan
                               </h4>
                               <p>
-                                
+
                               </p>
-                             <h1  
+                             <h1
                            align="center" style="color: #000000;">
                                 {{ $data['token'] }}
                              </h1>
@@ -404,7 +404,7 @@
                                     </a>
                                 </td>
                             </tr>
-                            
+
                               </tbody>
                             </table>
                           </td>
