@@ -28,8 +28,8 @@ class ResetPasswordController extends Controller
      */
     public function index($id)
     {
-        $Id = $id ;
-        return view('auth.passwords.reset' ,compact('Id'));
+        $Id = $id;
+        return view('auth.passwords.reset', compact('Id'));
     }
     /**
      * reset
@@ -46,25 +46,25 @@ class ResetPasswordController extends Controller
             $this->user->update($user->id, $data);
             if ($request->is('api/*')) {
                 return ResponseHelper::success(null, trans('auth.reset_password_success'));
-            }else{
-                return redirect()->back()->with('success', trans('auth.reset_password_success'));
+            } else {
+                return redirect()->route('login')->with('success', trans('auth.reset_password_success'));
             }
         } elseif ($token->token == $data['token'] && $token->expired_token <= now()->format('Y-m-d H:i:s')) {
             if ($request->is('api/*')) {
                 return ResponseHelper::error(null, trans('alert.token_expired'));
-            }else{
+            } else {
                 return redirect()->back()->withErrors(trans('alert.token_expired'));
             }
         } elseif ($token->token != $data['token']) {
             if ($request->is('api/*')) {
                 return ResponseHelper::error(null, trans('alert.token_invalid'));
-            }else{
+            } else {
                 return redirect()->back()->withErrors(trans('alert.token_invalid'));
             }
         } else {
             if ($request->is('api/*')) {
                 return ResponseHelper::error(null, trans('auth.reset_password_failed'));
-            }else{
+            } else {
                 return redirect()->back()->withErrors(trans('auth.reset_password_failed'));
             }
         }
