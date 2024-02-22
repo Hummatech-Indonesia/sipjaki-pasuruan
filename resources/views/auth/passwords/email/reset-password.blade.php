@@ -342,11 +342,10 @@
                                 Tautan ini aktif selama 4 jam
                               </h2>
                               <h4 style="font-weight: 700">
-                                Aktivasi Akun Anda
+                                Berikut Tautan untuk reset password anda, klik verifikasi untuk melanjutkan
                               </h4>
                               <p>
-                                Terimakasih telah mendaftar di Tracer Study Sipjaki Pasuruan, Mohon masukan kode verifikasi di
-                                bawah ini untuk melanjutkan aktivasi akun anda.
+                                
                               </p>
                              <h1  
                            align="center" style="color: #000000;">
