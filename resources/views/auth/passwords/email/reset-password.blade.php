@@ -387,7 +387,7 @@
                                     bgcolor="#7289DA"
                                   >
                                     <a
-                                    href="{{ route('reset-password' , $data['id'] ) }}" target="_blank" rel="noopener noreferrer"
+                                    href="{{ route('reset.password' , $data['id'] ) }}" target="_blank" rel="noopener noreferrer"
                                       style="
                                         text-decoration: none;
                                         line-height: 100%;
