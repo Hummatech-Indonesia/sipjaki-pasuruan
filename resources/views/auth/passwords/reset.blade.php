@@ -64,7 +64,7 @@
                                 baru anda
                             </div>
                             <div class="p-2">
-                                <form class="needs-validation" novalidate action="{{ route('reset-passsword-user/', $Id) }}"
+                                <form class="needs-validation" novalidate action="{{ route('reset.passsword.user', $Id) }}"
                                     method="POST">
                                     @csrf
                                     @method('PUT')
@@ -88,30 +88,6 @@
                                         @if ($errors->has('password_confirmation'))
                                             <p class="text-danger">
                                                 {{ $errors->first('password_confirmation') }}
-                                            </p>
-                                        @endif
-                                        <div class="invalid-feedback">
-                                            Please Enter Konfirmasi Password
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="username" class="form-label mb-2">Token</label>
-                                        <div class="email-input">
-                                            <input type="text" class="text-center form-control" id="email-part1" maxlength="1"
-                                                oninput="updateTokenValue()">
-                                            <input type="text" class="text-center form-control"  id="email-part2" maxlength="1"
-                                                oninput="updateTokenValue()">
-                                            <input type="text" class="text-center form-control"  id="email-part3" maxlength="1"
-                                                oninput="updateTokenValue()">
-                                            <input type="text" class="text-center form-control"  id="email-part4" maxlength="1"
-                                                oninput="updateTokenValue()">
-                                            <input type="text" class="text-center form-control"  id="email-part5" maxlength="1"
-                                                oninput="updateTokenValue()">
-                                        </div>
-                                        <input type="hidden" name="token" id="token" value="">
-                                        @if ($errors->has('token'))
-                                            <p class="text-danger">
-                                                {{ $errors->first('token') }}
                                             </p>
                                         @endif
                                         <div class="invalid-feedback">
