@@ -314,7 +314,7 @@ Route::middleware('role:admin|superadmin')->group(function () {
     Route::get('service-provider-consultants', [ServiceProviderController::class, 'consultant']);
     Route::get('service-provider-executors', [ServiceProviderController::class, 'executor']);
     Route::delete('service-provider/{service_provider}',[ServiceProviderController::class,'destroy'])->name('service-provider.destroy');
-    Route::delete('sevvice-provider',[ServiceProviderController::class,'destroys'])->name('service-provider.destroys');
+    Route::delete('service-provider',[ServiceProviderController::class,'destroys'])->name('service-provider.destroys');
 
 
     Route::get('reset-passsword/{user}', [ResetPasswordController::class, 'index'])->name('reset.password');
