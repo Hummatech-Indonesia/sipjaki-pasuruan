@@ -120,7 +120,7 @@ Route::middleware('auth')->group(function () {
 
     Route::post('send-email', [ForgotPasswordController::class, 'sendEmail'])->name('send.email');
 
-    Route::patch('reset-passsword', [ResetPasswordController::class, 'reset'])->name('reset.password');
+    Route::patch('reset-passsword', [ResetPasswordController::class, 'reset'])->name('reset.password.update');
 
     Route::patch('verify-account/{user}', [VerificationController::class, 'verifyToken'])->name('verify.account');
 
