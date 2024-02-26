@@ -120,6 +120,7 @@ Route::middleware('auth')->group(function () {
 
     Route::post('send-email', [ForgotPasswordController::class, 'sendEmail'])->name('send.email');
 
+    Route::patch('reset-passsword', [ResetPasswordController::class, 'reset'])->name('reset.password');
 
     Route::patch('verify-account/{user}', [VerificationController::class, 'verifyToken'])->name('verify.account');
 
@@ -151,7 +152,7 @@ Route::middleware('auth')->group(function () {
     Route::get('service-provider-project-detail/{service_provider_project}', [ServiceProviderProjectController::class, 'show'])->name('service.provider.project.detail');
     Route::get('worker-certificate/{worker}', [WorkerCertificateController::class, 'index'])->name('worker-certificate');
     Route::get('detail-service-provider-qualification/{service_provider_qualification}', [ServiceProviderQualificationController::class, 'show'])->name('service.provider.qualifications.detail');
-
+    
     Route::middleware('role:superadmin')->group(function () {
 
         Route::get('dashboard-superadmin', [SuperadminController::class, 'dashboard'])->name('dashboard-superadmin');
@@ -312,7 +313,11 @@ Route::middleware('role:admin|superadmin')->group(function () {
     Route::get('all-agency', [DinasController::class, 'all'])->name('all.agency');
     Route::get('service-provider-consultants', [ServiceProviderController::class, 'consultant']);
     Route::get('service-provider-executors', [ServiceProviderController::class, 'executor']);
+    Route::delete('service-provider/{service_provider}',[ServiceProviderController::class,'destroy'])->name('service-provider.destroy');
+    Route::delete('sevvice-provider',[ServiceProviderController::class,'destroys'])->name('service-provider.destroys');
 
+
+    Route::get('reset-passsword/{user}', [ResetPasswordController::class, 'index'])->name('reset.password');
     //Training
     Route::get('training', [TrainingController::class, 'index'])->name('training');
     Route::post('training', [TrainingController::class, 'store'])->name('training.store');
@@ -351,7 +356,6 @@ Route::middleware('role:admin|superadmin')->group(function () {
 
 
 //Reset Password
-Route::get('reset-passsword/{user}', [ResetPasswordController::class, 'index'])->name('reset.password');
 Route::post('send-email-reset-passsword', [ForgotPasswordController::class, 'sendEmail'])->name('send.email.reset.passsword');
 Route::put('reset-passsword-user/{user}', [ResetPasswordController::class, 'reset'])->name('reset.passsword.user');
 Route::get('send-email', function () {
