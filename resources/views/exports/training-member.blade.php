@@ -61,11 +61,11 @@
                 <th>Jenis Kelamin</th>
             </thead>
             <tbody>
-                @foreach ($trainings as $training)
-                    <td>{{ $training->name }}</td>
-                    <td>{{ $training->position }}</td>
-                    <td>{{ $training->phone_number }}</td>
-                    <td>{{ $training->gender }}</td>
+                @foreach ($trainingMembers as $trainingMember)
+                    <td>{{ $trainingMember->name }}</td>
+                    <td>{{ $trainingMember->position }}</td>
+                    <td>{{ $trainingMember->phone_number }}</td>
+                    <td>{{ $trainingMember->gender }}</td>
                 @endforeach
             </tbody>
         </table>
