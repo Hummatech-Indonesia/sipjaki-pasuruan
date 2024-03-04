@@ -156,6 +156,6 @@ class TrainingMemberController extends Controller
      */
     public function export(Request $request)
     {
-        return Excel::download(new TrainingMemberExport($request), 'training-member' . auth()->user()->name . '.xlsx');
+        return Excel::download(new TrainingMemberExport($request), 'training-member-' . auth()->user()->name . '.xlsx');
     }
 }
