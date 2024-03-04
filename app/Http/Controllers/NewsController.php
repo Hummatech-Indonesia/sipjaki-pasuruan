@@ -66,9 +66,13 @@ class NewsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(News $news)
     {
-        //
+
+        if(auth()->user()?->id != $news->user_id){
+            $news->query()->increment('views');
+        }
+
     }
 
     /**

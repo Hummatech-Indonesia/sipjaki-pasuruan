@@ -37,6 +37,7 @@ class AssociationController extends Controller
             return ResponseHelper::success($data);
         } else {
             return view('pages.assosiation', compact('associations'));
+            
         }
     }
 

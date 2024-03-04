@@ -375,9 +375,11 @@ Route::get('project-export', [ProjectController::class, 'export']);
 Route::get('training-export', [TrainingController::class, 'export']);
 Route::get('print-training', [TrainingController::class, 'exportPdf']);
 Route::get('print-training-member', [TrainingMemberController::class, 'exportPdf']);
-Route::get('training-member-export', [TrainingMemberController::class, 'extrainingport']);
+Route::get('training-member-export', [TrainingMemberController::class, 'export']);
 
-
+Route::get('kalender',function(){
+    return view('kalender');
+});
 
 require __DIR__ . '/arif.php';
 require __DIR__ . '/ibnu.php';
