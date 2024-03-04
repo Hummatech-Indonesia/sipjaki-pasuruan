@@ -31,6 +31,6 @@ class TrainingMemberExport implements FromView, ShouldAutoSize
             })
             ->get();
 
-        return view('exports.training-member', ['trainingMembers' => $trainingMembers]);
+        return view('exports.training-members', ['trainingMembers' => $trainingMembers]);
     }
 }
