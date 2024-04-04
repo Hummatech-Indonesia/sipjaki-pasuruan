@@ -143,8 +143,8 @@ class ServiceProviderController extends Controller
     {
         $serviceProviders = $this->serviceProvider->show($service_provider->id);
         $serviceProviderQualifications = $service_provider->serviceProviderQualifications;
-        $officers = $this->officer->search($request);
-        $workers = $this->worker->search($request);
+        $officers = $service_provider->officers;
+        $workers = $service_provider->workers;
         $verifications = $service_provider->verification;
         $amendmentDeeps = $service_provider->amendmentDeed;
         $foundingDeeps = $service_provider->foundingDeed;

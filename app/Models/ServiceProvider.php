@@ -104,4 +104,24 @@ class ServiceProvider extends Model implements HasConsultantProjects,HasExecutor
     {
         return $this->hasMany(ExecutorProject::class);
     }
+
+    /**
+     * Get all of the workers for the ServiceProvider
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function workers(): HasMany
+    {
+        return $this->hasMany(Worker::class);
+    }
+
+    /**
+     * Get all of the officers for the ServiceProvider
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function officers(): HasMany
+    {
+        return $this->hasMany(Officer::class);
+    }
 }
