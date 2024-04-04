@@ -137,9 +137,9 @@ class ServiceProviderController extends Controller
     public function show(ServiceProvider $service_provider, Request $request): View
     {
         $serviceProviders = $this->serviceProvider->show($service_provider->id);
-        $serviceProviderQualifications = $this->serviceProviderQualification->customPaginate($request, 10);
-        $officers = $this->officer->get();
-        $workers = $this->worker->get();
+        $serviceProviderQualifications = $this->serviceProviderQualification->search($request);
+        $officers = $this->officer->search($request);
+        $workers = $this->worker->search($request);
         $verifications = $service_provider->verification;
         $amendmentDeeps = $service_provider->amendmentDeed;
         $foundingDeeps = $service_provider->foundingDeed;
@@ -163,9 +163,9 @@ class ServiceProviderController extends Controller
     public function index(Request $request): View
     {
         $serviceProvider = $this->serviceProvider->show(auth()->user()->serviceProvider->id);
-        $serviceProviderQualifications = $this->serviceProviderQualification->customPaginate($request, 10);
-        $officers = $this->officer->get();
-        $workers = $this->worker->get();
+        $serviceProviderQualifications = $this->serviceProviderQualification->search($request);
+        $officers = $this->officer->search($request);
+        $workers = $this->worker->search($request);
         $executorProjects = $this->executorProject->search($request);
         $consultantProjects = $this->consultantProject->search($request);
         $verifications = auth()->user()->serviceProvider->verification;

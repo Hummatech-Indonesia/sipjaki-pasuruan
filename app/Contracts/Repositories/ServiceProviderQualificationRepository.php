@@ -27,6 +27,17 @@ class ServiceProviderQualificationRepository extends BaseRepository implements S
             ->create($data);
     }
 
+
+    public function search(Request $request): mixed
+    {
+        return $this->model->query()
+            ->when(auth()->user()?->serviceProvider,function($query){
+                $query->where('service_provider_id',auth()->user()->serviceProvider->id);
+            })
+            ->latest()
+            ->get();
+    }
+
     /**
      * customPaginate
      *
