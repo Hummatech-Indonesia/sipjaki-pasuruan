@@ -252,7 +252,6 @@ Route::middleware('auth')->group(function () {
         Route::post('service-provider-qualifications', [ServiceProviderQualificationController::class, 'store'])->name('service.provider.qualifications.store');
         Route::get('my-project', [ProjectController::class, 'myProject']);
         Route::get('history-project', [ProjectController::class, 'history']);
-
         Route::put('upload-file-executor/{executorProject}', [ExecutorProjectController::class, 'upload'])->name('upload-file-executor');
         Route::put('upload-file-consultant/{consultantProject}', [ConsultantProjectController::class, 'upload'])->name('upload-file-consultant');
         Route::put('mark-down-project/{executorProject}', [ExecutorProjectController::class, 'markDone'])->name('mark.done');
@@ -273,7 +272,7 @@ Route::middleware('auth')->group(function () {
 
         Route::get('service-provider-profile', [ServiceProviderController::class, 'index'])->name('service-provider-profile');
         Route::put('update-business-entity', [ServiceProviderController::class, 'update'])->name('update-business-entity');
-
+        Route::delete('service-provider-qualification/{service_provider_qualification}' , [ServiceProviderQualificationController::class, 'destroy']);
         Route::get('service-provider-projects', [ServiceProviderProjectController::class, 'index']);
         Route::post('service-provider-projects/{executorProject}', [ServiceProviderProjectController::class, 'store'])->name('service-provider-projects.store');
         Route::put('service-provider-projects/{service_provider_project}', [ServiceProviderProjectController::class, 'update'])->name('service-provider-projects.update');
