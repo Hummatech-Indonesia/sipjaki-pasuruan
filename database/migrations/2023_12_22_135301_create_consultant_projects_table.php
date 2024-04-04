@@ -21,7 +21,7 @@ return new class extends Migration
             $table->foreignUuid('service_provider_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignUuid('fiscal_year_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('name');
-            $table->bigInteger('project_value');
+            $table->bigInteger('project_value')->default(0);
             $table->enum('characteristic_project', [CharacteristicProjectEnum::SINGLE->value, CharacteristicProjectEnum::MULTIPLE->value]);
             $table->dateTime('finance_progress_start')->nullable();
             $table->integer('finance_progress')->default(0);
@@ -30,8 +30,8 @@ return new class extends Migration
             $table->string('report')->nullable();
             $table->string('minutes_of_disbursement')->nullable();
             $table->string('minutes_of_hand_over')->nullable();
-            $table->dateTime('start_at');
-            $table->dateTime('end_at');
+            $table->dateTime('start_at')->nullable();
+            $table->dateTime('end_at')->nullable();
             $table->enum('status', [StatusEnum::ACTIVE->value, StatusEnum::NONACTIVE->value,StatusEnum::CANCELED->value]);
             $table->timestamps();
         });
