@@ -36,6 +36,16 @@ class ServiceProvider extends Model implements HasConsultantProjects,HasExecutor
     }
 
     /**
+     * Get all of the serviceProviderQualifications for the ServiceProvider
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function serviceProviderQualifications(): HasMany
+    {
+        return $this->hasMany(ServiceProviderQualification::class);
+    }
+
+    /**
      * association
      *
      * @return BelongsTo
