@@ -62,6 +62,8 @@ use App\Http\Controllers\ServiceProvider\VerificationController as ServiceProvid
 
 Route::get('/', [LandingController::class, 'news'])->name('landing-page');
 
+Route::get('reset-passsword/{user}', [ResetPasswordController::class, 'index'])->name('reset.password');
+
 Route::get('peraturan', [LandingController::class, 'rules'])->name('rules.landing');
 Route::get('berita/{news}', [LandingController::class, 'show'])->name('berita');
 
@@ -108,7 +110,7 @@ Route::get('list-qualification-training', [QualificationTrainingController::clas
 Route::get('json-qualification-level-training/{qualification_training}', [QualificationLevelTrainingController::class, 'jsonQualificationLevelTraining']);
 
 Route::middleware('auth')->group(function () {
-    Route::get('download-manual-book',function(){
+    Route::get('download-manual-book', function () {
         return view('pages.download-manual-book');
     })->name('download.manual.book');
     Route::get('profile', function () {
@@ -152,7 +154,7 @@ Route::middleware('auth')->group(function () {
     Route::get('service-provider-project-detail/{service_provider_project}', [ServiceProviderProjectController::class, 'show'])->name('service.provider.project.detail');
     Route::get('worker-certificate/{worker}', [WorkerCertificateController::class, 'index'])->name('worker-certificate');
     Route::get('detail-service-provider-qualification/{service_provider_qualification}', [ServiceProviderQualificationController::class, 'show'])->name('service.provider.qualifications.detail');
-    
+
     Route::middleware('role:superadmin')->group(function () {
 
         Route::get('dashboard-superadmin', [SuperadminController::class, 'dashboard'])->name('dashboard-superadmin');
@@ -214,7 +216,7 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('role:admin|superadmin|dinas')->group(function () {
 
-        Route::get('detail-association/{association}',[AssociationController::class,'show'])->name('association.detail');
+        Route::get('detail-association/{association}', [AssociationController::class, 'show'])->name('association.detail');
         Route::get('detail-project-dinas/{project}', [ProjectController::class, 'detailProjectDinas']);
         Route::resource('consultant-projects', ConsultantProjectController::class)->only(['index']);
         Route::resource('executor-projects', ExecutorProjectController::class)->only(['index']);
@@ -313,11 +315,10 @@ Route::middleware('role:admin|superadmin')->group(function () {
     Route::get('all-agency', [DinasController::class, 'all'])->name('all.agency');
     Route::get('service-provider-consultants', [ServiceProviderController::class, 'consultant']);
     Route::get('service-provider-executors', [ServiceProviderController::class, 'executor']);
-    Route::delete('service-provider/{service_provider}',[ServiceProviderController::class,'destroy'])->name('service-provider.destroy');
-    Route::delete('service-provider',[ServiceProviderController::class,'destroys'])->name('service-provider.destroys');
+    Route::delete('service-provider/{service_provider}', [ServiceProviderController::class, 'destroy'])->name('service-provider.destroy');
+    Route::delete('service-provider', [ServiceProviderController::class, 'destroys'])->name('service-provider.destroys');
 
 
-    Route::get('reset-passsword/{user}', [ResetPasswordController::class, 'index'])->name('reset.password');
     //Training
     Route::get('training', [TrainingController::class, 'index'])->name('training');
     Route::post('training', [TrainingController::class, 'store'])->name('training.store');
@@ -377,7 +378,7 @@ Route::get('print-training', [TrainingController::class, 'exportPdf']);
 Route::get('print-training-member', [TrainingMemberController::class, 'exportPdf']);
 Route::get('training-member-export', [TrainingMemberController::class, 'export']);
 
-Route::get('kalender',function(){
+Route::get('kalender', function () {
     return view('kalender');
 });
 
