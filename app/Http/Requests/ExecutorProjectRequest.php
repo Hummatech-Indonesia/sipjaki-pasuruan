@@ -19,15 +19,15 @@ class ExecutorProjectRequest extends FormRequest
             'service_provider_id' => 'required|exists:service_providers,id',
             'consultant_project_id' => 'required|exists:consultant_projects,id',
             'name' => 'required|string',
-            'project_value' => 'required|integer',
+            'project_value' => 'nullable|integer',
             'characteristic_project' => 'required',
             'finance_progress_start' => 'nullable|date',
             'finance_progress' => 'required|integer|max:100',
             'physical_progress_start' => 'nullable|date',
             'physical_progress' => 'required|integer|max:100',
             'fiscal_year_id' => 'required|exists:fiscal_years,id',
-            'start_at' => 'required|date',
-            'end_at' => 'required|date',
+            'start_at' => 'nullable|date|before:end_at',
+            'end_at' => 'nullable|date',
         ];
     }
 

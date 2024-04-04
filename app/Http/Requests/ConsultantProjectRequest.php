@@ -18,13 +18,13 @@ class ConsultantProjectRequest extends FormRequest
             'contract_category_id' => 'required|exists:contract_categories,id',
             'service_provider_id' => 'required|exists:service_providers,id',
             'name' => 'required|string',
-            'project_value' => 'required|integer',
+            'project_value' => 'nullable|integer',
             'characteristic_project' => 'required',
             'finance_progress_start' => 'nullable|date',
             'finance_progress' => 'nullable|integer|max:100',
             'fiscal_year_id' => 'required|exists:fiscal_years,id',
-            'start_at' => 'required|date',
-            'end_at' => 'required|date',
+            'start_at' => 'nullable|date|before:end_at',
+            'end_at' => 'nullable|date',
         ];
     }
 
