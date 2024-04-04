@@ -133,6 +133,9 @@ class ServiceProviderQualificationController extends Controller
         }
     }
 
+
+
+
     /**
      * reject
      *
@@ -188,5 +191,10 @@ class ServiceProviderQualificationController extends Controller
     public function detailPending(ServiceProviderQualification $service_provider_qualification) : View
     {
         return view('pages.detail-file', ['service_provider_qualification' => $service_provider_qualification]);
+    }
+    public function destroy(ServiceProviderQualification $service_provider_qualification)
+    {
+        $this->serviceProviderQualification->delete($service_provider_qualification->id);
+        return redirect()->back()->with('success', 'Berhasil Menghapus Data');
     }
 }

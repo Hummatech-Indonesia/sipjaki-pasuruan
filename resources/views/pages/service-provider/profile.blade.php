@@ -236,6 +236,7 @@
                                                         class="bx bx-bx bxs-edit fs-4"></i>
                                                     <span>Edit</span></button>
                                             </div>
+
                                             <div>
                                                 <button type="button" data-id="{{ $serviceProviderQualification->id }}"
                                                     class="btn waves-effect waves-light btn-delete-qualification d-flex flex-row gap-1 justify-content-between"
@@ -273,6 +274,11 @@
                                                     style="width: 90px; background-color: #FFC928; color: white"><i
                                                         class="bx bx-bx bxs-edit fs-4"></i>
                                                     <span>Edit</span></button>
+                                            </div>
+                                            <div>
+                                                <button class="btn btn-danger btn-delete-serviceProviderQualification" data-id="{{ $serviceProviderQualification->id }}" id="{{ $serviceProviderQualification->id }}">
+                                                    Hapus
+                                                </button>
                                             </div>
                                         </div>
                                     @elseif ($serviceProviderQualification->status == 'reject')
@@ -1727,6 +1733,12 @@
         $('.btn-delete-qualification').click(function() {
             id = $(this).data('id')
             var actionUrl = `service-provider-qualifications/${id}`;
+            $('#form-delete').attr('action', actionUrl);
+            $('#modal-delete').modal('show')
+        })
+        $('.btn-delete-serviceProviderQualification').click(function() {
+            id = $(this).data('id')
+            var actionUrl = `service-provider-qualification/${id}`;
             $('#form-delete').attr('action', actionUrl);
             $('#modal-delete').modal('show')
         })
