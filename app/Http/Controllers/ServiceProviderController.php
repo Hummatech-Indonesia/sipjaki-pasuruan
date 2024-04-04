@@ -142,7 +142,7 @@ class ServiceProviderController extends Controller
     public function show(ServiceProvider $service_provider, Request $request): View
     {
         $serviceProviders = $this->serviceProvider->show($service_provider->id);
-        $serviceProviderQualifications = $this->serviceProviderQualification->search($request);
+        $serviceProviderQualifications = $service_provider->serviceProviderQualifications;
         $officers = $this->officer->search($request);
         $workers = $this->worker->search($request);
         $verifications = $service_provider->verification;
