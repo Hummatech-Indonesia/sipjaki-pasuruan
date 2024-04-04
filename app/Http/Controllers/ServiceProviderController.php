@@ -2,23 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Contracts\Interfaces\ConsultantProjectInterface;
-use App\Contracts\Interfaces\ExecutorProjectInterface;
+use App\Models\User;
+use App\Enums\StatusEnum;
 use Illuminate\Http\Request;
+use App\Models\ServiceProvider;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use App\Enums\TypeOfBusinessEntityEnum;
+use App\Services\ServiceProviderService;
 use App\Contracts\Interfaces\UserInterface;
 use App\Contracts\Interfaces\WorkerInterface;
 use App\Http\Requests\ServiceProviderRequest;
 use App\Contracts\Interfaces\OfficerInterface;
-use App\Contracts\Interfaces\ServiceProviderInterface;
-use App\Contracts\Interfaces\ServiceProviderQualificationInterface;
-use App\Enums\StatusEnum;
-use App\Http\Requests\UpdatePasswordServiceProviderRequest;
-use App\Models\ServiceProvider;
-use App\Enums\TypeOfBusinessEntityEnum;
 use App\Http\Requests\DeleteServiceProviderRequest;
-use App\Services\ServiceProviderService;
-use Illuminate\Http\RedirectResponse;
+use App\Contracts\Interfaces\ExecutorProjectInterface;
+use App\Contracts\Interfaces\ServiceProviderInterface;
+use App\Contracts\Interfaces\ConsultantProjectInterface;
+use App\Http\Requests\UpdatePasswordServiceProviderRequest;
+use App\Contracts\Interfaces\ServiceProviderQualificationInterface;
 
 class ServiceProviderController extends Controller
 {
@@ -112,7 +113,8 @@ class ServiceProviderController extends Controller
      */
     public function destroy(ServiceProvider $serviceProvider) : RedirectResponse
     {
-        $this->serviceProvider->delete($serviceProvider->id);
+        $user = $this->serviceProvider->show($serviceProvider->id);
+        User::findOrFail($user->user_id)->delete();
         return redirect()->back()->with('success',trans('alert.delete_success'));
     }
 
@@ -124,7 +126,10 @@ class ServiceProviderController extends Controller
      */
     public function destroys(DeleteServiceProviderRequest $request) : RedirectResponse
     {
-        $this->serviceProvider->multipleDelete(explode(',',$request->id));
+        foreach(explode(',',$request->id) as $id){
+            $user = $this->serviceProvider->show($id);
+            User::findOrFail($user->user_id)->delete();
+        }
         return redirect()->back()->with('success',trans('alert.delete_success'));
     }
 

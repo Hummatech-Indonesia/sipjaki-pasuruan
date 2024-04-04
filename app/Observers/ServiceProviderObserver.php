@@ -2,8 +2,9 @@
 
 namespace App\Observers;
 
-use App\Models\ServiceProvider;
+use App\Models\User;
 use Faker\Provider\Uuid;
+use App\Models\ServiceProvider;
 
 class ServiceProviderObserver
 {
@@ -39,7 +40,7 @@ class ServiceProviderObserver
      */
     public function deleted(ServiceProvider $serviceProvider): void
     {
-        //
+       
     }
 
     /**
