@@ -44,7 +44,8 @@
                                     @method('POST')
                                     <a id="submit-data" title="kirim ulang email" href="javascript:void(0)">
                                         <div class="avatar-md profile-user-wid">
-                                            <span class="avatar-title rounded-circle" width=style="background-color: #1B3061">
+                                            <span class="avatar-title rounded-circle"
+                                                width=style="background-color: #1B3061">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60"
                                                     viewBox="0 0 63 63" fill="currentColor">
                                                     <path
@@ -65,9 +66,8 @@
                                     </div>
                                 @elseif (session('errors'))
                                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                        Token yang anda inputkan tiidak valid"
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                            aria-label="Close"></button>
+                                        {{ $errors->first() }} <button type="button" class="btn-close"
+                                            data-bs-dismiss="alert" aria-label="Close"></button>
                                     </div>
                                     <form class="form-horizontal" action="{{ route('verify.token/', $Id) }}" method="POST">
                                         @csrf
@@ -79,26 +79,25 @@
                                                 <input type="text" class="text-center form-control" id="email-part1"
                                                     maxlength="1"
                                                     oninput="updateTokenValue(); goToNextInput(this, 'email-part2');">
-    
+
                                                 <!-- Input kedua -->
                                                 <input type="text" class="text-center form-control" id="email-part2"
                                                     maxlength="1"
                                                     oninput="updateTokenValue(); goToNextInput(this, 'email-part3');">
-    
+
                                                 <!-- Input ketiga -->
                                                 <input type="text" class="text-center form-control" id="email-part3"
                                                     maxlength="1"
                                                     oninput="updateTokenValue(); goToNextInput(this, 'email-part4');">
-    
+
                                                 <!-- Input keempat -->
                                                 <input type="text" class="text-center form-control" id="email-part4"
                                                     maxlength="1"
                                                     oninput="updateTokenValue(); goToNextInput(this, 'email-part5');">
-    
+
                                                 <!-- Input kelima -->
                                                 <input type="text" class="text-center form-control" id="email-part5"
-                                                    maxlength="1"
-                                                    oninput="updateTokenValue(); goToNextInput(this, '');">
+                                                    maxlength="1" oninput="updateTokenValue(); goToNextInput(this, '');">
                                             </div>
                                             <input type="hidden" name="token" id="token">
                                         </div>
@@ -122,39 +121,37 @@
                                                 <input type="text" class="text-center form-control" id="email-part1"
                                                     maxlength="1"
                                                     oninput="updateTokenValue(); goToNextInput(this, 'email-part2');">
-    
+
                                                 <!-- Input kedua -->
                                                 <input type="text" class="text-center form-control" id="email-part2"
                                                     maxlength="1"
                                                     oninput="updateTokenValue(); goToNextInput(this, 'email-part3');">
-    
+
                                                 <!-- Input ketiga -->
                                                 <input type="text" class="text-center form-control" id="email-part3"
                                                     maxlength="1"
                                                     oninput="updateTokenValue(); goToNextInput(this, 'email-part4');">
-    
+
                                                 <!-- Input keempat -->
                                                 <input type="text" class="text-center form-control" id="email-part4"
                                                     maxlength="1"
                                                     oninput="updateTokenValue(); goToNextInput(this, 'email-part5');">
-    
+
                                                 <!-- Input kelima -->
                                                 <input type="text" class="text-center form-control" id="email-part5"
-                                                    maxlength="1"
-                                                    oninput="updateTokenValue(); goToNextInput(this, '');">
+                                                    maxlength="1" oninput="updateTokenValue(); goToNextInput(this, '');">
                                             </div>
                                             <input type="hidden" name="token" id="token">
                                         </div>
                                         <div class="mt-4 d-flex justify-content-end">
-                                            <button type="submit" class="btn text-white" style="background-color: #1B3061">
+                                            <button type="submit" class="btn text-white"
+                                                style="background-color: #1B3061">
                                                 Verifikasi
                                             </button>
                                         </div>
                                     </form>
                                 @endif
-                                
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -174,13 +171,12 @@
             document.getElementById('token').value = token;
         }
 
-        $('#submit-data').click(function(){
+        $('#submit-data').click(function() {
             $('#resend').submit();
         })
 
         function combineInputValues(event) {
             event.preventDefault();
-            // Lakukan proses pengiriman form atau manipulasi data sesuai kebutuhan Anda
             document.forms[0].submit();
         }
 
