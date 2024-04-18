@@ -2,21 +2,23 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Contracts\Interfaces\AssociationInterface;
-use App\Contracts\Interfaces\Auth\RegisterInterface;
-use App\Helpers\ResponseHelper;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\RegisterRequest;
-use App\Providers\RouteServiceProvider;
 use App\Models\User;
-use App\Services\Auth\RegisterService;
+use Illuminate\Http\Request;
+use App\Helpers\ResponseHelper;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Contracts\View\View;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\RedirectResponse;
+use App\Services\Auth\RegisterService;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Validator;
+use App\Contracts\Interfaces\UserInterface;
+use App\Http\Requests\Auth\RegisterRequest;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Foundation\Auth\VerifiesEmails;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+use App\Contracts\Interfaces\AssociationInterface;
+use App\Contracts\Interfaces\Auth\RegisterInterface;
 
 class RegisterController extends Controller
 {
@@ -44,16 +46,18 @@ class RegisterController extends Controller
     private RegisterService $service;
     private RegisterInterface $register;
     private AssociationInterface $association;
+    private UserInterface $user;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(RegisterService $service, RegisterInterface $register, AssociationInterface $association)
+    public function __construct(RegisterService $service, RegisterInterface $register, AssociationInterface $association,UserInterface $user)
     {
         $this->service = $service;
         $this->register = $register;
         $this->association = $association;
+        $this->user = $user;
     }
 
     /**
@@ -87,4 +91,19 @@ class RegisterController extends Controller
              return redirect()->to('verify-account/' . $params)->with('success', trans('auth.register_success'));
          }
      }
+
+    public function approval(Request $request)
+    {
+        $request->merge([
+            'unverified' => true
+        ]);
+        $users = $this->user->customPaginate($request,10);
+        return view('auth.approval',compact('users'));
+    }
+
+    public function approve(User $user)
+    {
+        $this->user->update($user,['email_registered_at'=> now()]);
+        return redirect()->back()->with('success','Berhasil Memverikasi Email');
+    }
 }

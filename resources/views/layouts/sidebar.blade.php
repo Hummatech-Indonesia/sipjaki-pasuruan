@@ -95,6 +95,10 @@
                             <li id="kualifikasi-approval"><a id="kualifikasi-approval-link" href="{{ route('service.provider.qualification.pending') }}"
                                     key="t-tui-calendar">Kualifikasi</a></li>
                         </ul>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li id="pendaftaran-approval"><a id="pendaftaran-approval-link" href="{{ route('approval.registration') }}"
+                                    key="t-tui-calendar">Pendaftaran</a></li>
+                        </ul>
                     </li>
                     <li>
                         <a href="{{ route('news.index') }}" class="waves-effect">

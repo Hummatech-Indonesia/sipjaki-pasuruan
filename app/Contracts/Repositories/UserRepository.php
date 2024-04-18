@@ -72,11 +72,16 @@ class UserRepository extends BaseRepository implements UserInterface
     public function customPaginate(Request $request, int $pagination = 10): LengthAwarePaginator
     {
         return $this->model->query()
-            ->whereHas('dinas')
             ->when($request->name, function ($query) use ($request) {
                 $query->whereRelation('dinas', 'name', 'LIKE', '%' . $request->name . '%');
             })
             ->orderByDesc('created_at')
+            ->when($request->unverified, function ($query) use ($request) {
+                $query->whereHas('serviceProvider');
+                $query->whereNull('email_verified_at');
+            })->when(!$request->unverified, function ($query) use ($request) {
+                $query->whereHas('dinas');
+            })
             ->fastPaginate($pagination);
     }
 
