@@ -103,7 +103,7 @@ class RegisterController extends Controller
 
     public function approve(User $user)
     {
-        $this->user->update($user,['email_registered_at'=> now()]);
+        $this->user->update($user->id,['email_verified_at'=> now()]);
         return redirect()->back()->with('success','Berhasil Memverikasi Email');
     }
 }
