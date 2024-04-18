@@ -54,7 +54,7 @@
                                         </div>
                                         <div class="">
                                             <form id="approval-form"
-                                                action="approve-registration/{{ $user->id }}"
+                                                action="approve-registration/{{ $user->serviceProvider->id }}"
                                                 method="post">
                                                 @csrf
                                                 @method('PATCH')

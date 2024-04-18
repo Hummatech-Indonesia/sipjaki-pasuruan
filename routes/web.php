@@ -318,7 +318,7 @@ Route::middleware('role:admin|superadmin')->group(function () {
     Route::delete('service-provider/{service_provider}', [ServiceProviderController::class, 'destroy'])->name('service-provider.destroy');
     Route::delete('service-provider/multiple', [ServiceProviderController::class, 'destroys'])->name('service-provider.destroys');
     Route::get('approve-registration', [RegisterController::class, 'approval'])->name('approval.registration');
-Route::patch('approve-registration/{user}', [RegisterController::class, 'approve'])->name('approve.registration');
+    Route::patch('approve-registration/{user}', [RegisterController::class, 'approve'])->name('approve.registration');
 
     //Training
     Route::get('training', [TrainingController::class, 'index'])->name('training');
