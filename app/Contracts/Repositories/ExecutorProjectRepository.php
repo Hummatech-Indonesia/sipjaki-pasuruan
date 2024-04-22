@@ -177,6 +177,6 @@ class ExecutorProjectRepository extends BaseRepository implements ExecutorProjec
      */
     public function delete(mixed $id): mixed
     {
-        return $this->show($id)->delete($id);
+        return $this->model->query()->findOrFail($id)->delete($id);
     }
 }

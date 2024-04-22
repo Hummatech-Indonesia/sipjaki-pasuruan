@@ -155,6 +155,6 @@ class ConsultantProjectRepository extends BaseRepository implements ConsultantPr
      */
     public function delete(mixed $id): mixed
     {
-        return $this->show($id)->delete($id);
+        return $this->model->query()->findOrFail($id)->delete($id);
     }
 }
