@@ -456,7 +456,7 @@
                                     <div class="">
                                         <button type="button"
                                             class="btn waves-effect waves-light d-flex flex-row gap-1 justify-content-between btn-delete"
-                                            style="background-color: #E05C39; color: white" data-id=""
+                                            style="background-color: #E05C39; color: white" data-id="{{$worker->id}}"
                                             data-bs-toggle="modal" data-bs-target="#modal-delete"><i
                                                 class="bx bx-bx bxs-trash fs-4"></i>
                                         </button>
@@ -720,7 +720,7 @@
         })
         $('.btn-delete').click(function() {
             id = $(this).data('id')
-            var actionUrl = `contract-categories/${id}`;
+            var actionUrl = `workers/${id}`;
             $('#form-delete').attr('action', actionUrl);
             $('#modal-delete').modal('show')
         })
