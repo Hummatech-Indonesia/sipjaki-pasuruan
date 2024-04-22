@@ -144,6 +144,13 @@ class ConsultantProjectController extends Controller
         return view('pages.service-provider.consultant-package', $data);
     }
 
+    public function destroy(ConsultantProject $consultantProject)
+    {
+        $this->consultantProject->delete($consultantProject->id);
+
+        return redirect()->back()->with('success',trans('alert.delete_success'));
+    }
+
     /**
      * downloadContract
      *

@@ -238,4 +238,13 @@ class ExecutorProjectController extends Controller
 
         return response()->download(storage_path('app/public/' . $executorProject->p2_meeting_minutes),'Berkas Berita Acara P2 ' . $executorProject->name . '.' . $filePath['extension']);
     }
+
+    public function destroy(ExecutorProject $executorProject)
+    {
+        $this->executorProject->delete($executorProject->id);
+
+        return redirect()->back()->with('success',trans('alert.delete_success'));
+    }
+
+    
 }

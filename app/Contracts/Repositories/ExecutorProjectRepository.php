@@ -168,4 +168,15 @@ class ExecutorProjectRepository extends BaseRepository implements ExecutorProjec
             })
             ->count();
     }
+
+            /**
+     * delete
+     *
+     * @param  mixed $id
+     * @return mixed
+     */
+    public function delete(mixed $id): mixed
+    {
+        return $this->show($id)->delete($id);
+    }
 }
