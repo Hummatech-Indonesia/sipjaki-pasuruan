@@ -360,7 +360,7 @@
                                                 data-service_provider_id="{{ $executorProject->service_provider_id }}"
                                                 data-contract_category_id="{{ $executorProject->contract_category_id }}"
                                                 data-consultant_id="{{ $executorProject->consultant_id }}"
-                                                data-executor_id="{{ $executorProject->executor_id }}"
+                                                data-service_provider_id=""="{{ $executorProject->service_provider_id }}"
                                                 data-characteristic_project="{{ $executorProject->characteristic_project }}"><i
                                                     class="bx bx-bx bxs-edit fs-4 me-1"></i> Edit</button>
                                         </div>
@@ -496,7 +496,7 @@
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #1B3061">
-                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Tambah </h5>
+                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Edit </h5>
                     <button type="button" class="btn-close" style="background-color: white" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
@@ -548,9 +548,9 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="update-penyedia-jasa">Penyelenggara</label>
+                                            <label for="update-executor_id">Penyelenggara</label>
                                             <select class="form-control select2-update" style="width:100%"
-                                                name="executor_id" id="update-penyelenggara">
+                                                name="service_provider_id" id="update-service_provider_id">
                                                 @foreach ($executors as $serviceProvider)
                                                     <option value="{{ $serviceProvider->id }}"
                                                         {{ old('service_provider_id') == $serviceProvider->id ? 'selected' : '' }}>
@@ -736,7 +736,7 @@
         })
         $('.btn-edit').click(function() {
             const formData = getDataAttributes($(this).attr('id'))
-            var actionUrl = `projects/${formData['id']}`;
+            var actionUrl = `executor-projects/${formData['id']}`;
             $('#form-update').attr('action', actionUrl);
 
             setFormValues('form-update', formData)

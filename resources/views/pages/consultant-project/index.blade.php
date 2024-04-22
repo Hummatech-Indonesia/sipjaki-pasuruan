@@ -741,7 +741,7 @@
                                                     data-fund_source_id="{{ $consultantProject->fund_source_id }}"
                                                     data-service_provider_id="{{ $consultantProject->service_provider_id }}"
                                                     data-contract_category_id="{{ $consultantProject->contract_category_id }}"
-                                                    data-consultant_id="{{ $consultantProject->consultant_id }}"
+                                                    data-service_provider_id=""="{{ $consultantProject->service_provider_id }}"
                                                     data-executor_id="{{ $consultantProject->executor_id }}"
                                                     data-characteristic_project="{{ $consultantProject->characteristic_project }}"><i
                                                         class="bx bx-bx bxs-edit fs-4 me-1"></i> Edit</button>
@@ -932,7 +932,7 @@
                                         <div class="mb-3">
                                             <label for="update-penyedia-jasa">Konsultan</label>
                                             <select class="form-control select2-update" style="width:100%"
-                                                name="consultant_id" id="update-konsultan">
+                                                name="service_provider_id" id="update-service_provider_id">
                                                 @foreach ($consultants as $serviceProvider)
                                                     <option value="{{ $serviceProvider->id }}"
                                                         {{ old('service_provider_id') == $serviceProvider->id ? 'selected' : '' }}>
@@ -1087,7 +1087,7 @@
 
         $('#paket-konsultant').addClass('mm-active')
         $('#paket-konsultant-link').addClass('active')
-
+                                            
         $('#project-konsultant-admin').addClass('mm-active')
         $('#project-konsultant-admin-link').addClass('active')
 

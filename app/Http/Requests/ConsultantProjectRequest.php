@@ -23,8 +23,8 @@ class ConsultantProjectRequest extends FormRequest
             'finance_progress_start' => 'nullable|date',
             'finance_progress' => 'nullable|integer|max:100',
             'fiscal_year_id' => 'required|exists:fiscal_years,id',
-            'start_at' => 'nullable|date|before:end_at',
-            'end_at' => 'nullable|date',
+            'start_at' => 'nullable|date|before_or_equal:end_at',
+            'end_at' => 'nullable|date|after_or_equal:start_at',
         ];
     }
 
@@ -44,18 +44,17 @@ class ConsultantProjectRequest extends FormRequest
             'service_provider_id.exists' => 'Konsultan yang dipilih tidak valid.',
             'name.required' => 'Nama wajib diisi.',
             'name.string' => 'Nama harus berupa teks.',
-            'project_value.required' => 'Nilai Proyek wajib diisi.',
             'project_value.integer' => 'Nilai Proyek harus berupa bilangan bulat.',
             'characteristic_project.required' => 'Karakteristik Proyek wajib diisi.',
-            'characteristic_project.in' => 'karakteristik Proyek tidak valid.',
-            'finance_progress_start.date' => 'Tanggal Awal Progres keuangan harus berupa tanggal yang valid.',
+            'finance_progress_start.date' => 'Tanggal Awal Progres Keuangan harus berupa tanggal yang valid.',
             'finance_progress.integer' => 'Progress Keuangan harus berupa bilangan bulat.',
+            'finance_progress.max' => 'Progress Keuangan tidak boleh lebih dari 100.',
             'fiscal_year_id.required' => 'Tahun wajib diisi.',
-            'fiscal_year_id.exists' => 'Tahun tidak valid.',
-            'start_at.required' => 'Tanggal mulai wajib diisi.',
-            'start_at.date' => 'Tanggal mulai harus berupa tanggal yang valid.',
-            'end_at.required' => 'Tanggal selesai wajib diisi.',
-            'end_at.date' => 'Tanggal selesai harus berupa tanggal yang valid.',
+            'fiscal_year_id.exists' => 'Tahun yang dipilih tidak valid.',
+            'start_at.date' => 'Tanggal Mulai harus berupa tanggal yang valid.',
+            'start_at.before_or_equal' => 'Tanggal Mulai harus sama atau sebelum Tanggal Selesai.',
+            'end_at.date' => 'Tanggal Selesai harus berupa tanggal yang valid.',
+            'end_at.after_or_equal' => 'Tanggal Selesai harus sama atau setelah Tanggal Mulai.',
         ];
     }
 }

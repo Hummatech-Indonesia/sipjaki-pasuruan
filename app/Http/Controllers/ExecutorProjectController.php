@@ -77,6 +77,13 @@ class ExecutorProjectController extends Controller
         ));
     }
 
+    public function update(ExecutorProjectRequest $request,ExecutorProject $executorProject)
+    {
+        $this->executorProject->update($executorProject->id,$request->validated());
+
+        return redirect()->back()->with('success',trans('alert.update_success'));
+    }
+
 
     /**
      * store

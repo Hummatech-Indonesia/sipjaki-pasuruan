@@ -14,7 +14,7 @@ class ConsultantProjectUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name_package' => 'nullable|max:255',
+            'name' => 'required|max:255',
             'project_value' => 'required|integer',
         ];
     }
@@ -22,7 +22,7 @@ class ConsultantProjectUpdateRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name_package' => 'Nama paket maksimal 255 karakter',
+            'name.max' => 'Nama paket maksimal 255 karakter',
             'project_value' => 'Nilai kontrak harus berupa angka',
         ];
     }

@@ -106,9 +106,10 @@ class ConsultantProjectController extends Controller
      * @param  mixed $request
      * @return void
      */
-    public function update(ConsultantProjectUpdateRequest $request, ConsultantProject $consultantProject)
+    public function update(ConsultantProjectRequest $request, ConsultantProject $consultantProject)
     {
         $this->consultantProject->update($consultantProject->id, $request->validated());
+
         return redirect()->back()->with('success', trans('alert.update_success'));
     }
 
