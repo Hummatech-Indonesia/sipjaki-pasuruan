@@ -110,6 +110,9 @@ class ConsultantProjectRepository extends BaseRepository implements ConsultantPr
             ->when(auth()->user()->dinas, function ($query) {
                 $query->whereRelation('dinas', 'dinas_id', auth()->user()->dinas->id);
             })
+            ->when(auth()->user()->serviceProvider,function($query){
+                $query->where('service_provider_id',auth()->user()->serviceProvider->id);
+            })
             ->when($request->name, function ($query) use ($request) {
                 $query->where('name', 'LIKE', '%' . $request->name . '%');
             })
