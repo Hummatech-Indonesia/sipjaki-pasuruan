@@ -844,17 +844,24 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($serviceProviders->consultantProjects()->where('end_at','<',now()) as $project)
+                            @php
+                                if($serviceProviders->type_of_business_entity == 'executor'){
+                                    $projects = $serviceProviders->executorProjects()->where('end_at','<',now())->get();
+                                }else{
+                                    $projects = $serviceProviders->consultantProjects()->where('end_at','<',now())->get();
+                                }
+                            @endphp
+                            @forelse ($projects as $project)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $project->name }}</td>
                                     <td>{{ $project->year }}</td>
                                     <td>{{ $project->project_value }}</td>
-                                    <td>{{ $project->dinas->user->name }}</td>
+                                    <td>{{ $serviceProviders->type_of_business_entity == 'executor' ? $project->consultantProject->dinas->user->name : $project->dinas->user->name }}</td>
                                     <td>{{ $project->contractCategory->name }}</td>
-                                    <td>{{ Carbon::parse($project->start_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                    <td>{{ Carbon::parse($project->start_at)->locale('id_ID')->isoFormat('DD MMMM Y') }}
                                     </td>
-                                    <td>{{ Carbon::parse($project->end_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                    <td>{{ Carbon::parse($project->end_at)->locale('id_ID')->isoFormat('DD MMMM Y') }}
                                     </td>
                                 </tr>
                             @empty

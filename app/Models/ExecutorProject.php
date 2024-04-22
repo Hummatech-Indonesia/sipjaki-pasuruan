@@ -47,6 +47,11 @@ class ExecutorProject extends Model implements HasAccidents,HasFiscalYear,HasFun
     protected $guarded = [];
     public $incrementing = false;
     public $keyType = 'char';
+    protected $casts = [
+        'start_at' => 'datetime',
+        'end_at' => 'datetime',
+        // Tambahkan atribut lainnya yang perlu di-cast jika ada
+    ];
 
     /**
      * Get all of the serviceProviderProjects for the ExecutorProject

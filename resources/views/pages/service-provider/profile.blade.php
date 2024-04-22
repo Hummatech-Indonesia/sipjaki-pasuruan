@@ -974,9 +974,9 @@
                                                 {{$text}}
                                             </span>
                                         </td>
-                                        <td class="fs-5">{{ Carbon::parse($project->start_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                        <td class="fs-5">{{ Carbon::parse($project->start_at)->locale('id_ID')->isoFormat('DD MMMM Y') }}
                                         </td>
-                                        <td class="fs-5">{{ Carbon::parse($project->end_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                        <td class="fs-5">{{ Carbon::parse($project->end_at)->locale('id_ID')->isoFormat('DD MMMM Y') }}
                                         </td>
                                     </tr>
                                 @empty
@@ -1019,9 +1019,9 @@
                                                 {{$text}}
                                             </span>
                                         </td>
-                                        <td class="fs-5">{{ Carbon::parse($project->start_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                        <td class="fs-5">{{ Carbon::parse($project->start_at)->locale('id_ID')->isoFormat('DD MMMM Y') }}
                                         </td>
-                                        <td class="fs-5">{{ Carbon::parse($project->end_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                        <td class="fs-5">{{ Carbon::parse($project->end_at)->locale('id_ID')->isoFormat('DD MMMM Y') }}
                                         </td>
                                     </tr>
                                 @empty

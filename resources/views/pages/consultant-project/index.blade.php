@@ -59,14 +59,14 @@
                                             <td>Mulai</td>
                                             <td>:</td>
                                             <td>
-                                                {{ Carbon::parse($consultantProject->start_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                                {{ Carbon::parse($consultantProject->start_at)->locale('id_ID')->isoFormat('DD MMMM Y') }}
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Selesai</td>
                                             <td>:</td>
                                             <td>
-                                                {{ Carbon::parse($consultantProject->end_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                                {{ Carbon::parse($consultantProject->end_at)->locale('id_ID')->isoFormat('DD MMMM Y') }}
                                             </td>
                                         </tr>
                                         <tr>

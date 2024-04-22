@@ -81,16 +81,15 @@
                             <tbody>
                                 @forelse ($executorProjects as $project)
                                 <tr>
-
                                     <th scope="row" class="fs-5">{{ $loop->iteration }}</th>
                                     <td class="fs-5">{{ $project->name }}</td>
                                     <td class="fs-5">{{ $project->fundSource->name }}</td>
                                     <td class="fs-5">{{ 'Rp ' . number_format($project->project_value, 0, ',', '.') }}</td>
                                     <td class="fs-5">
-                                        {{ Carbon::parse($project->start_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                        {{ $project->start_at->isoFormat('DD MMMM Y') }}
                                     </td>
                                     <td class="fs-5">
-                                        {{ Carbon::parse($project->end_date)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                        {{ $project->end_at->isoFormat('DD MMMM Y') }}
                                     </td>
                                     <td class="text-center">
                                         @php
