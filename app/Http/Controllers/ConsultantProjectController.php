@@ -108,7 +108,7 @@ class ConsultantProjectController extends Controller
      */
     public function update(ConsultantProjectUpdateRequest $request, ConsultantProject $consultantProject)
     {
-        $this->consultantProject->update($consultantProject->consultantProject->id, $request->validated());
+        $this->consultantProject->update($consultantProject->id, $request->validated());
         return redirect()->back()->with('success', trans('alert.update_success'));
     }
 

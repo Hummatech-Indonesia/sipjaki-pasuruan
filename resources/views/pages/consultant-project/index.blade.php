@@ -1117,7 +1117,7 @@
         })
         $('.btn-edit').click(function() {
             const formData = getDataAttributes($(this).attr('id'))
-            var actionUrl = `projects/${formData['id']}`;
+            var actionUrl = `consultant-projects/${formData['id']}`;
             $('#form-update').attr('action', actionUrl);
 
             setFormValues('form-update', formData)
