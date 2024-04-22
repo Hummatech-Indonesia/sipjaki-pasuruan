@@ -746,7 +746,7 @@
         })
         $('.btn-delete').click(function() {
             id = $(this).data('id')
-            var actionUrl = `projects/${id}`;
+            var actionUrl = `executor-projects/${id}`;
             $('#form-delete').attr('action', actionUrl);
             $('#modal-delete').modal('show')
         })
