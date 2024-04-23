@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class FiscalYearRequest extends FormRequest
 {
@@ -15,7 +16,7 @@ class FiscalYearRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max:4'
+            'name' => ['required','max:4',Rule::unique('fiscal_years', 'name')->ignore($this->fiscal_year)]
         ];
     }
 
@@ -28,7 +29,8 @@ class FiscalYearRequest extends FormRequest
     {
         return [
             'name.required' => 'Nama wajib diisi',
-            'name.max' => 'Nama maksimal 4 karakter'
+            'name.max' => 'Nama maksimal 4 karakter',
+            'name.unique' => 'Tahun tidak boleh sama'
         ];
     }
 }
