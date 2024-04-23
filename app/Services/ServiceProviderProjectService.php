@@ -40,7 +40,7 @@ class ServiceProviderProjectService
             foreach ($serviceProviderProjects as $serviceProviderProject) {
                 $progres += $serviceProviderProject->progres;
             }
-            if ($data['progres'] + $executorProject->physical_progress + $progres > 100) {
+            if (($data['progres'] + $executorProject->physical_progress) > 100) {
                 return false;
             } else {
                 return $data;
@@ -69,7 +69,7 @@ class ServiceProviderProjectService
         foreach ($serviceProviderProjects as $serviceProviderProject) {
             $progres += $serviceProviderProject->progres;
         }
-        if ($data['progres'] + $service_provider_project->executorProject->physical_progres + ($progres - $service_provider_project->progres) > 100) {
+        if (($data['progres'] + $service_provider_project->executorProject->physical_progres) > 100) {
             return false;
         } else {
             return $data;
