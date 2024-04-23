@@ -224,9 +224,9 @@
             </form><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div>
-    <div class="modal fade bs-example-modal-md" id="modal-detail" tabindex="-1" role="dialog"
+    <div class="modal fade bs-example-modal-lg" id="modal-detail" tabindex="-1" role="dialog"
         aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #1B3061">
                     <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Detail</h5>
@@ -234,7 +234,7 @@
                         aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <table cellpadding="6" style="border-collapse: collapse;width:80%;" class="fs-6 fw-normal">
+                    <table cellpadding="7" style="border-collapse: collapse;width:80%;" class="fs-6 fw-normal">
                         <tbody>
                             <tr>
                                 <td class="fw-bold">Pertanyaan</td>
