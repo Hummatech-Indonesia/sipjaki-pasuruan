@@ -724,7 +724,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="d-flex d-row justify-content-end mt-3">
+                    <div class="d-flex d-row justify-content-end mb-3 me-2">
 
                         <button type="button" class="btn btn-danger btn-md me-2" data-bs-dismiss="modal"
                             aria-label="Close">Batal</button>

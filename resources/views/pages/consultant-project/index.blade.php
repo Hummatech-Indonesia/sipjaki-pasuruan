@@ -477,27 +477,23 @@
             </div>
         @else
             <div class="d-flex justify-content-between mb-3">
-                <div action="" class="d-flex gap-3 col-8">
+                <form action="" method="get" class="d-flex gap-3 col-8">
                     <input type="search" name="name" id="search-name" value="{{ request()->name }}" class="form-control"
                         placeholder="Search">
                     <select name="status" class="form-control ml-3" id="search-status">
                         <option value="">Semua Status</option>
                         <option value="active" {{ request()->status == 'active' ? 'selected' : '' }}>Aktif</option>
-                        <option value="nonactive" {{ request()->status == 'nonactive' ? 'selected' : '' }}>Non Aktif
-                        </option>
-                        <option value="canceled" {{ request()->status == 'canceled' ? 'selected' : '' }}>Dibatalkan
-                        </option>
+                        <option value="nonactive" {{ request()->status == 'nonactive' ? 'selected' : '' }}>Non Aktif</option>
+                        <option value="canceled" {{ request()->status == 'canceled' ? 'selected' : '' }}>Dibatalkan</option>
                     </select>
                     <select name="year" class="form-control ml-3" id="search-year">
                         <option value="">Semua Tahun</option>
                         @foreach ($fiscalYears as $fiscalYear)
-                            <option value="{{ $fiscalYear->id }}"
-                                {{ request()->year == $fiscalYear->id ? 'selected' : '' }}>
+                            <option value="{{ $fiscalYear->id }}" {{ request()->year == $fiscalYear->id ? 'selected' : '' }}>
                                 {{ $fiscalYear->name }}</option>
                         @endforeach
                     </select>
-                    <button data-bs-toggle="modal" data-bs-target="#modal-create"
-                        class="btn text-white d-flex items-center gap-2" style="background-color:#1B3061">
+                    <button class="btn text-white d-flex items-center gap-2" style="background-color:#1B3061" type="submit">
                         Cari <i class="fa fa-search my-auto"></i>
                     </button>
                     <button class="btn btn-danger d-flex items-center gap-2" id="export-pdf">
@@ -514,7 +510,7 @@
                         </svg>
                         </i>
                     </button>
-                </div>
+                </form>
                 @if (auth()->user()->dinas)
                     <div class="">
                         <button data-bs-toggle="modal" data-bs-target="#modal-create" class="btn text-white"

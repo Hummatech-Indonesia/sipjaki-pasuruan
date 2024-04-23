@@ -3,14 +3,13 @@
 namespace App\Services;
 
 use App\Enums\UploadDiskEnum;
-use App\Helpers\ResponseHelper;
-use Illuminate\Support\Str;
 use App\Http\Requests\ServiceProviderProjectRequest;
 use App\Models\ExecutorProject;
 use App\Models\Project;
 use App\Models\ServiceProviderProject;
 use App\Traits\UploadTrait;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use ZipArchive;
 
 class ServiceProviderProjectService
@@ -31,14 +30,17 @@ class ServiceProviderProjectService
         $data = $request->validated();
         $progres = 0;
         $data['executor_project_id'] = $executorProject->id;
-        if(isset($data['file'])) $data['file'] = $this->upload(UploadDiskEnum::SERVICEPROVIDERPROJECT->value, $request->file('file'));
+        if (isset($data['file'])) {
+            $data['file'] = $this->upload(UploadDiskEnum::SERVICEPROVIDERPROJECT->value, $request->file('file'));
+        }
+
         if ($serviceProviderProjects->first() == null) {
             return $data;
         } else {
             foreach ($serviceProviderProjects as $serviceProviderProject) {
                 $progres += $serviceProviderProject->progres;
             }
-            if (($data['progres']  + $executorProject->physical_progress + $progres) > 100) {
+            if (($data['progres'] + $executorProject->physical_progress + $progres) > 100) {
                 return false;
             } else {
                 return $data;
@@ -67,7 +69,7 @@ class ServiceProviderProjectService
         foreach ($serviceProviderProjects as $serviceProviderProject) {
             $progres += $serviceProviderProject->progres;
         }
-        if ($data['progres']  + $service_provider_project->executorProject->physical_progres + ($progres - $service_provider_project->progres) > 100) {
+        if ($data['progres'] + $service_provider_project->executorProject->physical_progres + ($progres - $service_provider_project->progres) > 100) {
             return false;
         } else {
             return $data;
@@ -85,7 +87,7 @@ class ServiceProviderProjectService
         if ($data->isNotEmpty()) {
             $zip = new ZipArchive;
             $filename = Str::random() . ".zip";
-            if ($zip->open(storage_path('app/public/' . $filename), ZipArchive::CREATE) === TRUE) {
+            if ($zip->open(storage_path('app/public/' . $filename), ZipArchive::CREATE) === true) {
                 foreach ($data as $value) {
                     if (Storage::exists($value->file)) {
                         $zip->addFile(storage_path('app/public/' . $value->file), basename($value->file));
@@ -109,8 +111,13 @@ class ServiceProviderProjectService
      */
     public function download(mixed $data)
     {
-        if (Storage::exists($data)) {
-            return response()->download(storage_path('app/public/' . $data), basename($data));
+        if (Storage::exists($data->file)) {
+            $filePath = storage_path('app/public/' . $data->file);
+            $customFileName = 'Progress paket pekerjaan ' . $data->executorProject->name . ' minggu ke ' . $data->week;
+
+            return response()->download($filePath, $customFileName);
+        } else {
+            return response()->json(['message' => 'File not found.'], 404);
         }
     }
 }

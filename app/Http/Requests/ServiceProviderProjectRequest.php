@@ -15,7 +15,7 @@ class ServiceProviderProjectRequest extends FormRequest
     {
         return [
             'date_start' => 'required|date',
-            'date_finish' => 'required|date',
+            'date_finish' => 'required|date|after_or_equal:date_start',
             'file' => 'nullable|mimes:pdf',
             'week' => 'required|numeric|min:0',
             'progres' => 'required|numeric|between:1,100',
@@ -36,6 +36,7 @@ class ServiceProviderProjectRequest extends FormRequest
             'date_start.date' => 'Format tanggal dimulai tidak valid',
             'date_finish.required' => 'Tanggal berakhir wajib diisi',
             'date_finish.date' => 'Format tanggal berakhir tidak valid',
+            'date_finish.after_or_equal' => 'Tanggal selesai harus sama dengan atau setelah tanggal mulai.',
             'progres.required' => 'Progres wajib diisi',
             'progres.numeric' => 'Progres wajib berupa angka',
             'progres.between' => 'Progres yang diinputkan harus diantara 1-100',

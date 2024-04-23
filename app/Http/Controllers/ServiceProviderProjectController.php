@@ -184,7 +184,7 @@ class ServiceProviderProjectController extends Controller
      */
     public function downloadFile(ServiceProviderProject $service_provider_project)
     {
-        return $this->service->download($service_provider_project->file);
+        return $this->service->download($service_provider_project);
     }
 
     /**
