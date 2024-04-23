@@ -2,9 +2,10 @@
 @section('content')
     <h4 class="mb-3 font-size-18">Paket Konsultan</h4>
     <div class="col-10 mb-3">
-        <div class="d-flex gap-3 ">
-            <input type="search" name="name" value="{{ request()->name }}" id="search-name" class="form-control" placeholder="Search">
-            <select name="status"  class="form-control ml-3" id="search-status">
+        <form action="" method="get" class="d-flex gap-3 ">
+            <input type="search" name="name" value="{{ request()->name }}" id="search-name" class="form-control"
+                placeholder="Search">
+            <select name="status" class="form-control ml-3" id="search-status">
                 <option value="">Semua Status</option>
                 <option value="active" {{ request()->status == 'active' ? 'selected' : '' }}>Aktif</option>
                 <option value="nonactive" {{ request()->status == 'nonactive' ? 'selected' : '' }}>Non Aktif
@@ -12,14 +13,14 @@
                 <option value="canceled" {{ request()->status == 'canceled' ? 'selected' : '' }}>Dibatalkan
                 </option>
             </select>
-            @role(['admin','superadmin'])
-            <select name="dinas"  class="form-control ml-3" id="search-dinas">
-                <option value="">Semua Dinas</option>
-                @foreach ($dinases as $dinas)
-                    <option value="{{ $dinas->id }}" {{ request()->dinas == $dinas->id ? 'selected' : '' }}>
-                        {{ $dinas->user->name }}</option>
-                @endforeach
-            </select>
+            @role(['admin', 'superadmin'])
+                <select name="dinas" class="form-control ml-3" id="search-dinas">
+                    <option value="">Semua Dinas</option>
+                    @foreach ($dinases as $dinas)
+                        <option value="{{ $dinas->id }}" {{ request()->dinas == $dinas->id ? 'selected' : '' }}>
+                            {{ $dinas->user->name }}</option>
+                    @endforeach
+                </select>
             @endrole
             <select name="year" class="form-control ml-3" id="search-year">
                 <option value="">Semua Tahun</option>
@@ -39,14 +40,14 @@
                 </svg>
                 </i>
             </a>
-            <a href="{{route('export.excel.consultant.project')}}" class="btn btn-success d-flex items-center gap-2">
+            <a href="{{ route('export.excel.consultant.project') }}" class="btn btn-success d-flex items-center gap-2">
                 Excel<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                     <path fill="white"
                         d="m23 12l-4-4v3h-9v2h9v3M1 18V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3h-2V6H3v12h12v-3h2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2Z" />
                 </svg>
                 </i>
             </a>
-        </div>
+        </form>
     </div>
 
     <div class="row">
@@ -147,11 +148,11 @@
             var status = $('#search-status').val()
             var name = $('#search-name').val()
             var year = $('#search-year').val()
-            var route = "{{ Route('export.excel.consultant.project')}}"
+            var route = "{{ Route('export.excel.consultant.project') }}"
             var location = `${route}?status=${status}&name=${name}&year=${year}`
-            @role(['admin','superadmin'])
-            var dinas = $('#search-dinas').val()
-            location = `${route}?status=${status}&name=${name}&year=${year}&dinas=${dinas}`
+            @role(['admin', 'superadmin'])
+                var dinas = $('#search-dinas').val()
+                location = `${route}?status=${status}&name=${name}&year=${year}&dinas=${dinas}`
             @endrole
             window.location.href = location
         })
@@ -162,9 +163,9 @@
             var year = $('#search-year').val()
             var route = "{{ Route('export.pdf.consultant.project') }}"
             var location = `${route}?status=${status}&name=${name}&year=${year}`
-            @role(['admin','superadmin'])
-            var dinas = $('#search-dinas').val()
-            location = `${route}?status=${status}&name=${name}&year=${year}&dinas=${dinas}`
+            @role(['admin', 'superadmin'])
+                var dinas = $('#search-dinas').val()
+                location = `${route}?status=${status}&name=${name}&year=${year}&dinas=${dinas}`
             @endrole
             window.location.href = location
         })

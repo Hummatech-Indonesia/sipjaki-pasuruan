@@ -13,7 +13,7 @@
             <h4 class="mb-3 font-size-18" style="font-weight: 800">Detail Daftar Progres</h4>
         </div>
         <div>
-            <a href="/executor-projects" class="btn btn-warning btn-md rounded-3">
+            <a href="/work-package" class="btn btn-warning btn-md rounded-3">
                 <i class="fas fa-arrow-left" style="margin-right:10px"></i>Kembali
             </a>
         </div>
