@@ -17,7 +17,7 @@
     </div>
     <div class="d-flex justify-content-between mb-3">
         <form action="{{ route('training') }}" class="d-flex gap-3 col-8" method="GET">
-            <input type="search" value="" name="name" class="form-control" placeholder="Search">
+            <input type="search" value="{{ request()->name }}" name="name" class="form-control" placeholder="Search">
             <select name="fiscal_year_id" class="form-control ml-3" id="">
                 <option value="">Semua Tahun</option>
                 @foreach ($fiscalYears as $fiscalYear)

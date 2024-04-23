@@ -118,6 +118,7 @@ Route::middleware('auth')->group(function () {
         return view('pages.profile');
     })->name('profile');
 
+    Route::get('download-service-provider-project/{service_provider_project}', [ServiceProviderProjectController::class, 'downloadFile'])->name('download.service-provider.project');
     Route::patch('update-profile', [UserController::class, 'updateProfile'])->name('update.profile');
     Route::patch('update-password', [UserController::class, 'updatePassword'])->name('update.password');
 
@@ -294,7 +295,7 @@ Route::middleware('auth')->group(function () {
 
         // download
         Route::get('download-all-service-provider-project/{project}', [ServiceProviderProjectController::class, 'downloadServiceProviderProject'])->name('download.all.service.provider.project');
-        Route::get('download-service-provider-project/{service_provider_project}', [ServiceProviderProjectController::class, 'downloadFile'])->name('download.service-provider.project');
+       
     });
 });
 Route::middleware('role:admin|superadmin')->group(function () {

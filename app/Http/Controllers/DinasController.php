@@ -100,15 +100,18 @@ class DinasController extends Controller
 
     public function accidentLandingPage(Request $request): View
     {
-        $data = $this->dinas->countAccidentByDinas($request);
+        $projects = $this->dinas->countAccidentByDinas($request);
         $total_accident = 0;
-        foreach ($data as $projects) {
-            $projects->total_accident = 0;
-            foreach ($projects->projects as $project) {
-                $projects->total_accident += $project->accidents->count();
-                $total_accident += $project->total_accident;
+        foreach ($projects as $project) {
+            $project->total_accident = 0;
+            foreach ($project->consultantProjects as $consultantProject) {
+                foreach($consultantProject->executorProjects as $executorProject){
+                    $project->total_accident += $executorProject->accidents->count();
+                    $total_accident += $project->total_accident;
+                }
+                
             }
         }
-        return view('kecelakaan', ['data' => $data, 'total_accident' => $total_accident]);
+        return view('kecelakaan', ['data' => $projects, 'total_accident' => $total_accident]);
     }
 }
