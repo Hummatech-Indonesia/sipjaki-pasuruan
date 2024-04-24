@@ -3,6 +3,7 @@
 namespace App\Services\Auth;
 
 use App\Contracts\Interfaces\HistoryLoginInterface;
+use App\Enums\RoleEnum;
 use App\Helpers\ResponseHelper;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Resources\UserResource;
@@ -28,6 +29,13 @@ class LoginService
     {
         if (auth()->attempt(['email' => $request->email, 'password' => $request->password])) {
             if (auth()->user()->email_verified_at) {
+                if(count(auth()->user()->roles) == 0){
+                    if(auth()->user()->serviceProvider){
+                        auth()->user()->assignRole(RoleEnum::SERVICE_PRODIVER->value);
+                    }else{
+                        auth()->user()->assignRole(RoleEnum::DINAS->value);
+                    }
+                }
                 $this->historyLogin->store(['ip_address' => $request->ip()]);
                 if ($request->is('api/*')) {
                     $data['token'] =  auth()->user()->createToken('auth_token')->plainTextToken;
