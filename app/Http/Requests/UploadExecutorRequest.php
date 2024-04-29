@@ -15,12 +15,17 @@ class UploadExecutorRequest extends FormRequest
     {
         return [
             'contract' => 'nullable|mimes:pdf',
+            'mail_order' => 'nullable|mimes:pdf',
             'administrative_minutes' => 'nullable|mimes:pdf',
             'p1_meeting_minutes' => 'nullable|mimes:pdf',
             'p2_meeting_minutes' => 'nullable|mimes:pdf',
             'mutual_check_0' => 'nullable|mimes:pdf',
+            'shop_drawing' => 'nullable|mimes:pdf',
             'mutual_check_100' => 'nullable|mimes:pdf',
+            'asbuild_dranding' => 'nullable|mimes:pdf',
             'uitzet_minutes' => 'nullable|mimes:pdf',
+            'pcm_minutes' => 'nullable|mimes:pdf',
+            'invoices' => 'nullable|mimes:pdf',
             'minutes_of_disbursement' => 'nullable|mimes:pdf',
             'report' => 'nullable|mimes:pdf',
         ];

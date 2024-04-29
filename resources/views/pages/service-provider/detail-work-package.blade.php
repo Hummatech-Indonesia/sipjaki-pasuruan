@@ -598,9 +598,30 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                            <label class="form-label">Surat Pesanan</label>
+                            <input class="form-control" accept=".pdf" type="file" value="{{ old('mail_order') }}"
+                                name="mail_order" id="">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="mb-3 ajax-select mt-3 mt-lg-0">
                             <label class="form-label">Berita Acara Uitzet</label>
                             <input class="form-control" type="file" value="{{ old('uitzet_minutes') }}"
                                 name="uitzet_minutes" accept=".pdf" id="">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                            <label class="form-label">Berita Acara PCM</label>
+                            <input class="form-control" type="file" value="{{ old('pcm_minutes') }}"
+                                name="pcm_minutes" accept=".pdf" id="">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                        <label class="form-label">Dokumen Invoice</label>
+                            <input class="form-control" type="file" value="{{ old('invoices') }}"
+                                name="invoices" accept=".pdf" id="">
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -620,15 +641,29 @@
                     <div class="col-lg-6">
                         <div class="mb-3 ajax-select mt-3 mt-lg-0">
                             <label class="form-label">Mutual Check 0</label>
-                            <input class="form-control" type="file" value="{{ old('mitual_check_0') }}"
-                                name="minutes_of_mutual_check_0" accept=".pdf" id="">
+                            <input class="form-control" type="file" value="{{ old('mutual_check_0') }}"
+                                name="mutual_check_0" accept=".pdf" id="">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                            <label class="form-label">Shop Drawing</label>
+                            <input class="form-control" type="file" value="{{ old('shop_drawing') }}"
+                                name="shop_drawing" accept=".pdf" id="">
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="mb-3 ajax-select mt-3 mt-lg-0">
                             <label class="form-label">Mutual Check 100</label>
                             <input class="form-control" type="file" value="{{ old('mutual_check_100') }}"
-                                name="minutes_of_mutual_check_100" accept=".pdf" id="">
+                                name="mutual_check_100" accept=".pdf" id="">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                            <label class="form-label">Asbuild Dranding</label>
+                            <input class="form-control" type="file" value="{{ old('asbuild_dranding') }}"
+                                name="asbuild_dranding" accept=".pdf" id="">
                         </div>
                     </div>
                     <div class="col-lg-6">

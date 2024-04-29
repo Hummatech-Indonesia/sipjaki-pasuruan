@@ -152,7 +152,59 @@
                                         type="button" class="btn btn-md text-white" style="background-color:#1B3061;"><i
                                             class="bx bxs-download bx-xs"></i>
                                         Download</a>
+                                @else
+                                -
                                 @endif
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Surat Pesanan</td>
+                            <td>:</td>
+                            <td>
+                                {{-- @if ($project->executorProject->mail_order)
+                                    <a href="{{ route('downloadExecutorContract', ['executorProject' => $project->executorProject->id]) }}"
+                                        type="button" class="btn btn-md text-white" style="background-color:#1B3061;"><i
+                                            class="bx bxs-download bx-xs"></i>
+                                        Download</a>
+                                @endif --}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Berita Acara Uitzet</td>
+                            <td>:</td>
+                            <td>
+                                @if ($project->executorProject->uitzet_minutes)
+                                    <a href="{{ route('downloadMinutesOfHandOver', ['executorProject' => $project->executorProject->id]) }}"
+                                        type="button" class="btn btn-md text-white" style="background-color:#1B3061;"><i
+                                            class="bx bxs-download bx-xs"></i>
+                                        Download</a>
+                                @else
+                                -
+                                @endif
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Berita Acara PCM</td>
+                            <td>:</td>
+                            <td>
+                                {{-- @if ($project->executorProject->uitzet_minutes)
+                                    <a href="{{ route('downloadMinutesOfHandOver', ['executorProject' => $project->executorProject->id]) }}"
+                                        type="button" class="btn btn-md text-white" style="background-color:#1B3061;"><i
+                                            class="bx bxs-download bx-xs"></i>
+                                        Download</a>
+                                @endif --}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Dokumen Invoice</td>
+                            <td>:</td>
+                            <td>
+                                {{-- @if ($project->executorProject->uitzet_minutes)
+                                    <a href="{{ route('downloadMinutesOfHandOver', ['executorProject' => $project->executorProject->id]) }}"
+                                        type="button" class="btn btn-md text-white" style="background-color:#1B3061;"><i
+                                            class="bx bxs-download bx-xs"></i>
+                                        Download</a>
+                                @endif --}}
                             </td>
                         </tr>
                         <tr>
@@ -197,11 +249,23 @@
                             <td>:</td>
                             <td>
                                 @if ($project->executorProject->mutual_check_0)
-                                    <a href="{{ route('downloadMinutesOfHandOver', ['executorProject-' => $project->executorProject->id]) }}"
+                                    <a href="{{ route('downloadMinutesOfHandOver', ['executorProject' => $project->executorProject->id]) }}"
                                         type="button" class="btn btn-md text-white" style="background-color:#1B3061;"><i
                                             class="bx bxs-download bx-xs"></i>
                                         Download</a>
                                 @endif
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Shop Drawing</td>
+                            <td>:</td>
+                            <td>
+                                {{-- @if ($project->executorProject->mutual_check_0)
+                                    <a href="{{ route('downloadMinutesOfHandOver', ['executorProject' => $project->executorProject->id]) }}"
+                                        type="button" class="btn btn-md text-white" style="background-color:#1B3061;"><i
+                                            class="bx bxs-download bx-xs"></i>
+                                        Download</a>
+                                @endif --}}
                             </td>
                         </tr>
                         <tr>
@@ -209,7 +273,7 @@
                             <td>:</td>
                             <td>
                                 @if ($project->executorProject->mutual_check_100)
-                                    <a href="{{ route('downloadMinutesOfHandOver', ['executorProject-' => $project->executorProject->id]) }}"
+                                    <a href="{{ route('downloadMinutesOfHandOver', ['executorProject' => $project->executorProject->id]) }}"
                                         type="button" class="btn btn-md text-white" style="background-color:#1B3061;"><i
                                             class="bx bxs-download bx-xs"></i>
                                         Download</a>
@@ -217,11 +281,23 @@
                             </td>
                         </tr>
                         <tr>
+                            <td>Asbuild Dranding</td>
+                            <td>:</td>
+                            <td>
+                                {{-- @if ($project->executorProject->mutual_check_0)
+                                    <a href="{{ route('downloadMinutesOfHandOver', ['executorProject' => $project->executorProject->id]) }}"
+                                        type="button" class="btn btn-md text-white" style="background-color:#1B3061;"><i
+                                            class="bx bxs-download bx-xs"></i>
+                                        Download</a>
+                                @endif --}}
+                            </td>
+                        </tr>
+                        <tr>
                             <td>Berita Acara P1</td>
                             <td>:</td>
                             <td>
                                 @if ($project->executorProject->p1_meeting_minutes)
-                                    <a href="{{ route('downloadMinutesOfHandOver', ['executorProject-' => $project->executorProject->id]) }}"
+                                    <a href="{{ route('downloadMinutesOfHandOver', ['executorProject' => $project->executorProject->id]) }}"
                                         type="button" class="btn btn-md text-white" style="background-color:#1B3061;"><i
                                             class="bx bxs-download bx-xs"></i>
                                         Download</a>
@@ -233,19 +309,7 @@
                             <td>:</td>
                             <td>
                                 @if ($project->executorProject->p2_meeting_minutes)
-                                    <a href="{{ route('downloadMinutesOfHandOver', ['executorProject-' => $project->executorProject->id]) }}"
-                                        type="button" class="btn btn-md text-white" style="background-color:#1B3061;"><i
-                                            class="bx bxs-download bx-xs"></i>
-                                        Download</a>
-                                @endif
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Berita Acara Uitzet</td>
-                            <td>:</td>
-                            <td>
-                                @if ($project->executorProject->uitzet_minutes)
-                                    <a href="{{ route('downloadMinutesOfHandOver', ['executorProject-' => $project->executorProject->id]) }}"
+                                    <a href="{{ route('downloadMinutesOfHandOver', ['executorProject' => $project->executorProject->id]) }}"
                                         type="button" class="btn btn-md text-white" style="background-color:#1B3061;"><i
                                             class="bx bxs-download bx-xs"></i>
                                         Download</a>

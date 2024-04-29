@@ -15,6 +15,8 @@ class UploadConsultantRequest extends FormRequest
     {
         return [
             'contract' => 'nullable|mimes:pdf',
+            'mail_order' => 'nullable|mimes:pdf',
+            'pcm_minutes' => 'nullable|mimes:pdf',
             'administrative_minutes' => 'nullable|mimes:pdf',
             'report' => 'nullable|mimes:pdf',
             'minutes_of_disbursement' => 'nullable|mimes:pdf',

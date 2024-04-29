@@ -151,6 +151,19 @@
                                         </td>
                                     </tr>
                                     <tr>
+                                        <td>Surat Pesanan</td>
+                                        <td>:</td>
+                                        <td>
+                                            {{-- @if($consultantProject->contract)
+                                            <a href="{{route('downloadContract',['consultantProject' => $consultantProject->id])}}" type="button" class="btn btn-md text-white"
+                                                style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                                Download</a>
+                                            @else
+                                            -
+                                            @endif --}}
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <td>Berita Acara Serah Terima</td>
                                         <td>:</td>
                                         <td>

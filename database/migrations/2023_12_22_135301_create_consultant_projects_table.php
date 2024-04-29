@@ -26,6 +26,8 @@ return new class extends Migration
             $table->dateTime('finance_progress_start')->nullable();
             $table->integer('finance_progress')->default(0);
             $table->string('contract')->nullable();
+            $table->string('mail_order')->nullable();
+            $table->string('pcm_minutes')->nullable();
             $table->string('administrative_minutes')->nullable();
             $table->string('report')->nullable();
             $table->string('minutes_of_disbursement')->nullable();

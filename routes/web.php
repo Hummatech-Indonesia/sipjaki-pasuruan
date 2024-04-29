@@ -133,15 +133,21 @@ Route::middleware('auth')->group(function () {
     Route::get('download-report/{consultantProject}', [ConsultantProjectController::class, 'downloadReport'])->name('downloadReport');
     Route::get('download-minutes-of-disbursement/{consultantProject}', [ConsultantProjectController::class, 'downloadMinutesOfDisbursement'])->name('downloadMinutesOfDisbursement');
     Route::get('download-minutes-of-hand-over/{consultantProject}', [ConsultantProjectController::class, 'downloadMinutesOfHandOver'])->name('downloadMinutesOfHandOver');
+    Route::get('download-mail-order/{consultantProject}', [ConsultantProjectController::class, 'downloadMailOrder'])->name('downloadMailOrder');
+    Route::get('download-pcm-minutes/{consultantProject}', [ConsultantProjectController::class, 'downloadPcmMinutes'])->name('downloadPcmMinutes');
 
     Route::get('download-executor-contract/{executorProject}', [ExecutorProjectController::class, 'downloadContract'])->name('downloadExecutorContract');
+    Route::get('download-executor-mail-order/{executorProject}', [ExecutorProjectController::class, 'downloadMailOrder'])->name('downloadExecutorMailOrder');
     Route::get('download-executor-administrative-minutes/{executorProject}', [ExecutorProjectController::class, 'downloadAdministrativeMinutes'])->name('downloadExecutorAdministrativeMinutes');
     Route::get('download-executor-report/{executorProject}', [ExecutorProjectController::class, 'downloadReport'])->name('downloadExecutorReport');
     Route::get('download-executor-minutes-of-disbursement/{executorProject}', [ExecutorProjectController::class, 'downloadMinutesOfDisbursement'])->name('downloadExecutorMinutesOfDisbursement');
     Route::get('download-uitzet-minutes/{executorProject}', [ExecutorProjectController::class, 'downloadUitzetMinutes'])->name('downloadUitzetMinutes');
+    Route::get('download-executor-pcm-minutes/{executorProject}', [ExecutorProjectController::class, 'downloadPcmMinutes'])->name('downloadExecutorPcmMinutes');
+    Route::get('download-invoices/{executorProject}', [ExecutorProjectController::class, 'downloadInvoices'])->name('downloadInvoices');
     Route::get('download-mutual-check-0/{executorProject}', [ExecutorProjectController::class, 'downloadMutualCheck0'])->name('downloadMutualCheck0');
+    Route::get('download-shop-drawing/{executorProject}', [ExecutorProjectController::class, 'downloadShopDrawing'])->name('downloadShopDrawing');
     Route::get('download-mutual-check-100/{executorProject}', [ExecutorProjectController::class, 'downloadMutualCheck100'])->name('downloadMutualCheck100');
-    Route::get('download-mutual-check-0/{executorProject}', [ExecutorProjectController::class, 'downloadMutualCheck0'])->name('downloadMutualCheck0');
+    Route::get('download-asbuild-dranding/{executorProject}', [ExecutorProjectController::class, 'downloadAsbuildDranding'])->name('downloadAsbuildDranding');
     Route::get('download-p1-meeting-minutes/{executorProject}', [ExecutorProjectController::class, 'downloadP1MeetingMinutes'])->name('downloadP1MeetingMinutes');
     Route::get('download-p2-meeting-minutes/{executorProject}', [ExecutorProjectController::class, 'downloadP2MeetingMinutes'])->name('downloadP2MeetingMinutes');
 
