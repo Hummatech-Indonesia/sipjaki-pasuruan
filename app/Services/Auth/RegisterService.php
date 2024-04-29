@@ -39,7 +39,6 @@ class RegisterService
         Mail::to($data['email'])->send(new RegistrationMail(['email' => $request->email, 'user' => $request->name, 'token' => $token, 'id' => $user->id]));
 
         $user->assignRole(RoleEnum::SERVICE_PRODIVER);
-        $userEmail = User::where('email', $user->email)->first();
-        return $userEmail->id;
+        return $user->id;
     }
 }

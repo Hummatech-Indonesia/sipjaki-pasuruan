@@ -51,16 +51,10 @@ class NewsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(NewsRequest $request)
+public function store(NewsRequest $request)
     {
         $this->news->store($this->service->store($request));
-        if ($request->is('api/*')) {
-
-            return ResponseHelper::success(null, trans('alert.add_success'));
-        } else {
-
-            return redirect()->back()->with('success', trans('alert.add_success'));
-        }
+        return redirect()->back()->with('success', trans('alert.add_success'));
     }
 
     /**
