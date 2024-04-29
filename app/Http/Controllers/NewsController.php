@@ -52,7 +52,6 @@ class NewsController extends Controller
      */
     public function store(NewsRequest $request)
     {
-        dd($request);
         $this->news->store($this->service->store($request));
         return redirect()->back()->with('success', trans('alert.add_success'));
     }
