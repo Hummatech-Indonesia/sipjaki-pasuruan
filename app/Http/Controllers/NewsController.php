@@ -51,9 +51,9 @@ class NewsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-public function store(NewsRequest $request)
+    public function store(Request $request)
     {
-        dd('bejir');
+        dd($request);
         $this->news->store($this->service->store($request));
         return redirect()->back()->with('success', trans('alert.add_success'));
     }
@@ -87,13 +87,8 @@ public function store(NewsRequest $request)
     public function update(NewsUpdateRequest $request, News $news)
     {
         $this->news->update($news->id, $this->service->update($request, $news));
-        if ($request->is('api/*')) {
 
-            return ResponseHelper::success(null, trans('alert.update_success'));
-        } else {
-
-            return redirect()->back()->with('success', trans('alert.update_success'));
-        }
+        return redirect()->back()->with('success', trans('alert.update_success'));
     }
 
     /**
@@ -104,12 +99,7 @@ public function store(NewsRequest $request)
     public function destroy(News $news, Request $request)
     {
         $this->news->delete($news->id);
-        if ($request->is('api/*')) {
 
-            return ResponseHelper::success(null, trans('alert.delete_success'));
-        } else {
-
-            return redirect()->back()->with('success', trans('alert.delete_success'));
-        }
+        return redirect()->back()->with('success', trans('alert.delete_success'));
     }
 }
