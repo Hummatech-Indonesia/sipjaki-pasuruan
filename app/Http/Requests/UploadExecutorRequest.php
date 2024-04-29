@@ -22,7 +22,7 @@ class UploadExecutorRequest extends FormRequest
             'mutual_check_0' => 'nullable|mimes:pdf',
             'shop_drawing' => 'nullable|mimes:pdf',
             'mutual_check_100' => 'nullable|mimes:pdf',
-            'asbuild_dranding' => 'nullable|mimes:pdf',
+            'asbuild_drnding' => 'nullable|mimes:pdf',
             'uitzet_minutes' => 'nullable|mimes:pdf',
             'pcm_minutes' => 'nullable|mimes:pdf',
             'invoices' => 'nullable|mimes:pdf',

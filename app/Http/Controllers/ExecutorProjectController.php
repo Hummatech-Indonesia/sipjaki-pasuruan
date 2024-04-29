@@ -131,6 +131,66 @@ class ExecutorProjectController extends Controller
         return response()->download(storage_path('app/public/' . $executorProject->contract), 'Berkas Kontrak ' . $executorProject->name . '.' . $filePath['extension']);
     }
 
+       /**
+     * downloadContract
+     *
+     * @param  mixed $executorProject
+     * @return void
+     */
+    public function downloadMailOrder(ExecutorProject $executorProject)
+    {
+        $filePath = pathinfo(basename($executorProject->mail_order, PATHINFO_EXTENSION));
+        return response()->download(storage_path('app/public/' . $executorProject->mail_order), 'Berkas Surat Pesanan ' . $executorProject->name . '.' . $filePath['extension']);
+    }
+
+       /**
+     * downloadContract
+     *
+     * @param  mixed $executorProject
+     * @return void
+     */
+    public function downloadPcmMinutes(ExecutorProject $executorProject)
+    {
+        $filePath = pathinfo(basename($executorProject->pcm_minutes, PATHINFO_EXTENSION));
+        return response()->download(storage_path('app/public/' . $executorProject->pcm_minutes), 'Berkas Berita Acara PCM ' . $executorProject->name . '.' . $filePath['extension']);
+    }
+
+       /**
+     * downloadContract
+     *
+     * @param  mixed $executorProject
+     * @return void
+     */
+    public function downloadInvoices(ExecutorProject $executorProject)
+    {
+        $filePath = pathinfo(basename($executorProject->invoices, PATHINFO_EXTENSION));
+        return response()->download(storage_path('app/public/' . $executorProject->invoices), 'Berkas Invoice ' . $executorProject->name . '.' . $filePath['extension']);
+    }
+
+       /**
+     * downloadContract
+     *
+     * @param  mixed $executorProject
+     * @return void
+     */
+    public function downloadShopDrawing(ExecutorProject $executorProject)
+    {
+        $filePath = pathinfo(basename($executorProject->shop_drawing, PATHINFO_EXTENSION));
+        return response()->download(storage_path('app/public/' . $executorProject->shop_drawing), 'Berkas Shop Drawing ' . $executorProject->name . '.' . $filePath['extension']);
+    }
+
+       /**
+     * downloadContract
+     *
+     * @param  mixed $executorProject
+     * @return void
+     */
+    public function downloadAsbuildDrading(ExecutorProject $executorProject)
+    {
+        $filePath = pathinfo(basename($executorProject->ashbuild_drading, PATHINFO_EXTENSION));
+        return response()->download(storage_path('app/public/' . $executorProject->ashbuild_drading), 'Berkas Asbuild Drading ' . $executorProject->name . '.' . $filePath['extension']);
+    }
+
     /**
      * downloadAdministrativeMinutes
      *

@@ -31,6 +31,8 @@ class ConsultantProject extends Model implements HasFiscalYear,HasDinas,HasFundS
         'finance_progress',
         'fiscal_year_id',
         'contract',
+        'mail_order',
+        'pcm_minutes',
         'administrative_minutes',
         'report',
         'minutes_of_disbursement',

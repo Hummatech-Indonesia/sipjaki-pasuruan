@@ -164,6 +164,30 @@ class ConsultantProjectController extends Controller
     }
 
     /**
+     * downloadContract
+     *
+     * @param  mixed $consultantProject
+     * @return void
+     */
+    public function downloadMailOrder(ConsultantProject $consultantProject)
+    {
+        $filePath = pathinfo(basename($consultantProject->mail_order, PATHINFO_EXTENSION));
+        return response()->download(storage_path('app/public/' . $consultantProject->mail_order), 'Berkas Surat Pesanan ' . $consultantProject->name . '.' . $filePath['extension']);
+    }
+
+    /**
+     * downloadContract
+     *
+     * @param  mixed $consultantProject
+     * @return void
+     */
+    public function downloadPcmMinutes(ConsultantProject $consultantProject)
+    {
+        $filePath = pathinfo(basename($consultantProject->pcm_minutes, PATHINFO_EXTENSION));
+        return response()->download(storage_path('app/public/' . $consultantProject->pcm_minutes), 'Berkas Berita Acara PCM ' . $consultantProject->name . '.' . $filePath['extension']);
+    }
+
+    /**
      * downloadAdministrativeMinutes
      *
      * @param  mixed $downloadAdministrativeMinutes

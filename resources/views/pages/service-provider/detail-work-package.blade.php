@@ -661,9 +661,9 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="mb-3 ajax-select mt-3 mt-lg-0">
-                            <label class="form-label">Asbuild Dranding</label>
-                            <input class="form-control" type="file" value="{{ old('asbuild_dranding') }}"
-                                name="asbuild_dranding" accept=".pdf" id="">
+                            <label class="form-label">Asbuild Drading</label>
+                            <input class="form-control" type="file" value="{{ old('asbuild_drading') }}"
+                                name="asbuild_drading" accept=".pdf" id="">
                         </div>
                     </div>
                     <div class="col-lg-6">

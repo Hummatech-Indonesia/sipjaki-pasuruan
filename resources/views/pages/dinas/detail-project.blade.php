@@ -281,7 +281,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Asbuild Dranding</td>
+                            <td>Asbuild Drading</td>
                             <td>:</td>
                             <td>
                                 {{-- @if ($project->executorProject->mutual_check_0)
