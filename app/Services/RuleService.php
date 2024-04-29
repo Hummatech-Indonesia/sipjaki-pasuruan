@@ -3,9 +3,7 @@
 namespace App\Services;
 
 use App\Enums\UploadDiskEnum;
-use App\Http\Requests\NewsRequest;
 use App\Http\Requests\RuleRequest;
-use App\Models\News;
 use App\Models\Rule;
 use App\Traits\UploadTrait;
 

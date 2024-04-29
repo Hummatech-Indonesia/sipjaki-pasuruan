@@ -10,7 +10,6 @@ use App\Http\Resources\NewsResource;
 use App\Models\News;
 use App\Services\NewsService;
 use App\Traits\PaginationTrait;
-use GuzzleHttp\RedirectMiddleware;
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
@@ -51,7 +50,7 @@ class NewsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(NewsRequest $request)
     {
         dd($request);
         $this->news->store($this->service->store($request));
