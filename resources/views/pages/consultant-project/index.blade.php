@@ -154,13 +154,26 @@
                                         <td>Surat Pesanan</td>
                                         <td>:</td>
                                         <td>
-                                            {{-- @if($consultantProject->contract)
-                                            <a href="{{route('downloadContract',['consultantProject' => $consultantProject->id])}}" type="button" class="btn btn-md text-white"
+                                            @if($consultantProject->mail_order)
+                                            <a href="{{route('downloadMailOrder',['consultantProject' => $consultantProject->id])}}" type="button" class="btn btn-md text-white"
                                                 style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
                                                 Download</a>
                                             @else
                                             -
-                                            @endif --}}
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Berita Acara PCM</td>
+                                        <td>:</td>
+                                        <td>
+                                            @if($consultantProject->pcm_minutes)
+                                            <a href="{{route('downloadPcmMinutes',['consultantProject' => $consultantProject->id])}}" type="button" class="btn btn-md text-white"
+                                                style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                                Download</a>
+                                            @else
+                                            -
+                                            @endif
                                         </td>
                                     </tr>
                                     <tr>

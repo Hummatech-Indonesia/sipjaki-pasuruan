@@ -160,6 +160,16 @@
                                         <td>:</td>
                                         <td>{{ $executorProject->characteristic_project }}</td>
                                     </tr>
+                                    <tr>
+                                        <td>Pelaksana</td>
+                                        <td>:</td>
+                                        <td>{{ $executorProject->serviceProvider->user->name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Konsultan</td>
+                                        <td>:</td>
+                                        <td>{{ $executorProject->consultantProject->serviceProvider->user->name }}</td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -406,6 +416,22 @@
                                                 type="button" class="btn btn-md text-white"
                                                 style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
                                                 Download</a>
+                                        @else
+                                        -
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Surat Pesanan</td>
+                                    <td>:</td>
+                                    <td>
+                                        @if ($executorProject->mail_order)
+                                            <a href="{{ route('downloadExecutorMailOrder', ['executorProject' => $executorProject->id]) }}"
+                                                type="button" class="btn btn-md text-white"
+                                                style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                                Download</a>
+                                        @else
+                                        -
                                         @endif
                                     </td>
                                 </tr>
@@ -418,6 +444,36 @@
                                                 type="button" class="btn btn-md text-white"
                                                 style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
                                                 Download</a>
+                                        @else
+                                        - 
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Berita Acara PCM</td>
+                                    <td>:</td>
+                                    <td>
+                                        @if ($executorProject->pcm_minutes)
+                                            <a href="{{ route('downloadExecutorPcmMinutes', ['executorProject' => $executorProject->id]) }}"
+                                                type="button" class="btn btn-md text-white"
+                                                style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                                Download</a>
+                                        @else
+                                        - 
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Dokumen Invoice</td>
+                                    <td>:</td>
+                                    <td>
+                                        @if ($executorProject->invoices)
+                                            <a href="{{ route('downloadInvoices', ['executorProject' => $executorProject->id]) }}"
+                                                type="button" class="btn btn-md text-white"
+                                                style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                                Download</a>
+                                        @else
+                                        - 
                                         @endif
                                     </td>
                                 </tr>
@@ -430,6 +486,22 @@
                                                 type="button" class="btn btn-md text-white"
                                                 style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
                                                 Download</a>
+                                        @else
+                                        - 
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Shop Drawing</td>
+                                    <td>:</td>
+                                    <td>
+                                        @if ($executorProject->shop_drawing)
+                                            <a href="{{ route('downloadShopDrawing', ['executorProject' => $executorProject->id]) }}"
+                                                type="button" class="btn btn-md text-white"
+                                                style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                                Download</a>
+                                        @else
+                                        - 
                                         @endif
                                     </td>
                                 </tr>
@@ -446,6 +518,20 @@
                                     </td>
                                 </tr>
                                 <tr>
+                                    <td>Asbuild Dranding</td>
+                                    <td>:</td>
+                                    <td>
+                                        @if ($executorProject->asbuild_drading)
+                                            <a href="{{ route('downloadAsbuildDrading', ['executorProject' => $executorProject->id]) }}"
+                                                type="button" class="btn btn-md text-white"
+                                                style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                                Download</a>
+                                        @else
+                                        - 
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
                                     <td>Berita Acara P1</td>
                                     <td>:</td>
                                     <td>
@@ -454,6 +540,8 @@
                                                 type="button" class="btn btn-md text-white"
                                                 style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
                                                 Download</a>
+                                        @else
+                                        -
                                         @endif
                                     </td>
                                 </tr>
@@ -467,6 +555,8 @@
                                                 type="button" class="btn btn-md text-white"
                                                 style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
                                                 Download</a>
+                                        @else
+                                        - 
                                         @endif
                                     </td>
                                 </tr>
@@ -480,6 +570,8 @@
                                                 type="button" class="btn btn-md text-white"
                                                 style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
                                                 Download</a>
+                                        @else
+                                        - 
                                         @endif
                                     </td>
                                 </tr>
@@ -493,6 +585,8 @@
                                                 type="button" class="btn btn-md text-white"
                                                 style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
                                                 Download</a>
+                                        @else
+                                        - 
                                         @endif
                                     </td>
                                 </tr>
@@ -506,6 +600,8 @@
                                                 type="button" class="btn btn-md text-white"
                                                 style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
                                                 Download</a>
+                                        @else
+                                        - 
                                         @endif
                                     </td>
                                 </tr>
