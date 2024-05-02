@@ -223,7 +223,6 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::middleware('role:admin|superadmin|dinas')->group(function () {
-
         Route::get('detail-association/{association}', [AssociationController::class, 'show'])->name('association.detail');
         Route::get('detail-project-dinas/{project}', [ProjectController::class, 'detailProjectDinas']);
         Route::resource('consultant-projects', ConsultantProjectController::class)->only(['index']);
@@ -234,8 +233,6 @@ Route::middleware('auth')->group(function () {
         Route::delete('training-members/{training_member}', [TrainingMemberController::class, 'destroy']);
         Route::post('import-training-members', [TrainingMemberController::class, 'import']);
         Route::delete('delete-training-members', [TrainingMemberController::class, 'multipleDelete'])->name('delete-member');
-
-
         Route::get('training', [TrainingController::class, 'index'])->name('training');
         Route::post('training', [TrainingController::class, 'store'])->name('training.store');
         Route::put('training.update/{training}', [TrainingController::class, 'update'])->name('training.update');
