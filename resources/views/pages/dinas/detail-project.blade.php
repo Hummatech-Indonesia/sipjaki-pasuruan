@@ -161,12 +161,14 @@
                             <td>Surat Pesanan</td>
                             <td>:</td>
                             <td>
-                                {{-- @if ($project->executorProject->mail_order)
-                                    <a href="{{ route('downloadExecutorContract', ['executorProject' => $project->executorProject->id]) }}"
+                                @if ($project->executorProject->mail_order)
+                                    <a href="{{ route('downloadExecutorOrderMail', ['executorProject' => $project->executorProject->id]) }}"
                                         type="button" class="btn btn-md text-white" style="background-color:#1B3061;"><i
                                             class="bx bxs-download bx-xs"></i>
                                         Download</a>
-                                @endif --}}
+                                @else
+                                - 
+                                @endif
                             </td>
                         </tr>
                         <tr>
@@ -187,24 +189,28 @@
                             <td>Berita Acara PCM</td>
                             <td>:</td>
                             <td>
-                                {{-- @if ($project->executorProject->uitzet_minutes)
-                                    <a href="{{ route('downloadMinutesOfHandOver', ['executorProject' => $project->executorProject->id]) }}"
+                                @if ($project->executorProject->pcm_minutes)
+                                    <a href="{{ route('downloadPcmMinutes', ['executorProject' => $project->executorProject->id]) }}"
                                         type="button" class="btn btn-md text-white" style="background-color:#1B3061;"><i
                                             class="bx bxs-download bx-xs"></i>
                                         Download</a>
-                                @endif --}}
+                                @else
+                                - 
+                                @endif
                             </td>
                         </tr>
                         <tr>
                             <td>Dokumen Invoice</td>
                             <td>:</td>
                             <td>
-                                {{-- @if ($project->executorProject->uitzet_minutes)
-                                    <a href="{{ route('downloadMinutesOfHandOver', ['executorProject' => $project->executorProject->id]) }}"
+                                @if ($project->executorProject->invoices)
+                                    <a href="{{ route('downloadInvoices', ['executorProject' => $project->executorProject->id]) }}"
                                         type="button" class="btn btn-md text-white" style="background-color:#1B3061;"><i
                                             class="bx bxs-download bx-xs"></i>
                                         Download</a>
-                                @endif --}}
+                                @else
+                                - 
+                                @endif
                             </td>
                         </tr>
                         <tr>
@@ -217,6 +223,8 @@
                                         type="button" class="btn btn-md text-white" style="background-color:#1B3061;"><i
                                             class="bx bxs-download bx-xs"></i>
                                         Download</a>
+                                @else
+                                - 
                                 @endif
                             </td>
                         </tr>
@@ -229,6 +237,8 @@
                                         type="button" class="btn btn-md text-white" style="background-color:#1B3061;"><i
                                             class="bx bxs-download bx-xs"></i>
                                         Download</a>
+                                @else
+                                - 
                                 @endif
                             </td>
                         </tr>
@@ -241,6 +251,8 @@
                                         type="button" class="btn btn-md text-white" style="background-color:#1B3061;"><i
                                             class="bx bxs-download bx-xs"></i>
                                         Download</a>
+                                @else
+                                - 
                                 @endif
                             </td>
                         </tr>
@@ -253,6 +265,8 @@
                                         type="button" class="btn btn-md text-white" style="background-color:#1B3061;"><i
                                             class="bx bxs-download bx-xs"></i>
                                         Download</a>
+                                @else
+                                - 
                                 @endif
                             </td>
                         </tr>
@@ -260,12 +274,14 @@
                             <td>Shop Drawing</td>
                             <td>:</td>
                             <td>
-                                {{-- @if ($project->executorProject->mutual_check_0)
-                                    <a href="{{ route('downloadMinutesOfHandOver', ['executorProject' => $project->executorProject->id]) }}"
+                                @if ($project->executorProject->shop_drawing)
+                                    <a href="{{ route('downloadShopDrawing', ['executorProject' => $project->executorProject->id]) }}"
                                         type="button" class="btn btn-md text-white" style="background-color:#1B3061;"><i
                                             class="bx bxs-download bx-xs"></i>
                                         Download</a>
-                                @endif --}}
+                                @else
+                                - 
+                                @endif
                             </td>
                         </tr>
                         <tr>
@@ -277,19 +293,23 @@
                                         type="button" class="btn btn-md text-white" style="background-color:#1B3061;"><i
                                             class="bx bxs-download bx-xs"></i>
                                         Download</a>
+                                @else
+                                - 
                                 @endif
                             </td>
                         </tr>
                         <tr>
-                            <td>Asbuild Drading</td>
+                            <td>Asbuild Drawing</td>
                             <td>:</td>
                             <td>
-                                {{-- @if ($project->executorProject->mutual_check_0)
-                                    <a href="{{ route('downloadMinutesOfHandOver', ['executorProject' => $project->executorProject->id]) }}"
+                                @if ($project->executorProject->asbuild_drawing)
+                                    <a href="{{ route('downloadAsbuildDrawing', ['executorProject' => $project->executorProject->id]) }}"
                                         type="button" class="btn btn-md text-white" style="background-color:#1B3061;"><i
                                             class="bx bxs-download bx-xs"></i>
                                         Download</a>
-                                @endif --}}
+                                @else
+                                - 
+                                @endif
                             </td>
                         </tr>
                         <tr>
@@ -301,6 +321,8 @@
                                         type="button" class="btn btn-md text-white" style="background-color:#1B3061;"><i
                                             class="bx bxs-download bx-xs"></i>
                                         Download</a>
+                                @else
+                                - 
                                 @endif
                             </td>
                         </tr>
@@ -313,6 +335,8 @@
                                         type="button" class="btn btn-md text-white" style="background-color:#1B3061;"><i
                                             class="bx bxs-download bx-xs"></i>
                                         Download</a>
+                                @else
+                                - 
                                 @endif
                             </td>
                         </tr>
@@ -349,6 +373,8 @@
                                         type="button" class="btn btn-md text-white" style="background-color:#1B3061;"><i
                                             class="bx bxs-download bx-xs"></i>
                                         Download</a>
+                                @else
+                                - 
                                 @endif
                             </td>
                         </tr>
@@ -362,6 +388,8 @@
                                         type="button" class="btn btn-md text-white" style="background-color:#1B3061;"><i
                                             class="bx bxs-download bx-xs"></i>
                                         Download</a>
+                                @else
+                                - 
                                 @endif
                             </td>
                         </tr>
@@ -374,6 +402,8 @@
                                         type="button" class="btn btn-md text-white" style="background-color:#1B3061;"><i
                                             class="bx bxs-download bx-xs"></i>
                                         Download</a>
+                                @else
+                                - 
                                 @endif
                             </td>
                         </tr>
@@ -386,6 +416,8 @@
                                         type="button" class="btn btn-md text-white" style="background-color:#1B3061;"><i
                                             class="bx bxs-download bx-xs"></i>
                                         Download</a>
+                                @else
+                                - 
                                 @endif
                             </td>
                         </tr>
@@ -398,6 +430,8 @@
                                         type="button" class="btn btn-md text-white" style="background-color:#1B3061;"><i
                                             class="bx bxs-download bx-xs"></i>
                                         Download</a>
+                                @else
+                                - 
                                 @endif
                             </td>
                         </tr>

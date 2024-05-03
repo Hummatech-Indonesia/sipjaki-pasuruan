@@ -37,7 +37,7 @@ class ExecutorProject extends Model implements HasAccidents,HasFiscalYear,HasFun
         'pcm_minutes',
         'invoices',
         'shop_drawing',
-        'asbuild_drading',
+        'asbuild_drawing',
         'administrative_minutes',
         'uitzet_minutes',
         'mutual_check_0',

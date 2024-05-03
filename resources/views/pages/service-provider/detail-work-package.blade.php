@@ -518,11 +518,11 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Asbuild Dranding</td>
+                                    <td>Asbuild Drawing</td>
                                     <td>:</td>
                                     <td>
-                                        @if ($executorProject->asbuild_drading)
-                                            <a href="{{ route('downloadAsbuildDrading', ['executorProject' => $executorProject->id]) }}"
+                                        @if ($executorProject->asbuild_drawing)
+                                            <a href="{{ route('downloadAsbuildDrawing', ['executorProject' => $executorProject->id]) }}"
                                                 type="button" class="btn btn-md text-white"
                                                 style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
                                                 Download</a>
@@ -757,9 +757,9 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="mb-3 ajax-select mt-3 mt-lg-0">
-                            <label class="form-label">Asbuild Drading</label>
-                            <input class="form-control" type="file" value="{{ old('asbuild_drading') }}"
-                                name="asbuild_drading" accept=".pdf" id="">
+                            <label class="form-label">Asbuild Drawing</label>
+                            <input class="form-control" type="file" value="{{ old('asbuild_drawing') }}"
+                                name="asbuild_drawing" accept=".pdf" id="">
                         </div>
                     </div>
                     <div class="col-lg-6">

@@ -28,9 +28,14 @@ return new class extends Migration
             $table->dateTime('finance_progress_start')->nullable();
             $table->integer('finance_progress')->default(0);
             $table->string('contract')->nullable();
+            $table->string('order_mail')->nullable();
             $table->string('administrative_minutes')->nullable();
             $table->string('uitzet_minutes')->nullable();
+            $table->string('pcm_minutes')->nullable();
+            $table->string('invoice')->nullable();
             $table->string('mutual_check_0')->nullable();
+            $table->string('shop_drawing')->nullable();
+            $table->string('asbuild_drawing')->nullable();
             $table->string('mutual_check_100')->nullable();
             $table->string('p1_meeting_minutes')->nullable();
             $table->string('p2_meeting_minutes')->nullable();

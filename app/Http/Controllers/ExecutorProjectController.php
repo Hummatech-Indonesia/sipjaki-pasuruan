@@ -187,8 +187,8 @@ class ExecutorProjectController extends Controller
      */
     public function downloadAsbuildDrading(ExecutorProject $executorProject)
     {
-        $filePath = pathinfo(basename($executorProject->ashbuild_drading, PATHINFO_EXTENSION));
-        return response()->download(storage_path('app/public/' . $executorProject->ashbuild_drading), 'Berkas Asbuild Drading ' . $executorProject->name . '.' . $filePath['extension']);
+        $filePath = pathinfo(basename($executorProject->asbuild_drawing, PATHINFO_EXTENSION));
+        return response()->download(storage_path('app/public/' . $executorProject->asbuild_drawing), 'Berkas Asbuild Drawing ' . $executorProject->name . '.' . $filePath['extension']);
     }
 
     /**

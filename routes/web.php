@@ -147,7 +147,7 @@ Route::middleware('auth')->group(function () {
     Route::get('download-mutual-check-0/{executorProject}', [ExecutorProjectController::class, 'downloadMutualCheck0'])->name('downloadMutualCheck0');
     Route::get('download-shop-drawing/{executorProject}', [ExecutorProjectController::class, 'downloadShopDrawing'])->name('downloadShopDrawing');
     Route::get('download-mutual-check-100/{executorProject}', [ExecutorProjectController::class, 'downloadMutualCheck100'])->name('downloadMutualCheck100');
-    Route::get('download-asbuild-drading/{executorProject}', [ExecutorProjectController::class, 'downloadAsbuildDrading'])->name('downloadAsbuildDrading');
+    Route::get('download-asbuild-drawing/{executorProject}', [ExecutorProjectController::class, 'downloadAsbuildDrawing'])->name('downloadAsbuildDrawing');
     Route::get('download-p1-meeting-minutes/{executorProject}', [ExecutorProjectController::class, 'downloadP1MeetingMinutes'])->name('downloadP1MeetingMinutes');
     Route::get('download-p2-meeting-minutes/{executorProject}', [ExecutorProjectController::class, 'downloadP2MeetingMinutes'])->name('downloadP2MeetingMinutes');
 
