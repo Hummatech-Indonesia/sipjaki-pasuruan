@@ -900,7 +900,7 @@
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #1B3061">
-                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Tambah </h5>
+                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Edit</h5>
                     <button type="button" class="btn-close" style="background-color: white" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
@@ -1046,24 +1046,6 @@
                             <h3>Detail (optional)</h3>
                             <section>
                                 <div>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="mb-3">
-                                                <label for="update-physical_progress_start">Progress Fisik Pada</label>
-                                                <input type="date" name="physical_progress_start" class="form-control"
-                                                    id="update-physical_progress_start"
-                                                    value="{{ old('physical_progress_start') }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="mb-3">
-                                                <label for="update-servicetax-input">Progress Fisik(%)</label>
-                                                <input type="text" name="physical_progress" class="form-control"
-                                                    id="update-servicetax-input" placeholder="Masukan progress"
-                                                    value="{{ old('physical_progress') }}">
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="mb-3">
