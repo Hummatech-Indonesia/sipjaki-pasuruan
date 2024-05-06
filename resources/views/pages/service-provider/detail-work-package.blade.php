@@ -245,7 +245,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($executorProject->serviceProviderProjects as $serviceProviderProject)
+                            @forelse ($executorProject->serviceProviderProjects()->orderBy('week')->get() as $serviceProviderProject)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ Carbon::parse($serviceProviderProject->date_start)->locale('id_ID')->isoFormat('DD MMMM Y') }}
@@ -658,7 +658,7 @@
                                 <div class="mb-3 ajax-select mt-3 mt-lg-0">
                                     <label class="form-label">Progres (max
                                         {{ 100 - $executorProject->physical_progress }}%)</label>
-                                    <input type="number" class="form-control" value="{{ old('progres') }}"
+                                    <input type="text" class="form-control" value="{{ old('progres') }}"
                                         name="progres" id="">
                                 </div>
                             </div>

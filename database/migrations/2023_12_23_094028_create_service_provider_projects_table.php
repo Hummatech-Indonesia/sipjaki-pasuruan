@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('service_provider_projects', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('executor_project_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->integer('progres');
+            $table->double('progres')->default(0.0);
             $table->date('date_start');
             $table->date('date_finish');
             $table->integer('week');

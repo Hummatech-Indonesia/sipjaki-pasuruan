@@ -469,7 +469,7 @@
                                             <div class="col-lg-6">
                                                 <div class="mb-3">
                                                     <label for="basicpill-declaration-input">Progress Keuangan(%)</label>
-                                                    <input type="number" name="finance_progress" class="form-control"
+                                                    <input type="text" name="finance_progress" class="form-control"
                                                         id="basicpill-Declaration-input"
                                                         placeholder="Masukan progress keuangan"
                                                         value="{{ old('finance_progress') ? old('finance_progress') : '0' }}">
@@ -1058,7 +1058,7 @@
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <label for="update-servicetax-input">Progress Fisik(%)</label>
-                                                <input type="number" name="physical_progress" class="form-control"
+                                                <input type="text" name="physical_progress" class="form-control"
                                                     id="update-servicetax-input" placeholder="Masukan progress"
                                                     value="{{ old('physical_progress') }}">
                                             </div>
@@ -1077,7 +1077,7 @@
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <label for="update-declaration-input">Progress Keuangan(%)</label>
-                                                <input type="number" name="finance_progress" class="form-control"
+                                                <input type="text" name="finance_progress" class="form-control"
                                                     id="update-Declaration-input" placeholder="Masukan progress keuangan"
                                                     value="{{ old('finance_progress') }}">
                                             </div>

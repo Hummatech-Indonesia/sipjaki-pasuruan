@@ -23,10 +23,10 @@ return new class extends Migration
             $table->string('name');
             $table->bigInteger('project_value')->default(0);
             $table->enum('characteristic_project', [CharacteristicProjectEnum::SINGLE->value, CharacteristicProjectEnum::MULTIPLE->value]);
-            $table->integer('physical_progress')->default(0);
+            $table->double('physical_progress')->default(0.0);
             $table->dateTime('physical_progress_start')->nullable();
             $table->dateTime('finance_progress_start')->nullable();
-            $table->integer('finance_progress')->default(0);
+            $table->double('finance_progress')->default(0.0);
             $table->string('contract')->nullable();
             $table->string('order_mail')->nullable();
             $table->string('administrative_minutes')->nullable();
