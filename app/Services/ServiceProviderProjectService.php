@@ -113,7 +113,7 @@ class ServiceProviderProjectService
     {
         if (Storage::exists($data->file)) {
             $filePath = storage_path('app/public/' . $data->file);
-            $customFileName = 'Progress Paket Pekerjaan ' . $data->executorProject->name . ' Minggu ke ' . $data->week;
+            $customFileName = 'Progress Paket Pekerjaan ' . $data->executorProject->name . ' Minggu ke ' . $data->week . '.pdf';
 
             return response()->download($filePath, $customFileName);
         } else {
