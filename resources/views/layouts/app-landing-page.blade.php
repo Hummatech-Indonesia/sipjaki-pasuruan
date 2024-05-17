@@ -7,6 +7,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    @if(request()->routeIs('berita'))
+    <meta property="og:title" content="{{$news->title}}">
+    <meta property="og:description" content="{{$news->title}}">
+    <meta property="og:image" content="{{asset('storage'.$news->thumbnail)}}">
+    @else
+    <meta property="og:title" content="Sipjaki">
+    <meta property="og:description" content="SIPJAKI adalah sistem informasi yang dikelola bersama oleh pembina jasa konstruksi nasional, provinsi dan kabupaten/kota dalam rangka meningkatkan kemudahan akses informasi usaha jasa konstruksi, peningkatan transparansi, serta membantu memperkuat jaringan bisnis pelaku usaha dalam rantai pasok konstruksi.">
+    <meta property="og:image" content="{{asset('logo-3.png')}}">
+    @endif
     <title>Sipjaki</title>
 
     <link rel="apple-touch-icon" sizes="180x180" type="{{ asset('image/png') }}" href="{{ asset('assets/sipjaki.png') }}">
