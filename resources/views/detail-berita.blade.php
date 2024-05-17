@@ -50,7 +50,7 @@
                                 </div>
                                 <div class="post-widget-info">
                                     <h5 class="post-widget-title">
-                                        <a href="{{ route('berita',$news->id) }}" title="{{ $news->title }}">{{ substr($news->title, 0, 50)}}</a>
+                                        <a href="{{ route('berita',$news->slug) }}" title="{{ $news->title }}">{{ substr($news->title, 0, 50)}}</a>
                                     </h5>
                                     <span
                                         class="post-date">{{ \Carbon\Carbon::parse($news->created_at)->translatedFormat('d F Y') }}</span>

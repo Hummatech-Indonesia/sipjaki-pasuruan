@@ -10,7 +10,7 @@ class News extends Model
     use HasFactory;
     protected $table = 'news';
     protected $primaryKey = 'id';
-    protected $fillable = ['id', 'title', 'thumbnail', 'content'];
+    protected $fillable = ['id', 'title', 'thumbnail', 'content','slug'];
     protected $guarded = [];
     public $incrementing = false;
     public $keyType = 'char';

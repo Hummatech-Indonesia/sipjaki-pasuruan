@@ -66,7 +66,7 @@ Route::get('/', [LandingController::class, 'news'])->name('landing-page');
 Route::get('reset-passsword/{user}', [ResetPasswordController::class, 'index'])->name('reset.password');
 
 Route::get('peraturan', [LandingController::class, 'rules'])->name('rules.landing');
-Route::get('berita/{news}', [LandingController::class, 'show'])->name('berita');
+Route::get('berita/{news:slug}', [LandingController::class, 'show'])->name('berita');
 
 Route::get('asosiasi', [AssociationController::class, 'dataServiceProvider'])->name('association.landing');
 Route::get('detail-asosiasi/{association}', [LandingController::class, 'associationDetail'])->name('association-detail.landing');

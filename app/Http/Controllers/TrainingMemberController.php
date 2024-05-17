@@ -145,7 +145,7 @@ class TrainingMemberController extends Controller
         $data['now'] = Carbon::now()->isoFormat('Y-m-d H:i:s');
         $pdf = Pdf::loadView('exports.training-member-pdf', $data);
 
-        return $pdf->download('training-member' . auth()->user()->name . '.pdf');
+        return $pdf->download('Anggota Pelatihan' . auth()->user()->name . '.pdf');
     }
 
     /**
@@ -156,6 +156,6 @@ class TrainingMemberController extends Controller
      */
     public function export(Request $request)
     {
-        return Excel::download(new TrainingMemberExport($request), 'training-member-' . auth()->user()->name . '.xlsx');
+        return Excel::download(new TrainingMemberExport($request), 'Anggota Pelatihan ' . auth()->user()->name . '.xlsx');
     }
 }
