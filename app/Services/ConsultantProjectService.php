@@ -84,12 +84,74 @@ class ConsultantProjectService
             }
         }
 
+        $old_minutes_of_hand_over = $consultantProject->minutes_of_hand_over;
+        if (isset($data['minutes_of_hand_over'])) {
+            if ($old_minutes_of_hand_over) {
+                if ($request->hasFile('minutes_of_hand_over')) {
+                    $this->remove($old_minutes_of_hand_over);
+                    $old_minutes_of_hand_over = $this->upload(UploadDiskEnum::MINUTESOFHANDOVER->value, $request->file('minutes_of_hand_over'));
+                }
+            } else {
+                $old_minutes_of_hand_over = $this->upload(UploadDiskEnum::MINUTESOFHANDOVER->value, $request->file('minutes_of_hand_over'));
+            }
+        }
+
+        $old_minutes_of_hand_over = $consultantProject->minutes_of_hand_over;
+        if (isset($data['minutes_of_hand_over'])) {
+            if ($old_minutes_of_hand_over) {
+                if ($request->hasFile('minutes_of_hand_over')) {
+                    $this->remove($old_minutes_of_hand_over);
+                    $old_minutes_of_hand_over = $this->upload(UploadDiskEnum::MINUTESOFHANDOVER->value, $request->file('minutes_of_hand_over'));
+                }
+            } else {
+                $old_minutes_of_hand_over = $this->upload(UploadDiskEnum::MINUTESOFHANDOVER->value, $request->file('minutes_of_hand_over'));
+            }
+        }
+
+        $old_order_mail = $consultantProject->order_mail;
+        if (isset($data['order_mail'])) {
+            if ($old_order_mail) {
+                if ($request->hasFile('order_mail')) {
+                    $this->remove($old_order_mail);
+                    $old_order_mail = $this->upload(UploadDiskEnum::ORDERMAIL->value, $request->file('order_mail'));
+                }
+            } else {
+                $old_order_mail = $this->upload(UploadDiskEnum::ORDERMAIL->value, $request->file('order_mail'));
+            }
+        }
+
+        $old_order_mail = $consultantProject->order_mail;
+        if (isset($data['order_mail'])) {
+            if ($old_order_mail) {
+                if ($request->hasFile('order_mail')) {
+                    $this->remove($old_order_mail);
+                    $old_order_mail = $this->upload(UploadDiskEnum::ORDERMAIL->value, $request->file('order_mail'));
+                }
+            } else {
+                $old_order_mail = $this->upload(UploadDiskEnum::ORDERMAIL->value, $request->file('order_mail'));
+            }
+        }
+
+        $old_pcm_minutes = $consultantProject->pcm_minutes;
+        if (isset($data['pcm_minutes'])) {
+            if ($old_pcm_minutes) {
+                if ($request->hasFile('pcm_minutes')) {
+                    $this->remove($old_pcm_minutes);
+                    $old_order_mail = $this->upload(UploadDiskEnum::PCMMINUTES->value, $request->file('pcm_minutes'));
+                }
+            } else {
+                $old_order_mail = $this->upload(UploadDiskEnum::PCMMINUTES->value, $request->file('pcm_minutes'));
+            }
+        }
+
         return [
             'report' => $old_report,
             'minutes_of_disbursement' => $old_minutes_of_disbursement,
             'minutes_of_hand_over' => $old_minutes_of_hand_over,
             'administrative_minutes' => $old_administrative_minutes,
             'contract' => $old_contract,
+            'pcm_minutes' => $old_pcm_minutes,
+            'order_mail' => $old_order_mail
         ];
     }
 }

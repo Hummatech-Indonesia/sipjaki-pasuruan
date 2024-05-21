@@ -30,4 +30,9 @@ enum UploadDiskEnum: string
     case P1MEETINGMINUTES = 'p1_meeting_minutes';
     case P2MEETINGMINUTES = 'p2_meeting_minutes';
     case CONTENT = 'content';
+    case ORDERMAIL = 'order_mail';
+    case INVOICE = 'invoice';
+    case SHOPDRAWING = 'shop_drawing';
+    case ASBUILDDRAWING = 'ashbuild_drawing';
+    case PCMMINUTES = 'pcm_minutes';
 }

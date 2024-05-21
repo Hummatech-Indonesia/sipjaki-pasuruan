@@ -109,6 +109,57 @@ class ExecutorProjectService
             $data['report'] = $executorProject->report;
         }
 
+
+        if ($request->hasFile('order_mail')) {
+            if ($executorProject->order_mail) {
+                $this->remove($executorProject->order_mail);
+            }
+            $data['order_mail'] = $this->upload(UploadDiskEnum::ORDERMAIL->value, $request->file('order_mail'));
+        }
+        else {
+            $data['order_mail'] = $executorProject->order_mail;
+        }
+
+        if ($request->hasFile('invoice')) {
+            if ($executorProject->invoice) {
+                $this->remove($executorProject->invoice);
+            }
+            $data['invoice'] = $this->upload(UploadDiskEnum::INVOICE->value, $request->file('invoice'));
+        }
+        else {
+            $data['invoice'] = $executorProject->invoice;
+        }
+
+        if ($request->hasFile('shop_drawing')) {
+            if ($executorProject->shop_drawing) {
+                $this->remove($executorProject->shop_drawing);
+            }
+            $data['shop_drawing'] = $this->upload(UploadDiskEnum::SHOPDRAWING->value, $request->file('shop_drawing'));
+        }
+        else {
+            $data['shop_drawing'] = $executorProject->shop_drawing;
+        }
+
+        if ($request->hasFile('asbuild_drawing')) {
+            if ($executorProject->asbuild_drawing) {
+                $this->remove($executorProject->asbuild_drawing);
+            }
+            $data['asbuild_drawing'] = $this->upload(UploadDiskEnum::ASBUILDDRAWING->value, $request->file('asbuild_drawing'));
+        }
+        else {
+            $data['asbuild_drawing'] = $executorProject->asbuild_drawing;
+        }
+
+        if ($request->hasFile('pcm_minutes')) {
+            if ($executorProject->pcm_minutes) {
+                $this->remove($executorProject->pcm_minutes);
+            }
+            $data['pcm_minutes'] = $this->upload(UploadDiskEnum::PCMMINUTES->value, $request->file('pcm_minutes'));
+        }
+        else {
+            $data['pcm_minutes'] = $executorProject->asbuild_drawing;
+        }
+
         return $data;
     }
 }
