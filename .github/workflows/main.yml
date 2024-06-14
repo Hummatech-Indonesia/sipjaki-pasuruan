@@ -22,15 +22,13 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@v4.3.1
       with:
         # ftp server
-        server: sipjaki.pasuruankab.com
-        # server directory
-        server-dir: sipjaki.pasuruankab.com/
+        server: sipjaki.trialdy.me
         # ftp username
-        username: pasuruankab.com_aw7k0wn2zxl
+        username: u252398510.sipjaki
         # ftp password
-        password: ~1LUz7%p5Kyvbelf
+        password: Sipjaki123
         # Server port to connect to (read your web hosts docs)
-        port: 2212
+        port: 21
         # protocol to deploy with - ftp, ftps, or ftps-legacy
         protocol: ftp
         # An array of glob patterns, these files will not be included in the publish/delete process
@@ -41,3 +39,4 @@ jobs:
           **/vendor/**
           **/storage/imports/**
           **/public/assets/**
+          **/public/dependencies/**
