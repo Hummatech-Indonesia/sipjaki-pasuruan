@@ -128,6 +128,9 @@ class ServiceProviderRepository extends BaseRepository implements ServiceProvide
             ->when($request->service_provider, function ($query) use ($request) {
                 $query->whereRelation('user', 'name', 'LIKE', '%' . $request->service_provider . '%');
             })
+            ->when($request->association,function($query) use ($request){
+                $query->where('association_id',$request->association);
+            })
             ->fastPaginate($pagination);
     }
 

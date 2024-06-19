@@ -30,6 +30,12 @@
                                         <i class="fa fa-search"></i>
                                     </button>
                                 </div>
+                                <select name="association" class="form-control ml-3" id="association">
+                                    <option value="">Semua</option>
+                                    @foreach ($associations as $association)
+                                        <option value="{{$association->id}}">{{$association->name}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </form>
                     </div>
@@ -80,8 +86,10 @@
                         <tbody>
                             <tr>
                                 <th scope="row" class="text-center">
+                                    @if($serviceProvider->consultantProjects || $serviceProvider->executorProjects)
                                     <input value="{{ $serviceProvider->id }}" type="checkbox"
                                         aria-label="Checkbox for following text input">
+                                    @endif
                                 </th>
                                 <td>
                                     {{ $loop->iteration }}
@@ -104,11 +112,13 @@
                                         style="background-color: #1B3061">
                                         Detail
                                     </a>
+                                    @if($serviceProvider->consultantProjects || $serviceProvider->executorProjects)
                                     <button type="button" id="{{ $serviceProvider->id }}"
                                         data-id="{{ $serviceProvider->id }}"
                                         data-name="{{ $serviceProvider->user->name }}" class="btn btn-danger btn-delete">
                                         Hapus
                                     </button>
+                                    @endif
                                 </td>
                             </tr>
                         </tbody>
