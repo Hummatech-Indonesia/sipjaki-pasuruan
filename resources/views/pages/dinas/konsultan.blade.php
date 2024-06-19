@@ -30,13 +30,13 @@
                                         <i class="fa fa-search"></i>
                                     </button>
                                 </div>
-                                <select name="association" class="form-control ml-3" id="association">
-                                    <option value="">Semua</option>
-                                    @foreach ($associations as $association)
-                                        <option value="{{$association->id}}">{{$association->name}}</option>
-                                    @endforeach
-                                </select>
                             </div>
+                            <select name="association" class="form-control ml-3" id="association">
+                                <option value="">Semua</option>
+                                @foreach ($associations as $association)
+                                    <option value="{{$association->id}}">{{$association->name}}</option>
+                                @endforeach
+                            </select>
                         </form>
                     </div>
                 </div>
