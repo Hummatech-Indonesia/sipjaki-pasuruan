@@ -19,6 +19,7 @@
                             <th class="text-center table-sipjaki">No</th>
                             <th class="text-center table-sipjaki">Nama</th>
                             <th class="text-center table-sipjaki">Tanggal</th>
+                            <th class="text-center table-sipjaki">Kode Klasifikasi</th>
                             <th class="text-center table-sipjaki">Kualifikasi</th>
                             <th class="text-center table-sipjaki">File</th>
                             <th class="text-center table-sipjaki">Tahun</th>
@@ -37,10 +38,14 @@
                                 <td class="text-center">
                                     {{ $serviceProviderQualificationPendin->created_at->format('j F Y') }} </td>
                                 <td class="text-center">
+                                    {{ $serviceProviderQualificationPendin->subClassification->code }}
+                                </td>
+                                <td class="text-center">
                                     {{ $serviceProviderQualificationPendin->qualification->name }}
                                 </td>
                                 <td class="text-center">
-                                    <a href="detail-service-provider-qualification-pending/{{ $serviceProviderQualificationPendin->id }}" class="btn text-white" style="background-color: #1B3061">Detail</a>
+                                    <a href="detail-service-provider-qualification-pending/{{ $serviceProviderQualificationPendin->id }}"
+                                        class="btn text-white" style="background-color: #1B3061">Detail</a>
                                 </td>
                                 <td class="text-center">
                                     {{ $serviceProviderQualificationPendin->year }}
