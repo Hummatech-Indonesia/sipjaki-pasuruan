@@ -36,11 +36,6 @@
                             <input type="text" class="form-control" id="create-school_year" class="form-control"
                                 name="name" id="nametext" aria-describedby="name" placeholder="" />
                         </div>
-                        <div class="mb-3">
-                            <label id="name" for="recipient-name" class="control-label mb-2">File</label>
-                            <input type="file" class="form-control" id="create-name" class="form-control" name="file"
-                                aria-describedby="name" placeholder="Masukkan Kualifikasi Nasional Indonesia" />
-                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger text-white font-medium waves-effect"
@@ -58,7 +53,7 @@
     {{-- end modal --}}
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title mt-2 mb-3">Berikut Daftar-dafter klasifikasi</h4>
+            <h4 class="card-title mt-2 mb-3">Berikut daftar-daftar klasifikasi</h4>
             <div class="d-flex justify-content-between mb-3">
                 <form class=" col-lg-3">
                     <div class="input-group">
