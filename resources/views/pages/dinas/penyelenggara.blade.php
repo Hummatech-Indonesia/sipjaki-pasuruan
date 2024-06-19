@@ -34,7 +34,7 @@
                             <select name="association" class="form-control ml-3" id="association">
                                 <option value="">Semua</option>
                                 @foreach ($associations as $association)
-                                    <option value="{{$association->id}}">{{$association->name}}</option>
+                                    <option {{$association->id == request()->association ? 'selected' : ''}} value="{{$association->id}}">{{$association->name}}</option>
                                 @endforeach
                             </select>
                         </form>
