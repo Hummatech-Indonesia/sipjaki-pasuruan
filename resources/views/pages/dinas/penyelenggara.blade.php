@@ -20,7 +20,7 @@
             <div class="d-flex justify-content-between">
                 <div class="d-flex justify-content-header gap-3">
                     <div class="">
-                        <form action="" class="">
+                        <form action="" class="" id="form-search">
                             <div class="input-group">
                                 <input name="service_provider" type="text" class="form-control" placeholder="Search"
                                     value="{{ request()->service_provider }}">
@@ -426,5 +426,9 @@
                 checkbox.checked = true;
             });
         }
+
+        $('#association').change(function(){
+            $('#form-search').submit()
+        })
     </script>
 @endsection
