@@ -77,7 +77,7 @@ class SubClassificationRepository extends BaseRepository implements SubClassific
             ->when($request->name,function($query) use ($request){
                 $query->where('name','LIKE','%'.$request->name.'%');
             })
-            ->orderByDesc('created_at')
+            ->orderBy('code')
             ->fastPaginate($pagination);
     }
 
@@ -91,7 +91,7 @@ class SubClassificationRepository extends BaseRepository implements SubClassific
     {
         return $this->model->query()
             ->where('classification_id', $request->classification_id)
-            ->orderByDesc('created_at')
+            ->orderBy('code')
             ->get();
     }
 }

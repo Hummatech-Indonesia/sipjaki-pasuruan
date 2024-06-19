@@ -123,7 +123,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($subClassifications->sortBy('code') as $subClassification)
+                        @forelse ($subClassifications as $subClassification)
                             <tr>
                                 <th scope="row" class="fs-5">{{ $loop->iteration }}</th>
                                 <td>{{ $subClassification->name }}</td>
