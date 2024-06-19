@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Interfaces\AssociationInterface;
 use App\Models\User;
 use App\Enums\StatusEnum;
 use Illuminate\Http\Request;
@@ -32,6 +33,7 @@ class ServiceProviderController extends Controller
     private OfficerInterface $officer;
     private UserInterface $userI;
     private ServiceProviderService $service;
+    private AssociationInterface $association;
 
     public function __construct(
         UserInterface $user,
@@ -42,7 +44,8 @@ class ServiceProviderController extends Controller
         ServiceProviderQualificationInterface $serviceProviderQualification,
         OfficerInterface $officerInterface,
         UserInterface $userInterface,
-        ServiceProviderService $service
+        ServiceProviderService $service,
+        AssociationInterface $association
     ) {
         $this->userI = $userInterface;
         $this->worker = $workerInterface;
@@ -53,6 +56,7 @@ class ServiceProviderController extends Controller
         $this->serviceProviderQualification = $serviceProviderQualification;
         $this->officer = $officerInterface;
         $this->service = $service;
+        $this->association = $association;
     }
 
     /**
@@ -216,8 +220,9 @@ class ServiceProviderController extends Controller
 
         $request->merge(['type_of_business_entity' => TypeOfBusinessEntityEnum::CONSULTANT->value]);
         $serviceProviders = $this->serviceProvider->customPaginate($request, 10);
+        $associations = $this->association->get();
 
-        return view('pages.dinas.konsultan', ['serviceProviders' => $serviceProviders]);
+        return view('pages.dinas.konsultan', ['serviceProviders' => $serviceProviders,'associations' => $associations]);
     }
 
     /**
@@ -230,6 +235,7 @@ class ServiceProviderController extends Controller
     {
         $request->merge(['type_of_business_entity' => TypeOfBusinessEntityEnum::EXECUTOR->value]);
         $serviceProviders = $this->serviceProvider->customPaginate($request, 10);
-        return view('pages.dinas.penyelenggara', ['serviceProviders' => $serviceProviders]);
+        $associations = $this->association->get();
+        return view('pages.dinas.penyelenggara',['serviceProviders' => $serviceProviders,'associations' => $associations]);
     }
 }
