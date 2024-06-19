@@ -86,7 +86,7 @@
                         <tbody>
                             <tr>
                                 <th scope="row" class="text-center">
-                                    @if($serviceProvider->consultantProjects || $serviceProvider->executorProjects)
+                                    @if(!$serviceProvider->consultantProjects && !$serviceProvider->executorProjects)
                                     <input value="{{ $serviceProvider->id }}" type="checkbox"
                                         aria-label="Checkbox for following text input">
                                     @endif
@@ -112,7 +112,7 @@
                                         style="background-color: #1B3061">
                                         Detail
                                     </a>
-                                    @if($serviceProvider->consultantProjects || $serviceProvider->executorProjects)
+                                    @if(!$serviceProvider->consultantProjects && !$serviceProvider->executorProjects)
                                     <button type="button" id="{{ $serviceProvider->id }}"
                                         data-id="{{ $serviceProvider->id }}"
                                         data-name="{{ $serviceProvider->user->name }}" class="btn btn-danger btn-delete">
