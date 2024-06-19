@@ -62,7 +62,7 @@
                     <thead>
                         <tr>
                             <td scope="col" class="text-center text-white" style="background-color: #1B3061;">
-                                select
+                                -
                             </td>
                             <td class="text-white" style="background-color: #1B3061">
                                 No
