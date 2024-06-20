@@ -1057,7 +1057,7 @@
                         style="color: white;"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="profile-service-providers" enctype="multipart/form-data" id="form-update-badan-usaha" method="POST">
+                    <form action="profile-service-providers/{{ $serviceProvider->user->id }}" enctype="multipart/form-data" id="form-update-badan-usaha" method="POST">
                         @method('PUT')
                         @csrf
                         <div class="row">

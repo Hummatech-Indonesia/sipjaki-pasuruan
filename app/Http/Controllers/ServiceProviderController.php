@@ -101,11 +101,11 @@ class ServiceProviderController extends Controller
      * @param  mixed $request
      * @return void
      */
-    public function update(ServiceProviderRequest $request)
+    public function update(ServiceProviderRequest $request,User $user)
     {
-        $service = $this->service->update($request);
-        $this->user->update(auth()->user()->id, $service);
-        $this->serviceProvider->update(auth()->user()->serviceProvider->id, $service);
+        $service = $this->service->update($request,$user->serviceProvider->file);
+        $this->user->update($user->id, $service);
+        $this->serviceProvider->update($user->serviceProvider->id, $service);
         return redirect()->back()->with('success', trans('alert.update_success'));
     }
     

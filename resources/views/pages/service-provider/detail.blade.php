@@ -47,6 +47,156 @@
         </div>
     </div>
 
+    <div class="modal fade" id="modal-update-badan-usaha" tabindex="-1" aria-labelledby="exampleModalLabel1">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content ">
+                <div class="modal-header d-flex align-items-center text-white" style="background-color: #1B3061">
+                    <h4 class="modal-title" id="exampleModalLabel1">
+                        Edit Data Badan Usaha
+                    </h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        style="color: white;"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/profile-service-providers/{{ $serviceProviders->user->id }}" enctype="multipart/form-data" id="form-update-badan-usaha" method="POST">
+                        @method('PUT')
+                        @csrf
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label id="name" for="recipient-name" class="control-label mb-2">Nama</label>
+                                    <input name="name" type="name" value="{{ $serviceProviders->user->name }}"
+                                        class="form-control" id="update-name">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label id="name" for="recipient-name" class="control-label mb-2">Email</label>
+                                    <input name="email" type="email" value="{{ $serviceProviders->user->email }}"
+                                        class="form-control" id="update-email">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label id="name" for="recipient-name" class="control-label mb-2">Direktur</label>
+                                    <input name="directur" type="name" value="{{ $serviceProviders->directur }}"
+                                        class="form-control" id="update-directur">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label id="name" for="recipient-name" class="control-label mb-2">Profile Perusahaan</label>
+                                    <input name="file" type="file" value="{{ $serviceProviders->file }}"
+                                        class="form-control" id="update-file">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label id="name" for="recipient-name" class="control-label mb-2">Bentuk Badan
+                                        Usaha</label>
+                                    <select name="form_of_business_entity" class="form-select" id="">
+                                        @if ($serviceProviders->form_of_business_entity == 'pt')
+                                            <option value="pt" selected>PT</option>
+                                            <option value="cv">CV</option>
+                                        @elseif ($serviceProviders->form_of_business_entity == 'cv')
+                                            <option value="pt">PT</option>
+                                            <option value="cv" selected>CV</option>
+                                        @else
+                                            <option value="" selected disabled>Pilih Bentuk Badan Usaha</option>
+                                            <option value="pt">PT</option>
+                                            <option value="cv">CV</option>
+                                        @endif
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label id="name" for="recipient-name" class="control-label mb-2">Jenis Badan
+                                        Usaha</label>
+                                    <select name="type_of_business_entity" class="form-select" id="">
+                                        @if ($serviceProviders->type_of_business_entity == 'consultant')
+                                            <option value="consultant" selected>Konsultan</option>
+                                            <option value="executor">Pelaksana</option>
+                                        @elseif ($serviceProviders->type_of_business_entity == 'executor')
+                                            <option value="consultant">Konsultan</option>
+                                            <option value="executor" selected>Pelaksana</option>
+                                        @else
+                                            <option value="" selected disabled>Pilih Jenis Badan Usaha</option>
+                                            <option value="consultant">Konsultan</option>
+                                            <option value="executor">Pelaksana</option>
+                                        @endif
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label id="city" for="recipient-name"
+                                        class="control-label mb-2">Kabupaten</label>
+                                    <input name="city" value="{{ $serviceProviders->city ?? old('city') }}"
+                                        type="text" class="form-control" id="">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label id="city" for="recipient-name"
+                                        class="control-label mb-2">Provinsi</label>
+                                    <input name="province" value="{{ $serviceProviders->province ?? old('province') }}"
+                                        type="text" class="form-control" id="">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label id="name" for="recipient-name" class="control-label mb-2">Kode
+                                        Pos</label>
+                                    <input name="postal_code" type="number" class="form-control"
+                                        value="{{ $serviceProviders->postal_code ?? old('postal_code') }}"
+                                        id="">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label id="name" for="recipient-name" class="control-label mb-2">Telepon</label>
+                                    <input name="phone_number" value="{{ $serviceProviders->user->phone_number }}"
+                                        type="number" class="form-control" id="">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label id="name" for="recipient-name" class="control-label mb-2">Fax</label>
+                                    <input name="fax" type="number"
+                                        value="{{ $serviceProviders->fax ?? old('fax') }}" class="form-control"
+                                        id="">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label id="name" for="recipient-name" class="control-label mb-2">Website</label>
+                                    <input name="website" type="text"
+                                        value="{{ $serviceProviders->website ?? old('website') }}" class="form-control"
+                                        id="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <label for="" class="form-label">Alamat Badan Usaha</label>
+                            <textarea name="address" id="update-address" class="form-control" cols="15" rows="5">{{ $serviceProviders->address ?? old('address') }}</textarea>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger text-white font-medium waves-effect"
+                        data-bs-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="submit" style="background-color: #1B3061" class="btn text-white btn-create">
+                        Edit
+                    </button>
+                </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
     <div class="tab-content mt-4" id="v-pills-tabContent">
         <div class="tab-pane fade active show" id="badan-usaha" role="tabpanel" aria-labelledby="badan-usaha-tab">
             <div class="card rounded-4">
@@ -63,6 +213,21 @@
                             <div class="ms-2 d-flex justify-content-between">
                                 <div class="btn btn-sm mb-3 text-dark rounded-3" style="background-color: #E4ECFF;">
                                     Data Badan Usaha
+                                </div>
+                                <div>
+                                    <button data-bs-toggle="modal" data-bs-target="#modal-update-badan-usaha"
+                                    style="background-color: #E4ECFF;"
+                                    class="text-dark btn px-4 fw-bold btn-edit-badan-usaha"
+                                    id="btn-edit-badan-usaha-{{ $serviceProviders->id }}"
+                                    data-address="{{ $serviceProviders->address }}"
+                                    data-email="{{ $serviceProviders->user->email }}"
+                                    data-city="{{ $serviceProviders->city }}"
+                                    data-postal_code="{{ $serviceProviders->postal_code }}"
+                                    data-phone_number="{{ $serviceProviders->user->phone_number }}"
+                                    data-website="{{ $serviceProviders->website }}"
+                                    data-form_of_business_entity="{{ $serviceProviders->form_of_business_entity }}"
+                                    data-type_of_business_entity="{{ $serviceProviders->type_of_business_entity }}">Edit</button>
+
                                 </div>
                             </div>
                             <p class="fw-bolder fs-4">{{ $serviceProviders->user->name }}</p>

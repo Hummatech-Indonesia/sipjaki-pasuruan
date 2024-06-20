@@ -16,10 +16,10 @@ class ServiceProviderService
      * @param  mixed $request
      * @return array
      */
-    public function update(ServiceProviderRequest $request): array
+    public function update(ServiceProviderRequest $request,$file): array
     {
         $data = $request->validated();
-        $old_file = auth()->user()->serviceProvider->file;
+        $old_file = $file;
         if (isset($data['file'])) {
             if ($old_file) {
                 if ($request->hasFile('file')) {
