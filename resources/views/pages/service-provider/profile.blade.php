@@ -5,35 +5,38 @@
     @endphp
     <div class="nav flex-column nav-pills mb-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
         <div class="d-flex">
-            <a class="nav-link active rounded-start" style="border: solid 1px #1B3061;" id="badan-usaha-tab"
-                data-bs-toggle="pill" href="#badan-usaha" role="tab" aria-controls="badan-usaha" aria-selected="true">
+            <a class="nav-link rounded-start" style="border: solid 1px #1B3061;" onclick="tab('badan-usaha-tab')"
+                id="badan-usaha-tab" data-bs-toggle="pill" href="#badan-usaha" role="tab" aria-controls="badan-usaha"
+                aria-selected="false">
                 <div class="fw-bold">Badan Usaha</div>
             </a>
-            <a class="nav-link" style="border: solid 1px #1B3061;" id="kualifikasi-klasifikasi-tab" data-bs-toggle="pill"
-                href="#kualifikasi-klasifikasi" role="tab" aria-controls="kualifikasi-klasifikasi"
-                aria-selected="false">
+            <a class="nav-link" style="border: solid 1px #1B3061;" onclick="tab('kualifikasi-klasifikasi-tab')"
+                id="kualifikasi-klasifikasi-tab" data-bs-toggle="pill" href="#kualifikasi-klasifikasi" role="tab"
+                aria-controls="kualifikasi-klasifikasi" aria-selected="false">
                 <div class="fw-bold">Kualifikasi dan Klasifikasi</div>
             </a>
-            <a class="nav-link" style="border: solid 1px #1B3061;" id="administrasi-tab" data-bs-toggle="pill"
-                href="#administrasi" role="tab" aria-controls="administrasi" aria-selected="false">
+            <a class="nav-link" style="border: solid 1px #1B3061;" onclick="tab('administrasi-tab')" id="administrasi-tab"
+                data-bs-toggle="pill" href="#administrasi" role="tab" aria-controls="administrasi"
+                aria-selected="false">
                 <div class="fw-bold">Administrasi</div>
             </a>
-            <a class="nav-link rounded-end" style="border: solid 1px #1B3061;" id="pengalaman-tab" data-bs-toggle="pill"
-                href="#pengalaman" role="tab" aria-controls="pengalaman" aria-selected="false">
+            <a class="nav-link rounded-end" style="border: solid 1px #1B3061;" onclick="tab('pengalaman-tab')"
+                id="pengalaman-tab" data-bs-toggle="pill" href="#pengalaman" role="tab" aria-controls="pengalaman"
+                aria-selected="false">
                 <div class="fw-bold">Pengalaman</div>
             </a>
         </div>
     </div>
     @if ($errors->any())
         @foreach ($errors->all() as $error)
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            {{ $error}}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ $error }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
         @endforeach
     @endif
     <div class="tab-content mt-4" id="v-pills-tabContent">
-        <div class="tab-pane fade active show" id="badan-usaha" role="tabpanel" aria-labelledby="badan-usaha-tab">
+        <div class="tab-pane fade-out" id="badan-usaha" role="tabpanel" aria-labelledby="badan-usaha-tab">
             <div class="card rounded-4">
                 <div class="card-body">
 
@@ -149,7 +152,7 @@
                 </div>
             </div>
         </div>
-        <div class="tab-pane fade" id="kualifikasi-klasifikasi" role="tabpanel"
+        <div class="tab-pane fade-out" id="kualifikasi-klasifikasi" role="tabpanel"
             aria-labelledby="kualifikasi-klasifikasi-tab">
             <div class="d-flex justify-content-end mb-2">
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-create-qualification"
@@ -169,7 +172,7 @@
                             <th style="background-color: #1B3061;color:#ffffff; vertical-align: middle" colspan="1"
                                 rowspan="2">Kualifikasi</th>
                             <th style="background-color: #1B3061;color:#ffffff;vertical-align: middle;width:150px;"
-                                rowspan="2" colspan="1">Tahun</th>
+                                rowspan="2" colspan="1">Tahun Terbit</th>
                             <th style="background-color: #1B3061;color:#ffffff;vertical-align: middle" rowspan="2"
                                 colspan="1">
                                 Asosiasi</th>
@@ -178,6 +181,8 @@
                                 File</th>
                             <th style="background-color: #1B3061;color:#ffffff;vertical-align: middle;width:150px;"
                                 rowspan="2" colspan="1">Tanggal Permohonan</th>
+                            <th style="background-color: #1B3061;color:#ffffff;vertical-align: middle;width:150px;"
+                                rowspan="2" colspan="1">Tanggal Kadaluarsa</th>
                             <th style="background-color: #1B3061;color:#ffffff;vertical-align: middle;width:150px;"
                                 rowspan="2" colspan="1">Status</th>
                             <th style="background-color: #1B3061;color:#ffffff;vertical-align: middle;width:150px;"
@@ -201,6 +206,9 @@
                                 </td>
                                 <td colspan="1">
                                     {{ Carbon::parse($serviceProviderQualification->created_at)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                </td>
+                                <td colspan="1">
+                                    {{ Carbon::parse($serviceProviderQualification->expired_at)->locale('id_ID')->isoFormat('DD MMMM Y') }}
                                 </td>
                                 <td colspan="1">
                                     @if ($serviceProviderQualification->status == 'pending')
@@ -236,6 +244,7 @@
                                                     data-sub_classification_id="{{ $serviceProviderQualification->sub_classification_id }}"
                                                     data-classification="{{ $serviceProviderQualification->subClassification->classification_id }}"
                                                     data-year="{{ $serviceProviderQualification->year }}"
+                                                    data-expired_at="{{ $serviceProviderQualification->expired_at }}"
                                                     class="btn waves-effect waves-light btn-edit-qualification d-flex flex-row gap-1 justify-content-evenly"
                                                     style="width: 90px; background-color: #FFC928; color: white"><i
                                                         class="bx bx-bx bxs-edit fs-4"></i>
@@ -275,6 +284,7 @@
                                                     data-sub_classification_id="{{ $serviceProviderQualification->sub_classification_id }}"
                                                     data-classification="{{ $serviceProviderQualification->subClassification->classification_id }}"
                                                     data-year="{{ $serviceProviderQualification->year }}"
+                                                    data-expired_at="{{ $serviceProviderQualification->expired_at }}"
                                                     class="btn waves-effect waves-light btn-edit-qualification d-flex btn-edit flex-row gap-1 justify-content-evenly"
                                                     style="width: 90px; background-color: #FFC928; color: white"><i
                                                         class="bx bx-bx bxs-edit fs-4"></i>
@@ -348,7 +358,7 @@
             </div>
         </div>
 
-        <div class="tab-pane fade" id="administrasi" role="tabpanel" aria-labelledby="administrasi-tab">
+        <div class="tab-pane fade-out" id="administrasi" role="tabpanel" aria-labelledby="administrasi-tab">
 
             <h4 class="mt-3 mb-3 fw-bold">Akte Pendiri</h4>
             <div class="card rounded-bottom-4" style="border: 1px solid black;border-radius: 20px 20px 20px 20px;">
@@ -743,7 +753,7 @@
             </div>
 
         </div>
-        <div class="tab-pane fade" id="pengurus" role="tabpanel" aria-labelledby="pengurus-tab">
+        <div class="tab-pane fade-out" id="pengurus" role="tabpanel" aria-labelledby="pengurus-tab">
             <div class="card rounded-4">
                 <div class="card-body">
                     <div class="d-flex">
@@ -927,7 +937,7 @@
                 </div>
             </div>
         </div>
-        <div class="tab-pane fade" id="pengalaman" role="tabpanel" aria-labelledby="pengalaman-tab">
+        <div class="tab-pane fade-out" id="pengalaman" role="tabpanel" aria-labelledby="pengalaman-tab">
             <h4 class="mt-3 mb-3 fw-bold">Pengalaman</h4>
             <div class="table-responsive rounded-4">
                 <div class="table-responsive">
@@ -1480,7 +1490,8 @@
                         <h4 class="modal-title" id="exampleModalLabel1">
                             Tambah Kualifikasi dan Klasifikasi
                         </h4>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="mb-3">
@@ -1522,8 +1533,8 @@
                         <div class="mb-3">
                             <label id="name" for="recipient-name" class="control-label mb-2">
                                 Berlaku Sampai</label>
-                            <input type="date" class="form-control" class="form-control"
-                                name="expired_at" aria-describedby="name" placeholder="Berlaku Sampai" />
+                            <input type="date" class="form-control" class="form-control" name="expired_at"
+                                aria-describedby="name" placeholder="Berlaku Sampai" />
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -1591,8 +1602,8 @@
                         <div class="mb-3">
                             <label id="name" for="recipient-name" class="control-label mb-2">
                                 Berlaku Sampai</label>
-                            <input type="date" class="form-control" class="form-control"
-                                name="expired_at" aria-describedby="name" placeholder="Berlaku Sampai" />
+                            <input type="date" class="form-control" class="form-control" name="expired_at"
+                                aria-describedby="name" placeholder="Berlaku Sampai" />
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -1687,6 +1698,52 @@
         </script>
     @endif
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var tab = localStorage.getItem('tab');
+            var defaultTabId = 'badan-usaha-tab';
+            var selectedTabId = tab ? tab : defaultTabId;
+
+            var selectedTab = document.getElementById(selectedTabId);
+            if (selectedTab) {
+                showTab(selectedTab);
+            }
+
+            var tabs = document.querySelectorAll('.nav-link');
+            tabs.forEach(function(tab) {
+                tab.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    var targetId = tab.getAttribute('href').substring(1);
+                    localStorage.setItem('tab', tab.id);
+                    showTab(tab);
+                });
+            });
+
+            function showTab(tab) {
+                var activeTab = document.querySelector('.nav-link.active');
+                var activePane = document.querySelector('.tab-pane.show.active');
+                if (activeTab) {
+                    activeTab.classList.remove('active');
+                    activeTab.setAttribute('aria-selected', 'false');
+                }
+                if (activePane) {
+                    activePane.classList.remove('show', 'active');
+                }
+
+                var targetPaneId = tab.getAttribute('href').substring(1);
+                var targetPane = document.getElementById(targetPaneId);
+                tab.classList.add('active');
+                tab.setAttribute('aria-selected', 'true');
+                if (targetPane) {
+                    targetPane.classList.add('show', 'active');
+                }
+            }
+        });
+
+        function tab(tab) {
+            localStorage.setItem('tab', tab);
+        }
+
+
         $(document).ready(function() {
             $(".select2-create").select2({
                 dropdownParent: $("#modal-create-qualification")
