@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Contracts\Interfaces\UserInterface;
-use App\Helpers\ResponseHelper;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\VerifyTokenRequest;
-use App\Mail\RegistrationMail;
 use App\Models\User;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Support\Facades\Cache;
-use App\Services\UserService;
 use Illuminate\Support\Str;
-use Illuminate\Foundation\Auth\VerifiesEmails;
 use Illuminate\Http\Request;
+use App\Services\UserService;
+use App\Mail\RegistrationMail;
+use App\Helpers\ResponseHelper;
+use App\Mail\EmailVerifiedMail;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Cache;
+use App\Providers\RouteServiceProvider;
+use App\Http\Requests\VerifyTokenRequest;
+use App\Contracts\Interfaces\UserInterface;
+use Illuminate\Foundation\Auth\VerifiesEmails;
 
 class VerificationController extends Controller
 {
@@ -90,8 +91,8 @@ class VerificationController extends Controller
         if($user->token != $token) abort(404);
         if($user->expired_token < now()) return view('auth.email-verified',['Id' => $user->id,'isVerified' => false]);
         $this->user->update($user->id,['email_verified_at' => now()]);
-        Mail::to($user->email)->send(new RegistrationMail(['email' => $user->email, 'name' => $user->name]));
-        return view('auth.verify-account',['Id' => $user->idm,'isVerified' => true])->with('success', trans('alert.verify_success'));
+        Mail::to($user->email)->send(new EmailVerifiedMail(['email' => $user->email, 'name' => $user->name]));
+        return view('auth.verify-account',['Id' => $user->id,'isVerified' => true])->with('success', trans('alert.verify_success'));
     }
 
     /**
