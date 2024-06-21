@@ -25,7 +25,7 @@ class RegisterService
         $data = $request->validated();
         $password = bcrypt($data['password']);
 
-        $token = strtoupper(Str::random(5));
+        $token = Str::random(60);
         $user = $register->store([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -36,7 +36,7 @@ class RegisterService
         ]);
 
         $user->serviceProvider()->create($data);
-        Mail::to($data['email'])->send(new RegistrationMail(['email' => $request->email, 'user' => $request->name, 'token' => $token, 'id' => $user->id]));
+        Mail::to($data['email'])->send(new RegistrationMail(['email' => $request->email, 'name' => $request->name, 'token' => $token, 'id' => $user->id]));
 
         $user->assignRole(RoleEnum::SERVICE_PRODIVER);
         return $user->id;

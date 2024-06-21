@@ -22,7 +22,8 @@
                             <th class="text-center table-sipjaki">Kode Klasifikasi</th>
                             <th class="text-center table-sipjaki">Kualifikasi</th>
                             <th class="text-center table-sipjaki">File</th>
-                            <th class="text-center table-sipjaki">Tahun</th>
+                            <th class="text-center table-sipjaki">Tahun Terbit</th>
+                            <th class="text-center table-sipjaki">Berlaku Sampai</th>
                             <th class="text-center table-sipjaki">Aksi</th>
                         </tr>
                     </thead>
@@ -50,6 +51,8 @@
                                 <td class="text-center">
                                     {{ $serviceProviderQualificationPendin->year }}
                                 </td>
+                                <td class="text-center">
+                                    {{ $serviceProviderQualificationPendin->expired_at->format('j F Y') }} </td>
                                 <td class="text-center">
                                     <div class="d-flex justify-content-center gap-2">
                                         {{-- <div class="">

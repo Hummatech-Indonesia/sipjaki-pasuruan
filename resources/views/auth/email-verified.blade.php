@@ -279,70 +279,11 @@
                                 line-height: 24px;
                                 text-align: left;
                               ">
-                                                        <p></p>
-
-                                                        <h2
-                                                            style="
-                                  font-family: Whitney, Helvetica Neue,
-                                    Helvetica, Arial, Lucida Grande, sans-serif;
-                                  font-weight: 500;
-                                  font-size: 18px;
-                                  color: #4f545c;
-                                  letter-spacing: 0.27px;
-                                ">
-                                                            Tautan ini aktif selama 40 menit
-                                                        </h2>
-                                                        <h4 style="font-weight: 700; color: #000000;">
-                                                            Aktivasi Akun Anda
-                                                        </h4>
-                                                        <p>
-                                                            Dear {{$data['name']}},
-                                                            Terima kasih telah mendaftarkan diri di SIPJAKI Kabupaten Pasuruan, untuk melakukan verifikasi akun, silahkan tekan tombol Verifikasi di bawah ini.
-                                                        </p>
+                                                        Dear {{$data['name']}},
+                                                        Anda telah berhasil melakukan verifikasi akun di SIPJAKI Kabupaten Pasuruan. 
+                                                        
+                                                        Silahkan <a href="{{route('login')}}">Login</a>
                                                     </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="
-                              word-break: break-word;
-                              font-size: 0px;
-                              padding: 10px 25px;
-                            "
-                                                    align="center">
-                                                    <table role="presentation" cellpadding="0" cellspacing="0"
-                                                        style="border-collapse: separate" align="center"
-                                                        border="0">
-                                                        <tbody>
-                                                            <tr>
-                                                                <td style="
-                                      border: none;
-                                      border-radius: 3px;
-                                      color: white;
-                                      cursor: auto;
-                                      padding: 15px 19px;
-                                    "
-                                                                    align="center" valign="middle" bgcolor="#1B3061">
-                                                                    <a href="{{ route('verify.account/',['user' => $data['id'],'token' => $data['token']]) }}"
-                                                                        target="_blank" rel="noopener noreferrer"
-                                                                        style="
-                                        text-decoration: none;
-                                        line-height: 100%;
-                                        background: #1B3061;
-                                        color: white;
-                                        font-family: Ubuntu, Helvetica, Arial,
-                                          sans-serif;
-                                        font-size: 15px;
-                                        font-weight: normal;
-                                        text-transform: none;
-                                        margin: 0px;
-                                      ">
-                                                                        Verifikasi
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-
-                                                        </tbody>
-                                                    </table>
                                                 </td>
                                             </tr>
                                         </tbody>

@@ -23,6 +23,7 @@ return new class extends Migration
             $table->dateTime('first_print')->nullable();
             $table->dateTime('last_print')->nullable();
             $table->string('file');
+            $table->date('expired_at');
             $table->timestamps();
         });
     }

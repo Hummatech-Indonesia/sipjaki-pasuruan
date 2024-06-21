@@ -80,51 +80,18 @@ class VerificationController extends Controller
     }
 
     /**
-     * verifyToken
-     *
-     * @param  mixed $user
-     * @return void
-     */
-    public function verifyToken(User $user, VerifyTokenRequest $request)
-    {
-        if ($request->token != $user->token) {
-            if ($request->is('api/*')) {
-                return ResponseHelper::error(null, trans('alert.token_invalid'));
-            } else {
-                return redirect()->back()->withErrors(trans('alert.token_invalid'));
-            }
-        } elseif ($request->token == $user->token && $user->expired_token >= now()->format('Y-m-d H:i:s')) {
-            $this->user->update($user->id, ['email_verified_at' => now()]);
-            if ($request->is('api/*')) {
-                return ResponseHelper::success(null, trans('alert.verify_success'));
-            } else {
-                return redirect()->back()->with('success', trans('alert.verify_success'));
-            }
-        } elseif ($request->token == $user->token && $user->expired_token <= now()->format('Y-m-d H:i:s')) {
-            if ($request->is('api/*')) {
-                return ResponseHelper::error(null, trans('alert.token_expired'));
-            } else {
-                return redirect()->back()->withErrors(trans('alert.token_expired'));
-            }
-        } else {
-            if ($request->is('api/*')) {
-                return ResponseHelper::error(null, trans('alert.verify_error'));
-            } else {
-                return redirect()->back()->withErrors(trans('alert.verify_error'));
-            }
-        }
-    }
-
-    /**
      * verifyacount
      *
      * @param  mixed $id
      * @return void
      */
-    public function verifyacount($id)
+    public function verifyacount(User $user,string $token)
     {
-        $Id = $id;
-        return view('auth.verify-account', compact('Id'));
+        if($user->token != $token) abort(404);
+        if($user->expired_token < now()) return view('auth.email-verified',['Id' => $user->id,'isVerified' => false]);
+        $this->user->update($user->id,['email_verified_at' => now()]);
+        Mail::to($user->email)->send(new RegistrationMail(['email' => $user->email, 'name' => $user->name]));
+        return view('auth.verify-account',['Id' => $user->idm,'isVerified' => true])->with('success', trans('alert.verify_success'));
     }
 
     /**

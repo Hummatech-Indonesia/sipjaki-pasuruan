@@ -1514,10 +1514,16 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label id="name" for="recipient-name" class="control-label mb-2">Masukan
-                                Tahun</label>
+                            <label id="name" for="recipient-name" class="control-label mb-2">
+                                Tahun Terbit</label>
                             <input type="text" class="form-control" id="create-year" class="form-control"
                                 name="year" aria-describedby="name" placeholder="Masukan Tahun" />
+                        </div>
+                        <div class="mb-3">
+                            <label id="name" for="recipient-name" class="control-label mb-2">
+                                Berlaku Sampai</label>
+                            <input type="date" class="form-control" class="form-control"
+                                name="expired_at" aria-describedby="name" placeholder="Berlaku Sampai" />
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -1577,10 +1583,16 @@
                             <input type="file" name="file" class="form-control" id="">
                         </div>
                         <div class="mb-3">
-                            <label id="name" for="recipient-name" class="control-label mb-2">Masukan
-                                Tahun</label>
+                            <label id="name" for="recipient-name" class="control-label mb-2">
+                                Tahun Terbit</label>
                             <input type="text" class="form-control" id="create-year" class="form-control"
                                 name="year" aria-describedby="name" placeholder="Masukan Tahun" />
+                        </div>
+                        <div class="mb-3">
+                            <label id="name" for="recipient-name" class="control-label mb-2">
+                                Berlaku Sampai</label>
+                            <input type="date" class="form-control" class="form-control"
+                                name="expired_at" aria-describedby="name" placeholder="Berlaku Sampai" />
                         </div>
                     </div>
                     <div class="modal-footer">

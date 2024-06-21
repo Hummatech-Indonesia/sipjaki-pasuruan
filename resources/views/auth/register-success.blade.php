@@ -28,8 +28,8 @@
                             <div class="row">
                                 <div class="col-7">
                                     <div class="text-dark p-4">
-                                        <h5 class="text-dark" style="font-weight: 600">{{ $isVerified ? 'Berhasil Verifikasi' : 'Gagal Verifikasi'}}</h5>
-                                        <p>{{ $isVerified ? 'Berhasil melakukan verifikasi' : 'Tautan Sudah Kadaluarsa' }}</p>
+                                        <h5 class="text-dark" style="font-weight: 600">Periksa Email Anda</h5>
+                                        <p>Link verifikasi telah dikirimkan ke email Anda (jika tidak terdapat pada folder inbox, mohon cek folder spam). Silahkan klik tombol Verifikasi agar akun Anda dapat digunakan di SIPJAKI.</p>
                                     </div>
                                 </div>
                                 <div class="col-5 align-self-end">
@@ -38,7 +38,6 @@
                             </div>
                         </div>
                         <div class="card-body pt-0">
-                            @if($isVerified == false)
                             <div>
                                 <form id="resend" action="/resend-email-verification/{{ $Id }}" method="post">
                                     @csrf
@@ -58,12 +57,9 @@
                                     </a>
                                 </form>
                             </div>
-                            @endif
                             <div class="p-2">
-                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                        {{ session('success') }} Silahkan <a href="{{ route('login') }}">Login</a>
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                            aria-label="Close"></button>
+                                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                        Link verifikasi kadaluarsa dalam waktu 40 menit.
                                     </div>
                             </div>
                         </div>

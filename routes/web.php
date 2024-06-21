@@ -126,7 +126,7 @@ Route::middleware('auth')->group(function () {
 
     Route::patch('reset-passsword', [ResetPasswordController::class, 'reset'])->name('reset.password.update');
 
-    Route::patch('verify-account/{user}', [VerificationController::class, 'verifyToken'])->name('verify.account');
+    Route::get('verify-account/{user}', [VerificationController::class, 'verifyToken'])->name('verify.account');
 
     Route::get('download-contract/{consultantProject}', [ConsultantProjectController::class, 'downloadContract'])->name('downloadContract');
     Route::get('download-administrative-minutes/{consultantProject}', [ConsultantProjectController::class, 'downloadAdministrativeMinutes'])->name('downloadAdministrativeMinutes');
@@ -371,8 +371,8 @@ Route::get('send-email', function () {
 // verify token
 Route::get('/redirect-verify-account', [VerificationController::class, 'verifyAccount'])->name('redirect.verify.account');
 Route::put('update-token/{user}', [VerificationController::class, 'updateToken']);
-Route::put('verify-token/{user}', [VerificationController::class, 'verifyToken'])->name('verify.token/');
-Route::get('verify-account/{user}', [VerificationController::class, 'verifyacount'])->name('verify.account/');
+Route::get('verify-token/{user}', [VerificationController::class, 'verifyToken'])->name('verify.token/');
+Route::get('verify-account/{user}/{token}', [VerificationController::class, 'verifyacount'])->name('verify.account/');
 Route::post('resend-email-verification/{user}', [VerificationController::class, 'sendResend']);
 
 // verifikasi account

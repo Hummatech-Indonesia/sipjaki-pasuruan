@@ -17,19 +17,24 @@ class ServiceProviderQualificationRequest extends FormRequest
             'sub_classification_id' => 'required|exists:sub_classifications,id',
             'qualification_id' => 'required|exists:qualifications,id',
             'year' => 'required|max:4',
-            'file' =>  ($this->serviceProviderQualification == null) ? 'required|file' : 'nullable'
+            'file' =>  ($this->serviceProviderQualification == null) ? 'required|file' : 'nullable',
+            'expired_at' => 'date|after_or_equal:today'
         ];
     }
 
     public function messages(): array
-    {
-        return [
-            'sub_classification_id.required' => 'Sub Klasikafikasi wajib diisi',
-            'sub_classification_id.exists' => 'Sub Klasikafikasi tidak valid',
-            'qualification_id.required' => 'Kualifikasi wajib diisi',
-            'qualification_id.exists' => 'Kualifikasi tidak valid',
-            'year.required' => 'Tahun wajib diisi',
-            'year.max' => 'Tahun maksimal 4 karakter',
-        ];
-    }
+{
+    return [
+        'sub_classification_id.required' => 'Sub Klasifikasi wajib diisi.',
+        'sub_classification_id.exists' => 'Sub Klasifikasi yang dipilih tidak valid.',
+        'qualification_id.required' => 'Kualifikasi wajib diisi.',
+        'qualification_id.exists' => 'Kualifikasi yang dipilih tidak valid.',
+        'year.required' => 'Tahun wajib diisi.',
+        'year.max' => 'Tahun harus terdiri dari maksimal 4 digit.',
+        'file.required' => 'File wajib diunggah.',
+        'file.file' => 'File yang diunggah harus berupa file yang valid.',
+        'expired_at.date' => 'Tanggal kedaluwarsa harus dalam format tanggal yang benar.',
+        'expired_at.after_or_equal' => 'Tanggal kedaluwarsa harus hari ini atau setelahnya.'
+    ];
+}
 }
