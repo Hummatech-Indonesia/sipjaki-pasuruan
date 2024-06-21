@@ -41,7 +41,11 @@
                             File Sertifikat</th>
                         <th scope="col" class="table-sipjaki text-center" style="">
                             Jenis Sertifikat</th>
-                        <th scope="col" class="table-sipjaki text-center">No Registrasi</th>
+                            <th scope="col" class="table-sipjaki text-center">No Registrasi</th>
+                            <th scope="col" class="table-sipjaki text-center" style="">
+                                Jenjang</th>
+                            <th scope="col" class="table-sipjaki text-center" style="">
+                                Klasifikasi</th>
                         @role('service provider')
                             <th scope="col" class="text-white text-center"
                                 style="background-color: #1B3061; border-radius:0px 5px 5px 0px; color: #ffffff; border-color: #1B3061; border-width: 0px;">
@@ -69,6 +73,12 @@
                             <td class="text-center">
                                 {{ $workerCertificate->registration_number }}
                             </td>
+                            <td class="text-center">
+                                {{ $workerCertificate->qualificationLevel->name }}
+                            </td>
+                            <td class="text-center">
+                                {{ $workerCertificate->subClassification->name }}
+                            </td>
                             @role('service provider')
                                 <td class="d-flex flex-row justify-content-center gap-2">
                                     <button type="button"
@@ -76,7 +86,11 @@
                                         style="width: 90px; background-color: #FFC928; color: white"
                                         id="btn-edit-{{ $workerCertificate->id }}" data-id="{{ $workerCertificate->id }}"
                                         data-certificate="{{ $workerCertificate->certificate }}"
-                                        data-registration_number="{{ $workerCertificate->registration_number }}"><i
+                                        data-registration_number="{{ $workerCertificate->registration_number }}"
+                                        data-sub_classification_id = "{{ $workerCertificate->subClassification->id }}"
+                                        data-classification_id = "{{ $workerCertificate->subClassification->classification_training_id }}"
+                                        data-qualification_level_id = "{{ $workerCertificate->qualificationLevel->id }}"
+                                        data-qualification_level = "{{ $workerCertificate->qualificationLevel->qualification_training_id  }}"><i
                                             class="bx bx-bx bxs-edit fs-4"></i>
                                         <span>Edit</span></button>
                                     <button type="button"
@@ -144,17 +158,17 @@
                             </div>
                             <div class="col-6 mb-3">
                                 <label for="" class="form-label">Sub Klasifikasi</label>
-                                <select name="sub_clasification_id" id="create-sub_clasification_id" style="width: 100%"
+                                <select name="sub_classification_id" id="create-sub_clasification_id" style="width: 100%"
                                     class="form-select sub-classification select-2 select2-create w-100"></select>
                             </div>
                             <div class="col-6 mb-3">
                                 <label for="" class="form-label">Kualifikasi</label>
-                                <select name="qualification_id" id="create-qualification" style="width: 100%"
+                                <select name="qualification_level_id" id="create-qualification" style="width: 100%"
                                     class="form-select select-2 qualification select2-create w-100"></select>
                             </div>
                             <div class="col-6 mb-3">
                                 <label for="" class="form-label">Jenjang</label>
-                                <select name="sub_qualification_id" id="create-sub_qualification_id" style="width: 100%"
+                                <select name="qualification_level_id" id="create-sub_qualification_id" style="width: 100%"
                                     class="form-select sub-qualification select-2 select2-create w-100"></select>
                             </div>
                         </div>
@@ -211,24 +225,24 @@
                             </div>
                             <div class="col-6 mb-3">
                                 <label for="" class="form-label">Klasifikasi</label>
-                                <select name="clasification_id" id="update-clasification" style="width: 100%"
+                                <select name="classification_id" id="update-clasification" style="width: 100%"
                                     class="form-select clasification_id select-2 select2-update w-100">
 
                                 </select>
                             </div>
                             <div class="col-6 mb-3">
                                 <label for="" class="form-label">Sub Klasifikasi</label>
-                                <select name="sub_clasification_id" id="update-sub_clasification_id" style="width: 100%"
+                                <select name="sub_classification_id" id="update-sub_clasification_id" style="width: 100%"
                                     class="form-select sub-classification select-2 select2-update w-100"></select>
                             </div>
                             <div class="col-6 mb-3">
                                 <label for="" class="form-label">Kualifikasi</label>
-                                <select name="qualification_id" id="update-qualification" style="width: 100%"
+                                <select name="qualification_level" id="update-qualification" style="width: 100%"
                                     class="form-select select-2 qualification select2-update w-100"></select>
                             </div>
                             <div class="col-6 mb-3">
                                 <label for="" class="form-label">Jenjang</label>
-                                <select name="sub_qualification_id" id="update-sub_qualification_id" style="width: 100%"
+                                <select name="qualification_level_id" id="update-sub_qualification_id" style="width: 100%"
                                     class="form-select sub-qualification select-2 select2-update w-100"></select>
                             </div>
                         </div>
@@ -300,6 +314,7 @@
                         $('#create-clasification').append(option);
                         $('#update-clasification').append(option);
                     })
+                    $('#create-clasification').trigger('change');
 
                     $('#create-clasification').change(function() {
                         var selectedClassificationId = $(this).val();
@@ -378,27 +393,29 @@
                 method: 'GET',
                 dataType: 'JSON',
                 beforeSend: function() {
-                    $('#create-sub_qualification').empty().trigger('change');
-                    $('#update-sub_qualification').empty().trigger('change');
+                    $('#create-sub_qualification_id').empty().trigger('change');
+                    $('#update-sub_qualification_id').empty().trigger('change');
                 },
                 success: function(response) {
                     $.each(response.data, function(index, item) {
                         var option = `<option value="${item.id}">${item.name}</option>`
-                        $('#create-sub_qualification').append(option);
-                        $('#update-sub_qualification').append(option);
+                        $('#create-sub_qualification_id').append(option);
+                        $('#update-sub_qualification_id').append(option);
                     })
                 }
             })
         }
         $('.btn-detail').click(function() {
             const data = getDataAttributes($(this).attr('id'))
-            handleFile(data)
             console.log(data);
+            handleFile(data)
             $('#modal-detail').modal('show')
         })
         $('.btn-edit').click(function() {
             const formData = getDataAttributes($(this).attr('id'))
             var actionUrl = `/worker-certificate/${formData['id']}`;
+            console.log(formData);
+            
             $('#form-update').attr('action', actionUrl);
 
             setFormValues('form-update', formData)
