@@ -1372,7 +1372,7 @@
                                     </p>
                                     <input type="number"
                                         value="{{ $amendmentDeeps->deed_number ? $amendmentDeeps->deed_number : '' }}"
-                                        name="deed_number" class="form-control" placeholder="Masukan Nomor">
+                                        name="deed_number" class="form-control" placeholder="Masukan Nomor Akte">
                                 </div>
                                 <div class="col-6">
                                     <p class="mb-0 text-dark fs-6 form-label">
@@ -1390,7 +1390,7 @@
                                     </p>
                                     <input type="text"
                                         name="{{ $amendmentDeeps->city ? $amendmentDeeps->city : '-' }}" name="city"
-                                        class="form-control" placeholder="Masukan Nomor">
+                                        class="form-control" placeholder="Masukan Nama Kota Kabupaten">
                                 </div>
                                 <div class="col-6">
                                     <p class="mb-0 text-dark fs-6 form-label">
@@ -1398,7 +1398,7 @@
                                     </p>
                                     <input name="province" type="text"
                                         value="{{ $amendmentDeeps->province ? $amendmentDeeps->province : '-' }}"
-                                        class="form-control" placeholder="Masukan Nomor">
+                                        class="form-control" placeholder="Masukan Nama Provinsi">
                                 </div>
                             </div>
                             <div class="row">
@@ -1406,7 +1406,7 @@
                                     <p class="mb-0 text-dark fs-6 form-label">
                                         Alamat
                                     </p>
-                                    <textarea name="address" id="" class="form-control">{{ $amendmentDeeps->address ? $amendmentDeeps->address : '-' }}</textarea>
+                                    <textarea name="address" id="" placeholder="Masukan Alamat" class="form-control">{{ $amendmentDeeps->address ? $amendmentDeeps->address : '-' }}</textarea>
                                 </div>
                             </div>
                         @else
