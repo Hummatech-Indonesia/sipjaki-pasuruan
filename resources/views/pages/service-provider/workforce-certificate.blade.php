@@ -107,7 +107,7 @@
         </div>
     </div>
     <div class="modal fade" tabindex="-1" id="modal-create" aria-labelledby="exampleModalLabel1">
-        <div class="modal-dialog modal-md" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <form id="form-create" action="{{ route('worker-certificate.store', ['worker' => $worker->id]) }}"
                     method="POST" enctype="multipart/form-data">
@@ -115,25 +115,47 @@
                     @csrf
                     <div class="modal-header d-flex align-items-center">
                         <h4 class="modal-title" id="exampleModalLabel1">
-                            Tambah Tenaga Kerja
+                            Tambah Serifikasi
                         </h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="row mb-3">
-                            <div class="col-6">
+                            <div class="col-6 mb-3">
                                 <label id="name" for="recipient-name" class="control-label mb-2">Masukan
                                     Jenis Sertifikat</label>
                                 <input type="text" class="form-control" id="create-name" class="form-control"
                                     name="certificate" aria-describedby="certificate"
                                     placeholder="Masukkan Jenis Sertifikat" value="{{ old('certificate') }}" />
                             </div>
-                            <div class="col-6">
+                            <div class="col-6 mb-3">
                                 <label id="name" for="recipient-name" class="control-label mb-2">Masukan
                                     No Registrasi</label>
                                 <input type="text" class="form-control" id="create-name" class="form-control"
                                     name="registration_number" aria-describedby="registration_number"
                                     placeholder="Masukkan No Registrasi" value="{{ old('registration_number') }}" />
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label for="" class="form-label">Klasifikasi</label>
+                                <select name="clasification_id" id="create-clasification" style="width: 100%"
+                                    class="form-select clasification_id select-2 select2-create w-100">
+
+                                </select>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label for="" class="form-label">Sub Klasifikasi</label>
+                                <select name="sub_clasification_id" id="create-sub_clasification_id" style="width: 100%"
+                                    class="form-select sub-classification select-2 select2-create w-100"></select>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label for="" class="form-label">Kualifikasi</label>
+                                <select name="qualification_id" id="create-qualification" style="width: 100%"
+                                    class="form-select select-2 qualification select2-create w-100"></select>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label for="" class="form-label">Jenjang</label>
+                                <select name="sub_qualification_id" id="create-sub_qualification_id" style="width: 100%"
+                                    class="form-select sub-qualification select-2 select2-create w-100"></select>
                             </div>
                         </div>
                         <div class="row">
@@ -173,19 +195,41 @@
                     </div>
                     <div class="modal-body">
                         <div class="row mb-3">
-                            <div class="col-6">
+                            <div class="col-6 mb-3">
                                 <label id="name" for="recipient-name" class="control-label mb-2">Masukan
                                     Jenis Sertifikat</label>
                                 <input type="text" class="form-control" id="create-name" class="form-control"
                                     name="certificate" aria-describedby="certificate"
                                     placeholder="Masukkan Jenis Sertifikat" value="{{ old('certificate') }}" />
                             </div>
-                            <div class="col-6">
+                            <div class="col-6 mb-3">
                                 <label id="name" for="recipient-name" class="control-label mb-2">Masukan
                                     No Registrasi</label>
                                 <input type="text" class="form-control" id="create-name" class="form-control"
                                     name="registration_number" aria-describedby="registration_number"
                                     placeholder="Masukkan No Registrasi" value="{{ old('registration_number') }}" />
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label for="" class="form-label">Klasifikasi</label>
+                                <select name="clasification_id" id="update-clasification" style="width: 100%"
+                                    class="form-select clasification_id select-2 select2-update w-100">
+
+                                </select>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label for="" class="form-label">Sub Klasifikasi</label>
+                                <select name="sub_clasification_id" id="update-sub_clasification_id" style="width: 100%"
+                                    class="form-select sub-classification select-2 select2-update w-100"></select>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label for="" class="form-label">Kualifikasi</label>
+                                <select name="qualification_id" id="update-qualification" style="width: 100%"
+                                    class="form-select select-2 qualification select2-update w-100"></select>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label for="" class="form-label">Jenjang</label>
+                                <select name="sub_qualification_id" id="update-sub_qualification_id" style="width: 100%"
+                                    class="form-select sub-qualification select-2 select2-update w-100"></select>
                             </div>
                         </div>
                         <div class="row">
@@ -233,6 +277,119 @@
     <script>
         $('#worker').addClass('mm-active')
         $('#worker-link').addClass('active')
+        $(document).ready(function() {
+            $(".select2-create").select2({
+                dropdownParent: $("#modal-create")
+            });
+            $(".select2-update").select2({
+                dropdownParent: $("#modal-update")
+            });
+        });
+        $('.select-2').select2()
+
+        getClassification()
+
+        function getClassification() {
+            $.ajax({
+                url: '/json-classification-training',
+                method: 'GET',
+                dataType: 'JSON',
+                success: function(response) {
+                    $.each(response.data, function(index, item) {
+                        var option = `<option value="${item.id}">${item.name}</option>`
+                        $('#create-clasification').append(option);
+                        $('#update-clasification').append(option);
+                    })
+
+                    $('#create-clasification').change(function() {
+                        var selectedClassificationId = $(this).val();
+                        if (selectedClassificationId !== '') {
+                            getSubClassification(
+                                selectedClassificationId
+                            );
+                        }
+                    });
+                    $('#update-clasification').change(function() {
+                        var selectedClassificationId = $(this).val();
+                        if (selectedClassificationId !== '') {
+                            getSubClassification(
+                                selectedClassificationId
+                            );
+                        }
+                    });
+                }
+            })
+        }
+
+        function getSubClassification(id) {
+            $.ajax({
+                url: '/json-sub-classification-training/' + id,
+                method: 'GET',
+                dataType: 'JSON',
+                beforeSend: function() {
+                    $('#create-sub_clasification_id').empty().trigger('change');
+                    $('#update-sub_clasification_id').empty().trigger('change');
+                },
+                success: function(response) {
+                    $.each(response.data, function(index, item) {
+                        var option = `<option value="${item.id}">${item.name}</option>`
+                        $('#create-sub_clasification_id').append(option);
+                        $('#update-sub_clasification_id').append(option);
+                    })
+                }
+            })
+        }
+        getQualification()
+
+        function getQualification() {
+            $.ajax({
+                url: '/list-qualification-training',
+                method: 'GET',
+                dataType: 'JSON',
+                success: function(response) {
+                    $.each(response.data, function(index, item) {
+                        var option = `<option value="${item.id}">${item.name}</option>`
+                        $('#create-qualification').append(option);
+                        $('#update-qualification').append(option);
+                    });
+                    $('#create-qualification').change(function() {
+                        var selectedClassificationId = $(this).val();
+                        if (selectedClassificationId !== '') {
+                            getSubQualification(
+                                selectedClassificationId
+                            );
+                        }
+                    });
+                    $('#update-qualification').change(function() {
+                        var selectedClassificationId = $(this).val();
+                        if (selectedClassificationId !== '') {
+                            getSubQualification(
+                                selectedClassificationId
+                            );
+                        }
+                    });
+                }
+            })
+        }
+
+        function getSubQualification(id) {
+            $.ajax({
+                url: '/json-qualification-level-training/' + id,
+                method: 'GET',
+                dataType: 'JSON',
+                beforeSend: function() {
+                    $('#create-sub_qualification').empty().trigger('change');
+                    $('#update-sub_qualification').empty().trigger('change');
+                },
+                success: function(response) {
+                    $.each(response.data, function(index, item) {
+                        var option = `<option value="${item.id}">${item.name}</option>`
+                        $('#create-sub_qualification').append(option);
+                        $('#update-sub_qualification').append(option);
+                    })
+                }
+            })
+        }
         $('.btn-detail').click(function() {
             const data = getDataAttributes($(this).attr('id'))
             handleFile(data)

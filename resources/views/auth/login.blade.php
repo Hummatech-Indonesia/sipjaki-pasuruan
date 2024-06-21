@@ -82,10 +82,7 @@
                                             </div>
 
                                             <div class="mb-3">
-                                                <div class="float-end">
-                                                    <a href="{{ route('send.email') }}" style="color: #457DFF">Forgot
-                                                        password?</a>
-                                                </div>
+                                             
                                                 <label class="form-label" style="font-weight: bold">Password</label>
                                                 <div class="input-group auth-pass-inputgroup">
                                                     <input type="password"
@@ -102,6 +99,10 @@
                                                         </span>
                                                     @enderror
                                                 </div>
+                                            </div>
+                                            <div class="mt-3">
+                                                <a href="{{ route('send.email') }}" style="color: #457DFF">Lupa
+                                                    password?</a>
                                             </div>
                                             <div class="mt-3 d-grid">
                                                 <button style="background-color: #1B3061"

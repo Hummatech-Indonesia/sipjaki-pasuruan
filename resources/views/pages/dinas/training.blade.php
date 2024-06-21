@@ -577,6 +577,24 @@
         })
 
         get();
+        getFoundSource()
+        training_method_id()
+
+        function getFoundSource() {
+            $.ajax({
+                url: "{{ route('list-fund-source') }}",
+                type: 'GET',
+                dataType: "JSON",
+                success: function(response) {
+                    $.each(response.data, function(index, item) {
+                        var option = $('<option>');
+                        option.val(item.id);
+                        option.text(item.name);
+                        $('.founds-source').append(option);
+                    });
+                }
+            });
+        }
 
         function get() {
             $.ajax({
@@ -608,25 +626,6 @@
                 }
             });
         }
-
-        getFoundSource()
-
-        function getFoundSource() {
-            $.ajax({
-                url: "{{ route('list-fund-source') }}",
-                type: 'GET',
-                dataType: "JSON",
-                success: function(response) {
-                    $.each(response.data, function(index, item) {
-                        var option = $('<option>');
-                        option.val(item.id);
-                        option.text(item.name);
-                        $('.founds-source').append(option);
-                    });
-                }
-            });
-        }
-
         function subclassifications(classificationId) {
             $.ajax({
                 url: "json-sub-classification-training/" + classificationId,
@@ -645,27 +644,6 @@
                 }
             });
         }
-        training_method_id()
-
-        function training_method_id() {
-            $.ajax({
-                url: "{{ route('list-training-method') }}",
-                type: 'GET',
-                dataType: "JSON",
-                success: function(response) {
-                    $.each(response.data, function(index, item) {
-                        var option = `<option value="${item.id}">${item.name}</option>`
-                        $('#list-training-method').append(option);
-                        $('#update-list-training-method').append(option);
-                    });
-
-                    $('#update-list-training-method').val(fiscalYearId).trigger('change');
-                }
-            });
-        }
-
-        qualifications()
-
         function qualifications() {
             $.ajax({
                 url: "list-qualification-training",
@@ -703,7 +681,6 @@
                 }
             });
         }
-
         function listqualificationlevel(classificationId) {
             $.ajax({
                 url: "json-qualification-level-training/" + classificationId,
@@ -723,6 +700,27 @@
             });
         }
 
+
+        function training_method_id() {
+            $.ajax({
+                url: "{{ route('list-training-method') }}",
+                type: 'GET',
+                dataType: "JSON",
+                success: function(response) {
+                    $.each(response.data, function(index, item) {
+                        var option = `<option value="${item.id}">${item.name}</option>`
+                        $('#list-training-method').append(option);
+                        $('#update-list-training-method').append(option);
+                    });
+
+                    $('#update-list-training-method').val(fiscalYearId).trigger('change');
+                }
+            });
+        }
+
+        qualifications()
+
+      
         listfiscalyear();
 
         function listfiscalyear() {
