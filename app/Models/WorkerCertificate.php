@@ -21,6 +21,8 @@ class WorkerCertificate extends Model implements HasWorker
         'file',
         'certificate',
         'registration_number',
+        'qualification_level_id',
+        'sub_classification_id'
     ];
     protected $guarded = [];
 
@@ -34,5 +36,24 @@ class WorkerCertificate extends Model implements HasWorker
         return $this->belongsTo(Worker::class);
     }
 
+    /**
+     * Get the subClassification that owns the WorkerCertificate
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function subClassification(): BelongsTo
+    {
+        return $this->belongsTo(SubClassificationTraining::class);
+    }
+
+    /**
+     * Get the qualificationLevel that owns the WorkerCertificate
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function qualificationLevel(): BelongsTo
+    {
+        return $this->belongsTo(QualificationLevelTraining::class);
+    }
 
 }

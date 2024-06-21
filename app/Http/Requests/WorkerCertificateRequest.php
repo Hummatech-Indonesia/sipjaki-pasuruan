@@ -17,6 +17,8 @@ class WorkerCertificateRequest extends FormRequest
             'file' => $this->worker_certificate == null ? 'required|mimes:pdf' : 'nullable|mimes:pdf',
             'certificate' => 'required|max:255',
             'registration_number' => 'required|max:255',
+            'qualification_level_id' => 'required|exists:qualification_level_trainings,id',
+            'sub_classification_id' => 'required|exists:sub_classification_trainings,id'
         ];
     }
 

@@ -19,7 +19,7 @@ class WorkerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'national_identity_number' => 'required|max:18',
+            'national_identity_number' => 'required|max:18|unique:workers,national_identity_number',
             'name' => 'required|max:150',
             'birth_date' => 'required|date|before:today',
             'gender' => [new GenderRule, 'required'],
@@ -40,6 +40,7 @@ class WorkerRequest extends FormRequest
     public function messages(): array
     {
         return [
+            'national_identity_number.unique' => 'NIK Sudah Terdaftar',
             'name.required' => 'nama wajib diisi',
             'name.max' => 'Nama tidak boleh lebih dari :max karakter',
             'address.required' => 'alamat wajib diisi',
