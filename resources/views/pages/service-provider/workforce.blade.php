@@ -122,39 +122,60 @@
                     <div class="modal-body">
                         <div class="row mb-3">
                             <div class="col-6">
-                                <label id="name" for="recipient-name" class="control-label mb-2">Masukan
+                                <label id="name" for="recipient-name" class="control-label mb-2">
                                     Pengurus</label>
                                 <input type="text" class="form-control" id="create-name" class="form-control"
-                                    name="name" aria-describedby="name" placeholder="Masukkan Pengurus"
+                                    name="name" aria-describedby="name" placeholder="Nama Tenaga Kerja"
                                     value="{{ old('name') }}" />
                             </div>
                             <div class="col-6">
-                                <label id="name" for="recipient-name" class="control-label mb-2">Masukan
+                                <label id="name" for="recipient-name" class="control-label mb-2">
                                     NIK</label>
-                                <input type="text" class="form-control" id="create-name" class="form-control"
+                                <input type="number" class="form-control" id="create-name" class="form-control"
                                     name="national_identity_number" aria-describedby="name"
-                                    placeholder="Masukkan Pengurus" value="{{ old('name') }}" />
+                                    placeholder="NIK Tenaga Kerja" value="{{ old('name') }}" maxlength="16" />
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-6">
-                                <label id="name" for="recipient-name" class="control-label mb-2">Masukan
+                                <label id="name" for="recipient-name" class="control-label mb-2">
                                     No Telepon</label>
                                 <input type="number" class="form-control" id="create-name" class="form-control"
                                     name="phone_number" aria-describedby="name" value="{{ old('phone_number') }}"
-                                    placeholder="Masukkan No Telepon" />
+                                    placeholder="No Telepon" />
                             </div>
                             <div class="col-6">
-                                <label id="name" for="recipient-name" class="control-label mb-2">Masukan
-                                    Pendidikan</label>
-                                <input type="text" class="form-control" id="create-name" class="form-control"
-                                    name="education" aria-describedby="name" value="{{ old('education') }}"
-                                    placeholder="Masukkan Pendidikan" />
+                                <label id="name" for="recipient-name" class="control-label mb-2">
+                                    Pendidikan Terakhir</label>
+                                    <select name="education" class="form-select">
+                                        <option value="">Pilih</option>
+                                        <option value="SD/MI/Sederajat" {{ old('education') == 'SD/MI/Sederajat' ? 'selected' : '' }}>
+                                            SD/MI/Sederajat
+                                        </option>
+                                        <option value="SMP/MTs/Sederajat" {{ old('education') == 'SMP/MTs/Sederajat' ? 'selected' : '' }}>
+                                            SMP/MTs/Sederajat
+                                        </option>
+                                        <option value="SMA/MA/SMK/Sederajat" {{ old('education') == 'SMA/MA/SMK/Sederajat' ? 'selected' : '' }}>
+                                            SMA/MA/SMK/Sederajat
+                                        </option>
+                                        <option value="Diploma 3" {{ old('education') == 'Diploma 3' ? 'selected' : '' }}>
+                                            Diploma 3
+                                        </option>
+                                        <option value="S1 (Sarjana)" {{ old('education') == 'S1 (Sarjana)' ? 'selected' : '' }}>
+                                            S1 (Sarjana)
+                                        </option>
+                                        <option value="S2 (Magister)" {{ old('education') == 'S2 (Magister)' ? 'selected' : '' }}>
+                                            S2 (Magister)
+                                        </option>
+                                        <option value="S3 (Doktor)" {{ old('education') == 'S3 (Doktor)' ? 'selected' : '' }}>
+                                            S3 (Doktor)
+                                        </option>
+                                    </select>
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-6">
-                                <label id="name" for="recipient-name" class="control-label mb-2">Masukan
+                                <label id="name" for="recipient-name" class="control-label mb-2">
                                     Kewarganegaraan</label>
                                 <select name="citizenship" class="form-select">
                                     <option value="wni" {{ old('citizenship') == 'wni' ? 'selected' : '' }}>
@@ -166,7 +187,7 @@
                                 </select>
                             </div>
                             <div class="col-6">
-                                <label id="name" for="recipient-name" class="control-label mb-2">Masukan
+                                <label id="name" for="recipient-name" class="control-label mb-2">
                                     Agama</label>
                                 <select name="religion" class="form-select">
                                     <option value="islam" {{ old('religion') == 'islam' ? 'selected' : '' }}>
@@ -192,14 +213,14 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-6">
-                                <label id="name" for="recipient-name" class="control-label mb-2">Masukan
+                                <label id="name" for="recipient-name" class="control-label mb-2">
                                     Tanggal Lahir</label>
                                 <input type="date" class="form-control" id="create-name" class="form-control"
                                     name="birth_date" aria-describedby="name" value="{{ old('birth_date') }}"
-                                    placeholder="Masukkan Tanggal Lahir" />
+                                    placeholder="Tanggal Lahir" />
                             </div>
                             <div class="col-6">
-                                <label id="name" for="recipient-name" class="control-label mb-2">Masukan
+                                <label id="name" for="recipient-name" class="control-label mb-2">
                                     Status Kawin</label>
                                 <select name="marital_status" class="form-select">
                                     <option value="single" {{ old('marital_status') == 'single' ? 'selected' : '' }}>
@@ -220,7 +241,7 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                <label id="name" for="recipient-name" class="control-label mb-2">Masukan
+                                <label id="name" for="recipient-name" class="control-label mb-2">
                                     Jenis Kelamin</label>
                                 <div class="form-check mb-3">
                                     <input class="form-check-input" type="radio" name="gender" id="formRadios1"
@@ -238,7 +259,7 @@
                                 </div>
                             </div>
                             <div class="col">
-                                <label id="name" for="recipient-name" class="control-label mb-2">Masukan
+                                <label id="name" for="recipient-name" class="control-label mb-2">
                                     Alamat</label>
                                 <textarea class="form-control" name="address" id="" cols="15" rows="5"
                                     placeholder="Masukkan Alamat">{{ old('address') }}</textarea>
@@ -496,39 +517,60 @@
                     <div class="modal-body">
                         <div class="row mb-3">
                             <div class="col-6">
-                                <label id="name" for="recipient-name" class="control-label mb-2">Masukan
-                                    Pengurus</label>
+                                <label id="name" for="recipient-name" class="control-label mb-2">
+                                    Tenaga Kerja</label>
                                 <input type="text" class="form-control" id="create-name" class="form-control"
-                                    name="name" aria-describedby="name" placeholder="Masukkan Pengurus"
+                                    name="name" aria-describedby="name" placeholder="Nama Tenaga Kerja"
                                     value="{{ old('name') }}" />
                             </div>
                             <div class="col-6">
-                                <label id="name" for="recipient-name" class="control-label mb-2">Masukan
+                                <label id="name" for="recipient-name" class="control-label mb-2">
                                     NIK</label>
                                 <input type="text" class="form-control" id="create-name" class="form-control"
                                     name="national_identity_number" aria-describedby="name"
-                                    placeholder="Masukkan Pengurus" value="{{ old('name') }}" />
+                                    placeholder="NIK Tenaga Kerja" value="{{ old('name') }}" maxlength="16" />
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-6">
-                                <label id="name" for="recipient-name" class="control-label mb-2">Masukan
+                                <label id="name" for="recipient-name" class="control-label mb-2">
                                     No Telepon</label>
                                 <input type="number" class="form-control" id="create-name" class="form-control"
                                     name="phone_number" aria-describedby="name" value="{{ old('phone_number') }}"
-                                    placeholder="Masukkan No Telepon" />
+                                    placeholder="No Telepon" />
                             </div>
                             <div class="col-6">
-                                <label id="name" for="recipient-name" class="control-label mb-2">Masukan
+                                <label id="name" for="recipient-name" class="control-label mb-2">
                                     Pendidikan</label>
-                                <input type="text" class="form-control" id="create-name" class="form-control"
-                                    name="education" aria-describedby="name" value="{{ old('education') }}"
-                                    placeholder="Masukkan Pendidikan" />
+                                    <select name="education" class="form-select">
+                                        <option value="">Pilih</option>
+                                        <option value="SD/MI/Sederajat" {{ old('education') == 'SD/MI/Sederajat' ? 'selected' : '' }}>
+                                            SD/MI/Sederajat
+                                        </option>
+                                        <option value="SMP/MTs/Sederajat" {{ old('education') == 'SMP/MTs/Sederajat' ? 'selected' : '' }}>
+                                            SMP/MTs/Sederajat
+                                        </option>
+                                        <option value="SMA/MA/SMK/Sederajat" {{ old('education') == 'SMA/MA/SMK/Sederajat' ? 'selected' : '' }}>
+                                            SMA/MA/SMK/Sederajat
+                                        </option>
+                                        <option value="Diploma 3" {{ old('education') == 'Diploma 3' ? 'selected' : '' }}>
+                                            Diploma 3
+                                        </option>
+                                        <option value="S1 (Sarjana)" {{ old('education') == 'S1 (Sarjana)' ? 'selected' : '' }}>
+                                            S1 (Sarjana)
+                                        </option>
+                                        <option value="S2 (Magister)" {{ old('education') == 'S2 (Magister)' ? 'selected' : '' }}>
+                                            S2 (Magister)
+                                        </option>
+                                        <option value="S3 (Doktor)" {{ old('education') == 'S3 (Doktor)' ? 'selected' : '' }}>
+                                            S3 (Doktor)
+                                        </option>
+                                    </select>
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-6">
-                                <label id="name" for="recipient-name" class="control-label mb-2">Masukan
+                                <label id="name" for="recipient-name" class="control-label mb-2">
                                     Kewarganegaraan</label>
                                 <select name="citizenship" class="form-select">
                                     <option value="wni" {{ old('citizenship') == 'wni' ? 'selected' : '' }}>
@@ -540,7 +582,7 @@
                                 </select>
                             </div>
                             <div class="col-6">
-                                <label id="name" for="recipient-name" class="control-label mb-2">Masukan
+                                <label id="name" for="recipient-name" class="control-label mb-2">
                                     Agama</label>
                                 <select name="religion" class="form-select">
                                     <option value="islam" {{ old('religion') == 'islam' ? 'selected' : '' }}>
@@ -566,14 +608,14 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-6">
-                                <label id="name" for="recipient-name" class="control-label mb-2">Masukan
+                                <label id="name" for="recipient-name" class="control-label mb-2">
                                     Tanggal Lahir</label>
                                 <input type="date" class="form-control" id="create-name" class="form-control"
                                     name="birth_date" aria-describedby="name" value="{{ old('birth_date') }}"
                                     placeholder="Masukkan Tanggal Lahir" />
                             </div>
                             <div class="col-6">
-                                <label id="name" for="recipient-name" class="control-label mb-2">Masukan
+                                <label id="name" for="recipient-name" class="control-label mb-2">
                                     Status Kawin</label>
                                 <select name="marital_status" class="form-select">
                                     <option value="single" {{ old('marital_status') == 'single' ? 'selected' : '' }}>
@@ -594,7 +636,7 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                <label id="name" for="recipient-name" class="control-label mb-2">Masukan
+                                <label id="name" for="recipient-name" class="control-label mb-2">
                                     Jenis Kelamin</label>
                                 <div class="form-check mb-3">
                                     <input class="form-check-input" type="radio" name="gender" id="formRadios1"
@@ -612,10 +654,10 @@
                                 </div>
                             </div>
                             <div class="col">
-                                <label id="name" for="recipient-name" class="control-label mb-2">Masukan
+                                <label id="name" for="recipient-name" class="control-label mb-2">
                                     Alamat</label>
                                 <textarea class="form-control" name="address" id="" cols="15" rows="5"
-                                    placeholder="Masukkan Alamat">{{ old('address') }}</textarea>
+                                    placeholder=" Alamat">{{ old('address') }}</textarea>
                             </div>
                         </div>
                     </div>
