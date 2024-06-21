@@ -58,7 +58,7 @@ class UserController extends Controller
      * @return void
      */
     public function store(UserRequest $request)
-    {
+    {   
         $this->service->store($request, $this->user);
         if ($request->is('api/*')) {
             return ResponseHelper::success(null, trans('alert.add_success'));
@@ -74,7 +74,7 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        $this->user->update($user->id, $this->service->update($request));
+        $this->user->update($user->id, $this->service->update($request,$user));
         $this->dinas->update($user->dinas->id, $request->validated());
         if ($request->is('api/*')) {
             return ResponseHelper::success(null, trans('alert.update_success'));

@@ -22,7 +22,8 @@ class UserRequest extends FormRequest
             'email' => ['required', 'email', 'max:255', Rule::unique('users', 'email')->ignore($this->user)],
             'phone_number' => 'required|max:255',
             'person_responsible' => 'required|max:255',
-            'password' => 'required|max:16'
+            'password' => 'required|max:16',
+            'profile' => 'nullable|mimes:png,jpg,jpeg'
         ];
     }
 
@@ -46,6 +47,7 @@ class UserRequest extends FormRequest
             'person_responsible.max' => 'Kolom person responsible tidak boleh lebih dari :max karakter.',
             'password.required' => 'Kolom password wajib diisi.',
             'password.max' => 'Password tidak boleh lebih dari :max karakter.',
+            'profile.mimes' => 'Gambar harus bertipe png,jpg,jpeg'
         ];
     }
 }

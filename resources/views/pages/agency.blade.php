@@ -31,7 +31,7 @@
     <div class="modal fade" id="modal-create" tabindex="-1" id="modal-create" aria-labelledby="exampleModalLabel1">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <form action="{{ route('agencies.store') }}" method="POST">
+                <form action="{{ route('agencies.store') }}" enctype="multipart/form-data" method="POST">
                     @csrf
                     <div class="modal-header d-flex align-items-center">
                         <h4 class="modal-title" id="exampleModalLabel1">
@@ -60,7 +60,16 @@
                                         value="{{ old('person_responsible') }}" />
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label id="name" for="recipient-name" class="control-label mb-2">Logo Dinas</label>
+                                    <input type="file" class="form-control" id="create-logo"
+                                        class="form-control" name="profile" id="nametext"
+                                        aria-describedby="name" placeholder="Masukan penanggung jawab"
+                                        value="{{ old('logo') }}" />
+                                </div>
+                            </div>
+                            <div class="col-6">
                                 <div class="mb-3">
                                     <label id="phone_number" for="recipient-name" class="control-label mb-2">Nomor
                                         Handphone</label>
@@ -69,7 +78,7 @@
                                         value="{{ old('phone_number') }}" placeholder="Masukan nomor hp anda" />
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-6">
                                 <div class="mb-3">
                                     <label id="email" for="recipient-name" class="control-label mb-2">Email</label>
                                     <input type="email" class="form-control" id="create-email" class="form-control"
@@ -77,9 +86,10 @@
                                         value="{{ old('email') }}" />
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-6">
                                 <div class="mb-3">
-                                    <label id="email" for="recipient-name" class="control-label mb-2">Password</label>
+                                    <label id="email" for="recipient-name"
+                                        class="control-label mb-2">Password</label>
                                     <div class="d-flex">
                                         <input type="password" class="form-control" name="password" required
                                             autocomplete="current-password" placeholder="Masukan Password"
@@ -106,13 +116,12 @@
         </div>
     </div>
     @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
+        @foreach ($errors->all() as $error)
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ $error }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endforeach
     @endif
     <div class="table-responsive">
         <table class="table table-borderless" border="1">
@@ -160,9 +169,9 @@
                         <td class="">
                             <div class="d-flex justify-content-header gap-2">
                                 <div class="">
-                                    <button class="btn text-white d-flex gap-1 btn-edit" id="btn-edit-{{ $user->id }}"
-                                        data-id="{{ $user->id }}" data-name="{{ $user->name }}"
-                                        data-email="{{ $user->email }}"
+                                    <button class="btn text-white d-flex gap-1 btn-edit"
+                                        id="btn-edit-{{ $user->id }}" data-id="{{ $user->id }}"
+                                        data-name="{{ $user->name }}" data-email="{{ $user->email }}"
                                         data-person_responsible="{{ $user->dinas->person_responsible }}"
                                         data-phone_number="{{ $user->phone_number }}"
                                         style="background-color: #1B3061; width: 100%;">
@@ -170,8 +179,8 @@
                                     </button>
                                 </div>
                                 <div class="">
-                                    <button data-id="{{ $user->id }}" class="d-flex gap-1 btn text-white btn-delete btn-danger"
-                                        style="width: 100%;">
+                                    <button data-id="{{ $user->id }}"
+                                        class="d-flex gap-1 btn text-white btn-delete btn-danger" style="width: 100%;">
                                         <i class="bx bx-bx bxs-trash fs-4"></i> Hapus
                                     </button>
                                 </div>
@@ -197,7 +206,7 @@
     <div class="modal fade" id="modal-update" tabindex="-1" aria-labelledby="exampleModalLabel1">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <form method="POST" id="form-update">
+                <form method="POST" enctype="multipart/form-data" id="form-update">
                     @csrf
                     @method('PUT')
                     <div class="modal-header d-flex align-items-center">
@@ -225,7 +234,15 @@
                                         placeholder="Masukan penanggung jawab" />
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label id="name" for="recipient-name" class="control-label mb-2">Logo Dinas</label>
+                                    <input type="file" class="form-control" id="update-profile"
+                                        name="profile" aria-describedby="name"
+                                        placeholder="Masukan penanggung jawab" />
+                                </div>
+                            </div>
+                            <div class="col-6">
                                 <div class="mb-3">
                                     <label id="phone_number" for="recipient-name" class="control-label mb-2">Nomor
                                         Handphone</label>
@@ -234,14 +251,14 @@
                                         placeholder="Masukan nomor hp anda" />
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-6">
                                 <div class="mb-3">
                                     <label id="email" for="recipient-name" class="control-label mb-2">Email</label>
                                     <input type="email" class="form-control" id="update-email" name="email"
                                         aria-describedby="name" placeholder="Masukan email" />
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-6">
                                 <div class="mb-3">
                                     <label id="email" for="recipient-name"
                                         class="control-label mb-2">Password</label>
