@@ -85,7 +85,8 @@ class RegisterController extends Controller
      public function register(RegisterRequest $request)
      {
          $Id = $this->service->handleRegistration($request, $this->register);
-         return view('auth.register-success',compact('Id'));
+         $status = '';
+         return view('auth.register-success',compact('Id','status'));
      }
 
     public function approval(Request $request)

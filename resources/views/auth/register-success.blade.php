@@ -62,10 +62,33 @@
                                         Link verifikasi kadaluarsa dalam waktu 40 menit.
                                     </div>
                             </div>
+                            @if($status == 'error-resend')
+                            <div class="p-2">
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    Anda telah mengirim ulang token verifikasi dalam beberapa waktu terakhir, Silahkan tunggu hingga beberapa saat lagi
+                                </div>
+                            </div>
+                            @endif
+                            @if ($status == 'success-resend')
+                            <div class="p-2">
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    Berhasil mengirim ulang link verifikasi
+                                </div>
+                            </div>
+                            @endif
+                        </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+<script>
+    $('#submit-data').click(function() {
+            $('#resend').submit();
+        })
+</script>
 @endsection

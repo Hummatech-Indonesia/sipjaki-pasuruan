@@ -103,15 +103,18 @@ class VerificationController extends Controller
      */
     public function sendResend(User $user)
     {
+        $Id = $user->id;
+        $status = 'error-resend';
         if (Cache::has('verification_sent_' . $user->id)) {
-            return redirect()->back()->withErrors(['errors' => 'Anda telah mengirim ulang token verifikasi dalam beberapa waktu terakhir, Silahkan tunggu hingga 2 menit lagi']);
+            return view('auth.register-success',compact('Id','status'))->with(['errors' => 'Anda telah mengirim ulang link verifikasi dalam beberapa waktu terakhir, Silahkan tunggu hingga 2 menit lagi']);
         }
 
         $token = strtoupper(Str::random(5));
-        Mail::to($user->email)->send(new RegistrationMail(['email' => $user->email, 'user' => $user->name, 'token' => $token, 'id' => $user->id]));
+        Mail::to($user->email)->send(new RegistrationMail(['email' => $user->email, 'name' => $user->name, 'token' => $token, 'id' => $user->id]));
 
         Cache::put('verification_sent_' . $user->id, true, now()->addMinutes(2));
 
-        return redirect()->back()->with('success', 'Berhasil mengirim ulang token verifikasi');
+        $status = 'success-resend';
+        return view('auth.register-success',compact('Id','status'))->with('success', 'Berhasil mengirim ulang link verifikasi');
     }
 }
