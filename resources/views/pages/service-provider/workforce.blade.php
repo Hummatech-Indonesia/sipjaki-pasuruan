@@ -38,13 +38,6 @@
     <div class="modal fade" tabindex="-1" id="import" aria-labelledby="exampleModalLabel1">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <div class="modal-header" style="background-color: #1B3061">
-                    <div class="d-flex justify-content-center">
-                        <h4 class="text-center text-white" id="">
-                            Import File
-                        </h4>
-                    </div>
-                </div>
                 <form id="form-create" action="{{ route('import.workers') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
