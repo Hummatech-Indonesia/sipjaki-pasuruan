@@ -6,18 +6,15 @@
     <div class="row">
         <div class="col-xl-12">
             <div class="card">
-                <div class="row">
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                </div>
                 <div class="card-body">
+                    @if ($errors->any())
+                    @foreach ($errors->all() as $error)
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{ $error }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endforeach
+                @endif
                     <form method="POST" action="{{ route('dinas.update') }}" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')

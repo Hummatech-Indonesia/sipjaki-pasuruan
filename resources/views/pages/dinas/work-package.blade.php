@@ -279,20 +279,19 @@
             </div><!-- /.modal-dialog -->
         </div>
     @endrole
-
-    <div class="row mt-4">
+    <div class="row mt-2">
         @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
+        @foreach ($errors->all() as $error)
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ $error }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-        @endif
-        @if (session('success'))
-            <x-alert-success-component :success="session('success')" />
-        @endif
+        @endforeach
+    @endif
+    @if (session('success'))
+        <x-alert-success-component :success="session('success')" />
+    @endif
+
         <div class="table-responsive">
             <table class="table table-borderless" border="1">
                 <thead>
