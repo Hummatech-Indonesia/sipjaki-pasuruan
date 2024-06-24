@@ -27,32 +27,32 @@
                             <th class="text-center table-sipjaki">Aksi</th>
                         </tr>
                     </thead>
-                    @forelse ($serviceProviderQualificationPending as $index=>$serviceProviderQualificationPendin)
+                    @forelse ($serviceProviderQualificationPendings as $index=>$serviceProviderQualificationPending)
                         <tbody>
                             <tr>
                                 <td class="text-center">
                                     {{ $index + 1 }}
                                 </td>
                                 <td class="text-center">
-                                    {{ $serviceProviderQualificationPendin->serviceProvider->user->name }}
+                                    {{ $serviceProviderQualificationPending->serviceProvider->user->name }}
                                 </td>
                                 <td class="text-center">
-                                    {{ $serviceProviderQualificationPendin->created_at->format('j F Y') }} </td>
+                                    {{ $serviceProviderQualificationPending->created_at->format('j F Y') }} </td>
                                 <td class="text-center">
-                                    {{ $serviceProviderQualificationPendin->subClassification->code }}
+                                    {{ $serviceProviderQualificationPending->subClassification->code }}
                                 </td>
                                 <td class="text-center">
-                                    {{ $serviceProviderQualificationPendin->qualification->name }}
+                                    {{ $serviceProviderQualificationPending->qualification->name }}
                                 </td>
                                 <td class="text-center">
-                                    <a href="detail-service-provider-qualification-pending/{{ $serviceProviderQualificationPendin->id }}"
+                                    <a href="detail-service-provider-qualification-pending/{{ $serviceProviderQualificationPending->id }}"
                                         class="btn text-white" style="background-color: #1B3061">Detail</a>
                                 </td>
                                 <td class="text-center">
-                                    {{ $serviceProviderQualificationPendin->year }}
+                                    {{ $serviceProviderQualificationPending->year }}
                                 </td>
                                 <td class="text-center">
-                                    {{ $serviceProviderQualificationPendin->expired_at->format('j F Y') }} </td>
+                                    {{ $serviceProviderQualificationPending->expired_at ? $serviceProviderQualificationPending->expired_at->format('j F Y') }} : '-' </td>
                                 <td class="text-center">
                                     <div class="d-flex justify-content-center gap-2">
                                         {{-- <div class="">
@@ -64,15 +64,15 @@
                                             </a>
                                         </div> --}}
                                         <div class="">
-                                            <button type="button" id="{{ $serviceProviderQualificationPendin->id }}"
-                                                data-id="{{ $serviceProviderQualificationPendin->id }}"
+                                            <button type="button" id="{{ $serviceProviderQualificationPending->id }}"
+                                                data-id="{{ $serviceProviderQualificationPending->id }}"
                                                 class="btn btn-danger btn-reject">
                                                 Tolak
                                             </button>
                                         </div>
                                         <div class="">
                                             <form id="approval-form"
-                                                action="approve-service-provider-qualifications/{{ $serviceProviderQualificationPendin->id }}"
+                                                action="approve-service-provider-qualifications/{{ $serviceProviderQualificationPending->id }}"
                                                 method="post">
                                                 @csrf
                                                 @method('PATCH')

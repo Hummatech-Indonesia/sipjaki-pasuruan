@@ -168,7 +168,7 @@ class ServiceProviderQualificationController extends Controller
     public function pending(): View|JsonResponse
     {
         $serviceProviderQualificationPending = $this->serviceProviderQualification->getPending();
-        return view('pages.approval.qualification', ['serviceProviderQualificationPending' => $serviceProviderQualificationPending]);
+        return view('pages.approval.qualification', ['serviceProviderQualificationPendings' => $serviceProviderQualificationPending]);
     }
 
     /**
