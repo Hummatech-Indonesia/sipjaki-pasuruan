@@ -8,6 +8,9 @@
             </div>
         @endforeach
     @endif
+    @if (session('success'))
+    <x-alert-success-component :success="session('success')" />
+@endif
     <h3 class="text-dark" style="font-weight: 600">
         Gambar
     </h3>
@@ -198,15 +201,7 @@
 
 @endsection
 @section('script')
-    @if (session('success'))
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: '{{ session('success') }}',
-            });
-        </script>
-    @endif
+
     <script>
         $(document).ready(function() {
             $('.summernote').summernote({

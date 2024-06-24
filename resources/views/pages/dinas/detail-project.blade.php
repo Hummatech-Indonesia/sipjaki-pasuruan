@@ -38,15 +38,15 @@
                         <td class="fw-bold">Progres Fisik</td>
                         <td>:</td>
                         <td id="detail-physical_progress"><?php
-                            $totalProgress = 0.0;
-                            
-                            foreach ($project->serviceProviderProjects as $index => $serviceProviderProjec) {
-                                $progress = $serviceProviderProjec->progres ?? 0.0;
-                                $totalProgress += $progress;
-                            }
-                            
-                            echo $totalProgress . '%';
-                            ?></td>
+                        $totalProgress = 0.0;
+                        
+                        foreach ($project->serviceProviderProjects as $index => $serviceProviderProjec) {
+                            $progress = $serviceProviderProjec->progres ?? 0.0;
+                            $totalProgress += $progress;
+                        }
+                        
+                        echo $totalProgress . '%';
+                        ?></td>
                     </tr>
 
                     <tr>
@@ -153,7 +153,7 @@
                                             class="bx bxs-download bx-xs"></i>
                                         Download</a>
                                 @else
-                                -
+                                    -
                                 @endif
                             </td>
                         </tr>
@@ -167,7 +167,7 @@
                                             class="bx bxs-download bx-xs"></i>
                                         Download</a>
                                 @else
-                                - 
+                                    -
                                 @endif
                             </td>
                         </tr>
@@ -181,7 +181,7 @@
                                             class="bx bxs-download bx-xs"></i>
                                         Download</a>
                                 @else
-                                -
+                                    -
                                 @endif
                             </td>
                         </tr>
@@ -195,7 +195,7 @@
                                             class="bx bxs-download bx-xs"></i>
                                         Download</a>
                                 @else
-                                - 
+                                    -
                                 @endif
                             </td>
                         </tr>
@@ -209,7 +209,7 @@
                                             class="bx bxs-download bx-xs"></i>
                                         Download</a>
                                 @else
-                                - 
+                                    -
                                 @endif
                             </td>
                         </tr>
@@ -224,7 +224,7 @@
                                             class="bx bxs-download bx-xs"></i>
                                         Download</a>
                                 @else
-                                - 
+                                    -
                                 @endif
                             </td>
                         </tr>
@@ -238,7 +238,7 @@
                                             class="bx bxs-download bx-xs"></i>
                                         Download</a>
                                 @else
-                                - 
+                                    -
                                 @endif
                             </td>
                         </tr>
@@ -252,7 +252,7 @@
                                             class="bx bxs-download bx-xs"></i>
                                         Download</a>
                                 @else
-                                - 
+                                    -
                                 @endif
                             </td>
                         </tr>
@@ -266,7 +266,7 @@
                                             class="bx bxs-download bx-xs"></i>
                                         Download</a>
                                 @else
-                                - 
+                                    -
                                 @endif
                             </td>
                         </tr>
@@ -280,7 +280,7 @@
                                             class="bx bxs-download bx-xs"></i>
                                         Download</a>
                                 @else
-                                - 
+                                    -
                                 @endif
                             </td>
                         </tr>
@@ -294,7 +294,7 @@
                                             class="bx bxs-download bx-xs"></i>
                                         Download</a>
                                 @else
-                                - 
+                                    -
                                 @endif
                             </td>
                         </tr>
@@ -308,7 +308,7 @@
                                             class="bx bxs-download bx-xs"></i>
                                         Download</a>
                                 @else
-                                - 
+                                    -
                                 @endif
                             </td>
                         </tr>
@@ -322,7 +322,7 @@
                                             class="bx bxs-download bx-xs"></i>
                                         Download</a>
                                 @else
-                                - 
+                                    -
                                 @endif
                             </td>
                         </tr>
@@ -336,7 +336,7 @@
                                             class="bx bxs-download bx-xs"></i>
                                         Download</a>
                                 @else
-                                - 
+                                    -
                                 @endif
                             </td>
                         </tr>
@@ -374,7 +374,7 @@
                                             class="bx bxs-download bx-xs"></i>
                                         Download</a>
                                 @else
-                                - 
+                                    -
                                 @endif
                             </td>
                         </tr>
@@ -389,7 +389,7 @@
                                             class="bx bxs-download bx-xs"></i>
                                         Download</a>
                                 @else
-                                - 
+                                    -
                                 @endif
                             </td>
                         </tr>
@@ -403,7 +403,7 @@
                                             class="bx bxs-download bx-xs"></i>
                                         Download</a>
                                 @else
-                                - 
+                                    -
                                 @endif
                             </td>
                         </tr>
@@ -417,7 +417,7 @@
                                             class="bx bxs-download bx-xs"></i>
                                         Download</a>
                                 @else
-                                - 
+                                    -
                                 @endif
                             </td>
                         </tr>
@@ -431,7 +431,7 @@
                                             class="bx bxs-download bx-xs"></i>
                                         Download</a>
                                 @else
-                                - 
+                                    -
                                 @endif
                             </td>
                         </tr>

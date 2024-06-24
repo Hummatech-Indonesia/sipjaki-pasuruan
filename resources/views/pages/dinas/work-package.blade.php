@@ -10,25 +10,27 @@
         <form action="" method="GET" class="d-flex gap-3 col-10">
             <input type="search" id="search-name" value="{{ request()->name }}" name="name" class="form-control"
                 placeholder="Search">
-            @role(['admin','superadmin'])
-            <select name="dinas" id="search-dinas" class="form-control ml-3">
-                <option value="">Semua Dinas</option>
-                @foreach ($dinases as $dinas)
-                    <option {{ request()->dinas == $dinas->id ? 'selected' : '' }} value="{{ $dinas->id }}">{{ $dinas->user->name }}</option>
-                @endforeach
-            @endrole
+            @role(['admin', 'superadmin'])
+                <select name="dinas" id="search-dinas" class="form-control ml-3">
+                    <option value="">Semua Dinas</option>
+                    @foreach ($dinases as $dinas)
+                        <option {{ request()->dinas == $dinas->id ? 'selected' : '' }} value="{{ $dinas->id }}">
+                            {{ $dinas->user->name }}</option>
+                    @endforeach
+                @endrole
             </select>
             <select name="year" id="search-year" class="form-control">
                 <option value="" selected> Semua Tahun</option>
                 @foreach ($fiscalYears as $fiscalYear)
-                    <option {{ $fiscalYear->id == request()->year ? 'selected' : '' }} value="{{ $fiscalYear->id }}">{{ $fiscalYear->name }}</option>
+                    <option {{ $fiscalYear->id == request()->year ? 'selected' : '' }} value="{{ $fiscalYear->id }}">
+                        {{ $fiscalYear->name }}</option>
                 @endforeach
             </select>
-            <select name="status"  id="search-status" class="form-control">
+            <select name="status" id="search-status" class="form-control">
                 <option value="" selected> Semua Status</option>
-                <option value="active"  {{request()->status == 'active' ? 'selected' : ''}}>Aktif</option>
-                <option value="nonactive"  {{request()->status == 'nonantive' ? 'selected' : ''}}>Non Aktif</option>
-                <option value="canceled"  {{request()->status == 'canceled' ? 'selected' : ''}}>Dibatalkan</option>
+                <option value="active" {{ request()->status == 'active' ? 'selected' : '' }}>Aktif</option>
+                <option value="nonactive" {{ request()->status == 'nonantive' ? 'selected' : '' }}>Non Aktif</option>
+                <option value="canceled" {{ request()->status == 'canceled' ? 'selected' : '' }}>Dibatalkan</option>
             </select>
             <button type="submit" class="btn text-white d-flex items-center gap-2" style="background-color:#1B3061">
                 Cari <i class="fa fa-search my-auto"></i>
@@ -53,8 +55,7 @@
             <div class="">
                 <button data-bs-toggle="modal" data-bs-target="#modal-create" class="btn text-white"
                     style="background-color:#1B3061">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                        fill="none">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
                         <path fill-rule="evenodd" clip-rule="evenodd"
                             d="M12 4C12.5523 4 13 4.35817 13 4.8V19.2C13 19.6418 12.5523 20 12 20C11.4477 20 11 19.6418 11 19.2V4.8C11 4.35817 11.4477 4 12 4Z"
                             fill="white" />
@@ -67,216 +68,216 @@
         @endrole
     </div>
     @role('dinas')
-    <div class="modal fade bs-example-modal-xl" id="modal-create" tabindex="-1" role="dialog"
-        aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header" style="background-color: #1B3061">
-                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Tambah </h5>
-                    <button type="button" class="btn-close" style="background-color: white" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
-                </div>
-                <div class="card-body">
-                    <form action="{{ route('executor-projects.store') }}" method="POST" id="form-create">
-                        @csrf
-                        <div id="basic-example">
-                            <!-- Seller Details -->
-                            <h3>informasi Umum</h3>
-                            <section>
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="mb-3">
-                                            <label for="basicpill-name">Nama Pekerjaan</label>
-                                            <input type="text" class="form-control" name="name" id="basicpill-name"
-                                                placeholder="masukan nama pekerjaan" value="{{ old('name') }}">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label for="update-fiscal_year_id">Tahun</label>
-                                            <select name="fiscal_year_id" class="form-control select2-update"
-                                                style="width:100%" id="update-fiscal_year_id">
-                                                @foreach ($fiscalYears as $fiscalYear)
-                                                    <option value="{{ $fiscalYear->id }}"
-                                                        {{ old('fiscal_year_id') == $fiscalYear->id ? 'selected' : '' }}>
-                                                        {{ $fiscalYear->name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label for="basicpill-fund_source_id">Sumber Dana</label>
-                                            <select name="fund_source_id" class="form-control select2-create"
-                                                style="width:100%" id="basicpill-fund_source_id">
-                                                @foreach ($fundSources as $fundSource)
-                                                    <option value="{{ $fundSource->id }}"
-                                                        {{ old('fund_source_id') == $fundSource->id ? 'selected' : '' }}>
-                                                        {{ $fundSource->name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label for="basicpill-penyedia-jasa">Pelaksana</label>
-                                            <select class="form-control select2-create" style="width:100%"
-                                                name="service_provider_id" id="basicpill-penyelenggara">
-                                                @foreach ($executors as $executor)
-                                                    <option value="{{ $executor->id }}"
-                                                        {{ old('service_provider_id') == $executor->id ? 'selected' : '' }}>
-                                                        {{ $executor->user->name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label for="basicpill-penyedia-jasa">Paket Konsultan</label>
-                                            <select class="form-control select2-create" style="width:100%"
-                                                name="consultant_project_id" id="basicpill-konsultan">
-                                                @foreach ($consultantProjects as $consultantProject)
-                                                    <option value="{{ $consultantProject->id }}"
-                                                        {{ old('consultant_project_id') == $consultantProject->id ? 'selected' : '' }}>
-                                                        {{ $consultantProject->name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-
-                            <!-- Company Document -->
-                            <h3>Kontrak</h3>
-                            <section>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label for="basicpill-nilai_kontrak">Nilai Kontrak</label>
-                                            <input type="number" class="form-control" name="project_value"
-                                                id="basicpill-nilai_kontrak" placeholder="Masukan nilai kontrak"
-                                                value="{{ old('project_value') }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label for="basicpill-contract_category_id">Jenis kontrak</label>
-                                            <select name="contract_category_id" class="form-control select2-create"
-                                                style="width:100%" id="basicpill-contract_category_id">
-                                                @foreach ($contractCategories as $contractCategory)
-                                                    <option value="{{ $contractCategory->id }}"
-                                                        {{ old('contract_category_id') == $contractCategory->id ? 'selected' : '' }}>
-                                                        {{ $contractCategory->name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label for="basicpill-cstno-input">karakteristik Kontrak</label>
-                                            <select name="characteristic_project" class="form-select">
-                                                <option value="single"
-                                                    {{ old('characteristic_project') == 'single' ? 'selected' : '' }}>
-                                                    tahun tunggal
-                                                </option>
-                                                <option value="multiple"
-                                                    {{ old('characteristic_project') == 'multiple' ? 'selected' : '' }}>
-                                                    tahun jamak
-                                                </option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label>Status</label>
-                                            <select name="status" class="form-select">
-                                                <option disabled>Pilih status</option>
-                                                <option value="active" {{ old('status') == 'active' ? 'selected' : '' }}>
-                                                    Aktif</option>
-                                                <option value="nonactive"
-                                                    {{ old('status') == 'nonactive' ? 'selected' : '' }}>Nonaktif</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label for="basicpill-start_at">Mulai</label>
-                                            <input type="date" name="start_at" class="form-control"
-                                                id="basicpill-start_at" value="{{ old('start_at') }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label for="basicpill-end_at">Selesai</label>
-                                            <input type="date" name="end_at" class="form-control"
-                                                id="basicpill-end_at" value="{{ old('end_at') }}">
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-
-                            <!-- Bank Details -->
-                            <h3>Detail (optional)</h3>
-                            <section>
-                                <div>
+        <div class="modal fade bs-example-modal-xl" id="modal-create" tabindex="-1" role="dialog"
+            aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: #1B3061">
+                        <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Tambah </h5>
+                        <button type="button" class="btn-close" style="background-color: white" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ route('executor-projects.store') }}" method="POST" id="form-create">
+                            @csrf
+                            <div id="basic-example">
+                                <!-- Seller Details -->
+                                <h3>informasi Umum</h3>
+                                <section>
                                     <div class="row">
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-12">
                                             <div class="mb-3">
-                                                <label for="basicpill-physical_progress_start">Progress Fisik Pada</label>
-                                                <input type="date" name="physical_progress_start" class="form-control"
-                                                    id="basicpill-physical_progress_start"
-                                                    value="{{ old('physical_progress_start') }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="mb-3">
-                                                <label for="basicpill-servicetax-input">Progress Fisik(%)</label>
-                                                <input type="text" name="physical_progress" class="form-control"
-                                                    id="basicpill-servicetax-input" placeholder="Masukan progress"
-                                                    value="{{ old('physical_progress') ? old('physical_progress') : '0' }}">
+                                                <label for="basicpill-name">Nama Pekerjaan</label>
+                                                <input type="text" class="form-control" name="name" id="basicpill-name"
+                                                    placeholder="masukan nama pekerjaan" value="{{ old('name') }}">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="mb-3">
-                                                <label for="basicpill-physical_progress_start">Progress Keuangan
-                                                    Pada</label>
-                                                <input type="date" class="form-control" name="finance_progress_start"
-                                                    id="basicpill-physical_progress_start"
-                                                    value="{{ old('finance_progress_start') }}">
+                                                <label for="update-fiscal_year_id">Tahun</label>
+                                                <select name="fiscal_year_id" class="form-control select2-update"
+                                                    style="width:100%" id="update-fiscal_year_id">
+                                                    @foreach ($fiscalYears as $fiscalYear)
+                                                        <option value="{{ $fiscalYear->id }}"
+                                                            {{ old('fiscal_year_id') == $fiscalYear->id ? 'selected' : '' }}>
+                                                            {{ $fiscalYear->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
-                                                <label for="basicpill-declaration-input">Progress Keuangan(%)</label>
-                                                <input type="text" name="finance_progress" class="form-control"
-                                                    id="basicpill-Declaration-input"
-                                                    placeholder="Masukan progress keuangan"
-                                                    value="{{ old('finance_progress') ? old('finance_progress') : '0' }}">
+                                                <label for="basicpill-fund_source_id">Sumber Dana</label>
+                                                <select name="fund_source_id" class="form-control select2-create"
+                                                    style="width:100%" id="basicpill-fund_source_id">
+                                                    @foreach ($fundSources as $fundSource)
+                                                        <option value="{{ $fundSource->id }}"
+                                                            {{ old('fund_source_id') == $fundSource->id ? 'selected' : '' }}>
+                                                            {{ $fundSource->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="basicpill-penyedia-jasa">Pelaksana</label>
+                                                <select class="form-control select2-create" style="width:100%"
+                                                    name="service_provider_id" id="basicpill-penyelenggara">
+                                                    @foreach ($executors as $executor)
+                                                        <option value="{{ $executor->id }}"
+                                                            {{ old('service_provider_id') == $executor->id ? 'selected' : '' }}>
+                                                            {{ $executor->user->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="basicpill-penyedia-jasa">Paket Konsultan</label>
+                                                <select class="form-control select2-create" style="width:100%"
+                                                    name="consultant_project_id" id="basicpill-konsultan">
+                                                    @foreach ($consultantProjects as $consultantProject)
+                                                        <option value="{{ $consultantProject->id }}"
+                                                            {{ old('consultant_project_id') == $consultantProject->id ? 'selected' : '' }}>
+                                                            {{ $consultantProject->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </section>
-                        </div>
-                    </form>
-                </div>
+                                </section>
 
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div>
+                                <!-- Company Document -->
+                                <h3>Kontrak</h3>
+                                <section>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="basicpill-nilai_kontrak">Nilai Kontrak</label>
+                                                <input type="number" class="form-control" name="project_value"
+                                                    id="basicpill-nilai_kontrak" placeholder="Masukan nilai kontrak"
+                                                    value="{{ old('project_value') }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="basicpill-contract_category_id">Jenis kontrak</label>
+                                                <select name="contract_category_id" class="form-control select2-create"
+                                                    style="width:100%" id="basicpill-contract_category_id">
+                                                    @foreach ($contractCategories as $contractCategory)
+                                                        <option value="{{ $contractCategory->id }}"
+                                                            {{ old('contract_category_id') == $contractCategory->id ? 'selected' : '' }}>
+                                                            {{ $contractCategory->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="basicpill-cstno-input">karakteristik Kontrak</label>
+                                                <select name="characteristic_project" class="form-select">
+                                                    <option value="single"
+                                                        {{ old('characteristic_project') == 'single' ? 'selected' : '' }}>
+                                                        tahun tunggal
+                                                    </option>
+                                                    <option value="multiple"
+                                                        {{ old('characteristic_project') == 'multiple' ? 'selected' : '' }}>
+                                                        tahun jamak
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label>Status</label>
+                                                <select name="status" class="form-select">
+                                                    <option disabled>Pilih status</option>
+                                                    <option value="active" {{ old('status') == 'active' ? 'selected' : '' }}>
+                                                        Aktif</option>
+                                                    <option value="nonactive"
+                                                        {{ old('status') == 'nonactive' ? 'selected' : '' }}>Nonaktif</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="basicpill-start_at">Mulai</label>
+                                                <input type="date" name="start_at" class="form-control"
+                                                    id="basicpill-start_at" value="{{ old('start_at') }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="basicpill-end_at">Selesai</label>
+                                                <input type="date" name="end_at" class="form-control"
+                                                    id="basicpill-end_at" value="{{ old('end_at') }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <!-- Bank Details -->
+                                <h3>Detail (optional)</h3>
+                                <section>
+                                    <div>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    <label for="basicpill-physical_progress_start">Progress Fisik Pada</label>
+                                                    <input type="date" name="physical_progress_start" class="form-control"
+                                                        id="basicpill-physical_progress_start"
+                                                        value="{{ old('physical_progress_start') }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    <label for="basicpill-servicetax-input">Progress Fisik(%)</label>
+                                                    <input type="text" name="physical_progress" class="form-control"
+                                                        id="basicpill-servicetax-input" placeholder="Masukan progress"
+                                                        value="{{ old('physical_progress') ? old('physical_progress') : '0' }}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    <label for="basicpill-physical_progress_start">Progress Keuangan
+                                                        Pada</label>
+                                                    <input type="date" class="form-control" name="finance_progress_start"
+                                                        id="basicpill-physical_progress_start"
+                                                        value="{{ old('finance_progress_start') }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    <label for="basicpill-declaration-input">Progress Keuangan(%)</label>
+                                                    <input type="text" name="finance_progress" class="form-control"
+                                                        id="basicpill-Declaration-input"
+                                                        placeholder="Masukan progress keuangan"
+                                                        value="{{ old('finance_progress') ? old('finance_progress') : '0' }}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </form>
+                    </div>
+
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
     @endrole
 
     <div class="row mt-4">
@@ -289,17 +290,20 @@
                 </ul>
             </div>
         @endif
+        @if (session('success'))
+            <x-alert-success-component :success="session('success')" />
+        @endif
         <div class="table-responsive">
             <table class="table table-borderless" border="1">
                 <thead>
                     <tr>
                         <th class="text-center table-sipjaki">No</th>
                         <th class="text-center table-sipjaki">Nama Pekerjaan</th>
-                        @role(['admin','superadmin','dinas'])
-                        <th class="text-center table-sipjaki">Pelaksana</th>
+                        @role(['admin', 'superadmin', 'dinas'])
+                            <th class="text-center table-sipjaki">Pelaksana</th>
                         @endrole
-                        @role(['service provider','admin','superadmin']) 
-                        <th class="text-center table-sipjaki">Dinas</th>
+                        @role(['service provider', 'admin', 'superadmin'])
+                            <th class="text-center table-sipjaki">Dinas</th>
                         @endrole
                         <th class="text-center table-sipjaki">Tahun</th>
                         <th class="text-center table-sipjaki">Nilai Kontrak</th>
@@ -316,15 +320,15 @@
                             <td class="text-center">
                                 {{ $executorProject->name }}
                             </td>
-                            @role(['admin','superadmin','dinas'])
-                            <td class="text-center">
-                                {{ $executorProject->serviceProvider->user->name }}
-                            </td>
+                            @role(['admin', 'superadmin', 'dinas'])
+                                <td class="text-center">
+                                    {{ $executorProject->serviceProvider->user->name }}
+                                </td>
                             @endrole
-                            @role(['service provider','admin','superadmin'])
-                            <td class="text-center">
-                                {{ $executorProject->consultantProject->dinas->user->name }}
-                            </td>
+                            @role(['service provider', 'admin', 'superadmin'])
+                                <td class="text-center">
+                                    {{ $executorProject->consultantProject->dinas->user->name }}
+                                </td>
                             @endrole
                             <td class="text-center">
                                 {{ $executorProject->fiscalYear->name }}
@@ -345,10 +349,12 @@
                                                 Hapus</button>
                                         </div>
                                         <div class="d-flex justify-content-center mb-2">
-                                            <button style="min-width: 90px;width:100%"
-                                                class="d-flex btn btn-edit btn-warning" id="btn-edit-{{ $executorProject->id }}"
-                                                data-id="{{ $executorProject->id }}" data-name="{{ $executorProject->name }}"
-                                                data-year="{{ $executorProject->year }}" data-status="{{ $executorProject->status }}"
+                                            <button style="min-width: 90px;width:100%" class="d-flex btn btn-edit btn-warning"
+                                                id="btn-edit-{{ $executorProject->id }}"
+                                                data-id="{{ $executorProject->id }}"
+                                                data-name="{{ $executorProject->name }}"
+                                                data-year="{{ $executorProject->year }}"
+                                                data-status="{{ $executorProject->status }}"
                                                 data-start_at="{{ \Carbon\Carbon::parse($executorProject->start_at)->format('Y-m-d') }}"
                                                 data-end_at="{{ \Carbon\Carbon::parse($executorProject->end_at)->format('Y-m-d') }}"
                                                 data-finance_progress="{{ $executorProject->finance_progress }}"
@@ -366,7 +372,7 @@
                                         </div>
                                     @endrole
                                     <div class="d-flex justify-content-center mb-2">
-                                        <a href="{{route('detail-project',['executorProject' => $executorProject->id ])}}"
+                                        <a href="{{ route('detail-project', ['executorProject' => $executorProject->id]) }}"
                                             style="min-width: 90px;width:100%;background-color: #1B3061"
                                             class="btn text-white btn-detail"><svg xmlns="http://www.w3.org/2000/svg"
                                                 width="19" height="19" viewBox="0 0 24 24" fill="none">
@@ -384,7 +390,7 @@
                     </tbody>
                 @empty
                     <tr>
-                        <td colspan="{{auth()->user()->dinas ? '7' : '8' }}" class="text-center">
+                        <td colspan="{{ auth()->user()->dinas ? '7' : '8' }}" class="text-center">
                             <div class="d-flex justify-content-center" style="min-height:16rem">
                                 <div class="my-auto">
                                     <img src="{{ asset('no-data.png') }}" width="300" height="300" />
@@ -395,7 +401,7 @@
                     </tr>
                 @endforelse
             </table>
-            {{$executorProjects->links('pagination::bootstrap-5')}}
+            {{ $executorProjects->links('pagination::bootstrap-5') }}
         </div>
     </div>
 
@@ -703,15 +709,7 @@
     <x-delete-modal-component />
 @endsection
 @section('script')
-    @if (session('success'))
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: '{{ session('success') }}',
-            });
-        </script>
-    @endif
+
     <script>
         $('a[href="#finish"]').click(function() {
             $(this).closest('form').submit()
@@ -757,9 +755,9 @@
             var year = $('#search-year').val()
             var route = "/project-export"
             var location = `${route}?status=${status}&name=${name}&year=${year}`
-            @role(['admin','superadmin'])
-            var dinas = $('#search-dinas').val()
-            location = `${route}?status=${status}&name=${name}&year=${year}&dinas=${dinas}`
+            @role(['admin', 'superadmin'])
+                var dinas = $('#search-dinas').val()
+                location = `${route}?status=${status}&name=${name}&year=${year}&dinas=${dinas}`
             @endrole
             window.location.href = location
         })

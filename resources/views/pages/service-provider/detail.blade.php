@@ -208,6 +208,9 @@
                             </div>
                         @endforeach
                     @endif
+                    @if (session('success'))
+                    <x-alert-success-component :success="session('success')" />
+                @endif
                     <div class="d-flex">
                         <div class="flex-grow-1">
                             <div class="ms-2 d-flex justify-content-between">
@@ -783,7 +786,9 @@
                     </div>
                 </div>
             </div>
-
+            @if (session('success'))
+            <x-alert-success-component :success="session('success')" />
+        @endif
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive rounded-4">
@@ -1124,13 +1129,5 @@
         </script>
     @endif
 
-    @if (session('success'))
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: '{{ session('success') }}',
-            });
-        </script>
-    @endif
+
 @endsection

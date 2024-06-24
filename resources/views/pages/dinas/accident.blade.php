@@ -1,29 +1,20 @@
 @extends('layouts.app')
 @section('content')
-@if (session('success'))
-<script>
-    Swal.fire({
-        icon: 'success',
-        title: 'Success',
-        text: '{{ session('success') }}',
-    });
-</script>
-@endif
-<div class="d-flex justify-content-between mb-3">
+
+    <div class="d-flex justify-content-between mb-3">
         <h3>
             Kecelakaan
         </h3>
-            <button class="btn text-white" data-bs-toggle="modal" data-bs-target="#modal-create"
-                style="background-color: #1B3061">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none">
-                    <path fill-rule="evenodd" clip-rule="evenodd"
-                        d="M12 4C12.5523 4 13 4.35817 13 4.8V19.2C13 19.6418 12.5523 20 12 20C11.4477 20 11 19.6418 11 19.2V4.8C11 4.35817 11.4477 4 12 4Z"
-                        fill="white" />
-                    <path fill-rule="evenodd" clip-rule="evenodd"
-                        d="M4 12C4 11.4477 4.35817 11 4.8 11H19.2C19.6418 11 20 11.4477 20 12C20 12.5523 19.6418 13 19.2 13H4.8C4.35817 13 4 12.5523 4 12Z"
-                        fill="white" />
-                </svg>Tambah
-            </button>
+        <button class="btn text-white" data-bs-toggle="modal" data-bs-target="#modal-create" style="background-color: #1B3061">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M12 4C12.5523 4 13 4.35817 13 4.8V19.2C13 19.6418 12.5523 20 12 20C11.4477 20 11 19.6418 11 19.2V4.8C11 4.35817 11.4477 4 12 4Z"
+                    fill="white" />
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M4 12C4 11.4477 4.35817 11 4.8 11H19.2C19.6418 11 20 11.4477 20 12C20 12.5523 19.6418 13 19.2 13H4.8C4.35817 13 4 12.5523 4 12Z"
+                    fill="white" />
+            </svg>Tambah
+        </button>
     </div>
     {{-- modal --}}
     <div class="modal fade" id="modal-create" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
@@ -47,7 +38,9 @@
                                         id="executor_project_id">
                                         <option value="">Pilih Pekerjaan</option>
                                         @foreach ($executorProjects as $executorProject)
-                                            <option value="{{$executorProject->id}}" {{old('executor_project_id') == $executorProject->id ? 'selected' : ''}} >{{$executorProject->name}}</option>
+                                            <option value="{{ $executorProject->id }}"
+                                                {{ old('executor_project_id') == $executorProject->id ? 'selected' : '' }}>
+                                                {{ $executorProject->name }}</option>
                                         @endforeach
                                     </select>
                                     @error('executor_project_id')
@@ -161,7 +154,9 @@
                                         id="update-executor_project_id">
                                         <option value="">Pilih Pekerjaan</option>
                                         @foreach ($executorProjects as $executorProject)
-                                            <option value="{{$executorProject->id}}" {{old('executor_project_id') == $executorProject->id ? 'selected' : ''}} >{{$executorProject->name}}</option>
+                                            <option value="{{ $executorProject->id }}"
+                                                {{ old('executor_project_id') == $executorProject->id ? 'selected' : '' }}>
+                                                {{ $executorProject->name }}</option>
                                         @endforeach
                                     </select>
                                     @error('executor_project_id')
@@ -237,7 +232,8 @@
                     <div class="d-flex justify-content-end">
                         <div class="d-flex justify-content-header gap-3">
                             <div class="">
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                                    aria-label="Close">
                                     Batal
                                 </button>
                             </div>
@@ -324,14 +320,17 @@
         </div><!-- /.modal-dialog -->
     </div>
     {{-- end modal --}}
+    @if (session('success'))
+        <x-alert-success-component :success="session('success')" />
+    @endif
     <div class="table-responsive">
         <table class="table table-borderless" border="1">
             <thead>
                 <tr>
-                    <th class="text-center table-sipjaki" >No</th>
-                    <th class="text-center table-sipjaki" >Nama Pekerjaan</th>
-                    <th class="text-center table-sipjaki" >Masalah</th>
-                    <th class="text-center table-sipjaki" >Aksi</th>
+                    <th class="text-center table-sipjaki">No</th>
+                    <th class="text-center table-sipjaki">Nama Pekerjaan</th>
+                    <th class="text-center table-sipjaki">Masalah</th>
+                    <th class="text-center table-sipjaki">Aksi</th>
                 </tr>
             </thead>
             @forelse ($accidents as $accident)
@@ -366,8 +365,8 @@
                                 </div>
                                 <div class="">
                                     <button id="btn-edit-{{ $accident->id }}" data-id="{{ $accident->id }}"
-                                        href="{{ route('accident.show',['accident'=>$accident->id]) }}" class="btn text-white btn-detail"
-                                        style="background-color: #1B3061">
+                                        href="{{ route('accident.show', ['accident' => $accident->id]) }}"
+                                        class="btn text-white btn-detail" style="background-color: #1B3061">
                                         Detail
                                     </button>
                                 </div>

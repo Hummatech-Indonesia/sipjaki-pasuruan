@@ -3,15 +3,9 @@
     @php
         use Carbon\Carbon;
     @endphp
-    @if (session('success'))
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: '{{ session('success') }}',
-            });
-        </script>
-    @endif
+   @if (session('success'))
+   <x-alert-success-component :success="session('success')" />
+@endif
     @if ($errors->has('name_package'))
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             {{ $errors->first('name_package') }}

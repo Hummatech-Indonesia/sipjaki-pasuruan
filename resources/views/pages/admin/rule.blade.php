@@ -1,15 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @if (session('success'))
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: '{{ session('success') }}',
-            });
-        </script>
-    @endif
+ 
     <h4 class="mb-3 font-size-18">Peraturan</h4>
     <div class="modal fade" tabindex="-1" id="modal-create" aria-labelledby="exampleModalLabel1">
         <div class="modal-dialog modal-lg" role="document">
@@ -102,8 +94,11 @@
                 </div>
             @endforeach
         @endif
-        <div class="table-responsive">
-            <table class="table table-borderless table-hover mt-4">
+        @if (session('success'))
+        <x-alert-success-component :success="session('success')" />
+    @endif
+        <div class="table-responsive mt-2">
+            <table class="table table-borderless table-hover ">
                 <thead>
                     <tr>
                         <th scope="col" class="text-center text-white"

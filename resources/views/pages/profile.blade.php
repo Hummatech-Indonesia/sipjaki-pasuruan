@@ -1,5 +1,8 @@
 @extends('layouts.app')
 @section('content')
+    @if (session('success'))
+        <x-alert-success-component :success="session('success')" />
+    @endif
     <div class="row">
         <div class="col-12">
             <div class="card rounded-3">
@@ -27,21 +30,21 @@
                                         <label for="" class="form-label">Nama.*</label>
                                         <input type="text" class="form-control" name="name"
                                             value="{{ auth()->user()->name }}" id="">
-                                            @error('name')
-                                                <p class="text-danger">
-                                                    {{ $message }}
-                                                </p>
-                                            @enderror
+                                        @error('name')
+                                            <p class="text-danger">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                     </div>
                                     <div class="col">
                                         <label for="" class="form-label">Email.*</label>
                                         <input type="text" value="{{ auth()->user()->email }}" class="form-control"
                                             name="email" id="">
-                                            @error('email')
-                                                <p class="text-danger">
-                                                    {{ $message }}
-                                                </p>
-                                            @enderror
+                                        @error('email')
+                                            <p class="text-danger">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                     </div>
 
                                 </div>
@@ -50,26 +53,26 @@
                                         <label for="" class="form-label">No Telepon.*</label>
                                         <input type="number" value="{{ auth()->user()->phone_number }}"
                                             class="form-control" name="phone_number" id="">
-                                            @error('phone_number')
-                                                <p class="text-danger">
-                                                    {{ $message }}
-                                                </p>
-                                            @enderror
+                                        @error('phone_number')
+                                            <p class="text-danger">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                     </div>
                                     <div class="col">
                                         <label for="" class="form-label">Sk (Opsional)</label>
                                         <input type="text" class="form-control" value="{{ auth()->user()->decree }}"
                                             name="decree" id="">
-                                            @error('decree')
-                                                <p class="text-danger">
-                                                    {{ $message }}
-                                                </p>
-                                            @enderror
+                                        @error('decree')
+                                            <p class="text-danger">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="d-flex mt-4 justify-content-end">
                                     <div>
-                                        
+
                                         <button type="submit" class="btn btn-md rounded-3"
                                             style="background-color: #1B3061;color:white;">
                                             Simpan
@@ -136,7 +139,7 @@
                                 </div>
                                 <div class="d-flex mt-4 justify-content-end">
                                     <div>
-                                        
+
                                         <button type="submit" class="btn btn-md rounded-3"
                                             style="background-color: #1B3061;color:white;">
                                             Ganti Password
@@ -153,15 +156,7 @@
     </div>
 @endsection
 @section('script')
-    @if (session('success'))
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: '{{ session('success') }}',
-            });
-        </script>
-    @endif
+
     <script>
         document.getElementById('btn-upload').addEventListener('click', function() {
             document.getElementById('photo').click();

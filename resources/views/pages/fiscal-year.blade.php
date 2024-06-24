@@ -1,14 +1,6 @@
 @extends('layouts.app')
 @section('content')
-@if(session('success'))
-<script>
-    Swal.fire({
-        icon: 'success',
-        title: 'Success',
-        text: '{{ session('success') }}',
-    });
-</script>
-@endif
+
     <h2>Tahun Anggaran</h2>
     <div class="card p-3">
         <h5 class="mb-3">
@@ -17,9 +9,11 @@
         <div class="d-flex justify-content-between align-items-center mb-3">
             <form action="" class=" col-lg-3">
                 <div class="input-group">
-                    <input name="name" value="{{request()->name}}" type="text" class="form-control" placeholder="Search">
+                    <input name="name" value="{{ request()->name }}" type="text" class="form-control"
+                        placeholder="Search">
                     <div class="input-group-append">
-                        <button class="btn text-white" style="background-color: #1B3061; border-radius: 0 5px 5px 0;" type="submit">
+                        <button class="btn text-white" style="background-color: #1B3061; border-radius: 0 5px 5px 0;"
+                            type="submit">
                             <i class="fa fa-search"></i>
                         </button>
                     </div>
@@ -72,7 +66,9 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
-
+        @if (session('success'))
+            <x-alert-success-component :success="session('success')" />
+        @endif
         <div class="table-responsive">
             <table class="table table-borderless" border="1">
                 <thead>
@@ -107,7 +103,8 @@
                                 <div class="d-flex justify-content-center" style="min-height:16rem">
                                     <div class="my-auto">
                                         <img src="{{ asset('no-data.png') }}" width="300" height="300" />
-                                        <h4 class="text-center mt-4">Tahun Anggaran {{request()->name ? 'Tidak Ditemukan'  : 'Kosong'}}!!</h4>
+                                        <h4 class="text-center mt-4">Tahun Anggaran
+                                            {{ request()->name ? 'Tidak Ditemukan' : 'Kosong' }}!!</h4>
                                     </div>
                                 </div>
                             </td>
@@ -115,7 +112,7 @@
                     @endforelse
                 </tbody>
             </table>
-            {{$fiscalYears->links('pagination::bootstrap-5')}}
+            {{ $fiscalYears->links('pagination::bootstrap-5') }}
         </div>
 
         <div class="modal fade" id="modal-update" tabindex="-1" aria-labelledby="exampleModalLabel1">

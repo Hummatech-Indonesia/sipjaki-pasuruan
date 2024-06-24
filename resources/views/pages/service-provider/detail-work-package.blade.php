@@ -228,6 +228,9 @@
                         </div>
                     @endforeach
                 @endif
+                @if (session('success'))
+                <x-alert-success-component :success="session('success')" />
+            @endif
                 <div class="table-responsive">
                     <table class="table mb-0">
 
@@ -871,15 +874,6 @@
     <x-delete-modal-component />
 @endsection
 @section('script')
-    @if (session('success'))
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: '{{ session('success') }}',
-            });
-        </script>
-    @endif
 
     <script>
         $('#paket-jasa').addClass('active')

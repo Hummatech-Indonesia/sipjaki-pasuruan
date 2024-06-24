@@ -53,6 +53,9 @@
             </div>
         @endif
     </div>
+    @if (session('success'))
+    <x-alert-success-component :success="session('success')" />
+@endif
     <div class="row">
         <div class="table-responsive">
             <table class="table">

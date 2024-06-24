@@ -1,14 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    @if (session('success'))
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: '{{ session('success') }}',
-            });
-        </script>
-    @endif
+ 
     <div class="d-flex justify-content-between">
         <div>
             <h2>
@@ -70,6 +62,9 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
+            @if (session('success'))
+            <x-alert-success-component :success="session('success')" />
+        @endif
             <h5>
                 Berikut daftar Sub Kualifikasi - {{ $qualification->name }}</h5>
             <div class="d-flex justify-content-end">

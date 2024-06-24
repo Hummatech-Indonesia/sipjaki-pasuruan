@@ -3,15 +3,7 @@
     @php
         use Carbon\Carbon;
     @endphp
-    @if (session('success'))
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: '{{ session('success') }}',
-            });
-        </script>
-    @endif
+
     <h2>Pengurus</h2>
     <div class="card p-3">
         <div>
@@ -256,7 +248,9 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
-
+        @if (session('success'))
+            <x-alert-success-component :success="session('success')" />
+        @endif
         <div class="table-responsive">
             <table class="table table-borderless" border="1">
                 <thead>
@@ -325,15 +319,14 @@
                                     class="btn waves-effect waves-light d-flex btn-edit flex-row gap-1 justify-content-evenly"
                                     style="width: 90px; background-color: #FFC928; color: white"
                                     id="btn-edit-{{ $officer->id }}" data-id="{{ $officer->id }}"
-                                    data-name="{{ $officer->name }}"
-                                    data-birth_date="{{$officer->birth_date}}"
+                                    data-name="{{ $officer->name }}" data-birth_date="{{ $officer->birth_date }}"
                                     data-address="{{ $officer->address }}" data-position="{{ $officer->position }}"
-                                    data-education="{{ $officer->education }}"
-                                    data-religion="{{ $officer->religion}}"
+                                    data-education="{{ $officer->education }}" data-religion="{{ $officer->religion }}"
                                     data-gender="{{ $officer->gender }}"
-                                    data-marital_status="{{ $officer->marital_status}}"
+                                    data-marital_status="{{ $officer->marital_status }}"
                                     data-citizenship="{{ $officer->citizenship }}"
-                                    data-national_identity_number="{{ $officer->national_identity_number }}"><i class="bx bx-bx bxs-edit fs-4"></i>
+                                    data-national_identity_number="{{ $officer->national_identity_number }}"><i
+                                        class="bx bx-bx bxs-edit fs-4"></i>
                                     <span>Edit</span></button>
                                 <button type="button"
                                     class="btn waves-effect waves-light btn-delete d-flex flex-row gap-1 justify-content-between"
@@ -437,8 +430,7 @@
                                         <option value="katolik" {{ old('religion') == 'katolik' ? 'selected' : '' }}>
                                             Katolik
                                         </option>
-                                        <option value="konghucu"
-                                            {{ old('religion') == 'konghucu' ? 'selected' : '' }}>
+                                        <option value="konghucu" {{ old('religion') == 'konghucu' ? 'selected' : '' }}>
                                             Konghucu
                                         </option>
                                     </select>
@@ -456,12 +448,10 @@
                                     <label id="name" for="recipient-name" class="control-label mb-2">Masukan
                                         Status Kawin</label>
                                     <select name="marital_status" class="form-select">
-                                        <option value="single"
-                                            {{ old('marital_status') == 'single' ? 'selected' : '' }}>
+                                        <option value="single" {{ old('marital_status') == 'single' ? 'selected' : '' }}>
                                             Belum Kawin
                                         </option>
-                                        <option value="marry"
-                                            {{ old('marital_status') == 'marry' ? 'selected' : '' }}>
+                                        <option value="marry" {{ old('marital_status') == 'marry' ? 'selected' : '' }}>
                                             Sudah Kawin
                                         </option>
                                         <option value="divorced"
@@ -480,15 +470,15 @@
                                     <label id="name" for="recipient-name" class="control-label mb-2">Masukan
                                         Jenis Kelamin</label>
                                     <div class="form-check mb-3">
-                                        <input class="form-check-input" type="radio" name="gender"
-                                            id="formRadios1" checked="" value="male">
+                                        <input class="form-check-input" type="radio" name="gender" id="formRadios1"
+                                            checked="" value="male">
                                         <label class="form-check-label" for="formRadios1">
                                             Laki - laki
                                         </label>
                                     </div>
                                     <div class="form-check mb-3">
-                                        <input class="form-check-input" type="radio" name="gender"
-                                            id="formRadios1" checked="" value="female">
+                                        <input class="form-check-input" type="radio" name="gender" id="formRadios1"
+                                            checked="" value="female">
                                         <label class="form-check-label" for="formRadios1">
                                             Perempuan
                                         </label>

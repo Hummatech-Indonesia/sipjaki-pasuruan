@@ -1,14 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    @if (session('success'))
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: '{{ session('success') }}',
-            });
-        </script>
-    @endif
+
     <h2>Dinas</h2>
     <div class="d-flex justify-content-between mb-3">
         <form action="" class="">
@@ -63,10 +55,9 @@
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Logo Dinas</label>
-                                    <input type="file" class="form-control" id="create-logo"
-                                        class="form-control" name="profile" id="nametext"
-                                        aria-describedby="name" placeholder="Masukan penanggung jawab"
-                                        value="{{ old('logo') }}" />
+                                    <input type="file" class="form-control" id="create-logo" class="form-control"
+                                        name="profile" id="nametext" aria-describedby="name"
+                                        placeholder="Masukan penanggung jawab" value="{{ old('logo') }}" />
                                 </div>
                             </div>
                             <div class="col-6">
@@ -122,6 +113,9 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endforeach
+    @endif
+    @if (session('success'))
+        <x-alert-success-component :success="session('success')" />
     @endif
     <div class="table-responsive">
         <table class="table table-borderless" border="1">
@@ -236,10 +230,10 @@
                             </div>
                             <div class="col-6">
                                 <div class="mb-3">
-                                    <label id="name" for="recipient-name" class="control-label mb-2">Logo Dinas</label>
-                                    <input type="file" class="form-control" id="update-profile"
-                                        name="profile" aria-describedby="name"
-                                        placeholder="Masukan penanggung jawab" />
+                                    <label id="name" for="recipient-name" class="control-label mb-2">Logo
+                                        Dinas</label>
+                                    <input type="file" class="form-control" id="update-profile" name="profile"
+                                        aria-describedby="name" placeholder="Masukan penanggung jawab" />
                                 </div>
                             </div>
                             <div class="col-6">

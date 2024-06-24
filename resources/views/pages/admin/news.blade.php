@@ -83,7 +83,9 @@
                 </div>
             @endforeach
         @endif
-
+        @if (session('success'))
+        <x-alert-success-component :success="session('success')" />
+    @endif
 
         <div class="table-responsive">
             <table class="table table-borderless" border="1">
@@ -221,15 +223,7 @@
 @section('script')
     <script src="{{ asset('assets/libs/tinymce/tinymce.min.js') }}"></script>
     <script src="{{ asset('assets/js/pages/form-editor.init.js') }}"></script>
-    @if (session('success'))
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: '{{ session('success') }}',
-            });
-        </script>
-    @endif
+
     <script>
         // const thumbnailInput = document.getElementById('thumbnail');
         // const previewImg = document.getElementById('preview-img');

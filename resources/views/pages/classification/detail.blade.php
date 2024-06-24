@@ -1,14 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    @if (session('success'))
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: '{{ session('success') }}',
-            });
-        </script>
-    @endif
+
     <div class="d-flex justify-content-between mb-3">
         <div>
             <h2 class="">
@@ -111,6 +103,9 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
+            @if (session('success'))
+            <x-alert-success-component :success="session('success')" />
+        @endif
             <div class="table-responsive">
                 <table class="table mb-0 table-borderless" border="1">
                     <thead>

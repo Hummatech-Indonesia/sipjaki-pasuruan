@@ -1,14 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    @if (session('success'))
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: '{{ session('success') }}',
-            });
-        </script>
-    @endif
+
     <h2>Nama Bidang</h2>
     <div class="card p-3">
         <div>
@@ -75,6 +67,9 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
+        @if (session('success'))
+            <x-alert-success-component :success="session('success')" />
+        @endif
         <div class="table-responsive">
             <table class="table table-borderless" border="1">
                 <thead>
@@ -138,8 +133,7 @@
                                 <label id="name" for="recipient-name" class="control-label mb-2">Masukan
                                     Nama Bidang</label>
                                 <input type="text" class="form-control" id="update-name" class="form-control"
-                                    name="name" aria-describedby="name"
-                                    placeholder="Edit Nama Bidang" />
+                                    name="name" aria-describedby="name" placeholder="Edit Nama Bidang" />
                             </div>
 
                         </div>

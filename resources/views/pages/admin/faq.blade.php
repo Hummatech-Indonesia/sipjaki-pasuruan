@@ -82,6 +82,9 @@
                     </div>
                 @endforeach
             @endif
+            @if (session('success'))
+            <x-alert-success-component :success="session('success')" />
+        @endif
             <div class="table-responsive mt-4">
                 <table class="table">
                     <thead>
@@ -256,15 +259,7 @@
 
 @endsection
 @section('script')
-    @if (session('success'))
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: '{{ session('success') }}',
-            });
-        </script>
-    @endif
+
     <script>
         $('.btn-detail').click(function() {
             const data = getDataAttributes($(this).attr('id'))

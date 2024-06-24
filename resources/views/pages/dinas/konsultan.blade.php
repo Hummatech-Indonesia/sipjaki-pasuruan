@@ -1,14 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    @if (session('success'))
-    <script>
-        Swal.fire({
-            icon: 'success',
-            title: 'Success',
-            text: '{{ session('success') }}',
-        });
-    </script>
-    @endif
+
     <h4 style="font-weight:800" class="text-dark mb-4">
         Penyedia Jasa Konsultan
     </h4>
@@ -34,7 +26,8 @@
                             <select name="association" class="form-control ml-3" id="association">
                                 <option value="">Semua</option>
                                 @foreach ($associations as $association)
-                                    <option {{$association->id == request()->association ? 'selected' : ''}} value="{{$association->id}}">{{$association->name}}</option>
+                                    <option {{ $association->id == request()->association ? 'selected' : '' }}
+                                        value="{{ $association->id }}">{{ $association->name }}</option>
                                 @endforeach
                             </select>
                         </form>
@@ -55,6 +48,9 @@
                     </form>
                 </div>
             </div>
+            @if (session('success'))
+                <x-alert-success-component :success="session('success')" />
+            @endif
             <div class="table-responsive mt-4">
                 <table class="table">
                     <thead>
@@ -86,9 +82,9 @@
                         <tbody>
                             <tr>
                                 <th scope="row" class="text-center">
-                                    @if($serviceProvider->consultantProjects->count() == 0 && $serviceProvider->executorProjects->count() == 0)
-                                    <input value="{{ $serviceProvider->id }}" type="checkbox"
-                                        aria-label="Checkbox for following text input">
+                                    @if ($serviceProvider->consultantProjects->count() == 0 && $serviceProvider->executorProjects->count() == 0)
+                                        <input value="{{ $serviceProvider->id }}" type="checkbox"
+                                            aria-label="Checkbox for following text input">
                                     @endif
                                 </th>
                                 <td>
@@ -112,12 +108,13 @@
                                         style="background-color: #1B3061">
                                         Detail
                                     </a>
-                                    @if($serviceProvider->consultantProjects->count() == 0 && $serviceProvider->executorProjects->count() == 0)
-                                    <button type="button" id="{{ $serviceProvider->id }}"
-                                        data-id="{{ $serviceProvider->id }}"
-                                        data-name="{{ $serviceProvider->user->name }}" class="btn btn-danger btn-delete">
-                                        Hapus
-                                    </button>
+                                    @if ($serviceProvider->consultantProjects->count() == 0 && $serviceProvider->executorProjects->count() == 0)
+                                        <button type="button" id="{{ $serviceProvider->id }}"
+                                            data-id="{{ $serviceProvider->id }}"
+                                            data-name="{{ $serviceProvider->user->name }}"
+                                            class="btn btn-danger btn-delete">
+                                            Hapus
+                                        </button>
                                     @endif
                                 </td>
                             </tr>
@@ -424,7 +421,7 @@
             });
         }
 
-        $('#association').change(function(){
+        $('#association').change(function() {
             $('#form-search').submit()
         })
     </script>

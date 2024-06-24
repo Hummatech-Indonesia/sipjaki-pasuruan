@@ -46,6 +46,9 @@
             </div>
         @endforeach
     @endif
+    @if (session('success'))
+    <x-alert-success-component :success="session('success')" />
+@endif
     <div class="d-flex justify-content-between mb-3">
         <h2>Video Halaman Beranda Landing Page</h2>
         
@@ -74,15 +77,7 @@
     </div>
 @endsection
 @section('script')
-    @if (session('success'))
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: '{{ session('success') }}',
-            });
-        </script>
-    @endif
+
     <script>
         // preview
         const fileInput = document.getElementById('fileInput');

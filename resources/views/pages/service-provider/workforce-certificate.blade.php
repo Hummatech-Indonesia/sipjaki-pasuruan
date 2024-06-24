@@ -1,14 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    @if (session('success'))
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: '{{ session('success') }}',
-            });
-        </script>
-    @endif
+
     <div class="d-flex justify-content-between">
         <h4 class="mb-3 font-size-18">Sertifikat</h4>
         <div class="">
@@ -30,6 +22,9 @@
                         style="margin-right:10px"></i>Tambah</button>
             </div>
         </div>
+        @if (session('success'))
+            <x-alert-success-component :success="session('success')" />
+        @endif
         <div class="table-responsive">
             <table class="table table-borderless table-hover mt-4">
                 <thead>
@@ -41,11 +36,11 @@
                             File Sertifikat</th>
                         <th scope="col" class="table-sipjaki text-center" style="">
                             Jenis Sertifikat</th>
-                            <th scope="col" class="table-sipjaki text-center">No Registrasi</th>
-                            <th scope="col" class="table-sipjaki text-center" style="">
-                                Jenjang</th>
-                            <th scope="col" class="table-sipjaki text-center" style="">
-                                Klasifikasi</th>
+                        <th scope="col" class="table-sipjaki text-center">No Registrasi</th>
+                        <th scope="col" class="table-sipjaki text-center" style="">
+                            Jenjang</th>
+                        <th scope="col" class="table-sipjaki text-center" style="">
+                            Klasifikasi</th>
                         @role('service provider')
                             <th scope="col" class="text-white text-center"
                                 style="background-color: #1B3061; border-radius:0px 5px 5px 0px; color: #ffffff; border-color: #1B3061; border-width: 0px;">
@@ -90,7 +85,7 @@
                                         data-sub_classification_id = "{{ $workerCertificate->subClassification->id }}"
                                         data-classification_id = "{{ $workerCertificate->subClassification->classification_training_id }}"
                                         data-qualification_level_id = "{{ $workerCertificate->qualificationLevel->id }}"
-                                        data-qualification_level = "{{ $workerCertificate->qualificationLevel->qualification_training_id  }}"><i
+                                        data-qualification_level = "{{ $workerCertificate->qualificationLevel->qualification_training_id }}"><i
                                             class="bx bx-bx bxs-edit fs-4"></i>
                                         <span>Edit</span></button>
                                     <button type="button"
@@ -168,7 +163,8 @@
                             </div>
                             <div class="col-6 mb-3">
                                 <label for="" class="form-label">Jenjang</label>
-                                <select name="qualification_level_id" id="create-sub_qualification_id" style="width: 100%"
+                                <select name="qualification_level_id" id="create-sub_qualification_id"
+                                    style="width: 100%"
                                     class="form-select sub-qualification select-2 select2-create w-100"></select>
                             </div>
                         </div>
@@ -242,7 +238,8 @@
                             </div>
                             <div class="col-6 mb-3">
                                 <label for="" class="form-label">Jenjang</label>
-                                <select name="qualification_level_id" id="update-sub_qualification_id" style="width: 100%"
+                                <select name="qualification_level_id" id="update-sub_qualification_id"
+                                    style="width: 100%"
                                     class="form-select sub-qualification select-2 select2-update w-100"></select>
                             </div>
                         </div>
@@ -415,7 +412,7 @@
             const formData = getDataAttributes($(this).attr('id'))
             var actionUrl = `/worker-certificate/${formData['id']}`;
             console.log(formData);
-            
+
             $('#form-update').attr('action', actionUrl);
 
             setFormValues('form-update', formData)

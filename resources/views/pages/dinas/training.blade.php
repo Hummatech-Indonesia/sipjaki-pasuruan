@@ -1,15 +1,5 @@
 @extends('layouts.app')
 @section('content')
-    @if (session('success'))
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: '{{ session('
-                        success ') }}',
-            });
-        </script>
-    @endif
     <div class="d-flex justify-content-between mb-3">
         <div class="fs-4 text-dark" style="font-weight: 600">
             Pelatihan
@@ -470,6 +460,9 @@
             </div>
         @endforeach
     @endif
+    @if (session('success'))
+        <x-alert-success-component :success="session('success')" />
+    @endif
     <div class="table-responsive">
         <table class="table table-borderless" border="1">
             <thead>
@@ -626,12 +619,13 @@
                 }
             });
         }
+
         function subclassifications(classificationId) {
             $.ajax({
                 url: "json-sub-classification-training/" + classificationId,
                 type: 'GET',
                 dataType: "JSON",
-                beforeSend:function(){
+                beforeSend: function() {
                     $('#list-sub-classifications').empty().trigger('change');
                     $('#update-list-sub-classifications').empty().trigger('change');
                 },
@@ -644,6 +638,7 @@
                 }
             });
         }
+
         function qualifications() {
             $.ajax({
                 url: "list-qualification-training",
@@ -681,6 +676,7 @@
                 }
             });
         }
+
         function listqualificationlevel(classificationId) {
             $.ajax({
                 url: "json-qualification-level-training/" + classificationId,
@@ -720,7 +716,7 @@
 
         qualifications()
 
-      
+
         listfiscalyear();
 
         function listfiscalyear() {

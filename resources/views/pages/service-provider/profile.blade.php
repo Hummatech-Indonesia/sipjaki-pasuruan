@@ -35,6 +35,9 @@
             </div>
         @endforeach
     @endif
+    @if (session('success'))
+        <x-alert-success-component :success="session('success')" />
+    @endif
     <div class="tab-content mt-4" id="v-pills-tabContent">
         <div class="tab-pane fade-out" id="badan-usaha" role="tabpanel" aria-labelledby="badan-usaha-tab">
             <div class="card rounded-4">
@@ -1688,15 +1691,7 @@
     {{-- end --}}
 @endsection
 @section('script')
-    @if (session('success'))
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: '{{ session('success') }}',
-            });
-        </script>
-    @endif
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var tab = localStorage.getItem('tab');

@@ -1,14 +1,5 @@
 @extends('layouts.app')
 @section('content')
-@if (session('success'))
-<script>
-    Swal.fire({
-        icon: 'success',
-        title: 'Success',
-        text: '{{ session('success') }}',
-    });
-</script>
-@endif
     <div class="">
         <h2 class="text-dark">
             Metode Pelatihan
@@ -82,6 +73,9 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
+        @if (session('success'))
+        <x-alert-success-component :success="session('success')" />
+    @endif
             <div class="table-responsive">
                 <table class="table table-borderless mb-0" border="1">
                     <thead>

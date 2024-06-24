@@ -40,6 +40,9 @@
                     </div>
                 </div>
             </div>
+            @if (session('success'))
+            <x-alert-success-component :success="session('success')" />
+        @endif
             <div class="table-responsive mt-4">
                 <table class="table">
                     <thead>

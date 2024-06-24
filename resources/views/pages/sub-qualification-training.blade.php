@@ -1,15 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @if (session('success'))
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: '{{ session('success') }}',
-            });
-        </script>
-    @endif
+
     <div class="d-flex justify-content-between">
         <div>
             <h2 class="">
@@ -61,8 +53,15 @@
         </div>
     </div>
     @if ($errors->has('name'))
-        eb
-    @endif
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ $errors->first('name') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"
+            aria-label="Close"></button>
+    </div>
+@endif
+    @if (session('success'))
+            <x-alert-success-component :success="session('success')" />
+        @endif
     <div class="card">
         <div class="card-body">
             <div class="d-flex justify-content-between mb-3">

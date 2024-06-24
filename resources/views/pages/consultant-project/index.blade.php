@@ -497,6 +497,9 @@
                 </ul>
             </div>
         @endif
+        @if (session('success'))
+        <x-alert-success-component :success="session('success')" />
+    @endif
         @if (request()->routeIs('consultant-projects.show'))
             <div>
                 <h4>Paket Pekerjaan</h4>
@@ -1076,15 +1079,7 @@
     <x-delete-modal-component />
 @endsection
 @section('script')
-    @if (session('success'))
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: '{{ session('success') }}',
-            });
-        </script>
-    @endif
+
     <script>
         $('#project-dinas-konsultant').addClass('mm-active')
         $('#project-dinas-konsultant-link').addClass('active')

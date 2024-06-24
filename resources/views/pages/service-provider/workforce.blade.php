@@ -3,15 +3,7 @@
     @php
         use Carbon\Carbon;
     @endphp
-    @if (session('success'))
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: '{{ session('success') }}',
-            });
-        </script>
-    @endif
+
     <h4 class="mb-3 font-size-18">Tenaga Kerja</h4>
     <div class="d-flex justify-content-between">
         <div class="">
@@ -140,30 +132,35 @@
                             <div class="col-6">
                                 <label id="name" for="recipient-name" class="control-label mb-2">
                                     Pendidikan Terakhir</label>
-                                    <select name="education" class="form-select">
-                                        <option value="">Pilih</option>
-                                        <option value="SD/MI/Sederajat" {{ old('education') == 'SD/MI/Sederajat' ? 'selected' : '' }}>
-                                            SD/MI/Sederajat
-                                        </option>
-                                        <option value="SMP/MTs/Sederajat" {{ old('education') == 'SMP/MTs/Sederajat' ? 'selected' : '' }}>
-                                            SMP/MTs/Sederajat
-                                        </option>
-                                        <option value="SMA/MA/SMK/Sederajat" {{ old('education') == 'SMA/MA/SMK/Sederajat' ? 'selected' : '' }}>
-                                            SMA/MA/SMK/Sederajat
-                                        </option>
-                                        <option value="Diploma 3" {{ old('education') == 'Diploma 3' ? 'selected' : '' }}>
-                                            Diploma 3
-                                        </option>
-                                        <option value="S1 (Sarjana)" {{ old('education') == 'S1 (Sarjana)' ? 'selected' : '' }}>
-                                            S1 (Sarjana)
-                                        </option>
-                                        <option value="S2 (Magister)" {{ old('education') == 'S2 (Magister)' ? 'selected' : '' }}>
-                                            S2 (Magister)
-                                        </option>
-                                        <option value="S3 (Doktor)" {{ old('education') == 'S3 (Doktor)' ? 'selected' : '' }}>
-                                            S3 (Doktor)
-                                        </option>
-                                    </select>
+                                <select name="education" class="form-select">
+                                    <option value="">Pilih</option>
+                                    <option value="SD/MI/Sederajat"
+                                        {{ old('education') == 'SD/MI/Sederajat' ? 'selected' : '' }}>
+                                        SD/MI/Sederajat
+                                    </option>
+                                    <option value="SMP/MTs/Sederajat"
+                                        {{ old('education') == 'SMP/MTs/Sederajat' ? 'selected' : '' }}>
+                                        SMP/MTs/Sederajat
+                                    </option>
+                                    <option value="SMA/MA/SMK/Sederajat"
+                                        {{ old('education') == 'SMA/MA/SMK/Sederajat' ? 'selected' : '' }}>
+                                        SMA/MA/SMK/Sederajat
+                                    </option>
+                                    <option value="Diploma 3" {{ old('education') == 'Diploma 3' ? 'selected' : '' }}>
+                                        Diploma 3
+                                    </option>
+                                    <option value="S1 (Sarjana)"
+                                        {{ old('education') == 'S1 (Sarjana)' ? 'selected' : '' }}>
+                                        S1 (Sarjana)
+                                    </option>
+                                    <option value="S2 (Magister)"
+                                        {{ old('education') == 'S2 (Magister)' ? 'selected' : '' }}>
+                                        S2 (Magister)
+                                    </option>
+                                    <option value="S3 (Doktor)" {{ old('education') == 'S3 (Doktor)' ? 'selected' : '' }}>
+                                        S3 (Doktor)
+                                    </option>
+                                </select>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -369,6 +366,9 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
+            @if (session('success'))
+                <x-alert-success-component :success="session('success')" />
+            @endif
             <table class="table table-borderless table-hover mt-4">
                 <thead>
                     <tr>
@@ -401,7 +401,8 @@
                             <td class="" style="border-bottom: 1px solid #fff">
                                 <div class="d-flex justify-content-header gap-2">
                                     <div class="">
-                                        <a href="{{ route('worker-certificate', ['worker' => $worker->id]) }}" class="btn btn-md btn-success"> <i class="far fa-file-alt fs-5"></i>
+                                        <a href="{{ route('worker-certificate', ['worker' => $worker->id]) }}"
+                                            class="btn btn-md btn-success"> <i class="far fa-file-alt fs-5"></i>
                                             Sertifikat
                                         </a>
                                     </div>
@@ -437,7 +438,8 @@
                                             data-citizenship="{{ $worker->citizenship == 'wni' ? 'WNI' : 'WNA' }}"
                                             data-national_identity_number="{{ $worker->national_identity_number }}"
                                             id="btn-detail-{{ $worker->id }}" data-id="{{ $worker->id }}"
-                                            type="button" class="btn btn-detail waves-effect waves-light text-white btn waves-effect d-flex flex-row"
+                                            type="button"
+                                            class="btn btn-detail waves-effect waves-light text-white btn waves-effect d-flex flex-row"
                                             style="background-color: #1B3061">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19"
                                                 viewBox="0 0 24 24" fill="none">
@@ -470,7 +472,7 @@
                                     <div class="">
                                         <button type="button"
                                             class="btn waves-effect waves-light d-flex flex-row gap-1 justify-content-between btn-delete"
-                                            style="background-color: #E05C39; color: white" data-id="{{$worker->id}}"
+                                            style="background-color: #E05C39; color: white" data-id="{{ $worker->id }}"
                                             data-bs-toggle="modal" data-bs-target="#modal-delete"><i
                                                 class="bx bx-bx bxs-trash fs-4"></i>
                                         </button>
@@ -535,30 +537,35 @@
                             <div class="col-6">
                                 <label id="name" for="recipient-name" class="control-label mb-2">
                                     Pendidikan</label>
-                                    <select name="education" class="form-select">
-                                        <option value="">Pilih</option>
-                                        <option value="SD/MI/Sederajat" {{ old('education') == 'SD/MI/Sederajat' ? 'selected' : '' }}>
-                                            SD/MI/Sederajat
-                                        </option>
-                                        <option value="SMP/MTs/Sederajat" {{ old('education') == 'SMP/MTs/Sederajat' ? 'selected' : '' }}>
-                                            SMP/MTs/Sederajat
-                                        </option>
-                                        <option value="SMA/MA/SMK/Sederajat" {{ old('education') == 'SMA/MA/SMK/Sederajat' ? 'selected' : '' }}>
-                                            SMA/MA/SMK/Sederajat
-                                        </option>
-                                        <option value="Diploma 3" {{ old('education') == 'Diploma 3' ? 'selected' : '' }}>
-                                            Diploma 3
-                                        </option>
-                                        <option value="S1 (Sarjana)" {{ old('education') == 'S1 (Sarjana)' ? 'selected' : '' }}>
-                                            S1 (Sarjana)
-                                        </option>
-                                        <option value="S2 (Magister)" {{ old('education') == 'S2 (Magister)' ? 'selected' : '' }}>
-                                            S2 (Magister)
-                                        </option>
-                                        <option value="S3 (Doktor)" {{ old('education') == 'S3 (Doktor)' ? 'selected' : '' }}>
-                                            S3 (Doktor)
-                                        </option>
-                                    </select>
+                                <select name="education" class="form-select">
+                                    <option value="">Pilih</option>
+                                    <option value="SD/MI/Sederajat"
+                                        {{ old('education') == 'SD/MI/Sederajat' ? 'selected' : '' }}>
+                                        SD/MI/Sederajat
+                                    </option>
+                                    <option value="SMP/MTs/Sederajat"
+                                        {{ old('education') == 'SMP/MTs/Sederajat' ? 'selected' : '' }}>
+                                        SMP/MTs/Sederajat
+                                    </option>
+                                    <option value="SMA/MA/SMK/Sederajat"
+                                        {{ old('education') == 'SMA/MA/SMK/Sederajat' ? 'selected' : '' }}>
+                                        SMA/MA/SMK/Sederajat
+                                    </option>
+                                    <option value="Diploma 3" {{ old('education') == 'Diploma 3' ? 'selected' : '' }}>
+                                        Diploma 3
+                                    </option>
+                                    <option value="S1 (Sarjana)"
+                                        {{ old('education') == 'S1 (Sarjana)' ? 'selected' : '' }}>
+                                        S1 (Sarjana)
+                                    </option>
+                                    <option value="S2 (Magister)"
+                                        {{ old('education') == 'S2 (Magister)' ? 'selected' : '' }}>
+                                        S2 (Magister)
+                                    </option>
+                                    <option value="S3 (Doktor)" {{ old('education') == 'S3 (Doktor)' ? 'selected' : '' }}>
+                                        S3 (Doktor)
+                                    </option>
+                                </select>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -649,8 +656,7 @@
                             <div class="col">
                                 <label id="name" for="recipient-name" class="control-label mb-2">
                                     Alamat</label>
-                                <textarea class="form-control" name="address" id="" cols="15" rows="5"
-                                    placeholder=" Alamat">{{ old('address') }}</textarea>
+                                <textarea class="form-control" name="address" id="" cols="15" rows="5" placeholder=" Alamat">{{ old('address') }}</textarea>
                             </div>
                         </div>
                     </div>
