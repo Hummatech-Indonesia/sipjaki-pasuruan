@@ -52,7 +52,7 @@
                                     {{ $serviceProviderQualificationPending->year }}
                                 </td>
                                 <td class="text-center">
-                                    {{ $serviceProviderQualificationPending->expired_at }}  </td>
+                                    {{ $serviceProviderQualificationPending->expired_at != '0000-00-00' ? $serviceProviderQualificationPending->expired_at->format('j F Y') : '-' }}  </td>
                                 <td class="text-center">
                                     <div class="d-flex justify-content-center gap-2">
                                         {{-- <div class="">
