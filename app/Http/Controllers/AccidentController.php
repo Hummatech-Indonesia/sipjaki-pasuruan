@@ -37,7 +37,7 @@ class AccidentController extends Controller
         $accidents = $this->accident->customPaginate($request, 15);
         $executorProjects = $this->executorProject->get();
 
-        return view('pages.dinas.accident', compact('accidents', 'executorProjects'));
+        return view('pages.dinas.accident', compact('accidents', 'executorProjects','fiscalYears'));
     }
 
     /**
