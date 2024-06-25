@@ -1,11 +1,45 @@
 @extends('layouts.app')
 @section('content')
     <style>
-        .avatar-title {
+        .avatar-title-1 {
             -webkit-box-align: center;
             -ms-flex-align: center;
             align-items: center;
             background-color: #1B3061;
+            color: #fff;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            font-weight: 500;
+            height: 100%;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            width: 100%
+        }
+
+        .avatar-title-2 {
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            background-color: #597445;
+            color: #fff;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            font-weight: 500;
+            height: 100%;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            width: 100%
+        }
+
+        .avatar-title-3 {
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            background-color: #C80036;
             color: #fff;
             display: -webkit-box;
             display: -ms-flexbox;
@@ -31,38 +65,13 @@
             transform: translateY(-50%);
         }
     </style>
+    <div class="col-2 mb-3">
+        <select name="year" id="year-filter" class="form-select"></select>
+    </div>
     <div class="page-title-box d-sm-flex align-items-center">
         <h4 class="mb-sm-0 font-size-18">Dashboard</h4>
     </div>
     <div class="row">
-        <div class="col-md-4">
-            <div class="card mini-stats-wid">
-                <div class="card-body">
-                    <div class="d-flex">
-                        <div class="flex-grow-1">
-                            <p class="text-muted fw-medium">Jumlah Kecelakaan</p>
-                            <h4 style="color: #1B3061" class="mb-0">{{ $accidentCount }}</h4>
-                        </div>
-
-                        <div class="flex-shrink-0 align-self-center">
-                            <div class="mini-stat-icon avatar-sm rounded-circle">
-                                <span class="avatar-title">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
-                                        viewBox="0 0 60 60" fill="none">
-                                        <path
-                                            d="M32.5 40C32.5 41.3807 31.3807 42.5 30 42.5C28.6193 42.5 27.5 41.3807 27.5 40C27.5 38.6193 28.6193 37.5 30 37.5C31.3807 37.5 32.5 38.6193 32.5 40Z"
-                                            fill="white" />
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                            d="M18.9124 5.73223C19.3813 5.26339 20.0172 5 20.6802 5L39.3198 5C39.9828 5 40.6187 5.26339 41.0876 5.73223L54.2678 18.9124C54.7366 19.3813 55 20.0172 55 20.6802V39.3198C55 39.9828 54.7366 40.6187 54.2678 41.0876L41.0876 54.2678C40.6187 54.7366 39.9828 55 39.3198 55H20.6802C20.0172 55 19.3813 54.7366 18.9124 54.2678L5.73223 41.0876C5.26339 40.6187 5 39.9828 5 39.3198L5 20.6802C5 20.0172 5.26339 19.3813 5.73223 18.9124L18.9124 5.73223ZM21.7157 10L10 21.7157L10 38.2843L21.7157 50H38.2843L50 38.2843V21.7157L38.2843 10L21.7157 10ZM30 17.5C31.3807 17.5 32.5 18.6193 32.5 20V30C32.5 31.3807 31.3807 32.5 30 32.5C28.6193 32.5 27.5 31.3807 27.5 30V20C27.5 18.6193 28.6193 17.5 30 17.5Z"
-                                            fill="white" />
-                                    </svg>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="col-md-4">
             <div class="card mini-stats-wid">
                 <div class="card-body">
@@ -74,7 +83,7 @@
 
                         <div class="flex-shrink-0 align-self-center ">
                             <div class="avatar-sm rounded-circle mini-stat-icon">
-                                <span class="avatar-title rounded-circle ">
+                                <span class="avatar-title-1 rounded-circle ">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
                                         viewBox="0 0 60 60" fill="none">
                                         <path
@@ -94,12 +103,12 @@
                     <div class="d-flex">
                         <div class="flex-grow-1">
                             <p class="text-muted fw-medium">Jumlah Paket Pekerjaan</p>
-                            <h4 class="mb-0" style="color: #1B3061">{{ $executorProjectCount }}</h4>
+                            <h4 class="mb-0" style="color: #597445">{{ $executorProjectCount }}</h4>
                         </div>
 
                         <div class="flex-shrink-0 align-self-center">
                             <div class="avatar-sm rounded-circle mini-stat-icon">
-                                <span class="avatar-title rounded-circle">
+                                <span class="avatar-title-2 rounded-circle">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
                                         viewBox="0 0 60 60" fill="none">
                                         <path
@@ -119,47 +128,155 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="page-title-box d-sm-flex align-items-center">
-        <h4 class="mb-sm-0 font-size-18">Pekerjaan Aktif</h4>
-    </div>
-    <div class="card p-3">
-        <h5 class="mb-4">
-            Berikut daftar Pekerjaan sedang aktif
-        </h5>
-        <div class="table-responsive">
-            <table class="table table-borderless" border="1">
-                <thead>
-                    <tr>
-                        <th style="background-color: #1B3061;color:#ffffff">No</th>
-                        <th style="background-color: #1B3061;color:#ffffff">Nama Pekerjaan</th>
-                        <th style="background-color: #1B3061;color:#ffffff">Tahun</th>
-                        <th style="background-color: #1B3061;color:#ffffff">Progres</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($executorProjects as $executorProject)
-                    <tr>
-                        <td class="fs-5">{{ $loop->iteration }}</td>
-                        <td class="fs-5">{{ $executorProject->name }}</td>
-                        <td class="fs-5">{{ $executorProject->fiscalYear->name }}</td>
-                        <td><span class="fs-6 badge px-4 py-2" style="background-color: #E4ECFF;color:#1B3061;">{{ $executorProject->physical_progress }}%</span>
-                        </td>
-                    </tr>
-                    @empty
-                    <tr>
-                        <td colspan="5" class="text-center">
-                            <div class="d-flex justify-content-center" style="min-height:16rem">
-                                <div class="my-auto">
-                                    <img src="{{ asset('no-data.png') }}" width="300" height="300" />
-                                    <h4 class="text-center mt-4">Tidak ada pekerjaan aktif!!</h4>
-                                </div>
+        <div class="col-md-4">
+            <div class="card mini-stats-wid">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <div class="flex-grow-1">
+                            <p class="text-muted fw-medium">Jumlah Kecelakaan</p>
+                            <h4 style="color: #C80036" class="mb-0">{{ $accidentCount }}</h4>
+                        </div>
+
+                        <div class="flex-shrink-0 align-self-center">
+                            <div class="mini-stat-icon avatar-sm rounded-circle">
+                                <span class="avatar-title-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                                        viewBox="0 0 60 60" fill="none">
+                                        <path
+                                            d="M32.5 40C32.5 41.3807 31.3807 42.5 30 42.5C28.6193 42.5 27.5 41.3807 27.5 40C27.5 38.6193 28.6193 37.5 30 37.5C31.3807 37.5 32.5 38.6193 32.5 40Z"
+                                            fill="white" />
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M18.9124 5.73223C19.3813 5.26339 20.0172 5 20.6802 5L39.3198 5C39.9828 5 40.6187 5.26339 41.0876 5.73223L54.2678 18.9124C54.7366 19.3813 55 20.0172 55 20.6802V39.3198C55 39.9828 54.7366 40.6187 54.2678 41.0876L41.0876 54.2678C40.6187 54.7366 39.9828 55 39.3198 55H20.6802C20.0172 55 19.3813 54.7366 18.9124 54.2678L5.73223 41.0876C5.26339 40.6187 5 39.9828 5 39.3198L5 20.6802C5 20.0172 5.26339 19.3813 5.73223 18.9124L18.9124 5.73223ZM21.7157 10L10 21.7157L10 38.2843L21.7157 50H38.2843L50 38.2843V21.7157L38.2843 10L21.7157 10ZM30 17.5C31.3807 17.5 32.5 18.6193 32.5 20V30C32.5 31.3807 31.3807 32.5 30 32.5C28.6193 32.5 27.5 31.3807 27.5 30V20C27.5 18.6193 28.6193 17.5 30 17.5Z"
+                                            fill="white" />
+                                    </svg>
+                                </span>
                             </div>
-                        </td>
-                    </tr>
-                    @endforelse
-                </tbody>
-            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="page-title-box d-sm-flex align-items-center">
+                <h4 class="mb-sm-0 font-size-18">Pekerjaan Aktif</h4>
+            </div>
+            <div class="card p-3">
+
+                <h5 class="mb-4">
+                    Berikut daftar Pekerjaan sedang aktif
+                </h5>
+                <div class="table-responsive">
+                    <table class="table table-borderless" border="1">
+                        <thead>
+                            <tr>
+                                <th style="background-color: #1B3061;color:#ffffff">No</th>
+                                <th style="background-color: #1B3061;color:#ffffff">Nama Pekerjaan</th>
+                                <th style="background-color: #1B3061;color:#ffffff">Tahun</th>
+                                <th style="background-color: #1B3061;color:#ffffff">Progres</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($executorProjects as $executorProject)
+                                <tr>
+                                    <td class="fs-5">{{ $loop->iteration }}</td>
+                                    <td class="fs-5">{{ $executorProject->name }}</td>
+                                    <td class="fs-5">{{ $executorProject->fiscalYear->name }}</td>
+                                    <td><span class="fs-6 badge px-4 py-2"
+                                            style="background-color: #E4ECFF;color:#1B3061;">{{ $executorProject->physical_progress }}%</span>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="5" class="text-center">
+                                        <div class="d-flex justify-content-center" style="min-height:16rem">
+                                            <div class="my-auto">
+                                                <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                                <h4 class="text-center mt-4">Tidak ada pekerjaan aktif!!</h4>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="page-title-box d-sm-flex align-items-center">
+                <h4 class="mb-sm-0 font-size-18">Perbandingan Paket Pekerjaan Perbulan</h4>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div id="paket-pekerjaan"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+@section('script')
+    <script>
+        function getYear() {
+            var year = new Date('2023-01-01')
+            var fiveYears = [];
+            var date = new Date();
+            for (let i = 0; i < 6; i++) {
+                var fullYear = year.getFullYear() + i;
+                var isSelected = (fullYear === date.getFullYear());
+                fiveYears.push({
+                    year: fullYear,
+                    selected: isSelected
+                });
+            }
+
+            $.each(fiveYears, function(index, item) {
+                var option = $('<option>');
+                option.val(item.year)
+                option.text(item.year)
+                if (item.selected === true) {
+                    option.attr('selected', 'selected')
+                }
+                $('#year-filter').append(option)
+            })
+        }
+        getYear()
+
+        var options = {
+            series: [{
+                name: "Desktops",
+                data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
+            }],
+            chart: {
+                height: 350,
+                type: 'line',
+                zoom: {
+                    enabled: false
+                }
+            },
+            dataLabels: {
+                enabled: false
+            },
+            stroke: {
+                curve: 'straight'
+            },
+            title: {
+                text: 'Product Trends by Month',
+                align: 'left'
+            },
+            grid: {
+                row: {
+                    colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+                    opacity: 0.5
+                },
+            },
+            xaxis: {
+                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+            }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#paket-pekerjaan"), options);
+        chart.render();
+    </script>
 @endsection
