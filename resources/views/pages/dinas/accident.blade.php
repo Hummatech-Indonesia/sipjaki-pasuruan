@@ -35,8 +35,8 @@
         </div>
     </div>
     {{-- modal --}}
-    <div class="modal fade" id="modal-create" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="modal-create" tabindex="-1" role="dialog" data-bs-backdrop="static"
+        aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #1B3061">
@@ -51,14 +51,15 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="mb-3">
-                                    <label for="update-year">Pekerjaan</label>
+                                    <label for="update-executor_project_id">Pekerjaan</label>
                                     <select name="executor_project_id" class="form-control select2" style="width:100%"
-                                        id="executor_project_id">
+                                        id="update-executor_project_id">
                                         <option value="">Pilih Pekerjaan</option>
                                         @foreach ($executorProjects as $executorProject)
                                             <option value="{{ $executorProject->id }}"
-                                                {{ old('executor_project_id') == $executorProject->id ? 'selected' : '' }}>
-                                                {{ $executorProject->name }}</option>
+                                                {{ old('executor_project_id', $executorProject->id) == $executorProject->id ? 'selected' : '' }}>
+                                                {{ $executorProject->name }}
+                                            </option>
                                         @endforeach
                                     </select>
                                     @error('executor_project_id')
@@ -70,9 +71,9 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="mb-3">
-                                    <label for="update-email-input">Waktu</label>
-                                    <input type="datetime-local" class="form-control" name="time" id="update-name"
-                                        placeholder="masukan nama pekerjaan">
+                                    <label for="update-time">Waktu</label>
+                                    <input type="datetime-local" class="form-control" name="time" id="create-time"
+                                        value="{{ old('time') }}" placeholder="masukan waktu">
                                     @error('time')
                                         <p class="text-danger">
                                             {{ $message }}
@@ -84,8 +85,8 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="mb-3">
-                                    <label for="update-source_found">Lokasi</label>
-                                    <textarea name="location" id="" class="form-control"></textarea>
+                                    <label for="update-location">Lokasi</label>
+                                    <textarea name="location" id="update-location" class="form-control">{{ old('location') }}</textarea>
                                     @error('location')
                                         <p class="text-danger">
                                             {{ $message }}
@@ -95,8 +96,8 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="mb-3">
-                                    <label for="update-nilai_kontrak">Deskripsi</label>
-                                    <textarea name="description" id="" class="form-control"></textarea>
+                                    <label for="update-description">Deskripsi</label>
+                                    <textarea name="description" id="update-description" class="form-control">{{ old('description') }}</textarea>
                                     @error('description')
                                         <p class="text-danger">
                                             {{ $message }}
@@ -108,8 +109,8 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="mb-3">
-                                    <label for="update-vatno-input">Kerugian</label>
-                                    <textarea name="loss" id="" class="form-control"></textarea>
+                                    <label for="update-loss">Kerugian</label>
+                                    <textarea name="loss" id="update-loss" class="form-control">{{ old('loss') }}</textarea>
                                     @error('loss')
                                         <p class="text-danger">
                                             {{ $message }}
@@ -119,8 +120,8 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="mb-3">
-                                    <label for="update-cstno-input">Masalah</label>
-                                    <textarea name="problem" id="" class="form-control"></textarea>
+                                    <label for="update-problem">Masalah</label>
+                                    <textarea name="problem" id="update-problem" class="form-control">{{ old('problem') }}</textarea>
                                     @error('problem')
                                         <p class="text-danger">
                                             {{ $message }}
@@ -152,8 +153,8 @@
     </div>
     {{-- end modal --}}
     {{-- modal edit --}}
-    <div class="modal fade" id="modal-update" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="modal-update" tabindex="-1" role="dialog" data-bs-backdrop="static"
+        aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #1B3061">
@@ -168,14 +169,15 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="mb-3">
-                                    <label for="update-year">Pekerjaan</label>
+                                    <label for="update-executor_project_id">Pekerjaan</label>
                                     <select name="executor_project_id" class="form-control select2" style="width:100%"
                                         id="update-executor_project_id">
                                         <option value="">Pilih Pekerjaan</option>
                                         @foreach ($executorProjects as $executorProject)
                                             <option value="{{ $executorProject->id }}"
-                                                {{ old('executor_project_id') == $executorProject->id ? 'selected' : '' }}>
-                                                {{ $executorProject->name }}</option>
+                                                {{ old('executor_project_id', $executorProject->id) == $executorProject->id ? 'selected' : '' }}>
+                                                {{ $executorProject->name }}
+                                            </option>
                                         @endforeach
                                     </select>
                                     @error('executor_project_id')
@@ -187,9 +189,9 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="mb-3">
-                                    <label for="update-email-input">Waktu</label>
+                                    <label for="update-time">Waktu</label>
                                     <input type="datetime-local" class="form-control" name="time" id="update-time"
-                                        placeholder="masukan nama pekerjaan">
+                                        value="{{ old('time') }}" placeholder="masukan waktu">
                                     @error('time')
                                         <p class="text-danger">
                                             {{ $message }}
@@ -201,8 +203,8 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="mb-3">
-                                    <label for="update-source_found">Lokasi</label>
-                                    <textarea name="location" id="update-location" class="form-control"></textarea>
+                                    <label for="update-location">Lokasi</label>
+                                    <textarea name="location" id="update-location" class="form-control">{{ old('location') }}</textarea>
                                     @error('location')
                                         <p class="text-danger">
                                             {{ $message }}
@@ -212,8 +214,8 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="mb-3">
-                                    <label for="update-nilai_kontrak">Deskripsi</label>
-                                    <textarea name="description" id="update-description" class="form-control"></textarea>
+                                    <label for="update-description">Deskripsi</label>
+                                    <textarea name="description" id="update-description" class="form-control">{{ old('description') }}</textarea>
                                     @error('description')
                                         <p class="text-danger">
                                             {{ $message }}
@@ -225,8 +227,8 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="mb-3">
-                                    <label for="update-vatno-input">Kerugian</label>
-                                    <textarea name="loss" id="update-loss" class="form-control"></textarea>
+                                    <label for="update-loss">Kerugian</label>
+                                    <textarea name="loss" id="update-loss" class="form-control">{{ old('loss') }}</textarea>
                                     @error('loss')
                                         <p class="text-danger">
                                             {{ $message }}
@@ -236,8 +238,8 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="mb-3">
-                                    <label for="update-cstno-input">Masalah</label>
-                                    <textarea name="problem" id="update-problem" class="form-control"></textarea>
+                                    <label for="update-problem">Masalah</label>
+                                    <textarea name="problem" id="update-problem" class="form-control">{{ old('problem') }}</textarea>
                                     @error('problem')
                                         <p class="text-danger">
                                             {{ $message }}
@@ -246,7 +248,9 @@
                                 </div>
                             </div>
                         </div>
+                    </form>
                 </div>
+
                 <div class="modal-footer">
                     <div class="d-flex justify-content-end">
                         <div class="d-flex justify-content-header gap-3">
@@ -317,7 +321,7 @@
                                 </div>
                                 <div class="row mb-1">
                                     <div class="col-md-5">
-                                        <p class="mb-2 text-dark">Keerugian :</p>
+                                        <p class="mb-2 text-dark">Kerugian :</p>
                                     </div>
                                     <div class="col-md-5">
                                         <p class="mb-2 text-dark data-loss" style="font-weight:600;"></p>
@@ -427,6 +431,19 @@
 @endsection
 @section('script')
     <script>
+        function formatDateTime(date) {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            const hours = String(date.getHours()).padStart(2, '0');
+            const minutes = String(date.getMinutes()).padStart(2, '0');
+            return `${year}-${month}-${day}T${hours}:${minutes}`;
+        }
+
+        const currentDate = new Date();
+        const formattedDate = formatDateTime(currentDate);
+
+        $('#create-time').val(formattedDate)
         $(document).ready(function() {
             $("#update-project_id").select2({
                 dropdownParent: $("#modal-update")
