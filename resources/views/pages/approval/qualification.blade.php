@@ -61,7 +61,7 @@
                                                     class="btn btn-warning btn-detail">
                                                     Detail
                                                 </button>
-                                            </a>
+                                            </a>4
                                         </div> --}}
                                         <div class="">
                                             <button type="button" id="{{ $serviceProviderQualificationPending->id }}"

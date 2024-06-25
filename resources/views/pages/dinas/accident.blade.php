@@ -5,16 +5,34 @@
         <h3>
             Kecelakaan
         </h3>
-        <button class="btn text-white" data-bs-toggle="modal" data-bs-target="#modal-create" style="background-color: #1B3061">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none">
-                <path fill-rule="evenodd" clip-rule="evenodd"
-                    d="M12 4C12.5523 4 13 4.35817 13 4.8V19.2C13 19.6418 12.5523 20 12 20C11.4477 20 11 19.6418 11 19.2V4.8C11 4.35817 11.4477 4 12 4Z"
-                    fill="white" />
-                <path fill-rule="evenodd" clip-rule="evenodd"
-                    d="M4 12C4 11.4477 4.35817 11 4.8 11H19.2C19.6418 11 20 11.4477 20 12C20 12.5523 19.6418 13 19.2 13H4.8C4.35817 13 4 12.5523 4 12Z"
-                    fill="white" />
-            </svg>Tambah
-        </button>
+        <div class="d-flex justify-content-between ">
+            <form action="" method="GET" class="d-flex gap-3 col-10">
+                <select name="year" id="search-year" class="form-control">
+                    <option value="" selected> Semua Tahun</option>
+                    @foreach ($fiscalYears as $fiscalYear)
+                        <option {{ $fiscalYear->name == request()->year ? 'selected' : '' }} value="{{ $fiscalYear->name }}">
+                            {{ $fiscalYear->name }}</option>
+                    @endforeach
+                </select>
+                <button type="submit" class="btn text-white d-flex items-center gap-2" style="background-color:#1B3061">
+                    Cari <i class="fa fa-search my-auto"></i>
+                </button>
+            </form>
+            <div class="">
+                <button class="btn text-white" data-bs-toggle="modal" data-bs-target="#modal-create"
+                    style="background-color: #1B3061">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                        fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M12 4C12.5523 4 13 4.35817 13 4.8V19.2C13 19.6418 12.5523 20 12 20C11.4477 20 11 19.6418 11 19.2V4.8C11 4.35817 11.4477 4 12 4Z"
+                            fill="white" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M4 12C4 11.4477 4.35817 11 4.8 11H19.2C19.6418 11 20 11.4477 20 12C20 12.5523 19.6418 13 19.2 13H4.8C4.35817 13 4 12.5523 4 12Z"
+                            fill="white" />
+                    </svg>Tambah
+                </button>
+            </div>
+        </div>
     </div>
     {{-- modal --}}
     <div class="modal fade" id="modal-create" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
@@ -116,7 +134,8 @@
                     <div class="d-flex justify-content-end">
                         <div class="d-flex justify-content-header gap-3">
                             <div class="">
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                                    aria-label="Close">
                                     Batal
                                 </button>
                             </div>
@@ -321,13 +340,13 @@
     </div>
     {{-- end modal --}}
     @if ($errors->any())
-    @foreach ($errors->all() as $error)
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            {{ $error }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endforeach
-@endif
+        @foreach ($errors->all() as $error)
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ $error }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endforeach
+    @endif
     @if (session('success'))
         <x-alert-success-component :success="session('success')" />
     @endif
@@ -338,6 +357,8 @@
                     <th class="text-center table-sipjaki">No</th>
                     <th class="text-center table-sipjaki">Nama Pekerjaan</th>
                     <th class="text-center table-sipjaki">Masalah</th>
+                    <th class="text-center table-sipjaki">Kerugian</th>
+                    <th class="text-center table-sipjaki">Waktu</th>
                     <th class="text-center table-sipjaki">Aksi</th>
                 </tr>
             </thead>
@@ -352,6 +373,12 @@
                         </td>
                         <td class="text-center">
                             {{ $accident->problem }}
+                        </td>
+                        <td class="text-center">
+                            {{ $accident->loss }}
+                        </td>
+                        <td class="text-center">
+                            {{ $accident->date->format('j F Y') }}
                         </td>
                         <td class="text-center">
                             <div class="d-flex justify-content-center gap-3">

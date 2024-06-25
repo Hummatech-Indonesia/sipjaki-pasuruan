@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Contracts\Interfaces\AccidentInterface;
 use App\Contracts\Interfaces\ExecutorProjectInterface;
+use App\Contracts\Interfaces\FiscalYearInterface;
 use App\Helpers\ResponseHelper;
 use App\Http\Requests\AccidentRequest;
 use App\Http\Resources\AccidentResource;
@@ -14,17 +15,15 @@ use Illuminate\Http\Request;
 
 class AccidentController extends Controller
 {
-
     private AccidentInterface $accident;
     private ExecutorProjectInterface $executorProject;
+    private FiscalYearInterface $fiscalYear;
 
-    public function __construct(
-        AccidentInterface $accidentInterface,
-        ExecutorProjectInterface $executorProject,
-    )
+    public function __construct(FiscalYearInterface $fiscalYear,AccidentInterface $accidentInterface, ExecutorProjectInterface $executorProject)
     {
         $this->accident = $accidentInterface;
         $this->executorProject = $executorProject;
+        $this->fiscalYear = $fiscalYear;
     }
     /**
      * index
@@ -33,19 +32,13 @@ class AccidentController extends Controller
      */
     public function index(Request $request): JsonResponse|View
     {
-        $accidents = $this->accident->customPaginate($request,15);
+
+        $fiscalYears = $this->fiscalYear->get();
+        $accidents = $this->accident->customPaginate($request, 15);
         $executorProjects = $this->executorProject->get();
 
-        if ($request->is('api/*')) {
-            return ResponseHelper::success(AccidentResource::collection($accidents, trans('alert.fetch_success')));
-        } else {
-            return view('pages.dinas.accident',compact(
-                'accidents',
-                'executorProjects'
-            ));
-        }
+        return view('pages.dinas.accident', compact('accidents', 'executorProjects'));
     }
-
 
     /**
      * Show the form for creating a new resource.

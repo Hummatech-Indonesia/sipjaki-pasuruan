@@ -85,6 +85,9 @@ class FiscalYearRepository extends BaseRepository implements FiscalYearInterface
             ->when($request->name, function ($query) use ($request) {
                 $query->where('name', 'LIKE', '%' . $request->name . '%');
             })
+            ->when($request->year,function($query) use ($request){
+                $query->whereYear('date',$request->year);
+            })
             ->get();
     }
 
