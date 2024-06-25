@@ -8,7 +8,7 @@
     </div>
     <div class="d-flex justify-content-between ">
         <form action="" method="GET" class="d-flex gap-3 col-10">
-            <select name="year" id="search-year" class="form-control">
+            <select name="year" id="search-year" class="form-control col-2">
                 <option value="" selected> Semua Tahun</option>
                 @foreach ($fiscalYears as $fiscalYear)
                     <option {{ $fiscalYear->name == request()->year ? 'selected' : '' }} value="{{ $fiscalYear->name }}">
