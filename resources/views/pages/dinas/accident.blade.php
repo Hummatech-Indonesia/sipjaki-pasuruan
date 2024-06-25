@@ -378,7 +378,7 @@
                             {{ $accident->loss }}
                         </td>
                         <td class="text-center">
-                            {{ $accident->time->format('j F Y H:i') }}
+                            {{ Carbon\Carbon::parse($accident->time)->format('d F Y H:i') }}
                         </td>
                         <td class="text-center">
                             <div class="d-flex justify-content-center gap-3">
