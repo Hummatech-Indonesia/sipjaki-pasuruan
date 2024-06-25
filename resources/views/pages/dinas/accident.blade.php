@@ -382,7 +382,7 @@
                             {{ $accident->loss }}
                         </td>
                         <td class="text-center">
-                            {{ Carbon\Carbon::parse($accident->time)->formatLocalized('%e %B %Y %H:%M'); }}
+                            {{ $accident->date->format('j F Y') }}
                         </td>
                         <td class="text-center">
                             <div class="d-flex justify-content-center gap-3">
