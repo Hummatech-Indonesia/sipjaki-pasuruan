@@ -382,7 +382,7 @@
                             {{ $accident->loss }}
                         </td>
                         <td class="text-center">
-                            {{ $accident->date->format('j F Y') }}
+                            {{ $accident->time->format('j F Y') }}
                         </td>
                         <td class="text-center">
                             <div class="d-flex justify-content-center gap-3">
