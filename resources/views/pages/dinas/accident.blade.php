@@ -393,7 +393,7 @@
                                         data-project_id="{{ $accident->project_id }}"
                                         data-location="{{ $accident->location }}"
                                         data-description="{{ $accident->description }}"
-                                        data-time="{{ \Carbon\Carbon::parse($accident->time)->format('Y-m-d') }}"
+                                        data-time="{{ $accident->time->isoFormat('Y-m-d') }}"
                                         data-loss="{{ $accident->loss }}" data-problem="{{ $accident->problem }}">
                                         Edit
                                     </button>
