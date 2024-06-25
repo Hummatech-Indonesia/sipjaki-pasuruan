@@ -23,7 +23,7 @@
                         @method('PUT')
                         <div class="row">
                             <h4 class="mb-3">
-                                Profile OPD
+                                Profil OPD
                             </h4>
                             <div class="col-md-4">
                                 <div class="mb-3">
@@ -120,7 +120,7 @@
                         <div class="col-lg-9">
                             <div class="row">
                                 <div class="col-6">
-                                    <label for="" class="form-label">Password</label>
+                                    <label for="" class="form-label">Password Saat Ini</label>
                                     <div class="input-group auth-pass-inputgroup">
                                         <input type="password" name="current_password"  class="form-control" placeholder="Masukkan password" aria-label="Password" aria-describedby="password-addon2" >
                                         <button class="btn btn-light " type="button" id="password-addon2"><i class="mdi mdi-eye-outline"></i></button>

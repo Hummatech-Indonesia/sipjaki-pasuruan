@@ -312,6 +312,25 @@
                             <span key="t-file-manager">Dashboard</span>
                         </a>
                     </li>
+
+                           <li id="user-jasa">
+                        <a href="javascript: void(0);" id="user-jasa-link" class="has-arrow waves-effect">
+                            <i class="bx bxs-package"></i>
+                            <span key="t-multi-level" class="px-2">Paket Pekerjaan</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="true">
+                            <li id="project-admin">
+                                <a id="project-admin-link" href="{{ route('executor-projects.index') }}" class="waves-effect">
+                                    <span key="t-file-manager">Paket Pekerjaan</span>
+                                </a>
+                            </li>
+                            <li id="project-konsultant-admin">
+                                <a id="project-konsultant-admin-link" href="{{ route('consultant-package') }}" class="waves-effect">
+                                    <span key="t-file-manager">Paket Konsultan</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                     <li>
                         <a href="{{ route('accident.index') }}" class="waves-effect">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -326,22 +345,12 @@
                             <span key="t-file-manager" class="px-2">Kecelakaan</span>
                         </a>
                     </li>
-                    <li id="project-dinas">
-                        <a id="project-dinas-link" href="{{ route('executor-projects.index') }}" class="waves-effect">
-                            <i class="bx bxs-package"></i>
-                            <span key="t-file-manager">Paket Pekerjaan</span>
-                        </a>
-                    </li>
-                    <li id="project-dinas-konsultant">
-                        <a id="project-dinas-konsultant-link" href="{{ route('consultant-projects.index') }}" class="waves-effect">
-                            <i class="bx bxs-package"></i>
-                            <span key="t-file-manager">Paket Konsultan</span>
-                        </a>
-                    </li>
+
+                 
                     <li>
                         <a href="/profile-OPD" class="waves-effect">
                             <i class="bx bxs-user-circle"></i>
-                            <span key="t-file-manager">Profile OPD</span>
+                            <span key="t-file-manager">Profil OPD</span>
                         </a>
                     </li>
                 @endif
