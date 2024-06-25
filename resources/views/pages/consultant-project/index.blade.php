@@ -308,7 +308,7 @@
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header" style="background-color: #1B3061">
-                        <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Tambah </h5>
+                        <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Tambah Paket Konsultan</h5>
                         <button type="button" class="btn-close" style="background-color: white" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
@@ -409,11 +409,11 @@
                                                 <select name="characteristic_project" class="form-select">
                                                     <option value="single"
                                                         {{ old('characteristic_project') == 'single' ? 'selected' : '' }}>
-                                                        tahun tunggal
+                                                        Tahun Tunggal
                                                     </option>
                                                     <option value="multiple"
                                                         {{ old('characteristic_project') == 'multiple' ? 'selected' : '' }}>
-                                                        tahun jamak
+                                                        Tahun Jamak
                                                     </option>
                                                 </select>
                                             </div>
@@ -436,14 +436,14 @@
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="mb-3">
-                                                <label for="basicpill-start_at">Mulai</label>
+                                                <label for="basicpill-start_at">Tanggal Mulai</label>
                                                 <input type="date" name="start_at" class="form-control"
                                                     id="basicpill-start_at" value="{{ old('start_at') }}">
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
-                                                <label for="basicpill-end_at">Selesai</label>
+                                                <label for="basicpill-end_at">Tanggal Selesai</label>
                                                 <input type="date" name="end_at" class="form-control"
                                                     id="basicpill-end_at" value="{{ old('end_at') }}">
                                             </div>
@@ -1000,15 +1000,15 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="update-cstno-input">karakteristik Kontrak</label>
+                                            <label for="update-cstno-input">Karakteristik Kontrak</label>
                                             <select name="characteristic_project" class="form-select">
                                                 <option value="single"
                                                     {{ old('characteristic_project') == 'single' ? 'selected' : '' }}>
-                                                    tahun tunggal
+                                                    Tahun Tunggal
                                                 </option>
                                                 <option value="multiple"
                                                     {{ old('characteristic_project') == 'multiple' ? 'selected' : '' }}>
-                                                    tahun jamak
+                                                    Tahun Jamak
                                                 </option>
                                             </select>
                                         </div>
@@ -1030,14 +1030,14 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="update-start_at">Mulai</label>
+                                            <label for="update-start_at">Tanggal Mulai</label>
                                             <input type="date" name="start_at" class="form-control"
                                                 id="update-start_at" value="{{ old('start_at') }}">
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="update-end_at">Selesai</label>
+                                            <label for="update-end_at">Tanggal Selesai</label>
                                             <input type="date" name="end_at" class="form-control" id="update-end_at"
                                                 value="{{ old('end_at') }}">
                                         </div>

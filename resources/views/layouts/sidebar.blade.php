@@ -325,7 +325,7 @@
                                 </a>
                             </li>
                             <li id="project-konsultant-admin">
-                                <a id="project-konsultant-admin-link" href="{{ route('consultant-package') }}" class="waves-effect">
+                                <a id="project-konsultant-admin-link" href="{{ route('consultant-projects.index') }}" class="waves-effect">
                                     <span key="t-file-manager">Paket Konsultan</span>
                                 </a>
                             </li>
