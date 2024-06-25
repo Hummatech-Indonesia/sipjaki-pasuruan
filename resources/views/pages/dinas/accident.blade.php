@@ -378,7 +378,7 @@
                             {{ $accident->loss }}
                         </td>
                         <td class="text-center">
-                            {{ Carbon\Carbon::parse($accident->time)->format('d F Y H:i') }}
+                            {{ Carbon\Carbon::parse($accident->time)->isoFormat('d F Y H:i') }}
                         </td>
                         <td class="text-center">
                             <div class="d-flex justify-content-center gap-3">
@@ -393,7 +393,7 @@
                                         data-project_id="{{ $accident->project_id }}"
                                         data-location="{{ $accident->location }}"
                                         data-description="{{ $accident->description }}"
-                                        data-time="{{ $accident->time->isoFormat('Y-m-d') }}"
+                                        data-time="{{ \Carbon\Carbon::parse($accident->time)->format('Y-m-d') }}"
                                         data-loss="{{ $accident->loss }}" data-problem="{{ $accident->problem }}">
                                         Edit
                                     </button>
