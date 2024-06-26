@@ -147,11 +147,8 @@ class WorkerController extends Controller
         $data = $request->validated();
         Excel::import(new WorkerImport, $data['import']);
 
-        if ($request->is('api/*')) {
-            return ResponseHelper::success(null, trans('alert.add_success'));
-        } else {
-            return redirect()->back()->with('success', trans('alert.add_success'));
-        }
+        return redirect()->back()->with('success', trans('alert.add_success'));
+
     }
 
     /**

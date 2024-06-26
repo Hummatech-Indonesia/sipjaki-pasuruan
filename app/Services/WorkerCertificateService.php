@@ -50,7 +50,6 @@ class WorkerCertificateService
      */
     public function downloadCertificate(WorkerCertificate $worker_certificate)
     {
-        dd($worker_certificate);
-        return response()->download(storage_path('app/public/' . $worker_certificate->file), $worker_certificate->certificate . '.' . pathinfo(basename($worker_certificate->file, PATHINFO_EXTENSION)));
+        return response()->download(storage_path('app/public/' . $worker_certificate->file), $worker_certificate->certificate . '.' . pathinfo(basename($worker_certificate->file, PATHINFO_EXTENSION))['extension']);
     }
 }

@@ -303,7 +303,7 @@ class ExecutorProjectController extends Controller
     {
         $this->executorProject->delete($executorProject->id);
 
-        return redirect()->back()->with('success',trans('alert.delete_success'));
+        return redirect()->back()->with('success',trans('alert.delete_success'));q
     }
 
     

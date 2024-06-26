@@ -58,15 +58,13 @@
                                 <ul>
                                     <li class="mb-1">File yang dapat diunggah berupa file excel berekstensi xls, xlsx.
                                     </li>
-                                    <li class="mb-1">Format pengisian file excel berisi Nama, Tanggal Lahir, Edukasi,
-                                        Nomor Registrasi, Jumlah Sertifikasi</li>
                                 </ul>
                                 <!--end::Content-->
 
                             </div>
                             <!--end::Wrapper-->
                         </div>
-                        <a href="{{ asset('import-workers.xlsx') }}" class="btn btn-success mb-3" style="">
+                        <a href="{{ asset('import-tenaga-kerja.xlsx') }}" class="btn btn-success mb-3" style="">
                             <i class="fas fa-file-excel"></i>
                             Download Format Excel
                         </a>

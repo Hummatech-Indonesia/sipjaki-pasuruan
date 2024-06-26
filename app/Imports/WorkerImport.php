@@ -17,14 +17,46 @@ class WorkerImport implements ToModel, WithHeadingRow
      */
     public function model(array $row)
     {
-        $birthDate = $row['tanggal_lahir'] = Date::excelToDateTimeObject($row['tanggal_lahir'])->format('Y-m-d');
+        $birthDate = $row['tanggal_lahir'] = Date::excelToDateTimeObject($row['tanggal_lahiryyyy_mm_dd'])->format('Y-m-d');
 
-        ImportWorkerHelper::import([
-            'name' => $row['nama'],
-            'birth_date' => $birthDate,
-            'education' => $row['edukasi'],
-            'registration_number' => $row['nomor_registrasi'],
-            'cerificate' => $row['jumlah_sertfikat'],
-        ]);
+        $gender = '';
+        switch($row['jenis_kelamin']){
+            case 'Perempuan';
+                $gender = 'female';
+                break;
+            case 'Laki Laki';
+                $gender = 'male';
+        }
+
+        $maritalStatus = '';
+        switch($row['status_nikah']){
+            case 'Sudah Kawin';
+                $maritalStatus = 'marry';
+                break;
+            case 'Belum Kawin';
+                $maritalStatus = 'single';
+                break;
+            case 'Cerai Hidup';
+                $maritalStatus = 'divorced';
+                break;
+            case 'Cerai Mati';
+                $maritalStatus = 'death_divorced';
+        }
+
+
+        if(
+            $row['nama'] && $row['agama'] && $row['nomor_telephone'] && $row['nik'] && $birthDate && $row['pendidikan_terakhir'] && $maritalStatus && $row['alamat']
+        ){
+            ImportWorkerHelper::import([
+                'name' => $row['nama'],
+                'religion' => $row['agama'],
+                'phone_number' => $row['nomor_telephone'],
+                'national_identity_number' => $row['nik'],
+                'birth_date' => $birthDate,
+                'education' => $row['pendidikan_terakhir'],
+                'marital_status' => $maritalStatus,
+                'address' => $row['alamat']
+            ]);
+        }
     }
 }
