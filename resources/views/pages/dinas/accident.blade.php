@@ -6,8 +6,8 @@
             Kecelakaan
         </h3>
     </div>
-    <div class="d-flex justify-content-between ">
-        <form action="" method="GET" class="d-flex gap-3 col-10">
+    <div class="d-flex justify-content-between mb-3">
+        <form action="" method="GET" class="d-flex gap-3 col-2">
             <select name="year" id="search-year" class="form-control col-2">
                 <option value="" selected> Semua Tahun</option>
                 @foreach ($fiscalYears as $fiscalYear)
@@ -415,7 +415,7 @@
                 </tbody>
             @empty
                 <tr>
-                    <td colspan="5" class="text-center">
+                    <td colspan="10" class="text-center">
                         <div class="d-flex justify-content-center" style="min-height:16rem">
                             <div class="my-auto">
                                 <img src="{{ asset('no-data.png') }}" width="300" height="300" />
