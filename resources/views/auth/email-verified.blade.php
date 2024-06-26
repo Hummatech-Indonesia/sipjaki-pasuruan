@@ -212,7 +212,7 @@
                       line-height: 36px;
                       text-align: center;
                     ">
-                                    <img src="https://i.postimg.cc/xTC1nsMF/logo.png" alt="" />
+                                    <img src="https://sipjaki.pasuruankab.com/logo.png" alt="" />
                                 </div>
                                 <!--[if mso | IE]>
         </td></tr></table>
