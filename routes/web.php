@@ -298,6 +298,8 @@ Route::middleware('auth')->group(function () {
 
         // download
         Route::get('download-all-service-provider-project/{project}', [ServiceProviderProjectController::class, 'downloadServiceProviderProject'])->name('download.all.service.provider.project');
+        Route::delete('service-provider-qualifications/{serviceProviderQualification}', [ServiceProviderQualificationController::class, 'delete']);
+
        
     });
 });
@@ -307,7 +309,6 @@ Route::middleware('role:admin|superadmin')->group(function () {
     Route::get('service-provider-qualification-reject-by-user', [ServiceProviderQualificationController::class, 'getReject'])->name('service.provider.qualification.reject.by.user');
     Route::patch('approve-service-provider-qualifications/{serviceProviderQualification}', [ServiceProviderQualificationController::class, 'approve']);
     Route::patch('reject-service-provider-qualifications/{serviceProviderQualification}', [ServiceProviderQualificationController::class, 'reject']);
-    Route::delete('service-provider-qualifications/{serviceProviderQualification}', [ServiceProviderQualificationController::class, 'delete']);
 
     Route::get('all-service-provider', [ServiceProviderProjectController::class, 'allServiceProvider']);
     Route::get('verification', [VerificationController::class, 'index']);

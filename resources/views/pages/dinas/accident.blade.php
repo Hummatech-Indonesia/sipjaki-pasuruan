@@ -382,7 +382,7 @@
                             {{ $accident->loss }}
                         </td>
                         <td class="text-center">
-                            {{ Carbon\Carbon::parse($accident->time)->formatLocalized('%e %B %Y %H:%M'); }}
+                            {{ \Carbon\Carbon::parse($accident->created_at)->translatedFormat('d F Y H:i') }}
                         </td>
                         <td class="text-center">
                             <div class="d-flex justify-content-center gap-3">
@@ -405,6 +405,7 @@
                                 <div class="">
                                     <button id="btn-edit-{{ $accident->id }}" data-id="{{ $accident->id }}"
                                         href="{{ route('accident.show', ['accident' => $accident->id]) }}"
+                                        data-date="{{ \Carbon\Carbon::parse($accident->created_at)->translatedFormat('d F Y H:i') }}"
                                         class="btn text-white btn-detail" style="background-color: #1B3061">
                                         Detail
                                     </button>
@@ -461,6 +462,7 @@
         $('.btn-detail').click(function() {
             const formData = getDataAttributes($(this).attr('id'));
             var actionUrl = `${formData['id']}`;
+            var time = $(this).data('date')
             show();
 
             function show() {
@@ -474,7 +476,7 @@
                         $('.data-loss').text(response.data.loss);
                         $('.data-problem').text(response.data.problem);
                         $('.data-description').text(response.data.description);
-                        $('.data-time').text(response.data.time);
+                        $('.data-time').text(time);
                         $('.data-location').text(response.data.location);
                     }
                 });

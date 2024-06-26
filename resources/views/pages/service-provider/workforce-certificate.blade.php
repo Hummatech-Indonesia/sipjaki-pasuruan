@@ -93,15 +93,15 @@
                                         style="width: 90px; background-color: #E05C39; color: white"
                                         data-id="{{ $workerCertificate->id }}" data-bs-toggle="modal"
                                         data-bs-target="#modal-delete"><i class="bx bx-bx bxs-trash fs-4"></i> Hapus</button>
-                                    <a class="btn btn-md btn-success"
-                                        href="{{ route('worker-certificate-download', ['worker_certificate' => $workerCertificate->id]) }}"><i
-                                            class="bx bxs-download bx-xs"></i></a>
+                                        <a class="btn btn-md btn-success"
+                                            href="{{ route('worker-certificate-download', ['worker_certificate' => $workerCertificate->id]) }}"><i
+                                                class="bx bxs-download bx-xs"></i></a>
                                 </td>
                             @endrole
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5" class="text-center">
+                            <td colspan="10" class="text-center">
                                 <div class="d-flex justify-content-center" style="min-height:16rem">
                                     <div class="my-auto">
                                         <img src="{{ asset('no-data.png') }}" width="300" height="300" />

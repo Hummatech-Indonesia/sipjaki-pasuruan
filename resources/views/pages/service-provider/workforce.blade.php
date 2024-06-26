@@ -108,7 +108,7 @@
                         <div class="row mb-3">
                             <div class="col-6">
                                 <label id="name" for="recipient-name" class="control-label mb-2">
-                                    Pengurus</label>
+                                    Nama</label>
                                 <input type="text" class="form-control" id="create-name" class="form-control"
                                     name="name" aria-describedby="name" placeholder="Nama Tenaga Kerja"
                                     value="{{ old('name') }}" />
@@ -376,7 +376,7 @@
                             style="background-color: #1B3061; border-radius:5px 0px 0px 5px; border-color: #1B3061; border-width: 0px;">
                             Select
                         </th>
-                        <th scope="col" class="table-sipjaki text-center">Name</th>
+                        <th scope="col" class="table-sipjaki text-center">Nama</th>
                         <th scope="col" class="table-sipjaki text-center">Tanggal Lahir</th>
                         <th scope="col" class="table-sipjaki text-center">Pendidikan</th>
                         <th scope="col" class="table-sipjaki text-center">No Telepon</th>
@@ -399,7 +399,7 @@
                             <td class="text-center">{{ $worker->education }}</td>
                             <td class="text-center">{{ $worker->phone_number }}</td>
                             <td class="" style="border-bottom: 1px solid #fff">
-                                <div class="d-flex justify-content-header gap-2">
+                                <div class="d-flex justify-content-header justify-content-center  gap-2">
                                     <div class="">
                                         <a href="{{ route('worker-certificate', ['worker' => $worker->id]) }}"
                                             class="btn btn-md btn-success"> <i class="far fa-file-alt fs-5"></i>
