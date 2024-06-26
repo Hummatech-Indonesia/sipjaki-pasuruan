@@ -169,6 +169,8 @@
                             <th style="background-color: #1B3061;color:#ffffff; vertical-align: middle" rowspan="2">No
                             </th>
                             <th style="background-color: #1B3061;color:#ffffff; vertical-align: middle" colspan="1"
+                                rowspan="2">Klasifikasi</th>
+                            <th style="background-color: #1B3061;color:#ffffff; vertical-align: middle" colspan="1"
                                 rowspan="2">Sub Bidang Klasifikasi/Layanan</th>
                             <th style="background-color: #1B3061;color:#ffffff; vertical-align: middle" colspan="1"
                                 rowspan="2">Nomor Kode</th>
@@ -197,6 +199,7 @@
                         @forelse ($serviceProviderQualifications as $serviceProviderQualification)
                             <tr align="center">
                                 <td colspan="1">{{ $loop->iteration }}</td>
+                                <td colspan="1">{{ $serviceProviderQualification->subClassification->classification->name }}</td>
                                 <td colspan="1">{{ $serviceProviderQualification->subClassification->name }}</td>
                                 <td colspan="1">{{ $serviceProviderQualification->subClassification->code }}</td>
                                 <td colspan="1">{{ $serviceProviderQualification->qualification->name }}</td>
