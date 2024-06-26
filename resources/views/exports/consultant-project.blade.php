@@ -38,6 +38,9 @@
             @foreach ($consultantProjects as $consultantProject)
                 <tr>
                     <td class="text-center">
+                        {{ $loop->iteration }}
+                    </td>
+                    <td class="text-center">
                         {{ $consultantProject->name }}
                     </td>
                     <td class="text-center">
