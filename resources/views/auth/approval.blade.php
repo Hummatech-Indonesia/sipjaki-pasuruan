@@ -31,20 +31,21 @@
                                     {{ $loop->iteration }}
                                 </td>
                                 <td class="text-center">
-                                    {{$user->name}}
+                                    {{ $user->name }}
                                 </td>
                                 <td class="text-center">
-                                    {{$user->email}} </td>
+                                    {{ $user->email }} </td>
                                 <td class="text-center">
-                                    {{$user->serviceProvider->association->name}}
+                                    {{ $user->serviceProvider->association->name }}
                                 </td>
                                 <td class="text-center">
-                                    {{$user->serviceProvider->type_of_business_entity == 'executor' ? 'Pelaksana' : 'Konsultan'}}
+                                    {{ $user->serviceProvider->type_of_business_entity == 'executor' ? 'Pelaksana' : 'Konsultan' }}
                                 </td>
                                 <td class="text-center">
                                     <div class="d-flex justify-content-center gap-2">
                                         <div class="">
-                                            <form method="post" id="delete-form" action="{{route('service-provider.destroy',['service_provider' => $user->serviceProvider->id])}}">
+                                            <form method="post" id="delete-form"
+                                                action="{{ route('service-provider.destroy', ['service_provider' => $user->serviceProvider->id]) }}">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger btn-reject">
@@ -53,8 +54,7 @@
                                             </form>
                                         </div>
                                         <div class="">
-                                            <form id="approval-form"
-                                                action="approve-registration/{{ $user->id }}"
+                                            <form id="approval-form" action="approve-registration/{{ $user->id }}"
                                                 method="post">
                                                 @csrf
                                                 @method('PATCH')
@@ -97,6 +97,8 @@
         </script>
     @endif
     <script>
+        $('#approval .sub-menu').addClass('mm-show')
+
         $('.btn-detail').click(function() {
             const data = getDataAttributes($(this).attr('id'))
             handleDetail(data)

@@ -118,7 +118,7 @@
                                     NIK</label>
                                 <input type="number" class="form-control" id="create-name" class="form-control"
                                     name="national_identity_number" aria-describedby="name"
-                                    placeholder="NIK Tenaga Kerja" value="{{ old('name') }}" maxlength="16" />
+                                    placeholder="NIK Tenaga Kerja" value="{{ old('national_identity_number') }}" maxlength="16" />
                             </div>
                         </div>
                         <div class="row mb-3">
