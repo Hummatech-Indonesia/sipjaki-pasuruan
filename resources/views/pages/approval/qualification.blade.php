@@ -37,7 +37,7 @@
                                     {{ $serviceProviderQualificationPending->serviceProvider->user->name }}
                                 </td>
                                 <td class="text-center">
-                                    {{ $serviceProviderQualificationPending->created_at->format('j F Y') }} </td>
+                                    {{ \Carbon\Carbon::parse($serviceProviderQualificationPending->created_at)->isoFormat('D MMMM Y') }} </td>
                                 <td class="text-center">
                                     {{ $serviceProviderQualificationPending->subClassification->code }}
                                 </td>
@@ -52,7 +52,7 @@
                                     {{ $serviceProviderQualificationPending->year }}
                                 </td>
                                 <td class="text-center">
-                                    {{ $serviceProviderQualificationPending->expired_at != '0000-00-00' ? $serviceProviderQualificationPending->expired_at : '-' }}  </td>
+                                {{  $serviceProviderQualificationPending->expired_at != '0000-00-00' ?  \Carbon\Carbon::parse($serviceProviderQualificationPending->expired_at)->isoFormat('D MMMM Y') : '-' }}  </td>
                                 <td class="text-center">
                                     <div class="d-flex justify-content-center gap-2">
                                         {{-- <div class="">
@@ -88,7 +88,7 @@
                         </tbody>
                     @empty
                         <tr>
-                            <td colspan="7" class="text-center">
+                            <td colspan="10" class="text-center">
                                 <div class="d-flex justify-content-center" style="min-height:16rem">
                                     <div class="my-auto">
                                         <img src="{{ asset('no-data.png') }}" width="300" height="300" />
@@ -162,6 +162,7 @@
         </script>
     @endif
     <script>
+        $('#approval .sub-menu').addClass('mm-show')
         $('.btn-detail').click(function() {
             const data = getDataAttributes($(this).attr('id'))
             handleDetail(data)

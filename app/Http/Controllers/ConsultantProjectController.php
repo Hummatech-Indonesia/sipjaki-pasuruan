@@ -73,7 +73,6 @@ class ConsultantProjectController extends Controller
         $request->merge([
             'consultant' => $consultantProject->id
         ]);
-
         $data['consultantProject'] = $consultantProject;
         $data['fundSources'] =  $this->fundSource->get();
         $data['contractCategories'] = $this->contractCategory->get();
