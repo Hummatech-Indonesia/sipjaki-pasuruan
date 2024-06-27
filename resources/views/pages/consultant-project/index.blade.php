@@ -382,10 +382,16 @@
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <label for="basicpill-nilai_kontrak">Nilai Kontrak</label>
-                                                <input type="number" class="form-control" name="project_value"
-                                                    id="basicpill-nilai_kontrak" placeholder="Masukan nilai kontrak"
-                                                    value="{{ old('project_value') }}">
-                                            </div>
+                                                <div class="input-group">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">Rp</span>
+                                                      </div>
+                                                    <input type="number" class="form-control" name="project_value"
+                                                        id="basicpill-nilai_kontrak" placeholder="Masukan nilai kontrak"
+                                                        v 0lue="{{ old('project_value') }}">
+                                                    </div>                            
+                                                
+                                                </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
