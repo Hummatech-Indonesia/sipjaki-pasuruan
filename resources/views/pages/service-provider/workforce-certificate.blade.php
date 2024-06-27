@@ -404,7 +404,6 @@
         }
         $('.btn-detail').click(function() {
             const data = getDataAttributes($(this).attr('id'))
-            console.log(data);
             handleFile(data)
             $('#modal-detail').modal('show')
         })

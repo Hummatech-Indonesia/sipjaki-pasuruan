@@ -10,6 +10,10 @@
             </span>
         </button>
     </div>
+    <div class="d-flex justify-content-center mt-4">
+        <iframe id="detail-file" align="top" height="620" width="65%"
+        scrolling="auto" src ="{{ asset('Manual Book SIPJAKI.pdf') }}"></iframe>
+    </div>
 @endsection
 @section('script')
     <script>
