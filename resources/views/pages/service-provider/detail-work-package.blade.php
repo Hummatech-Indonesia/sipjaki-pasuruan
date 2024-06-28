@@ -229,8 +229,8 @@
                     @endforeach
                 @endif
                 @if (session('success'))
-                <x-alert-success-component :success="session('success')" />
-            @endif
+                    <x-alert-success-component :success="session('success')" />
+                @endif
                 <div class="table-responsive">
                     <table class="table mb-0">
 
@@ -420,7 +420,7 @@
                                                 style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
                                                 Download</a>
                                         @else
-                                        -
+                                            -
                                         @endif
                                     </td>
                                 </tr>
@@ -434,7 +434,7 @@
                                                 style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
                                                 Download</a>
                                         @else
-                                        -
+                                            -
                                         @endif
                                     </td>
                                 </tr>
@@ -448,7 +448,7 @@
                                                 style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
                                                 Download</a>
                                         @else
-                                        - 
+                                            -
                                         @endif
                                     </td>
                                 </tr>
@@ -462,7 +462,7 @@
                                                 style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
                                                 Download</a>
                                         @else
-                                        - 
+                                            -
                                         @endif
                                     </td>
                                 </tr>
@@ -476,7 +476,7 @@
                                                 style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
                                                 Download</a>
                                         @else
-                                        - 
+                                            -
                                         @endif
                                     </td>
                                 </tr>
@@ -490,7 +490,7 @@
                                                 style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
                                                 Download</a>
                                         @else
-                                        - 
+                                            -
                                         @endif
                                     </td>
                                 </tr>
@@ -504,7 +504,7 @@
                                                 style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
                                                 Download</a>
                                         @else
-                                        - 
+                                            -
                                         @endif
                                     </td>
                                 </tr>
@@ -530,7 +530,7 @@
                                                 style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
                                                 Download</a>
                                         @else
-                                        - 
+                                            -
                                         @endif
                                     </td>
                                 </tr>
@@ -544,7 +544,7 @@
                                                 style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
                                                 Download</a>
                                         @else
-                                        -
+                                            -
                                         @endif
                                     </td>
                                 </tr>
@@ -559,7 +559,7 @@
                                                 style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
                                                 Download</a>
                                         @else
-                                        - 
+                                            -
                                         @endif
                                     </td>
                                 </tr>
@@ -574,7 +574,7 @@
                                                 style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
                                                 Download</a>
                                         @else
-                                        - 
+                                            -
                                         @endif
                                     </td>
                                 </tr>
@@ -589,7 +589,7 @@
                                                 style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
                                                 Download</a>
                                         @else
-                                        - 
+                                            -
                                         @endif
                                     </td>
                                 </tr>
@@ -604,7 +604,7 @@
                                                 style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
                                                 Download</a>
                                         @else
-                                        - 
+                                            -
                                         @endif
                                     </td>
                                 </tr>
@@ -718,9 +718,9 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="mb-3 ajax-select mt-3 mt-lg-0">
-                        <label class="form-label">Dokumen Invoice</label>
-                            <input class="form-control" type="file" value="{{ old('invoices') }}"
-                                name="invoices" accept=".pdf" id="">
+                            <label class="form-label">Dokumen Invoice</label>
+                            <input class="form-control" type="file" value="{{ old('invoices') }}" name="invoices"
+                                accept=".pdf" id="">
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -874,8 +874,9 @@
     <x-delete-modal-component />
 @endsection
 @section('script')
-
     <script>
+        $('#dinas-jasa').addClass('mm-active')
+        $('#dinas-jasa .sub-menu').addClass('mm-show')
         $('#paket-jasa').addClass('active')
         $('#paket-jasa .sub-menu').addClass('mm-show')
         $('#paket-jasa-link').addClass('mm-active')
