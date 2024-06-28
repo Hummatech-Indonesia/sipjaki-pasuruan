@@ -237,6 +237,10 @@ Route::middleware('auth')->group(function () {
         Route::post('training', [TrainingController::class, 'store'])->name('training.store');
         Route::put('training.update/{training}', [TrainingController::class, 'update'])->name('training.update');
         Route::delete('training.destroy/{training}', [TrainingController::class, 'destroy'])->name('training.destroy');
+        Route::get('service-provider-consultants', [ServiceProviderController::class, 'consultant']);
+        Route::get('service-provider-executors', [ServiceProviderController::class, 'executor']);
+        Route::get('detail-service-provider/{service_provider}', [ServiceProviderController::class, 'show'])->name('detail.service.provider');
+
     });
 
     Route::middleware('role:dinas')->group(function () {
@@ -313,13 +317,10 @@ Route::middleware('role:admin|superadmin')->group(function () {
     Route::get('all-service-provider', [ServiceProviderProjectController::class, 'allServiceProvider']);
     Route::get('verification', [VerificationController::class, 'index']);
     Route::post('verification', [VerificationController::class, 'store']);
-    Route::get('detail-service-provider/{service_provider}', [ServiceProviderController::class, 'show'])->name('detail.service.provider');
     Route::get('service-provider-detail/{service_provider}', [ServiceProviderProjectController::class, 'projectDetail']);
     Route::patch('update-password-service-provider/{service_provider}', [ServiceProviderController::class, 'updatePassword']);
     Route::get('all-service-provider', [ServiceProviderProjectController::class, 'allServiceProvider'])->name('all.service.provider');
     Route::get('all-agency', [DinasController::class, 'all'])->name('all.agency');
-    Route::get('service-provider-consultants', [ServiceProviderController::class, 'consultant']);
-    Route::get('service-provider-executors', [ServiceProviderController::class, 'executor']);
     Route::delete('service-provider/{service_provider}', [ServiceProviderController::class, 'destroy'])->name('service-provider.destroy');
     Route::delete('delete-service-provider/multiple', [ServiceProviderController::class, 'destroys'])->name('service-provider.destroys');
     Route::get('approve-registration', [RegisterController::class, 'approval'])->name('approval.registration');

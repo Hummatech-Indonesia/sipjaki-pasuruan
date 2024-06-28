@@ -40,10 +40,12 @@
                 href="#pengalaman" role="tab" role="tab" aria-controls="pengalaman" aria-selected="false">
                 <div class="fw-bold">Pengalaman</div>
             </a>
+            @if (auth()->user()->roles->pluck('name')[0] != 'dinas')
             <a class="nav-link rounded-end" style="border: solid 1px #1B3061;" id="ganti-tab" data-bs-toggle="pill"
                 href="#ganti" role="tab" aria-controls="ganti" aria-selected="false">
                 <div class="fw-bold">Ganti Password</div>
             </a>
+            @endif
         </div>
     </div>
 
@@ -217,6 +219,7 @@
                                 <div class="btn btn-sm mb-3 text-dark rounded-3" style="background-color: #E4ECFF;">
                                     Data Badan Usaha
                                 </div>
+                                @if (auth()->user()->roles->pluck('name')[0] != 'dinas')
                                 <div>
                                     <button data-bs-toggle="modal" data-bs-target="#modal-update-badan-usaha"
                                     style="background-color: #E4ECFF;"
@@ -232,6 +235,7 @@
                                     data-type_of_business_entity="{{ $serviceProviders->type_of_business_entity }}">Edit</button>
 
                                 </div>
+                                @endif
                             </div>
                             <p class="fw-bolder fs-4">{{ $serviceProviders->user->name }}</p>
                             <table cellpadding="5" style="border-collapse: collapse; width: 50%;" class="fs-6 fw-normal">
