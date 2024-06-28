@@ -6,7 +6,6 @@
     <p class="fs-4 text-dark" style="font-weight: 600">
         Paket Konsultan
     </p>
-    <input type="text" data-type="currency">
     @if (request()->routeIs('consultant-projects.show'))
         <div class="row">
             <div class="col-md-12">
@@ -1108,6 +1107,8 @@
 @endsection
 @section('script')
     <script>
+        $('#dinas-jasa').addClass('mm-active')
+        $('#dinas-jasa .sub-menu').addClass('mm-show')
         $('#project-dinas-konsultant').addClass('mm-active')
         $('#project-dinas-konsultant-link').addClass('active')
 
