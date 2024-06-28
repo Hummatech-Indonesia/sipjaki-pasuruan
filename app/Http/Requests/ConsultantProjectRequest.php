@@ -20,6 +20,7 @@ class ConsultantProjectRequest extends FormRequest
             'name' => 'required|string',
             'project_value' => 'nullable|integer',
             'characteristic_project' => 'required',
+            'status' => 'required',
             'finance_progress_start' => 'nullable|date',
             'finance_progress' => 'nullable|numeric|max:100',
             'fiscal_year_id' => 'required|exists:fiscal_years,id',
