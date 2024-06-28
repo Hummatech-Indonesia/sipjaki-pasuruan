@@ -66,11 +66,13 @@
         }
     </style>
     <div class="col-2 mb-3">
-        <select name="search" class="form-select">
-            @foreach ($fiscalYears as $fiscalYear)
-                <option value="{{ $fiscalYear->id }}">{{ $fiscalYear->name }}</option>
-            @endforeach
-        </select>
+        <form id="search">
+            <select name="search" id="select" class="form-select">
+                @foreach ($fiscalYears as $fiscalYear)
+                    <option value="{{ $fiscalYear->id }}">{{ $fiscalYear->name }}</option>
+                @endforeach
+            </select>
+        </form>
     </div>
     <div class="page-title-box d-sm-flex align-items-center">
         <h4 class="mb-sm-0 font-size-18">Dashboard</h4>
@@ -227,31 +229,10 @@
 @endsection
 @section('script')
     <script>
-        function getYear() {
-            var year = new Date('2023-01-01')
-            var fiveYears = [];
-            var date = new Date();
-            for (let i = 0; i < 6; i++) {
-                var fullYear = year.getFullYear() + i;
-                var isSelected = (fullYear === date.getFullYear());
-                fiveYears.push({
-                    year: fullYear,
-                    selected: isSelected
-                });
-            }
 
-            $.each(fiveYears, function(index, item) {
-                var option = $('<option>');
-                option.val(item.year)
-                option.text(item.year)
-                if (item.selected === true) {
-                    option.attr('selected', 'selected')
-                }
-                $('#year-filter').append(option)
-            })
-        }
-        getYear()
-
+        $('#select').change(function () {
+            $('#search').submit()
+        })
         var options = {
             series: [{
                 name: "Jumlah Kecelakaan",
