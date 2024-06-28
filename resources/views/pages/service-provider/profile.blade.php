@@ -217,12 +217,15 @@
                                     {{ Carbon::parse($serviceProviderQualification->expired_at)->locale('id_ID')->isoFormat('DD MMMM Y') }}
                                 </td>
                                 <td colspan="1">
+
                                     @if ($serviceProviderQualification->status == 'pending')
                                         <span class="badge text-bg-warning fs-6">Pending</span>
                                     @elseif ($serviceProviderQualification->status == 'reject')
-                                        <span class="badge text-bg-danger fs-6">Reject</span>
-                                    @else
-                                        <span class="badge text-bg-success fs-6">Active</span>
+                                    <span class="badge text-bg-danger fs-6">Ditolak</span>
+                                    @elseif ($serviceProviderQualification->status == 'active')
+                                    <span class="badge text-bg-success fs-6">Aktif</span>
+                                    @elseif (Carbon::now() > $serviceProviderQualification->expired_at )
+                                    <span class="badge text-bg-danger fs-6">Kadaluarsa</span>
                                     @endif
                                 </td>
                                 <td colspan="1">
