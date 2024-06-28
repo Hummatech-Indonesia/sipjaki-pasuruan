@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\DinasRequest;
 use App\Contracts\Interfaces\DinasInterface;
 use App\Contracts\Interfaces\ExecutorProjectInterface;
+use App\Contracts\Interfaces\FiscalYearInterface;
 use App\Contracts\Interfaces\UserInterface;
 use App\Helpers\ResponseHelper;
 use Illuminate\Contracts\View\View;
@@ -15,17 +16,20 @@ class DinasController extends Controller
 {
     private DinasInterface $dinas;
     private UserInterface $user;
+    private FiscalYearInterface $fiscalYear;
     private ExecutorProjectInterface $executorProject;
 
     public function __construct(
         DinasInterface $dinas,
         UserInterface $user,
         ExecutorProjectInterface $executorProject,
+        FiscalYearInterface $fiscalYear
     )
     {
         $this->user = $user;
         $this->dinas = $dinas;
         $this->executorProject = $executorProject;
+        $this->fiscalYear = $fiscalYear;
     }
 
     /**
@@ -86,6 +90,7 @@ class DinasController extends Controller
         $executorProjects = $this->executorProject->search($request);
         $executorProjectCount = $this->executorProject->count(null);
         $executorProjectActive = $this->executorProject->count(['status' => 'active']);
+        $fiscalYears = $this->fiscalYear->get();
         foreach ($executorProjects as $executorProject) {
             $accidentCount += $executorProject->accidents->count();
         }
@@ -94,7 +99,8 @@ class DinasController extends Controller
             'accidentCount',
             'executorProjects',
             'executorProjectCount',
-            'executorProjectActive'
+            'executorProjectActive',
+            'fiscalYears'
         ));
     }
 

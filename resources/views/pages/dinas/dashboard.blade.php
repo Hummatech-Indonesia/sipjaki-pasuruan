@@ -66,7 +66,11 @@
         }
     </style>
     <div class="col-2 mb-3">
-        <select name="year" id="year-filter" class="form-select"></select>
+        <select name="search" class="form-select">
+         @foreach ($fiscalYears as $fiscalYear)
+             <option value="{{ $fiscalYear->id }}">{{ $fiscalYear->name }}</option>
+         @endforeach
+        </select>
     </div>
     <div class="page-title-box d-sm-flex align-items-center">
         <h4 class="mb-sm-0 font-size-18">Dashboard</h4>
@@ -206,7 +210,11 @@
         </div>
         <div class="col-lg-6">
             <div class="page-title-box d-sm-flex align-items-center">
-                <h4 class="mb-sm-0 font-size-18">Perbandingan Paket Pekerjaan Perbulan</h4>
+                <h4 class="mb-sm-0 font-size-18">Jumlah dalam kecelakaan @if ( $fiscalYears->count() < 4 )
+                    {{ $fiscalYears->count() }}
+                    @else
+                    4
+                @endif tahun terakhir</h4>
             </div>
             <div class="card">
                 <div class="card-body">

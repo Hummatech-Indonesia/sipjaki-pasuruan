@@ -85,8 +85,8 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="mb-3">
-                                    <label for="update-location">Lokasi</label>
-                                    <textarea name="location" id="update-location" class="form-control">{{ old('location') }}</textarea>
+                                    <label for="create-location">Lokasi</label>
+                                    <textarea name="location" id="create-location" class="form-control">{{ old('location') }}</textarea>
                                     @error('location')
                                         <p class="text-danger">
                                             {{ $message }}
@@ -96,8 +96,8 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="mb-3">
-                                    <label for="update-description">Deskripsi</label>
-                                    <textarea name="description" id="update-description" class="form-control">{{ old('description') }}</textarea>
+                                    <label for="create-description">Deskripsi</label>
+                                    <textarea name="description" id="create-description" class="form-control">{{ old('description') }}</textarea>
                                     @error('description')
                                         <p class="text-danger">
                                             {{ $message }}
@@ -109,8 +109,8 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="mb-3">
-                                    <label for="update-loss">Kerugian</label>
-                                    <textarea name="loss" id="update-loss" class="form-control">{{ old('loss') }}</textarea>
+                                    <label for="create-loss">Kerugian</label>
+                                    <textarea name="loss" id="create-loss" class="form-control">{{ old('loss') }}</textarea>
                                     @error('loss')
                                         <p class="text-danger">
                                             {{ $message }}
@@ -120,8 +120,8 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="mb-3">
-                                    <label for="update-problem">Masalah</label>
-                                    <textarea name="problem" id="update-problem" class="form-control">{{ old('problem') }}</textarea>
+                                    <label for="create-problem">Masalah</label>
+                                    <textarea name="problem" id="create-problem" class="form-control">{{ old('problem') }}</textarea>
                                     @error('problem')
                                         <p class="text-danger">
                                             {{ $message }}
@@ -158,7 +158,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #1B3061">
-                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Edit Pelatihan</h5>
+                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Edit Kecelakaan</h5>
                     <button type="button" class="btn-close" style="background-color: white" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
