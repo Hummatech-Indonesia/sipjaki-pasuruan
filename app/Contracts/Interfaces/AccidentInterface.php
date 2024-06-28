@@ -13,5 +13,5 @@ use App\Contracts\Interfaces\Eloquent\UpdateInterface;
 
 interface AccidentInterface extends CountInterface,StoreInterface, UpdateInterface, GetInterface, DeleteInterface, ShowInterface,CustomPaginationInterface,SearchInterface
 {
-
+    public function getByYear(string $year):mixed;
 }

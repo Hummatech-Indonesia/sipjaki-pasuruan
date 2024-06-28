@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Interfaces\AccidentInterface;
 use App\Http\Requests\DinasRequest;
 use App\Contracts\Interfaces\DinasInterface;
 use App\Contracts\Interfaces\ExecutorProjectInterface;
@@ -18,18 +19,21 @@ class DinasController extends Controller
     private UserInterface $user;
     private FiscalYearInterface $fiscalYear;
     private ExecutorProjectInterface $executorProject;
+    private AccidentInterface $accident;
 
     public function __construct(
         DinasInterface $dinas,
         UserInterface $user,
         ExecutorProjectInterface $executorProject,
-        FiscalYearInterface $fiscalYear
+        FiscalYearInterface $fiscalYear,
+        AccidentInterface $accident,
     )
     {
         $this->user = $user;
         $this->dinas = $dinas;
         $this->executorProject = $executorProject;
         $this->fiscalYear = $fiscalYear;
+        $this->accident = $accident;
     }
 
     /**
@@ -95,12 +99,27 @@ class DinasController extends Controller
             $accidentCount += $executorProject->accidents->count();
         }
 
+
+        $amounts = [];
+        $categories = [];
+
+        foreach($this->fiscalYear->getLastYear() as $fiscalYear)
+        {
+            $amount = $this->accident->getByYear($fiscalYear->name)->count();
+            $category = $fiscalYear->name;
+
+            array_push($amounts,$amount);
+            array_push($categories,$category);
+        }
+
         return view('pages.dinas.dashboard',compact(
             'accidentCount',
             'executorProjects',
             'executorProjectCount',
             'executorProjectActive',
-            'fiscalYears'
+            'fiscalYears',
+            'amounts',
+            'categories'
         ));
     }
 

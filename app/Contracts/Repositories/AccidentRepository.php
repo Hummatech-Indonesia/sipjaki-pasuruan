@@ -23,7 +23,7 @@ class AccidentRepository extends BaseRepository implements AccidentInterface
     public function get(): mixed
     {
         return $this->model->query()
-            ->whereRelation('project', 'dinas_id', auth()->user()->dinas->id)
+            ->whereRelation('executorProject.consultantProject', 'dinas_id', auth()->user()->dinas->id)
             ->get();
     }
 
@@ -84,6 +84,14 @@ class AccidentRepository extends BaseRepository implements AccidentInterface
     {
         return $this->model->query()
             ->count();
+    }
+
+    public function getByYear(string $year): mixed
+    {
+        return $this->model->query()
+            ->whereRelation('executorProject.consultantProject', 'dinas_id', auth()->user()->dinas->id)
+            ->whereYear('time',$year)
+            ->get();
     }
     
     /**

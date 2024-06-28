@@ -12,4 +12,5 @@ use App\Contracts\Interfaces\Eloquent\UpdateInterface;
 
 interface FiscalYearInterface extends GetInterface, StoreInterface, SearchInterface, DeleteInterface, UpdateInterface, ShowInterface, CustomPaginationInterface
 {
+    public function getLastYear() : mixed;
 }

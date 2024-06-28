@@ -91,6 +91,14 @@ class FiscalYearRepository extends BaseRepository implements FiscalYearInterface
             ->get();
     }
 
+    public function getLastYear(): mixed
+    {
+        return $this->model->query()
+            ->orderByDesc('name')
+            ->limit(4)
+            ->get();
+    }
+
     /**
      * customPaginate
      *
