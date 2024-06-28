@@ -624,7 +624,7 @@
                                                 $text = 'Dibatalkan';
                                                 break;
                                             case 'nonactive':
-                                                $color = '#FFF700';
+                                                $color = '#f1b44';
                                                 $text = 'Non Aktif';
                                                 break;
                                             default:
@@ -750,7 +750,7 @@
                                                 $text = 'Dibatalkan';
                                                 break;
                                             case 'nonactive':
-                                                $color = '#FFF700';
+                                                $color = '#ffc107';
                                                 $text = 'Non Aktif';
                                                 break;
                                             default:
