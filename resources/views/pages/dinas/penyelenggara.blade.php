@@ -33,6 +33,7 @@
                     </div>
                 </div>
                 <div class="">
+                    @if (auth()->user()->roles->pluck('name')[0] != 'dinas')
                     <div class="d-flex">
                         <button class="btn ms-1 text-white rounded" style="background-color:#1B3061" onclick="selectAll()">
                             Pilih Semua
@@ -47,6 +48,7 @@
                             </button>
                         </form>
                     </div>
+                    @endif
                 </div>
             </div>
             @if (session('success'))
@@ -56,9 +58,11 @@
                 <table class="table">
                     <thead>
                         <tr>
+                            @if (auth()->user()->roles->pluck('name')[0] != 'dinas')
                             <td scope="col" class="text-center text-white" style="background-color: #1B3061;">
                                 -
                             </td>
+                            @endif
                             <td class="text-white" style="background-color: #1B3061">
                                 No
                             </td>
@@ -82,12 +86,14 @@
                     @forelse ($serviceProviders as $serviceProvider)
                         <tbody>
                             <tr>
+                                @if (auth()->user()->roles->pluck('name')[0] != 'dinas')
                                 <th scope="row" class="text-center">
                                     @if ($serviceProvider->consultantProjects->count() == 0 && $serviceProvider->executorProjects->count() == 0)
                                         <input value="{{ $serviceProvider->id }}" type="checkbox"
                                             aria-label="Checkbox for following text input">
                                     @endif
                                 </th>
+                                @endif
                                 <td>
                                     {{ $loop->iteration }}
                                 </td>
@@ -109,6 +115,7 @@
                                         class="btn text-white" style="background-color: #1B3061">
                                         Detail
                                     </a>
+                                    @if (auth()->user()->roles->pluck('name')[0] != 'dinas')
                                     @if ($serviceProvider->consultantProjects->count() == 0 && $serviceProvider->executorProjects->count() == 0)
                                         <button type="button" id="{{ $serviceProvider->id }}"
                                             data-id="{{ $serviceProvider->id }}"
@@ -116,6 +123,7 @@
                                             class="btn btn-danger btn-delete">
                                             Hapus
                                         </button>
+                                    @endif
                                     @endif
                                 </td>
                             </tr>
