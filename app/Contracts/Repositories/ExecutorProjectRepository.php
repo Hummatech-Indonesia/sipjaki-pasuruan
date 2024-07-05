@@ -15,16 +15,16 @@ class ExecutorProjectRepository extends BaseRepository implements ExecutorProjec
         $this->model = $executorProject;
     }
 
-     /**
+    /**
      * get
      *
      * @return mixed
      */
-    public function get() : mixed
+    public function get(): mixed
     {
         return $this->model->query()
             ->when(auth()->user()->dinas, function ($query) {
-                $query->whereRelation('consultantProject','dinas_id', auth()->user()->dinas->id);
+                $query->whereRelation('consultantProject', 'dinas_id', auth()->user()->dinas->id);
             })
             ->latest()
             ->get();
@@ -53,7 +53,7 @@ class ExecutorProjectRepository extends BaseRepository implements ExecutorProjec
             ->create($data);
     }
 
-     /**
+    /**
      * update
      *
      * @param  mixed $id
@@ -65,7 +65,7 @@ class ExecutorProjectRepository extends BaseRepository implements ExecutorProjec
         return $this->show($id)->update($data);
     }
 
-        /**
+    /**
      * customPaginate
      *
      * @param  mixed $request
@@ -76,27 +76,27 @@ class ExecutorProjectRepository extends BaseRepository implements ExecutorProjec
     {
         return $this->model->query()
             ->when(auth()->user()?->dinas, function ($query) {
-                $query->whereRelation('consultantProject','dinas_id', auth()->user()->dinas->id);
+                $query->where('dinas_id', auth()->user()->dinas->id);
             })
-            ->when(auth()->user()?->serviceProvider,function($query){
-                $query->when(auth()->user()->serviceProvider->type_of_business_entity == TypeOfBusinessEntityEnum::CONSULTANT->value,function($q){
-                    $q->whereRelation('consultantProject','service_provider_id',auth()->user()->serviceProvider->id);
+            ->when(auth()->user()?->serviceProvider, function ($query) {
+                $query->when(auth()->user()->serviceProvider->type_of_business_entity == TypeOfBusinessEntityEnum::CONSULTANT->value, function ($q) {
+                    $q->whereRelation('consultantProject', 'service_provider_id', auth()->user()->serviceProvider->id);
                 });
-                $query->when(auth()->user()->serviceProvider->type_of_business_entity == TypeOfBusinessEntityEnum::EXECUTOR->value,function($q){
-                    $q->where('service_provider_id',auth()->user()->serviceProvider->id);
+                $query->when(auth()->user()->serviceProvider->type_of_business_entity == TypeOfBusinessEntityEnum::EXECUTOR->value, function ($q) {
+                    $q->where('service_provider_id', auth()->user()->serviceProvider->id);
                 });
             })
             ->when($request->name, function ($query) use ($request) {
                 $query->where('name', 'LIKE', '%' . $request->name . '%');
             })
-            ->when($request->consultant,function($query) use ($request){
-                $query->where('consultant_project_id',$request->consultant);
+            ->when($request->consultant, function ($query) use ($request) {
+                $query->where('consultant_project_id', $request->consultant);
             })
             ->when($request->year, function ($query) use ($request) {
                 $query->where('fiscal_year_id', $request->year);
             })
             ->when($request->dinas, function ($query) use ($request) {
-                $query->whereRelation('consultantProject','dinas_id', $request->dinas);
+                $query->whereRelation('consultantProject', 'dinas_id', $request->dinas);
             })
             ->when($request->status, function ($query) use ($request) {
                 $query->where('status', $request->status);
@@ -113,20 +113,20 @@ class ExecutorProjectRepository extends BaseRepository implements ExecutorProjec
     public function search(Request $request): mixed
     {
         return $this->model->query()
-            ->with('accidents','consultantProject')
+            ->with('accidents', 'consultantProject')
             ->when(auth()->user()->dinas, function ($query) {
-                $query->whereRelation('consultantProject','dinas_id', auth()->user()->dinas->id);
+                $query->whereRelation('consultantProject', 'dinas_id', auth()->user()->dinas->id);
             })
-            ->when(auth()->user()->serviceProvider,function($query){
-                $query->when(auth()->user()->serviceProvider->type_of_business_entity == TypeOfBusinessEntityEnum::CONSULTANT->value,function($q){
-                    $q->whereRelation('consultantProject','service_provider_id',auth()->user()->serviceProvider->id);
+            ->when(auth()->user()->serviceProvider, function ($query) {
+                $query->when(auth()->user()->serviceProvider->type_of_business_entity == TypeOfBusinessEntityEnum::CONSULTANT->value, function ($q) {
+                    $q->whereRelation('consultantProject', 'service_provider_id', auth()->user()->serviceProvider->id);
                 });
-                $query->when(auth()->user()->serviceProvider->type_of_business_entity == TypeOfBusinessEntityEnum::EXECUTOR->value,function($q){
-                    $q->where('service_provider_id',auth()->user()->serviceProvider->id);
+                $query->when(auth()->user()->serviceProvider->type_of_business_entity == TypeOfBusinessEntityEnum::EXECUTOR->value, function ($q) {
+                    $q->where('service_provider_id', auth()->user()->serviceProvider->id);
                 });
             })
-            ->when($request->consultant,function($query) use ($request){
-                $query->where('consultant_project_id',$request->consultant);
+            ->when($request->consultant, function ($query) use ($request) {
+                $query->where('consultant_project_id', $request->consultant);
             })
             ->when($request->name, function ($query) use ($request) {
                 $query->where('name', 'LIKE', '%' . $request->name . '%');
@@ -135,14 +135,14 @@ class ExecutorProjectRepository extends BaseRepository implements ExecutorProjec
                 $query->where('fiscal_year_id', $request->year);
             })
             ->when($request->dinas, function ($query) use ($request) {
-                $query->whereRelation('consultantProject','dinas_id', $request->dinas);
+                $query->whereRelation('consultantProject', 'dinas_id', $request->dinas);
             })
             ->when($request->status, function ($query) use ($request) {
                 $query->where('status', $request->status);
             })
             ->get();
     }
-    
+
     /**
      * count
      *
@@ -152,24 +152,24 @@ class ExecutorProjectRepository extends BaseRepository implements ExecutorProjec
     public function count(?array $data): int
     {
         return $this->model->query()
-            ->when(auth()->user()->dinas,function($query){
-                $query->whereRelation('consultantProject','dinas_id',auth()->user()->dinas->id);
+            ->when(auth()->user()->dinas, function ($query) {
+                $query->whereRelation('consultantProject', 'dinas_id', auth()->user()->dinas->id);
             })
-            ->when(auth()->user()->serviceProvider,function($query){
-                $query->when(auth()->user()->serviceProvider->type_of_business_entity == TypeOfBusinessEntityEnum::CONSULTANT->value,function($q){
-                    $q->whereRelation('consultantProject','service_provider_id',auth()->user()->serviceProvider->id);
+            ->when(auth()->user()->serviceProvider, function ($query) {
+                $query->when(auth()->user()->serviceProvider->type_of_business_entity == TypeOfBusinessEntityEnum::CONSULTANT->value, function ($q) {
+                    $q->whereRelation('consultantProject', 'service_provider_id', auth()->user()->serviceProvider->id);
                 });
-                $query->when(auth()->user()->serviceProvider->type_of_business_entity == TypeOfBusinessEntityEnum::EXECUTOR->value,function($q){
-                    $q->where('service_provider_id',auth()->user()->serviceProvider->id);
+                $query->when(auth()->user()->serviceProvider->type_of_business_entity == TypeOfBusinessEntityEnum::EXECUTOR->value, function ($q) {
+                    $q->where('service_provider_id', auth()->user()->serviceProvider->id);
                 });
             })
-            ->when(isset($data['status']),function($query) use ($data){
-                $query->where('status',$data['status']);
+            ->when(isset($data['status']), function ($query) use ($data) {
+                $query->where('status', $data['status']);
             })
             ->count();
     }
 
-            /**
+    /**
      * delete
      *
      * @param  mixed $id

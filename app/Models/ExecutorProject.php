@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class ExecutorProject extends Model implements HasAccidents,HasFiscalYear,HasFundSource,HasContractCategory,HasServiceProvider,HasServiceProviderProjects
+class ExecutorProject extends Model implements HasAccidents, HasFiscalYear, HasFundSource, HasContractCategory, HasServiceProvider, HasServiceProviderProjects
 {
     use HasFactory;
     protected $table = 'executor_projects';
@@ -127,5 +127,15 @@ class ExecutorProject extends Model implements HasAccidents,HasFiscalYear,HasFun
     public function accidents(): HasMany
     {
         return $this->hasMany(Accident::class);
+    }
+
+    /**
+     * Get the dinas that owns the ExecutorProject
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function dinas(): BelongsTo
+    {
+        return $this->belongsTo(Dinas::class);
     }
 }
