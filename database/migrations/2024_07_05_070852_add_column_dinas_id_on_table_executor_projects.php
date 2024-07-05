@@ -11,10 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if(Schema::hasColumn('executor_projects', 'consultant_project_id')) return;
+        if(Schema::hasColumn('executor_projects', 'dinas_id')) return;
         Schema::table('executor_projects', function (Blueprint $table) {
-            $table->dropForeign(['dinas_id']);
-
             // Make the column nullable and reapply the constraints
             $table->uuid('dinas_id')->nullable()->change();
             $table->foreign('dinas_id')->references('id')->on('dinas')->cascadeOnDelete()->cascadeOnUpdate();
