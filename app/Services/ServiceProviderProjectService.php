@@ -27,7 +27,8 @@ class ServiceProviderProjectService
      */
     public function store(ServiceProviderProjectRequest $request, $serviceProviderProjects, ExecutorProject $executorProject): mixed
     {
-        if(!$request["date_finish"]) $request["date_finish"] = $request["date_start"];
+        if(!$request["date_finish"]) $request->merge(['date_finish' => $request["date_start"]]);
+        if(!$request["progres"]) $request->merge(['progress' => 0]);
         $data = $request->validated();
         $progres = 0;
         $data['executor_project_id'] = $executorProject->id;
@@ -58,7 +59,8 @@ class ServiceProviderProjectService
      */
     public function update(ServiceProviderProjectRequest $request, ServiceProviderProject $service_provider_project, $serviceProviderProjects): mixed
     {
-        if(!$request["date_finish"]) $request["date_finish"] = $request["date_start"];
+        if(!$request["date_finish"]) $request->merge(['date_finish' => $request["date_start"]]);
+        if(!$request["progres"]) $request->merge(['progress' => 0]);
         $data = $request->validated();
         $progres = 0;
         $old_file = $service_provider_project->file;
