@@ -141,6 +141,7 @@
                                                 <label for="basicpill-penyedia-jasa">Paket Konsultan</label>
                                                 <select class="form-control select2-create" style="width:100%"
                                                     name="consultant_project_id" id="basicpill-konsultan">
+                                                    <option value="">-- Pilih Paket Konsultan --</option>
                                                     @foreach ($consultantProjects as $consultantProject)
                                                         <option value="{{ $consultantProject->id }}"
                                                             {{ old('consultant_project_id') == $consultantProject->id ? 'selected' : '' }}>
@@ -570,6 +571,7 @@
                                             <label for="update-penyedia-jasa">Paket Konsultan</label>
                                             <select class="form-control select2-update" style="width:100%"
                                                 name="consultant_project_id" id="update-konsultan">
+                                                <option value="">-- Pilih Paket Konsultan --</option>
                                                 @foreach ($consultantProjects as $consultantProject)
                                                     <option value="{{ $consultantProject->id }}"
                                                         {{ old('consultant_project_id') == $consultantProject->id ? 'selected' : '' }}>

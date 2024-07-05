@@ -17,16 +17,20 @@
                     aria-selected="false">
                     <div class="fw-bold">Informasi Paket</div>
                 </a>
+                @if ($executorProject->consultant_project_id == null)
                 <a class="nav-link" style="border: solid 1px #1B3061;" onclick="tab('progres-penyedia-tab')"
                     id="progres-penyedia-tab" data-bs-toggle="pill" href="#progres-penyedia" role="tab"
                     aria-controls="progres-penyedia" aria-selected="false">
                     <div class="fw-bold">Progres Penyedia</div>
                 </a>
+                @endif
+                @if ($executorProject->consultant_project_id != null)
                 <a class="nav-link" style="border: solid 1px #1B3061;" onclick="tab('progres-konsultan-tab')" id="progres-konsultan-tab"
                     data-bs-toggle="pill" href="#progres-konsultan" role="tab" aria-controls="progres-konsultan"
                     aria-selected="false">
                     <div class="fw-bold">Progres Konsultan</div>
                 </a>
+                @endif
                 <a class="nav-link rounded-end" style="border: solid 1px #1B3061;" onclick="tab('dokumen-tab')"
                     id="dokumen-tab" data-bs-toggle="pill" href="#dokumen" role="tab" aria-controls="dokumen"
                     aria-selected="false">
@@ -210,12 +214,15 @@
         </div>
         <!-- end informasi paket  -->
         <!-- Progres Penyedia -->
+        @if ($executorProject->consultant_project_id == null)
         <div class="tab-pane fade-out" id="progres-penyedia" role="tabpanel"
             aria-labelledby="progres-penyedia-tab">
             <h1>Progres penyedia</h1>
         </div>
+        @endif
         <!-- End Progres Penyedia  -->
-         <!-- Progres Konsultan  -->
+        <!-- Progres Konsultan  -->
+        @if ($executorProject->consultant_project_id != null)
         <div class="tab-pane fade-out" id="progres-konsultan" role="tabpanel"
             aria-labelledby="progres-konsultan-tab">
             <div class="row">
@@ -583,6 +590,7 @@
                 </div>
             </div>
         </div>
+        @endif
         <!-- End Progres Konsultan  -->
         <!-- Dokumen  -->
         <div class="tab-pane fade-out" id="dokumen" role="tabpanel"

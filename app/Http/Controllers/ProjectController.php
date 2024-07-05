@@ -45,8 +45,7 @@ class ProjectController extends Controller
         ExecutorProjectInterface $executorProjectInterface,
         ConsultantProjectInterface $consultantProjectInterface,
         DinasInterface $dinas
-    )
-    {
+    ) {
         $this->dinas = $dinas;
         $this->consultantProject = $consultantProjectInterface;
         $this->executorProject = $executorProjectInterface;
@@ -80,7 +79,7 @@ class ProjectController extends Controller
             $name = $request->name;
             $year = $request->year;
             $status = $request->status;
-            return view('pages.dinas.work-package', compact('name', 'status', 'year', 'projects', 'consultants', 'executors', 'fundSources', 'contractCategories', 'dinases','requestDinas'));
+            return view('pages.dinas.work-package', compact('name', 'status', 'year', 'projects', 'consultants', 'executors', 'fundSources', 'contractCategories', 'dinases', 'requestDinas'));
         }
     }
 
@@ -137,7 +136,7 @@ class ProjectController extends Controller
      */
     public function projectDetail(ExecutorProject $executorProject): View
     {
-        return view('pages.service-provider.detail-work-package',compact(
+        return view('pages.service-provider.detail-work-package', compact(
             'executorProject',
         ));
     }
@@ -248,7 +247,7 @@ class ProjectController extends Controller
      */
     public function export(Request $request)
     {
-        return Excel::download(new ProjectExport($request,$this->executorProject), 'Paket Pekerjaan.xlsx');
+        return Excel::download(new ProjectExport($request, $this->executorProject), 'Paket Pekerjaan.xlsx');
     }
 
     /**
@@ -260,7 +259,7 @@ class ProjectController extends Controller
     {
         $data['projects'] = $this->executorProject->search($request);
         $pdf = Pdf::loadView('exports.projects-pdf', $data);
-        $pdf->setPaper('A4','landscape');
+        $pdf->setPaper('A4', 'landscape');
         return $pdf->download('Paket Pekerjaan' . '.pdf');
     }
 }
