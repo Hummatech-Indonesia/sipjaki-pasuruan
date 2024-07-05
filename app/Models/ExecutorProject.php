@@ -48,6 +48,7 @@ class ExecutorProject extends Model implements HasAccidents,HasFiscalYear,HasFun
         'start_at',
         'end_at',
         'status',
+        'dinas_id'
     ];
     protected $guarded = [];
     public $incrementing = false;

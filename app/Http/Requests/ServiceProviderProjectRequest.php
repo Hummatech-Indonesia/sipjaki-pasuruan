@@ -15,7 +15,7 @@ class ServiceProviderProjectRequest extends FormRequest
     {
         return [
             'date_start' => 'required|date',
-            'date_finish' => 'required|date|after_or_equal:date_start',
+            'date_finish' => 'nullable|date|after_or_equal:date_start',
             'file' => 'nullable|mimes:pdf',
             'week' => 'required|numeric|min:0',
             'progres' => 'required|numeric|between:0,100',
