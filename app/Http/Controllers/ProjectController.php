@@ -136,8 +136,15 @@ class ProjectController extends Controller
      */
     public function projectDetail(ExecutorProject $executorProject): View
     {
+        $data = collect($executorProject->serviceProviderProjects);
+        $dataWeek = $data->filter(function($item){
+            return !$item->page;
+        });
+        $dataDays = $data->filter(function($item){
+            return $item->page;
+        });
         return view('pages.service-provider.detail-work-package', compact(
-            'executorProject',
+            'executorProject', 'dataWeek', 'dataDays'
         ));
     }
 

@@ -78,7 +78,8 @@ class ServiceProviderProjectController extends Controller
      * @return JsonResponse
      */
     public function store(ServiceProviderProjectRequest $request, ExecutorProject $executorProject)
-    {
+    {   
+        if(!$request["progres"]) $request["progres"] = 0;
         $request->merge(['executor_project_id' => $executorProject->id]);
         $serviceProviderProjects = $this->serviceProviderProject->search($request);
         $service = $this->service->store($request, $serviceProviderProjects, $executorProject);

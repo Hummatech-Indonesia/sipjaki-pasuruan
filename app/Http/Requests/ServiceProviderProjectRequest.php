@@ -20,6 +20,8 @@ class ServiceProviderProjectRequest extends FormRequest
             'week' => 'required|numeric|min:0',
             'progres' => 'required|numeric|between:0,100',
             'description' => 'required',
+            'page' => 'nullable',
+            'type' => 'nullable'
         ];
     }
 
