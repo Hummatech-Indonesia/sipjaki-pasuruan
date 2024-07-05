@@ -77,7 +77,7 @@ class ServiceProviderProjectController extends Controller
      *
      * @return JsonResponse
      */
-    public function store(ServiceProviderProjectRequest $request,ExecutorProject $executorProject)
+    public function store(ServiceProviderProjectRequest $request, ExecutorProject $executorProject)
     {
         $request->merge(['executor_project_id' => $executorProject->id]);
         $serviceProviderProjects = $this->serviceProviderProject->search($request);
@@ -88,7 +88,7 @@ class ServiceProviderProjectController extends Controller
             foreach ($serviceProviderProjects as $serviceProviderProject) {
                 $progres += $serviceProviderProject->progres;
             }
-            $this->executorProject->update($executorProject->id,['physical_progress' => ($progres + $request->progres)]);
+            $this->executorProject->update($executorProject->id, ['physical_progress' => ($progres + $request->progres)]);
             if ($request->is('api/*')) {
                 return ResponseHelper::success(null, trans('alert.add_success'));
             } else {

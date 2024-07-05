@@ -396,7 +396,7 @@
                                                         <span class="input-group-text">Rp</span>
                                                     </div>
                                                     <input type="text" change=""
-                                                        class="form-control input-currency" onblur="inputEvent()" onkeyup="inputEvent()" data-type="currency"
+                                                        class="form-control input-currency" data-type="currency"
                                                         pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" name="project_value"
                                                         id="tes" placeholder="Masukan nilai kontrak"
                                                         value="{{ old('project_value') }}">
