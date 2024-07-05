@@ -28,6 +28,7 @@ class ExecutorProjectRequest extends FormRequest
             'fiscal_year_id' => 'required|exists:fiscal_years,id',
             'start_at' => 'nullable|date|before_or_equal:end_at',
             'end_at' => 'nullable|date|after_or_equal:start_at',
+            'dinas_id' => 'nullable',
         ];
     }
 
