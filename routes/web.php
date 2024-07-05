@@ -254,7 +254,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('executor-projects', ExecutorProjectController::class)->except(['index']);
     });
 
-    Route::middleware('role:service provider|superadmin')->group(function () {
+    Route::middleware('role:service provider|superadmin|dinas')->group(function () {
         Route::put('upload-file-consultan/{project}', [ProjectController::class, 'uploadFileKonsultan'])->name('upload-file-consultan.update');
         Route::put('service-provider-qualifications/{serviceProviderQualification}', [ServiceProviderQualificationController::class, 'update'])->name('service.provider.qualifications.update');
         Route::post('service-provider-qualifications', [ServiceProviderQualificationController::class, 'store'])->name('service.provider.qualifications.store');

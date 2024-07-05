@@ -94,7 +94,7 @@ class ExecutorProjectController extends Controller
      */
     public function store(ExecutorProjectRequest $request)
     {
-        $request["dinas_id"] = auth()->user()->dinas_id;
+        $request["dinas_id"] = auth()->user()->dinas->id;
         $this->executorProject->store($request->validated());
         return redirect()->back()->with('success', trans('alert.update_success'));
     }
