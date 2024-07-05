@@ -8,9 +8,31 @@
             vertical-align: top;
         }
     </style>
+    <!-- header  -->
     <div class="d-flex justify-content-between mb-3">
-        <div class="">
-            <h4 class="mb-3 font-size-18" style="font-weight: 800">Detail Daftar Progres</h4>
+        <div class="nav flex-column nav-pills mb-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <div class="d-flex">
+                <a class="nav-link rounded-start" style="border: solid 1px #1B3061;" onclick="tab('informasi-paket-tab')"
+                    id="informasi-paket-tab" data-bs-toggle="pill" href="#informasi-paket" role="tab" aria-controls="informasi-paket"
+                    aria-selected="false">
+                    <div class="fw-bold">Informasi Paket</div>
+                </a>
+                <a class="nav-link" style="border: solid 1px #1B3061;" onclick="tab('progres-penyedia-tab')"
+                    id="progres-penyedia-tab" data-bs-toggle="pill" href="#progres-penyedia" role="tab"
+                    aria-controls="progres-penyedia" aria-selected="false">
+                    <div class="fw-bold">Progres Penyedia</div>
+                </a>
+                <a class="nav-link" style="border: solid 1px #1B3061;" onclick="tab('progres-konsultan-tab')" id="progres-konsultan-tab"
+                    data-bs-toggle="pill" href="#progres-konsultan" role="tab" aria-controls="progres-konsultan"
+                    aria-selected="false">
+                    <div class="fw-bold">Progres Konsultan</div>
+                </a>
+                <a class="nav-link rounded-end" style="border: solid 1px #1B3061;" onclick="tab('dokumen-tab')"
+                    id="dokumen-tab" data-bs-toggle="pill" href="#dokumen" role="tab" aria-controls="dokumen"
+                    aria-selected="false">
+                    <div class="fw-bold">Dokumen</div>
+                </a>
+            </div>
         </div>
         <div>
             <button onclick="history.back()" class="btn btn-warning btn-md rounded-3">
@@ -18,7 +40,9 @@
             </button>
         </div>
     </div>
-    {{-- modal detail  --}}
+    <!-- end header  -->
+
+    <!-- modal detail progres  -->
     <div class="modal fade bs-example-modal-md" id="modal-detail" tabindex="-1" role="dialog"
         aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-md">
@@ -90,532 +114,739 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div>
-    {{-- end modal  --}}
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card rounded-4">
-                <div class="card-body">
-                    <div class="d-flex">
-                        <div class="flex-grow-1">
-                            <div class="ms-2">
-                                <div class="btn btn-sm mb-3 text-dark rounded-3" style="background-color: #E4ECFF;">
-                                    {{ $executorProject->fiscalYear->name }}
+    <!-- end modal detail progres  -->
+    
+
+    <div class="tab-content mt-4" id="v-pills-tabContent">
+        <!-- Informasi Paket  -->
+        <div class="tab-pane fade-out" id="informasi-paket" role="tabpanel" aria-labelledby="informasi-paket-tab">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card rounded-4">
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <div class="flex-grow-1">
+                                    <div class="ms-2">
+                                        <div class="btn btn-sm mb-3 text-dark rounded-3" style="background-color: #E4ECFF;">
+                                            {{ $executorProject->fiscalYear->name }}
+                                        </div>
+                                        <p class="fw-bolder fs-5">{{ $executorProject->name }}</p>
+                                    </div>
+                                    <table cellpadding="10" style="border-collapse: collapse; width: 75%;">
+                                        <tbody>
+                                            <tr>
+                                                <td>Nilai Kontrak</td>
+                                                <td>:</td>
+                                                <td>{{ 'Rp' . number_format($executorProject->project_value, 0, ',', '.') }}</td>
+        
+                                            </tr>
+                                            <tr>
+                                                <td>Progres Fisik</td>
+                                                <td>:</td>
+                                                <td>{{ $executorProject->physical_progress != null ? $executorProject->physical_progress . '%' : '0%' }}
+                                            </tr>
+                                            <tr>
+                                                <td>Progres Keuangan</td>
+                                                <td>:</td>
+                                                <td>{{ $executorProject->finance_progress != null ? $executorProject->finance_progress . '%' : '0%' }}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Status</td>
+                                                <td>:</td>
+                                                <td>{{ $executorProject->status == 'active' ? 'Aktif' : 'Tidak Aktif' }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Mulai</td>
+                                                <td>:</td>
+                                                <td>{{ Carbon::parse($executorProject->start_at)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Selesai</td>
+                                                <td>:</td>
+                                                <td>{{ Carbon::parse($executorProject->end_at)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Sumber Dana</td>
+                                                <td>:</td>
+                                                <td>{{ $executorProject->fundSource->name }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Dinas</td>
+                                                <td>:</td>
+                                                <td colspan="2" style="vertical-align: top;">
+                                                    {{ $executorProject->consultantProject->dinas->user->name }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Jenis Kontrak</td>
+                                                <td>:</td>
+                                                <td>{{ $executorProject->contractCategory->name }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Karakteristik Kontrak</td>
+                                                <td>:</td>
+                                                <td>{{ $executorProject->characteristic_project }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Pelaksana</td>
+                                                <td>:</td>
+                                                <td>{{ $executorProject->serviceProvider->user->name }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Konsultan</td>
+                                                <td>:</td>
+                                                <td>{{ $executorProject->consultantProject->serviceProvider->user->name }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
-                                <p class="fw-bolder fs-5">{{ $executorProject->name }}</p>
                             </div>
-                            <table cellpadding="10" style="border-collapse: collapse; width: 75%;">
-                                <tbody>
-                                    <tr>
-                                        <td>Nilai Kontrak</td>
-                                        <td>:</td>
-                                        <td>{{ 'Rp' . number_format($executorProject->project_value, 0, ',', '.') }}</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>Progres Fisik</td>
-                                        <td>:</td>
-                                        <td>{{ $executorProject->physical_progress != null ? $executorProject->physical_progress . '%' : '0%' }}
-                                    </tr>
-                                    <tr>
-                                        <td>Progres Keuangan</td>
-                                        <td>:</td>
-                                        <td>{{ $executorProject->finance_progress != null ? $executorProject->finance_progress . '%' : '0%' }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Status</td>
-                                        <td>:</td>
-                                        <td>{{ $executorProject->status == 'active' ? 'Aktif' : 'Tidak Aktif' }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Mulai</td>
-                                        <td>:</td>
-                                        <td>{{ Carbon::parse($executorProject->start_at)->locale('id_ID')->isoFormat('DD MMMM Y') }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Selesai</td>
-                                        <td>:</td>
-                                        <td>{{ Carbon::parse($executorProject->end_at)->locale('id_ID')->isoFormat('DD MMMM Y') }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Sumber Dana</td>
-                                        <td>:</td>
-                                        <td>{{ $executorProject->fundSource->name }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Dinas</td>
-                                        <td>:</td>
-                                        <td colspan="2" style="vertical-align: top;">
-                                            {{ $executorProject->consultantProject->dinas->user->name }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Jenis Kontrak</td>
-                                        <td>:</td>
-                                        <td>{{ $executorProject->contractCategory->name }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Karakteristik Kontrak</td>
-                                        <td>:</td>
-                                        <td>{{ $executorProject->characteristic_project }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Pelaksana</td>
-                                        <td>:</td>
-                                        <td>{{ $executorProject->serviceProvider->user->name }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Konsultan</td>
-                                        <td>:</td>
-                                        <td>{{ $executorProject->consultantProject->serviceProvider->user->name }}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card rounded-4">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                        <div class="ms-2 fw">
-                            <p class="fw-medium fs-5" style="margin-bottom: 25%;">Daftar Progress</p>
-                        </div>
-                        <div>
-                            @if ($executorProject->status == 'active')
-                                @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant')
-                                    <div {{ $executorProject->physical_progress == 100 ? '' : 'data-bs-toggle=modal data-bs-target=#modal-create' }}
-                                        class="btn  rounded-3" style="background-color:#1B3061; color:white;">
-                                        @if ($executorProject->physical_progress == 100)
-                                            <form
-                                                action="{{ Route('mark.done', ['executorProject' => $executorProject->id]) }}"
-                                                method="POST" id="mark-done">
-                                                @method('PUT')
-                                                @csrf
-                                                <span class="text-white"
-                                                    onclick="document.getElementById('mark-done').submit()">Tandai
-                                                    Selesai</span>
-                                            </form>
-                                        @else
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
-                                                viewBox="0 0 24 24" fill="none">
-                                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                                    d="M12 4C12.5523 4 13 4.35817 13 4.8V19.2C13 19.6418 12.5523 20 12 20C11.4477 20 11 19.6418 11 19.2V4.8C11 4.35817 11.4477 4 12 4Z"
-                                                    fill="white" />
-                                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                                    d="M4 12C4 11.4477 4.35817 11 4.8 11H19.2C19.6418 11 20 11.4477 20 12C20 12.5523 19.6418 13 19.2 13H4.8C4.35817 13 4 12.5523 4 12Z"
-                                                    fill="white" />
-                                            </svg> Upload Progress
-                                        @endif
-                                    </div>
-                                @endif
-                        </div>
-                        @endif
-                    </div>
-
-                </div>
-                @if ($errors->any())
-                    @foreach ($errors->all() as $error)
-                        <div class="alert mt-3 alert-danger alert-dismissible fade show" role="alert">
-                            {{ $error }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                aria-label="Close"></button>
-                        </div>
-                    @endforeach
-                @endif
-                @if (session('success'))
-                    <x-alert-success-component :success="session('success')" />
-                @endif
-                <div class="table-responsive">
-                    <table class="table mb-0">
-
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Tanggal Mulai</th>
-                                <th>Tanggal Akhir</th>
-                                <th>Miggu ke-</th>
-                                <th>Progres (%)</th>
-                                <th>Aksi</th>
-                                <th>
-                                    File
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($executorProject->serviceProviderProjects()->orderBy('week')->get() as $serviceProviderProject)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ Carbon::parse($serviceProviderProject->date_start)->locale('id_ID')->isoFormat('DD MMMM Y') }}
-                                    </td>
-                                    <td>{{ Carbon::parse($serviceProviderProject->date_finish)->locale('id_ID')->isoFormat('DD MMMM Y') }}
-                                    </td>
-                                    <td>{{ $serviceProviderProject->week }}</td>
-                                    <td>{{ $serviceProviderProject->progres }}% Progress</td>
-                                    <td>
-                                        <div class="d-flex justify-content-header gap-2">
-                                            <div class="">
-                                                <button type="button" id="{{ $serviceProviderProject->id }}"
-                                                    data-id="{{ $serviceProviderProject->id }}"
-                                                    class="btn btn-sm btn-detail" style="background-color: #1B3061;">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+        <!-- end informasi paket  -->
+        <!-- Progres Penyedia -->
+        <div class="tab-pane fade-out" id="progres-penyedia" role="tabpanel"
+            aria-labelledby="progres-penyedia-tab">
+            <h1>Progres penyedia</h1>
+        </div>
+        <!-- End Progres Penyedia  -->
+         <!-- Progres Konsultan  -->
+        <div class="tab-pane fade-out" id="progres-konsultan" role="tabpanel"
+            aria-labelledby="progres-konsultan-tab">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card rounded-4">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div class="ms-2 fw">
+                                    <p class="fw-medium fs-5" style="margin-bottom: 25%;">Daftar Progress Harian</p>
+                                </div>
+                                <div>
+                                    @if ($executorProject->status == 'active')
+                                        @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant')
+                                            <div {{ $executorProject->physical_progress == 100 ? '' : 'data-bs-toggle=modal data-bs-target=#modal-create' }}
+                                                class="btn  rounded-3" style="background-color:#1B3061; color:white;">
+                                                @if ($executorProject->physical_progress == 100)
+                                                    <form
+                                                        action="{{ Route('mark.done', ['executorProject' => $executorProject->id]) }}"
+                                                        method="POST" id="mark-done">
+                                                        @method('PUT')
+                                                        @csrf
+                                                        <span class="text-white"
+                                                            onclick="document.getElementById('mark-done').submit()">Tandai
+                                                            Selesai</span>
+                                                    </form>
+                                                @else
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
                                                         viewBox="0 0 24 24" fill="none">
-                                                        <path d="M4.5 12.5C7.5 6 16.5 6 19.5 12.5" stroke="white"
-                                                            stroke-width="2" stroke-linecap="round"
-                                                            stroke-linejoin="round" />
-                                                        <path
-                                                            d="M12 16C10.8954 16 10 15.1046 10 14C10 12.8954 10.8954 12 12 12C13.1046 12 14 12.8954 14 14C14 15.1046 13.1046 16 12 16Z"
-                                                            stroke="white" stroke-width="2" stroke-linecap="round"
-                                                            stroke-linejoin="round" />
-                                                    </svg>
-                                                </button>
+                                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                                            d="M12 4C12.5523 4 13 4.35817 13 4.8V19.2C13 19.6418 12.5523 20 12 20C11.4477 20 11 19.6418 11 19.2V4.8C11 4.35817 11.4477 4 12 4Z"
+                                                            fill="white" />
+                                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                                            d="M4 12C4 11.4477 4.35817 11 4.8 11H19.2C19.6418 11 20 11.4477 20 12C20 12.5523 19.6418 13 19.2 13H4.8C4.35817 13 4 12.5523 4 12Z"
+                                                            fill="white" />
+                                                    </svg> Upload Progress
+                                                @endif
                                             </div>
-                                            @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant' && $executorProject->status == 'active')
-                                                <div>
-                                                    <button class="btn btn-edit btn-sm btn-warning"
-                                                        id="btn-edit-{{ $serviceProviderProject->id }}"
-                                                        data-id="{{ $serviceProviderProject->id }}"
-                                                        data-progres="{{ $serviceProviderProject->progres }}"
-                                                        data-description="{{ $serviceProviderProject->description }}"
-                                                        data-date_start="{{ \Carbon\Carbon::parse($serviceProviderProject->date_start)->format('Y-m-d') }}"
-                                                        data-week="{{ $serviceProviderProject->week }}"
-                                                        data-date_finish="{{ \Carbon\Carbon::parse($serviceProviderProject->date_finish)->format('Y-m-d') }}"><svg
-                                                            xmlns="http://www.w3.org/2000/svg" width="20"
-                                                            height="20" viewBox="0 0 24 24" fill="none">
-                                                            <g clip-path="url(#clip0_373_6257)">
-                                                                <path
-                                                                    d="M7 7H6C5.46957 7 4.96086 7.21071 4.58579 7.58579C4.21071 7.96086 4 8.46957 4 9V18C4 18.5304 4.21071 19.0391 4.58579 19.4142C4.96086 19.7893 5.46957 20 6 20H15C15.5304 20 16.0391 19.7893 16.4142 19.4142C16.7893 19.0391 17 18.5304 17 18V17"
-                                                                    stroke="white" stroke-width="2"
-                                                                    stroke-linecap="round" stroke-linejoin="round" />
-                                                                <path
-                                                                    d="M20.385 6.58511C20.7788 6.19126 21.0001 5.65709 21.0001 5.10011C21.0001 4.54312 20.7788 4.00895 20.385 3.61511C19.9912 3.22126 19.457 3 18.9 3C18.343 3 17.8088 3.22126 17.415 3.61511L9 12.0001V15.0001H12L20.385 6.58511V6.58511Z"
-                                                                    stroke="white" stroke-width="2"
-                                                                    stroke-linecap="round" stroke-linejoin="round" />
-                                                                <path d="M16 5L19 8" stroke="white" stroke-width="2"
-                                                                    stroke-linecap="round" stroke-linejoin="round" />
-                                                            </g>
-                                                            <defs>
-                                                                <clipPath id="clip0_373_6257">
-                                                                    <rect width="24" height="24" fill="white" />
-                                                                </clipPath>
-                                                            </defs>
-                                                        </svg></button>
-                                                </div>
-                                                <div class="">
-                                                    <button class="btn btn-delete btn-danger btn-sm"
-                                                        id="{{ $serviceProviderProject->id }}"
-                                                        data-id="{{ $serviceProviderProject->id }}">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20"
-                                                            height="20" viewBox="0 0 20 20" fill="none">
-                                                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                                                d="M9 2C8.62123 2 8.27497 2.214 8.10557 2.55279L7.38197 4H4C3.44772 4 3 4.44772 3 5C3 5.55228 3.44772 6 4 6L4 16C4 17.1046 4.89543 18 6 18H14C15.1046 18 16 17.1046 16 16V6C16.5523 6 17 5.55228 17 5C17 4.44772 16.5523 4 16 4H12.618L11.8944 2.55279C11.725 2.214 11.3788 2 11 2H9ZM7 8C7 7.44772 7.44772 7 8 7C8.55228 7 9 7.44772 9 8V14C9 14.5523 8.55228 15 8 15C7.44772 15 7 14.5523 7 14V8ZM12 7C11.4477 7 11 7.44772 11 8V14C11 14.5523 11.4477 15 12 15C12.5523 15 13 14.5523 13 14V8C13 7.44772 12.5523 7 12 7Z"
-                                                                fill="white" />
-                                                        </svg>
-                                                    </button>
-                                                </div>
-                                            @endif
-                                        </div>
-                                    </td>
-                                    @if ($serviceProviderProject->file)
-                                        <td>
-                                            <a href="/download-service-provider-project/{{ $serviceProviderProject->id }}"
-                                                class="btn btn-success btn-sm rounded-3">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                    viewBox="0 0 24 24" fill="none">
-                                                    <path
-                                                        d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15"
-                                                        stroke="white" stroke-width="2" stroke-linecap="round"
-                                                        stroke-linejoin="round" />
-                                                    <path d="M7 10L12 15L17 10" stroke="white" stroke-width="2"
-                                                        stroke-linecap="round" stroke-linejoin="round" />
-                                                    <path d="M12 15V3" stroke="white" stroke-width="2"
-                                                        stroke-linecap="round" stroke-linejoin="round" />
-                                                </svg>
-                                            </a>
-                                        </td>
-                                    @else
-                                        <td>
-                                            -
-                                        </td>
+                                        @endif
                                     @endif
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="8" class="text-center">
-                                        <div class="d-flex justify-content-center" style="min-height:16rem">
-                                            <div class="my-auto">
-                                                <img src="{{ asset('no-data.png') }}" width="300" height="300" />
-                                                <h4 class="text-center mt-4"> Belum Ada Progres Kosong!!</h4>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card rounded-4">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                        <div class="ms-2 fw">
-                            <p class="fw-medium fs-5" style="margin-bottom: 25%;">Daftar File</p>
-                        </div>
-                        <div>
-                            @role('service provider')
-                                @if (Auth::user()->serviceProvider?->type_of_business_entity == 'executor')
-                                    <div data-bs-toggle="modal" data-bs-target="#modal-create" class="btn  rounded-3"
-                                        style="background-color:#1B3061; color:white;">
-                                        @if (
-                                            $executorProject->contract ||
-                                                $executorProject->report ||
-                                                $executorProject->minutes_of_disbursement ||
-                                                $executorProject->administrative_minutes)
-                                            Edit File
-                                        @else
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
-                                                viewBox="0 0 24 24" fill="none">
-                                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                                    d="M12 4C12.5523 4 13 4.35817 13 4.8V19.2C13 19.6418 12.5523 20 12 20C11.4477 20 11 19.6418 11 19.2V4.8C11 4.35817 11.4477 4 12 4Z"
-                                                    fill="white" />
-                                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                                    d="M4 12C4 11.4477 4.35817 11 4.8 11H19.2C19.6418 11 20 11.4477 20 12C20 12.5523 19.6418 13 19.2 13H4.8C4.35817 13 4 12.5523 4 12Z"
-                                                    fill="white" />
-                                            </svg> Upload File
-                                        @endif
+                                </div>
+                            </div>
+                            @if ($errors->any())
+                                @foreach ($errors->all() as $error)
+                                    <div class="alert mt-3 alert-danger alert-dismissible fade show" role="alert">
+                                        {{ $error }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
                                     </div>
-                                @endif
-                            @endrole
+                                @endforeach
+                            @endif
+                            @if (session('success'))
+                                <x-alert-success-component :success="session('success')" />
+                            @endif
+                            <div class="table-responsive">
+                                <table class="table mb-0">
+    
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Tanggal Mulai</th>
+                                            <th>Tanggal Akhir</th>
+                                            <th>Miggu ke-</th>
+                                            <th>Progres (%)</th>
+                                            <th>Aksi</th>
+                                            <th>
+                                                File
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @forelse ($executorProject->serviceProviderProjects()->orderBy('week')->get() as $serviceProviderProject)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ Carbon::parse($serviceProviderProject->date_start)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                                </td>
+                                                <td>{{ Carbon::parse($serviceProviderProject->date_finish)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                                </td>
+                                                <td>{{ $serviceProviderProject->week }}</td>
+                                                <td>{{ $serviceProviderProject->progres }}% Progress</td>
+                                                <td>
+                                                    <div class="d-flex justify-content-header gap-2">
+                                                        <div class="">
+                                                            <button type="button" id="{{ $serviceProviderProject->id }}"
+                                                                data-id="{{ $serviceProviderProject->id }}"
+                                                                class="btn btn-sm btn-detail" style="background-color: #1B3061;">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                                    viewBox="0 0 24 24" fill="none">
+                                                                    <path d="M4.5 12.5C7.5 6 16.5 6 19.5 12.5" stroke="white"
+                                                                        stroke-width="2" stroke-linecap="round"
+                                                                        stroke-linejoin="round" />
+                                                                    <path
+                                                                        d="M12 16C10.8954 16 10 15.1046 10 14C10 12.8954 10.8954 12 12 12C13.1046 12 14 12.8954 14 14C14 15.1046 13.1046 16 12 16Z"
+                                                                        stroke="white" stroke-width="2" stroke-linecap="round"
+                                                                        stroke-linejoin="round" />
+                                                                </svg>
+                                                            </button>
+                                                        </div>
+                                                        @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant' && $executorProject->status == 'active')
+                                                            <div>
+                                                                <button class="btn btn-edit btn-sm btn-warning"
+                                                                    id="btn-edit-{{ $serviceProviderProject->id }}"
+                                                                    data-id="{{ $serviceProviderProject->id }}"
+                                                                    data-progres="{{ $serviceProviderProject->progres }}"
+                                                                    data-description="{{ $serviceProviderProject->description }}"
+                                                                    data-date_start="{{ \Carbon\Carbon::parse($serviceProviderProject->date_start)->format('Y-m-d') }}"
+                                                                    data-week="{{ $serviceProviderProject->week }}"
+                                                                    data-date_finish="{{ \Carbon\Carbon::parse($serviceProviderProject->date_finish)->format('Y-m-d') }}"><svg
+                                                                        xmlns="http://www.w3.org/2000/svg" width="20"
+                                                                        height="20" viewBox="0 0 24 24" fill="none">
+                                                                        <g clip-path="url(#clip0_373_6257)">
+                                                                            <path
+                                                                                d="M7 7H6C5.46957 7 4.96086 7.21071 4.58579 7.58579C4.21071 7.96086 4 8.46957 4 9V18C4 18.5304 4.21071 19.0391 4.58579 19.4142C4.96086 19.7893 5.46957 20 6 20H15C15.5304 20 16.0391 19.7893 16.4142 19.4142C16.7893 19.0391 17 18.5304 17 18V17"
+                                                                                stroke="white" stroke-width="2"
+                                                                                stroke-linecap="round" stroke-linejoin="round" />
+                                                                            <path
+                                                                                d="M20.385 6.58511C20.7788 6.19126 21.0001 5.65709 21.0001 5.10011C21.0001 4.54312 20.7788 4.00895 20.385 3.61511C19.9912 3.22126 19.457 3 18.9 3C18.343 3 17.8088 3.22126 17.415 3.61511L9 12.0001V15.0001H12L20.385 6.58511V6.58511Z"
+                                                                                stroke="white" stroke-width="2"
+                                                                                stroke-linecap="round" stroke-linejoin="round" />
+                                                                            <path d="M16 5L19 8" stroke="white" stroke-width="2"
+                                                                                stroke-linecap="round" stroke-linejoin="round" />
+                                                                        </g>
+                                                                        <defs>
+                                                                            <clipPath id="clip0_373_6257">
+                                                                                <rect width="24" height="24" fill="white" />
+                                                                            </clipPath>
+                                                                        </defs>
+                                                                    </svg></button>
+                                                            </div>
+                                                            <div class="">
+                                                                <button class="btn btn-delete btn-danger btn-sm"
+                                                                    id="{{ $serviceProviderProject->id }}"
+                                                                    data-id="{{ $serviceProviderProject->id }}">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                                                        height="20" viewBox="0 0 20 20" fill="none">
+                                                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                                                            d="M9 2C8.62123 2 8.27497 2.214 8.10557 2.55279L7.38197 4H4C3.44772 4 3 4.44772 3 5C3 5.55228 3.44772 6 4 6L4 16C4 17.1046 4.89543 18 6 18H14C15.1046 18 16 17.1046 16 16V6C16.5523 6 17 5.55228 17 5C17 4.44772 16.5523 4 16 4H12.618L11.8944 2.55279C11.725 2.214 11.3788 2 11 2H9ZM7 8C7 7.44772 7.44772 7 8 7C8.55228 7 9 7.44772 9 8V14C9 14.5523 8.55228 15 8 15C7.44772 15 7 14.5523 7 14V8ZM12 7C11.4477 7 11 7.44772 11 8V14C11 14.5523 11.4477 15 12 15C12.5523 15 13 14.5523 13 14V8C13 7.44772 12.5523 7 12 7Z"
+                                                                            fill="white" />
+                                                                    </svg>
+                                                                </button>
+                                                            </div>
+                                                        @endif
+                                                    </div>
+                                                </td>
+                                                @if ($serviceProviderProject->file)
+                                                    <td>
+                                                        <a href="/download-service-provider-project/{{ $serviceProviderProject->id }}"
+                                                            class="btn btn-success btn-sm rounded-3">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                                viewBox="0 0 24 24" fill="none">
+                                                                <path
+                                                                    d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15"
+                                                                    stroke="white" stroke-width="2" stroke-linecap="round"
+                                                                    stroke-linejoin="round" />
+                                                                <path d="M7 10L12 15L17 10" stroke="white" stroke-width="2"
+                                                                    stroke-linecap="round" stroke-linejoin="round" />
+                                                                <path d="M12 15V3" stroke="white" stroke-width="2"
+                                                                    stroke-linecap="round" stroke-linejoin="round" />
+                                                            </svg>
+                                                        </a>
+                                                    </td>
+                                                @else
+                                                    <td>
+                                                        -
+                                                    </td>
+                                                @endif
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="8" class="text-center">
+                                                    <div class="d-flex justify-content-center" style="min-height:16rem">
+                                                        <div class="my-auto">
+                                                            <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                                            <h4 class="text-center mt-4"> Belum Ada Progres Kosong!!</h4>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                    <div class="table-responsive">
-                        <table class="table mb-0">
-
-                            <thead>
-                                <tr>
-                                    <th>Nama</th>
-                                    <th></th>
-                                    <th>File</th>
-                                </tr>
-
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Kontrak</td>
-                                    <td>:</td>
-                                    <td>
-                                        @if ($executorProject->contract)
-                                            <a href="{{ route('downloadExecutorContract', ['executorProject' => $executorProject->id]) }}"
-                                                type="button" class="btn btn-md text-white"
-                                                style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
-                                                Download</a>
-                                        @else
-                                            -
+                </div>
+                <div class="col-md-12 mt-3">
+                    <div class="card rounded-4">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div class="ms-2 fw">
+                                    <p class="fw-medium fs-5" style="margin-bottom: 25%;">Daftar Progress Mingguan</p>
+                                </div>
+                                <div>
+                                    @if ($executorProject->status == 'active')
+                                        @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant')
+                                            <div {{ $executorProject->physical_progress == 100 ? '' : 'data-bs-toggle=modal data-bs-target=#modal-create' }}
+                                                class="btn  rounded-3" style="background-color:#1B3061; color:white;">
+                                                @if ($executorProject->physical_progress == 100)
+                                                    <form
+                                                        action="{{ Route('mark.done', ['executorProject' => $executorProject->id]) }}"
+                                                        method="POST" id="mark-done">
+                                                        @method('PUT')
+                                                        @csrf
+                                                        <span class="text-white"
+                                                            onclick="document.getElementById('mark-done').submit()">Tandai
+                                                            Selesai</span>
+                                                    </form>
+                                                @else
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                                        viewBox="0 0 24 24" fill="none">
+                                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                                            d="M12 4C12.5523 4 13 4.35817 13 4.8V19.2C13 19.6418 12.5523 20 12 20C11.4477 20 11 19.6418 11 19.2V4.8C11 4.35817 11.4477 4 12 4Z"
+                                                            fill="white" />
+                                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                                            d="M4 12C4 11.4477 4.35817 11 4.8 11H19.2C19.6418 11 20 11.4477 20 12C20 12.5523 19.6418 13 19.2 13H4.8C4.35817 13 4 12.5523 4 12Z"
+                                                            fill="white" />
+                                                    </svg> Upload Progress
+                                                @endif
+                                            </div>
                                         @endif
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Surat Pesanan</td>
-                                    <td>:</td>
-                                    <td>
-                                        @if ($executorProject->mail_order)
-                                            <a href="{{ route('downloadExecutorMailOrder', ['executorProject' => $executorProject->id]) }}"
-                                                type="button" class="btn btn-md text-white"
-                                                style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
-                                                Download</a>
-                                        @else
-                                            -
-                                        @endif
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Berita Acara Uitzet</td>
-                                    <td>:</td>
-                                    <td>
-                                        @if ($executorProject->uitzet_minutes)
-                                            <a href="{{ route('downloadUitzetMinutes', ['executorProject' => $executorProject->id]) }}"
-                                                type="button" class="btn btn-md text-white"
-                                                style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
-                                                Download</a>
-                                        @else
-                                            -
-                                        @endif
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Berita Acara PCM</td>
-                                    <td>:</td>
-                                    <td>
-                                        @if ($executorProject->pcm_minutes)
-                                            <a href="{{ route('downloadExecutorPcmMinutes', ['executorProject' => $executorProject->id]) }}"
-                                                type="button" class="btn btn-md text-white"
-                                                style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
-                                                Download</a>
-                                        @else
-                                            -
-                                        @endif
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Dokumen Invoice</td>
-                                    <td>:</td>
-                                    <td>
-                                        @if ($executorProject->invoices)
-                                            <a href="{{ route('downloadInvoices', ['executorProject' => $executorProject->id]) }}"
-                                                type="button" class="btn btn-md text-white"
-                                                style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
-                                                Download</a>
-                                        @else
-                                            -
-                                        @endif
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Mutual Check 0</td>
-                                    <td>:</td>
-                                    <td>
-                                        @if ($executorProject->mutual_check_0)
-                                            <a href="{{ route('downloadMinutesOfHandOver', ['consultantProject' => $executorProject->consultant_project_id]) }}"
-                                                type="button" class="btn btn-md text-white"
-                                                style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
-                                                Download</a>
-                                        @else
-                                            -
-                                        @endif
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Shop Drawing</td>
-                                    <td>:</td>
-                                    <td>
-                                        @if ($executorProject->shop_drawing)
-                                            <a href="{{ route('downloadShopDrawing', ['executorProject' => $executorProject->id]) }}"
-                                                type="button" class="btn btn-md text-white"
-                                                style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
-                                                Download</a>
-                                        @else
-                                            -
-                                        @endif
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Mutual Check 100</td>
-                                    <td>:</td>
-                                    <td>
-                                        @if ($executorProject->mutual_check_100)
-                                            <a href="{{ route('downloadMinutesOfHandOver', ['consultantProject' => $executorProject->consultant_project_id]) }}"
-                                                type="button" class="btn btn-md text-white"
-                                                style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
-                                                Download</a>
-                                        @endif
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Asbuild Drawing</td>
-                                    <td>:</td>
-                                    <td>
-                                        @if ($executorProject->asbuild_drawing)
-                                            <a href="{{ route('downloadAsbuildDrawing', ['executorProject' => $executorProject->id]) }}"
-                                                type="button" class="btn btn-md text-white"
-                                                style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
-                                                Download</a>
-                                        @else
-                                            -
-                                        @endif
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Berita Acara P1</td>
-                                    <td>:</td>
-                                    <td>
-                                        @if ($executorProject->p1_meeting_minutes)
-                                            <a href="{{ route('downloadMinutesOfHandOver', ['consultantProject' => $executorProject->consultant_project_id]) }}"
-                                                type="button" class="btn btn-md text-white"
-                                                style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
-                                                Download</a>
-                                        @else
-                                            -
-                                        @endif
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Berita Acara Administrasi
-                                    </td>
-                                    <td>:</td>
-                                    <td>
-                                        @if ($executorProject->administrative_minutes)
-                                            <a href="{{ route('downloadExecutorAdministrativeMinutes', ['executorProject' => $executorProject->id]) }}"
-                                                type="button" class="btn btn-md text-white"
-                                                style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
-                                                Download</a>
-                                        @else
-                                            -
-                                        @endif
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>Berita Acara Pencariran</td>
-                                    <td>:</td>
-                                    <td>
-                                        @if ($executorProject->minutes_of_disbursement)
-                                            <a href="{{ route('downloadMinutesOfDisbursement', ['consultantProject' => $executorProject->consultant_project_id]) }}"
-                                                type="button" class="btn btn-md text-white"
-                                                style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
-                                                Download</a>
-                                        @else
-                                            -
-                                        @endif
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>Berita Acara P2</td>
-                                    <td>:</td>
-                                    <td>
-                                        @if ($executorProject->p2_meeting_minutes)
-                                            <a href="{{ route('downloadMinutesOfHandOver', ['consultantProject' => $executorProject->consultant_project_id]) }}"
-                                                type="button" class="btn btn-md text-white"
-                                                style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
-                                                Download</a>
-                                        @else
-                                            -
-                                        @endif
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>Laporan</td>
-                                    <td>:</td>
-                                    <td>
-                                        @if ($executorProject->report)
-                                            <a href="{{ route('downloadExecutorReport', ['executorProject' => $executorProject->id]) }}"
-                                                type="button" class="btn btn-md text-white"
-                                                style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
-                                                Download</a>
-                                        @else
-                                            -
-                                        @endif
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                    @endif
+                                </div>
+                            </div>
+                            @if ($errors->any())
+                                @foreach ($errors->all() as $error)
+                                    <div class="alert mt-3 alert-danger alert-dismissible fade show" role="alert">
+                                        {{ $error }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    </div>
+                                @endforeach
+                            @endif
+                            @if (session('success'))
+                                <x-alert-success-component :success="session('success')" />
+                            @endif
+                            <div class="table-responsive">
+                                <table class="table mb-0">
+    
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Tanggal Mulai</th>
+                                            <th>Tanggal Akhir</th>
+                                            <th>Miggu ke-</th>
+                                            <th>Progres (%)</th>
+                                            <th>Aksi</th>
+                                            <th>
+                                                File
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @forelse ($executorProject->serviceProviderProjects()->orderBy('week')->get() as $serviceProviderProject)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ Carbon::parse($serviceProviderProject->date_start)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                                </td>
+                                                <td>{{ Carbon::parse($serviceProviderProject->date_finish)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                                </td>
+                                                <td>{{ $serviceProviderProject->week }}</td>
+                                                <td>{{ $serviceProviderProject->progres }}% Progress</td>
+                                                <td>
+                                                    <div class="d-flex justify-content-header gap-2">
+                                                        <div class="">
+                                                            <button type="button" id="{{ $serviceProviderProject->id }}"
+                                                                data-id="{{ $serviceProviderProject->id }}"
+                                                                class="btn btn-sm btn-detail" style="background-color: #1B3061;">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                                    viewBox="0 0 24 24" fill="none">
+                                                                    <path d="M4.5 12.5C7.5 6 16.5 6 19.5 12.5" stroke="white"
+                                                                        stroke-width="2" stroke-linecap="round"
+                                                                        stroke-linejoin="round" />
+                                                                    <path
+                                                                        d="M12 16C10.8954 16 10 15.1046 10 14C10 12.8954 10.8954 12 12 12C13.1046 12 14 12.8954 14 14C14 15.1046 13.1046 16 12 16Z"
+                                                                        stroke="white" stroke-width="2" stroke-linecap="round"
+                                                                        stroke-linejoin="round" />
+                                                                </svg>
+                                                            </button>
+                                                        </div>
+                                                        @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant' && $executorProject->status == 'active')
+                                                            <div>
+                                                                <button class="btn btn-edit btn-sm btn-warning"
+                                                                    id="btn-edit-{{ $serviceProviderProject->id }}"
+                                                                    data-id="{{ $serviceProviderProject->id }}"
+                                                                    data-progres="{{ $serviceProviderProject->progres }}"
+                                                                    data-description="{{ $serviceProviderProject->description }}"
+                                                                    data-date_start="{{ \Carbon\Carbon::parse($serviceProviderProject->date_start)->format('Y-m-d') }}"
+                                                                    data-week="{{ $serviceProviderProject->week }}"
+                                                                    data-date_finish="{{ \Carbon\Carbon::parse($serviceProviderProject->date_finish)->format('Y-m-d') }}"><svg
+                                                                        xmlns="http://www.w3.org/2000/svg" width="20"
+                                                                        height="20" viewBox="0 0 24 24" fill="none">
+                                                                        <g clip-path="url(#clip0_373_6257)">
+                                                                            <path
+                                                                                d="M7 7H6C5.46957 7 4.96086 7.21071 4.58579 7.58579C4.21071 7.96086 4 8.46957 4 9V18C4 18.5304 4.21071 19.0391 4.58579 19.4142C4.96086 19.7893 5.46957 20 6 20H15C15.5304 20 16.0391 19.7893 16.4142 19.4142C16.7893 19.0391 17 18.5304 17 18V17"
+                                                                                stroke="white" stroke-width="2"
+                                                                                stroke-linecap="round" stroke-linejoin="round" />
+                                                                            <path
+                                                                                d="M20.385 6.58511C20.7788 6.19126 21.0001 5.65709 21.0001 5.10011C21.0001 4.54312 20.7788 4.00895 20.385 3.61511C19.9912 3.22126 19.457 3 18.9 3C18.343 3 17.8088 3.22126 17.415 3.61511L9 12.0001V15.0001H12L20.385 6.58511V6.58511Z"
+                                                                                stroke="white" stroke-width="2"
+                                                                                stroke-linecap="round" stroke-linejoin="round" />
+                                                                            <path d="M16 5L19 8" stroke="white" stroke-width="2"
+                                                                                stroke-linecap="round" stroke-linejoin="round" />
+                                                                        </g>
+                                                                        <defs>
+                                                                            <clipPath id="clip0_373_6257">
+                                                                                <rect width="24" height="24" fill="white" />
+                                                                            </clipPath>
+                                                                        </defs>
+                                                                    </svg></button>
+                                                            </div>
+                                                            <div class="">
+                                                                <button class="btn btn-delete btn-danger btn-sm"
+                                                                    id="{{ $serviceProviderProject->id }}"
+                                                                    data-id="{{ $serviceProviderProject->id }}">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                                                        height="20" viewBox="0 0 20 20" fill="none">
+                                                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                                                            d="M9 2C8.62123 2 8.27497 2.214 8.10557 2.55279L7.38197 4H4C3.44772 4 3 4.44772 3 5C3 5.55228 3.44772 6 4 6L4 16C4 17.1046 4.89543 18 6 18H14C15.1046 18 16 17.1046 16 16V6C16.5523 6 17 5.55228 17 5C17 4.44772 16.5523 4 16 4H12.618L11.8944 2.55279C11.725 2.214 11.3788 2 11 2H9ZM7 8C7 7.44772 7.44772 7 8 7C8.55228 7 9 7.44772 9 8V14C9 14.5523 8.55228 15 8 15C7.44772 15 7 14.5523 7 14V8ZM12 7C11.4477 7 11 7.44772 11 8V14C11 14.5523 11.4477 15 12 15C12.5523 15 13 14.5523 13 14V8C13 7.44772 12.5523 7 12 7Z"
+                                                                            fill="white" />
+                                                                    </svg>
+                                                                </button>
+                                                            </div>
+                                                        @endif
+                                                    </div>
+                                                </td>
+                                                @if ($serviceProviderProject->file)
+                                                    <td>
+                                                        <a href="/download-service-provider-project/{{ $serviceProviderProject->id }}"
+                                                            class="btn btn-success btn-sm rounded-3">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                                viewBox="0 0 24 24" fill="none">
+                                                                <path
+                                                                    d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15"
+                                                                    stroke="white" stroke-width="2" stroke-linecap="round"
+                                                                    stroke-linejoin="round" />
+                                                                <path d="M7 10L12 15L17 10" stroke="white" stroke-width="2"
+                                                                    stroke-linecap="round" stroke-linejoin="round" />
+                                                                <path d="M12 15V3" stroke="white" stroke-width="2"
+                                                                    stroke-linecap="round" stroke-linejoin="round" />
+                                                            </svg>
+                                                        </a>
+                                                    </td>
+                                                @else
+                                                    <td>
+                                                        -
+                                                    </td>
+                                                @endif
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="8" class="text-center">
+                                                    <div class="d-flex justify-content-center" style="min-height:16rem">
+                                                        <div class="my-auto">
+                                                            <img src="{{ asset('no-data.png') }}" width="300" height="300" />
+                                                            <h4 class="text-center mt-4"> Belum Ada Progres Kosong!!</h4>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
-
                 </div>
             </div>
         </div>
+        <!-- End Progres Konsultan  -->
+        <!-- Dokumen  -->
+        <div class="tab-pane fade-out" id="dokumen" role="tabpanel"
+        aria-labelledby="dokumen-tab">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card rounded-4">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div class="ms-2 fw">
+                                    <p class="fw-medium fs-5" style="margin-bottom: 25%;">Daftar File</p>
+                                </div>
+                                <div>
+                                    @role('service provider')
+                                        @if (Auth::user()->serviceProvider?->type_of_business_entity == 'executor')
+                                            <div data-bs-toggle="modal" data-bs-target="#modal-create" class="btn  rounded-3"
+                                                style="background-color:#1B3061; color:white;">
+                                                @if (
+                                                    $executorProject->contract ||
+                                                        $executorProject->report ||
+                                                        $executorProject->minutes_of_disbursement ||
+                                                        $executorProject->administrative_minutes)
+                                                    Edit File
+                                                @else
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                                        viewBox="0 0 24 24" fill="none">
+                                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                                            d="M12 4C12.5523 4 13 4.35817 13 4.8V19.2C13 19.6418 12.5523 20 12 20C11.4477 20 11 19.6418 11 19.2V4.8C11 4.35817 11.4477 4 12 4Z"
+                                                            fill="white" />
+                                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                                            d="M4 12C4 11.4477 4.35817 11 4.8 11H19.2C19.6418 11 20 11.4477 20 12C20 12.5523 19.6418 13 19.2 13H4.8C4.35817 13 4 12.5523 4 12Z"
+                                                            fill="white" />
+                                                    </svg> Upload File
+                                                @endif
+                                            </div>
+                                        @endif
+                                    @endrole
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table mb-0">
+        
+                                    <thead>
+                                        <tr>
+                                            <th>Nama</th>
+                                            <th></th>
+                                            <th>File</th>
+                                        </tr>
+        
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Kontrak</td>
+                                            <td>:</td>
+                                            <td>
+                                                @if ($executorProject->contract)
+                                                    <a href="{{ route('downloadExecutorContract', ['executorProject' => $executorProject->id]) }}"
+                                                        type="button" class="btn btn-md text-white"
+                                                        style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                                        Download</a>
+                                                @else
+                                                    -
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Surat Pesanan</td>
+                                            <td>:</td>
+                                            <td>
+                                                @if ($executorProject->mail_order)
+                                                    <a href="{{ route('downloadExecutorMailOrder', ['executorProject' => $executorProject->id]) }}"
+                                                        type="button" class="btn btn-md text-white"
+                                                        style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                                        Download</a>
+                                                @else
+                                                    -
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Berita Acara Uitzet</td>
+                                            <td>:</td>
+                                            <td>
+                                                @if ($executorProject->uitzet_minutes)
+                                                    <a href="{{ route('downloadUitzetMinutes', ['executorProject' => $executorProject->id]) }}"
+                                                        type="button" class="btn btn-md text-white"
+                                                        style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                                        Download</a>
+                                                @else
+                                                    -
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Berita Acara PCM</td>
+                                            <td>:</td>
+                                            <td>
+                                                @if ($executorProject->pcm_minutes)
+                                                    <a href="{{ route('downloadExecutorPcmMinutes', ['executorProject' => $executorProject->id]) }}"
+                                                        type="button" class="btn btn-md text-white"
+                                                        style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                                        Download</a>
+                                                @else
+                                                    -
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Dokumen Invoice</td>
+                                            <td>:</td>
+                                            <td>
+                                                @if ($executorProject->invoices)
+                                                    <a href="{{ route('downloadInvoices', ['executorProject' => $executorProject->id]) }}"
+                                                        type="button" class="btn btn-md text-white"
+                                                        style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                                        Download</a>
+                                                @else
+                                                    -
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Mutual Check 0</td>
+                                            <td>:</td>
+                                            <td>
+                                                @if ($executorProject->mutual_check_0)
+                                                    <a href="{{ route('downloadMinutesOfHandOver', ['consultantProject' => $executorProject->consultant_project_id]) }}"
+                                                        type="button" class="btn btn-md text-white"
+                                                        style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                                        Download</a>
+                                                @else
+                                                    -
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Shop Drawing</td>
+                                            <td>:</td>
+                                            <td>
+                                                @if ($executorProject->shop_drawing)
+                                                    <a href="{{ route('downloadShopDrawing', ['executorProject' => $executorProject->id]) }}"
+                                                        type="button" class="btn btn-md text-white"
+                                                        style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                                        Download</a>
+                                                @else
+                                                    -
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Mutual Check 100</td>
+                                            <td>:</td>
+                                            <td>
+                                                @if ($executorProject->mutual_check_100)
+                                                    <a href="{{ route('downloadMinutesOfHandOver', ['consultantProject' => $executorProject->consultant_project_id]) }}"
+                                                        type="button" class="btn btn-md text-white"
+                                                        style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                                        Download</a>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Asbuild Drawing</td>
+                                            <td>:</td>
+                                            <td>
+                                                @if ($executorProject->asbuild_drawing)
+                                                    <a href="{{ route('downloadAsbuildDrawing', ['executorProject' => $executorProject->id]) }}"
+                                                        type="button" class="btn btn-md text-white"
+                                                        style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                                        Download</a>
+                                                @else
+                                                    -
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Berita Acara P1</td>
+                                            <td>:</td>
+                                            <td>
+                                                @if ($executorProject->p1_meeting_minutes)
+                                                    <a href="{{ route('downloadMinutesOfHandOver', ['consultantProject' => $executorProject->consultant_project_id]) }}"
+                                                        type="button" class="btn btn-md text-white"
+                                                        style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                                        Download</a>
+                                                @else
+                                                    -
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Berita Acara Administrasi
+                                            </td>
+                                            <td>:</td>
+                                            <td>
+                                                @if ($executorProject->administrative_minutes)
+                                                    <a href="{{ route('downloadExecutorAdministrativeMinutes', ['executorProject' => $executorProject->id]) }}"
+                                                        type="button" class="btn btn-md text-white"
+                                                        style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                                        Download</a>
+                                                @else
+                                                    -
+                                                @endif
+                                            </td>
+                                        </tr>
+        
+                                        <tr>
+                                            <td>Berita Acara Pencariran</td>
+                                            <td>:</td>
+                                            <td>
+                                                @if ($executorProject->minutes_of_disbursement)
+                                                    <a href="{{ route('downloadMinutesOfDisbursement', ['consultantProject' => $executorProject->consultant_project_id]) }}"
+                                                        type="button" class="btn btn-md text-white"
+                                                        style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                                        Download</a>
+                                                @else
+                                                    -
+                                                @endif
+                                            </td>
+                                        </tr>
+        
+                                        <tr>
+                                            <td>Berita Acara P2</td>
+                                            <td>:</td>
+                                            <td>
+                                                @if ($executorProject->p2_meeting_minutes)
+                                                    <a href="{{ route('downloadMinutesOfHandOver', ['consultantProject' => $executorProject->consultant_project_id]) }}"
+                                                        type="button" class="btn btn-md text-white"
+                                                        style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                                        Download</a>
+                                                @else
+                                                    -
+                                                @endif
+                                            </td>
+                                        </tr>
+        
+                                        <tr>
+                                            <td>Laporan</td>
+                                            <td>:</td>
+                                            <td>
+                                                @if ($executorProject->report)
+                                                    <a href="{{ route('downloadExecutorReport', ['executorProject' => $executorProject->id]) }}"
+                                                        type="button" class="btn btn-md text-white"
+                                                        style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
+                                                        Download</a>
+                                                @else
+                                                    -
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Dokumen  -->
     </div>
+    
+    </div>
+    
+    <!-- modal tambah progres & modal upload file pendukung  -->
     <div class="modal fade bs-example-modal-xl" id="modal-create" tabindex="-1" role="dialog"
         aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -799,6 +1030,9 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div>
+    <!-- end modal tambah progres & modal upload file pendukung  -->
+
+    <!-- modal edit progres  -->
     <div class="modal fade bs-example-modal-xl" id="modal-update" tabindex="-1" role="dialog"
         aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -870,11 +1104,59 @@
             </form>
         </div>
     </div>
+    <!-- end modal edit progres  -->
+
     </div>
     <x-delete-modal-component />
 @endsection
 @section('script')
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var tab = localStorage.getItem('tab');
+            var defaultTabId = 'informasi-paket-tab';
+            var selectedTabId = tab ? tab : defaultTabId;
+
+            var selectedTab = document.getElementById(selectedTabId);
+            if (selectedTab) {
+                showTab(selectedTab);
+            }
+
+            var tabs = document.querySelectorAll('.nav-link');
+            tabs.forEach(function(tab) {
+                tab.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    var targetId = tab.getAttribute('href').substring(1);
+                    localStorage.setItem('tab', tab.id);
+                    showTab(tab);
+                });
+            });
+
+            function showTab(tab) {
+                var activeTab = document.querySelector('.nav-link.active');
+                var activePane = document.querySelector('.tab-pane.show.active');
+                if (activeTab) {
+                    activeTab.classList.remove('active');
+                    activeTab.setAttribute('aria-selected', 'false');
+                }
+                if (activePane) {
+                    activePane.classList.remove('show', 'active');
+                }
+
+                var targetPaneId = tab.getAttribute('href').substring(1);
+                var targetPane = document.getElementById(targetPaneId);
+                tab.classList.add('active');
+                tab.setAttribute('aria-selected', 'true');
+                if (targetPane) {
+                    targetPane.classList.add('show', 'active');
+                }
+            }
+        });
+
+        function tab(tab) {
+            localStorage.setItem('tab', tab);
+        }
+
+
         $('#dinas-jasa').addClass('mm-active')
         $('#dinas-jasa .sub-menu').addClass('mm-show')
         $('#paket-jasa').addClass('active')

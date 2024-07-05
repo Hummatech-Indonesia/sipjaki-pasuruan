@@ -144,7 +144,7 @@
                                                     @foreach ($consultantProjects as $consultantProject)
                                                         <option value="{{ $consultantProject->id }}"
                                                             {{ old('consultant_project_id') == $consultantProject->id ? 'selected' : '' }}>
-                                                            {{ $consultantProject->name }}
+                                                            {{ $consultantProject->name }} / {{ $consultantProject->serviceProvider->user->name }}
                                                         </option>
                                                     @endforeach
                                                 </select>

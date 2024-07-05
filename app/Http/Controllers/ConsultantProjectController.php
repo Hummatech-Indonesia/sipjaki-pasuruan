@@ -63,9 +63,9 @@ class ConsultantProjectController extends Controller
         $data['dinases'] = $this->dinas->get();
         $data['fiscalYears'] = $this->fiscalYear->get();
         $data['consultants'] = $this->serviceProvider->getConsultant();
-        $data['consultantProjects'] = $this->consultantProject->customPaginate($request,15);
+        $data['consultantProjects'] = $this->consultantProject->customPaginate($request, 15);
 
-        return view('pages.consultant-project.index',$data);
+        return view('pages.consultant-project.index', $data);
     }
 
     public function show(Request $request, ConsultantProject $consultantProject)
@@ -81,7 +81,7 @@ class ConsultantProjectController extends Controller
         $data['consultants'] = $this->serviceProvider->getConsultant();
         $data['executorProjects'] = $this->executorProject->customPaginate($request, 15);
 
-        return view('pages.consultant-project.index',$data);
+        return view('pages.consultant-project.index', $data);
     }
 
     /**
@@ -93,7 +93,6 @@ class ConsultantProjectController extends Controller
      */
     public function store(ConsultantProjectRequest $request)
     {
-
         $this->consultantProject->store($request->validated());
 
         return redirect()->back()->with('success', trans('alert.add_success'));
@@ -147,7 +146,7 @@ class ConsultantProjectController extends Controller
     {
         $this->consultantProject->delete($consultantProject->id);
 
-        return redirect()->back()->with('success',trans('alert.delete_success'));
+        return redirect()->back()->with('success', trans('alert.delete_success'));
     }
 
     /**
