@@ -219,6 +219,20 @@
             aria-labelledby="progres-penyedia-tab">
             <div class="row">
                 <div class="col-md-12 mt-3">
+                    @if ($errors->any())
+                                @foreach ($errors->all() as $error)
+                                    <div class="alert mt-3 alert-danger alert-dismissible fade show" role="alert">
+                                        {{ $error }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    </div>
+                                @endforeach
+                    @endif
+                    @if (session('success'))
+                        <x-alert-success-component :success="session('success')" />
+                    @endif
+                </div>
+                <div class="col-md-12 mt-3">
                     <div class="card rounded-4">
                         <div class="card-body">
                             <div class="d-flex justify-content-between">
@@ -256,18 +270,7 @@
                                     @endif
                                 </div>
                             </div>
-                            @if ($errors->any())
-                                @foreach ($errors->all() as $error)
-                                    <div class="alert mt-3 alert-danger alert-dismissible fade show" role="alert">
-                                        {{ $error }}
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                            aria-label="Close"></button>
-                                    </div>
-                                @endforeach
-                            @endif
-                            @if (session('success'))
-                                <x-alert-success-component :success="session('success')" />
-                            @endif
+                            
                             <div class="table-responsive">
                                 <table class="table mb-0">
     
@@ -285,20 +288,20 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($executorProject->serviceProviderProjects()->orderBy('week')->get() as $serviceProviderProject)
+                                        @forelse ($dataWeek as $progressWeek)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ Carbon::parse($serviceProviderProject->date_start)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                                <td>{{ Carbon::parse($progressWeek->date_start)->locale('id_ID')->isoFormat('DD MMMM Y') }}
                                                 </td>
-                                                <td>{{ Carbon::parse($serviceProviderProject->date_finish)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                                <td>{{ Carbon::parse($progressWeek->date_finish)->locale('id_ID')->isoFormat('DD MMMM Y') }}
                                                 </td>
-                                                <td>{{ $serviceProviderProject->week }}</td>
-                                                <td>{{ $serviceProviderProject->progres }}% Progress</td>
+                                                <td>{{ $progressWeek->week }}</td>
+                                                <td>{{ $progressWeek->progres }}% Progress</td>
                                                 <td>
                                                     <div class="d-flex justify-content-header gap-2">
                                                         <div class="">
-                                                            <button type="button" id="{{ $serviceProviderProject->id }}"
-                                                                data-id="{{ $serviceProviderProject->id }}"
+                                                            <button type="button" id="{{ $progressWeek->id }}"
+                                                                data-id="{{ $progressWeek->id }}"
                                                                 class="btn btn-sm btn-detail" style="background-color: #1B3061;">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                                     viewBox="0 0 24 24" fill="none">
@@ -315,13 +318,13 @@
                                                         @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant' || $executorProject->dinas_id == auth()->user()->dinas->id && $executorProject->status == 'active')
                                                             <div>
                                                                 <button class="btn btn-edit btn-sm btn-warning"
-                                                                    id="btn-edit-{{ $serviceProviderProject->id }}"
-                                                                    data-id="{{ $serviceProviderProject->id }}"
-                                                                    data-progres="{{ $serviceProviderProject->progres }}"
-                                                                    data-description="{{ $serviceProviderProject->description }}"
-                                                                    data-date_start="{{ \Carbon\Carbon::parse($serviceProviderProject->date_start)->format('Y-m-d') }}"
-                                                                    data-week="{{ $serviceProviderProject->week }}"
-                                                                    data-date_finish="{{ \Carbon\Carbon::parse($serviceProviderProject->date_finish)->format('Y-m-d') }}"><svg
+                                                                    id="btn-edit-{{ $progressWeek->id }}"
+                                                                    data-id="{{ $progressWeek->id }}"
+                                                                    data-progres="{{ $progressWeek->progres }}"
+                                                                    data-description="{{ $progressWeek->description }}"
+                                                                    data-date_start="{{ \Carbon\Carbon::parse($progressWeek->date_start)->format('Y-m-d') }}"
+                                                                    data-week="{{ $progressWeek->week }}"
+                                                                    data-date_finish="{{ \Carbon\Carbon::parse($progressWeek->date_finish)->format('Y-m-d') }}"><svg
                                                                         xmlns="http://www.w3.org/2000/svg" width="20"
                                                                         height="20" viewBox="0 0 24 24" fill="none">
                                                                         <g clip-path="url(#clip0_373_6257)">
@@ -345,8 +348,8 @@
                                                             </div>
                                                             <div class="">
                                                                 <button class="btn btn-delete btn-danger btn-sm"
-                                                                    id="{{ $serviceProviderProject->id }}"
-                                                                    data-id="{{ $serviceProviderProject->id }}">
+                                                                    id="{{ $progressWeek->id }}"
+                                                                    data-id="{{ $progressWeek->id }}">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20"
                                                                         height="20" viewBox="0 0 20 20" fill="none">
                                                                         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -358,7 +361,7 @@
                                                         @endif
                                                     </div>
                                                 </td>
-                                                @if ($serviceProviderProject->file)
+                                                @if ($progressWeek->file)
                                                     <td>
                                                         <a href="/download-service-provider-project/{{ $serviceProviderProject->id }}"
                                                             class="btn btn-success btn-sm rounded-3">
@@ -409,7 +412,7 @@
                                 <div>
                                     @if ($executorProject->status == 'active')
                                         @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant' || $executorProject->dinas_id == auth()->user()->dinas->id)
-                                            <div {{ $executorProject->physical_progress == 100 ? '' : 'data-bs-toggle=modal data-bs-target=#modal-create' }}
+                                            <div {{ $executorProject->physical_progress == 100 ? '' : 'data-bs-toggle=modal data-bs-target=#modal-create-day' }}
                                                 class="btn  rounded-3" style="background-color:#1B3061; color:white;">
                                                 @if ($executorProject->physical_progress == 100)
                                                     <form
@@ -437,18 +440,6 @@
                                     @endif
                                 </div>
                             </div>
-                            @if ($errors->any())
-                                @foreach ($errors->all() as $error)
-                                    <div class="alert mt-3 alert-danger alert-dismissible fade show" role="alert">
-                                        {{ $error }}
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                            aria-label="Close"></button>
-                                    </div>
-                                @endforeach
-                            @endif
-                            @if (session('success'))
-                                <x-alert-success-component :success="session('success')" />
-                            @endif
                             <div class="table-responsive">
                                 <table class="table mb-0">
     
@@ -465,18 +456,18 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($executorProject->serviceProviderProjects()->orderBy('week')->get() as $serviceProviderProject)
+                                        @forelse ($dataDays as $progressDay)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ Carbon::parse($serviceProviderProject->date_start)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                                <td>{{ Carbon::parse($progressDay->date_start)->locale('id_ID')->isoFormat('DD MMMM Y') }}
                                                 </td>
-                                                <td>{{ $serviceProviderProject->week }}</td>
-                                                <td>{{ $serviceProviderProject->progres }}% Progress</td>
+                                                <td>{{ $progressDay->week }}</td>
+                                                <td>{{ $progressDay->progres }}% Progress</td>
                                                 <td>
                                                     <div class="d-flex justify-content-header gap-2">
                                                         <div class="">
-                                                            <button type="button" id="{{ $serviceProviderProject->id }}"
-                                                                data-id="{{ $serviceProviderProject->id }}"
+                                                            <button type="button" id="{{ $progressDay->id }}"
+                                                                data-id="{{ $progressDay->id }}"
                                                                 class="btn btn-sm btn-detail" style="background-color: #1B3061;">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                                     viewBox="0 0 24 24" fill="none">
@@ -493,13 +484,13 @@
                                                         @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant' || $executorProject->dinas_id == auth()->user()->dinas->id && $executorProject->status == 'active')
                                                             <div>
                                                                 <button class="btn btn-edit btn-sm btn-warning"
-                                                                    id="btn-edit-{{ $serviceProviderProject->id }}"
-                                                                    data-id="{{ $serviceProviderProject->id }}"
-                                                                    data-progres="{{ $serviceProviderProject->progres }}"
-                                                                    data-description="{{ $serviceProviderProject->description }}"
-                                                                    data-date_start="{{ \Carbon\Carbon::parse($serviceProviderProject->date_start)->format('Y-m-d') }}"
-                                                                    data-week="{{ $serviceProviderProject->week }}"
-                                                                    data-date_finish="{{ \Carbon\Carbon::parse($serviceProviderProject->date_finish)->format('Y-m-d') }}"><svg
+                                                                    id="btn-edit-{{ $progressDay->id }}"
+                                                                    data-id="{{ $progressDay->id }}"
+                                                                    data-progres="{{ $progressDay->progres }}"
+                                                                    data-description="{{ $progressDay->description }}"
+                                                                    data-date_start="{{ \Carbon\Carbon::parse($progressDay->date_start)->format('Y-m-d') }}"
+                                                                    data-week="{{ $progressDay->week }}"
+                                                                    data-date_finish="{{ \Carbon\Carbon::parse($progressDay->date_finish)->format('Y-m-d') }}"><svg
                                                                         xmlns="http://www.w3.org/2000/svg" width="20"
                                                                         height="20" viewBox="0 0 24 24" fill="none">
                                                                         <g clip-path="url(#clip0_373_6257)">
@@ -523,8 +514,8 @@
                                                             </div>
                                                             <div class="">
                                                                 <button class="btn btn-delete btn-danger btn-sm"
-                                                                    id="{{ $serviceProviderProject->id }}"
-                                                                    data-id="{{ $serviceProviderProject->id }}">
+                                                                    id="{{ $progressDay->id }}"
+                                                                    data-id="{{ $progressDay->id }}">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20"
                                                                         height="20" viewBox="0 0 20 20" fill="none">
                                                                         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -536,7 +527,7 @@
                                                         @endif
                                                     </div>
                                                 </td>
-                                                @if ($serviceProviderProject->file)
+                                                @if ($progressDay->file)
                                                     <td>
                                                         <a href="/download-service-provider-project/{{ $serviceProviderProject->id }}"
                                                             class="btn btn-success btn-sm rounded-3">
@@ -587,6 +578,20 @@
             aria-labelledby="progres-konsultan-tab">
             <div class="row">
                 <div class="col-md-12 mt-3">
+                    @if ($errors->any())
+                                @foreach ($errors->all() as $error)
+                                    <div class="alert mt-3 alert-danger alert-dismissible fade show" role="alert">
+                                        {{ $error }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    </div>
+                                @endforeach
+                    @endif
+                    @if (session('success'))
+                        <x-alert-success-component :success="session('success')" />
+                    @endif
+                </div>
+                <div class="col-md-12 mt-3">
                     <div class="card rounded-4">
                         <div class="card-body">
                             <div class="d-flex justify-content-between">
@@ -595,7 +600,7 @@
                                 </div>
                                 <div>
                                     @if ($executorProject->status == 'active')
-                                        @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant')
+                                        @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant' || $executorProject->dinas_id == auth()->user()->dinas->id)
                                             <div {{ $executorProject->physical_progress == 100 ? '' : 'data-bs-toggle=modal data-bs-target=#modal-create' }}
                                                 class="btn  rounded-3" style="background-color:#1B3061; color:white;">
                                                 @if ($executorProject->physical_progress == 100)
@@ -624,18 +629,7 @@
                                     @endif
                                 </div>
                             </div>
-                            @if ($errors->any())
-                                @foreach ($errors->all() as $error)
-                                    <div class="alert mt-3 alert-danger alert-dismissible fade show" role="alert">
-                                        {{ $error }}
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                            aria-label="Close"></button>
-                                    </div>
-                                @endforeach
-                            @endif
-                            @if (session('success'))
-                                <x-alert-success-component :success="session('success')" />
-                            @endif
+                            
                             <div class="table-responsive">
                                 <table class="table mb-0">
     
@@ -653,20 +647,20 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($executorProject->serviceProviderProjects()->orderBy('week')->get() as $serviceProviderProject)
+                                        @forelse ($dataWeek as $progressWeek)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ Carbon::parse($serviceProviderProject->date_start)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                                <td>{{ Carbon::parse($progressWeek->date_start)->locale('id_ID')->isoFormat('DD MMMM Y') }}
                                                 </td>
-                                                <td>{{ Carbon::parse($serviceProviderProject->date_finish)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                                <td>{{ Carbon::parse($progressWeek->date_finish)->locale('id_ID')->isoFormat('DD MMMM Y') }}
                                                 </td>
-                                                <td>{{ $serviceProviderProject->week }}</td>
-                                                <td>{{ $serviceProviderProject->progres }}% Progress</td>
+                                                <td>{{ $progressWeek->week }}</td>
+                                                <td>{{ $progressWeek->progres }}% Progress</td>
                                                 <td>
                                                     <div class="d-flex justify-content-header gap-2">
                                                         <div class="">
-                                                            <button type="button" id="{{ $serviceProviderProject->id }}"
-                                                                data-id="{{ $serviceProviderProject->id }}"
+                                                            <button type="button" id="{{ $progressWeek->id }}"
+                                                                data-id="{{ $progressWeek->id }}"
                                                                 class="btn btn-sm btn-detail" style="background-color: #1B3061;">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                                     viewBox="0 0 24 24" fill="none">
@@ -680,16 +674,16 @@
                                                                 </svg>
                                                             </button>
                                                         </div>
-                                                        @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant' && $executorProject->status == 'active')
+                                                        @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant' || $executorProject->dinas_id == auth()->user()->dinas->id && $executorProject->status == 'active')
                                                             <div>
                                                                 <button class="btn btn-edit btn-sm btn-warning"
-                                                                    id="btn-edit-{{ $serviceProviderProject->id }}"
-                                                                    data-id="{{ $serviceProviderProject->id }}"
-                                                                    data-progres="{{ $serviceProviderProject->progres }}"
-                                                                    data-description="{{ $serviceProviderProject->description }}"
-                                                                    data-date_start="{{ \Carbon\Carbon::parse($serviceProviderProject->date_start)->format('Y-m-d') }}"
-                                                                    data-week="{{ $serviceProviderProject->week }}"
-                                                                    data-date_finish="{{ \Carbon\Carbon::parse($serviceProviderProject->date_finish)->format('Y-m-d') }}"><svg
+                                                                    id="btn-edit-{{ $progressWeek->id }}"
+                                                                    data-id="{{ $progressWeek->id }}"
+                                                                    data-progres="{{ $progressWeek->progres }}"
+                                                                    data-description="{{ $progressWeek->description }}"
+                                                                    data-date_start="{{ \Carbon\Carbon::parse($progressWeek->date_start)->format('Y-m-d') }}"
+                                                                    data-week="{{ $progressWeek->week }}"
+                                                                    data-date_finish="{{ \Carbon\Carbon::parse($progressWeek->date_finish)->format('Y-m-d') }}"><svg
                                                                         xmlns="http://www.w3.org/2000/svg" width="20"
                                                                         height="20" viewBox="0 0 24 24" fill="none">
                                                                         <g clip-path="url(#clip0_373_6257)">
@@ -713,8 +707,8 @@
                                                             </div>
                                                             <div class="">
                                                                 <button class="btn btn-delete btn-danger btn-sm"
-                                                                    id="{{ $serviceProviderProject->id }}"
-                                                                    data-id="{{ $serviceProviderProject->id }}">
+                                                                    id="{{ $progressWeek->id }}"
+                                                                    data-id="{{ $progressWeek->id }}">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20"
                                                                         height="20" viewBox="0 0 20 20" fill="none">
                                                                         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -726,7 +720,7 @@
                                                         @endif
                                                     </div>
                                                 </td>
-                                                @if ($serviceProviderProject->file)
+                                                @if ($progressWeek->file)
                                                     <td>
                                                         <a href="/download-service-provider-project/{{ $serviceProviderProject->id }}"
                                                             class="btn btn-success btn-sm rounded-3">
@@ -776,7 +770,7 @@
                                 </div>
                                 <div>
                                     @if ($executorProject->status == 'active')
-                                        @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant')
+                                        @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant' || $executorProject->dinas_id == auth()->user()->dinas->id)
                                             <div {{ $executorProject->physical_progress == 100 ? '' : 'data-bs-toggle=modal data-bs-target=#modal-create' }}
                                                 class="btn  rounded-3" style="background-color:#1B3061; color:white;">
                                                 @if ($executorProject->physical_progress == 100)
@@ -805,28 +799,15 @@
                                     @endif
                                 </div>
                             </div>
-                            @if ($errors->any())
-                                @foreach ($errors->all() as $error)
-                                    <div class="alert mt-3 alert-danger alert-dismissible fade show" role="alert">
-                                        {{ $error }}
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                            aria-label="Close"></button>
-                                    </div>
-                                @endforeach
-                            @endif
-                            @if (session('success'))
-                                <x-alert-success-component :success="session('success')" />
-                            @endif
                             <div class="table-responsive">
                                 <table class="table mb-0">
     
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Tanggal Mulai</th>
-                                            <th>Tanggal Akhir</th>
+                                            <th>Tanggal</th>
                                             <th>Miggu ke-</th>
-                                            <th>Progres (%)</th>
+                                            <th>Halaman</th>
                                             <th>Aksi</th>
                                             <th>
                                                 File
@@ -834,20 +815,18 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($executorProject->serviceProviderProjects()->orderBy('week')->get() as $serviceProviderProject)
+                                        @forelse ($dataDays as $progressDay)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ Carbon::parse($serviceProviderProject->date_start)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                                <td>{{ Carbon::parse($progressDay->date_start)->locale('id_ID')->isoFormat('DD MMMM Y') }}
                                                 </td>
-                                                <td>{{ Carbon::parse($serviceProviderProject->date_finish)->locale('id_ID')->isoFormat('DD MMMM Y') }}
-                                                </td>
-                                                <td>{{ $serviceProviderProject->week }}</td>
-                                                <td>{{ $serviceProviderProject->progres }}% Progress</td>
+                                                <td>{{ $progressDay->week }}</td>
+                                                <td>{{ $progressDay->progres }}% Progress</td>
                                                 <td>
                                                     <div class="d-flex justify-content-header gap-2">
                                                         <div class="">
-                                                            <button type="button" id="{{ $serviceProviderProject->id }}"
-                                                                data-id="{{ $serviceProviderProject->id }}"
+                                                            <button type="button" id="{{ $progressDay->id }}"
+                                                                data-id="{{ $progressDay->id }}"
                                                                 class="btn btn-sm btn-detail" style="background-color: #1B3061;">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                                     viewBox="0 0 24 24" fill="none">
@@ -861,16 +840,16 @@
                                                                 </svg>
                                                             </button>
                                                         </div>
-                                                        @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant' && $executorProject->status == 'active')
+                                                        @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant' || $executorProject->dinas_id == auth()->user()->dinas->id && $executorProject->status == 'active')
                                                             <div>
                                                                 <button class="btn btn-edit btn-sm btn-warning"
-                                                                    id="btn-edit-{{ $serviceProviderProject->id }}"
-                                                                    data-id="{{ $serviceProviderProject->id }}"
-                                                                    data-progres="{{ $serviceProviderProject->progres }}"
-                                                                    data-description="{{ $serviceProviderProject->description }}"
-                                                                    data-date_start="{{ \Carbon\Carbon::parse($serviceProviderProject->date_start)->format('Y-m-d') }}"
-                                                                    data-week="{{ $serviceProviderProject->week }}"
-                                                                    data-date_finish="{{ \Carbon\Carbon::parse($serviceProviderProject->date_finish)->format('Y-m-d') }}"><svg
+                                                                    id="btn-edit-{{ $progressDay->id }}"
+                                                                    data-id="{{ $progressDay->id }}"
+                                                                    data-progres="{{ $progressDay->progres }}"
+                                                                    data-description="{{ $progressDay->description }}"
+                                                                    data-date_start="{{ \Carbon\Carbon::parse($progressDay->date_start)->format('Y-m-d') }}"
+                                                                    data-week="{{ $progressDay->week }}"
+                                                                    data-date_finish="{{ \Carbon\Carbon::parse($progressDay->date_finish)->format('Y-m-d') }}"><svg
                                                                         xmlns="http://www.w3.org/2000/svg" width="20"
                                                                         height="20" viewBox="0 0 24 24" fill="none">
                                                                         <g clip-path="url(#clip0_373_6257)">
@@ -894,8 +873,8 @@
                                                             </div>
                                                             <div class="">
                                                                 <button class="btn btn-delete btn-danger btn-sm"
-                                                                    id="{{ $serviceProviderProject->id }}"
-                                                                    data-id="{{ $serviceProviderProject->id }}">
+                                                                    id="{{ $progressDay->id }}"
+                                                                    data-id="{{ $progressDay->id }}">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20"
                                                                         height="20" viewBox="0 0 20 20" fill="none">
                                                                         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -907,7 +886,7 @@
                                                         @endif
                                                     </div>
                                                 </td>
-                                                @if ($serviceProviderProject->file)
+                                                @if ($progressDay->file)
                                                     <td>
                                                         <a href="/download-service-provider-project/{{ $serviceProviderProject->id }}"
                                                             class="btn btn-success btn-sm rounded-3">
@@ -1213,8 +1192,77 @@
     </div>
     
     </div>
+
+    <!-- modal tambah progress harian  -->
+    <div class="modal fade bs-example-modal-xl" id="modal-create-day" tabindex="-1" role="dialog"
+        aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div style="background-color: #1B3061;">
+                    <h5 class="modal-title text-white text-center m-3 fs-4">Tambah
+                        {{ Auth::user()->serviceProvider?->type_of_business_entity == 'consultant' ? 'Progress' : 'File' }}
+                    </h5>
+                </div>
+                    <form
+                        action="{{ route('service-provider-projects.store', ['executorProject' => $executorProject->id]) }}"
+                        method="post" enctype="multipart/form-data">
+                        @method('POST')
+
+                @csrf
+                <div class="modal-body">
+                    <div class="row">
+                            <div class="col-lg-4">
+                                <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                                    <label class="form-label">Tanggal</label>
+                                    <input type="date" class="form-control" value="{{ old('date_start') }}"
+                                        name="date_start" id="">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                                    <label class="form-label">Minggu ke-</label>
+                                    <input type="number" class="form-control" value="{{ old('week') }}"
+                                        name="week" id="">
+                                    <input type="hidden" value="0" name="progres">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                                    <label class="form-label">Halaman</label>
+                                    <input type="number" class="form-control" value="{{ old('week') }}"
+                                        name="page" id="">
+                                </div>
+                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                                <label class="form-label">File Pendukung</label>
+                                <input class="form-control" type="file" value="{{ old('file') }}" name="file"
+                                    id="">
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <label class="form-label" for="">Deskripsi</label>
+                            <textarea class="form-control" name="description" id="" cols="20" rows="5">{{ old('description') }}</textarea>
+                        </div>
+                    </div>
+                
+                    <div class="d-flex d-row justify-content-end mt-3">
+                        <button type="button" class="btn btn-danger btn-md me-2" data-bs-dismiss="modal"
+                            aria-label="Close">Batal</button>
+                        <button type="submit" style="background-color: #1B3061; color:white;"
+                            class="btn btn-md">Tambah</button>
+
+                    </div>
+                </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+    <!-- end modal tambah progress harian  -->
     
-    <!-- modal tambah progres & modal upload file pendukung  -->
+    <!-- modal tambah progres mingguan & modal upload file pendukung  -->
     <div class="modal fade bs-example-modal-xl" id="modal-create" tabindex="-1" role="dialog"
         aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -1398,7 +1446,7 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div>
-    <!-- end modal tambah progres & modal upload file pendukung  -->
+    <!-- end modal tambah progres mingguan & modal upload file pendukung  -->
 
     <!-- modal edit progres  -->
     <div class="modal fade bs-example-modal-xl" id="modal-update" tabindex="-1" role="dialog"
