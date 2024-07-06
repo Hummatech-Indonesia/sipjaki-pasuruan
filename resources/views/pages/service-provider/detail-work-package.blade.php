@@ -462,7 +462,7 @@
                                                 <td>{{ Carbon::parse($progressDay->date_start)->locale('id_ID')->isoFormat('DD MMMM Y') }}
                                                 </td>
                                                 <td>{{ $progressDay->week }}</td>
-                                                <td>{{ $progressDay->progres }}% Progress</td>
+                                                <td>{{ $progressDay->page }}</td>
                                                 <td>
                                                     <div class="d-flex justify-content-header gap-2">
                                                         <div class="">
