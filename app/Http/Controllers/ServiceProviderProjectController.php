@@ -79,8 +79,6 @@ class ServiceProviderProjectController extends Controller
      */
     public function store(ServiceProviderProjectRequest $request, ExecutorProject $executorProject)
     {
-        if (!$request->progres) $request->merge(['progres' => 0]);
-        if (!$request->date_finish) $request->merge(['date_finish' => $request->date_start]);
         $request->merge(['executor_project_id' => $executorProject->id]);
         $serviceProviderProjects = $this->serviceProviderProject->search($request);
         $service = $this->service->store($request, $serviceProviderProjects, $executorProject);

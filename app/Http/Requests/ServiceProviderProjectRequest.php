@@ -18,7 +18,7 @@ class ServiceProviderProjectRequest extends FormRequest
             'date_finish' => 'nullable|date|after_or_equal:date_start',
             'file' => 'nullable|mimes:pdf',
             'week' => 'required|numeric|min:0',
-            'progres' => 'required|numeric|between:0,100',
+            'progres' => 'nullable|numeric|between:0,100',
             'description' => 'required',
             'page' => 'nullable',
             'type' => 'nullable'
@@ -46,5 +46,11 @@ class ServiceProviderProjectRequest extends FormRequest
             'file.mimes' => 'Format file yang diizinkan hanyalah berformat PDF',
             'description.required' => 'Deskripsi wajib diisi',
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        if(!$this->date_finish) $this->merge(['date_finish' => $this->date_start]);
+        if(!$this->progress) $this->merge(['progres' => 0]);
     }
 }

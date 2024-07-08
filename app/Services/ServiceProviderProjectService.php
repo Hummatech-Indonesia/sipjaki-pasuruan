@@ -27,17 +27,14 @@ class ServiceProviderProjectService
      */
     public function store(ServiceProviderProjectRequest $request, $serviceProviderProjects, ExecutorProject $executorProject): mixed
     {
-        if (!$request["type"]) {
-            if ($request["date_finish"]) $request->merge(['type' => 'week']);
-            else $request->merge(['type' => 'days']);
-        }
-        if (!$request["date_finish"]) $request->merge(['date_finish' => $request["date_start"]]);
-        if (!$request["progres"]) $request->merge(['progres' => 0]);
         $data = $request->validated();
 
         if (!array_key_exists('date_finish', $data)) $data['date_finish'] = $request["date_start"];
-        if (!array_key_exists('progres', $data)) $request['progres'] = 0;
-
+        if (!array_key_exists('progres', $data)) $data['progres'] = 0;
+        if (!$request["type"]) {
+            if ($data["progres"] == 0) $data["type"] = 'days';
+            else $data["type"] = 'week';
+        }
         $progres = 0;
         $data['executor_project_id'] = $executorProject->id;
         if (isset($data['file'])) {
@@ -67,12 +64,6 @@ class ServiceProviderProjectService
      */
     public function update(ServiceProviderProjectRequest $request, ServiceProviderProject $service_provider_project, $serviceProviderProjects): mixed
     {
-        if (!$request["type"]) {
-            if ($request["date_finish"]) $request->merge(['type' => 'week']);
-            else $request->merge(['type' => 'days']);
-        }
-        if (!$request["date_finish"]) $request->merge(['date_finish' => $request["date_start"]]);
-        if (!$request["progres"]) $request->merge(['progress' => 0]);
         $data = $request->validated();
         $progres = 0;
         $old_file = $service_provider_project->file;
