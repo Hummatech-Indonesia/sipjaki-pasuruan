@@ -13,7 +13,7 @@ class ServiceProviderProject extends Model implements HasExecutorProject, HasSer
     use HasFactory;
     protected $table = 'service_provider_projects';
     protected $primaryKey = 'id';
-    protected $fillable = ['id', 'executor_project_id','week','service_provider_id', 'date_start', 'date_finish', 'file', 'description', 'progres','page','type'];
+    protected $fillable = ['id', 'executor_project_id','week','service_provider_id', 'date_start', 'date_finish', 'file', 'description', 'progres','page','type','days','executor_type'];
     protected $guarded = [];
     public $incrementing = false;
     public $keyType = 'char';

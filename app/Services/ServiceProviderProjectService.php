@@ -35,6 +35,10 @@ class ServiceProviderProjectService
             if ($data["progres"] == 0) $data["type"] = 'days';
             else $data["type"] = 'week';
         }
+        if (!$request["executor_type"]) {
+            if (auth()->user()->serviceProvider->type_of_business_entity == 'consultant') $data["executor_type"] = 'consultant';
+            else $data["executor_type"] = 'executor';
+        }
         $progres = 0;
         $data['executor_project_id'] = $executorProject->id;
         if (isset($data['file'])) {
