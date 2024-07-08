@@ -27,6 +27,10 @@ class ServiceProviderProjectService
      */
     public function store(ServiceProviderProjectRequest $request, $serviceProviderProjects, ExecutorProject $executorProject): mixed
     {
+        if (!$request["type"]) {
+            if ($request["date_finish"]) $request->merge(['type' => 'week']);
+            else $request->merge(['type' => 'days']);
+        }
         if (!$request["date_finish"]) $request->merge(['date_finish' => $request["date_start"]]);
         if (!$request["progres"]) $request->merge(['progres' => 0]);
         $data = $request->validated();
@@ -63,6 +67,10 @@ class ServiceProviderProjectService
      */
     public function update(ServiceProviderProjectRequest $request, ServiceProviderProject $service_provider_project, $serviceProviderProjects): mixed
     {
+        if (!$request["type"]) {
+            if ($request["date_finish"]) $request->merge(['type' => 'week']);
+            else $request->merge(['type' => 'days']);
+        }
         if (!$request["date_finish"]) $request->merge(['date_finish' => $request["date_start"]]);
         if (!$request["progres"]) $request->merge(['progress' => 0]);
         $data = $request->validated();
