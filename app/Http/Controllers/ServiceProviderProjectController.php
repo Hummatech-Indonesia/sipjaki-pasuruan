@@ -85,10 +85,18 @@ class ServiceProviderProjectController extends Controller
         if ($service) {
             $this->serviceProviderProject->store($service);
             $progres = 0;
+            if (auth()->user()->serviceProvider->type_of_business_entity == 'consultant') {
+                $serviceProviderProject = $serviceProviderProjects->where('executor_type','consultant');
+                $columnProgress = 'physical_progress';
+            }
+            else {
+                $serviceProviderProject = $serviceProviderProjects->where('executor_type','consultant');
+                $columnProgress = 'executor_physical_progress';
+            } 
             foreach ($serviceProviderProjects as $serviceProviderProject) {
                 $progres += $serviceProviderProject->progres;
             }
-            $this->executorProject->update($executorProject->id, ['physical_progress' => ($progres + $request->progres)]);
+            $this->executorProject->update($executorProject->id, [$columnProgress => ($progres + $request->progres)]);
             if ($request->is('api/*')) {
                 return ResponseHelper::success(null, trans('alert.add_success'));
             } else {
