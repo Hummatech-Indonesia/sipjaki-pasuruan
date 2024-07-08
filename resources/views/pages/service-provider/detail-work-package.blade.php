@@ -17,14 +17,14 @@
                     aria-selected="false">
                     <div class="fw-bold">Informasi Paket</div>
                 </a>
-                @if ($executorProject->consultant_project_id == null)
+                @if (auth()->user()->serviceProvider?->type_of_business_entity == "executor" || $executorProject->dinas_id == auth()->user()->dinas?->id)
                 <a class="nav-link" style="border: solid 1px #1B3061;" onclick="tab('progres-penyedia-tab')"
                     id="progres-penyedia-tab" data-bs-toggle="pill" href="#progres-penyedia" role="tab"
                     aria-controls="progres-penyedia" aria-selected="false">
-                    <div class="fw-bold">Progres Penyedia</div>
+                    <div class="fw-bold">Progres Pelaksana</div>
                 </a>
                 @endif
-                @if ($executorProject->consultant_project_id != null)
+                @if (auth()->user()->serviceProvider?->type_of_business_entity == "consultant" || $executorProject->dinas_id == auth()->user()->dinas?->id)
                 <a class="nav-link" style="border: solid 1px #1B3061;" onclick="tab('progres-konsultan-tab')" id="progres-konsultan-tab"
                     data-bs-toggle="pill" href="#progres-konsultan" role="tab" aria-controls="progres-konsultan"
                     aria-selected="false">
@@ -214,7 +214,7 @@
         </div>
         <!-- end informasi paket  -->
         <!-- Progres Penyedia -->
-        @if ($executorProject->consultant_project_id == null)
+        @if (auth()->user()->serviceProvider?->type_of_business_entity == "executor" || $executorProject->dinas_id == auth()->user()->dinas?->id)
         <div class="tab-pane fade-out" id="progres-penyedia" role="tabpanel"
             aria-labelledby="progres-penyedia-tab">
             <div class="row">
@@ -241,7 +241,7 @@
                                 </div>
                                 <div>
                                     @if ($executorProject->status == 'active')
-                                        @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant' || $executorProject->dinas_id == auth()->user()->dinas->id)
+                                        @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant' || Auth::user()->serviceProvider?->type_of_business_entity == 'executor')
                                             <div {{ $executorProject->physical_progress == 100 ? '' : 'data-bs-toggle=modal data-bs-target=#modal-create' }}
                                                 class="btn  rounded-3" style="background-color:#1B3061; color:white;">
                                                 @if ($executorProject->physical_progress == 100)
@@ -315,7 +315,7 @@
                                                                 </svg>
                                                             </button>
                                                         </div>
-                                                        @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant' || $executorProject->dinas_id == auth()->user()->dinas->id && $executorProject->status == 'active')
+                                                        @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant' || Auth::user()->serviceProvider?->type_of_business_entity == 'executor' && $executorProject->status == 'active')
                                                             <div>
                                                                 <button class="btn btn-edit btn-sm btn-warning"
                                                                     id="btn-edit-{{ $progressWeek->id }}"
@@ -411,7 +411,7 @@
                                 </div>
                                 <div>
                                     @if ($executorProject->status == 'active')
-                                        @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant' || $executorProject->dinas_id == auth()->user()->dinas->id)
+                                        @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant' || Auth::user()->serviceProvider?->type_of_business_entity == 'executor')
                                             <div {{ $executorProject->physical_progress == 100 ? '' : 'data-bs-toggle=modal data-bs-target=#modal-create-day' }}
                                                 class="btn  rounded-3" style="background-color:#1B3061; color:white;">
                                                 @if ($executorProject->physical_progress == 100)
@@ -481,7 +481,7 @@
                                                                 </svg>
                                                             </button>
                                                         </div>
-                                                        @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant' || $executorProject->dinas_id == auth()->user()->dinas->id && $executorProject->status == 'active')
+                                                        @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant' || Auth::user()->serviceProvider?->type_of_business_entity == 'executor' && $executorProject->status == 'active')
                                                             <div>
                                                                 <button class="btn btn-edit btn-sm btn-warning"
                                                                     id="btn-edit-{{ $progressDay->id }}"
@@ -573,7 +573,7 @@
         @endif
         <!-- End Progres Penyedia  -->
         <!-- Progres Konsultan  -->
-        @if ($executorProject->consultant_project_id != null)
+        @if (auth()->user()->serviceProvider?->type_of_business_entity == "consultant" || $executorProject->dinas_id == auth()->user()->dinas?->id)
         <div class="tab-pane fade-out" id="progres-konsultan" role="tabpanel"
             aria-labelledby="progres-konsultan-tab">
             <div class="row">
@@ -600,7 +600,7 @@
                                 </div>
                                 <div>
                                     @if ($executorProject->status == 'active')
-                                        @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant' || $executorProject->dinas_id == auth()->user()->dinas->id)
+                                        @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant' || Auth::user()->serviceProvider?->type_of_business_entity == 'executor')
                                             <div {{ $executorProject->physical_progress == 100 ? '' : 'data-bs-toggle=modal data-bs-target=#modal-create' }}
                                                 class="btn  rounded-3" style="background-color:#1B3061; color:white;">
                                                 @if ($executorProject->physical_progress == 100)
@@ -674,7 +674,7 @@
                                                                 </svg>
                                                             </button>
                                                         </div>
-                                                        @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant' || $executorProject->dinas_id == auth()->user()->dinas->id && $executorProject->status == 'active')
+                                                        @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant' || Auth::user()->serviceProvider?->type_of_business_entity == 'executor' && $executorProject->status == 'active')
                                                             <div>
                                                                 <button class="btn btn-edit btn-sm btn-warning"
                                                                     id="btn-edit-{{ $progressWeek->id }}"
@@ -770,7 +770,7 @@
                                 </div>
                                 <div>
                                     @if ($executorProject->status == 'active')
-                                        @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant' || $executorProject->dinas_id == auth()->user()->dinas->id)
+                                        @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant' || Auth::user()->serviceProvider?->type_of_business_entity == 'executor')
                                             <div {{ $executorProject->physical_progress == 100 ? '' : 'data-bs-toggle=modal data-bs-target=#modal-create' }}
                                                 class="btn  rounded-3" style="background-color:#1B3061; color:white;">
                                                 @if ($executorProject->physical_progress == 100)
@@ -840,7 +840,7 @@
                                                                 </svg>
                                                             </button>
                                                         </div>
-                                                        @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant' || $executorProject->dinas_id == auth()->user()->dinas->id && $executorProject->status == 'active')
+                                                        @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant' || Auth::user()->serviceProvider?->type_of_business_entity == 'executor' && $executorProject->status == 'active')
                                                             <div>
                                                                 <button class="btn btn-edit btn-sm btn-warning"
                                                                     id="btn-edit-{{ $progressDay->id }}"
@@ -1272,7 +1272,7 @@
                         {{ Auth::user()->serviceProvider?->type_of_business_entity == 'consultant' ? 'Progress' : 'File' }}
                     </h5>
                 </div>
-                @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant' || $executorProject->dinas_id == auth()->user()->dinas->id)
+                @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant' || Auth::user()->serviceProvider?->type_of_business_entity == 'executor')
                     <form
                         action="{{ route('service-provider-projects.store', ['executorProject' => $executorProject->id]) }}"
                         method="post" enctype="multipart/form-data">
@@ -1286,7 +1286,7 @@
                 @csrf
                 <div class="modal-body">
                     <div class="row">
-                        @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant' || $executorProject->dinas_id == auth()->user()->dinas->id)
+                        @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant' || Auth::user()->serviceProvider?->type_of_business_entity == 'executor')
                             <div class="col-lg-3">
                                 <div class="mb-3 ajax-select mt-3 mt-lg-0">
                                     <label class="form-label">Tanggal Mulai</label>
