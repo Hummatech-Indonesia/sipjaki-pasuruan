@@ -40,10 +40,10 @@
                             <form id="form-create" method="POST">
                                 <div class="mb-3">
                                     <label id="name" for="recipient-name" class="control-label mb-2">Masukan
-                                        Anggaran</label>
+                                        Tahun Anggaran</label>
                                     <input type="number" class="form-control" id="create-name" class="form-control"
                                         name="name" id="nametext" aria-describedby="name"
-                                        placeholder="Masukan Anggaran" />
+                                        placeholder="Masukan Tahun Anggaran" />
                                 </div>
                         </div>
                         <div class="modal-footer">
