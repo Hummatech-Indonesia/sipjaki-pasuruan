@@ -79,6 +79,7 @@ class ServiceProviderProjectController extends Controller
      */
     public function store(ServiceProviderProjectRequest $request, ExecutorProject $executorProject)
     {
+
         $request->merge(['executor_project_id' => $executorProject->id]);
         $serviceProviderProjects = $this->serviceProviderProject->search($request);
         $service = $this->service->store($request, $serviceProviderProjects, $executorProject);

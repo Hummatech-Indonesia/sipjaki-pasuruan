@@ -46,81 +46,6 @@
     </div>
     <!-- end header  -->
 
-    <!-- modal detail progres  -->
-    <div class="modal fade bs-example-modal-md" id="modal-detail" tabindex="-1" role="dialog"
-        aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-md">
-            <div class="modal-content">
-                <div class="modal-header" style="background-color: #1B3061">
-                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Detail Progres</h5>
-                    <button type="button" class="btn-close" style="background-color: white" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="btn btn-sm mb-2 text-dark rounded-3 year-detail" style="background-color: #E4ECFF;">
-
-                            </div>
-                            <p class="mt-1 fs-5 text-dark mb-2" style="font-weight: 700">
-                                <span id="detail-name " class="name-detail"></span>
-                            </p>
-                            <div class="">
-                                <div class="row mb-1">
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark">Progress (%) :</p>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-birth_date"
-                                                class="progres-detail"></span></p>
-                                    </div>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark">Tanggal Mulai :</p>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-education"
-                                                class="date_start-detail"></span></p>
-                                    </div>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark">Tanggal Akhir :</p>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
-                                                id="detail-registration_number" class="date_finish-detail"></span></p>
-                                    </div>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark">Minggu Ke- :</p>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-"
-                                                class="week"></span></p>
-                                    </div>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark">Deskripsi :</p>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-cerificate"
-                                                class="description-detail"></span></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div>
-    <!-- end modal detail progres  -->
-    
-
     <div class="tab-content mt-4" id="v-pills-tabContent">
         <!-- Informasi Paket  -->
         <div class="tab-pane fade-out" id="informasi-paket" role="tabpanel" aria-labelledby="informasi-paket-tab">
@@ -279,7 +204,7 @@
                                             <th>No</th>
                                             <th>Tanggal Mulai</th>
                                             <th>Tanggal Akhir</th>
-                                            <th>Miggu ke-</th>
+                                            <th>Minggu ke-</th>
                                             <th>Progres (%)</th>
                                             <th>Aksi</th>
                                             <th>
@@ -288,20 +213,20 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($dataWeek as $progressWeek)
+                                        @forelse ($dataWeekExecutor as $progressWeekExecutor)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ Carbon::parse($progressWeek->date_start)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                                <td>{{ Carbon::parse($progressWeekExecutor->date_start)->locale('id_ID')->isoFormat('DD MMMM Y') }}
                                                 </td>
-                                                <td>{{ Carbon::parse($progressWeek->date_finish)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                                <td>{{ Carbon::parse($progressWeekExecutor->date_finish)->locale('id_ID')->isoFormat('DD MMMM Y') }}
                                                 </td>
-                                                <td>{{ $progressWeek->week }}</td>
-                                                <td>{{ $progressWeek->progres }}% Progress</td>
+                                                <td>{{ $progressWeekExecutor->week }}</td>
+                                                <td>{{ $progressWeekExecutor->progres }}% Progress</td>
                                                 <td>
                                                     <div class="d-flex justify-content-header gap-2">
                                                         <div class="">
-                                                            <button type="button" id="{{ $progressWeek->id }}"
-                                                                data-id="{{ $progressWeek->id }}"
+                                                            <button type="button" id="{{ $progressWeekExecutor->id }}"
+                                                                data-id="{{ $progressWeekExecutor->id }}"
                                                                 class="btn btn-sm btn-detail" style="background-color: #1B3061;">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                                     viewBox="0 0 24 24" fill="none">
@@ -318,13 +243,13 @@
                                                         @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant' || Auth::user()->serviceProvider?->type_of_business_entity == 'executor' && $executorProject->status == 'active')
                                                             <div>
                                                                 <button class="btn btn-edit btn-sm btn-warning"
-                                                                    id="btn-edit-{{ $progressWeek->id }}"
-                                                                    data-id="{{ $progressWeek->id }}"
-                                                                    data-progres="{{ $progressWeek->progres }}"
-                                                                    data-description="{{ $progressWeek->description }}"
-                                                                    data-date_start="{{ \Carbon\Carbon::parse($progressWeek->date_start)->format('Y-m-d') }}"
-                                                                    data-week="{{ $progressWeek->week }}"
-                                                                    data-date_finish="{{ \Carbon\Carbon::parse($progressWeek->date_finish)->format('Y-m-d') }}"><svg
+                                                                    id="btn-edit-{{ $progressWeekExecutor->id }}"
+                                                                    data-id="{{ $progressWeekExecutor->id }}"
+                                                                    data-progres="{{ $progressWeekExecutor->progres }}"
+                                                                    data-description="{{ $progressWeekExecutor->description }}"
+                                                                    data-date_start="{{ \Carbon\Carbon::parse($progressWeekExecutor->date_start)->format('Y-m-d') }}"
+                                                                    data-week="{{ $progressWeekExecutor->week }}"
+                                                                    data-date_finish="{{ \Carbon\Carbon::parse($progressWeekExecutor->date_finish)->format('Y-m-d') }}"><svg
                                                                         xmlns="http://www.w3.org/2000/svg" width="20"
                                                                         height="20" viewBox="0 0 24 24" fill="none">
                                                                         <g clip-path="url(#clip0_373_6257)">
@@ -348,8 +273,8 @@
                                                             </div>
                                                             <div class="">
                                                                 <button class="btn btn-delete btn-danger btn-sm"
-                                                                    id="{{ $progressWeek->id }}"
-                                                                    data-id="{{ $progressWeek->id }}">
+                                                                    id="{{ $progressWeekExecutor->id }}"
+                                                                    data-id="{{ $progressWeekExecutor->id }}">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20"
                                                                         height="20" viewBox="0 0 20 20" fill="none">
                                                                         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -361,7 +286,7 @@
                                                         @endif
                                                     </div>
                                                 </td>
-                                                @if ($progressWeek->file)
+                                                @if ($progressWeekExecutor->file)
                                                     <td>
                                                         <a href="/download-service-provider-project/{{ $serviceProviderProject->id }}"
                                                             class="btn btn-success btn-sm rounded-3">
@@ -407,7 +332,7 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-between">
                                 <div class="ms-2 fw">
-                                    <p class="fw-medium fs-5" style="margin-bottom: 25%;">Daftar Progress Harian</p>
+                                    <p class="fw-medium fs-5" style="margin-bottom: 25%;">Daftar Progres Harian</p>
                                 </div>
                                 <div>
                                     @if ($executorProject->status == 'active')
@@ -447,7 +372,8 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Tanggal</th>
-                                            <th>Miggu ke-</th>
+                                            <th>Hari ke-</th>
+                                            <th>Minggu ke-</th>
                                             <th>Halaman</th>
                                             <th>Aksi</th>
                                             <th>
@@ -456,19 +382,20 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($dataDays as $progressDay)
+                                        @forelse ($dataDaysExecutor as $progressDayExecutor)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ Carbon::parse($progressDay->date_start)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                                <td>{{ Carbon::parse($progressDayExecutor->date_start)->locale('id_ID')->isoFormat('DD MMMM Y') }}
                                                 </td>
-                                                <td>{{ $progressDay->week }}</td>
-                                                <td>{{ $progressDay->page }}</td>
+                                                <td>{{ $progressDayExecutor->days }}</td>
+                                                <td>{{ $progressDayExecutor->week }}</td>
+                                                <td>{{ $progressDayExecutor->page }}</td>
                                                 <td>
                                                     <div class="d-flex justify-content-header gap-2">
                                                         <div class="">
-                                                            <button type="button" id="{{ $progressDay->id }}"
-                                                                data-id="{{ $progressDay->id }}"
-                                                                class="btn btn-sm btn-detail" style="background-color: #1B3061;">
+                                                            <button type="button" id="{{ $progressDayExecutor->id }}"
+                                                                data-id="{{ $progressDayExecutor->id }}"
+                                                                class="btn btn-sm btn-detail-days" style="background-color: #1B3061;">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                                     viewBox="0 0 24 24" fill="none">
                                                                     <path d="M4.5 12.5C7.5 6 16.5 6 19.5 12.5" stroke="white"
@@ -483,14 +410,15 @@
                                                         </div>
                                                         @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant' || Auth::user()->serviceProvider?->type_of_business_entity == 'executor' && $executorProject->status == 'active')
                                                             <div>
-                                                                <button class="btn btn-edit btn-sm btn-warning"
-                                                                    id="btn-edit-{{ $progressDay->id }}"
-                                                                    data-id="{{ $progressDay->id }}"
-                                                                    data-progres="{{ $progressDay->progres }}"
-                                                                    data-description="{{ $progressDay->description }}"
-                                                                    data-date_start="{{ \Carbon\Carbon::parse($progressDay->date_start)->format('Y-m-d') }}"
-                                                                    data-week="{{ $progressDay->week }}"
-                                                                    data-date_finish="{{ \Carbon\Carbon::parse($progressDay->date_finish)->format('Y-m-d') }}"><svg
+                                                                <button class="btn btn-edit-days btn-sm btn-warning"
+                                                                    id="btn-edit-{{ $progressDayExecutor->id }}"
+                                                                    data-id="{{ $progressDayExecutor->id }}"
+                                                                    data-days="{{ $progressDayExecutor->days }}"
+                                                                    data-page="{{ $progressDayExecutor->page }}"
+                                                                    data-description="{{ $progressDayExecutor->description }}"
+                                                                    data-date_start="{{ \Carbon\Carbon::parse($progressDayExecutor->date_start)->format('Y-m-d') }}"
+                                                                    data-week="{{ $progressDayExecutor->week }}"
+                                                                    data-date_finish="{{ \Carbon\Carbon::parse($progressDayExecutor->date_finish)->format('Y-m-d') }}"><svg
                                                                         xmlns="http://www.w3.org/2000/svg" width="20"
                                                                         height="20" viewBox="0 0 24 24" fill="none">
                                                                         <g clip-path="url(#clip0_373_6257)">
@@ -514,8 +442,8 @@
                                                             </div>
                                                             <div class="">
                                                                 <button class="btn btn-delete btn-danger btn-sm"
-                                                                    id="{{ $progressDay->id }}"
-                                                                    data-id="{{ $progressDay->id }}">
+                                                                    id="{{ $progressDayExecutor->id }}"
+                                                                    data-id="{{ $progressDayExecutor->id }}">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20"
                                                                         height="20" viewBox="0 0 20 20" fill="none">
                                                                         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -527,7 +455,7 @@
                                                         @endif
                                                     </div>
                                                 </td>
-                                                @if ($progressDay->file)
+                                                @if ($progressDayExecutor->file)
                                                     <td>
                                                         <a href="/download-service-provider-project/{{ $serviceProviderProject->id }}"
                                                             class="btn btn-success btn-sm rounded-3">
@@ -596,7 +524,7 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-between">
                                 <div class="ms-2 fw">
-                                    <p class="fw-medium fs-5" style="margin-bottom: 25%;">Daftar Progress Mingguan</p>
+                                    <p class="fw-medium fs-5" style="margin-bottom: 25%;">Daftar Progres Mingguan</p>
                                 </div>
                                 <div>
                                     @if ($executorProject->status == 'active')
@@ -638,7 +566,7 @@
                                             <th>No</th>
                                             <th>Tanggal Mulai</th>
                                             <th>Tanggal Akhir</th>
-                                            <th>Miggu ke-</th>
+                                            <th>Minggu ke-</th>
                                             <th>Progres (%)</th>
                                             <th>Aksi</th>
                                             <th>
@@ -647,20 +575,20 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($dataWeek as $progressWeek)
+                                        @forelse ($dataWeekConsultant as $progressWeekConsultant)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ Carbon::parse($progressWeek->date_start)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                                <td>{{ Carbon::parse($progressWeekConsultant->date_start)->locale('id_ID')->isoFormat('DD MMMM Y') }}
                                                 </td>
-                                                <td>{{ Carbon::parse($progressWeek->date_finish)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                                <td>{{ Carbon::parse($progressWeekConsultant->date_finish)->locale('id_ID')->isoFormat('DD MMMM Y') }}
                                                 </td>
-                                                <td>{{ $progressWeek->week }}</td>
-                                                <td>{{ $progressWeek->progres }}% Progress</td>
+                                                <td>{{ $progressWeekConsultant->week }}</td>
+                                                <td>{{ $progressWeekConsultant->progres }}% Progress</td>
                                                 <td>
                                                     <div class="d-flex justify-content-header gap-2">
                                                         <div class="">
-                                                            <button type="button" id="{{ $progressWeek->id }}"
-                                                                data-id="{{ $progressWeek->id }}"
+                                                            <button type="button" id="{{ $progressWeekConsultant->id }}"
+                                                                data-id="{{ $progressWeekConsultant->id }}"
                                                                 class="btn btn-sm btn-detail" style="background-color: #1B3061;">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                                     viewBox="0 0 24 24" fill="none">
@@ -677,13 +605,13 @@
                                                         @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant' || Auth::user()->serviceProvider?->type_of_business_entity == 'executor' && $executorProject->status == 'active')
                                                             <div>
                                                                 <button class="btn btn-edit btn-sm btn-warning"
-                                                                    id="btn-edit-{{ $progressWeek->id }}"
-                                                                    data-id="{{ $progressWeek->id }}"
-                                                                    data-progres="{{ $progressWeek->progres }}"
-                                                                    data-description="{{ $progressWeek->description }}"
-                                                                    data-date_start="{{ \Carbon\Carbon::parse($progressWeek->date_start)->format('Y-m-d') }}"
-                                                                    data-week="{{ $progressWeek->week }}"
-                                                                    data-date_finish="{{ \Carbon\Carbon::parse($progressWeek->date_finish)->format('Y-m-d') }}"><svg
+                                                                    id="btn-edit-{{ $progressWeekConsultant->id }}"
+                                                                    data-id="{{ $progressWeekConsultant->id }}"
+                                                                    data-progres="{{ $progressWeekConsultant->progres }}"
+                                                                    data-description="{{ $progressWeekConsultant->description }}"
+                                                                    data-date_start="{{ \Carbon\Carbon::parse($progressWeekConsultant->date_start)->format('Y-m-d') }}"
+                                                                    data-week="{{ $progressWeekConsultant->week }}"
+                                                                    data-date_finish="{{ \Carbon\Carbon::parse($progressWeekConsultant->date_finish)->format('Y-m-d') }}"><svg
                                                                         xmlns="http://www.w3.org/2000/svg" width="20"
                                                                         height="20" viewBox="0 0 24 24" fill="none">
                                                                         <g clip-path="url(#clip0_373_6257)">
@@ -707,8 +635,8 @@
                                                             </div>
                                                             <div class="">
                                                                 <button class="btn btn-delete btn-danger btn-sm"
-                                                                    id="{{ $progressWeek->id }}"
-                                                                    data-id="{{ $progressWeek->id }}">
+                                                                    id="{{ $progressWeekConsultant->id }}"
+                                                                    data-id="{{ $progressWeekConsultant->id }}">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20"
                                                                         height="20" viewBox="0 0 20 20" fill="none">
                                                                         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -720,7 +648,7 @@
                                                         @endif
                                                     </div>
                                                 </td>
-                                                @if ($progressWeek->file)
+                                                @if ($progressWeekConsultant->file)
                                                     <td>
                                                         <a href="/download-service-provider-project/{{ $serviceProviderProject->id }}"
                                                             class="btn btn-success btn-sm rounded-3">
@@ -766,12 +694,12 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-between">
                                 <div class="ms-2 fw">
-                                    <p class="fw-medium fs-5" style="margin-bottom: 25%;">Daftar Progress Harian</p>
+                                    <p class="fw-medium fs-5" style="margin-bottom: 25%;">Daftar Progres Harian</p>
                                 </div>
                                 <div>
                                     @if ($executorProject->status == 'active')
                                         @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant' || Auth::user()->serviceProvider?->type_of_business_entity == 'executor')
-                                            <div {{ $executorProject->physical_progress == 100 ? '' : 'data-bs-toggle=modal data-bs-target=#modal-create' }}
+                                            <div {{ $executorProject->physical_progress == 100 ? '' : 'data-bs-toggle=modal data-bs-target=#modal-create-day' }}
                                                 class="btn  rounded-3" style="background-color:#1B3061; color:white;">
                                                 @if ($executorProject->physical_progress == 100)
                                                     <form
@@ -806,7 +734,8 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Tanggal</th>
-                                            <th>Miggu ke-</th>
+                                            <th>Hari ke-</th>
+                                            <th>Minggu ke-</th>
                                             <th>Halaman</th>
                                             <th>Aksi</th>
                                             <th>
@@ -815,19 +744,20 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($dataDays as $progressDay)
+                                        @forelse ($dataDaysConsultant as $progressDayConsultant)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ Carbon::parse($progressDay->date_start)->locale('id_ID')->isoFormat('DD MMMM Y') }}
+                                                <td>{{ Carbon::parse($progressDayConsultant->date_start)->locale('id_ID')->isoFormat('DD MMMM Y') }}
                                                 </td>
-                                                <td>{{ $progressDay->week }}</td>
-                                                <td>{{ $progressDay->progres }}% Progress</td>
+                                                <td>{{ $progressDayConsultant->days }}</td>
+                                                <td>{{ $progressDayConsultant->week }}</td>
+                                                <td>{{ $progressDayConsultant->page }}</td>
                                                 <td>
                                                     <div class="d-flex justify-content-header gap-2">
                                                         <div class="">
-                                                            <button type="button" id="{{ $progressDay->id }}"
-                                                                data-id="{{ $progressDay->id }}"
-                                                                class="btn btn-sm btn-detail" style="background-color: #1B3061;">
+                                                            <button type="button" id="{{ $progressDayConsultant->id }}"
+                                                                data-id="{{ $progressDayConsultant->id }}"
+                                                                class="btn btn-sm btn-detail-days" style="background-color: #1B3061;">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                                     viewBox="0 0 24 24" fill="none">
                                                                     <path d="M4.5 12.5C7.5 6 16.5 6 19.5 12.5" stroke="white"
@@ -842,14 +772,16 @@
                                                         </div>
                                                         @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant' || Auth::user()->serviceProvider?->type_of_business_entity == 'executor' && $executorProject->status == 'active')
                                                             <div>
-                                                                <button class="btn btn-edit btn-sm btn-warning"
-                                                                    id="btn-edit-{{ $progressDay->id }}"
-                                                                    data-id="{{ $progressDay->id }}"
-                                                                    data-progres="{{ $progressDay->progres }}"
-                                                                    data-description="{{ $progressDay->description }}"
-                                                                    data-date_start="{{ \Carbon\Carbon::parse($progressDay->date_start)->format('Y-m-d') }}"
-                                                                    data-week="{{ $progressDay->week }}"
-                                                                    data-date_finish="{{ \Carbon\Carbon::parse($progressDay->date_finish)->format('Y-m-d') }}"><svg
+                                                                <button class="btn btn-edit-days btn-sm btn-warning"
+                                                                    id="btn-edit-{{ $progressDayConsultant->id }}"
+                                                                    data-id="{{ $progressDayConsultant->id }}"
+                                                                    data-days="{{ $progressDayConsultant->days }}"
+                                                                    data-page="{{ $progressDayConsultant->page }}"
+                                                                    data-progres="{{ $progressDayConsultant->progres }}"
+                                                                    data-description="{{ $progressDayConsultant->description }}"
+                                                                    data-date_start="{{ \Carbon\Carbon::parse($progressDayConsultant->date_start)->format('Y-m-d') }}"
+                                                                    data-week="{{ $progressDayConsultant->week }}"
+                                                                    data-date_finish="{{ \Carbon\Carbon::parse($progressDayConsultant->date_finish)->format('Y-m-d') }}"><svg
                                                                         xmlns="http://www.w3.org/2000/svg" width="20"
                                                                         height="20" viewBox="0 0 24 24" fill="none">
                                                                         <g clip-path="url(#clip0_373_6257)">
@@ -873,8 +805,8 @@
                                                             </div>
                                                             <div class="">
                                                                 <button class="btn btn-delete btn-danger btn-sm"
-                                                                    id="{{ $progressDay->id }}"
-                                                                    data-id="{{ $progressDay->id }}">
+                                                                    id="{{ $progressDayConsultant->id }}"
+                                                                    data-id="{{ $progressDayConsultant->id }}">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20"
                                                                         height="20" viewBox="0 0 20 20" fill="none">
                                                                         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -886,7 +818,7 @@
                                                         @endif
                                                     </div>
                                                 </td>
-                                                @if ($progressDay->file)
+                                                @if ($progressDayConsultant->file)
                                                     <td>
                                                         <a href="/download-service-provider-project/{{ $serviceProviderProject->id }}"
                                                             class="btn btn-success btn-sm rounded-3">
@@ -1211,14 +1143,21 @@
                 @csrf
                 <div class="modal-body">
                     <div class="row">
-                            <div class="col-lg-4">
+                            <div class="col-lg-3">
                                 <div class="mb-3 ajax-select mt-3 mt-lg-0">
                                     <label class="form-label">Tanggal</label>
                                     <input type="date" class="form-control" value="{{ old('date_start') }}"
                                         name="date_start" id="">
                                 </div>
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-3">
+                                <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                                    <label class="form-label">Hari ke-</label>
+                                    <input type="number" class="form-control" value="{{ old('days') }}"
+                                        name="days" id="">
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
                                 <div class="mb-3 ajax-select mt-3 mt-lg-0">
                                     <label class="form-label">Minggu ke-</label>
                                     <input type="number" class="form-control" value="{{ old('week') }}"
@@ -1226,7 +1165,7 @@
                                     <input type="hidden" value="0" name="progres">
                                 </div>
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-3">
                                 <div class="mb-3 ajax-select mt-3 mt-lg-0">
                                     <label class="form-label">Halaman</label>
                                     <input type="number" class="form-control" value="{{ old('week') }}"
@@ -1448,7 +1387,7 @@
     </div>
     <!-- end modal tambah progres mingguan & modal upload file pendukung  -->
 
-    <!-- modal edit progres  -->
+    <!-- modal edit progres mingguan  -->
     <div class="modal fade bs-example-modal-xl" id="modal-update" tabindex="-1" role="dialog"
         aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -1520,7 +1459,219 @@
             </form>
         </div>
     </div>
-    <!-- end modal edit progres  -->
+    <!-- end modal edit progres mingguan  -->
+
+    <!-- modal edit progres harian  -->
+    <div class="modal fade bs-example-modal-xl" id="modal-update-days" tabindex="-1" role="dialog"
+        aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div style="background-color: #1B3061;">
+                    <h5 class="modal-title text-white text-center m-3 fs-4">Edit Progress</h5>
+                </div>
+                <form id="form-update-days" method="post" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                                    <label class="form-label">Tanggal</label>
+                                    <input type="date" class="form-control" value="{{ old('date_start') }}"
+                                        name="date_start" id="">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                                    <label class="form-label">Hari ke-</label>
+                                    <input type="number" class="form-control" value="{{ old('days') }}"
+                                        name="days" id="">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                                    <label class="form-label">Minggu ke-</label>
+                                    <input type="number" class="form-control" value="{{ old('week') }}"
+                                        name="week" id="">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                                    <label class="form-label">Halaman</label>
+                                    <input type="number" class="form-control"
+                                        value="{{ old('page') }}" name="page" id="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                                    <label class="form-label">File Pendukung</label>
+                                    <input class="form-control" type="file" value="{{ old('file') }}"
+                                        name="file" id="">
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <label class="form-label" for="">Deskripsi</label>
+                                <textarea class="form-control" name="description" id="" cols="20" rows="5">{{ old('description') }}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex d-row justify-content-end mb-3 me-2">
+
+                        <button type="button" class="btn btn-danger btn-md me-2" data-bs-dismiss="modal"
+                            aria-label="Close">Batal</button>
+                        <button type="submit" style="background-color: #1B3061; color:white;"
+                            class="btn btn-md">Edit</button>
+
+                    </div>
+            </div>
+            </form>
+        </div>
+    </div>
+    <!-- end modal edit progres harian  -->
+
+    <!-- modal detail progres mingguan  -->
+    <div class="modal fade bs-example-modal-md" id="modal-detail" tabindex="-1" role="dialog"
+        aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #1B3061">
+                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Detail Progres</h5>
+                    <button type="button" class="btn-close" style="background-color: white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="btn btn-sm mb-2 text-dark rounded-3 year-detail" style="background-color: #E4ECFF;">
+
+                            </div>
+                            <p class="mt-1 fs-5 text-dark mb-2" style="font-weight: 700">
+                                <span id="detail-name " class="name-detail"></span>
+                            </p>
+                            <div class="">
+                                <div class="row mb-1">
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark">Progress (%) :</p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-birth_date"
+                                                class="progres-detail"></span></p>
+                                    </div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark">Tanggal Mulai :</p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-education"
+                                                class="date_start-detail"></span></p>
+                                    </div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark">Tanggal Akhir :</p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
+                                                id="detail-registration_number" class="date_finish-detail"></span></p>
+                                    </div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark">Minggu Ke- :</p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-"
+                                                class="week"></span></p>
+                                    </div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark">Deskripsi :</p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-cerificate"
+                                                class="description-detail"></span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+    <!-- end modal detail progres mmingguan  -->
+
+    <!-- modal detail progres harian  -->
+    <div class="modal fade bs-example-modal-md" id="modal-detail-days" tabindex="-1" role="dialog"
+        aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #1B3061">
+                    <h5 class="modal-title text-white" id="myExtraLargeModalLabel">Detail Progres</h5>
+                    <button type="button" class="btn-close" style="background-color: white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="btn btn-sm mb-2 text-dark rounded-3 year-detail" style="background-color: #E4ECFF;">
+
+                            </div>
+                            <p class="mt-1 fs-5 text-dark mb-2" style="font-weight: 700">
+                                <span id="detail-name " class="name-detail"></span>
+                            </p>
+                            <div class="">
+                                <div class="row mb-1">
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark">Tanggal :</p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-education"
+                                                class="date_start-detail"></span></p>
+                                    </div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark">Hari Ke- :</p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span
+                                                id="detail-registration_number" class="days"></span></p>
+                                    </div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark">Minggu Ke- :</p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-"
+                                                class="week"></span></p>
+                                    </div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark">Deskripsi :</p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <p class="mb-2 text-dark" style="font-weight:600;"><span id="detail-cerificate"
+                                                class="description-detail"></span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+    <!-- end modal detail progres harian  -->
 
     </div>
     <x-delete-modal-component />
@@ -1618,6 +1769,32 @@
             }
             $('#modal-detail').modal('show')
         })
+        $('.btn-detail-days').click(function() {
+            id = $(this).data('id')
+            get()
+
+            function get() {
+                $.ajax({
+                    url: "/service-provider-project-detail/" + id,
+                    type: 'GET',
+                    dataType: "JSON",
+                    success: function(response) {
+                        console.log(response.data)
+                        $('.year-detail').text(response.data.project.year)
+                        $('.name-detail').text(response.data.project.name)
+                        $('.progres-detail').text(response.data.progres)
+                        $('.date_start-detail').text(response.data.date_start)
+                        $('.date_finish-detail').text(response.data.date_finish)
+                        $('.days').text(response.data.days)
+                        $('.description-detail').text(response.data.description)
+                        $('.week').text(response.data.week)
+                        $('.file-detail').attr('href', response.data.file)
+                    }
+                });
+            }
+            $('#modal-detail-days').modal('show')
+        })
+
         $('.btn-edit').click(function() {
             const formData = getDataAttributes($(this).attr('id'))
             var actionUrl = `/service-provider-projects/${formData['id']}`;
@@ -1627,6 +1804,18 @@
             $('#form-update').data('id', formData['id'])
             $('#form-update').attr('action', );
             $('#modal-update').modal('show')
+        })
+
+        $('.btn-edit-days').click(function(e) {
+            e.preventDefault()
+            const formData = getDataAttributes($(this).attr('id'))
+            var actionUrl = `/service-provider-projects/${formData['id']}`;
+            $('#form-update-days').attr('action', actionUrl);
+            console.log(formData);
+            setFormValues('form-update-days', formData)
+            $('#form-update-days').data('id', formData['id'])
+            $('#form-update-days').attr('action', );
+            $('#modal-update-days').modal('show')
         })
     </script>
 @endsection

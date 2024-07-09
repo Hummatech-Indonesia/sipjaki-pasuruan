@@ -21,7 +21,8 @@ class ServiceProviderProjectRequest extends FormRequest
             'progres' => 'nullable|numeric|between:0,100',
             'description' => 'required',
             'page' => 'nullable',
-            'type' => 'nullable'
+            'type' => 'nullable',
+            'days' => 'nullable',
         ];
     }
 
@@ -50,7 +51,7 @@ class ServiceProviderProjectRequest extends FormRequest
 
     protected function prepareForValidation()
     {
-        if(!$this->date_finish) $this->merge(['date_finish' => $this->date_start]);
-        if(!$this->progress) $this->merge(['progres' => 0]);
+        if (!$this->date_finish) $this->merge(['date_finish' => $this->date_start]);
+        if (!$this->progress) $this->merge(['progres' => 0]);
     }
 }
