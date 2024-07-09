@@ -91,7 +91,7 @@ class ServiceProviderProjectController extends Controller
                 $columnProgress = 'physical_progress';
             }
             else {
-                $serviceProviderProject = $serviceProviderProjects->where('executor_type','consultant');
+                $serviceProviderProject = $serviceProviderProjects->where('executor_type','executor');
                 $columnProgress = 'executor_physical_progress';
             } 
             foreach ($serviceProviderProjects as $serviceProviderProject) {

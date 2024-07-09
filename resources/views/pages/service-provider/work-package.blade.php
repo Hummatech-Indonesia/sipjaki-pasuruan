@@ -94,7 +94,7 @@
                                 {{ $executorProject->name }}
                             </td>
                             <td class="text-center">
-                                {{ $executorProject->dinas->user->name }}
+                                {{ $executorProject?->dinas?->user?->name }}
                             </td>
                             <td class="text-center">
                                 {{ $executorProject->fiscalYear->name }}

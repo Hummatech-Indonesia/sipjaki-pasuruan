@@ -52,6 +52,6 @@ class ServiceProviderProjectRequest extends FormRequest
     protected function prepareForValidation()
     {
         if (!$this->date_finish) $this->merge(['date_finish' => $this->date_start]);
-        if (!$this->progress) $this->merge(['progres' => 0]);
+        if (!$this->progres) $this->merge(['progres' => 0]);
     }
 }

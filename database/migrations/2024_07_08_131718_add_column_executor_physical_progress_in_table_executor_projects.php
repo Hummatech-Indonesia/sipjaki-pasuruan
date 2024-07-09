@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if(Schema::hasColumn('executor_projects','executor_physical_progress')){
+        if(!Schema::hasColumn('executor_projects','executor_physical_progress')){
             Schema::table('executor_projects', function (Blueprint $table) {
                 $table->integer('executor_physical_progress')->default(0);
             });
