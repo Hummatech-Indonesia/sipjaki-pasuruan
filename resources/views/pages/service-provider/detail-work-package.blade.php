@@ -1245,8 +1245,13 @@
 
                             <div class="col-lg-3">
                                 <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                                    @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant')
                                     <label class="form-label">Progres (max
                                         {{ 100 - $executorProject->physical_progress }}%)</label>
+                                    @else 
+                                    <label class="form-label">Progres (max
+                                        {{ 100 - $executorProject->executor_physical_progress }}%)</label>
+                                    @endif
                                     <input type="text" class="form-control" value="{{ old('progres') }}"
                                         name="progres" id="">
                                 </div>
@@ -1418,8 +1423,13 @@
 
                             <div class="col-lg-3">
                                 <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                                    @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant')
                                     <label class="form-label">Progres (max
                                         {{ 100 - $executorProject->physical_progress }}%)</label>
+                                    @else
+                                    <label class="form-label">Progres (max
+                                        {{ 100 - $executorProject->executor_physical_progress }}%)</label>
+                                    @endif
                                     <input type="text" max="3" class="form-control"
                                         value="{{ old('progres') }}" name="progres" id="">
                                 </div>
