@@ -78,11 +78,11 @@ class ServiceProviderProjectController extends Controller
      */
     public function store(ServiceProviderProjectRequest $request, ExecutorProject $executorProject)
     {
-
         $request->merge(['executor_project_id' => $executorProject->id]);
         $serviceProviderProjects = $this->serviceProviderProject->search($request);
         $service = $this->service->store($request, $serviceProviderProjects, $executorProject);
         if ($service) {
+            $this->serviceProviderProject->store($service);
             $progres = 0;
             if (auth()->user()->serviceProvider->type_of_business_entity == 'consultant') {
                 $serviceProviderProjects = $serviceProviderProjects->where('executor_type', 'consultant');
@@ -133,9 +133,26 @@ class ServiceProviderProjectController extends Controller
         $request->merge(['project_id' => $service_provider_project->project_id]);
         $serviceProviderProjects = $this->serviceProviderProject->search($request);
         $service = $this->service->update($request, $service_provider_project, $serviceProviderProjects);
+        
+        $serviceProviderProjects = $this->serviceProviderProject->search($request);
         if ($service == true) {
             $this->serviceProviderProject->update($service_provider_project->id, $service);
-        } else {
+            
+            $progres = 0;
+            if (auth()->user()->serviceProvider->type_of_business_entity == 'consultant') {
+                $serviceProviderProjects = $serviceProviderProjects->where('executor_type', 'consultant');
+                $columnProgress = 'physical_progress';
+            } else {
+                $serviceProviderProjects = $serviceProviderProjects->where('executor_type', 'executor');
+                $columnProgress = 'executor_physical_progress';
+            }
+            
+            foreach ($serviceProviderProjects as $serviceProviderProject) {
+                $progres += $serviceProviderProject->progres;
+            }
+
+            $this->executorProject->update($service_provider_project->executor_project_id, [$columnProgress => $progres]);
+        } else {            
             $progres = 0;
             if (auth()->user()->serviceProvider->type_of_business_entity == 'consultant') {
                 $serviceProviderProjects = $serviceProviderProjects->where('executor_type', 'consultant');
@@ -147,7 +164,7 @@ class ServiceProviderProjectController extends Controller
             foreach ($serviceProviderProjects as $serviceProviderProject) {
                 $progres += $serviceProviderProject->progres;
             }
-            $this->executorProject->update($service_provider_project->executor_project_id, [$columnProgress => ($progres + $request->progres)]);
+
             if ($request->is('api/*')) {
                 return ResponseHelper::error(null, "Project yang anda kerjakan saat ini sudah mencapai " . $progres - $service_provider_project->progres . "% jadi anda hanya bisa mengubah nilai progress maksimal " . 100 - ($progres - $service_provider_project->progres) . "%");
             } else {

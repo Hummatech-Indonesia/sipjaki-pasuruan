@@ -48,6 +48,11 @@ class ServiceProviderProjectService
         if ($serviceProviderProjects->first() == null) {
             return $data;
         } else {
+            if (auth()->user()->serviceProvider->type_of_business_entity == 'consultant') {
+                $serviceProviderProjects = $serviceProviderProjects->where('executor_type', 'consultant');
+            } else {
+                $serviceProviderProjects = $serviceProviderProjects->where('executor_type', 'executor');
+            }
             foreach ($serviceProviderProjects as $serviceProviderProject) {
                 $progres += $serviceProviderProject->progres;
             }
@@ -77,6 +82,11 @@ class ServiceProviderProjectService
         }
         $data['file'] = $old_file;
 
+        if (auth()->user()->serviceProvider->type_of_business_entity == 'consultant') {
+            $serviceProviderProjects = $serviceProviderProjects->where('executor_type', 'consultant');
+        } else {
+            $serviceProviderProjects = $serviceProviderProjects->where('executor_type', 'executor');
+        }
         foreach ($serviceProviderProjects as $serviceProviderProject) {
             $progres += $serviceProviderProject->progres;
         }
