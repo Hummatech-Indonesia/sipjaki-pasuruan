@@ -134,10 +134,10 @@ class ServiceProviderProjectController extends Controller
         $serviceProviderProjects = $this->serviceProviderProject->search($request);
         $service = $this->service->update($request, $service_provider_project, $serviceProviderProjects);
 
-        $serviceProviderProjects = $this->serviceProviderProject->search($request);
         if ($service == true) {
             $this->serviceProviderProject->update($service_provider_project->id, $service);
 
+            $serviceProviderProjects = $this->serviceProviderProject->search($request);
             $progres = 0;
             if (auth()->user()->serviceProvider->type_of_business_entity == 'consultant') {
                 $serviceProviderProjects = $serviceProviderProjects->where('executor_project_id',$service_provider_project->executor_project_id)->where('executor_type', 'consultant');
