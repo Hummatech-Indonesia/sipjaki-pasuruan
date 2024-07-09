@@ -140,10 +140,10 @@ class ServiceProviderProjectController extends Controller
 
             $progres = 0;
             if (auth()->user()->serviceProvider->type_of_business_entity == 'consultant') {
-                $serviceProviderProjects = $serviceProviderProjects->where('executor_type', 'consultant');
+                $serviceProviderProjects = $serviceProviderProjects->where('executor_project_id',$service_provider_project->executor_project_id)->where('executor_type', 'consultant');
                 $columnProgress = 'physical_progress';
             } else {
-                $serviceProviderProjects = $serviceProviderProjects->where('executor_type', 'executor');
+                $serviceProviderProjects = $serviceProviderProjects->where('executor_project_id',$service_provider_project->executor_project_id)->where('executor_type', 'executor');
                 $columnProgress = 'executor_physical_progress';
             }
 
@@ -155,10 +155,10 @@ class ServiceProviderProjectController extends Controller
         } else {
             $progres = 0;
             if (auth()->user()->serviceProvider->type_of_business_entity == 'consultant') {
-                $serviceProviderProjects = $serviceProviderProjects->where('executor_type', 'consultant');
+                $serviceProviderProjects = $serviceProviderProjects->where('executor_project_id',$service_provider_project->executor_project_id)->where('executor_type', 'consultant');
                 $columnProgress = 'physical_progress';
             } else {
-                $serviceProviderProjects = $serviceProviderProjects->where('executor_type', 'executor');
+                $serviceProviderProjects = $serviceProviderProjects->where('executor_project_id',$service_provider_project->executor_project_id)->where('executor_type', 'executor');
                 $columnProgress = 'executor_physical_progress';
             }
             foreach ($serviceProviderProjects as $serviceProviderProject) {
