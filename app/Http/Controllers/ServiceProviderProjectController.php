@@ -65,7 +65,6 @@ class ServiceProviderProjectController extends Controller
     {
         $executorProjects = $this->executorProject->customPaginate($request, 10);
         $fiscalYears = $this->fiscalYear->get();
-
         return view('pages.service-provider.work-package', compact(
             'executorProjects',
             'fiscalYears'
@@ -87,13 +86,12 @@ class ServiceProviderProjectController extends Controller
             $this->serviceProviderProject->store($service);
             $progres = 0;
             if (auth()->user()->serviceProvider->type_of_business_entity == 'consultant') {
-                $serviceProviderProject = $serviceProviderProjects->where('executor_type','consultant');
+                $serviceProviderProject = $serviceProviderProjects->where('executor_type', 'consultant');
                 $columnProgress = 'physical_progress';
-            }
-            else {
-                $serviceProviderProject = $serviceProviderProjects->where('executor_type','executor');
+            } else {
+                $serviceProviderProject = $serviceProviderProjects->where('executor_type', 'executor');
                 $columnProgress = 'executor_physical_progress';
-            } 
+            }
             foreach ($serviceProviderProjects as $serviceProviderProject) {
                 $progres += $serviceProviderProject->progres;
             }

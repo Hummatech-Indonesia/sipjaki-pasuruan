@@ -73,9 +73,16 @@
                         <td class="text-white text-center" style="background-color: #1B3061">
                             Tahun
                         </td>
+                        @if (auth()->user()->serviceProvider?->type_of_business_entity != "executor")
                         <td class="text-white text-center" style="background-color: #1B3061">
                             Progres
                         </td>
+                        @endif
+                        @if (auth()->user()->serviceProvider?->type_of_business_entity != "consultant")
+                        <td class="text-white text-center" style="background-color: #1B3061">
+                            Progres
+                        </td>
+                        @endif
                         <td class="text-white text-center" style="background-color: #1B3061">
                             Status
                         </td>
@@ -99,9 +106,16 @@
                             <td class="text-center">
                                 {{ $executorProject->fiscalYear->name }}
                             </td>
-                            <td class="text-center">
-                                {{ $executorProject->physical_progress }}%
-                            </td>
+                            @if (auth()->user()->serviceProvider?->type_of_business_entity != "executor")
+                                <td class="text-center">
+                                    {{ $executorProject->physical_progress }}%
+                                </td>
+                            @endif
+                            @if (auth()->user()->serviceProvider?->type_of_business_entity != "consultant")
+                                <td class="text-center">
+                                    {{ $executorProject->executor_physical_progress }}%
+                                </td>
+                            @endif
                             <td class="text-center">
                                 @php
                                     switch ($executorProject->status) {

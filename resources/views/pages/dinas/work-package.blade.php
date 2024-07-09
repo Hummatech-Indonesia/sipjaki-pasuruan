@@ -6,6 +6,8 @@
     <p class="fs-4 text-dark" style="font-weight: 600">
         Paket Pekerjaan
     </p>
+
+    <!-- searching  -->
     <div class="d-flex justify-content-between ">
         <form action="" method="GET" class="d-flex gap-3 col-10">
             <input type="search" id="search-name" value="{{ request()->name }}" name="name" class="form-control"
@@ -67,6 +69,9 @@
             </div>
         @endrole
     </div>
+    <!-- end searching  -->
+
+    <!-- role dinas  -->
     @role('dinas')
         <div class="modal fade bs-example-modal-xl" id="modal-create" data-bs-backdrop="static" tabindex="-1" role="dialog"
             aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
@@ -280,6 +285,9 @@
             </div><!-- /.modal-dialog -->
         </div>
     @endrole
+    <!-- end role dinas  -->
+
+    <!-- alert  -->
     <div class="row mt-2">
         @if ($errors->any())
         @foreach ($errors->all() as $error)
@@ -307,7 +315,12 @@
                         @endrole
                         <th class="text-center table-sipjaki">Tahun</th>
                         <th class="text-center table-sipjaki">Nilai Kontrak</th>
-                        <th class="text-center table-sipjaki">Progress</th>
+                        @if(auth()->user()->serviceProvider?->type_of_business_entity == 'consultant' || auth()->user()->roles->first()->name != 'service provider')
+                            <th class="text-center table-sipjaki">Progres Konsultan</th>
+                        @endif
+                        @if(auth()->user()->serviceProvider?->type_of_business_entity == 'executor' || auth()->user()->roles->first()->name != 'service provider')
+                            <th class="text-center table-sipjaki">Progres Pelaksana</th>
+                        @endif
                         <th class="text-center table-sipjaki">Aksi</th>
                     </tr>
                 </thead>
@@ -336,9 +349,16 @@
                             <td class="text-center">
                                 Rp.{{ number_format($executorProject->project_value, 0, ',', '.') }}
                             </td>
+                            @if(auth()->user()->serviceProvider?->type_of_business_entity == 'consultant' || auth()->user()->roles->first()->name != 'service provider')
                             <td class="text-center">
                                 {{ $executorProject->physical_progress }}%
                             </td>
+                            @endif
+                            @if(auth()->user()->serviceProvider?->type_of_business_entity == 'executor' || auth()->user()->roles->first()->name != 'service provider')
+                            <td class="text-center">
+                                {{ $executorProject->executor_physical_progress }}%
+                            </td>
+                            @endif
                             <td class="text-center">
                                 <div class="d-flex justify-content-center gap-2">
                                     @role('dinas')
@@ -404,7 +424,9 @@
             {{ $executorProjects->links('pagination::bootstrap-5') }}
         </div>
     </div>
+    <!-- end alert  -->
 
+    <!-- modal detail  -->
     <div class="modal fade bs-example-modal-md" id="modal-detail" tabindex="-1" role="dialog"
         aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-md">
@@ -496,7 +518,9 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div>
+    <!-- end modal detail  -->
 
+    <!-- modal update  -->
     <div class="modal fade bs-example-modal-xl" data-bs-backdrop="static" id="modal-update" tabindex="-1" role="dialog"
         aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
@@ -707,6 +731,8 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div>
+    <!-- end modal update  -->
+
     <x-delete-modal-component />
 @endsection
 @section('script')
