@@ -137,20 +137,24 @@ class ProjectController extends Controller
     public function projectDetail(ExecutorProject $executorProject): View
     {
         $data = collect($executorProject->serviceProviderProjects);
-        $dataWeekExecutor = $data->filter(function($item){
+        $dataWeekExecutor = $data->filter(function ($item) {
             return !$item->page && $item->executor_type == 'executor';
         });
-        $dataWeekConsultant = $data->filter(function($item){
+        $dataWeekConsultant = $data->filter(function ($item) {
             return !$item->page && $item->executor_type == 'consultant';
         });
-        $dataDaysConsultant = $data->filter(function($item){
+        $dataDaysConsultant = $data->filter(function ($item) {
             return $item->page && $item->executor_type == 'consultant';
         });
-        $dataDaysExecutor = $data->filter(function($item){
+        $dataDaysExecutor = $data->filter(function ($item) {
             return $item->page && $item->executor_type == 'executor';
         });
         return view('pages.service-provider.detail-work-package', compact(
-            'executorProject', 'dataWeekExecutor', 'dataDaysExecutor', 'dataWeekConsultant', 'dataDaysConsultant'
+            'executorProject',
+            'dataWeekExecutor',
+            'dataDaysExecutor',
+            'dataWeekConsultant',
+            'dataDaysConsultant'
         ));
     }
 

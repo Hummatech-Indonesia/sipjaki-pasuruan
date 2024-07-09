@@ -288,7 +288,7 @@
                                                 </td>
                                                 @if ($progressWeekExecutor->file)
                                                     <td>
-                                                        <a href="/download-service-provider-project/{{ $serviceProviderProject->id }}"
+                                                        <a href="/download-service-provider-project/{{ $progressWeekExecutor->id }}"
                                                             class="btn btn-success btn-sm rounded-3">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                                 viewBox="0 0 24 24" fill="none">
@@ -457,7 +457,7 @@
                                                 </td>
                                                 @if ($progressDayExecutor->file)
                                                     <td>
-                                                        <a href="/download-service-provider-project/{{ $serviceProviderProject->id }}"
+                                                        <a href="/download-service-provider-project/{{ $progressDayExecutor->id }}"
                                                             class="btn btn-success btn-sm rounded-3">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                                 viewBox="0 0 24 24" fill="none">
@@ -650,7 +650,7 @@
                                                 </td>
                                                 @if ($progressWeekConsultant->file)
                                                     <td>
-                                                        <a href="/download-service-provider-project/{{ $serviceProviderProject->id }}"
+                                                        <a href="/download-service-provider-project/{{ $progressWeekConsultant->id }}"
                                                             class="btn btn-success btn-sm rounded-3">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                                 viewBox="0 0 24 24" fill="none">
@@ -820,7 +820,7 @@
                                                 </td>
                                                 @if ($progressDayConsultant->file)
                                                     <td>
-                                                        <a href="/download-service-provider-project/{{ $serviceProviderProject->id }}"
+                                                        <a href="/download-service-provider-project/{{ $progressDayConsultant->id }}"
                                                             class="btn btn-success btn-sm rounded-3">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                                 viewBox="0 0 24 24" fill="none">
