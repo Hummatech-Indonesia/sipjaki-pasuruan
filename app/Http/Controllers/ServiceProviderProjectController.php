@@ -83,13 +83,12 @@ class ServiceProviderProjectController extends Controller
         $serviceProviderProjects = $this->serviceProviderProject->search($request);
         $service = $this->service->store($request, $serviceProviderProjects, $executorProject);
         if ($service) {
-            $this->serviceProviderProject->store($service);
             $progres = 0;
             if (auth()->user()->serviceProvider->type_of_business_entity == 'consultant') {
-                $serviceProviderProject = $serviceProviderProjects->where('executor_type', 'consultant');
+                $serviceProviderProjects = $serviceProviderProjects->where('executor_type', 'consultant');
                 $columnProgress = 'physical_progress';
             } else {
-                $serviceProviderProject = $serviceProviderProjects->where('executor_type', 'executor');
+                $serviceProviderProjects = $serviceProviderProjects->where('executor_type', 'executor');
                 $columnProgress = 'executor_physical_progress';
             }
             foreach ($serviceProviderProjects as $serviceProviderProject) {
@@ -138,9 +137,17 @@ class ServiceProviderProjectController extends Controller
             $this->serviceProviderProject->update($service_provider_project->id, $service);
         } else {
             $progres = 0;
+            if (auth()->user()->serviceProvider->type_of_business_entity == 'consultant') {
+                $serviceProviderProjects = $serviceProviderProjects->where('executor_type', 'consultant');
+                $columnProgress = 'physical_progress';
+            } else {
+                $serviceProviderProjects = $serviceProviderProjects->where('executor_type', 'executor');
+                $columnProgress = 'executor_physical_progress';
+            }
             foreach ($serviceProviderProjects as $serviceProviderProject) {
                 $progres += $serviceProviderProject->progres;
             }
+            $this->executorProject->update($service_provider_project->executor_project_id, [$columnProgress => ($progres + $request->progres)]);
             if ($request->is('api/*')) {
                 return ResponseHelper::error(null, "Project yang anda kerjakan saat ini sudah mencapai " . $progres - $service_provider_project->progres . "% jadi anda hanya bisa mengubah nilai progress maksimal " . 100 - ($progres - $service_provider_project->progres) . "%");
             } else {

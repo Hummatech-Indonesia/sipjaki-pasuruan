@@ -395,7 +395,7 @@
                         <tr>
                             <td class="fs-5">{{ $loop->iteration }}</td>
                             <td class="fs-5">{{ $activeExecutorProject->name }}</td>
-                            <td class="fs-5">{{ $activeExecutorProject->consultantProject->dinas->user->name }}</td>
+                            <td class="fs-5">{{ $activeExecutorProject->consultantProject?->dinas?->user?->name }}</td>
                             <td class="fs-5">{{ 'Rp ' . number_format($activeExecutorProject->project_value, 0, ',', '.') }}</td>
                         </tr>
                     @empty
