@@ -186,8 +186,25 @@ class ServiceProviderProjectController extends Controller
      */
     public function destroy(ServiceProviderProject $service_provider_project, Request $request)
     {
-        $this->service->remove($service_provider_project->file);
+        if($service_provider_project->file) $this->service->remove($service_provider_project->file);
         $this->serviceProviderProject->delete($service_provider_project->id);
+
+        $serviceProviderProjects = $this->serviceProviderProject->search($request);
+        $progres = 0;
+        if (auth()->user()->serviceProvider->type_of_business_entity == 'consultant') {
+            $serviceProviderProjects = $serviceProviderProjects->where('executor_project_id',$service_provider_project->executor_project_id)->where('executor_type', 'consultant');
+            $columnProgress = 'physical_progress';
+        } else {
+            $serviceProviderProjects = $serviceProviderProjects->where('executor_project_id',$service_provider_project->executor_project_id)->where('executor_type', 'executor');
+            $columnProgress = 'executor_physical_progress';
+        }
+
+        foreach ($serviceProviderProjects as $serviceProviderProject) {
+            $progres += $serviceProviderProject->progres;
+        }
+
+        $this->executorProject->update($service_provider_project->executor_project_id, [$columnProgress => $progres]);
+        
         if ($request->is('api/*')) {
             return ResponseHelper::success(null, trans('alert.delete_success'));
         } else {
