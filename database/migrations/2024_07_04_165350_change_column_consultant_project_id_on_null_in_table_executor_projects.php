@@ -13,11 +13,11 @@ return new class extends Migration
     {
         if(Schema::hasColumn('executor_projects', 'consultant_project_id')) {
             Schema::table('executor_projects', function (Blueprint $table) {
-                $table->dropForeign(['consultant_project_id']);
+                // $table->dropForeign(['consultant_project_id']);
 
                 // Make the column nullable and reapply the constraints
                 $table->uuid('consultant_project_id')->nullable()->change();
-                $table->foreign('consultant_project_id')->references('id')->on('consultant_projects')->cascadeOnDelete()->cascadeOnUpdate();
+                // $table->foreign('consultant_project_id')->references('id')->on('consultant_projects')->cascadeOnDelete()->cascadeOnUpdate();
             });
         }
     }
