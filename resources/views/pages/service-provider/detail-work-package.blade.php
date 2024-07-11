@@ -17,14 +17,14 @@
                     aria-selected="false">
                     <div class="fw-bold">Informasi Paket</div>
                 </a>
-                @if (auth()->user()->serviceProvider?->type_of_business_entity == "executor" || $executorProject->dinas_id == auth()->user()->dinas?->id || auth()->user()->roles->includes('superadmin') || auth()->user()->roles->includes('admin'))
+                @if (auth()->user()->serviceProvider?->type_of_business_entity == "executor" || $executorProject->dinas_id == auth()->user()->dinas?->id || auth()->user()->hasRole('admin') || auth()->user()->hasRole('superadmin'))
                 <a class="nav-link" style="border: solid 1px #1B3061;" onclick="tab('progres-penyedia-tab')"
                     id="progres-penyedia-tab" data-bs-toggle="pill" href="#progres-penyedia" role="tab"
                     aria-controls="progres-penyedia" aria-selected="false">
                     <div class="fw-bold">Progres Pelaksana</div>
                 </a>
                 @endif
-                @if (auth()->user()->serviceProvider?->type_of_business_entity == "consultant" || $executorProject->dinas_id == auth()->user()->dinas?->id || auth()->user()->roles->includes('superadmin') || auth()->user()->roles->includes('admin'))
+                @if (auth()->user()->serviceProvider?->type_of_business_entity == "consultant" || $executorProject->dinas_id == auth()->user()->dinas?->id || auth()->user()->hasRole('admin') || auth()->user()->hasRole('superadmin'))
                 <a class="nav-link" style="border: solid 1px #1B3061;" onclick="tab('progres-konsultan-tab')" id="progres-konsultan-tab"
                     data-bs-toggle="pill" href="#progres-konsultan" role="tab" aria-controls="progres-konsultan"
                     aria-selected="false">
@@ -139,7 +139,7 @@
         </div>
         <!-- end informasi paket  -->
         <!-- Progres Penyedia -->
-        @if (auth()->user()->serviceProvider?->type_of_business_entity == "executor" || $executorProject->dinas_id == auth()->user()->dinas?->id || auth()->user()->roles->includes('superadmin') || auth()->user()->roles->includes('admin'))
+        @if (auth()->user()->serviceProvider?->type_of_business_entity == "executor" || $executorProject->dinas_id == auth()->user()->dinas?->id || auth()->user()->hasRole('admin') || auth()->user()->hasRole('superadmin'))
         <div class="tab-pane fade-out" id="progres-penyedia" role="tabpanel"
             aria-labelledby="progres-penyedia-tab">
             <div class="row">
@@ -501,7 +501,7 @@
         @endif
         <!-- End Progres Penyedia  -->
         <!-- Progres Konsultan  -->
-        @if (auth()->user()->serviceProvider?->type_of_business_entity == "consultant" || $executorProject->dinas_id == auth()->user()->dinas?->id || auth()->user()->roles->includes('superadmin') || auth()->user()->roles->includes('admin'))
+        @if (auth()->user()->serviceProvider?->type_of_business_entity == "consultant" || $executorProject->dinas_id == auth()->user()->dinas?->id || auth()->user()->hasRole('admin') || auth()->user()->hasRole('superadmin'))
         <div class="tab-pane fade-out" id="progres-konsultan" role="tabpanel"
             aria-labelledby="progres-konsultan-tab">
             <div class="row">
