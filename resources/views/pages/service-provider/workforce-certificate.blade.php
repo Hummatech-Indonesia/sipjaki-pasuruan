@@ -69,7 +69,7 @@
                                 {{ $workerCertificate->registration_number }}
                             </td>
                             <td class="text-center">
-                                {{ $workerCertificate->qualificationLevel->name }}
+                                {{ $workerCertificate->qualificationLevel?->name }}
                             </td>
                             <td class="text-center">
                                 {{ $workerCertificate->subClassification->name }}
