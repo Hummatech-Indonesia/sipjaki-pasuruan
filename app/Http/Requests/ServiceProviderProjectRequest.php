@@ -16,7 +16,7 @@ class ServiceProviderProjectRequest extends FormRequest
         return [
             'date_start' => 'required|date',
             'date_finish' => 'nullable|date|after_or_equal:date_start',
-            'file' => 'nullable|mimes:pdf',
+            'file' => 'required|mimes:pdf|max:2048',
             'week' => 'required|numeric|min:0',
             'progres' => 'nullable|numeric|between:0,100',
             'description' => 'required',
@@ -45,6 +45,7 @@ class ServiceProviderProjectRequest extends FormRequest
             'progres.between' => 'Progres yang diinputkan harus diantara 1-100',
             'file.required' => 'File wajib diisi',
             'file.mimes' => 'Format file yang diizinkan hanyalah berformat PDF',
+            'file.max' => 'Format file yang diizinkan maximal 2 mb',
             'description.required' => 'Deskripsi wajib diisi',
         ];
     }
