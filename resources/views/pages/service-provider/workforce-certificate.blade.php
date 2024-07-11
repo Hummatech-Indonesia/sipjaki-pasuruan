@@ -72,7 +72,7 @@
                                 {{ $workerCertificate->qualificationLevel?->name }}
                             </td>
                             <td class="text-center">
-                                {{ $workerCertificate->subClassification->name }}
+                                {{ $workerCertificate->subClassification?->name }}
                             </td>
                             @role('service provider')
                                 <td class="d-flex flex-row justify-content-center gap-2">
