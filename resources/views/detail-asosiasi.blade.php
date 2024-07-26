@@ -55,9 +55,9 @@
                                     <td class="text-white" style="background-color: #1B3061">
                                         Nama Direktur
                                     </td>
-                                    <td class="text-white" style="background-color: #1B3061">
+                                    <!-- <td class="text-white" style="background-color: #1B3061">
                                         No Telp
-                                    </td>
+                                    </td> -->
                                     {{-- <td class="text-white" style="background-color: #1B3061">
                                                 Aksi
                                             </td> --}}
@@ -78,10 +78,10 @@
                                         <td>
                                             {{ $serviceProvider->directur ? $serviceProvider->directur : '-' }}
                                         </td>
-                                        <td>
+                                        <!-- <td>
                                             {{ $serviceProvider->user->phone_number }}
 
-                                        </td>
+                                        </td> -->
                                         {{-- <td>
                                                 <button class="btn text-white btn-detail" id="{{ $serviceProvider->id }}"
                                                     data-id="{{ $serviceProvider->id }}" style="background-color: #1B3061">
