@@ -137,6 +137,7 @@ class ProjectController extends Controller
     public function projectDetail(ExecutorProject $executorProject): View
     {
         $data = collect($executorProject->serviceProviderProjects);
+        $data = $data->sortBy('week');
         $dataWeekExecutor = $data->filter(function ($item) {
             return !$item->page && $item->executor_type == 'executor';
         });
