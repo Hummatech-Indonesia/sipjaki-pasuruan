@@ -1336,8 +1336,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div style="background-color: #1B3061;">
-                    <h5 class="modal-title text-white text-center m-3 fs-4">Tambah
-                        {{ Auth::user()->serviceProvider?->type_of_business_entity == 'consultant' ? 'Progress' : 'File' }}
+                    <h5 class="modal-title text-white text-center m-3 fs-4">Tambah Progres
                     </h5>
                 </div>
                 @if (Auth::user()->serviceProvider?->type_of_business_entity == 'consultant' || Auth::user()->serviceProvider?->type_of_business_entity == 'executor')
