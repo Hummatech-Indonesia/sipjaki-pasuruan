@@ -877,7 +877,7 @@
                                 <div>
                                     @role('service provider')
                                         @if (Auth::user()->serviceProvider?->type_of_business_entity == 'executor')
-                                            <div data-bs-toggle="modal" data-bs-target="#modal-create" class="btn  rounded-3"
+                                            <div data-bs-toggle="modal" data-bs-target="#modal-upload-file" class="btn  rounded-3"
                                                 style="background-color:#1B3061; color:white;">
                                                 @if (
                                                     $executorProject->contract ||
@@ -1200,8 +1200,137 @@
         </div><!-- /.modal-dialog -->
     </div>
     <!-- end modal tambah progress harian  -->
+
+    <!-- modal upload file pendukung  -->
+    <div class="modal fade bs-example-modal-xl" id="modal-upload-file" tabindex="-1" role="dialog"
+        aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div style="background-color: #1B3061;">
+                    <h5 class="modal-title text-white text-center m-3 fs-4">Tambah File
+                    </h5>
+                </div>
+                <form action="{{ route('upload-file-executor', ['executorProject' => $executorProject->id]) }}"
+                    method="post" enctype="multipart/form-data">
+                    @method('PUT')
+
+                @csrf
+                <div class="modal-body">
+                    <div class="row">
+                        
+                    <div class="col-lg-6">
+                        <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                            <label class="form-label">Kontrak</label>
+                            <input class="form-control" accept=".pdf" type="file" value="{{ old('contract') }}"
+                                name="contract" id="">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                            <label class="form-label">Surat Pesanan</label>
+                            <input class="form-control" accept=".pdf" type="file" value="{{ old('mail_order') }}"
+                                name="mail_order" id="">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                            <label class="form-label">Berita Acara Uitzet</label>
+                            <input class="form-control" type="file" value="{{ old('uitzet_minutes') }}"
+                                name="uitzet_minutes" accept=".pdf" id="">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                            <label class="form-label">Berita Acara PCM</label>
+                            <input class="form-control" type="file" value="{{ old('pcm_minutes') }}"
+                                name="pcm_minutes" accept=".pdf" id="">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                            <label class="form-label">Dokumen Invoice</label>
+                            <input class="form-control" type="file" value="{{ old('invoices') }}" name="invoices"
+                                accept=".pdf" id="">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                            <label class="form-label">Berita Acara Administrasi</label>
+                            <input class="form-control" type="file" value="{{ old('administrative_minutes') }}"
+                                name="administrative_minutes" accept=".pdf" id="">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                            <label class="form-label">Berita Acara Pencairan</label>
+                            <input class="form-control" type="file" value="{{ old('minutes_of_disbursement') }}"
+                                name="minutes_of_disbursement" accept=".pdf" id="">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                            <label class="form-label">Mutual Check 0</label>
+                            <input class="form-control" type="file" value="{{ old('mutual_check_0') }}"
+                                name="mutual_check_0" accept=".pdf" id="">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                            <label class="form-label">Shop Drawing</label>
+                            <input class="form-control" type="file" value="{{ old('shop_drawing') }}"
+                                name="shop_drawing" accept=".pdf" id="">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                            <label class="form-label">Mutual Check 100</label>
+                            <input class="form-control" type="file" value="{{ old('mutual_check_100') }}"
+                                name="mutual_check_100" accept=".pdf" id="">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                            <label class="form-label">Asbuild Drawing</label>
+                            <input class="form-control" type="file" value="{{ old('asbuild_drawing') }}"
+                                name="asbuild_drawing" accept=".pdf" id="">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                            <label class="form-label">Berita Acara P1</label>
+                            <input class="form-control" type="file" value="{{ old('p1_meeting_minutes') }}"
+                                name="p1_meeting_minutes" accept=".pdf" id="">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                            <label class="form-label">Berita Acara P2</label>
+                            <input class="form-control" type="file" value="{{ old('p2_meeting_minutes') }}"
+                                name="p2_meeting_minutes" accept=".pdf" id="">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="mb-3 ajax-select mt-3 mt-lg-0">
+                            <label class="form-label">Laporan</label>
+                            <input class="form-control" accept=".pdf" type="file" value="{{ old('report') }}"
+                                name="report" id="">
+                        </div>
+                    </div>
+                    <div class="d-flex d-row justify-content-end mt-3">
+                        <button type="button" class="btn btn-danger btn-md me-2" data-bs-dismiss="modal"
+                            aria-label="Close">Batal</button>
+                        <button type="submit" style="background-color: #1B3061; color:white;"
+                            class="btn btn-md">Tambah</button>
+
+                    </div>
+                </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+    <!-- end modal upload file pendukung  -->
     
-    <!-- modal tambah progres mingguan & modal upload file pendukung  -->
+    <!-- modal tambah progres mingguan  -->
     <div class="modal fade bs-example-modal-xl" id="modal-create" tabindex="-1" role="dialog"
         aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -1390,7 +1519,7 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div>
-    <!-- end modal tambah progres mingguan & modal upload file pendukung  -->
+    <!-- end modal tambah progres mingguan  -->
 
     <!-- modal edit progres mingguan  -->
     <div class="modal fade bs-example-modal-xl" id="modal-update" tabindex="-1" role="dialog"
