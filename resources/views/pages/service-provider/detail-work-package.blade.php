@@ -988,8 +988,7 @@
                                             <td>:</td>
                                             <td>
                                                 @if ($executorProject->mutual_check_0)
-                                                    <!-- ini masih error -->
-                                                    <a href="#"
+                                                    <a href="{{ route('downloadMutualCheck0', ['executorProject' => $executorProject->id]) }}"
                                                         type="button" class="btn btn-md text-white"
                                                         style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
                                                         Download</a>
@@ -1017,8 +1016,7 @@
                                             <td>:</td>
                                             <td>
                                                 @if ($executorProject->mutual_check_100)
-                                                <!-- ini masih error  -->
-                                                    <a href="#"
+                                                    <a href="{{ route('downloadMutualCheck100', ['executorProject' => $executorProject->id]) }}"
                                                         type="button" class="btn btn-md text-white"
                                                         style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
                                                         Download</a>
@@ -1044,8 +1042,7 @@
                                             <td>:</td>
                                             <td>
                                                 @if ($executorProject->p1_meeting_minutes)
-                                                    <!-- ini masih error  -->
-                                                    <a href="#"
+                                                    <a href="{{ route('downloadP1MeetingMinutes', ['executorProject' => $executorProject->id]) }}"
                                                         type="button" class="btn btn-md text-white"
                                                         style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
                                                         Download</a>
@@ -1075,8 +1072,7 @@
                                             <td>:</td>
                                             <td>  
                                                 @if ($executorProject->minutes_of_disbursement)
-                                                    <!-- disini masih error  -->
-                                                    <a href="#"
+                                                    <a href="{{ route('downloadExecutorMinutesOfDisbursement', ['executorProject' => $executorProject->id]) }}"
                                                         type="button" class="btn btn-md text-white"
                                                         style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
                                                         Download</a>
@@ -1091,8 +1087,7 @@
                                             <td>:</td>
                                             <td>
                                                 @if ($executorProject->p2_meeting_minutes)
-                                                    <!-- ini masih error  -->
-                                                    <a href="#"
+                                                    <a href="{{ route('downloadP2MeetingMinutes', ['executorProject' => $executorProject->id]) }}"
                                                         type="button" class="btn btn-md text-white"
                                                         style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
                                                         Download</a>

@@ -140,8 +140,8 @@ class ExecutorProjectController extends Controller
      */
     public function downloadMailOrder(ExecutorProject $executorProject)
     {
-        $filePath = pathinfo(basename($executorProject->mail_order, PATHINFO_EXTENSION));
-        return response()->download(storage_path('app/public/' . $executorProject->mail_order), 'Berkas Surat Pesanan ' . $executorProject->name . '.' . $filePath['extension']);
+        $filePath = pathinfo(basename($executorProject->order_mail, PATHINFO_EXTENSION));
+        return response()->download(storage_path('app/public/' . $executorProject->order_mail), 'Berkas Surat Pesanan ' . $executorProject->name . '.' . $filePath['extension']);
     }
 
     /**
@@ -164,8 +164,8 @@ class ExecutorProjectController extends Controller
      */
     public function downloadInvoices(ExecutorProject $executorProject)
     {
-        $filePath = pathinfo(basename($executorProject->invoices, PATHINFO_EXTENSION));
-        return response()->download(storage_path('app/public/' . $executorProject->invoices), 'Berkas Invoice ' . $executorProject->name . '.' . $filePath['extension']);
+        $filePath = pathinfo(basename($executorProject->invoice, PATHINFO_EXTENSION));
+        return response()->download(storage_path('app/public/' . $executorProject->invoice), 'Berkas Invoice ' . $executorProject->name . '.' . $filePath['extension']);
     }
 
     /**
@@ -186,7 +186,7 @@ class ExecutorProjectController extends Controller
      * @param  mixed $executorProject
      * @return void
      */
-    public function downloadAsbuildDrading(ExecutorProject $executorProject)
+    public function downloadAsbuildDrawing(ExecutorProject $executorProject)
     {
         $filePath = pathinfo(basename($executorProject->asbuild_drawing, PATHINFO_EXTENSION));
         return response()->download(storage_path('app/public/' . $executorProject->asbuild_drawing), 'Berkas Asbuild Drawing ' . $executorProject->name . '.' . $filePath['extension']);
