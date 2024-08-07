@@ -973,7 +973,7 @@
                                             <td>Dokumen Invoice</td>
                                             <td>:</td>
                                             <td>
-                                                @if ($executorProject->invoices)
+                                                @if ($executorProject->invoice)
                                                     <a href="{{ route('downloadInvoices', ['executorProject' => $executorProject->id]) }}"
                                                         type="button" class="btn btn-md text-white"
                                                         style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
@@ -988,7 +988,8 @@
                                             <td>:</td>
                                             <td>
                                                 @if ($executorProject->mutual_check_0)
-                                                    <a href="{{ route('downloadMinutesOfHandOver', ['consultantProject' => $executorProject->consultant_project_id]) }}"
+                                                    <!-- ini masih error -->
+                                                    <a href="#"
                                                         type="button" class="btn btn-md text-white"
                                                         style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
                                                         Download</a>
@@ -1016,7 +1017,8 @@
                                             <td>:</td>
                                             <td>
                                                 @if ($executorProject->mutual_check_100)
-                                                    <a href="{{ route('downloadMinutesOfHandOver', ['consultantProject' => $executorProject->consultant_project_id]) }}"
+                                                <!-- ini masih error  -->
+                                                    <a href="#"
                                                         type="button" class="btn btn-md text-white"
                                                         style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
                                                         Download</a>
@@ -1042,7 +1044,8 @@
                                             <td>:</td>
                                             <td>
                                                 @if ($executorProject->p1_meeting_minutes)
-                                                    <a href="{{ route('downloadMinutesOfHandOver', ['consultantProject' => $executorProject->consultant_project_id]) }}"
+                                                    <!-- ini masih error  -->
+                                                    <a href="#"
                                                         type="button" class="btn btn-md text-white"
                                                         style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
                                                         Download</a>
@@ -1088,7 +1091,8 @@
                                             <td>:</td>
                                             <td>
                                                 @if ($executorProject->p2_meeting_minutes)
-                                                    <a href="{{ route('downloadMinutesOfHandOver', ['consultantProject' => $executorProject->consultant_project_id]) }}"
+                                                    <!-- ini masih error  -->
+                                                    <a href="#"
                                                         type="button" class="btn btn-md text-white"
                                                         style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
                                                         Download</a>
@@ -1334,7 +1338,7 @@
                     <div class="col-lg-6">
                         <div class="mb-3 ajax-select mt-3 mt-lg-0">
                             <label class="form-label">Dokumen Invoice</label>
-                            <input class="form-control" type="file" value="{{ old('invoices') }}" name="invoices"
+                            <input class="form-control" type="file" value="{{ old('invoice') }}" name="invoice"
                                 accept=".pdf" id="">
                         </div>
                     </div>

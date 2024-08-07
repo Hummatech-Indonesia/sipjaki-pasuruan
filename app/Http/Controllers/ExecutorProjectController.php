@@ -100,8 +100,8 @@ class ExecutorProjectController extends Controller
 
     public function upload(UploadExecutorRequest $request, ExecutorProject $executorProject)
     {
-        // dd($request->all());
         $data = $this->service->store($request, $executorProject);
+        // dd($data);
         $this->executorProject->update($executorProject->id, $data);
 
         return redirect()->back()->with('success', trans('alert.update_success'));
