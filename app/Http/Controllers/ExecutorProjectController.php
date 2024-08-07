@@ -29,8 +29,7 @@ class ExecutorProjectController extends Controller
     private ContractCategoryInterface $contractCategory;
     private DinasInterface $dinas;
 
-    public function __construct
-    (
+    public function __construct(
         ExecutorProjectInterface $executorProjectInterface,
         ExecutorProjectService $service,
         FiscalYearInterface $fiscalYear,
@@ -39,8 +38,7 @@ class ExecutorProjectController extends Controller
         ConsultantProjectInterface $consultantProject,
         ContractCategoryInterface $contractCategory,
         DinasInterface $dinas,
-    )
-    {
+    ) {
         $this->executorProject = $executorProjectInterface;
         $this->service = $service;
         $this->fiscalYear = $fiscalYear;
@@ -66,7 +64,7 @@ class ExecutorProjectController extends Controller
         $contractCategories = $this->contractCategory->get();
         $dinases = $this->dinas->get();
 
-        return view('pages.dinas.work-package',compact(
+        return view('pages.dinas.work-package', compact(
             'executorProjects',
             'fiscalYears',
             'fundSources',
@@ -77,11 +75,11 @@ class ExecutorProjectController extends Controller
         ));
     }
 
-    public function update(ExecutorProjectRequest $request,ExecutorProject $executorProject)
+    public function update(ExecutorProjectRequest $request, ExecutorProject $executorProject)
     {
-        $this->executorProject->update($executorProject->id,$request->validated());
+        $this->executorProject->update($executorProject->id, $request->validated());
 
-        return redirect()->back()->with('success',trans('alert.update_success'));
+        return redirect()->back()->with('success', trans('alert.update_success'));
     }
 
 
@@ -100,28 +98,29 @@ class ExecutorProjectController extends Controller
         return redirect()->back()->with('success', trans('alert.update_success'));
     }
 
-    public function upload(UploadExecutorRequest $request,ExecutorProject $executorProject)
+    public function upload(UploadExecutorRequest $request, ExecutorProject $executorProject)
     {
-        $data = $this->service->store($request,$executorProject);
-        $this->executorProject->update($executorProject->id,$data);
+        // dd($request->all());
+        $data = $this->service->store($request, $executorProject);
+        $this->executorProject->update($executorProject->id, $data);
 
-        return redirect()->back()->with('success',trans('alert.update_success'));
+        return redirect()->back()->with('success', trans('alert.update_success'));
     }
-    
+
     /**
      * markDone
      *
      * @param  mixed $executorProject
      * @return RedirectResponse
      */
-    public function markDone(ExecutorProject $executorProject) : RedirectResponse
+    public function markDone(ExecutorProject $executorProject): RedirectResponse
     {
-        $this->executorProject->update($executorProject->id,['status' => StatusEnum::NONACTIVE->value]);
+        $this->executorProject->update($executorProject->id, ['status' => StatusEnum::NONACTIVE->value]);
 
-        return redirect()->back()->with('success',trans('alert.update_success'));
+        return redirect()->back()->with('success', trans('alert.update_success'));
     }
 
-        /**
+    /**
      * downloadContract
      *
      * @param  mixed $executorProject
@@ -133,7 +132,7 @@ class ExecutorProjectController extends Controller
         return response()->download(storage_path('app/public/' . $executorProject->contract), 'Berkas Kontrak ' . $executorProject->name . '.' . $filePath['extension']);
     }
 
-       /**
+    /**
      * downloadContract
      *
      * @param  mixed $executorProject
@@ -145,7 +144,7 @@ class ExecutorProjectController extends Controller
         return response()->download(storage_path('app/public/' . $executorProject->mail_order), 'Berkas Surat Pesanan ' . $executorProject->name . '.' . $filePath['extension']);
     }
 
-       /**
+    /**
      * downloadContract
      *
      * @param  mixed $executorProject
@@ -157,7 +156,7 @@ class ExecutorProjectController extends Controller
         return response()->download(storage_path('app/public/' . $executorProject->pcm_minutes), 'Berkas Berita Acara PCM ' . $executorProject->name . '.' . $filePath['extension']);
     }
 
-       /**
+    /**
      * downloadContract
      *
      * @param  mixed $executorProject
@@ -169,7 +168,7 @@ class ExecutorProjectController extends Controller
         return response()->download(storage_path('app/public/' . $executorProject->invoices), 'Berkas Invoice ' . $executorProject->name . '.' . $filePath['extension']);
     }
 
-       /**
+    /**
      * downloadContract
      *
      * @param  mixed $executorProject
@@ -181,7 +180,7 @@ class ExecutorProjectController extends Controller
         return response()->download(storage_path('app/public/' . $executorProject->shop_drawing), 'Berkas Shop Drawing ' . $executorProject->name . '.' . $filePath['extension']);
     }
 
-       /**
+    /**
      * downloadContract
      *
      * @param  mixed $executorProject
@@ -246,7 +245,7 @@ class ExecutorProjectController extends Controller
         return response()->download(storage_path('app/public/' . $executorProject->uitzet_minutes), 'Berkas Berita Uitzet ' . $executorProject->name . '.' . $filePath['extension']);
     }
 
-    
+
     /**
      * downloadMinutesOfDisbursement
      *
@@ -260,7 +259,7 @@ class ExecutorProjectController extends Controller
         return response()->download(storage_path('app/public/' . $executorProject->mutual_check_0), 'Berkas Mutual Check 0% ' . $executorProject->name . '.' . $filePath['extension']);
     }
 
-    
+
     /**
      * downloadMinutesOfDisbursement
      *
@@ -270,11 +269,11 @@ class ExecutorProjectController extends Controller
     public function downloadMutualCheck100(ExecutorProject $executorProject)
     {
         $filePath = pathinfo(basename($executorProject->mutual_check_100, PATHINFO_EXTENSION));
- 
+
         return response()->download(storage_path('app/public/' . $executorProject->mutual_check_100), 'Berkas Mutual Check 100% ' . $executorProject->name . '.' . $filePath['extension']);
     }
 
-    
+
     /**
      * downloadMinutesOfDisbursement
      *
@@ -288,7 +287,7 @@ class ExecutorProjectController extends Controller
         return response()->download(storage_path('app/public/' . $executorProject->p1_meeting_minutes), 'Berkas Berita Acara P1 ' . $executorProject->name . '.' . $filePath['extension']);
     }
 
-        /**
+    /**
      * downloadMinutesOfDisbursement
      *
      * @param  mixed $executorProject
@@ -298,15 +297,13 @@ class ExecutorProjectController extends Controller
     {
         $filePath = pathinfo(basename($executorProject->p2_meeting_minutes, PATHINFO_EXTENSION));
 
-        return response()->download(storage_path('app/public/' . $executorProject->p2_meeting_minutes),'Berkas Berita Acara P2 ' . $executorProject->name . '.' . $filePath['extension']);
+        return response()->download(storage_path('app/public/' . $executorProject->p2_meeting_minutes), 'Berkas Berita Acara P2 ' . $executorProject->name . '.' . $filePath['extension']);
     }
 
     public function destroy(ExecutorProject $executorProject)
     {
         $this->executorProject->delete($executorProject->id);
 
-        return redirect()->back()->with('success',trans('alert.delete_success'));
+        return redirect()->back()->with('success', trans('alert.delete_success'));
     }
-
-    
 }

@@ -260,7 +260,7 @@ Route::middleware('auth')->group(function () {
         Route::post('service-provider-qualifications', [ServiceProviderQualificationController::class, 'store'])->name('service.provider.qualifications.store');
         Route::get('my-project', [ProjectController::class, 'myProject']);
         Route::get('history-project', [ProjectController::class, 'history']);
-        Route::put('upload-file-executor/{executorProject}', [ExecutorProjectController::class, 'upload'])->name('upload-file-executor');
+        Route::patch('upload-file-executor/{executorProject}', [ExecutorProjectController::class, 'upload'])->name('upload-file-executor');
         Route::put('upload-file-consultant/{consultantProject}', [ConsultantProjectController::class, 'upload'])->name('upload-file-consultant');
         Route::put('mark-down-project/{executorProject}', [ExecutorProjectController::class, 'markDone'])->name('mark.done');
         Route::resources([

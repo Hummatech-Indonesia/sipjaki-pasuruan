@@ -931,7 +931,7 @@
                                             <td>Surat Pesanan</td>
                                             <td>:</td>
                                             <td>
-                                                @if ($executorProject->mail_order)
+                                                @if ($executorProject->order_mail)
                                                     <a href="{{ route('downloadExecutorMailOrder', ['executorProject' => $executorProject->id]) }}"
                                                         type="button" class="btn btn-md text-white"
                                                         style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
@@ -1070,9 +1070,10 @@
                                         <tr>
                                             <td>Berita Acara Pencariran</td>
                                             <td>:</td>
-                                            <td>
+                                            <td>  
                                                 @if ($executorProject->minutes_of_disbursement)
-                                                    <a href="{{ route('downloadMinutesOfDisbursement', ['consultantProject' => $executorProject->consultant_project_id]) }}"
+                                                    <!-- disini masih error  -->
+                                                    <a href="#"
                                                         type="button" class="btn btn-md text-white"
                                                         style="background-color:#1B3061;"><i class="bx bxs-download bx-xs"></i>
                                                         Download</a>
@@ -1296,7 +1297,7 @@
                 </div>
                 <form action="{{ route('upload-file-executor', ['executorProject' => $executorProject->id]) }}"
                     method="post" enctype="multipart/form-data">
-                    @method('PUT')
+                    @method('PATCH')
 
                 @csrf
                 <div class="modal-body">
@@ -1312,8 +1313,8 @@
                     <div class="col-lg-6">
                         <div class="mb-3 ajax-select mt-3 mt-lg-0">
                             <label class="form-label">Surat Pesanan</label>
-                            <input class="form-control" accept=".pdf" type="file" value="{{ old('mail_order') }}"
-                                name="mail_order" id="">
+                            <input class="form-control" accept=".pdf" type="file" value="{{ old('order_mail') }}"
+                                name="order_mail" id="">
                         </div>
                     </div>
                     <div class="col-lg-6">

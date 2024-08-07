@@ -33,7 +33,7 @@ class ExecutorProject extends Model implements HasAccidents, HasFiscalYear, HasF
         'finance_progress',
         'fiscal_year_id',
         'contract',
-        'mail_order',
+        'order_mail',
         'pcm_minutes',
         'invoices',
         'shop_drawing',
