@@ -21,14 +21,34 @@
                 <a class="nav-link" style="border: solid 1px #1B3061;" onclick="tab('progres-penyedia-tab')"
                     id="progres-penyedia-tab" data-bs-toggle="pill" href="#progres-penyedia" role="tab"
                     aria-controls="progres-penyedia" aria-selected="false">
-                    <div class="fw-bold">Progres Pelaksana</div>
+                    <div class="fw-bold">Progres Pelaksana Mingguan</div>
+                </a>
+                <a class="nav-link" style="border: solid 1px #1B3061;" onclick="tab('progres-penyedia-harian-tab')"
+                    id="progres-penyedia-harian-tab" data-bs-toggle="pill" href="#progres-penyedia-harian" role="tab"
+                    aria-controls="progres-penyedia" aria-selected="false">
+                    <div class="fw-bold">Progres Pelaksana Harian</div>
+                </a>
+                <a class="nav-link" style="border: solid 1px #1B3061;" onclick="tab('material-tab')"
+                    id="material-tab" data-bs-toggle="pill" href="#material" role="tab"
+                    aria-controls="material" aria-selected="false">
+                    <div class="fw-bold">Material</div>
+                </a>
+                <a class="nav-link" style="border: solid 1px #1B3061;" onclick="tab('alat-konstruksi-tab')"
+                    id="alat-konstruksi-tab" data-bs-toggle="pill" href="#alat-konstruksi" role="tab"
+                    aria-controls="alat-konstruksi" aria-selected="false">
+                    <div class="fw-bold">Alat Konstruksi</div>
                 </a>
                 @endif
                 @if (auth()->user()->serviceProvider?->type_of_business_entity == "consultant" || $executorProject->dinas_id == auth()->user()->dinas?->id || auth()->user()->hasRole('admin') || auth()->user()->hasRole('superadmin'))
                 <a class="nav-link" style="border: solid 1px #1B3061;" onclick="tab('progres-konsultan-tab')" id="progres-konsultan-tab"
                     data-bs-toggle="pill" href="#progres-konsultan" role="tab" aria-controls="progres-konsultan"
                     aria-selected="false">
-                    <div class="fw-bold">Progres Konsultan</div>
+                    <div class="fw-bold">Progres Konsultan Mingguan</div>
+                </a>
+                <a class="nav-link" style="border: solid 1px #1B3061;" onclick="tab('progres-konsultan-harian-tab')" id="progres-konsultan-harian-tab"
+                    data-bs-toggle="pill" href="#progres-konsultan-harian" role="tab" aria-controls="progres-konsultan"
+                    aria-selected="false">
+                    <div class="fw-bold">Progres Konsultan Harian</div>
                 </a>
                 @endif
                 <a class="nav-link rounded-end" style="border: solid 1px #1B3061;" onclick="tab('dokumen-tab')"
@@ -327,6 +347,25 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="tab-pane fade-out" id="progres-penyedia-harian" role="tabpanel"
+            aria-labelledby="progres-penyedia-tab">
+            <div class="row">
+                <div class="col-md-12 mt-3">
+                    @if ($errors->any())
+                                @foreach ($errors->all() as $error)
+                                    <div class="alert mt-3 alert-danger alert-dismissible fade show" role="alert">
+                                        {{ $error }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    </div>
+                                @endforeach
+                    @endif
+                    @if (session('success'))
+                        <x-alert-success-component :success="session('success')" />
+                    @endif
+                </div>
                 <div class="col-md-12">
                     <div class="card rounded-4">
                         <div class="card-body">
@@ -492,6 +531,66 @@
                                         @endforelse
                                     </tbody>
                                 </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade-out" id="material" role="tabpanel"
+            aria-labelledby="progres-penyedia-tab">
+            <div class="row">
+                <div class="col-md-12 mt-3">
+                    @if ($errors->any())
+                                @foreach ($errors->all() as $error)
+                                    <div class="alert mt-3 alert-danger alert-dismissible fade show" role="alert">
+                                        {{ $error }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    </div>
+                                @endforeach
+                    @endif
+                    @if (session('success'))
+                        <x-alert-success-component :success="session('success')" />
+                    @endif
+                </div>
+                <div class="col-md-12">
+                    <div class="card rounded-4">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div class="ms-2 fw">
+                                    <p class="fw-medium fs-5" style="margin-bottom: 25%;">Material</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade-out" id="alat-konstruksi" role="tabpanel"
+            aria-labelledby="progres-penyedia-tab">
+            <div class="row">
+                <div class="col-md-12 mt-3">
+                    @if ($errors->any())
+                                @foreach ($errors->all() as $error)
+                                    <div class="alert mt-3 alert-danger alert-dismissible fade show" role="alert">
+                                        {{ $error }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    </div>
+                                @endforeach
+                    @endif
+                    @if (session('success'))
+                        <x-alert-success-component :success="session('success')" />
+                    @endif
+                </div>
+                <div class="col-md-12">
+                    <div class="card rounded-4">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div class="ms-2 fw">
+                                    <p class="fw-medium fs-5" style="margin-bottom: 25%;">Alat Konstruksi</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -688,6 +787,25 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade-out" id="progres-konsultan-harian" role="tabpanel"
+            aria-labelledby="progres-konsultan-tab">
+            <div class="row">
+                <div class="col-md-12 mt-3">
+                    @if ($errors->any())
+                                @foreach ($errors->all() as $error)
+                                    <div class="alert mt-3 alert-danger alert-dismissible fade show" role="alert">
+                                        {{ $error }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    </div>
+                                @endforeach
+                    @endif
+                    @if (session('success'))
+                        <x-alert-success-component :success="session('success')" />
+                    @endif
                 </div>
                 <div class="col-md-12">
                     <div class="card rounded-4">
