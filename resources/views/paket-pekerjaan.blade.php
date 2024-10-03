@@ -39,7 +39,15 @@
                             <div class="d-flex justify-content-header gap-2">
                                 <div class="d-flex d-row align-items-center mb-3">
                                     <div class="position-relative  search-container">
-                                        <input type="search" class="py-2 ps-5" id="search-name" name="title" placeholder="Search">
+                                        {{-- <input type="search" class="py-2 ps-5" id="search-name" name="title" placeholder="Search"> --}}
+                                        <input type="search" class="py-2 ps-5" id="search-name" name="search" placeholder="Search">
+                                        <select name="year" id="">
+                                            @foreach ($years as $year)
+                                                <option value="{{ $year }}" @if ($selectedYear == $year)
+                                                    selected
+                                                @endif>{{$year}}</option>
+                                            @endforeach
+                                        </select>
                                         <i class="bx bx-search-alt search-icon"></i>
                                     </div>
                                 </div>
@@ -62,20 +70,49 @@
                                         style="background-color: #1B3061; color: white; border-right: 1px solid #1B3061;">
                                         Nama Dinas</th>
                                     <th class="fw-medium"
+                                        style="background-color: #1B3061; color: white; border-right: 1px solid #1B3061;">
+                                        Nama Pekerjaan</th>
+                                    <th class="fw-medium"
+                                        style="background-color: #1B3061; color: white; border-right: 1px solid #1B3061;">
+                                        Tahun Anggaran</th>
+                                    <th class="fw-medium"
+                                        style="background-color: #1B3061; color: white; border-right: 1px solid #1B3061;">
+                                        Nilai Kontrak</th>
+                                    <th class="fw-medium"
+                                        style="background-color: #1B3061; color: white; border-right: 1px solid #1B3061;">
+                                        Sumber Dana</th>
+                                    <th class="fw-medium"
+                                        style="background-color: #1B3061; color: white; border-right: 1px solid #1B3061;">
+                                        Tanggal Mulai</th>
+                                    <th class="fw-medium"
+                                        style="background-color: #1B3061; color: white; border-right: 1px solid #1B3061;">
+                                        Tanggal Selesai</th>
+                                    
+                                    {{-- <th class="fw-medium"
                                         style="background-color: #1B3061; color: white; text-align: center">Jumlah</th>
                                     <th class="fw-medium"
-                                        style="background-color: #1B3061; color: white; text-align: center">Aksi</th>
+                                        style="background-color: #1B3061; color: white; text-align: center">Aksi</th> --}}
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse ($dinas as $item)
-                                <tr>
+                                {{-- <tr>
                                     <th scope="row" class="fs-5">{{$loop->iteration}}</th>
                                     <td class="fs-5">{{$item->user->name}}</td>
                                     <td class="fs-5 text-center">{{ExecutorProject::whereRelation('consultantProject','dinas_id',$item->id)->count()}}</td>
                                     <td class="text-center">
                                         <a href="{{ route('detail.project',['dinas' => $item->id]) }}" class="text-white btn" style="background-color: #1B3061">Detail</a>
                                     </td>
+                                </tr> --}}
+                                <tr>
+                                    <th scope="row" class="fs-5">{{$loop->iteration}}</th>
+                                    <td class="fs-5">{{$item->nama_dinas}}</td>
+                                    <td class="fs-5">{{$item->nama_pekerjaan}}</td>
+                                    <td class="fs-5">{{$item->tahun_anggaran}}</td>
+                                    <td class="fs-5">{{$item->nilai_kontrak}}</td>
+                                    <td class="fs-5">{{$item->sumber_dana}}</td>
+                                    <td class="fs-5">{{$item->tanggal_mulai}}</td>
+                                    <td class="fs-5">{{$item->tanggal_selesai}}</td>
                                 </tr>
                                 @empty
                                 <tr>

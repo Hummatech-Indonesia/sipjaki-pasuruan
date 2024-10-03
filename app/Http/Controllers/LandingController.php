@@ -18,6 +18,7 @@ use App\Contracts\Interfaces\FiscalYearInterface;
 use App\Contracts\Interfaces\ImageInterface;
 use App\Contracts\Interfaces\TrainingInterface;
 use App\Contracts\Interfaces\ServiceProviderInterface;
+use App\Models\DummyProject;
 use App\Models\ExecutorProject;
 
 class LandingController extends Controller
@@ -63,12 +64,30 @@ class LandingController extends Controller
      */
     public function project(Request $request): View
     {
-        $dinas = $this->dinas->search($request);
+        // $dinas = $this->dinas->search($request);
         $fiscalYears = $this->fiscalYear->get();
+
+        $per_page = $request->per_page ?? 10;
+        $page = $request->page ?? 1;
+
+        $years = [2020, 2021, 2022, 2023, 2024, 2025];
+        $selectedYear = $request->year;
+
+        $dinas = DummyProject::when($request->search, function($query) use ($request){
+            $query->where('nama_dinas','like','%'.$request->search.'%')
+            ->orwhere('nama_pekerjaan','like','%'.$request->search.'%');
+        })
+        ->when($request->year, function($query) use ($request){
+            $query->where('tahun_anggaran',$request->year);
+        })
+        ->orderBy('tahun_anggaran', 'DESC')
+        ->paginate($per_page, ['*'], 'page', $page);
         
         return view('paket-pekerjaan', compact(
             'dinas',
-            'fiscalYears'
+            'fiscalYears',
+            'years',
+            'selectedYear'
         ));
     }
 
