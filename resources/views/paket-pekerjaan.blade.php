@@ -112,7 +112,7 @@
                                     <td class="fs-5">{{$item->nilai_kontrak}}</td>
                                     <td class="fs-5">{{$item->sumber_dana}}</td>
                                     <td class="fs-5">{{$item->tanggal_mulai}}</td>
-                                    <td class="fs-5">{{$item->tanggal_selesai}}</td>
+                                    <td class="fs-5">{{$item->tanggal_berakhir}}</td>
                                 </tr>
                                 @empty
                                 <tr>
