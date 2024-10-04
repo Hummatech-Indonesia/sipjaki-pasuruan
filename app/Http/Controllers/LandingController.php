@@ -66,7 +66,7 @@ class LandingController extends Controller
         // $dinas = $this->dinas->search($request);
         $fiscalYears = $this->fiscalYear->get();
 
-        $per_page = $request->per_page ?? 1;
+        $per_page = $request->per_page ?? 10;
         $page = $request->page ?? 1;
 
         $years = [2020, 2021, 2022, 2023, 2024, 2025];
@@ -76,13 +76,13 @@ class LandingController extends Controller
             $query->where('nama_dinas', 'like', '%' . $request->search . '%')
                 ->orwhere('nama_pekerjaan', 'like', '%' . $request->search . '%');
         })
-        ->when($request->year, function($query) use ($request){
-            $query->where('tahun_anggaran',$request->year);
-        })
-        ->orderBy('tahun_anggaran', 'DESC')
-        ->paginate($per_page, ['*'], 'page', $page)
-        ->appends(['search' => $request->search, 'year' => $request->year]);
-        
+            ->when($request->year, function ($query) use ($request) {
+                $query->where('tahun_anggaran', $request->year);
+            })
+            ->orderBy('tahun_anggaran', 'DESC')
+            ->paginate($per_page, ['*'], 'page', $page)
+            ->appends(['search' => $request->search, 'year' => $request->year]);
+
         return view('paket-pekerjaan', compact(
             'dinas',
             'fiscalYears',
