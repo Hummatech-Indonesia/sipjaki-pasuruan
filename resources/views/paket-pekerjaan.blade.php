@@ -117,7 +117,7 @@ li.active .page-link {
                                     <th scope="row" class="fs-5">{{$loop->iteration}}</th>
                                     <td class="fs-5">{{$item->nama_dinas}}</td>
                                     <td class="fs-5">{{$item->nama_pekerjaan}}</td>
-                                    <td class="fs-5">{{$item->nama_pelaksana}}</td>
+                                    <td class="fs-5">{{$item->nama_pelaksana ?? "-"}}</td>
                                     <td class="fs-5">{{$item->tahun_anggaran}}</td>
                                     <td class="fs-5">{{ 'Rp ' . number_format($item->nilai_kontrak, 0, ',', '.') }}</td>
                                     <td class="fs-5">{{$item->sumber_dana}}</td>
