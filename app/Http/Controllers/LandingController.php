@@ -44,8 +44,7 @@ class LandingController extends Controller
         ImageInterface $image,
         FiscalYearInterface $fiscalYear,
         ExecutorProjectInterface $executorProject
-    )
-    {
+    ) {
         $this->dinas = $dinas;
         $this->news = $news;
         $this->training = $training;
@@ -67,15 +66,15 @@ class LandingController extends Controller
         // $dinas = $this->dinas->search($request);
         $fiscalYears = $this->fiscalYear->get();
 
-        $per_page = $request->per_page ?? 10;
+        $per_page = $request->per_page ?? 1;
         $page = $request->page ?? 1;
 
         $years = [2020, 2021, 2022, 2023, 2024, 2025];
         $selectedYear = $request->year;
 
-        $dinas = DummyProject::when($request->search, function($query) use ($request){
-            $query->where('nama_dinas','like','%'.$request->search.'%')
-            ->orwhere('nama_pekerjaan','like','%'.$request->search.'%');
+        $dinas = DummyProject::when($request->search, function ($query) use ($request) {
+            $query->where('nama_dinas', 'like', '%' . $request->search . '%')
+                ->orwhere('nama_pekerjaan', 'like', '%' . $request->search . '%');
         })
         ->when($request->year, function($query) use ($request){
             $query->where('tahun_anggaran',$request->year);
@@ -90,6 +89,13 @@ class LandingController extends Controller
             'years',
             'selectedYear'
         ));
+
+        // return view('paket-pekerjaan', compact(
+        //     'dinas',
+        //     'fiscalYears',
+        //     'years',
+        //     'selectedYear'
+        // ));
     }
 
     /**
@@ -104,9 +110,9 @@ class LandingController extends Controller
         $request->merge([
             'dinas' => $dinas->id
         ]);
-        $executorProjects = $this->executorProject->customPaginate($request,15);
+        $executorProjects = $this->executorProject->customPaginate($request, 15);
 
-        return view('detail-paket',compact(
+        return view('detail-paket', compact(
             'data',
             'executorProjects',
         ));

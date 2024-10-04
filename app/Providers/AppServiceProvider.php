@@ -79,6 +79,7 @@ use App\Contracts\Repositories\TypeRepository;
 use App\Contracts\Repositories\VerificationRepository;
 use App\Contracts\Repositories\WorkerCertificateRepository;
 use App\Contracts\Repositories\WorkerRepository;
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -136,6 +137,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Paginator::useBootstrapFour();
     }
 }

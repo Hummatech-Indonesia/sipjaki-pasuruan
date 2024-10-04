@@ -11,6 +11,12 @@ class DummyProject extends Model
 
     protected $primaryKey = 'id';
     public $incrementing = false;
-    
+
     protected $guarded = [];
+
+    protected $casts = [
+        'tanggal_mulai' => 'date',
+        'tanggal_berakhir' => 'date',
+        // Tambahkan atribut lainnya yang perlu di-cast jika ada
+    ];
 }
