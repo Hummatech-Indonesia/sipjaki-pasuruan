@@ -52,7 +52,7 @@ li.active .page-link {
                                 </div>
 
                                 <div class="d-flex d-row align-items-center mb-3">
-                                    <select class="form-select py-2 ps-5 ms-2" name="year" id="year">
+                                    <select class="form-select py-2 ms-2" name="year" id="year">
                                         <option value="" selected>Semua</option>
                                         @foreach ($years as $year)
                                             <option value="{{ $year }}"{{ $year == $selectedYear ? 'selected' : '' }}>{{ $year }}</option>
@@ -121,7 +121,7 @@ li.active .page-link {
                                     <td class="fs-5">{{$item->tahun_anggaran}}</td>
                                     <td class="fs-5">{{ 'Rp ' . number_format($item->nilai_kontrak, 0, ',', '.') }}</td>
                                     <td class="fs-5">{{$item->sumber_dana}}</td>
-                                    <td class="fs-5">{{$item->tanggal_kontrak}}</td>
+                                    <td class="fs-5">{{$item->tanggal_kontrak?->isoFormat('DD MMMM Y') ?? "-"}}</td>
                                 </tr>
                                 @empty
                                 <tr>

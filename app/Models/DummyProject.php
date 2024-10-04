@@ -17,6 +17,7 @@ class DummyProject extends Model
     protected $casts = [
         'tanggal_mulai' => 'date',
         'tanggal_berakhir' => 'date',
+        'tanggal_kontrak' => 'date',
         // Tambahkan atribut lainnya yang perlu di-cast jika ada
     ];
 }
