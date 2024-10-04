@@ -74,6 +74,9 @@
                                         Nama Pekerjaan</th>
                                     <th class="fw-medium"
                                         style="background-color: #1B3061; color: white; border-right: 1px solid #1B3061;">
+                                        Nama Pelaksana</th>
+                                    <th class="fw-medium"
+                                        style="background-color: #1B3061; color: white; border-right: 1px solid #1B3061;">
                                         Tahun Anggaran</th>
                                     <th class="fw-medium"
                                         style="background-color: #1B3061; color: white; border-right: 1px solid #1B3061;">
@@ -83,10 +86,7 @@
                                         Sumber Dana</th>
                                     <th class="fw-medium"
                                         style="background-color: #1B3061; color: white; border-right: 1px solid #1B3061;">
-                                        Tanggal Mulai</th>
-                                    <th class="fw-medium"
-                                        style="background-color: #1B3061; color: white; border-right: 1px solid #1B3061;">
-                                        Tanggal Selesai</th>
+                                        Tanggal Kontrak</th>
                                     
                                     {{-- <th class="fw-medium"
                                         style="background-color: #1B3061; color: white; text-align: center">Jumlah</th>
@@ -108,11 +108,11 @@
                                     <th scope="row" class="fs-5">{{$loop->iteration}}</th>
                                     <td class="fs-5">{{$item->nama_dinas}}</td>
                                     <td class="fs-5">{{$item->nama_pekerjaan}}</td>
+                                    <td class="fs-5">{{$item->nama_pelaksana}}</td>
                                     <td class="fs-5">{{$item->tahun_anggaran}}</td>
                                     <td class="fs-5">{{$item->nilai_kontrak}}</td>
                                     <td class="fs-5">{{$item->sumber_dana}}</td>
-                                    <td class="fs-5">{{$item->tanggal_mulai}}</td>
-                                    <td class="fs-5">{{$item->tanggal_berakhir}}</td>
+                                    <td class="fs-5">{{$item->tanggal_kontrak}}</td>
                                 </tr>
                                 @empty
                                 <tr>

@@ -74,7 +74,8 @@ class LandingController extends Controller
 
         $dinas = DummyProject::when($request->search, function ($query) use ($request) {
             $query->where('nama_dinas', 'like', '%' . $request->search . '%')
-                ->orwhere('nama_pekerjaan', 'like', '%' . $request->search . '%');
+                ->orwhere('nama_pekerjaan', 'like', '%' . $request->search . '%')
+                ->orwhere('nama_pelaksana', 'like', '%' . $request->search . '%');
         })
         ->when($request->year, function($query) use ($request){
             $query->where('tahun_anggaran',$request->year);
