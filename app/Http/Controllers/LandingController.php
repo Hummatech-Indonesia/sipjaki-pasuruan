@@ -81,7 +81,8 @@ class LandingController extends Controller
             $query->where('tahun_anggaran',$request->year);
         })
         ->orderBy('tahun_anggaran', 'DESC')
-        ->paginate($per_page, ['*'], 'page', $page);
+        ->paginate($per_page, ['*'], 'page', $page)
+        ->appends(['search' => $request->search, 'year' => $request->year]);
         
         return view('paket-pekerjaan', compact(
             'dinas',
