@@ -235,7 +235,7 @@
             <div class="container">
                 <div class="header-inner">
                     <div class="site-mobile-logo">
-                        <a href="javascript:0" class="logo">
+                        <a href="{{ route('landing-page') }}" class="logo">
                             <img src="{{ asset('logo.png') }}" alt="site logo" class="main-logo">
                             <img src="{{ asset('logo.png') }}" alt="site logo" class="sticky-logo">
                         </a>
@@ -253,7 +253,7 @@
                             <i class="ei ei-icon_close"></i>
                         </div>
                         <div class="site-logo">
-                            <a href="javascript:0" class="logo">
+                            <a href="{{ route('landing-page') }}" class="logo">
                                 <img src="{{ asset('logo.png') }}" alt="site logo" class="main-logo">
                                 <img src="{{ asset('logo.png') }}" alt="site logo" class="sticky-logo">
                             </a>
@@ -495,7 +495,7 @@
                     font-style: normal;
                     font-weight: 500;"
                         class="footer-social-link">
-                        Copyright C2021. All Rights Reserved by SipjakiTeam
+                        Copyright &copy;2021. All Rights Reserved by SipjakiTeam
                     </ul>
                     <!-- /.row -->
 

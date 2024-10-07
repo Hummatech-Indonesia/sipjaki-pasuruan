@@ -121,7 +121,7 @@ li.active .page-link {
                                     <td class="fs-5">{{$item->tahun_anggaran}}</td>
                                     <td class="fs-5">{{ 'Rp ' . number_format($item->nilai_kontrak, 0, ',', '.') }}</td>
                                     <td class="fs-5">{{$item->sumber_dana}}</td>
-                                    <td class="fs-5">{{$item->tanggal_kontrak?->isoFormat('DD MMMM Y') ?? "-"}}</td>
+                                    <td class="fs-5">{{$item->tanggal_mulai?->isoFormat('DD MMMM Y') ?? "-"}}</td>
                                 </tr>
                                 @empty
                                 <tr>
